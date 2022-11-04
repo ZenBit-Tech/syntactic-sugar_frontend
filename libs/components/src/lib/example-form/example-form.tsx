@@ -1,6 +1,9 @@
 import styled from 'styled-components';
-
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import {addUser} from 'apps/freelance/src/redux/example-slice';
+
 
 
 type FormData = {
@@ -16,18 +19,21 @@ const StyledExampleForm = styled.div`
 `
 
 export function ExampleForm() {
+  const dispatch = useDispatch();
+
   const { register, handleSubmit, reset,  formState: { errors, isValid } } = useForm<FormData>({
     mode: "onBlur"
   });
   const onSubmit = handleSubmit(({ firstName, lastName }) => {
     console.log(firstName, lastName);
+    dispatch(addUser({firstName, lastName}))
     reset();
-  }); 
+  });  
 
   return (
     <StyledExampleForm>
     <form onSubmit={onSubmit}>
-      <label>First Name</label>
+      <label>First name</label>
       <input {...register("firstName", {
         required: "This field is required",
         minLength: {
@@ -36,7 +42,7 @@ export function ExampleForm() {
         }
       })} />
       <div>{errors?.firstName && <span>{errors?.firstName?.message || "Error!"}</span>}</div>
-      <label>Last Name</label>
+      <label>Last name</label>
       <input {...register("lastName", {
         required: "This field is required",
         minLength: {
