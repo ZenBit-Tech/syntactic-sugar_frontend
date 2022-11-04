@@ -2,15 +2,18 @@ import styled from 'styled-components';
 
 import { useForm } from "react-hook-form";
 
+
 type FormData = {
   firstName: string;
   lastName: string;
 };
 
 
+
 const StyledExampleForm = styled.div`
-  color: black;
-`;
+ // Your styles here
+ margin: 0 auto;
+`
 
 export function ExampleForm() {
   const { register, handleSubmit, reset,  formState: { errors, isValid } } = useForm<FormData>({

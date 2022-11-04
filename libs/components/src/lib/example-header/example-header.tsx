@@ -1,17 +1,21 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
+import { Header } from 'antd/lib/layout/layout';
+import { Typography } from 'antd';
+import 'antd/dist/antd.css';
 
 /* eslint-disable-next-line */
 export interface ExampleHeaderProps {}
 
 const StyledExampleHeader = styled.div`
-  color: black;
-  font-size: large;
+// Your styles here
+color: white;
 `
+const { Title } = Typography;
 
 export function ExampleHeader(props: ExampleHeaderProps) {
   return (
     <StyledExampleHeader>
-      <h1>Welcome to Header, guys!</h1>
+      <Header><Title style={{color: "white"}}>This is h1 from antd</Title></Header>
     </StyledExampleHeader>
   )
 }
