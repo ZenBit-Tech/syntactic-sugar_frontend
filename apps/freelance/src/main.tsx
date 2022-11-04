@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import App from './app/app';
-import HomePage from './pages/HomePage/HomePage';
+import ExamplePage from './pages/example-page/ExamplePage';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -13,7 +13,7 @@ root.render(
     <BrowserRouter>
     <App />
     <Routes>
-      <Route path='/' element={<HomePage/>}/>
+      <Route path='/' element={<ExamplePage/>}/>
     </Routes>
     </BrowserRouter>
   </StrictMode>

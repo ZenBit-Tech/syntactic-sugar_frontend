@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react'
 
-import Header from './header'
+import ExampleHeader from './example-header'
 
-describe('Header', () => {
+describe('ExampleHeader', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Header />)
+    const { baseElement } = render(<ExampleHeader />)
     expect(baseElement).toBeTruthy()
   })
 })
