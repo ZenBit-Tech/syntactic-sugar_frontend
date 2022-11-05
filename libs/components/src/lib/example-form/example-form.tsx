@@ -4,18 +4,50 @@ import { useDispatch } from "react-redux";
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import {addUser} from 'apps/freelance/src/redux/example-slice';
 
-
-
 type FormData = {
   firstName: string;
   lastName: string;
 };
 
-
-
-const StyledExampleForm = styled.div`
+const StyledExampleForm = styled.form`
  // Your styles here
+ max-width: 800px;
  margin: 0 auto;
+`;
+
+const StyledInput = styled.input`
+  display: block;
+  box-sizing: border-box;
+  width: 50%;
+  border-radius: 4px;
+  background-color: white;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+`;
+
+const StyledLabel = styled.label`
+  line-height: 2;
+  text-align: left;
+  display: block;
+  margin-bottom: 13px;
+  margin-top: 20px;
+  color: black;
+  font-size: 14px;
+  font-weight: 200;
+`;
+
+const StyledButton = styled.button`
+  width: 50%;
+  background: #001529;
+  color: white;
+  text-transform: uppercase;
+  border: none;
+  margin-top: 40px;
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 100;
+  letter-spacing: 10px;
 `
 
 export function ExampleForm() {
@@ -31,10 +63,9 @@ export function ExampleForm() {
   });  
 
   return (
-    <StyledExampleForm>
-    <form onSubmit={onSubmit}>
-      <label>First name</label>
-      <input {...register("firstName", {
+    <StyledExampleForm onSubmit={onSubmit}>
+      <StyledLabel>First name</StyledLabel>
+      <StyledInput {...register("firstName", {
         required: "This field is required",
         minLength: {
           value: 3,
@@ -42,8 +73,8 @@ export function ExampleForm() {
         }
       })} />
       <div>{errors?.firstName && <span>{errors?.firstName?.message || "Error!"}</span>}</div>
-      <label>Last name</label>
-      <input {...register("lastName", {
+      <StyledLabel>Last name</StyledLabel>
+      <StyledInput {...register("lastName", {
         required: "This field is required",
         minLength: {
           value: 3,
@@ -51,8 +82,9 @@ export function ExampleForm() {
         }
       })} />
       <div>{errors?.lastName && <span>{errors?.lastName?.message || "Error!"}</span>}</div>
-      <button type="submit" disabled={!isValid}>Submit</button>
-    </form>
+      <StyledButton type="submit" disabled={!isValid}>
+          Submit
+        </StyledButton>
     </StyledExampleForm>
   );
 }
