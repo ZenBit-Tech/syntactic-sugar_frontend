@@ -18,8 +18,8 @@ Backend repo - https://github.com/ZenBit-Tech/syntactic-sugar_be
 ## Clone the repo from command line:
 
 ```sh
-git clone https://github.com/ZenBit-Tech/coffee_lovers_frontend
-cd coffee_lovers_frontend
+git clone https://github.com/ZenBit-Tech/syntactic-sugar_frontend
+cd syntactic-sugar_frontend
 npm i
 npm start
 ```
