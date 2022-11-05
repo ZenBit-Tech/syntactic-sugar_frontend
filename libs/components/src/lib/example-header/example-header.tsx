@@ -15,7 +15,7 @@ const { Title } = Typography;
 export function ExampleHeader(props: ExampleHeaderProps) {
   return (
     <StyledExampleHeader>
-      <Header><Title style={{color: "white"}}>This is h1 from antd</Title></Header>
+      <Header><Title style={{color: "white"}}>Hello, Syntactic sugar!</Title></Header>
     </StyledExampleHeader>
   )
 }
