@@ -1,56 +1,14 @@
-import styled from 'styled-components';
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useTranslation } from 'react-i18next';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import {addUser} from 'apps/freelance/src/redux/example-slice';
-
+import {StyledForm, StyledLabel, StyledInput, StyledButton} from "./example-form.styled";
 
 type FormData = {
   firstName: string;
   lastName: string;
 };
-
-const StyledExampleForm = styled.form`
- // Your styles here
- max-width: 800px;
- margin: 0 auto;
-`;
-
-const StyledInput = styled.input`
-  display: block;
-  box-sizing: border-box;
-  width: 50%;
-  border-radius: 4px;
-  background-color: white;
-  padding: 10px 15px;
-  margin-bottom: 10px;
-  font-size: 14px;
-`;
-
-const StyledLabel = styled.label`
-  line-height: 2;
-  text-align: left;
-  display: block;
-  margin-bottom: 13px;
-  margin-top: 20px;
-  color: black;
-  font-size: 14px;
-  font-weight: 200;
-`;
-
-const StyledButton = styled.button`
-  width: 50%;
-  background: #001529;
-  color: white;
-  text-transform: uppercase;
-  border: none;
-  margin-top: 40px;
-  padding: 20px;
-  font-size: 16px;
-  font-weight: 100;
-  letter-spacing: 10px;
-`
 
 export function ExampleForm() {
   const dispatch = useDispatch();
@@ -66,7 +24,7 @@ export function ExampleForm() {
   });  
 
   return (
-    <StyledExampleForm onSubmit={onSubmit}>
+    <StyledForm onSubmit={onSubmit}>
       <StyledLabel>{t('First name')}</StyledLabel>
       <StyledInput {...register("firstName", {
         required: true,
@@ -88,7 +46,7 @@ export function ExampleForm() {
       <StyledButton type="submit" disabled={!isValid}>
           {t("Submit")}
         </StyledButton>
-    </StyledExampleForm>
+    </StyledForm>
   );
 }
 
