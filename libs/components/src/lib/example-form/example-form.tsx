@@ -69,22 +69,22 @@ export function ExampleForm() {
     <StyledExampleForm onSubmit={onSubmit}>
       <StyledLabel>{t('First name')}</StyledLabel>
       <StyledInput {...register("firstName", {
-        required: "This field is required",
+        required: true,
         minLength: {
           value: 3,
-          message: "Min 3 symbols"
+          message: t("Min 3 symbols")
         }
       })} />
-      <div>{errors?.firstName && <span>{errors?.firstName?.message ||"Error!"}</span>}</div>
+      <div>{errors?.firstName && <span>{errors?.firstName?.message ||t("Error!")}</span>}</div>
       <StyledLabel>{t('Last name')}</StyledLabel>
       <StyledInput {...register("lastName", {
-        required: "This field is required",
+        required: true,
         minLength: {
           value: 3,
-          message: "Min 3 symbols"
+          message: t("Min 3 symbols")
         }
       })} />
-      <div>{errors?.lastName && <span>{errors?.lastName?.message || "Error!"}</span>}</div>
+      <div>{errors?.lastName && <span>{errors?.lastName?.message || t("Error!")}</span>}</div>
       <StyledButton type="submit" disabled={!isValid}>
           {t("Submit")}
         </StyledButton>

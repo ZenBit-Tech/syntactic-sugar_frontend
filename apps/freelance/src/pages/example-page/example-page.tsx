@@ -1,4 +1,4 @@
-import { ExampleButton, ExampleForm, ExampleHeader } from '@freelance/components';
+import { ExampleForm, ExampleHeader } from '@freelance/components';
 import styled from 'styled-components';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -13,7 +13,6 @@ export function ExamplePage(props: ExamplePageProps) {
     <StyledExamplePage>
        <ExampleHeader/>
        <ExampleForm/>
-       <ExampleButton/> 
     </StyledExamplePage>
   );
 }

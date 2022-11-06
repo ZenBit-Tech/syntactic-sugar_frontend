@@ -2,5 +2,8 @@
     "Hello, Syntactic sugar!": "Hello, Syntactic sugar!",
     "First name": "First name",
     "Last name": "Last name",
-    "Submit": "Submit"
+    "Submit": "Submit",
+    "Min 3 symbols": "Min 3 symbols",
+    "Error!": "Error!"
+
 }
