@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import { useTranslation } from 'react-i18next';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import {addUser} from 'apps/freelance/src/redux/example-slice';
+
 
 type FormData = {
   firstName: string;
@@ -52,6 +54,7 @@ const StyledButton = styled.button`
 
 export function ExampleForm() {
   const dispatch = useDispatch();
+ const {t} = useTranslation();
 
   const { register, handleSubmit, reset,  formState: { errors, isValid } } = useForm<FormData>({
     mode: "onBlur"
@@ -64,7 +67,7 @@ export function ExampleForm() {
 
   return (
     <StyledExampleForm onSubmit={onSubmit}>
-      <StyledLabel>First name</StyledLabel>
+      <StyledLabel>{t('First name')}</StyledLabel>
       <StyledInput {...register("firstName", {
         required: "This field is required",
         minLength: {
@@ -73,7 +76,7 @@ export function ExampleForm() {
         }
       })} />
       <div>{errors?.firstName && <span>{errors?.firstName?.message || "Error!"}</span>}</div>
-      <StyledLabel>Last name</StyledLabel>
+      <StyledLabel>{t('Last name')}</StyledLabel>
       <StyledInput {...register("lastName", {
         required: "This field is required",
         minLength: {
