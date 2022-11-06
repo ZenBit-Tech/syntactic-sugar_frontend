@@ -1,5 +1,4 @@
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import {  ExampleForm, ExampleHeader, ExampleButton } from '@freelance/components';
+import { ExampleButton, ExampleForm, ExampleHeader } from '@freelance/components';
 import styled from 'styled-components';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -14,7 +13,7 @@ export function ExamplePage(props: ExamplePageProps) {
     <StyledExamplePage>
        <ExampleHeader/>
        <ExampleForm/>
-       <ExampleButton/>
+       <ExampleButton/> 
     </StyledExamplePage>
   );
 }

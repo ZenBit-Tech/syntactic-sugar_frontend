@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ExamplePage from '../pages/example-page/example-page';
+import store from '../redux/example-store';
+import { Provider } from 'react-redux';
 
 const StyledApp = styled.div`
   /* Your style here  */
@@ -8,6 +10,7 @@ const StyledApp = styled.div`
 
 export function App( ) {
   return (
+  <Provider store={store}>
   <StyledApp>
     <BrowserRouter>
     <Routes>
@@ -15,6 +18,7 @@ export function App( ) {
     </Routes>
     </BrowserRouter>
   </StyledApp> 
+  </Provider>
   );
   }
 

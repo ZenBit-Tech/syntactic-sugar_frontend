@@ -8,7 +8,7 @@ const StyledExampleButton = styled.select`
   color: #001529;
   display: block;
   margin-top: 20px;
-  width: 50%;
+  width: 100%;
   border-radius: 4px;
   font-size: 14px;
 `;
