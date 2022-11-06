@@ -1,8 +1,7 @@
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { useTranslation } from 'react-i18next';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import {addUser} from 'apps/freelance/src/redux/example-slice';
+import { useAppDispatch } from "apps/freelance/src/redux/example-hooks";
+import { useTranslation } from "react-i18next";
+import {addUser} from "apps/freelance/src/redux/example-slice";
 import {StyledForm, StyledLabel, StyledInput, StyledButton} from "./example-form.styled";
 
 type FormData = {
@@ -11,7 +10,7 @@ type FormData = {
 };
 
 export function ExampleForm() {
-  const dispatch = useDispatch();
+ const dispatch = useAppDispatch();
  const {t} = useTranslation();
 
   const { register, handleSubmit, reset,  formState: { errors, isValid } } = useForm<FormData>({
