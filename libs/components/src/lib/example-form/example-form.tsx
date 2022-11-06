@@ -75,7 +75,7 @@ export function ExampleForm() {
           message: "Min 3 symbols"
         }
       })} />
-      <div>{errors?.firstName && <span>{errors?.firstName?.message || "Error!"}</span>}</div>
+      <div>{errors?.firstName && <span>{errors?.firstName?.message ||"Error!"}</span>}</div>
       <StyledLabel>{t('Last name')}</StyledLabel>
       <StyledInput {...register("lastName", {
         required: "This field is required",
@@ -86,7 +86,7 @@ export function ExampleForm() {
       })} />
       <div>{errors?.lastName && <span>{errors?.lastName?.message || "Error!"}</span>}</div>
       <StyledButton type="submit" disabled={!isValid}>
-          Submit
+          {t("Submit")}
         </StyledButton>
     </StyledExampleForm>
   );
