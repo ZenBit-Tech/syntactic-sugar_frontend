@@ -23,3 +23,11 @@ cd syntactic-sugar_frontend
 npm i
 npm start
 ```
+## Extra explanation for use
+
+1. The progect 'freelance' is in apps directory.
+2. The components are in libs folder in the root of workspase. 
+3. To create a new one you can with command ``` npx nx g @nrwl/react:component component_name --project=components --export```.
+4. We use i18next.  Here is docs - https://react.i18next.com.
+5. All text must be in translation file (translation folder).
+6. Command ``` git commit``` start running test. If everything OK you will be able to make push.
