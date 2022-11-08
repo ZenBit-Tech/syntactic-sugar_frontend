@@ -4,6 +4,16 @@
     "Last name": "Last name",
     "Submit": "Submit",
     "Min 3 symbols": "Min 3 symbols",
-    "Error!": "Error!"
-
-}
+    "Error!": "Error!",
+    "loginForm": {
+        "rightSideHeader": "FREELANCER",
+        "rightSideText": "Making sure you get hired by the best company. We help you to grow your business and find your perfect job match.",
+        "leftSideHeader": "WELCOME TO",
+        "leftSideText": "Log in to get the better opportunities for your project or career.",
+        "emailInputPlaceHolder": "E-mail",
+        "passwordInputPlaceHolder": "Password",
+        "buttonText": "SIGN IN"
+  
+    }
+  }
+  
