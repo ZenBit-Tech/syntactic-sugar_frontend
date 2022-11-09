@@ -15,26 +15,26 @@ export function LoginForm(props: LoginFormProps) {
       <Container>
         <LeftSide>
           <StyledTitle tag="h2" fontWeight={800} fontSize="lg">
-            {t('loginForm.leftSideHeader')}
+            {t('signForm.leftSideHeader')}
           </StyledTitle>
           <img src="../../../assets/images/logo.png" alt={t('loginForm.logoImgAlt')} />
           <StyledParagraph fontSize="md">{t('loginForm.leftSideText')}</StyledParagraph>
           <form>
-            <input type="email" name="email" placeholder={t('loginForm.emailInputPlaceHolder')} />
+            <input type="email" name="email" placeholder={t('signForm.emailInputPlaceHolder')} />
             <input
               type="password"
               name="password"
-              placeholder={t('loginForm.passwordInputPlaceHolder')}
+              placeholder={t('signForm.passwordInputPlaceHolder')}
             />
             <button>{t('loginForm.buttonSignInText')}</button>
           </form>
           <StyledParagraph fontSize="md">
             {t('loginForm.noAccText')}
-            <Link to={''}> {t('loginForm.signNowText')}</Link>
+            <Link to='/signup'> {t('loginForm.signNowText')}</Link>
           </StyledParagraph>
           <StyledParagraph fontSize="md">
             {t('loginForm.forgotPassText')}
-            <Link to={''}> {t('loginForm.recoverNowText')}</Link>
+            <Link to=''> {t('loginForm.recoverNowText')}</Link>
           </StyledParagraph>
           <button id="GoogleBtn">
             {' '}
@@ -42,14 +42,14 @@ export function LoginForm(props: LoginFormProps) {
               src="../../../assets/images/google_logo.png"
               alt={t('loginForm.googleLogoImgAlt')}
             />{' '}
-            {t('loginForm.googleBtnText')}
+            {t('signForm.googleBtnText')}
           </button>
         </LeftSide>
         <RightSide>
           <StyledTitle tag="h3" fontWeight={700} fontSize="md">
-            {t('loginForm.rightSideHeader')}
+            {t('signForm.rightSideHeader')}
           </StyledTitle>
-          <StyledParagraph fontSize="md">{t('loginForm.rightSideText')}</StyledParagraph>
+          <StyledParagraph fontSize="md">{t('signForm.rightSideText')}</StyledParagraph>
         </RightSide>
       </Container>
     </ThemeProvider>
