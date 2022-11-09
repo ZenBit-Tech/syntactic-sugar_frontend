@@ -11,27 +11,15 @@ export const LeftSide = styled.div`
   border-top-left-radius: 30px;
   border-bottom-left-radius: 30px;
   width: 50%;
-  background-color: white;
+  background-color: ${({ theme }) => theme.colors.whiteText};
 
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 
-  h2 {
-    font-size: 1.3rem;
-    font-weight: bold;
-    margin: 0;
-  }
-
-  img {
-    margin-bottom: 1rem;
-  }
-
   p {
-    color: #a0a0a0;
-    font-weight: 500;
-    text-align: center;
+    color: ${({ theme }) => theme.colors.text};
     margin: 0;
   }
 
@@ -45,51 +33,47 @@ export const LeftSide = styled.div`
   }
 
   input {
-    border: 2px solid #d9d9d9;
+    border: 2px solid ${({ theme }) => theme.colors.lightText};
     border-radius: 100px;
     width: 75%;
     height: 50px;
     padding-left: 50px;
 
     ::placeholder {
-      color: #d9d9d9;
+      color: ${({ theme }) => theme.colors.lightText};
     }
   }
 
   input[type='email'] {
-    outline: none;
     background: url('../../../assets/images/user_icon.png') no-repeat 20px center;
     background-size: 15px;
   }
 
   input[type='password'] {
-    outline: none;
     background: url('../../../assets/images/password_icon.png') no-repeat 20px center;
     background-size: 15px;
   }
 
   button {
-    border: none;
     border-radius: 100px;
     width: 75%;
     height: 50px;
-    background: linear-gradient(90deg, #c91a16 15.63%, #ec3b37 86.51%);
-    color: #fff;
+    background: linear-gradient(
+      90deg,
+      ${({ theme }) => theme.colors.primary} 15.63%,
+      ${({ theme }) => theme.colors.secondary} 86.51%
+    );
+    color: ${({ theme }) => theme.colors.whiteText};
     font-size: 1rem;
     font-weight: 700;
-    cursor: pointer;
   }
 
   a {
-    color: #c91a16;
+    color: ${({ theme }) => theme.colors.primary};
     font-weight: bold;
 
-    img{
-      display: flex;
+    img {
       margin-top: 1rem;
-      align-items:center;
-      justify-content: center;
-      
     }
   }
 `;
@@ -111,14 +95,14 @@ export const RightSide = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0 100px;
-  color: #fff;
 
   h3 {
-    color: #fff;
+    color: ${({ theme }) => theme.colors.whiteText};
     font-size: 2.2rem;
   }
 
   p {
+    color: ${({ theme }) => theme.colors.whiteText};
     margin: 0;
     font-size: 1.2rem;
   }

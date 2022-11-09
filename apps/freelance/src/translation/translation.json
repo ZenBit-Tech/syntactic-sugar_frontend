@@ -12,8 +12,14 @@
         "leftSideText": "Log in to get the better opportunities for your project or career.",
         "emailInputPlaceHolder": "E-mail",
         "passwordInputPlaceHolder": "Password",
-        "buttonText": "SIGN IN"
-  
+        "buttonText": "SIGN IN",
+        "logoImgAlt" : "Freelancer Logo",
+        "noAccText": "Don't have an accout?",
+        "signNowText": "Sign Up Now",
+        "forgotPassText": "Forgot your password?",
+        "recoverNowText": "Recover Now",
+        "googleBtnImgAlt": "Google Button"
+        
     }
   }
   
