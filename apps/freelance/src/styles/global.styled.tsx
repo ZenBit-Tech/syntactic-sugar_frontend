@@ -4,6 +4,7 @@ export const ThemeColors = {
   colors: {
     primary: '#C91A16',
     secondary: '#EC3B37',
+    button: '#5184EC',
     text: '#A0A0A0',
     bg: '#F5F5F5',
     whiteText: '#FFFFFF',

@@ -68,12 +68,25 @@ export const LeftSide = styled.div`
     font-weight: 700;
   }
 
+  #GoogleBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    background: ${({ theme }) => theme.colors.button};
+    width: 55%;
+    height: 8%;
+    margin-top: 1rem;
+    gap: 3rem;
+  }
+
   a {
     color: ${({ theme }) => theme.colors.primary};
     font-weight: bold;
 
     img {
       margin-top: 1rem;
+      width: 50%;
     }
   }
 `;

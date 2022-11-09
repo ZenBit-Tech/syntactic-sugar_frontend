@@ -26,17 +26,24 @@ export function LoginForm(props: LoginFormProps) {
               name="password"
               placeholder={t('loginForm.passwordInputPlaceHolder')}
             />
-            <button>{t('loginForm.buttonText')}</button>
+            <button>{t('loginForm.buttonSignInText')}</button>
           </form>
           <StyledParagraph fontSize="md">
-           {t('loginForm.noAccText')}<Link to={''}> {t('loginForm.signNowText')}</Link>
+            {t('loginForm.noAccText')}
+            <Link to={''}> {t('loginForm.signNowText')}</Link>
           </StyledParagraph>
           <StyledParagraph fontSize="md">
-            {t('loginForm.forgotPassText')}<Link to={''}> {t('loginForm.recoverNowText')}</Link>
+            {t('loginForm.forgotPassText')}
+            <Link to={''}> {t('loginForm.recoverNowText')}</Link>
           </StyledParagraph>
-          <Link to={''}>
-            <img src="../../../assets/images/google_button.png" alt={t('loginForm.googleBtnImgAlt')} />
-          </Link>
+          <button id="GoogleBtn">
+            {' '}
+            <img
+              src="../../../assets/images/google_logo.png"
+              alt={t('loginForm.googleLogoImgAlt')}
+            />{' '}
+            {t('loginForm.googleBtnText')}
+          </button>
         </LeftSide>
         <RightSide>
           <StyledTitle tag="h3" fontWeight={700} fontSize="md">

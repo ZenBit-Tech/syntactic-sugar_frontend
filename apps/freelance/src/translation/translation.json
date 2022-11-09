@@ -1,25 +1,24 @@
 {
-    "Hello, Syntactic sugar!": "Hello, Syntactic sugar!",
-    "First name": "First name",
-    "Last name": "Last name",
-    "Submit": "Submit",
-    "Min 3 symbols": "Min 3 symbols",
-    "Error!": "Error!",
-    "loginForm": {
-        "rightSideHeader": "FREELANCER",
-        "rightSideText": "Making sure you get hired by the best company. We help you to grow your business and find your perfect job match.",
-        "leftSideHeader": "WELCOME TO",
-        "leftSideText": "Log in to get the better opportunities for your project or career.",
-        "emailInputPlaceHolder": "E-mail",
-        "passwordInputPlaceHolder": "Password",
-        "buttonText": "SIGN IN",
-        "logoImgAlt" : "Freelancer Logo",
-        "noAccText": "Don't have an accout?",
-        "signNowText": "Sign Up Now",
-        "forgotPassText": "Forgot your password?",
-        "recoverNowText": "Recover Now",
-        "googleBtnImgAlt": "Google Button"
-        
-    }
+  "Hello, Syntactic sugar!": "Hello, Syntactic sugar!",
+  "First name": "First name",
+  "Last name": "Last name",
+  "Submit": "Submit",
+  "Min 3 symbols": "Min 3 symbols",
+  "Error!": "Error!",
+  "loginForm": {
+    "rightSideHeader": "FREELANCER",
+    "rightSideText": "Making sure you get hired by the best company. We help you to grow your business and find your perfect job match.",
+    "leftSideHeader": "WELCOME TO",
+    "leftSideText": "Log in to get the better opportunities for your project or career.",
+    "emailInputPlaceHolder": "E-mail",
+    "passwordInputPlaceHolder": "Password",
+    "buttonSignInText": "SIGN IN",
+    "logoImgAlt": "Freelancer Logo",
+    "noAccText": "Don't have an accout?",
+    "signNowText": "Sign Up Now",
+    "forgotPassText": "Forgot your password?",
+    "recoverNowText": "Recover Now",
+    "googleBtnText": "Continue with Google",
+    "googleLogoImgAlt": "Google Logo"
   }
-  
+}
