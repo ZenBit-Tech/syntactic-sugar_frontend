@@ -2,7 +2,7 @@
 import { StyledApp } from './app.styled';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // import ExamplePage from '../pages/example-page/example-page';
-import LoginPage from '../pages/loginPage/loginPage';
+import LoginPage from '../pages/login-page/login-page';
 import store from '../redux/example-store';
 import { Provider } from 'react-redux';
 

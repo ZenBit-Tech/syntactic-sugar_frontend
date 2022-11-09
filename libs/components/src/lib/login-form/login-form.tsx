@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Container, LeftSide, RightSide } from './loginForm.styled';
+import { Container, LeftSide, RightSide } from './login-form.styled';
 import { StyledTitle, StyledParagraph } from '../../../../../apps/freelance/src/styles/typograghy';
 import { ThemeColors } from '../../../../../apps/freelance/src/styles/global.styled';
 import { ThemeProvider } from 'styled-components';

@@ -1,4 +1,4 @@
-import { StyledPage } from './loginPage.styled';
+import { StyledPage } from './login-page.styled';
 import { LoginForm } from '@freelance/components';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface

@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import LoginForm from './loginForm';
+import BaseTitle from './base-title';
 
-describe('LoginForm', () => {
+describe('BaseTitle', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<LoginForm />);
+    const { baseElement } = render(<BaseTitle />);
     expect(baseElement).toBeTruthy();
   });
 });

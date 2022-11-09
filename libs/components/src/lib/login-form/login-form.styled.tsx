@@ -64,7 +64,7 @@ export const LeftSide = styled.div`
       ${({ theme }) => theme.colors.secondary} 86.51%
     );
     color: ${({ theme }) => theme.colors.whiteText};
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: 700;
   }
 
