@@ -1,9 +1,12 @@
 {
-    "Hello, Syntactic sugar!": "Hello, Syntactic sugar!",
-    "First name": "First name",
-    "Last name": "Last name",
-    "Submit": "Submit",
-    "Min 3 symbols": "Min 3 symbols",
-    "Error!": "Error!"
-
+  "Hello, Syntactic sugar!": "Hello, Syntactic sugar!",
+  "First name": "First name",
+  "Last name": "Last name",
+  "Submit": "Submit",
+  "Min 3 symbols": "Min 3 symbols",
+  "Error!": "Error!",
+  "forgotPasswordForm": {
+    "formTitle": "Forgot your password?",
+    "firstPageInstructions": "Enter your email to reset your password!"
+  }
 }
