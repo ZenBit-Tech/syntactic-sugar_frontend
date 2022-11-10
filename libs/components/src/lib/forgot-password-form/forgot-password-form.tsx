@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import { Form, Button, Space } from 'antd';
+import { schemaForgotPasswordForm } from 'apps/freelance/src/utilities/validation-shemas';
 import {
   FormTitle,
   FoirmInstructions,
@@ -17,10 +17,6 @@ interface IFormInputs {
   email: string;
 }
 
-const schema = yup.object({
-  email: yup.string().email().required(),
-});
-
 export function ForgotPasswordForm(props: ForgotPasswordFormProps) {
   const { t } = useTranslation();
 
@@ -30,7 +26,7 @@ export function ForgotPasswordForm(props: ForgotPasswordFormProps) {
     handleSubmit,
     formState: { errors },
   } = useForm<IFormInputs>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schemaForgotPasswordForm),
   });
 
   useEffect(() => {
