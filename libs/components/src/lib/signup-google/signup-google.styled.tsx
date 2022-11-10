@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledSignupButton = styled.button`
+export const StyledSignupButton = styled.button`
 display: block;
 margin: 0 auto;
   width: 200px;
@@ -10,5 +10,3 @@ margin: 0 auto;
 
   outline: none;
 `;
-
-export {StyledSignupButton};
