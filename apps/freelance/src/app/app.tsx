@@ -13,11 +13,11 @@ export function App( ) {
   <Provider store={store}>
   <StyledApp>
     <BrowserRouter>
-    <Routes>
+    <Routes> 
       <Route path='/' element={<ExamplePage/>}/>
-    </Routes>
+      </Routes>
     </BrowserRouter>
-  </StyledApp> 
+  </StyledApp>
   </Provider>
   );
   }
