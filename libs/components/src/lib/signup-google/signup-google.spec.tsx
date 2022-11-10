@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import ExampleForm from './example-form';
+import SignupGoogle from './signup-google';
 
-describe('ExampleForm', () => {
+describe('SignupGoogle', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<ExampleForm />);
+    const { baseElement } = render(<SignupGoogle />);
     expect(baseElement).toBeTruthy();
   });
 });
