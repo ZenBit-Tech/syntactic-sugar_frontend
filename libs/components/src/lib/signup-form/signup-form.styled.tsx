@@ -56,7 +56,6 @@ export const RightSide = styled.div`
 
   a {
     color: ${({ theme }) => theme.colors.darkRed};
-    font-weight: bold;
 
     img {
       margin-top: 1rem;
