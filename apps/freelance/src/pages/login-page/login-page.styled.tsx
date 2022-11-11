@@ -6,7 +6,8 @@ const StyledPage = styled.div`
   height: 100vh;
 
   background: url('/assets/images/top_elipse.png') no-repeat top left,
-    url('/assets/images/bottom_elipse.png') no-repeat bottom right;
+    url('/assets/images/bottom_elipse.png') no-repeat bottom right,
+    ${({ theme }) => theme.colors.lightGrey};
 `;
 
 export { StyledPage };
