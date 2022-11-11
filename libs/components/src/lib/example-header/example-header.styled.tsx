@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 const StyledHeader = styled.div`
-color: white;
+  color: ${({ theme }) => theme.colors.lightText};
+  background-color: ${({ theme }) => theme.colors.primary};
 `;
 
-export {StyledHeader};
+export { StyledHeader };
