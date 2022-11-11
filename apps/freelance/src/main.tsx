@@ -3,7 +3,8 @@ import { Suspense } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import App from './app/app';
 import './i18n';
-
+import { ThemeProvider } from 'styled-components';
+import { ThemeColors, GlobalStyle } from '@freelance/components';
 
 
 const root = ReactDOM.createRoot(
@@ -12,7 +13,10 @@ const root = ReactDOM.createRoot(
 root.render(
   <StrictMode>
     <Suspense fallback={"Loading..."}>
-       <App />
+    <GlobalStyle />
+      <ThemeProvider theme={ThemeColors}>
+        <App />
+      </ThemeProvider>
     </Suspense>
   </StrictMode>
 );
