@@ -2,12 +2,14 @@ import { createGlobalStyle, css } from 'styled-components';
 
 export const ThemeColors = {
   colors: {
-    primary: '#C91A16',
-    secondary: '#EC3B37',
-    text: '#A0A0A0',
-    bg: '#F5F5F5',
-    lightText: '#FFFFFF',
-    darkText: '#000000',
+    darkRed: '#C91A16',
+    lightRed: '#EC3B37',
+    blue: '#5184EC',
+    darkGrey: '#A0A0A0',
+    grey: '#D9D9D9',
+    lightGrey: '#F5F5F5',
+    white: '#FFFFFF',
+    black: '#000000',
   },
 };
 
@@ -20,7 +22,7 @@ export const GlobalStyle = createGlobalStyle`${css`
   }
 
   body {
-    background: ${ThemeColors.colors.bg};
+    background: ${ThemeColors.colors.lightGrey};
   }
 
   button {
@@ -46,5 +48,16 @@ export const GlobalStyle = createGlobalStyle`${css`
 
   a {
     text-decoration: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin: 0;
+    padding: 0;
   }
 `}`;
