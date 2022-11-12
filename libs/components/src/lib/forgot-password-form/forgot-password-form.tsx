@@ -6,7 +6,7 @@ import { Form, Button, Space } from 'antd';
 import { schemaForgotPasswordForm } from 'apps/freelance/src/utilities/validation-shemas';
 import {
   FormTitle,
-  FoirmInstructions,
+  FormInstructions,
   FormInput,
   InputWrapper,
 } from './forgot-password-form.styled';
@@ -40,7 +40,7 @@ export function ForgotPasswordForm(props: ForgotPasswordFormProps) {
   return (
     <Space direction="vertical">
       <FormTitle>{t('forgotPasswordForm.formTitle')}</FormTitle>
-      <FoirmInstructions>{t('forgotPasswordForm.firstPageInstructions')}</FoirmInstructions>
+      <FormInstructions>{t('forgotPasswordForm.firstPageInstructions')}</FormInstructions>
       <Form
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 8 }}

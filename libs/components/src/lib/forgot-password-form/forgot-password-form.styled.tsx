@@ -7,7 +7,7 @@ export const FormTitle = styled.p`
   font-weight: bold;
 `;
 
-export const FoirmInstructions = styled.p`
+export const FormInstructions = styled.p`
   display: block;
   margin-bottom: 50px;
   font-size: 24px;
