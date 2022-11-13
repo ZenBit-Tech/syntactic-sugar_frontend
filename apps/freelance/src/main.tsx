@@ -6,17 +6,14 @@ import './i18n';
 import { ThemeProvider } from 'styled-components';
 import { ThemeColors, GlobalStyle } from '@freelance/components';
 
-
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <StrictMode>
-    <Suspense fallback={"Loading..."}>
-    <GlobalStyle />
+    <Suspense fallback={'Loading...'}>
+      <GlobalStyle />
       <ThemeProvider theme={ThemeColors}>
         <App />
       </ThemeProvider>
     </Suspense>
-  </StrictMode>
+  </StrictMode>,
 );

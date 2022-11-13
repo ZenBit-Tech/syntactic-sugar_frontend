@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
 import { Form, Button, Space } from 'antd';
 import { schemaForgotPasswordForm } from 'apps/freelance/src/utilities/validation-shemas';
+import { useSendLinkEmailMutation } from 'apps/freelance/src/redux/reset-password/reset-password-slice';
 import {
   FormTitle,
   FormInstructions,
@@ -19,6 +20,7 @@ interface IFormInputs {
 
 export function ForgotPasswordForm(props: ForgotPasswordFormProps) {
   const { t } = useTranslation();
+  const [sendLinkEmail, { isLoading }] = useSendLinkEmailMutation();
 
   const {
     control,
@@ -33,8 +35,13 @@ export function ForgotPasswordForm(props: ForgotPasswordFormProps) {
     setFocus('email');
   }, [setFocus]);
 
-  const onSubmit: SubmitHandler<IFormInputs> = data => {
-    console.log(data);
+  const onSubmit: SubmitHandler<IFormInputs> = async data => {
+    try {
+      const result = await sendLinkEmail(data);
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -62,7 +69,7 @@ export function ForgotPasswordForm(props: ForgotPasswordFormProps) {
         </InputWrapper>
         <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
           <Button type="primary" htmlType="submit">
-            Submit
+            {isLoading ? 'Loading' : 'Submit'}
           </Button>
         </Form.Item>
       </Form>

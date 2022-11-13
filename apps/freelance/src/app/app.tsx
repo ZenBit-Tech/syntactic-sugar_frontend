@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ExamplePage from '../pages/example-page/example-page';
 import store from '../redux/example-store';
 import { Provider } from 'react-redux';
+import 'antd/dist/antd.css';
 
 import { ForgotPassword } from '../pages/forgot-password';
 
