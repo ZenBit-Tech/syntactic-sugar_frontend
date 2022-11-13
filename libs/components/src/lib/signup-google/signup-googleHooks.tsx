@@ -9,16 +9,15 @@ function useGoogleAuthentication() {
 
     const handleSuccess = useGoogleLogin({
         onSuccess: tokenResponse => {
-
-            if(tokenResponse) {
-                console.log(tokenResponse)
-            signupUser(tokenResponse.access_token)
-             navigate("/role");
-            }
+          if(tokenResponse) {
+          console.log(tokenResponse)
+          signupUser(tokenResponse.access_token)
+          navigate("/role");
+          }
         },
-    });
+      });
       
-  return {
+    return {
     handleSuccess,
   }
 }
