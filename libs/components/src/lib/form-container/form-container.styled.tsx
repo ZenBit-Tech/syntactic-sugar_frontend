@@ -27,4 +27,8 @@ export const Container = styled.div<MessageContainerProps>`
   a {
     color: ${({ theme }) => theme.colors.darkRed};
   }
+
+  #googleBtn {
+    margin-top: 1rem;
+  }
 `;
