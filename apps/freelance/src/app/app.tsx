@@ -1,12 +1,9 @@
 import { StyledApp } from './app.styled';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import store from '../redux/example-store';
-import { Provider } from 'react-redux';
-import SignupPage from '../pages/signup-page/signup-page';
+import SignupPage from '@pages/signup-page/signup-page';
 
 export function App() {
   return (
-    <Provider store={store}>
       <StyledApp>
         <BrowserRouter>
           <Routes>
@@ -14,7 +11,6 @@ export function App() {
           </Routes>
         </BrowserRouter>
       </StyledApp>
-    </Provider>
   );
 }
 
