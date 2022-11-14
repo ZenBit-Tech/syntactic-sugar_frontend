@@ -3,7 +3,7 @@ import { Form } from './login-form.styled';
 import { StyledButton } from '@freelance/components';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { signInSchema } from '../../../../../apps/freelance/src/utils/validations/loginForm';
+import { signInSchema } from 'utils/validations/loginForm';
 import { InferType } from 'yup';
 
 /* eslint-disable-next-line */
