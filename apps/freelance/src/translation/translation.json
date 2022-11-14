@@ -16,5 +16,13 @@
     "title": "FREELANCER",
     "subtitle": "Making sure you get hired by the best company. We help you to grow your business and find your perfect job match.",
     "buttonGoogle": "Continue with Google"
+  },
+  "validationErrors": {
+    "Email must be a valid email address": "Email must be a valid email address",
+    "Email is required": "Email is required",
+    "minimum is 8": "minimum is 8",
+    "maximum is 24": "maximum is 24",
+    "password is required": "password is required"
+
   }
 }
