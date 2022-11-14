@@ -1,5 +1,4 @@
-import { StrictMode } from 'react';
-import { Suspense } from 'react';
+import { StrictMode, Suspense } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import App from './app/app';
 import './i18n';

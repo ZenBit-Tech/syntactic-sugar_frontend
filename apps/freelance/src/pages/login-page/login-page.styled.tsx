@@ -10,4 +10,11 @@ const StyledPage = styled.div`
     ${({ theme }) => theme.colors.lightGrey};
 `;
 
+export const Container = styled.div`
+  margin: auto;
+  width: 90%;
+  height: 80%;
+  display: flex;
+`;
+
 export { StyledPage };
