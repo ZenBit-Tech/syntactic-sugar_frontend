@@ -10,7 +10,13 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "@pages/*": ["src/pages/*"],
+      "@freelance/components": ["../../libs/components/src/index.ts"],
+      "redux/*": ["../../apps/freelance/src/redux/*"]
+    }
   },
   "files": [],
   "include": [],

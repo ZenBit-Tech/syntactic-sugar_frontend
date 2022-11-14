@@ -9,6 +9,7 @@ export interface ExampleHeaderProps {}
 
 export function ExampleHeader(props: ExampleHeaderProps) {
   const { t } = useTranslation();
+
   return (
     <ThemeProvider theme={ThemeColors}>
       <StyledHeader>
