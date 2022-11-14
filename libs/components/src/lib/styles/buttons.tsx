@@ -49,6 +49,5 @@ export const StyledButton = styled.button<iStyledButtonProps>`
   
   &:hover {
     filter: brightness(1.1);
-    box-shadow: 0px 4px 25px rgba(255, 249, 249, 0.5);
   }
 `;

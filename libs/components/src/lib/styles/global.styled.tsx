@@ -22,7 +22,7 @@ export const GlobalStyle = createGlobalStyle`${css`
   }
 
   body {
-    ${ThemeColors.colors.lightGrey};
+    background: ${ThemeColors.colors.lightGrey};
   }
 
   button {
