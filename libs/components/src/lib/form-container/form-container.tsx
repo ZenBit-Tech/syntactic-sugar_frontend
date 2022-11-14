@@ -13,12 +13,14 @@ export interface FormContainerProps {
   forgotPassText?: React.ReactNode;
   forgotPassLink?: React.ReactNode;
   isRightSide: boolean;
+  isSignForm: boolean;
 }
 
 export function FormContainer({
   title,
   subTitle,
   isRightSide,
+  isSignForm,
   buttonText,
   signText,
   signLink,
@@ -32,7 +34,8 @@ export function FormContainer({
       <StyledTitle tag="h2" fontWeight={800} fontSize="md">
         {title}
       </StyledTitle>
-      <img id="logo" src="/assets/images/logo.png" alt="logo" />
+      {isSignForm ? <img id="logo" src="/assets/images/logo.png" alt="logo" /> : ''}
+
       <StyledParagraph fontSize="md">{subTitle}</StyledParagraph>
       <form>
         <input type="email" name="email" placeholder="E-mail" />
@@ -67,10 +70,14 @@ export function FormContainer({
           <strong>{forgotPassLink}</strong>
         </Link>
       </StyledParagraph>
-      <StyledButton id="googleBtn" buttonSize="md" buttonColor="blue">
-        <img src="/assets/images/google_logo.png" alt="Google Logo" />
-        {t('signForm.buttonGoogle')}
-      </StyledButton>
+      {isSignForm ? (
+        <StyledButton id="googleBtn" buttonSize="md" buttonColor="blue">
+          <img src="/assets/images/google_logo.png" alt="Google Logo" />
+          {t('signForm.buttonGoogle')}
+        </StyledButton>
+      ) : (
+        ''
+      )}
     </Container>
   );
 }
