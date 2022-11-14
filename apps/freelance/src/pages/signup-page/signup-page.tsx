@@ -12,8 +12,9 @@ export function SignUpPage(props: SignUpPageProps) {
   return (
     <ThemeProvider theme={ThemeColors}>
       <StyledPage>
-      <Container>
+        <Container>
           <MessageContainer
+            isSignForm={true}
             isRightSide={false}
             title={t('signForm.title')}
             subTitle={t('signForm.subtitle')}
