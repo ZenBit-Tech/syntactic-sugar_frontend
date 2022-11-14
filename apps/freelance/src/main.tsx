@@ -5,7 +5,7 @@ import App from './app/app';
 import './i18n';
 import { ThemeProvider } from 'styled-components';
 import { ThemeColors, GlobalStyle } from '@freelance/components';
-import store from './redux/example-store';
+import store from 'redux/example-store';
 import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
