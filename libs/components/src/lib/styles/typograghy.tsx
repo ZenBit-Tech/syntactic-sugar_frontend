@@ -23,21 +23,17 @@ export const StyledTitle = styled(BaseTitle)`
 `;
 
 interface iStyledParagraph {
-  opacity: number;
+  opacity?: number;
   fontSize: 'lg' | 'md' | 'sm';
 }
 
 export const StyledParagraph = styled.p<iStyledParagraph>`
-  opacity: ${({ opacity }) => (opacity ? opacity : 0.5)};
-
   font-weight: 400;
 
   strong,
   b {
     font-weight: 700;
   }
-
-  color: ${({ theme }) => theme.colors.primary};
 
   ${({ fontSize }) => {
     switch (fontSize) {
