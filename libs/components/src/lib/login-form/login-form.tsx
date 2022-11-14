@@ -28,9 +28,9 @@ export function LoginForm(props: LoginFormProps) {
 
   return (
     <Form onSubmit={handleSubmit(formSubmitHandler)}>
-      <input  {...register("email")} type="email" name="email" placeholder="E-mail" />
+      <input  {...register("email")} type="email" name="email" placeholder={t("signForm.placeholderEmail")} />
       <span>{errors?.email?.message}</span>
-      <input  {...register("password")} type="password" name="password" placeholder="Password" />
+      <input  {...register("password")} type="password" name="password" placeholder={t("signForm.placeholderPassword")} />
       <span>{errors?.password?.message}</span>
       <StyledButton buttonSize="lg" buttonColor="redGradient" type="submit">
         {t('signForm.buttonSignIn')}

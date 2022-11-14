@@ -1,5 +1,4 @@
 import { object, string } from 'yup';
-// eslint-disable-next-line react-hooks/rules-of-hooks
 
 export const signInSchema = object({
   email:  string()

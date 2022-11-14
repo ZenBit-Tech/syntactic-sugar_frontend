@@ -15,6 +15,8 @@
     "recoverNow": " Recover Now",
     "title": "FREELANCER",
     "subtitle": "Making sure you get hired by the best company. We help you to grow your business and find your perfect job match.",
-    "buttonGoogle": "Continue with Google"
+    "buttonGoogle": "Continue with Google",
+    "placeholderEmail": "email",
+    "placeholderPassword": "password"
   }
 }
