@@ -10,8 +10,8 @@ export function LoginForm(props: LoginFormProps) {
 
   return (
     <Form>
-      <input type="email" name="email" placeholder="E-mail" />
-      <input type="password" name="password" placeholder="Password" />
+      <input type="email" name="email" placeholder={t('signForm.placeholderEmail')} />
+      <input type="password" name="password" placeholder={t('signForm.placeholderPassword')} />
       <StyledButton buttonSize="lg" buttonColor="redGradient">
         {t('signForm.buttonSignIn')}
       </StyledButton>

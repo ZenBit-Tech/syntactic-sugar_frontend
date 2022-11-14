@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { FormHeader, StyledParagraph, LoginForm, StyledButton } from '@freelance/components';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface FormContainerProps {
   title: React.ReactNode;
   subTitle: React.ReactNode;

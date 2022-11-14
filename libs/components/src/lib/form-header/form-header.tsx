@@ -1,7 +1,6 @@
 import { Container } from './form-header.styled';
 import { StyledTitle, StyledParagraph } from '@freelance/components';
 
-/* eslint-disable-next-line */
 export interface FormHeaderProps {
   title: React.ReactNode;
   subTitle: React.ReactNode;
