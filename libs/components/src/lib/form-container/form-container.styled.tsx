@@ -24,44 +24,7 @@ export const Container = styled.div<MessageContainerProps>`
     text-align: center;
   }
 
-  form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-    gap: 0.5rem;
-    margin: 1rem;
-  }
-
-  input {
-    border: 2px solid ${({ theme }) => theme.colors.grey};
-    border-radius: 100px;
-    width: 75%;
-    height: 50px;
-    padding-left: 50px;
-
-    ::placeholder {
-      color: ${({ theme }) => theme.colors.grey};
-    }
-  }
-
-  input[type='email'] {
-    background: url('/assets/images/user_icon.png') no-repeat 20px center;
-    background-size: 15px;
-  }
-
-  input[type='password'] {
-    background: url('/assets/images/password_icon.png') no-repeat 20px center;
-    background-size: 15px;
-  }
-
   a {
     color: ${({ theme }) => theme.colors.darkRed};
-    font-weight: bold;
-  }
-  #logo {
-    width: 50%;
-    max-width: 350px;
-    min-width: 300px;
   }
 `;

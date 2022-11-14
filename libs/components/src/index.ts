@@ -1,3 +1,4 @@
+export * from './lib/form-header/form-header';
 export * from './lib/message-container/message-container';
 export * from './lib/form-container/form-container';
 export * from './lib/signup-form/signup-form';
