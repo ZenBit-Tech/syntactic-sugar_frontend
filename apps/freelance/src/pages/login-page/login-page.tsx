@@ -16,7 +16,7 @@ export function LogInPage(props: LogInPageProps) {
           <FormContainer
             isSignForm={true}
             isRightSide={false}
-            formType='login'
+            formType="login"
             title={t('signForm.welcome')}
             subTitle={t('signForm.signInSubtitle')}
             signText={t('signForm.noAcc')}
@@ -25,6 +25,7 @@ export function LogInPage(props: LogInPageProps) {
             forgotPassLink={t('signForm.recoverNow')}
           />
           <MessageContainer
+            isSignForm={true}
             isRightSide={true}
             title={t('signForm.title')}
             subTitle={t('signForm.subtitle')}

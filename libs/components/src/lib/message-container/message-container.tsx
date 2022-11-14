@@ -5,11 +5,17 @@ export interface MessageContainerProps {
   title: React.ReactNode;
   subTitle: React.ReactNode;
   isRightSide: boolean;
+  isSignForm: boolean;
 }
 
-export function MessageContainer({ title, subTitle, isRightSide }: MessageContainerProps) {
+export function MessageContainer({
+  title,
+  subTitle,
+  isRightSide,
+  isSignForm,
+}: MessageContainerProps) {
   return (
-    <Container isRightSide={isRightSide}>
+    <Container isRightSide={isRightSide} isSignForm={isSignForm}>
       <StyledTitle tag="h3" fontWeight={700} fontSize="lg">
         {title}
       </StyledTitle>
