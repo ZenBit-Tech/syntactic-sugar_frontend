@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
-import { useAppDispatch } from "apps/freelance/src/redux/example-hooks";
+import { useAppDispatch } from "redux/example-hooks";
 import { useTranslation } from "react-i18next";
-import {addUser} from "apps/freelance/src/redux/example-slice";
+import {addUser} from "redux/example-slice";
 import {StyledForm, StyledLabel, StyledInput, StyledButton} from "./example-form.styled";
 
 type FormData = {
