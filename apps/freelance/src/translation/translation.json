@@ -17,6 +17,15 @@
     "subtitle": "Making sure you get hired by the best company. We help you to grow your business and find your perfect job match.",
     "buttonGoogle": "Continue with Google",
     "placeholderEmail": "E-mail",
-    "placeholderPassword": "Password"
+    "placeholderPassword": "Password",
+    "signInNow": " Sign In Now"
+  },
+  "recoverPassForm": {
+    "forgotPass": "Forgot your password?",
+    "enterEmail": "Enter you registered e-mail and we'll send you instructions on how to reset your password.",
+    "buttonContinue": "CONTINUE",
+    "title": "PASSWORD RECOVERY",
+    "subtitle": "Follow the next steps to get access to your account and the better opportunities for your project or career.",
+    "rememberPass": "Did you remember your password?"
   }
 }

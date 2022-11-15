@@ -1,7 +1,13 @@
 import { Container } from './form-container.styled';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { FormHeader, StyledParagraph, LoginForm, StyledButton } from '@freelance/components';
+import {
+  FormHeader,
+  StyledParagraph,
+  LoginForm,
+  RecoverPassFirstForm,
+  StyledButton,
+} from '@freelance/components';
 
 export interface FormContainerProps {
   title: React.ReactNode;
@@ -12,7 +18,7 @@ export interface FormContainerProps {
   forgotPassLink?: React.ReactNode;
   isRightSide: boolean;
   isSignForm: boolean;
-  formType: 'login';
+  formType: 'login' | 'recoverPass1';
 }
 
 export function FormContainer({
@@ -32,9 +38,10 @@ export function FormContainer({
     <Container isRightSide={isRightSide}>
       <FormHeader title={title} subTitle={subTitle} isSignForm={isSignForm} />
       {formType === 'login' && <LoginForm />}
+      {formType === 'recoverPass1' && <RecoverPassFirstForm />}
       <StyledParagraph fontSize="md">
         {signText}
-        {isRightSide ? (
+        {isRightSide || !isSignForm ? (
           <Link to="/">
             <strong>{signLink}</strong>
           </Link>
