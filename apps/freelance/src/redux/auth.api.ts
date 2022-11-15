@@ -24,7 +24,7 @@ export const authApi = createApi({
   }),
   refetchOnFocus: true,
   endpoints: build => ({
-    login: build.mutation<IServerResponse, IForm>({
+    login: build.mutation({
       query: (body: IForm) => ({
         url: 'login',
         method: 'POST',
