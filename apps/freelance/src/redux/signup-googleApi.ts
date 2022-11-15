@@ -1,7 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-interface Token {
-  token: string,
+// interface IServerResponse {
+//   id: string;
+//   email: string;
+//   isActivated: boolean;
+// }
+
+interface IToken {
+  token: string;
 }
 
 const baseUrl: string = process.env['NX_APP_API_URL'] || '';
@@ -11,8 +17,8 @@ export const signupGoogleApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: baseUrl}),
     tagTypes: ['user'],
     endpoints: builder => ({
-      signUp: builder.mutation<Token, string>({
-        query: body => ({
+      signUp: builder.mutation({
+        query: (body: IToken) => ({
           url: `auth/google/signup`,
           method: 'POST',
           body,
