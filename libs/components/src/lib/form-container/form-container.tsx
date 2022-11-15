@@ -34,7 +34,6 @@ export function FormContainer({
   const loginGoogle = useGoogleLogin({
     onSuccess: async coderesponse => {
       const response = await loginWithGoogle({ token: coderesponse.access_token });
-      console.log(coderesponse, response);
       return response;
     },
   });

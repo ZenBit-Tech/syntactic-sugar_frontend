@@ -23,7 +23,6 @@ export function LoginForm(props: LoginFormProps) {
   });
 
   const formSubmitHandler = (data: Props) => {
-    console.log(data);
     login(data);
   };
 
