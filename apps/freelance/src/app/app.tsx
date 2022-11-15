@@ -5,7 +5,7 @@ import store from '../redux/example-store';
 import { Provider } from 'react-redux';
 import 'antd/dist/antd.css';
 
-import { ForgotPassword } from '../pages/forgot-password';
+import { CheckYourEmail, ForgotPassword } from '../pages/reset-password';
 
 const StyledApp = styled.div`
   /* Your style here  */
@@ -19,6 +19,7 @@ export function App() {
           <Routes>
             <Route path="/" element={<ExamplePage />} />
             <Route path="/forgotpassword" element={<ForgotPassword />} />
+            <Route path="/checkyouremail" element={<CheckYourEmail />} />
           </Routes>
         </BrowserRouter>
       </StyledApp>

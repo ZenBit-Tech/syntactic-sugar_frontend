@@ -7,7 +7,7 @@ export const resetPasswordApi = createApi({
   reducerPath: 'resetPasswordApi',
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: builder => ({
-    sendLinkEmail: builder.mutation<GetEmail, SendEmail>({
+    sendLinkEmail: builder.mutation<boolean, SendEmail>({
       query: values => ({
         url: '/resetpassword',
         method: 'POST',

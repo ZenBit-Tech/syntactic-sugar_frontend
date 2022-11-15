@@ -5,8 +5,9 @@
   "Submit": "Submit",
   "Min 3 symbols": "Min 3 symbols",
   "Error!": "Error!",
-  "forgotPasswordForm": {
+  "resetPasswordPage": {
     "formTitle": "Forgot your password?",
-    "firstPageInstructions": "Enter your email to reset your password!"
+    "firstPageInstructions": "Enter your email to reset your password!",
+    "checkYourEmail": "We sent a link to your email! Continue there!"
   }
 }

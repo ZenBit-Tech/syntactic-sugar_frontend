@@ -1,27 +1,20 @@
 import { useEffect } from 'react';
-import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
 import { Form, Button, Space } from 'antd';
 import { schemaForgotPasswordForm } from 'apps/freelance/src/utilities/validation-shemas';
-import { useSendLinkEmailMutation } from 'apps/freelance/src/redux/reset-password/reset-password-slice';
+import { useForgotPasswordSendEmail, IFormInputs } from './forgot-passwordHooks';
 import {
   FormTitle,
   FormInstructions,
   FormInput,
   InputWrapper,
 } from './forgot-password-form.styled';
-
 /* eslint-disable-next-line */
-export interface ForgotPasswordFormProps {}
-interface IFormInputs {
-  email: string;
-}
 
-export function ForgotPasswordForm(props: ForgotPasswordFormProps) {
+export function ForgotPasswordForm() {
   const { t } = useTranslation();
-  const [sendLinkEmail, { isLoading }] = useSendLinkEmailMutation();
-
   const {
     control,
     setFocus,
@@ -30,24 +23,16 @@ export function ForgotPasswordForm(props: ForgotPasswordFormProps) {
   } = useForm<IFormInputs>({
     resolver: yupResolver(schemaForgotPasswordForm),
   });
+  const { onSubmit, isLoading } = useForgotPasswordSendEmail();
 
   useEffect(() => {
     setFocus('email');
   }, [setFocus]);
 
-  const onSubmit: SubmitHandler<IFormInputs> = async data => {
-    try {
-      const result = await sendLinkEmail(data);
-      console.log(result);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <Space direction="vertical">
-      <FormTitle>{t('forgotPasswordForm.formTitle')}</FormTitle>
-      <FormInstructions>{t('forgotPasswordForm.firstPageInstructions')}</FormInstructions>
+      <FormTitle>{t('resetPasswordPage.formTitle')}</FormTitle>
+      <FormInstructions>{t('resetPasswordPage.firstPageInstructions')}</FormInstructions>
       <Form
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 8 }}
@@ -68,7 +53,7 @@ export function ForgotPasswordForm(props: ForgotPasswordFormProps) {
           </Form.Item>
         </InputWrapper>
         <Form.Item wrapperCol={{ offset: 4, span: 16 }}>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" disabled={isLoading}>
             {isLoading ? 'Loading' : 'Submit'}
           </Button>
         </Form.Item>

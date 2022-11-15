@@ -4,5 +4,4 @@ export interface SendEmail {
 
 export interface GetEmail {
   id: string;
-  email: string;
 }

@@ -7,6 +7,7 @@ const store = configureStore({
     user: userReducer,
     [resetPasswordApi.reducerPath]: resetPasswordApi.reducer,
   },
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(resetPasswordApi.middleware),
 });
 
 export default store;

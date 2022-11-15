@@ -1,5 +1,5 @@
 import { ForgotPasswordForm } from '@freelance/components';
-import { Container } from './forgot-password.styled';
+import { Container } from './reset-password.styled';
 
 export const ForgotPassword = () => {
   return (
