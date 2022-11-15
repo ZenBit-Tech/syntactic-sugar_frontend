@@ -34,7 +34,7 @@ yarn-error.log
 testem.log
 /typings
 .env
-/apps/freelance/.env.local
+**/.env.local
 
 # System Files
 .DS_Store
