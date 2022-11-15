@@ -1,7 +1,13 @@
 import { Container } from './form-container.styled';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { FormHeader, StyledParagraph, LoginForm, StyledButton } from '@freelance/components';
+import {
+  FormHeader,
+  StyledParagraph,
+  LoginForm,
+  SignupForm,
+  StyledButton,
+} from '@freelance/components';
 import { useGoogleLogin } from '@react-oauth/google';
 import { useLoginWithGoogleMutation } from 'redux/auth.api';
 
