@@ -6,7 +6,9 @@ const store = configureStore({
     reducer: {
       user: userReducer,
       [signupGoogleApi.reducerPath]: signupGoogleApi.reducer,
-    }
+    },
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(signupGoogleApi.middleware),
 });
 
 export default store;

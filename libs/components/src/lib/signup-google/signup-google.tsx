@@ -1,11 +1,12 @@
-// import {GoogleLogin} from '@react-oauth/google';
-import useGoogleAuthentication from "./signup-googleHooks";
- 
-export function SignupGoogle() {
+import  useGoogleAuthentication from "./signup-googleHooks";
+import { useTranslation } from 'react-i18next';
+
+export const SignupGoogle = () => {
   const { handleSuccess } = useGoogleAuthentication();
+  const {t} = useTranslation();
  
   return (
-    <button onClick ={() => handleSuccess()}>Sign up with Google</button>
+    <button onClick ={() => handleSuccess()}>{t("signupGoogle.buttonText")}</button>
   );
 };
 

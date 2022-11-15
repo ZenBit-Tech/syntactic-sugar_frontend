@@ -6,9 +6,9 @@ import translationEnglish from "./translation/translation.json";
 
 
 const resources = {
-    en: {
-        translation: translationEnglish,
-    }
+  en: {
+    translation: translationEnglish,
+  }
 }
 
 i18next
