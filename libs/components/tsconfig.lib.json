@@ -8,6 +8,12 @@
     "../../node_modules/@nrwl/react/typings/cssmodule.d.ts",
     "../../node_modules/@nrwl/react/typings/image.d.ts"
   ],
+  "paths": {
+    "@pages/*": ["src/pages/*"],
+    "@freelance/components": ["../../libs/components/src/index.ts"],
+    "redux/*": ["../../apps/freelance/src/redux/*"],
+    "utils/*": ["../../apps/freelance/src/utils/*"]
+  },
   "exclude": [
     "jest.config.ts",
     "**/*.spec.ts",

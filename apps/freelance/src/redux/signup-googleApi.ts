@@ -1,10 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-// interface IServerResponse {
-//   id: string;
-//   email: string;
-//   isActivated: boolean;
-// }
+interface IServerResponse {
+  id: string;
+  email: string;
+}
 
 interface IToken {
   token: string;
@@ -17,7 +16,7 @@ export const signupGoogleApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: baseUrl}),
     tagTypes: ['user'],
     endpoints: builder => ({
-      signUp: builder.mutation({
+      signUp: builder.mutation<IServerResponse, IToken>({
         query: (body: IToken) => ({
           url: `auth/google/signup`,
           method: 'POST',

@@ -14,10 +14,12 @@
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@freelance/components": ["libs/components/src/index.ts"]
-    }
+    "baseUrl": "."
+  },
+  "paths": {
+    "@pages/*": ["src/pages/*"],
+    "@freelance/components": ["../../libs/components/src/index.ts"],
+    "redux/*": ["src/redux/*"]
   },
   "exclude": ["node_modules", "tmp"]
 }

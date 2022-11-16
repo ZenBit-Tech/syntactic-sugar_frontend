@@ -1,5 +1,30 @@
 {
     "signupGoogle": {
         "buttonText": "Sign up with Google"
-    }
+    },
+  "Hello, Syntactic sugar!": "Hello, Syntactic sugar!",
+  "First name": "First name",
+  "Last name": "Last name",
+  "Submit": "Submit",
+  "Min 3 symbols": "Min 3 symbols",
+  "Error!": "Error!",
+  "signForm": {
+    "welcome": "WELCOME TO",
+    "signInSubtitle": "Log in to get the better opportunities for your project or career.",
+    "buttonSignIn": "SIGN IN",
+    "noAcc": "Don't have an account?",
+    "signUpNow": " Sign Up Now",
+    "forgotPass": "Forgot your password?",
+    "recoverNow": " Recover Now",
+    "title": "FREELANCER",
+    "subtitle": "Making sure you get hired by the best company. We help you to grow your business and find your perfect job match.",
+    "signUpSubtitle": "Register to get the better opportunities for your project or career.",
+    "buttonGoogle": "Continue with Google",
+    "placeholderEmail": "E-mail",
+    "placeholderPassword": "Password",
+    "placeholderConfirmPassword": "Confirm Password",
+    "buttonSignUp": "SIGN UP",
+    "haveAcc": "Already have an account?",
+    "signInNow": " Sign In Now"
+  }
 }

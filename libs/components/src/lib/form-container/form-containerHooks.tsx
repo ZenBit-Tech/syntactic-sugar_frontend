@@ -1,13 +1,13 @@
 import {useGoogleLogin} from "@react-oauth/google";
 // import {TokenResponse, CodeResponse} from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
-import { useSignUpMutation } from "apps/freelance/src/redux/signup-googleApi";
+import { useSignUpMutation } from "redux/signup-googleApi";
 
 interface AuthResponse {
   token: string;
 }
  
-const  useGoogleAuthentication = () => {
+export const  useGoogleAuthentication = () => {
     const navigate = useNavigate();
     const [signupUser] = useSignUpMutation();
 
@@ -24,5 +24,4 @@ const  useGoogleAuthentication = () => {
   }
 };
 
-export default useGoogleAuthentication;
 
