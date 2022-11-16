@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { baseUrl } from "utils/constants/redux-query";
 
 interface IServerResponse {
   id: string;
@@ -8,8 +9,6 @@ interface IServerResponse {
 interface IToken {
   token: string;
 }
-
-const baseUrl: string = process.env['NX_APP_API_URL'] || '';
 
 export const signupGoogleApi = createApi({
     reducerPath: 'signupGoogleApi',

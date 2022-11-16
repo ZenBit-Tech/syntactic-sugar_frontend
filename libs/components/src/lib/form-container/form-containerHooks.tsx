@@ -1,11 +1,6 @@
 import {useGoogleLogin} from "@react-oauth/google";
-// import {TokenResponse, CodeResponse} from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import { useSignUpMutation } from "redux/signup-googleApi";
-
-interface AuthResponse {
-  token: string;
-}
  
 export const  useGoogleAuthentication = () => {
     const navigate = useNavigate();
