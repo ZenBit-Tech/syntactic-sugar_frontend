@@ -1,10 +1,7 @@
 import { useSendLinkEmailMutation } from 'apps/freelance/src/redux/reset-password/reset-password-slice';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler } from 'react-hook-form';
-
-export interface IFormInputs {
-  email: string;
-}
+import { IFormInputs } from './interfaces';
 
 export function useForgotPasswordSendEmail() {
   const [sendLinkEmail, { isLoading }] = useSendLinkEmailMutation();

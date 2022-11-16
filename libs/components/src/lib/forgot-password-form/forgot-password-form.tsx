@@ -4,7 +4,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
 import { Form, Button, Space } from 'antd';
 import { schemaForgotPasswordForm } from 'apps/freelance/src/utilities/validation-shemas';
-import { useForgotPasswordSendEmail, IFormInputs } from './forgot-passwordHooks';
+import { useForgotPasswordSendEmail } from './forgot-passwordHooks';
+import { IFormInputs } from './interfaces';
 import {
   FormTitle,
   FormInstructions,

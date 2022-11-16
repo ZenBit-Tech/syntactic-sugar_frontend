@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { SendEmail, GetEmail } from './types';
 
-const BASE_URL = 'http://localhost:8000/';
+const BASE_URL = 'http://localhost:8000/auth';
 
 export const resetPasswordApi = createApi({
   reducerPath: 'resetPasswordApi',
@@ -9,7 +9,7 @@ export const resetPasswordApi = createApi({
   endpoints: builder => ({
     sendLinkEmail: builder.mutation<boolean, SendEmail>({
       query: values => ({
-        url: '/resetpassword',
+        url: '/forgotpassword',
         method: 'POST',
         body: values,
       }),
