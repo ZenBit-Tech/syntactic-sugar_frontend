@@ -29,7 +29,8 @@
           "extractLicenses": false,
           "optimization": false,
           "sourceMap": true,
-          "vendorChunk": true
+          "vendorChunk": true,
+          "envFiles": [".env.local"]
         },
         "production": {
           "fileReplacements": [
