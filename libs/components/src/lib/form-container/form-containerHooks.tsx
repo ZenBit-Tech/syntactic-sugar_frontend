@@ -13,7 +13,6 @@ export const  useGoogleAuthentication = () => {
 
     const handleSuccess = useGoogleLogin({
         onSuccess:  tokenResponse => {
-          console.log(tokenResponse)
           signupUser({ token: tokenResponse.access_token });
           navigate("/role");
         }
