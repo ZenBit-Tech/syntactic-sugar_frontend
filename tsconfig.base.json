@@ -14,10 +14,7 @@
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@freelance/components": ["libs/components/src/index.ts"]
-    }
+    "baseUrl": "."
   },
   "exclude": ["node_modules", "tmp"]
 }

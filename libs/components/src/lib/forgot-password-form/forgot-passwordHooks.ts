@@ -1,4 +1,4 @@
-import { useSendLinkEmailMutation } from 'apps/freelance/src/redux/reset-password/reset-password-slice';
+import { useSendLinkEmailMutation } from 'redux/reset-password/reset-password-slice';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler } from 'react-hook-form';
 import { IFormInputs } from './interfaces';

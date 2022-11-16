@@ -3,7 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
 import { Form, Button, Space } from 'antd';
-import { schemaForgotPasswordForm } from 'apps/freelance/src/utilities/validation-shemas';
+import { schemaForgotPasswordForm } from 'utils/validations/validation-shemas';
 import { useForgotPasswordSendEmail } from './forgot-passwordHooks';
 import { IFormInputs } from './interfaces';
 import {
