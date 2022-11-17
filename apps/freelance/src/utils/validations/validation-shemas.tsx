@@ -9,6 +9,7 @@ export const schemaForgotPasswordForm = (): SchemaOf<SendEmailForm> => {
   const { t } = useTranslation();
   const messageEmail: string = t('recoverPassForm.validationEmailMessage');
   const messageRequired: string = t('recoverPassForm.validationRequiredMessage');
+
   return object({
     email: string().email(messageEmail).required(messageRequired),
   });

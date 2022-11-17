@@ -4,6 +4,7 @@ import { Container } from './recoverpass-first-page.styled';
 
 export function CheckYourEmail() {
   const { t } = useTranslation();
+
   return (
     <Container>
       <StyledTitle tag="h1" fontWeight={400} fontSize="md">
