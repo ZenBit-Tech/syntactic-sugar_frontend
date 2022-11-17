@@ -30,6 +30,8 @@
     "buttonContinue": "CONTINUE",
     "title": "PASSWORD RECOVERY",
     "subtitle": "Follow the next steps to get access to your account and the better opportunities for your project or career.",
-    "rememberPass": "Did you remember your password?"
+    "rememberPass": "Did you remember your password?",
+    "resetSuccess": "Your password reset is successfully done! Go to Home Page.",
+    "homePageBtn": "HOME PAGE"
   }
 }
