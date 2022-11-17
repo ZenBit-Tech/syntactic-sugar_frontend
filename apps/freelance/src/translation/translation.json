@@ -35,6 +35,11 @@
     "buttonContinue": "CONTINUE",
     "title": "PASSWORD RECOVERY",
     "subtitle": "Follow the next steps to get access to your account and the better opportunities for your project or career.",
-    "rememberPass": "Did you remember your password?"
+    "rememberPass": "Did you remember your password?",
+    "validationEmailMessage": "Email must be such view email@domain.com",
+    "validationRequiredMessage": "Email is required",
+    "errorMessageWrongEmail": "User with this email does not exist",
+    "errorMessageServerError": "Somethig went wrong",
+    "loader": "SENDING EMAIL"
   }
 }

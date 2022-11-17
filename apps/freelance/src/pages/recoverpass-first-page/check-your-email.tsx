@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { StyledTitle } from '@freelance/components';
-import { Container } from './reset-password.styled';
+import { Container } from './recoverpass-first-page.styled';
 
-export const CheckYourEmail = () => {
+export function CheckYourEmail() {
   const { t } = useTranslation();
   return (
     <Container>
@@ -11,4 +11,6 @@ export const CheckYourEmail = () => {
       </StyledTitle>
     </Container>
   );
-};
+}
+
+export default CheckYourEmail;

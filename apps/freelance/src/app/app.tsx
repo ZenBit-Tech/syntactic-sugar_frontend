@@ -2,8 +2,7 @@ import { StyledApp } from './app.styled';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginPage from '@pages/login-page/login-page';
 import SignupPage from '@pages/signup-page/signup-page';
-import { CheckYourEmail } from '../pages/reset-password';
-import RecoverPassFirstPage from '@pages/recoverpass-first-page/recoverpass-first-page';
+import { RecoverPassFirstPage, CheckYourEmail } from '@pages/recoverpass-first-page';
 
 export function App() {
   return (
@@ -12,7 +11,7 @@ export function App() {
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/checkyouremail" element={<CheckYourEmail />} />
+          <Route path="/check-your-email" element={<CheckYourEmail />} />
           <Route path="/recover-password" element={<RecoverPassFirstPage />} />
         </Routes>
       </BrowserRouter>

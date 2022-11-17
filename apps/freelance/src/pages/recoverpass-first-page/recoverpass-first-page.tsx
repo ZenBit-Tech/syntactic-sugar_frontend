@@ -1,7 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { Container, StyledPage } from './recoverpass-first-page.styled';
 import { ThemeProvider } from 'styled-components';
-import { ThemeColors, FormContainer, MessageContainer, ThemeBackground } from '@freelance/components';
+import {
+  ThemeColors,
+  FormContainer,
+  MessageContainer,
+  ThemeBackground,
+} from '@freelance/components';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface RecoverPassFirstPageProps {}
