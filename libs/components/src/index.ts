@@ -1,3 +1,4 @@
+export * from './lib/side-container/side-container';
 export * from './lib/signup-form/signup-form';
 export * from './lib/recover-pass-first-form/recover-pass-first-form';
 export * from './lib/form-header/form-header';
