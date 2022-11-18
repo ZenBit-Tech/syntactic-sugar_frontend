@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { baseUrl } from 'utils/constants/constants';
 
 interface IForm {
   email: string;
@@ -14,8 +15,6 @@ interface IServerResponse {
 interface IToken {
   token: string;
 }
-
-const baseUrl: string = process.env['NX_API_URL_AUTH'] || '';
 
 export const authApi = createApi({
   reducerPath: 'auth/api',

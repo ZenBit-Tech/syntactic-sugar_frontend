@@ -40,11 +40,21 @@ export function FormContainer({
 
   const loginGoogle = useGoogleLogin({
     onSuccess: async coderesponse => {
-      const response = await loginWithGoogle({ token: coderesponse.access_token });
+      try {
+        const response = await loginWithGoogle({ token: coderesponse.access_token });
 
-      return response;
+        return response;
+      } catch (err) {
+
+        return alert(err);
+      }
     },
   });
+
+  const handleLoginButtonClick = () => {
+
+    loginGoogle();
+  };
 
   return (
     <Container isRightSide={isRightSide}>
@@ -71,15 +81,7 @@ export function FormContainer({
         </Link>
       </StyledParagraph>
       {isSignForm && (
-        <StyledButton
-          id="googleBtn"
-          buttonSize="md"
-          buttonColor="blue"
-          onClick={() => {
-            
-            loginGoogle();
-          }}
-        >
+        <StyledButton id="googleBtn" buttonSize="md" buttonColor="blue" onClick={handleLoginButtonClick}>
           <img src="/assets/images/google_logo.png" alt="Google Logo" />
           {t('signForm.buttonGoogle')}
         </StyledButton>
