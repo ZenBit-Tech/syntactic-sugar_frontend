@@ -7,11 +7,11 @@ export const  useGoogleAuthentication = () => {
   const [signupUser] = useSignUpMutation();
 
   const handleSuccess = useGoogleLogin({
-      onSuccess: tokenResponse => {
-        signupUser({ token: tokenResponse.access_token });
-        navigate("/role");
-        }
-      })
-  return { handleSuccess };
+    onSuccess: tokenResponse => {
+      signupUser({ token: tokenResponse.access_token });
+      navigate("/role");
+    }
+  });
 
+  return () => handleSuccess 
 };
