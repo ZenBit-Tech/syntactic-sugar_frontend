@@ -1,3 +1,6 @@
+export * from './lib/dashboard-menu/dashboard-menu';
+export * from './lib/dashboard-header/dashboard-header';
+export * from './lib/dashboard/dashboard';
 export * from './lib/signup-form/signup-form';
 export * from './lib/recover-pass-first-form/recover-pass-first-form';
 export * from './lib/form-header/form-header';

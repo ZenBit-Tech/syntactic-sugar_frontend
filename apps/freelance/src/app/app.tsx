@@ -6,6 +6,7 @@ import SignupPage from '@pages/signup-page/signup-page';
 import store from 'redux/store';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import RecoverPassFirstPage from '@pages/recoverpass-first-page/recoverpass-first-page';
+import FreelancerProfilePage from '@pages/freelancer-profile-page/freelancer-profile-page';
 
 export function App() {
   return (
@@ -18,6 +19,7 @@ export function App() {
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/role" element={<h1>hello</h1>} />
           <Route path="/recover-password" element={<RecoverPassFirstPage />} />
+          <Route path="/freelancer-profile" element={<FreelancerProfilePage />} />
         </Routes>
         </BrowserRouter>
         </Provider>
