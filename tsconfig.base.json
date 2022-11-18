@@ -16,5 +16,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": "."
   },
+  "paths": {
+    "@pages/*": ["src/pages/*"],
+    "@freelance/components": ["../../libs/components/src/index.ts"],
+    "redux/*": ["src/redux/*"]
+  },
   "exclude": ["node_modules", "tmp"]
 }

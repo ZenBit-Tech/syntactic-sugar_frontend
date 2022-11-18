@@ -9,6 +9,7 @@ import {
   RecoverPassFirstForm,
   StyledButton,
 } from '@freelance/components';
+import  { useGoogleAuthentication } from './form-containerHooks';
 
 export interface FormContainerProps {
   title: React.ReactNode;
@@ -34,6 +35,7 @@ export function FormContainer({
   forgotPassLink,
 }: FormContainerProps) {
   const { t } = useTranslation();
+  const  handleSuccess  = useGoogleAuthentication();
 
   return (
     <Container isRightSide={isRightSide}>
@@ -60,7 +62,7 @@ export function FormContainer({
         </Link>
       </StyledParagraph>
       {isSignForm && (
-        <StyledButton id="googleBtn" buttonSize="md" buttonColor="blue">
+        <StyledButton onClick={ handleSuccess } id="googleBtn" buttonSize="md" buttonColor="blue">
           <img src="/assets/images/google_logo.png" alt="Google Logo" />
           {t('signForm.buttonGoogle')}
         </StyledButton>
