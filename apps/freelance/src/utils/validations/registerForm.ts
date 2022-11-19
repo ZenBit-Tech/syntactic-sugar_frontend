@@ -2,11 +2,11 @@ import { object, ref, string } from 'yup';
 
 export const signUpSchema = object({
   email:  string()
-    .email("Email must be a valid email address")
-    .required("Email is required"),
+    .email("Invalid E-mail format")
+    .required("E-mail is required"),
   password: string().required('Password is required')
-    .min(8, 'minimum is 8')
-    .max(24, 'maximum is 24'),
+    .min(8, 'Minimum 8 characters')
+    .max(24, 'Maximum 24 characters'),
   passwordConfirmation: string()
     .oneOf([ref('password'), null], 'Passwords must match')
 });
