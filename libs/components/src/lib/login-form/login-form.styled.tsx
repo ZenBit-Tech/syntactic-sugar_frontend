@@ -1,12 +1,4 @@
-import styled, { css } from "styled-components";
-import { InferType } from "yup";
-import { signInSchema } from "utils/validations/loginForm";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { FocusEventHandler, FormEventHandler } from 'react';
-
-interface Form {
-  isError: boolean;
-}
+import styled from "styled-components";
 
 export const Form = styled.form`
 	display: flex;
@@ -20,7 +12,7 @@ export const Form = styled.form`
 	input {
 		border: 2px solid ${({ theme }) => theme.colors.grey};
 		border-radius: 100px;
-		width: 70%;
+		width: 75%;
 		align-self: center;
 		align-items: center;
 		height: 50px;
@@ -42,32 +34,24 @@ export const Form = styled.form`
 	}
 `;
 
-export const InputWrapper = styled.div<Form>`
+export const InputWrapper = styled.div`
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	width: 100%;
 
-	p {
-		right: -20%;
+	span {
+		opacity: 0.8;
+		right: -15%;
 		text-align: center;
 		align-items: center;
 		justify-content: center;
 		display: inline-flex;
-		height: 50px;
-		width: 25%;
-		color: ${({ theme }) => theme.colors.darkRed};
+		height: auto;
+		max-height: 50px;
+		width: 20%;
+		padding: 0.5rem;
+		color: ${({ theme }) => theme.colors.white};
 		position: absolute;
-		${({isError})=> {
-      switch(isError){
-        case true:
-         return css`
-            background-color: blue;
-          `
-          case false:
-           return css`
-              background-color: none;
-            `
-      }
-    }}
 	}
 `;

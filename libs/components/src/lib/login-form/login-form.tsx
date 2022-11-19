@@ -1,18 +1,15 @@
 import { useTranslation } from "react-i18next";
 import { Form, InputWrapper } from "./login-form.styled";
-import { StyledButton, StyledParagraph } from "@freelance/components";
+import { StyledButton, StyledSpan } from "@freelance/components";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { InferType } from "yup";
 import { signInSchema } from "utils/validations/loginForm";
-import { FocusEventHandler, FormEventHandler } from 'react';
 
 /* eslint-disable-next-line */
-export interface LoginFormProps {
-  isError: boolean;
-}
+export interface LoginFormProps {}
 
-export function LoginForm(isError: LoginFormProps) {
+export function LoginForm(props: LoginFormProps) {
 	const { t } = useTranslation();
 	type Props = InferType<typeof signInSchema>;
 
@@ -31,27 +28,31 @@ export function LoginForm(isError: LoginFormProps) {
 
 	return (
 		<Form onSubmit={handleSubmit(formSubmitHandler)}>
-			<InputWrapper isError={true}>
+			<InputWrapper>
 				<input
 					{...register("email")}
 					type="email"
 					name="email"
 					placeholder={t("signForm.placeholderEmail")}
 				/>
-				<StyledParagraph fontSize="sm">
-					<strong>{errors?.email?.message}</strong>
-				</StyledParagraph>
+				{errors?.email && (
+					<StyledSpan fontSize="sm" type="validation">
+						<strong>{errors?.email?.message}</strong>
+					</StyledSpan>
+				)}
 			</InputWrapper>
-			<InputWrapper isError={true}>
+			<InputWrapper>
 				<input
 					{...register("password")}
 					type="password"
 					name="password"
 					placeholder={t("signForm.placeholderPassword")}
 				/>
-				<StyledParagraph fontSize="sm">
-					<strong>{errors?.password?.message}</strong>
-				</StyledParagraph>
+				{errors?.password && (
+					<StyledSpan fontSize="sm" type="validation">
+						<strong>{errors?.password?.message}</strong>
+					</StyledSpan>
+				)}
 			</InputWrapper>
 			<StyledButton buttonSize="lg" buttonColor="redGradient">
 				{t("signForm.buttonSignIn")}
