@@ -1,11 +1,9 @@
-import { object, string } from 'yup';
+import { object, string } from "yup";
 
 export const signInSchema = object({
-  email:  string()
-    .email("Email must be a valid email address")
-    .required("Email is required"),
-  password: string()
-    .min(8, 'minimum is 8')
-    .max(24, 'maximum is 24')
-    .required('password is required')
+	email: string().email("Invalid E-mail format").required("E-mail is required"),
+	password: string()
+		.min(8, "Minimum 8 characters")
+		.max(24, "Maximum 24 characters")
+		.required("password is required"),
 });
