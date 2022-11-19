@@ -16,19 +16,16 @@ export const UserInfoWrapper = styled.div`
 	justify-content: flex-start;
 	margin-left: 2rem;
 	gap: 2rem;
-
-	p {
-		color: ${({ theme }) => theme.colors.white};
-	}
-`;
-
-export const Avatar = styled.div`
-	img {
+  img {
 		border: 2px solid ${({ theme }) => theme.colors.grey};
 		object-fit: cover;
 		border-radius: 50%;
 		height: 70px;
 		width: 70px;
+	}
+
+	p {
+		color: ${({ theme }) => theme.colors.white};
 	}
 `;
 

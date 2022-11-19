@@ -3,7 +3,6 @@ import {
 	Container,
 	UserInfoWrapper,
 	ButtonsWrapper,
-	Avatar,
 	UserDetails,
 } from "./dashboard-header.styled";
 import { StyledButton, StyledParagraph } from "@freelance/components";
@@ -17,9 +16,7 @@ export function DashboardHeader(props: DashboardHeaderProps) {
 	return (
 		<Container>
 			<UserInfoWrapper>
-				<Avatar>
-					<img src="/assets/images/user_avatar.png" alt="User Avatar" />
-				</Avatar>
+				<img src="/assets/images/user_avatar.png" alt="User Avatar" />
 				<UserDetails>
 					<StyledParagraph fontSize="lg">
 						<strong>{t("dashboard.header.userName")}</strong>
