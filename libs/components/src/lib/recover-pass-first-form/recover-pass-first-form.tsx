@@ -24,6 +24,7 @@ export function RecoverPassFirstForm(props: RecoverPassFirstFormProps) {
     resolver: yupResolver(schema),
   });
   const { onSubmit, isLoading } = useForgotPasswordSendEmail();
+  
   useEffect(() => {
     setFocus('email');
   }, [setFocus]);

@@ -18,6 +18,7 @@ export const RecoverPasswordSecondForm = () => {
     formState: { errors },
   } = useForm<IResetPasswordForm>({ resolver: yupResolver(schema) });
   const { onSubmit, isLoading } = useResetPassword();
+  
   useEffect(() => {
     setFocus('password');
   }, [setFocus]);

@@ -12,6 +12,7 @@ export function useForgotPasswordSendEmail(): IonSubmitForgotPassword {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [sendLinkEmail, { isLoading }] = useSendLinkEmailMutation();
+  
   const onSubmit: SubmitHandler<IForgotPasswordForm> = async data => {
     try {
       const result = await sendLinkEmail(data);
