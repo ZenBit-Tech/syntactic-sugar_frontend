@@ -1,0 +1,115 @@
+[
+    {
+        "name": "Service sector",
+        "value": "service"
+    },
+    {
+        "name": "Skilled trades & manufactoring",
+        "value": "skilled trades"
+    },
+    {
+        "name": "Sales & procurement",
+        "value": "sales"
+    },
+    {
+        "name": "Retail",
+        "value": "retail"
+    },
+    {
+        "name": "Hotels, restaurants & tourism",
+        "value": "hotels"
+    },
+    {
+        "name": "Administration & middle management",
+        "value": "administration"
+    },
+    {
+        "name": "IT, computers & Internet",
+        "value": "IT"
+    },
+    {
+        "name": "Logistics, warehouse & international commerce",
+        "value": "logistics"
+    },
+    {
+        "name": "Transportation & auto industry",
+        "value": "auto"
+    },
+    {
+        "name": "Medicine & pharmaceuticals",
+        "value": "medicine"
+    },
+    {
+        "name": "Marketing, advertising & PR",
+        "value": "marketing"
+    },
+    {
+        "name": "Accounting & auditing",
+        "value": "accounting"
+    },
+    {
+        "name": "Secretarial, clerical & administrative assistants",
+        "value": "secretarial"
+    },
+    {
+        "name": "Education & science",
+        "value": "education"
+    },
+    {
+        "name": "Telecommunications",
+        "value": "telecommunications"
+    },
+    {
+        "name": "Finance & banking",
+        "value": "finance"
+    },
+    {
+        "name": "Construction & architecture",
+        "value": "architecture"
+    },
+    {
+        "name": "Design & creativity",
+        "value": "design"
+    },
+    {
+        "name": "Beauty, fitness & sports",
+        "value": "sports"
+    },
+    {
+        "name": "Journalism, publishing & printing",
+        "value": "publishing"
+    },
+    {
+        "name": "HR & personnel management",
+        "value": "hr"
+    },
+    {
+        "name": "Upper & senior management",
+        "value": "management"
+    },
+    {
+        "name": "Agriculture & agribusiness",
+        "value": "agribusiness"
+    },
+    {
+        "name": "Security & guarding",
+        "value": "security"
+    },
+    {
+        "name": "Legal",
+        "value": "legal"
+    },
+    {
+        "name": "Real estate",
+        "value": "real estate"
+    },
+    {
+        "name": "Culture, music & entertainment",
+        "value": "culture"
+    },
+    {
+        "name": "Insurance",
+        "value": "insurance"
+    }
+
+]

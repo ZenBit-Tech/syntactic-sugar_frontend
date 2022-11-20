@@ -1,0 +1,30 @@
+[
+    {
+        "name": "No english",
+        "value": "no"
+    },
+    {
+        "name": "Beginner",
+        "value": "beginner"
+    },
+    {
+        "name": "Elementary",
+        "value": "elementary"
+    },
+    {
+        "name": "Pre-intermediate<",
+        "value": "pre"
+    },
+    {
+        "name": "Intermediate",
+        "value": "intermediate"
+    },
+    {
+        "name": "Upper-intermediate",
+        "value": "upper"
+    },
+    {
+        "name": "Advanced/fluent",
+        "value": "advanced"
+    }
+]

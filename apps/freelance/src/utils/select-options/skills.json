@@ -1,0 +1,66 @@
+[
+    {
+        "name": "JavaScript/Front-End",
+        "value": "js"
+    },
+    {
+        "name": "Java",
+        "value": "java"
+    },
+    {
+        "name": "C#/.NET",
+        "value": "c#"
+    },
+    {
+        "name": "Python",
+        "value": "python"
+    },
+    {
+        "name": "PHP",
+        "value": "php"
+    },
+    {
+        "name": "Node.js",
+        "value": "node"
+    },
+    {
+        "name": "iOS",
+        "value": "ios"
+    },
+    {
+        "name": "Android",
+        "value": "android"
+    },
+    {
+        "name": "C/C++/Embedded",
+        "value": "embedded"
+    },
+    {
+        "name": "Flutter",
+        "value": "flutter"
+    },
+    {
+        "name": "Golang",
+        "value": "golang"
+    },
+    {
+        "name": "Ruby",
+        "value": "ruby"
+    },
+    {
+        "name": "scala",
+        "value": "Scala"
+    },
+    {
+        "name": "Salesforce",
+        "value": "salesforce"
+    },
+    {
+        "name": "Rust",
+        "value": "rust" 
+    },
+    {
+        "name": "Other",
+        "value": "other"
+    }
+]
