@@ -19,7 +19,7 @@ export function App() {
 							<Route path="/signup" element={<SignupPage />} />
 							<Route path="/role" element={<h1>hello</h1>} />
 							<Route path="/recover-password" element={<RecoverPassFirstPage />} />
-							<Route path="/freelancer/profile" element={<FreelancerProfilePage />} />
+							<Route path="/freelancer/create-profile1" element={<FreelancerProfilePage />} />
 						</Routes>
 					</BrowserRouter>
 				</Provider>

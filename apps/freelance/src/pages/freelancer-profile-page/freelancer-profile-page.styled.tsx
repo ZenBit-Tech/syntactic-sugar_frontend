@@ -11,9 +11,12 @@ const StyledPage = styled.div`
 export const Form = styled.form`
 	display: grid;
 	gap: 1rem;
-	grid-row-gap: 1.3rem;
+	grid-row-gap: -3rem;
 	grid-template-columns: 1fr 1fr;
 	padding-top: 1rem;
+	height: 100%;
+	align-items: center;
+	justify-items: center;
 
 	button {
 		grid-column: 1 / -1;
@@ -24,8 +27,9 @@ export const Form = styled.form`
 	select {
 		border: 2px solid ${({ theme }) => theme.colors.grey};
 		border-radius: 100px;
-		height: 35px;
+		height: 50px;
 		padding-left: 50px;
+		width: 70%;
 
 		::placeholder {
 			color: ${({ theme }) => theme.colors.grey};
