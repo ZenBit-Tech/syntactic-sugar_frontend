@@ -26,11 +26,12 @@
       },
       "configurations": {
         "development": {
-          "extractLicenses": false,
-          "optimization": false,
-          "sourceMap": true,
-          "vendorChunk": true
-        },
+					"extractLicenses": false,
+					"optimization": false,
+					"sourceMap": true,
+					"vendorChunk": true,
+					"envFiles": [".env.local"]
+				},
         "production": {
           "fileReplacements": [
             {
