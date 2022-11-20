@@ -1,17 +1,23 @@
-import {useGoogleLogin} from "@react-oauth/google";
+import { useGoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import { useSignUpMutation } from "redux/signup-googleApi";
- 
-export const  useGoogleAuthentication = () => {
-  const navigate = useNavigate();
-  const [signupUser] = useSignUpMutation();
+import { useLoginWithGoogleMutation } from "redux/login.api";
 
-  const handleSuccess = useGoogleLogin({
-    onSuccess: tokenResponse => {
-      signupUser({ token: tokenResponse.access_token });
-      navigate("/role");
-    }
-  });
+export const useGoogleAuthentication = (formType: boolean) => {
+	const navigate = useNavigate();
+	const [signupUser] = useSignUpMutation();
+	const [loginWithGoogle] = useLoginWithGoogleMutation();
 
-  return () => handleSuccess 
+	const handleSuccess = useGoogleLogin({
+		onSuccess: tokenResponse => {
+			if (formType) {
+				signupUser({ token: tokenResponse.access_token });
+				navigate("/role");
+			} else {
+				loginWithGoogle({ token: tokenResponse.access_token });
+			}
+		},
+	});
+
+	return handleSuccess;
 };

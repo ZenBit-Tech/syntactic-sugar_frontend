@@ -23,8 +23,8 @@ export function useResetPassword(): IonSubmitResetPassword {
 			toast.error(t("recoverPassForm.errorMessageServerError"));
 		}
 	};
-	
-  return {
+
+	return {
 		onSubmit,
 		isLoading,
 	};
