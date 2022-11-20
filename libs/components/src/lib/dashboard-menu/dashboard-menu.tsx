@@ -4,16 +4,16 @@ import { StyledButton } from "@freelance/components";
 
 /* eslint-disable-next-line */
 export interface DashboardMenuProps {
-	role: "freelancer";
+	userRole: "freelancer";
 }
 
-export function DashboardMenu({ role }: DashboardMenuProps) {
+export function DashboardMenu({ userRole }: DashboardMenuProps) {
 	const { t } = useTranslation();
 
 	return (
 		<Container>
 			<img id="logo" src="/assets/images/white_logo.png" alt="logo" />
-			{role === "freelancer" && (
+			{userRole === "freelancer" && (
 				<>
 					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
 						{t("dashboard.menu.myContracts")}

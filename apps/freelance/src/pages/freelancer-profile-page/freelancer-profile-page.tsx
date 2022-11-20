@@ -18,7 +18,7 @@ export function FreelancerPage(props: FreelancerPageProps) {
 	return (
 		<ThemeProvider theme={ThemeColors && ThemeBackground}>
 			<StyledPage>
-				<Dashboard role="freelancer">
+				<Dashboard userRole="freelancer">
 					<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
 						{t("dashboard.profilePage.title")}
 					</StyledTitle>
