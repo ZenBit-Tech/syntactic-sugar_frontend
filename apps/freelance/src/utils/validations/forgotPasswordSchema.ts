@@ -1,11 +1,8 @@
-import { object, string, SchemaOf } from 'yup';
+import { object, string, ref, SchemaOf } from 'yup';
 import { useTranslation } from 'react-i18next';
+import { IForgotPasswordForm } from '@freelance/components';
 
-export interface SendEmailForm {
-  email: string;
-}
-
-export const schemaForgotPasswordForm = (): SchemaOf<SendEmailForm> => {
+export const useForgotPasswordSchema = (): SchemaOf<IForgotPasswordForm> => {
   const { t } = useTranslation();
   const messageEmail: string = t('recoverPassForm.validationEmailMessage');
   const messageRequired: string = t('recoverPassForm.validationRequiredMessage');

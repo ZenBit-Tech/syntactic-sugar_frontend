@@ -5,8 +5,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { ToastContainer } from 'react-toastify';
 import { StyledButton } from '@freelance/components';
-import { IFormInputs } from './interfaces';
-import { schemaForgotPasswordForm } from 'utils/validations/validation-shemas';
+import { IForgotPasswordForm } from './interfaces';
+import { useForgotPasswordSchema } from 'utils/validations';
 import { useForgotPasswordSendEmail } from './recover-pass-firstHooks';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -14,13 +14,13 @@ export interface RecoverPassFirstFormProps {}
 
 export function RecoverPassFirstForm(props: RecoverPassFirstFormProps) {
   const { t } = useTranslation();
-  const schema = schemaForgotPasswordForm();
+  const schema = useForgotPasswordSchema();
   const {
     register,
     setFocus,
     handleSubmit,
     formState: { errors },
-  } = useForm<IFormInputs>({
+  } = useForm<IForgotPasswordForm>({
     resolver: yupResolver(schema),
   });
   const { onSubmit, isLoading } = useForgotPasswordSendEmail();

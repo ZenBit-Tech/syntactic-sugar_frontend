@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { SendEmail } from './types';
+import { SendEmail, SendPassAndToken } from './types';
 
 const BASE_URL: string = process.env['NX_HOST'] || '';
 
@@ -14,7 +14,14 @@ export const resetPasswordApi = createApi({
         body: values,
       }),
     }),
+    resetPassword: builder.mutation<boolean, SendPassAndToken>({
+      query: values => ({
+        url: `/resetpassword`,
+        method: 'POST',
+        body: values,
+      }),
+    }),
   }),
 });
 
-export const { useSendLinkEmailMutation } = resetPasswordApi;
+export const { useSendLinkEmailMutation, useResetPasswordMutation } = resetPasswordApi;

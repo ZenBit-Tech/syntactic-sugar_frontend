@@ -1,10 +1,10 @@
 import { SubmitHandler } from 'react-hook-form';
 
-export interface IFormInputs {
+export interface IForgotPasswordForm {
   email: string;
 }
 
-export interface IonSubmit {
-  onSubmit: SubmitHandler<IFormInputs>;
+export interface IonSubmitForgotPassword {
+  onSubmit: SubmitHandler<IForgotPasswordForm>;
   isLoading: boolean;
 }
