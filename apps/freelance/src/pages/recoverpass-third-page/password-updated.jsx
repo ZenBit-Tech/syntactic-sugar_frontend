@@ -1,3 +1,7 @@
+import { useTranslation } from "react-i18next";
+
 export const PasswordUpdated = () => {
-  return <h1>Your password has updated</h1>;
+  const {t} = useTranslation();
+  
+  return <h1>{t('recoverPassForm.passwordHasUpdated')}</h1>;
 };

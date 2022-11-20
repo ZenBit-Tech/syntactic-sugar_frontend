@@ -33,6 +33,7 @@
     "forgotPass": "Forgot your password?",
     "enterEmail": "Enter you registered e-mail and we'll send you instructions on how to reset your password.",
     "buttonContinue": "CONTINUE",
+    "submitResetPassword": "Reset password",
     "title": "PASSWORD RECOVERY",
     "subtitle": "Follow the next steps to get access to your account and the better opportunities for your project or career.",
     "rememberPass": "Did you remember your password?",
@@ -47,9 +48,9 @@
     "confirmNewPassword": "Confirm your new password",
     "updatingPassword": "Updating password",
     "loader": "SENDING EMAIL",
-    "submitResetPassword": "Reset password",
     "errorMessageWrongEmail": "User with this email does not exist",
     "errorMessageServerError": "Somethig went wrong",
-    "errorMessageExpiredLink": "Your link has expired"
+    "errorMessageExpiredLink": "Your link has expired",
+    "passwordHasUpdated": "Your password has updated"
   }
 }

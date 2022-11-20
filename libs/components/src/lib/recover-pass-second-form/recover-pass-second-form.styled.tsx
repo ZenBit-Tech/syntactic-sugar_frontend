@@ -25,8 +25,8 @@ export const FormWrapper = styled.div`
   button {
     display: block;
     padding: 10px;
-    border: 1px solid black;
-    background-color: blue;
-    color: white;
+    border: 1px solid ${({theme}) => theme.color.black};
+    background-color: ${({theme}) => theme.color.blue};
+    color: ${({theme})=>theme.color.white};
   }
 `;
