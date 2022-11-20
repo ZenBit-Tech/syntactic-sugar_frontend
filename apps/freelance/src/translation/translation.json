@@ -1,4 +1,7 @@
 {
+    "signupGoogle": {
+        "buttonText": "Sign up with Google"
+    },
   "Hello, Syntactic sugar!": "Hello, Syntactic sugar!",
   "First name": "First name",
   "Last name": "Last name",
