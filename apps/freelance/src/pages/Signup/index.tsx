@@ -4,9 +4,9 @@ import { ThemeColors, FormContainer, MessageContainer } from "@freelance/compone
 import { ThemeProvider } from "styled-components";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface SignUpPageProps {}
+export interface SignupProps {}
 
-export function SignUpPage(props: SignUpPageProps) {
+export function Signup(props: SignupProps) {
 	const { t } = useTranslation();
 
 	return (
@@ -34,4 +34,4 @@ export function SignUpPage(props: SignUpPageProps) {
 	);
 }
 
-export default SignUpPage;
+export default Signup;

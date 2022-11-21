@@ -4,9 +4,9 @@ import { ThemeColors, FormContainer, MessageContainer } from "@freelance/compone
 import { ThemeProvider } from "styled-components";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface LogInPageProps {}
+export interface LoginProps {}
 
-export function LogInPage(props: LogInPageProps) {
+export function Login(props: LoginProps) {
 	const { t } = useTranslation();
 
 	return (
@@ -36,4 +36,4 @@ export function LogInPage(props: LogInPageProps) {
 	);
 }
 
-export default LogInPage;
+export default Login;
