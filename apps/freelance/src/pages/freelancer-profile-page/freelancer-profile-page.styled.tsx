@@ -10,11 +10,11 @@ const StyledPage = styled.div`
 
 export const Form = styled.form`
 	display: grid;
-	gap: 1rem;
-	grid-row-gap: -3rem;
+	/* gap: 1rem; */
+	/* grid-row-gap: -3rem; */
 	grid-template-columns: 1fr 1fr;
-	padding-top: 1rem;
-	height: 100%;
+	/* padding-top: 1rem; */
+	height: 95%;
 	align-items: center;
 	justify-items: center;
 
