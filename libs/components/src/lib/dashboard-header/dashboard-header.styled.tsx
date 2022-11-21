@@ -4,7 +4,7 @@ export const Container = styled.div`
 	height: 100px;
 	width: 100%;
 	border-top-right-radius: 30px;
-	background-color: ${({ theme }) => theme.colors.lightRed};
+	background: ${({ theme }) => theme.colors.lightRed};
 
 	display: flex;
 	justify-content: space-between;
@@ -16,8 +16,9 @@ export const UserInfoWrapper = styled.div`
 	justify-content: flex-start;
 	margin-left: 2rem;
 	gap: 2rem;
-  img {
+	img {
 		border: 2px solid ${({ theme }) => theme.colors.grey};
+		background: ${({ theme }) => theme.colors.grey};
 		object-fit: cover;
 		border-radius: 50%;
 		height: 70px;

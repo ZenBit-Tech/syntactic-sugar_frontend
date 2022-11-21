@@ -1,10 +1,5 @@
 import { useTranslation } from "react-i18next";
-import {
-	Container,
-	UserInfoWrapper,
-	ButtonsWrapper,
-	UserDetails,
-} from "./dashboard-header.styled";
+import { Container, UserInfoWrapper, ButtonsWrapper, UserDetails } from "./dashboard-header.styled";
 import { StyledButton, StyledParagraph } from "@freelance/components";
 
 /* eslint-disable-next-line */

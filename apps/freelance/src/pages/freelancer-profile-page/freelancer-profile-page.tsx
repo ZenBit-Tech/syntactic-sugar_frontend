@@ -89,7 +89,7 @@ export function FreelancerPage(props: FreelancerPageProps) {
 							<option value="2">Test 2</option>
 							<option value="3">Test 3</option>
 						</select>
-						<StyledButton buttonColor="redGradient" buttonSize="md">
+						<StyledButton type="button" buttonColor="redGradient" buttonSize="md">
 							CONTINUE
 						</StyledButton>
 					</Form>
