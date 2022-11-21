@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from './example-slice';
-import {signupGoogleApi} from './signup-googleApi';
+import profileReducer from "./profile-slice";
+import  {signupGoogleApi } from './signup-googleApi';
 
 const store = configureStore({
     reducer: {
       user: userReducer,
+      profile: profileReducer,
       [signupGoogleApi.reducerPath]: signupGoogleApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>

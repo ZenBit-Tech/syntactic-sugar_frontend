@@ -9,6 +9,11 @@ import hourRate from 'utils/select-options/hour-rate.json';
 import workHours from 'utils/select-options/hours-amount.json';
 import { Link } from "react-router-dom";
 import { string } from "yup/lib/locale";
+import { yupResolver } from '@hookform/resolvers/yup';
+import { addProfileInfo } from "redux/profile-slice";
+import { useAppDispatch } from "redux/example-hooks";
+import { useNavigate } from 'react-router-dom';
+import { profilePageSchema } from 'utils/validations/profile-page';
 
 
 
@@ -29,18 +34,27 @@ interface IFormInput {
   }
 
 export function ProfilePage(props: ProfilePageProps) {
-	const { register, handleSubmit } = useForm<IFormInput>();
-	const onSubmit: SubmitHandler<IFormInput> = data => console.log(data);
+	const navigate = useNavigate();
+	const dispatch = useAppDispatch();
+	const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>({
+		resolver: yupResolver(profilePageSchema)
+	  });
+	const onSubmit: SubmitHandler<IFormInput> = data => {
+		console.log(data);		
+		dispatch(addProfileInfo(data));
+		navigate('./profile_1');
+	};
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<label htmlFor="fullName">Full name
 			{/* <input type="text" placeholder="Full name" name="full name" required/> */}
-			<input placeholder="Full name" {...register("fullName")} required />
+			<input placeholder="Full name" {...register("fullName")}  />
+			<p>{errors.fullName?.message}</p>
 			</label>
 
 			<label htmlFor="category">Category
-			<select {...register("category")} required id="category">
+			<select {...register("category")} id="category">
 				<option value="" disabled selected>--choose category--</option>
 				{categories.map(({name}) => {
 					return <option>{name}</option>
@@ -54,7 +68,7 @@ export function ProfilePage(props: ProfilePageProps) {
 			</label>
 
 			<label htmlFor="skills">Skills
-			<select {...register("skills")}id="skills" required>
+			<select {...register("skills")}id="skills" >
 			<option value="" disabled selected>--choose skills--</option>
 				{skills.map(({name}) => {
 					return <option>{name}</option>
@@ -63,7 +77,7 @@ export function ProfilePage(props: ProfilePageProps) {
 			</label>
 
 			<label htmlFor="employmentType">Employment type
-			<select {...register("employmentType")} id="employmentType" required>
+			<select {...register("employmentType")} id="employmentType" >
 			<option value="" disabled selected>--employment type--</option>
 				{employment.map(({name}) => {
 					return <option>{name}</option>
@@ -72,7 +86,7 @@ export function ProfilePage(props: ProfilePageProps) {
 			</label>
 
 			<label htmlFor="country">Country
-			<select {...register("country")} id="country" required>
+			<select {...register("country")} id="country" >
 			<option value="" disabled selected>--choose country--</option>
 				{countries.map(({name}) => {
 					return <option>{name}</option>
@@ -81,7 +95,7 @@ export function ProfilePage(props: ProfilePageProps) {
 			</label>
 
 			<label htmlFor="hourRate">Hour rate(one price)
-			<select {...register("hourRate")} id="hourRate" required>
+			<select {...register("hourRate")} id="hourRate">
 			<option value="" disabled selected>--hour rate--</option>
 			{hourRate.map(({name}) => {
 					return <option>{name}</option>
@@ -90,7 +104,7 @@ export function ProfilePage(props: ProfilePageProps) {
 			</label>
 
 			<label htmlFor="hoursAmount">The available amount of hours
-			<select {...register("hoursAmount")} id="hoursAmount" required>
+			<select {...register("hoursAmount")} id="hoursAmount" >
 			<option value="" disabled selected>--amount of hours--</option>
 			{workHours.map(({name}) => {
 					return <option>{name}</option>
@@ -99,7 +113,7 @@ export function ProfilePage(props: ProfilePageProps) {
 			</label>
 
 			<label htmlFor="experience">Work experience
-			<select {...register("experience")} id="experience" required>
+			<select {...register("experience")} id="experience">
 			<option value="" disabled selected>--work experience--</option>
 				{experience.map(({name}) => {
 					return <option>{name}</option>
@@ -108,7 +122,7 @@ export function ProfilePage(props: ProfilePageProps) {
 			</label>
 
 			<label htmlFor="english">English level
-			<select {...register("englishLevel")} id="english" required>
+			<select {...register("englishLevel")} id="english">
 			<option value="" disabled selected>--english level--</option>
 				{english.map(({name}) => {
 					return <option>{name}</option>
