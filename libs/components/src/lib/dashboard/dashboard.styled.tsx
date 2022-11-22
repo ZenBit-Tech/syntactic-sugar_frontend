@@ -16,6 +16,6 @@ export const Area = styled.div`
 `;
 
 export const Page = styled.div`
-	height: 100%;
+	height: 88%;
 	padding: 1rem;
 `;

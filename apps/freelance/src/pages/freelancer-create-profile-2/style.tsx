@@ -30,7 +30,7 @@ const StyledPage = styled.div`
 export const Form = styled.form`
 	display: flex;
 	flex-direction: column;
-	height: 95%;
+	height: 90%;
 
 	input,
 	textarea {
@@ -38,7 +38,7 @@ export const Form = styled.form`
 		border-radius: 100px;
 		height: 50px;
 		padding-left: 4rem;
-		width: 90%;
+		width: 80%;
 
 		::placeholder {
 			color: ${({ theme }) => theme.colors.grey};
@@ -46,25 +46,14 @@ export const Form = styled.form`
 	}
 `;
 
-export const InputsWrapper = styled.div`
+export const Wrapper = styled.div`
 	display: flex;
-	padding: 2rem;
-	height: 100%;
-
-	hr {
-		border: 3px groove ${({ theme }) => theme.colors.darkGrey};
-		width: 90%;
-		border-radius: 10px;
-	}
+	height: 70%;
 `;
 
 export const InputContainer = styled.div`
-	display: grid;
-	gap: 2rem;
 	width: 100%;
 	overflow-y: auto;
-	justify-items: center;
-	height: 300px;
 
 	#institute {
 		background: url("/assets/images/institute_icon.png") no-repeat 20px center;
@@ -93,11 +82,6 @@ export const InputContainer = styled.div`
 	#workPosition {
 		background-size: 15px 15px;
 	}
-
-	button {
-		width: 15%;
-		height: 30px;
-	}
 `;
 
 export const InputHeader = styled.div`
@@ -105,6 +89,7 @@ export const InputHeader = styled.div`
 	top: 0;
 	background: ${({ theme }) => theme.colors.white};
 	padding: 0 0.5rem;
+	height: 50px;
 
 	display: flex;
 	width: 100%;
@@ -112,32 +97,50 @@ export const InputHeader = styled.div`
 	align-items: center;
 
 	button {
-		width: 40px;
-		height: 20px;
+		width: 5%;
+		height: 5%;
+	}
+`;
+
+export const InputWrapper = styled.div`
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	gap: 2rem;
+	width: 100%;
+
+	hr {
+		margin-bottom: 2rem;
+		width: 90%;
+		border: 3px groove ${({ theme }) => theme.colors.darkGrey};
+		border-radius: 20px;
+	}
+
+	button {
+		width: 20%;
 	}
 `;
 
 export const TextAreaContainer = styled.div`
+	padding-top: 1rem;
 	display: flex;
 	gap: 1rem;
 	align-items: center;
 	flex-direction: column;
-	width: 100%;
+	height: 30%;
 
 	label {
 		width: 100%;
-		text-align: left;
-		padding-left: 2rem;
 	}
 
 	textarea {
+		height: 100%;
 		margin-bottom: 2rem;
-		height: 200px;
 		color: ${({ theme }) => theme.colors.black};
 		resize: none;
 		border-radius: 30px;
 		width: 80%;
-		padding: 2rem;
+		padding: 1rem;
 		outline: none;
 	}
 `;
@@ -145,6 +148,11 @@ export const TextAreaContainer = styled.div`
 export const ButtonsContainer = styled.div`
 	display: flex;
 	gap: 3rem;
+	justify-content: center;
+
+	button {
+		width: 20%;
+	}
 `;
 
 export { StyledPage };

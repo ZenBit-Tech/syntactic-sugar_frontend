@@ -1,12 +1,14 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
 	StyledPage,
 	Form,
 	InputContainer,
-	InputsWrapper,
+	Wrapper,
 	TextAreaContainer,
 	ButtonsContainer,
 	InputHeader,
+	InputWrapper,
 } from "./style";
 import {
 	ThemeColors,
@@ -22,6 +24,7 @@ export interface FreelancerCreateProfile2Props {}
 
 export function FreelancerCreateProfile2(props: FreelancerCreateProfile2Props) {
 	const { t } = useTranslation();
+	const [serviceList, setServiceList] = useState();
 
 	return (
 		<ThemeProvider theme={ThemeColors && ThemeBackground}>
@@ -31,77 +34,94 @@ export function FreelancerCreateProfile2(props: FreelancerCreateProfile2Props) {
 						{t("dashboard.profilePage.title")}
 					</StyledTitle>
 					<Form>
-						<InputsWrapper>
+						<Wrapper>
 							<InputContainer>
 								<InputHeader>
 									<label>Education</label>
-									<StyledButton type='button' buttonColor="redGradient" buttonSize="md">
+									<StyledButton type="button" buttonColor="redGradient" buttonSize="md">
 										+
 									</StyledButton>
 								</InputHeader>
-								<input
-									id="institute"
-									type="text"
-									name="institute"
-									placeholder="Institute"
-									required
-								/>
-								<input
-									id="occupation"
-									type="text"
-									name="occupation"
-									placeholder="Occupation"
-									required
-								/>
-								<input id="period" type="text" name="period" placeholder="Period" required />
-								<hr />
-								<input
-									id="institute"
-									type="text"
-									name="institute"
-									placeholder="Institute"
-									required
-								/>
-								<input
-									id="occupation"
-									type="text"
-									name="occupation"
-									placeholder="Occupation"
-									required
-								/>
-								<input id="period" type="text" name="period" placeholder="Period" required />
-								<StyledButton type='button' buttonColor="redGradient" buttonSize="md">
-									REMOVE
-								</StyledButton>
+								<InputWrapper>
+									<input
+										id="institute"
+										type="text"
+										name="institute"
+										placeholder="Institute"
+										required
+									/>
+									<input
+										id="occupation"
+										type="text"
+										name="occupation"
+										placeholder="Occupation"
+										required
+									/>
+									<input id="period" type="text" name="period" placeholder="Period" required />
+									<hr />
+								</InputWrapper>
+								<InputWrapper>
+									<input
+										id="institute"
+										type="text"
+										name="institute"
+										placeholder="Institute"
+										required
+									/>
+									<input
+										id="occupation"
+										type="text"
+										name="occupation"
+										placeholder="Occupation"
+										required
+									/>
+									<input id="period" type="text" name="period" placeholder="Period" required />
+									<StyledButton type="button" buttonColor="redGradient" buttonSize="md">
+										REMOVE
+									</StyledButton>
+									<hr />
+								</InputWrapper>
+								<InputWrapper>
+									<input
+										id="institute"
+										type="text"
+										name="institute"
+										placeholder="Institute"
+										required
+									/>
+									<input
+										id="occupation"
+										type="text"
+										name="occupation"
+										placeholder="Occupation"
+										required
+									/>
+									<input id="period" type="text" name="period" placeholder="Period" required />
+									<StyledButton type="button" buttonColor="redGradient" buttonSize="md">
+										REMOVE
+									</StyledButton>
+								</InputWrapper>
 							</InputContainer>
 							<InputContainer>
 								<InputHeader>
 									<label>Work Experience</label>
-									<StyledButton type='button' buttonColor="redGradient" buttonSize="md">
+									<StyledButton type="button" buttonColor="redGradient" buttonSize="md">
 										+
 									</StyledButton>
 								</InputHeader>
-								<input id="company" type="text" name="company" placeholder="Company" required />
-								<input
-									id="workPosition"
-									type="text"
-									name="workPosition"
-									placeholder="Position"
-									required
-								/>
-								<input id="period" type="text" name="period" placeholder="Period" required />
-								<hr />
-								<input id="company" type="text" name="company" placeholder="Company" required />
-								<input
-									id="workPosition"
-									type="text"
-									name="workPosition"
-									placeholder="Position"
-									required
-								/>
-								<input id="period" type="text" name="period" placeholder="Period" required />
+								<InputWrapper>
+									<input id="company" type="text" name="company" placeholder="Company" required />
+									<input
+										id="workPosition"
+										type="text"
+										name="workPosition"
+										placeholder="Position"
+										required
+									/>
+									<input id="period" type="text" name="period" placeholder="Period" required />
+								</InputWrapper>
 							</InputContainer>
-						</InputsWrapper>
+						</Wrapper>
 						<TextAreaContainer>
 							<label>Other experience</label>
 							<textarea />

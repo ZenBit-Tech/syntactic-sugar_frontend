@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-	height: 100px;
+	height: 12%;
 	width: 100%;
 	border-top-right-radius: 30px;
 	background: ${({ theme }) => theme.colors.lightRed};
 
 	display: flex;
 	justify-content: space-between;
+	padding-right: 2rem;
 `;
 
 export const UserInfoWrapper = styled.div`
@@ -21,8 +22,8 @@ export const UserInfoWrapper = styled.div`
 		background: ${({ theme }) => theme.colors.grey};
 		object-fit: cover;
 		border-radius: 50%;
-		height: 70px;
-		width: 70px;
+		height: 70%;
+		width: 70%;
 	}
 
 	p {
@@ -36,15 +37,13 @@ export const UserDetails = styled.div`
 `;
 
 export const ButtonsWrapper = styled.div`
-	min-width: 330px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	gap: 1rem;
 
 	button {
-		width: 140px;
-		height: 40px;
+		padding: 0.4rem;
 		display: flex;
 		justify-content: space-evenly;
 		border-radius: 12px;
