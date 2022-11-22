@@ -23,74 +23,144 @@ export function FreelancerPage(props: FreelancerPageProps) {
 						{t("dashboard.profilePage.title")}
 					</StyledTitle>
 					<Form>
-						<input type="text" name="fullName" placeholder="Full Name" />
-						<select name="country">
-							<option value="" disabled selected hidden>
-								Country
-							</option>
-							<option value="1">Test 1</option>
-							<option value="2">Test 2</option>
-							<option value="3">Test 3</option>
-						</select>
-						<select name="category">
-							<option value="" disabled selected hidden>
-								Category
-							</option>
-							<option value="1">Test 1</option>
-							<option value="2">Test 2</option>
-							<option value="3">Test 3</option>
-						</select>
-						<select name="hour">
-							<option value="" disabled selected hidden>
-								Hour rate (one price)
-							</option>
-							<option value="1">Test 1</option>
-							<option value="2">Test 2</option>
-							<option value="3">Test 3</option>
-						</select>
-						<input type="text" name="position" placeholder="Position" />
-						<select name="amountHours">
-							<option value="" disabled selected hidden>
-								Available amount of hours
-							</option>
-							<option value="1">Test 1</option>
-							<option value="2">Test 2</option>
-							<option value="3">Test 3</option>
-						</select>
-						<select name="skills">
-							<option value="" disabled selected hidden>
-								Skills
-							</option>
-							<option value="1">Test 1</option>
-							<option value="2">Test 2</option>
-							<option value="3">Test 3</option>
-						</select>
-						<select name="worksExperience">
-							<option value="" disabled selected hidden>
-								Work experience
-							</option>
-							<option value="1">Test 1</option>
-							<option value="2">Test 2</option>
-							<option value="3">Test 3</option>
-						</select>
-						<select name="employmentType">
-							<option value="" disabled selected hidden>
-								Employment type
-							</option>
-							<option value="1">Test 1</option>
-							<option value="2">Test 2</option>
-							<option value="3">Test 3</option>
-						</select>
-						<select name="englishLevel">
-							<option value="" disabled selected hidden>
-								English Level
-							</option>
-							<option value="1">Test 1</option>
-							<option value="2">Test 2</option>
-							<option value="3">Test 3</option>
-						</select>
+						<input
+							id="fullName"
+							type="text"
+							name="fullName"
+							placeholder={t("freelancer.createProfile.fullNamePlaceholder")}
+							required
+						/>
+						<div className="selectContainer">
+							<select id="country" name="country" required>
+								<option value="" disabled selected hidden>
+									{t("freelancer.createProfile.selectOption.country")}
+								</option>
+								<option value="country1">
+									{t("freelancer.createProfile.selectOption.country")}
+								</option>
+								<option value="country2">
+									{t("freelancer.createProfile.selectOption.country")}
+								</option>
+								<option value="country3">
+									{t("freelancer.createProfile.selectOption.country")}
+								</option>
+							</select>
+						</div>
+						<div className="selectContainer">
+							<select id="category" name="category" required>
+								<option value="" disabled selected hidden>
+									{t("freelancer.createProfile.selectOption.category")}
+								</option>
+								<option value="category1">
+									{t("freelancer.createProfile.selectOption.category")}
+								</option>
+								<option value="category2">
+									{t("freelancer.createProfile.selectOption.category")}
+								</option>
+								<option value="category3">
+									{t("freelancer.createProfile.selectOption.category")}
+								</option>
+							</select>
+						</div>
+						<div className="selectContainer">
+							<select id="hourRate" name="hourRate" required>
+								<option value="" disabled selected hidden>
+									{t("freelancer.createProfile.selectOption.hourRate")}
+								</option>
+								<option value="hourRate1">
+									{t("freelancer.createProfile.selectOption.hourRate")}
+								</option>
+								<option value="hourRate2">
+									{t("freelancer.createProfile.selectOption.hourRate")}
+								</option>
+								<option value="hourRate3">
+									{t("freelancer.createProfile.selectOption.hourRate")}
+								</option>
+							</select>
+						</div>
+						<input
+							id="position"
+							type="text"
+							name="position"
+							placeholder={t("freelancer.createProfile.positionPlaceholder")}
+							required
+						/>
+						<div className="selectContainer">
+							<select id="amountHours" name="amountHours" required>
+								<option value="" disabled selected hidden>
+									{t("freelancer.createProfile.selectOption.amountHours")}
+								</option>
+								<option value="amountHours1">
+									{t("freelancer.createProfile.selectOption.amountHours")}
+								</option>
+								<option value="amountHours2">
+									{t("freelancer.createProfile.selectOption.amountHours")}
+								</option>
+								<option value="amountHours3">
+									{t("freelancer.createProfile.selectOption.amountHours")}
+								</option>
+							</select>
+						</div>
+						<div className="selectContainer">
+							<select id="skills" name="skills" required>
+								<option value="" disabled selected hidden>
+									{t("freelancer.createProfile.selectOption.skills")}
+								</option>
+								<option value="skill1">{t("freelancer.createProfile.selectOption.skills")}</option>
+								<option value="skill2">{t("freelancer.createProfile.selectOption.skills")}</option>
+								<option value="skill3">{t("freelancer.createProfile.selectOption.skills")}</option>
+							</select>
+						</div>
+						<div className="selectContainer">
+							<select id="workExperience" name="workExperience" required>
+								<option value="" disabled selected hidden>
+									{t("freelancer.createProfile.selectOption.workExperience")}
+								</option>
+								<option value="workExperience1">
+									{t("freelancer.createProfile.selectOption.workExperience")}
+								</option>
+								<option value="workExperience2">
+									{t("freelancer.createProfile.selectOption.workExperience")}
+								</option>
+								<option value="workExperience3">
+									{t("freelancer.createProfile.selectOption.workExperience")}
+								</option>
+							</select>
+						</div>
+						<div className="selectContainer">
+							<select id="employmentType" name="employmentType" required>
+								<option value="" disabled selected hidden>
+									{t("freelancer.createProfile.selectOption.employmentType")}
+								</option>
+								<option value="employmentType1">
+									{t("freelancer.createProfile.selectOption.employmentType")}
+								</option>
+								<option value="employmentType2">
+									{t("freelancer.createProfile.selectOption.employmentType")}
+								</option>
+								<option value="employmentType3">
+									{t("freelancer.createProfile.selectOption.employmentType")}
+								</option>
+							</select>
+						</div>
+						<div className="selectContainer">
+							<select id="englishLevel" name="englishLevel" required>
+								<option value="" disabled selected hidden>
+									{t("freelancer.createProfile.selectOption.englishLevel")}
+								</option>
+								<option value="englishLevel1">
+									{t("freelancer.createProfile.selectOption.englishLevel")}
+								</option>
+								<option value="englishLevel2">
+									{t("freelancer.createProfile.selectOption.englishLevel")}
+								</option>
+								<option value="englishLevel3">
+									{t("freelancer.createProfile.selectOption.englishLevel")}
+								</option>
+							</select>
+						</div>
 						<StyledButton type="button" buttonColor="redGradient" buttonSize="md">
-							CONTINUE
+							{t("recoverPassForm.buttonContinue")}
 						</StyledButton>
 					</Form>
 				</Dashboard>
