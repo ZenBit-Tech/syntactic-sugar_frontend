@@ -8,10 +8,7 @@ import {
 	ThemeBackground,
 } from "@freelance/components";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface RecoverPasswordRequestProps {}
-
-export function RecoverPasswordRequest(props: RecoverPasswordRequestProps) {
+export function RecoverPasswordRequest() {
 	const { t } = useTranslation();
 
 	return (

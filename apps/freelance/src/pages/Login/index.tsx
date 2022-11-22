@@ -3,10 +3,7 @@ import { StyledPage, Container } from "./style";
 import { ThemeColors, FormContainer, MessageContainer } from "@freelance/components";
 import { ThemeProvider } from "styled-components";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface LoginProps {}
-
-export function Login(props: LoginProps) {
+export function Login() {
 	const { t } = useTranslation();
 
 	return (
