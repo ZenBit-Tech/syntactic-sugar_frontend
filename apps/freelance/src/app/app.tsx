@@ -1,11 +1,12 @@
 import { StyledApp } from "./app.styled";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
-import LoginPage from "@pages/login-page/login-page";
-import SignupPage from "@pages/signup-page/signup-page";
-import { RecoverPassFirstPage, CheckYourEmail } from "@pages/recoverpass-first-page";
-import { RecoverPasswordThirdPage } from "@pages/recoverpass-third-page/recoverpassword-third-page";
-import { PasswordUpdated } from "@pages/recoverpass-third-page/password-updated";
+import Login from "@pages/Login";
+import Signup from "@pages/Signup";
+import { RecoverPasswordRequest } from "@pages/RecoverPasswordRequest";
+import { CheckYourEmail } from "@pages/RecoverPasswordRequest/check-your-email";
+import { RecoverPasswordReset } from "@pages/RecoverPasswordReset";
+import { PasswordUpdated } from "@pages/RecoverPasswordReset/password-updated";
 
 import store from "redux/store";
 import { GoogleOAuthProvider } from "@react-oauth/google";
@@ -17,12 +18,12 @@ export function App() {
 				<Provider store={store}>
 					<BrowserRouter>
 						<Routes>
-							<Route path="/" element={<LoginPage />} />
-							<Route path="/signup" element={<SignupPage />} />
+							<Route path="/" element={<Login />} />
+							<Route path="/signup" element={<Signup />} />
 							<Route path="/role" element={<h1>hello</h1>} />
-							<Route path="/recover-password" element={<RecoverPassFirstPage />} />
+							<Route path="/recover-password" element={<RecoverPasswordRequest />} />
 							<Route path="/check-your-email" element={<CheckYourEmail />} />
-							<Route path="/resetpassword/:token" element={<RecoverPasswordThirdPage />} />
+							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
 							<Route path="/password-updated" element={<PasswordUpdated />} />
 						</Routes>
 					</BrowserRouter>
