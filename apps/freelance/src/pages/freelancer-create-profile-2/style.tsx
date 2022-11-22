@@ -6,14 +6,31 @@ const StyledPage = styled.div`
 	height: 100vh;
 
 	background: ${({ theme }) => theme.signPages.image}, ${({ theme }) => theme.colors.lightGrey};
+
+	* {
+		scrollbar-width: auto;
+		scrollbar-color: ${({ theme }) => theme.colors.lightRed} ${({ theme }) => theme.colors.white};
+	}
+
+	*::-webkit-scrollbar {
+		width: 15px;
+	}
+
+	*::-webkit-scrollbar-track {
+		background: ${({ theme }) => theme.colors.white};
+	}
+
+	*::-webkit-scrollbar-thumb {
+		background-color: ${({ theme }) => theme.colors.lightRed};
+		border-radius: 10px;
+		border: 3px solid ${({ theme }) => theme.colors.white};
+	}
 `;
 
 export const Form = styled.form`
 	display: flex;
 	flex-direction: column;
 	height: 95%;
-	align-items: center;
-	justify-items: center;
 
 	input,
 	textarea {
@@ -21,41 +38,92 @@ export const Form = styled.form`
 		border-radius: 100px;
 		height: 50px;
 		padding-left: 4rem;
-		width: 70%;
-		outline: none;
+		width: 90%;
 
 		::placeholder {
 			color: ${({ theme }) => theme.colors.grey};
 		}
 	}
-
-	button {
-		grid-column: 1 / -1;
-		place-self: center;
-	}
 `;
 
-export const InputWrapper = styled.div`
-	padding: 2rem;
+export const InputsWrapper = styled.div`
 	display: flex;
+	padding: 2rem;
 	height: 100%;
-	width: 100%;
+
+	hr {
+		border: 3px groove ${({ theme }) => theme.colors.darkGrey};
+		width: 90%;
+		border-radius: 10px;
+	}
 `;
 
 export const InputContainer = styled.div`
-	label {
-		width: 100%;
-		text-align: left;
-		padding-bottom: 1rem;
+	display: grid;
+	gap: 2rem;
+	width: 100%;
+	overflow-y: auto;
+	justify-items: center;
+	height: 300px;
+
+	#institute {
+		background: url("/assets/images/institute_icon.png") no-repeat 20px center;
 	}
+
+	#occupation {
+		background: url("/assets/images/occupation_icon.png") no-repeat 20px center;
+	}
+
+	#period {
+		background: url("/assets/images/period_icon.png") no-repeat 20px center;
+	}
+
+	#company {
+		background: url("/assets/images/company_icon.png") no-repeat 20px center;
+	}
+
+	#workPosition {
+		background: url("/assets/images/work_position_icon.png") no-repeat 20px center;
+	}
+
+	#institute,
+	#occupation,
+	#period,
+	#company,
+	#workPosition {
+		background-size: 15px 15px;
+	}
+
+	button {
+		width: 15%;
+		height: 30px;
+	}
+`;
+
+export const InputHeader = styled.div`
+	position: sticky;
+	top: 0;
+	background: ${({ theme }) => theme.colors.white};
+	padding: 0 0.5rem;
+
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+
+	button {
+		width: 40px;
+		height: 20px;
+	}
+`;
+
+export const TextAreaContainer = styled.div`
 	display: flex;
 	gap: 1rem;
 	align-items: center;
 	flex-direction: column;
-	width: 50%;
-`;
+	width: 100%;
 
-export const TextAreaContainer = styled.div`
 	label {
 		width: 100%;
 		text-align: left;
@@ -70,18 +138,12 @@ export const TextAreaContainer = styled.div`
 		border-radius: 30px;
 		width: 80%;
 		padding: 2rem;
+		outline: none;
 	}
-	display: flex;
-	gap: 1rem;
-	align-items: center;
-	flex-direction: column;
-	width: 100%;
 `;
 
 export const ButtonsContainer = styled.div`
 	display: flex;
-	width: 100%;
-	align-items: center;
 	gap: 3rem;
 `;
 

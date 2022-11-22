@@ -3,9 +3,10 @@ import {
 	StyledPage,
 	Form,
 	InputContainer,
-	InputWrapper,
+	InputsWrapper,
 	TextAreaContainer,
 	ButtonsContainer,
+	InputHeader,
 } from "./style";
 import {
 	ThemeColors,
@@ -30,9 +31,14 @@ export function FreelancerCreateProfile2(props: FreelancerCreateProfile2Props) {
 						{t("dashboard.profilePage.title")}
 					</StyledTitle>
 					<Form>
-						<InputWrapper>
+						<InputsWrapper>
 							<InputContainer>
-								<label>Education</label>
+								<InputHeader>
+									<label>Education</label>
+									<StyledButton type='button' buttonColor="redGradient" buttonSize="md">
+										+
+									</StyledButton>
+								</InputHeader>
 								<input
 									id="institute"
 									type="text"
@@ -48,14 +54,54 @@ export function FreelancerCreateProfile2(props: FreelancerCreateProfile2Props) {
 									required
 								/>
 								<input id="period" type="text" name="period" placeholder="Period" required />
+								<hr />
+								<input
+									id="institute"
+									type="text"
+									name="institute"
+									placeholder="Institute"
+									required
+								/>
+								<input
+									id="occupation"
+									type="text"
+									name="occupation"
+									placeholder="Occupation"
+									required
+								/>
+								<input id="period" type="text" name="period" placeholder="Period" required />
+								<StyledButton type='button' buttonColor="redGradient" buttonSize="md">
+									REMOVE
+								</StyledButton>
 							</InputContainer>
 							<InputContainer>
-								<label>Work History</label>
+								<InputHeader>
+									<label>Work Experience</label>
+									<StyledButton type='button' buttonColor="redGradient" buttonSize="md">
+										+
+									</StyledButton>
+								</InputHeader>
 								<input id="company" type="text" name="company" placeholder="Company" required />
-								<input id="position" type="text" name="position" placeholder="Position" required />
+								<input
+									id="workPosition"
+									type="text"
+									name="workPosition"
+									placeholder="Position"
+									required
+								/>
+								<input id="period" type="text" name="period" placeholder="Period" required />
+								<hr />
+								<input id="company" type="text" name="company" placeholder="Company" required />
+								<input
+									id="workPosition"
+									type="text"
+									name="workPosition"
+									placeholder="Position"
+									required
+								/>
 								<input id="period" type="text" name="period" placeholder="Period" required />
 							</InputContainer>
-						</InputWrapper>
+						</InputsWrapper>
 						<TextAreaContainer>
 							<label>Other experience</label>
 							<textarea />
