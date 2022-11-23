@@ -10,8 +10,8 @@ const StyledPage = styled.div`
 
 export const Container = styled.div`
 	margin: auto;
-	width: 90%;
-	height: 80%;
+	width: 70%;
+	height: 70%;
 	display: flex;
 `;
 
