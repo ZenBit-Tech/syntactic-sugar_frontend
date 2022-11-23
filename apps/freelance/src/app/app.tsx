@@ -21,12 +21,11 @@ export function App() {
 						<Routes>
 							<Route path="/" element={<Login />} />
 							<Route path="/signup" element={<Signup />} />
-							<Route path="/role" element={<h1>hello</h1>} />
+							<Route path="/role" element={<Role />} />
 							<Route path="/recover-password" element={<RecoverPasswordRequest />} />
 							<Route path="/check-your-email" element={<CheckYourEmail />} />
 							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
 							<Route path="/password-updated" element={<PasswordUpdated />} />
-							<Route path="/role-page" element={<Role />} />
 						</Routes>
 					</BrowserRouter>
 				</Provider>
