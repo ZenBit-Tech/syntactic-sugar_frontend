@@ -6,7 +6,7 @@ import Signup from "@pages/Signup";
 import { RecoverPasswordRequest } from "@pages/RecoverPasswordRequest";
 import { CheckYourEmail } from "@pages/RecoverPasswordRequest/check-your-email";
 import { RecoverPasswordReset } from "@pages/RecoverPasswordReset";
-import { PasswordUpdated } from "@pages/RecoverPasswordReset/password-updated";
+import { RecoverPasswordUpdate } from "@pages/RecoverPasswordUpdate";
 
 import store from "redux/store";
 import { GoogleOAuthProvider } from "@react-oauth/google";
@@ -24,7 +24,7 @@ export function App() {
 							<Route path="/recover-password" element={<RecoverPasswordRequest />} />
 							<Route path="/check-your-email" element={<CheckYourEmail />} />
 							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
-							<Route path="/password-updated" element={<PasswordUpdated />} />
+							<Route path="/password-updated" element={<RecoverPasswordUpdate />} />
 						</Routes>
 					</BrowserRouter>
 				</Provider>
