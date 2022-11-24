@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
 	StyledPage,
@@ -19,13 +19,42 @@ import {
 } from "@freelance/components";
 import { ThemeProvider } from "styled-components";
 
+interface educationProps {
+	institute: string;
+	occupation: string;
+	period: string;
+}
+
+interface workExperienceProps {
+	company: string;
+	workPosition: string;
+	period: string;
+}
+
 export function CreateProfile2() {
 	const { t } = useTranslation();
-	const [educationList, setEducationList] = useState([{ education: "" }]);
-	const [workExperienceList, setWorkExperienceList] = useState([{ workExperience: "" }]);
+	const [educationList, setEducationList] = useState<educationProps[]>([]);
+	const [workExperienceList, setWorkExperienceList] = useState<workExperienceProps[]>([]);
+
+	const education = {
+		institute: "",
+		occupation: "",
+		period: "",
+	};
+
+	const workExperience = {
+		company: "",
+		workPosition: "",
+		period: "",
+	};
+
+	useEffect(() => {
+		setEducationList([education]);
+		setWorkExperienceList([workExperience]);
+	}, []);
 
 	const handleAddEducation = () => {
-		setEducationList([...educationList, { education: "" }]);
+		setEducationList(prev => [...prev, education]);
 	};
 
 	const handleRemoveEducation = (index: number) => {
@@ -35,7 +64,7 @@ export function CreateProfile2() {
 	};
 
 	const handleAddWorkExperience = () => {
-		setWorkExperienceList([...workExperienceList, { workExperience: "" }]);
+		setWorkExperienceList(prev => [...prev, workExperience]);
 	};
 
 	const handleRemoveWorkExperience = (index: number) => {
