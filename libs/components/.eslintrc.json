@@ -4,7 +4,12 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "rules": {}
+      "rules": {
+        "padding-line-between-statements": [
+          "error",
+          { "blankLine": "always", "prev": "*", "next": "return" }
+        ]
+      }
     },
     {
       "files": ["*.ts", "*.tsx"],

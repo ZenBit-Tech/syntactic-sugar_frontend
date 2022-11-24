@@ -7,14 +7,11 @@ import employment from 'utils/select-options/employment-type.json';
 import experience from 'utils/select-options/experience.json';
 import hourRate from 'utils/select-options/hour-rate.json';
 import workHours from 'utils/select-options/hours-amount.json';
-import { Link } from "react-router-dom";
-import { string } from "yup/lib/locale";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { addProfileInfo } from "redux/profile-slice";
 import { useAppDispatch } from "redux/example-hooks";
 import { useNavigate } from 'react-router-dom';
 import { profilePageSchema } from 'utils/validations/profile-page';
-
 
 
 /* eslint-disable-next-line */

@@ -29,4 +29,8 @@ export const Form = styled.form`
     background: url('/assets/images/password_icon.png') no-repeat 20px center;
     background-size: 15px;
   }
+
+  span {
+    color: ${({ theme }) => theme.colors.darkRed};
+  }
 `;
