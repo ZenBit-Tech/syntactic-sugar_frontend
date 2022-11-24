@@ -1,42 +1,38 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { StyledButton } from "@freelance/components";
 import { Form, RadioGroup } from "./role-selection-form.styled";
 
+type RoleOptions = "job-owner" | "freelancer";
+
 export function RoleSelectionForm() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
-	const [radioOption, setRadioOption] = useState<string>("");
+	const [radioOption, setRadioOption] = useState<RoleOptions>();
 
-	const redirect = () => navigate(`/${radioOption}`);
+	const roleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setRadioOption(e.target.value as RoleOptions);
+	};
+
+	const redirect = () => {
+		navigate(`/${radioOption}/create-profile1`);
+	};
 
 	return (
 		<Form>
 			<RadioGroup>
-				<input
-					type="radio"
-					name="role"
-					value="jobOwner"
-					id="jobOwner"
-					onClick={() => setRadioOption("job-owner/create-profile1")}
-				/>
+				<input type="radio" name="role" value="jobOwner" id="jobOwner" onChange={roleHandler} />
 				<label htmlFor="jobOwner">{t("roleSelection.roleJobOwner")}</label>
-				<input
-					type="radio"
-					name="role"
-					value="freelancer"
-					id="freelancer"
-					onClick={() => setRadioOption("freelancer/create-profile1")}
-				/>
+				<input type="radio" name="role" value="freelancer" id="freelancer" onChange={roleHandler} />
 				<label htmlFor="freelancer">{t("roleSelection.roleFreelancer")}</label>
 			</RadioGroup>
-			{radioOption === "" ? (
-				<StyledButton disabled buttonSize="lg" buttonColor="redGradient">
+			{radioOption ? (
+				<StyledButton buttonSize="lg" buttonColor="redGradient" onClick={redirect}>
 					{t("recoverPassForm.buttonContinue")}
 				</StyledButton>
 			) : (
-				<StyledButton buttonSize="lg" buttonColor="redGradient" onClick={redirect}>
+				<StyledButton disabled buttonSize="lg" buttonColor="redGradient">
 					{t("recoverPassForm.buttonContinue")}
 				</StyledButton>
 			)}
