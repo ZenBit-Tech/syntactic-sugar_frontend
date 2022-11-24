@@ -8,6 +8,14 @@ import {
 	StyledButton,
 } from "@freelance/components";
 import { ThemeProvider } from "styled-components";
+import countries from "utils/select-options/eu-countries.json";
+import categories from "utils/select-options/categories.json";
+import hourRate from "utils/select-options/hour-rate.json";
+import workHours from "utils/select-options/hours-amount.json";
+import skills from "utils/select-options/skills.json";
+import workExperience from "utils/select-options/work-experience.json";
+import employmentType from "utils/select-options/employment-type.json";
+import englishLevel from "utils/select-options/english-level.json";
 
 export function CreateProfile1() {
 	const { t } = useTranslation();
@@ -32,15 +40,9 @@ export function CreateProfile1() {
 								<option value="" disabled selected hidden>
 									{t("freelancer.createProfile.selectOption.country")}
 								</option>
-								<option value="country1">
-									{t("freelancer.createProfile.selectOption.country")}
-								</option>
-								<option value="country2">
-									{t("freelancer.createProfile.selectOption.country")}
-								</option>
-								<option value="country3">
-									{t("freelancer.createProfile.selectOption.country")}
-								</option>
+								{countries.map(({ name }) => {
+									return <option>{name}</option>;
+								})}
 							</select>
 						</div>
 						<div className="selectContainer">
@@ -48,15 +50,9 @@ export function CreateProfile1() {
 								<option value="" disabled selected hidden>
 									{t("freelancer.createProfile.selectOption.category")}
 								</option>
-								<option value="category1">
-									{t("freelancer.createProfile.selectOption.category")}
-								</option>
-								<option value="category2">
-									{t("freelancer.createProfile.selectOption.category")}
-								</option>
-								<option value="category3">
-									{t("freelancer.createProfile.selectOption.category")}
-								</option>
+								{categories.map(({ name }) => {
+									return <option>{name}</option>;
+								})}
 							</select>
 						</div>
 						<div className="selectContainer">
@@ -64,15 +60,9 @@ export function CreateProfile1() {
 								<option value="" disabled selected hidden>
 									{t("freelancer.createProfile.selectOption.hourRate")}
 								</option>
-								<option value="hourRate1">
-									{t("freelancer.createProfile.selectOption.hourRate")}
-								</option>
-								<option value="hourRate2">
-									{t("freelancer.createProfile.selectOption.hourRate")}
-								</option>
-								<option value="hourRate3">
-									{t("freelancer.createProfile.selectOption.hourRate")}
-								</option>
+								{hourRate.map(({ name }) => {
+									return <option>{name}</option>;
+								})}
 							</select>
 						</div>
 						<input
@@ -87,15 +77,9 @@ export function CreateProfile1() {
 								<option value="" disabled selected hidden>
 									{t("freelancer.createProfile.selectOption.amountHours")}
 								</option>
-								<option value="amountHours1">
-									{t("freelancer.createProfile.selectOption.amountHours")}
-								</option>
-								<option value="amountHours2">
-									{t("freelancer.createProfile.selectOption.amountHours")}
-								</option>
-								<option value="amountHours3">
-									{t("freelancer.createProfile.selectOption.amountHours")}
-								</option>
+								{workHours.map(({ name }) => {
+									return <option>{name}</option>;
+								})}
 							</select>
 						</div>
 						<div className="selectContainer">
@@ -103,9 +87,9 @@ export function CreateProfile1() {
 								<option value="" disabled selected hidden>
 									{t("freelancer.createProfile.selectOption.skills")}
 								</option>
-								<option value="skill1">{t("freelancer.createProfile.selectOption.skills")}</option>
-								<option value="skill2">{t("freelancer.createProfile.selectOption.skills")}</option>
-								<option value="skill3">{t("freelancer.createProfile.selectOption.skills")}</option>
+								{skills.map(({ name }) => {
+									return <option>{name}</option>;
+								})}
 							</select>
 						</div>
 						<div className="selectContainer">
@@ -113,15 +97,9 @@ export function CreateProfile1() {
 								<option value="" disabled selected hidden>
 									{t("freelancer.createProfile.selectOption.workExperience")}
 								</option>
-								<option value="workExperience1">
-									{t("freelancer.createProfile.selectOption.workExperience")}
-								</option>
-								<option value="workExperience2">
-									{t("freelancer.createProfile.selectOption.workExperience")}
-								</option>
-								<option value="workExperience3">
-									{t("freelancer.createProfile.selectOption.workExperience")}
-								</option>
+								{workExperience.map(({ name }) => {
+									return <option>{name}</option>;
+								})}
 							</select>
 						</div>
 						<div className="selectContainer">
@@ -129,15 +107,9 @@ export function CreateProfile1() {
 								<option value="" disabled selected hidden>
 									{t("freelancer.createProfile.selectOption.employmentType")}
 								</option>
-								<option value="employmentType1">
-									{t("freelancer.createProfile.selectOption.employmentType")}
-								</option>
-								<option value="employmentType2">
-									{t("freelancer.createProfile.selectOption.employmentType")}
-								</option>
-								<option value="employmentType3">
-									{t("freelancer.createProfile.selectOption.employmentType")}
-								</option>
+								{employmentType.map(({ name }) => {
+									return <option>{name}</option>;
+								})}
 							</select>
 						</div>
 						<div className="selectContainer">
@@ -145,15 +117,9 @@ export function CreateProfile1() {
 								<option value="" disabled selected hidden>
 									{t("freelancer.createProfile.selectOption.englishLevel")}
 								</option>
-								<option value="englishLevel1">
-									{t("freelancer.createProfile.selectOption.englishLevel")}
-								</option>
-								<option value="englishLevel2">
-									{t("freelancer.createProfile.selectOption.englishLevel")}
-								</option>
-								<option value="englishLevel3">
-									{t("freelancer.createProfile.selectOption.englishLevel")}
-								</option>
+								{englishLevel.map(({ name }) => {
+									return <option>{name}</option>;
+								})}
 							</select>
 						</div>
 						<StyledButton type="button" buttonColor="redGradient" buttonSize="sm" fontSize="md">
