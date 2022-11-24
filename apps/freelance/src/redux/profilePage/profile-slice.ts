@@ -8,8 +8,8 @@ type Profile = {
 	employmentType: string;
 	country: string;
 	hourRate: string;
-	hoursAmount: string;
-	experience: string;
+	availableAmountOfHour: string;
+	workExperience: string;
 	englishLevel: string;
 };
 

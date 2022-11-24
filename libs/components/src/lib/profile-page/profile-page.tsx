@@ -25,8 +25,8 @@ interface IFormInput {
 	employmentType: string;
 	country: string;
 	hourRate: string;
-	hoursAmount: string;
-	experience: string;
+	availableAmountOfHour: string;
+	workExperience: string;
 	englishLevel: string;
   }
 
@@ -101,7 +101,7 @@ export function ProfilePage(props: ProfilePageProps) {
 			</label>
 
 			<label htmlFor="hoursAmount">The available amount of hours
-			<select {...register("hoursAmount")} id="hoursAmount" >
+			<select {...register("availableAmountOfHour")} id="hoursAmount" >
 			<option value="" disabled selected>--amount of hours--</option>
 			{workHours.map(({name}) => {
 					return <option>{name}</option>
@@ -110,7 +110,7 @@ export function ProfilePage(props: ProfilePageProps) {
 			</label>
 
 			<label htmlFor="experience">Work experience
-			<select {...register("experience")} id="experience">
+			<select {...register("workExperience")} id="experience">
 			<option value="" disabled selected>--work experience--</option>
 				{experience.map(({name}) => {
 					return <option>{name}</option>

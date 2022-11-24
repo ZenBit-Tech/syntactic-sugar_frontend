@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from './example-slice';
-import profileReducer from "./profile-slice";
+import profileReducer from "./profilePage/profile-slice";
 import { signupGoogleApi } from './signup-googleApi';
 import { resetPasswordApi } from "./reset-password/reset-password-slice";
 import { loginApi } from "./login.api";
