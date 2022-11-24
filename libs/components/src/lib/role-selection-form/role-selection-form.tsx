@@ -22,7 +22,7 @@ export function RoleSelectionForm() {
 	return (
 		<Form>
 			<RadioGroup>
-				<input type="radio" name="role" value="jobOwner" id="jobOwner" onChange={roleHandler} />
+				<input type="radio" name="role" value="job-owner" id="jobOwner" onChange={roleHandler} />
 				<label htmlFor="jobOwner">{t("roleSelection.roleJobOwner")}</label>
 				<input type="radio" name="role" value="freelancer" id="freelancer" onChange={roleHandler} />
 				<label htmlFor="freelancer">{t("roleSelection.roleFreelancer")}</label>
