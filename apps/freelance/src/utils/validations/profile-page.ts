@@ -1,5 +1,4 @@
 import * as yup from 'yup';
-import { object } from 'yup';
 
 export const profilePageSchema = yup.object().shape({
   fullName:  yup.string().required('Name is required'),
