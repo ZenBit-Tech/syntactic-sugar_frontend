@@ -8,7 +8,7 @@ import experience from 'utils/select-options/experience.json';
 import hourRate from 'utils/select-options/hour-rate.json';
 import workHours from 'utils/select-options/hours-amount.json';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { addProfileInfo } from "redux/profile-slice";
+import { addProfileInfo } from "redux/profilePage/profile-slice";
 import { useAppDispatch } from "redux/example-hooks";
 import { useNavigate } from 'react-router-dom';
 import { profilePageSchema } from 'utils/validations/profile-page';
