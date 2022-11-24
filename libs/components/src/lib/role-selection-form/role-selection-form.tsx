@@ -9,7 +9,7 @@ type RoleOptions = "job-owner" | "freelancer";
 export function RoleSelectionForm() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
-	const [radioOption, setRadioOption] = useState<RoleOptions>();
+	const [radioOption, setRadioOption] = useState<RoleOptions | null>(null);
 
 	const roleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setRadioOption(e.target.value as RoleOptions);
