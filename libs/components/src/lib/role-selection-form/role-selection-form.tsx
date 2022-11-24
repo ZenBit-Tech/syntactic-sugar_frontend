@@ -7,7 +7,7 @@ import { Form, RadioGroup } from "./role-selection-form.styled";
 export function RoleSelectionForm() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
-	const [radioOption, setRadioOption] = useState("");
+	const [radioOption, setRadioOption] = useState<string>("");
 
 	const redirect = () => navigate(`/${radioOption}`);
 
@@ -20,7 +20,7 @@ export function RoleSelectionForm() {
 					value="jobOwner"
 					id="jobOwner"
 					onClick={() => setRadioOption("job-owner/create-profile1")}
-				></input>
+				/>
 				<label htmlFor="jobOwner">{t("roleSelection.roleJobOwner")}</label>
 				<input
 					type="radio"
