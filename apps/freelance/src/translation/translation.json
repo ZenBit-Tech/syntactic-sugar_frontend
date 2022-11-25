@@ -11,7 +11,7 @@
 	"resetPasswordPage": {
 		"formTitle": "Forgot your password?",
 		"firstPageInstructions": "Enter your email to reset your password!",
-		"checkYourEmail": "We sent a link to your email! Continue there!"
+		"checkYourEmail": "We sent a link to your registered e-mail! Click the link to reset your password."
 	},
 	"signForm": {
 		"welcome": "WELCOME TO",
@@ -54,7 +54,8 @@
 		"errorMessageWrongEmail": "User with this email does not exist",
 		"errorMessageServerError": "Somethig went wrong",
 		"errorMessageExpiredLink": "Your link has expired",
-		"passwordHasUpdated": "Your password has updated"
+		"resetSuccess": "Your password reset is successfully done! Go to Home Page.",
+		"homePageBtn": "HOME PAGE"
 	},
 	"dashboard": {
 		"menu": {
@@ -87,5 +88,9 @@
 				"englishLevel": "English Level"
 			}
 		}
+	},
+	"invitationPage": {
+		"title": "You have successfully registered!",
+		"subtitle": "Check your e-mail and activate your account. After activation, you can begin to find your perfect job match."
 	}
 }
