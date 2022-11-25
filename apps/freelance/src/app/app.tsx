@@ -4,9 +4,10 @@ import { Provider } from "react-redux";
 import Login from "@pages/Login";
 import Signup from "@pages/Signup";
 import { RecoverPasswordRequest } from "@pages/RecoverPasswordRequest";
-import { CheckYourEmail } from "@pages/RecoverPasswordRequest/check-your-email";
+import { RecoverPasswordCheck } from "@pages/RecoverPasswordCheck";
 import { RecoverPasswordReset } from "@pages/RecoverPasswordReset";
 import { RecoverPasswordUpdate } from "@pages/RecoverPasswordUpdate";
+import { Invitation } from "@pages/Invitation";
 
 import store from "redux/store";
 import { GoogleOAuthProvider } from "@react-oauth/google";
@@ -22,9 +23,10 @@ export function App() {
 							<Route path="/signup" element={<Signup />} />
 							<Route path="/role" element={<h1>hello</h1>} />
 							<Route path="/recover-password" element={<RecoverPasswordRequest />} />
-							<Route path="/check-your-email" element={<CheckYourEmail />} />
+							<Route path="/check-your-email" element={<RecoverPasswordCheck />} />
 							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
 							<Route path="/password-updated" element={<RecoverPasswordUpdate />} />
+							<Route path="/invitation" element={<Invitation />} />
 						</Routes>
 					</BrowserRouter>
 				</Provider>
