@@ -11,10 +11,14 @@ export interface SendProposalFreelancerProps {}
 export function SendProposalFreelancer(props: SendProposalFreelancerProps) {
 	const {t} = useTranslation();
 	// const name = useAppSelector((state) => state.profile.list);
-	return (
-		<>
+	return ( 
+	<>
 		<h2>{t("sendProposalFreelancer.greeting")}</h2>
-		<h3></h3>	
+		<h3>Marketing, Ukraine, 3 years of experience, English: Upper Int, full time work</h3>
+		<p>Cover letter</p>
+		<textarea placeholder="add cover letter"></textarea>
+		<label htmlFor="file">Other attachments:</label>
+	    <input type="file" id="file" name="file" accept=".doc, .docs, .pdf"/>
 		</>
 	);
 }
