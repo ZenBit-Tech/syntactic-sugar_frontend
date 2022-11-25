@@ -55,5 +55,8 @@
     "errorMessageServerError": "Somethig went wrong",
     "errorMessageExpiredLink": "Your link has expired",
     "passwordHasUpdated": "Your password has updated"
+  },
+  "sendProposalFreelancer": {
+    "greeting": "Send your proposal!"
   }
 }

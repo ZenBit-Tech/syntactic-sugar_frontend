@@ -1,3 +1,4 @@
+export * from "./lib/send-proposal-freelancer/send-proposal-freelancer";
 export * from "./lib/signup-form/signup-form";
 export * from "./lib/form-header/form-header";
 export * from "./lib/message-container/message-container";

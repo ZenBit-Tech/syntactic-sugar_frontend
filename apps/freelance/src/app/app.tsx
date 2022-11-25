@@ -10,11 +10,12 @@ import { PasswordUpdated } from "@pages/RecoverPasswordReset/password-updated";
 
 import store from "redux/store";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import SendProposal from "@pages/SendProposal";
 
 export function App() {
 	return (
 		<StyledApp>
-			<GoogleOAuthProvider clientId={`${process.env["NX_APP_GOOGLE_KEY"]}`}>
+			<GoogleOAuthProvider clientId="110800861359-ddacb8lgsjcjbjoftnuvmmsr56tt65m3.apps.googleusercontent.com">
 				<Provider store={store}>
 					<BrowserRouter>
 						<Routes>
@@ -25,6 +26,7 @@ export function App() {
 							<Route path="/check-your-email" element={<CheckYourEmail />} />
 							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
 							<Route path="/password-updated" element={<PasswordUpdated />} />
+							<Route path="/send-proposal-freelancer" element={<SendProposal />} />
 						</Routes>
 					</BrowserRouter>
 				</Provider>
