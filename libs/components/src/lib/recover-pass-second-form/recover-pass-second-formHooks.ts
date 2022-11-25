@@ -12,22 +12,22 @@ const RECOVER_PASSWORD = "/recover-password";
 
 export function useResetPassword(): IonSubmitResetPassword {
 	const { t } = useTranslation();
-	const [open, setOpen] = useState(false);
+	const [open, setModalOpen] = useState(false);
 	const navigate = useNavigate();
 	const { token } = useParams();
 	const [resetPassword, { isLoading }] = useResetPasswordMutation();
 
-	const handleOk = () => {
+	const handleModalOk = () => {
 		navigate(RECOVER_PASSWORD);
 	};
-	const handleCancel = () => {
-		setOpen(false);
+	const handleModalCancel = () => {
+		setModalOpen(false);
 	};
 	const onSubmit: SubmitHandler<IResetPasswordForm> = async ({ password }) => {
 		try {
 			const result = await resetPassword({ token, password });
 			"data" in result && navigate(PASSWORD_UPDATED);
-			"error" in result && setOpen(true);
+			"error" in result && setModalOpen(true);
 		} catch (err) {
 			toast.error(t("recoverPassForm.errorMessageServerError"));
 		}
@@ -35,8 +35,8 @@ export function useResetPassword(): IonSubmitResetPassword {
 
 	return {
 		open,
-		handleOk,
-		handleCancel,
+		handleModalOk,
+		handleModalCancel,
 		onSubmit,
 		isLoading,
 	};

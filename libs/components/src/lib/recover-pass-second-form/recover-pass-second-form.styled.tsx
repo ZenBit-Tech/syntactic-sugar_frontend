@@ -1,3 +1,4 @@
+import { Modal } from "antd";
 import styled from "styled-components";
 import { StyledButton } from "../styles/buttons";
 
@@ -30,10 +31,25 @@ export const FormWrapper = styled.div`
 		background-color: ${({ theme }) => theme.colors.blue};
 		color: ${({ theme }) => theme.colors.white};
 	}
+
+	span.ant-modal-close-x {
+		display: none;
+	}
 `;
 
 export const StyledButtonModal = styled(StyledButton)`
-	:not(:last-of-type) {
-		margin-right: 16px;
+	display: flex;
+	margin-left: auto;
+	margin-right: auto;
+`;
+
+export const StyledModal = styled(Modal)`
+	border-radius: 20px;
+	overflow: hidden;
+	padding-bottom: 0;
+	border: 10px solid ${({ theme }) => theme.colors.darkRed};
+
+	span.ant-modal-close-x {
+		display: none;
 	}
 `;

@@ -2,19 +2,18 @@ import { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { ToastContainer } from "react-toastify";
-import { FormWrapper, StyledButtonModal } from "./recover-pass-second-form.styled";
+import { FormWrapper, StyledButtonModal, StyledModal } from "./recover-pass-second-form.styled";
 import { useTranslation } from "react-i18next";
 import { IResetPasswordForm } from "./interfaces";
 import { useResetPasswordSchema } from "utils/validations";
 import { useResetPassword } from "./recover-pass-second-formHooks";
 
-import { Modal } from "antd";
 import "antd/dist/antd.css";
 
 export const RecoverPasswordSecondForm = () => {
 	const { t } = useTranslation();
 	const schema = useResetPasswordSchema();
-	const { onSubmit, isLoading, open, handleOk, handleCancel } = useResetPassword();
+	const { onSubmit, isLoading, open, handleModalOk, handleModalCancel } = useResetPassword();
 	const {
 		register,
 		setFocus,
@@ -47,31 +46,22 @@ export const RecoverPasswordSecondForm = () => {
 						: t("recoverPassForm.submitResetPassword")}
 				</button>
 			</form>
-			<Modal
+			<StyledModal
 				open={open}
-				onOk={handleOk}
-				onCancel={handleCancel}
+				onOk={handleModalOk}
 				footer={[
 					<StyledButtonModal
 						key="submit"
-						buttonSize="modal"
+						buttonSize="lg"
 						buttonColor="redGradient"
-						onClick={handleOk}
+						onClick={handleModalOk}
 					>
-						Try again
-					</StyledButtonModal>,
-					<StyledButtonModal
-						key="cancel"
-						buttonSize="modal"
-						buttonColor="redGradient"
-						onClick={handleCancel}
-					>
-						Cancel
+						{t("recoverPassForm.tryAgainButton")}
 					</StyledButtonModal>,
 				]}
 			>
-				<h1>Your link has broken or has expired. Please, try again</h1>
-			</Modal>
+				<h1>{t("recoverPassForm.errorMessageExpiredLink")}</h1>
+			</StyledModal>
 			<ToastContainer />
 		</FormWrapper>
 	);
