@@ -54,7 +54,9 @@
 		"errorMessageWrongEmail": "User with this email does not exist",
 		"errorMessageServerError": "Somethig went wrong",
 		"errorMessageExpiredLink": "Your link has expired",
-		"passwordHasUpdated": "Your password has updated"
+		"passwordHasUpdated": "Your password has updated",
+		"resetSuccess": "Your password reset is successfully done! Go to Home Page.",
+		"homePageBtn": "HOME PAGE"
 	},
 	"invitationPage": {
 		"title": "You have successfully registered!",

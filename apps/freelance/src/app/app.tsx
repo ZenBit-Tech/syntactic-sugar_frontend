@@ -6,7 +6,7 @@ import Signup from "@pages/Signup";
 import { RecoverPasswordRequest } from "@pages/RecoverPasswordRequest";
 import { RecoverPasswordCheck } from "@pages/RecoverPasswordCheck";
 import { RecoverPasswordReset } from "@pages/RecoverPasswordReset";
-import { PasswordUpdated } from "@pages/RecoverPasswordReset/password-updated";
+import { RecoverPasswordUpdate } from "@pages/RecoverPasswordUpdate";
 import { Invitation } from "@pages/Invitation";
 
 import store from "redux/store";
@@ -25,7 +25,7 @@ export function App() {
 							<Route path="/recover-password" element={<RecoverPasswordRequest />} />
 							<Route path="/check-your-email" element={<RecoverPasswordCheck />} />
 							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
-							<Route path="/password-updated" element={<PasswordUpdated />} />
+							<Route path="/password-updated" element={<RecoverPasswordUpdate />} />
 							<Route path="/invitation" element={<Invitation />} />
 						</Routes>
 					</BrowserRouter>
