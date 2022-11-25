@@ -55,5 +55,9 @@
 		"errorMessageServerError": "Somethig went wrong",
 		"errorMessageExpiredLink": "Your link has expired",
 		"passwordHasUpdated": "Your password has updated"
+	},
+	"invitationPage": {
+		"title": "You have successfully registered!",
+		"subtitle": "Check your e-mail and activate your account. After activation, you can begin to find your perfect job match."
 	}
 }
