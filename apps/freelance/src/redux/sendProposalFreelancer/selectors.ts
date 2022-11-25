@@ -1,13 +1,19 @@
-const getIsLoggedIn = (state: { user: { isLoggedIn: any; }; }) => state.user.isLoggedIn;
-const getUserName = (state: { user: { user: { name: any; }; }; }) => state.user.user.name;
-const getToken = (state: { user: { token: any; }; }) => state.user.token;
-const getIsFetching = (state: { user: { isFetching: any; }; }) => state.user.isFetching;
+const getFullName= (state: { profile: { fullName: any; }; }) => state.profile.fullName;
+const getCategory= (state: { profile: { category: any; }; }) => state.profile.category;
+const getExperience= (state: { profile: { workExperience: any; }; }) => state.profile.workExperience;
+const getEnglishLevel = (state: { profile: { englishLevel: any; }; }) => state.profile.englishLevel;
+const getAmontOfHours = (state: { profile: { availableAmountOfHour: any; }; }) => state.profile.availableAmountOfHour;
+const getCountry= (state: { profile: { country: any; }; }) => state.profile.country;
 
-const userSelectors = {
-  getIsLoggedIn,
-  getUserName,
-  getToken,
-  getIsFetching,
+
+
+const profileSelectors = {
+  getFullName,
+  getCategory,
+  getExperience,
+  getEnglishLevel,
+  getAmontOfHours,
+  getCountry,
 };
 
-export default userSelectors;
+export default profileSelectors;

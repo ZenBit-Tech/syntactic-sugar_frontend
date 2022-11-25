@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useAppSelector } from "redux/hooks";
+// import  profileSelectors  from "redux/sendProposalFreelancer/selectors";
 
 
 /* eslint-disable-next-line */
@@ -9,9 +10,7 @@ export interface SendProposalFreelancerProps {}
 
 export function SendProposalFreelancer(props: SendProposalFreelancerProps) {
 	const {t} = useTranslation();
-	// const [selector] = useAppSelector(); 
-	// const count = useAppSelector((state) => state.counter.value)
-
+	// const name = useAppSelector((state) => state.profile.list);
 	return (
 		<>
 		<h2>{t("sendProposalFreelancer.greeting")}</h2>
