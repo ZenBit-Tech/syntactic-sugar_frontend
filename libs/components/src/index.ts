@@ -1,4 +1,5 @@
 export * from "./lib/profile-page/profile-page";
+export * from "./lib/message/message";
 export * from "./lib/signup-form/signup-form";
 export * from "./lib/recover-pass-first-form/recover-pass-first-form";
 export * from "./lib/form-header/form-header";
