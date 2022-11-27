@@ -1,134 +1,189 @@
-import { useForm, SubmitHandler } from "react-hook-form";
-import countries from 'utils/select-options/eu-coutries.json';
-import categories from 'utils/select-options/categories.json';
-import skills from 'utils/select-options/skills.json';
-import english from 'utils/select-options/english-level.json';
-import employment from 'utils/select-options/employment-type.json';
-import experience from 'utils/select-options/experience.json';
-import hourRate from 'utils/select-options/hour-rate.json';
-import workHours from 'utils/select-options/hours-amount.json';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { addProfileInfo } from "redux/profilePage/profile-slice";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import Select from "react-select";
+import { useEffect } from "react";
+import { addFreelancerInfo } from "redux/createFreelancer/freelancer-slice";
 import { useAppDispatch } from "redux/example-hooks";
-import { useNavigate } from 'react-router-dom';
-import { profilePageSchema } from 'utils/validations/profile-page';
-
+import { useCreateFreelancerMutation } from "redux/createFreelancer/freelancer-pageApi";
+import { useNavigate } from "react-router-dom";
+import {
+	countries,
+	categories,
+	skills,
+	employmentType,
+	hourRate,
+	hoursAmount,
+	workExperience,
+	englishLevel,
+	SelectOptions,
+} from "utils/select-options/options";
+import { Input } from "antd";
+import { StyledPage, Container, Form } from "./profile-page.styled";
+import { ThemeColors } from "@freelance/components";
+import { ThemeProvider } from "styled-components";
+import { StyledButton } from "@freelance/components";
 
 /* eslint-disable-next-line */
 export interface ProfilePageProps {}
 
 interface IFormInput {
 	fullName: string;
-	category: string;
+	category: SelectOptions;
 	position: string;
-	skills: string;
-	employmentType: string;
-	country: string;
-	hourRate: string;
-	availableAmountOfHour: string;
-	workExperience: string;
-	englishLevel: string;
-  }
+	skills: SelectOptions;
+	employmentType: SelectOptions;
+	country: SelectOptions;
+	hourRate: SelectOptions;
+	availableAmountOfHour: SelectOptions;
+	workExperience: SelectOptions;
+	englishLevel: SelectOptions;
+}
 
 export function ProfilePage(props: ProfilePageProps) {
 	const navigate = useNavigate();
+	const [createFrelancer, { isError }] = useCreateFreelancerMutation();
 	const dispatch = useAppDispatch();
-	const { register, handleSubmit, formState: { errors } } = useForm<IFormInput>({
-		resolver: yupResolver(profilePageSchema)
-	  });
+	const { handleSubmit, control } = useForm<IFormInput>();
+
+	useEffect(() => {
+		if (isError) {
+			console.log("Please, check login or password");
+		}
+	}, [isError]);
+
 	const onSubmit: SubmitHandler<IFormInput> = data => {
-		console.log(data);		
-		dispatch(addProfileInfo(data));
-		navigate('./profile_1');
+		createFrelancer(data);
+		dispatch(addFreelancerInfo(data));
+		navigate("./profile_1");
 	};
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
-			<label htmlFor="fullName">Full name
-			{/* <input type="text" placeholder="Full name" name="full name" required/> */}
-			<input placeholder="Full name" {...register("fullName")}  />
-			<p>{errors.fullName?.message}</p>
-			</label>
-
-			<label htmlFor="category">Category
-			<select {...register("category")} id="category">
-				<option value="" disabled selected>--choose category--</option>
-				{categories.map(({name}) => {
-					return <option>{name}</option>
-				})}
-		    </select>
-			</label>
-
-			<label htmlFor="position">Position
-			{/* <input type="text" placeholder="Position" name="position" required/> */}
-			<input placeholder="Position" {...register("position")} />
-			</label>
-
-			<label htmlFor="skills">Skills
-			<select {...register("skills")}id="skills" >
-			<option value="" disabled selected>--choose skills--</option>
-				{skills.map(({name}) => {
-					return <option>{name}</option>
-				})}
-			</select>
-			</label>
-
-			<label htmlFor="employmentType">Employment type
-			<select {...register("employmentType")} id="employmentType" >
-			<option value="" disabled selected>--employment type--</option>
-				{employment.map(({name}) => {
-					return <option>{name}</option>
-				})}
-			</select>
-			</label>
-
-			<label htmlFor="country">Country
-			<select {...register("country")} id="country" >
-			<option value="" disabled selected>--choose country--</option>
-				{countries.map(({name}) => {
-					return <option>{name}</option>
-				})}
-			</select>
-			</label>
-
-			<label htmlFor="hourRate">Hour rate(one price)
-			<select {...register("hourRate")} id="hourRate">
-			<option value="" disabled selected>--hour rate--</option>
-			{hourRate.map(({name}) => {
-					return <option>{name}</option>
-				})}
-			</select>
-			</label>
-
-			<label htmlFor="hoursAmount">The available amount of hours
-			<select {...register("availableAmountOfHour")} id="hoursAmount" >
-			<option value="" disabled selected>--amount of hours--</option>
-			{workHours.map(({name}) => {
-					return <option>{name}</option>
-				})}
-			</select>
-			</label>
-
-			<label htmlFor="experience">Work experience
-			<select {...register("workExperience")} id="experience">
-			<option value="" disabled selected>--work experience--</option>
-				{experience.map(({name}) => {
-					return <option>{name}</option>
-				})}
-			</select>
-			</label>
-
-			<label htmlFor="english">English level
-			<select {...register("englishLevel")} id="english">
-			<option value="" disabled selected>--english level--</option>
-				{english.map(({name}) => {
-					return <option>{name}</option>
-				})}
-			</select>
-			</label>
-			<button type="submit">Continue</button>			
-		</form>
-	)
+		<ThemeProvider theme={ThemeColors}>
+			<StyledPage>
+				<Container>
+					<p></p>
+					<Form onSubmit={handleSubmit(onSubmit)}>
+						<Controller
+							name="fullName"
+							control={control}
+							render={({ field }) => <Input {...field} required placeholder="Full name" />}
+						/>
+						<Controller
+							name="category"
+							control={control}
+							render={({ field }) => (
+								<Select
+									options={categories}
+									required
+									{...field}
+									placeholder="Select category"
+									isSearchable
+								/>
+							)}
+						/>
+						<Controller
+							name="position"
+							control={control}
+							render={({ field }) => <Input {...field} required placeholder="Position" />}
+						/>
+						<Controller
+							name="skills"
+							control={control}
+							render={({ field }) => (
+								<Select
+									options={skills}
+									{...field}
+									required
+									placeholder="Select skills"
+									isSearchable
+									isMulti
+								/>
+							)}
+						/>
+						<Controller
+							name="employmentType"
+							control={control}
+							render={({ field }) => (
+								<Select
+									options={employmentType}
+									required
+									{...field}
+									placeholder="Select employment type"
+								/>
+							)}
+						/>
+						<Controller
+							name="country"
+							control={control}
+							render={({ field }) => (
+								<Select
+									options={countries}
+									required
+									{...field}
+									placeholder="Select country"
+									isSearchable
+								/>
+							)}
+						/>
+						<Controller
+							name="hourRate"
+							control={control}
+							render={({ field }) => (
+								<Select
+									options={hourRate}
+									required
+									{...field}
+									placeholder="Select hour rate"
+									isSearchable
+								/>
+							)}
+						/>
+						<Controller
+							name="availableAmountOfHour"
+							control={control}
+							render={({ field }) => (
+								<Select
+									options={hoursAmount}
+									{...field}
+									required
+									placeholder="Select amount of hours"
+									isSearchable
+								/>
+							)}
+						/>
+						<Controller
+							name="workExperience"
+							control={control}
+							render={({ field }) => (
+								<Select
+									options={workExperience}
+									required
+									{...field}
+									placeholder="Select work experience"
+									isSearchable
+								/>
+							)}
+						/>
+						<Controller
+							name="englishLevel"
+							control={control}
+							render={({ field }) => (
+								<Select
+									options={englishLevel}
+									{...field}
+									required
+									placeholder="Select english level"
+									isSearchable
+								/>
+							)}
+						/>
+						<StyledButton buttonSize="md" buttonColor="blue" type="submit">
+							Continue
+						</StyledButton>
+					</Form>
+				</Container>
+			</StyledPage>
+		</ThemeProvider>
+	);
 }
-	
+
 export default ProfilePage;

@@ -7,6 +7,7 @@ import { RecoverPasswordRequest } from "@pages/RecoverPasswordRequest";
 import { CheckYourEmail } from "@pages/RecoverPasswordRequest/check-your-email";
 import { RecoverPasswordReset } from "@pages/RecoverPasswordReset";
 import { PasswordUpdated } from "@pages/RecoverPasswordReset/password-updated";
+import { ProfilePage } from "@freelance/components";
 import store from "redux/store";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
@@ -17,7 +18,7 @@ export function App() {
 				<Provider store={store}>
 					<BrowserRouter>
 						<Routes>
-							<Route path="/" element={<Login />} />
+							<Route path="/" element={<ProfilePage/>} />
 							<Route path="/signup" element={<Signup />} />
 							<Route path="/role" element={<h1>hello</h1>} />
 							<Route path="/profile_1" element={<h1>profilePage3.1</h1>} />
