@@ -3,6 +3,8 @@ export type SelectOptions = {
 	label: string;
 };
 
+export type SkillsType = Array<SelectOptions>;
+
 export const countries: SelectOptions[] = [
 	{
 		label: "Andorra",

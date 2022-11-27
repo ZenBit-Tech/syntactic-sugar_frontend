@@ -26,6 +26,7 @@ const freelancerSlice = createSlice({
 	initialState,
 	reducers: {
 		addFreelancerInfo(state, action) {
+			console.log(action);
 			state.list.push(action.payload);
 		},
 	},

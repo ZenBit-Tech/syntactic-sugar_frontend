@@ -12,7 +12,9 @@ import { baseUrl } from "utils/constants/redux-query";
 
 export const createFreelancerApi = createApi({
 	reducerPath: "createFreelancer",
-	baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
+	baseQuery: fetchBaseQuery({
+		baseUrl: baseUrl,
+	}),
 	tagTypes: ["freelancer"],
 	endpoints: builder => ({
 		createFreelancer: builder.mutation({

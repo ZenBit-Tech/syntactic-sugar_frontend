@@ -15,12 +15,14 @@ import {
 	workExperience,
 	englishLevel,
 	SelectOptions,
+	SkillsType,
 } from "utils/select-options/options";
 import { Input } from "antd";
 import { StyledPage, Container, Form } from "./profile-page.styled";
 import { ThemeColors } from "@freelance/components";
 import { ThemeProvider } from "styled-components";
 import { StyledButton } from "@freelance/components";
+import { useTranslation } from "react-i18next";
 
 /* eslint-disable-next-line */
 export interface ProfilePageProps {}
@@ -39,6 +41,7 @@ interface IFormInput {
 }
 
 export function ProfilePage(props: ProfilePageProps) {
+	const { t } = useTranslation();
 	const navigate = useNavigate();
 	const [createFrelancer, { isError }] = useCreateFreelancerMutation();
 	const dispatch = useAppDispatch();
@@ -46,13 +49,25 @@ export function ProfilePage(props: ProfilePageProps) {
 
 	useEffect(() => {
 		if (isError) {
-			console.log("Please, check login or password");
+			alert(t("createFreelancer.alert"));
 		}
 	}, [isError]);
 
-	const onSubmit: SubmitHandler<IFormInput> = data => {
-		createFrelancer(data);
-		dispatch(addFreelancerInfo(data));
+	const onSubmit: SubmitHandler<IFormInput> = values => {
+		const frelancerInfo = {
+			fullName: values.fullName,
+			category: values.category.label,
+			position: values.position,
+			skills: values.skills,
+			employmentType: values.employmentType.label,
+			country: values.country.label,
+			hourRate: values.hourRate.label,
+			availableAmountOfHour: values.availableAmountOfHour.label,
+			workExperience: values.workExperience.label,
+			englishLevel: values.englishLevel.label,
+		};
+		createFrelancer(frelancerInfo);
+		dispatch(addFreelancerInfo(frelancerInfo));
 		navigate("./profile_1");
 	};
 
@@ -65,17 +80,20 @@ export function ProfilePage(props: ProfilePageProps) {
 						<Controller
 							name="fullName"
 							control={control}
-							render={({ field }) => <Input {...field} required placeholder="Full name" />}
+							rules={{ required: true }}
+							render={({ field }) => (
+								<Input {...field} placeholder={t("createFreelancer.fullName")} />
+							)}
 						/>
 						<Controller
 							name="category"
 							control={control}
+							rules={{ required: true }}
 							render={({ field }) => (
 								<Select
 									options={categories}
-									required
 									{...field}
-									placeholder="Select category"
+									placeholder={t("createFreelancer.category")}
 									isSearchable
 								/>
 							)}
@@ -83,17 +101,20 @@ export function ProfilePage(props: ProfilePageProps) {
 						<Controller
 							name="position"
 							control={control}
-							render={({ field }) => <Input {...field} required placeholder="Position" />}
+							rules={{ required: true }}
+							render={({ field }) => (
+								<Input {...field} placeholder={t("createFreelancer.position")} />
+							)}
 						/>
 						<Controller
 							name="skills"
 							control={control}
+							rules={{ required: true }}
 							render={({ field }) => (
 								<Select
 									options={skills}
 									{...field}
-									required
-									placeholder="Select skills"
+									placeholder={t("createFreelancer.skills")}
 									isSearchable
 									isMulti
 								/>
@@ -102,24 +123,24 @@ export function ProfilePage(props: ProfilePageProps) {
 						<Controller
 							name="employmentType"
 							control={control}
+							rules={{ required: true }}
 							render={({ field }) => (
 								<Select
 									options={employmentType}
-									required
 									{...field}
-									placeholder="Select employment type"
+									placeholder={t("createFreelancer.employment")}
 								/>
 							)}
 						/>
 						<Controller
 							name="country"
 							control={control}
+							rules={{ required: true }}
 							render={({ field }) => (
 								<Select
 									options={countries}
-									required
 									{...field}
-									placeholder="Select country"
+									placeholder={t("createFreelancer.country")}
 									isSearchable
 								/>
 							)}
@@ -127,12 +148,12 @@ export function ProfilePage(props: ProfilePageProps) {
 						<Controller
 							name="hourRate"
 							control={control}
+							rules={{ required: true }}
 							render={({ field }) => (
 								<Select
 									options={hourRate}
-									required
 									{...field}
-									placeholder="Select hour rate"
+									placeholder={t("createFreelancer.hourRate")}
 									isSearchable
 								/>
 							)}
@@ -140,12 +161,12 @@ export function ProfilePage(props: ProfilePageProps) {
 						<Controller
 							name="availableAmountOfHour"
 							control={control}
+							rules={{ required: true }}
 							render={({ field }) => (
 								<Select
 									options={hoursAmount}
 									{...field}
-									required
-									placeholder="Select amount of hours"
+									placeholder={t("createFreelancer.avaliableHours")}
 									isSearchable
 								/>
 							)}
@@ -153,12 +174,12 @@ export function ProfilePage(props: ProfilePageProps) {
 						<Controller
 							name="workExperience"
 							control={control}
+							rules={{ required: true }}
 							render={({ field }) => (
 								<Select
 									options={workExperience}
-									required
 									{...field}
-									placeholder="Select work experience"
+									placeholder={t("createFreelancer.experience")}
 									isSearchable
 								/>
 							)}
@@ -166,18 +187,18 @@ export function ProfilePage(props: ProfilePageProps) {
 						<Controller
 							name="englishLevel"
 							control={control}
+							rules={{ required: true }}
 							render={({ field }) => (
 								<Select
 									options={englishLevel}
 									{...field}
-									required
-									placeholder="Select english level"
+									placeholder={t("createFreelancer.english")}
 									isSearchable
 								/>
 							)}
 						/>
 						<StyledButton buttonSize="md" buttonColor="blue" type="submit">
-							Continue
+							{t("createFreelancer.buttonText")}
 						</StyledButton>
 					</Form>
 				</Container>
