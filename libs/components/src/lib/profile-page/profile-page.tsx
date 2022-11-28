@@ -31,7 +31,7 @@ interface IFormInput {
 	fullName: string;
 	category: SelectOptions;
 	position: string;
-	skills: SelectOptions;
+	skills: SelectOptions[];
 	employmentType: SelectOptions;
 	country: SelectOptions;
 	hourRate: SelectOptions;
@@ -43,22 +43,22 @@ interface IFormInput {
 export function ProfilePage(props: ProfilePageProps) {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
-	const [createFrelancer, { isError }] = useCreateFreelancerMutation();
+	const [createFrelancer, { status }] = useCreateFreelancerMutation();
 	const dispatch = useAppDispatch();
 	const { handleSubmit, control } = useForm<IFormInput>();
 
 	useEffect(() => {
-		if (isError) {
+		if (status === "rejected") {
 			alert(t("createFreelancer.alert"));
 		}
-	}, [isError]);
+	}, [status]);
 
-	const onSubmit: SubmitHandler<IFormInput> = values => {
+	const onSubmit: SubmitHandler<IFormInput> = async values => {
 		const frelancerInfo = {
 			fullName: values.fullName,
 			category: values.category.label,
 			position: values.position,
-			skills: values.skills,
+			skills: values.skills.map(skill => skill.label),
 			employmentType: values.employmentType.label,
 			country: values.country.label,
 			hourRate: values.hourRate.label,
@@ -66,9 +66,13 @@ export function ProfilePage(props: ProfilePageProps) {
 			workExperience: values.workExperience.label,
 			englishLevel: values.englishLevel.label,
 		};
-		createFrelancer(frelancerInfo);
-		dispatch(addFreelancerInfo(frelancerInfo));
-		navigate("./profile_1");
+		try {
+			await dispatch(addFreelancerInfo(frelancerInfo));
+			await createFrelancer(frelancerInfo);
+			await navigate("./profile_1");
+		} catch (error) {
+			alert(error);
+		}
 	};
 
 	return (

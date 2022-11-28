@@ -4,7 +4,7 @@ type Freelancer = {
 	fullName: string;
 	category: string;
 	position: string;
-	skills: string;
+	skills: string[];
 	employmentType: string;
 	country: string;
 	hourRate: string;
@@ -13,21 +13,16 @@ type Freelancer = {
 	englishLevel: string;
 };
 
-type FreelancerState = {
-	list: Freelancer[];
-};
+type FreelancerState = Freelancer[];
 
-const initialState: FreelancerState = {
-	list: [],
-};
+const initialState: FreelancerState = [];
 
 const freelancerSlice = createSlice({
 	name: "freelancer",
 	initialState,
 	reducers: {
 		addFreelancerInfo(state, action) {
-			console.log(action);
-			state.list.push(action.payload);
+			state.push(action.payload);
 		},
 	},
 });

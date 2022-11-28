@@ -1,14 +1,18 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { baseUrl } from "utils/constants/redux-query";
 
-// interface IServerResponse {
-//   id: string;
-//   email: string;
-// }
-
-// interface IToken {
-//   token: string;
-// }
+interface IFormInput {
+	fullName: string;
+	category: string;
+	position: string;
+	skills: string[];
+	employmentType: string;
+	country: string;
+	hourRate: string;
+	availableAmountOfHour: string;
+	workExperience: string;
+	englishLevel: string;
+}
 
 export const createFreelancerApi = createApi({
 	reducerPath: "createFreelancer",
@@ -17,9 +21,10 @@ export const createFreelancerApi = createApi({
 	}),
 	tagTypes: ["freelancer"],
 	endpoints: builder => ({
+		// here would be GET query for freelancer's email
 		createFreelancer: builder.mutation({
-			query: body => ({
-				url: "freelancer/freelancer/create",
+			query: (body: IFormInput) => ({
+				url: "freelancer/freelancer/create", // here must be correct path from be
 				method: "POST",
 				body,
 			}),
