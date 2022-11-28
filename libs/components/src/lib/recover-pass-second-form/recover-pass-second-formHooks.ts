@@ -12,7 +12,7 @@ const RECOVER_PASSWORD = "/recover-password";
 
 export function useResetPassword(): IonSubmitResetPassword {
 	const { t } = useTranslation();
-	const [open, setModalOpen] = useState(false);
+	const [open, setModalOpen] = useState<boolean>(false);
 	const navigate = useNavigate();
 	const { token } = useParams();
 	const [resetPassword, { isLoading }] = useResetPasswordMutation();
@@ -20,9 +20,11 @@ export function useResetPassword(): IonSubmitResetPassword {
 	const handleModalOk = () => {
 		navigate(RECOVER_PASSWORD);
 	};
+
 	const handleModalCancel = () => {
 		setModalOpen(false);
 	};
+
 	const onSubmit: SubmitHandler<IResetPasswordForm> = async ({ password }) => {
 		try {
 			const result = await resetPassword({ token, password });

@@ -1,23 +1,32 @@
 {
-  "extends": ["plugin:@nrwl/nx/react", "../../.eslintrc.json"],
-  "ignorePatterns": ["!**/*"],
-  "overrides": [
-    {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "rules": {
-        "padding-line-between-statements": [
-          "error",
-          { "blankLine": "always", "prev": "*", "next": "return" }
-        ]
-      }
-    },
-    {
-      "files": ["*.ts", "*.tsx"],
-      "rules": {}
-    },
-    {
-      "files": ["*.js", "*.jsx"],
-      "rules": {}
-    }
-  ]
+	"extends": ["plugin:@nrwl/nx/react", "../../.eslintrc.json"],
+	"ignorePatterns": ["!**/*"],
+	"overrides": [
+		{
+			"files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+			"rules": {
+				"padding-line-between-statements": [
+					"error",
+					{ "blankLine": "always", "prev": "*", "next": "return" },
+					{ "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
+					{ "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"] }
+				]
+			}
+		},
+		{
+			"files": ["*.ts", "*.tsx"],
+			"rules": {
+				"padding-line-between-statements": [
+					"error",
+					{ "blankLine": "always", "prev": "*", "next": "return" },
+					{ "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
+					{ "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"] }
+				]
+			}
+		},
+		{
+			"files": ["*.js", "*.jsx"],
+			"rules": {}
+		}
+	]
 }
