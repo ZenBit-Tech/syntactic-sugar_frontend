@@ -21,10 +21,6 @@ export function useResetPassword(): IonSubmitResetPassword {
 		navigate(RECOVER_PASSWORD);
 	};
 
-	const handleModalCancel = () => {
-		setModalOpen(false);
-	};
-
 	const onSubmit: SubmitHandler<IResetPasswordForm> = async ({ password }) => {
 		try {
 			const result = await resetPassword({ token, password });
@@ -38,7 +34,6 @@ export function useResetPassword(): IonSubmitResetPassword {
 	return {
 		open,
 		handleModalOk,
-		handleModalCancel,
 		onSubmit,
 		isLoading,
 	};

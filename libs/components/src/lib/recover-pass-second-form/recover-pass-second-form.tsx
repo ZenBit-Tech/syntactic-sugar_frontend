@@ -13,7 +13,7 @@ import "antd/dist/antd.css";
 export const RecoverPasswordSecondForm = () => {
 	const { t } = useTranslation();
 	const schema = useResetPasswordSchema();
-	const { onSubmit, isLoading, open, handleModalOk, handleModalCancel } = useResetPassword();
+	const { onSubmit, isLoading, open, handleModalOk } = useResetPassword();
 	const {
 		register,
 		setFocus,

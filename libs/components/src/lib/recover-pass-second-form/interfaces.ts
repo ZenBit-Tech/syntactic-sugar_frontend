@@ -8,7 +8,6 @@ export interface IResetPasswordForm {
 export interface IonSubmitResetPassword {
 	open: boolean;
 	handleModalOk: () => void;
-	handleModalCancel: () => void;
 	onSubmit: SubmitHandler<IResetPasswordForm>;
 	isLoading: boolean;
 }
