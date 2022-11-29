@@ -24,22 +24,22 @@ interface workExperienceProps {
 	period: string;
 }
 
+const education = {
+	institute: "",
+	occupation: "",
+	period: "",
+};
+
+const workExperience = {
+	company: "",
+	workPosition: "",
+	period: "",
+};
+
 export function CreateProfile2() {
 	const { t } = useTranslation();
 	const [educationList, setEducationList] = useState<educationProps[]>([]);
 	const [workExperienceList, setWorkExperienceList] = useState<workExperienceProps[]>([]);
-
-	const education = {
-		institute: "",
-		occupation: "",
-		period: "",
-	};
-
-	const workExperience = {
-		company: "",
-		workPosition: "",
-		period: "",
-	};
 
 	useEffect(() => {
 		setEducationList([education]);
