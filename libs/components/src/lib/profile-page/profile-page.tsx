@@ -15,7 +15,6 @@ import {
 	workExperience,
 	englishLevel,
 	SelectOptions,
-	SkillsType,
 } from "utils/select-options/options";
 import { Input } from "antd";
 import { StyledPage, Container, Form } from "./profile-page.styled";
@@ -54,7 +53,7 @@ export function ProfilePage(props: ProfilePageProps) {
 	}, [status]);
 
 	const onSubmit: SubmitHandler<IFormInput> = async values => {
-		const frelancerInfo = {
+		const freelancerInfo = {
 			fullName: values.fullName,
 			category: values.category.label,
 			position: values.position,
@@ -67,9 +66,9 @@ export function ProfilePage(props: ProfilePageProps) {
 			englishLevel: values.englishLevel.label,
 		};
 		try {
-			await dispatch(addFreelancerInfo(frelancerInfo));
-			await createFrelancer(frelancerInfo);
-			await navigate("./profile_1");
+			await dispatch(addFreelancerInfo(freelancerInfo));
+			await createFrelancer(freelancerInfo);
+			navigate("./profile_1");
 		} catch (error) {
 			alert(error);
 		}

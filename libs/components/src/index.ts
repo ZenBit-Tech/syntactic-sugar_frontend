@@ -1,3 +1,6 @@
+export * from "./lib/dashboard-header/dashboard-header";
+export * from "./lib/dashboard-menu/dashboard-menu";
+export * from "./lib/dashboard/dashboard";
 export * from "./lib/profile-page/profile-page";
 export * from "./lib/message/message";
 export * from "./lib/signup-form/signup-form";

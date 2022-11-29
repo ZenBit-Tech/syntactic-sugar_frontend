@@ -17,7 +17,7 @@ type FreelancerState = Freelancer[];
 
 const initialState: FreelancerState = [];
 
-const freelancerSlice = createSlice({
+const freelancer = createSlice({
 	name: "freelancer",
 	initialState,
 	reducers: {
@@ -27,5 +27,5 @@ const freelancerSlice = createSlice({
 	},
 });
 
-export const { addFreelancerInfo } = freelancerSlice.actions;
-export default freelancerSlice.reducer;
+export const { addFreelancerInfo } = freelancer.actions;
+export default freelancer.reducer;

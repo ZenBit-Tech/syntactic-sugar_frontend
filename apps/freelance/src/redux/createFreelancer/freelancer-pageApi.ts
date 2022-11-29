@@ -21,7 +21,6 @@ export const createFreelancerApi = createApi({
 	}),
 	tagTypes: ["freelancer"],
 	endpoints: builder => ({
-		// here would be GET query for freelancer's email
 		createFreelancer: builder.mutation({
 			query: (body: IFormInput) => ({
 				url: "freelancer/freelancer/create", // here must be correct path from be
