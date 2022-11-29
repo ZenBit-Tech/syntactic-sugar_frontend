@@ -11,6 +11,7 @@ import {
 	RoleSelectionForm,
 } from "@freelance/components";
 import { useGoogleAuthentication } from "./form-containerHooks";
+import { LOG_IN, RECOVER_PASSWORD_1, ROLE_SELECTION, SIGN_UP } from "utils/constants/breakpoint";
 
 export interface FormContainerProps {
 	title: React.ReactNode;
@@ -44,10 +45,10 @@ export function FormContainer({
 	return (
 		<Container isRightSide={isRightSide}>
 			<FormHeader title={title} subTitle={subTitle} isSignForm={isSignForm} />
-			{formType === "login" && <LoginForm />}
-			{formType === "signup" && <SignupForm />}
-			{formType === "recoverPass1" && <RecoverPassFirstForm />}
-			{formType === "roleSelection" && <RoleSelectionForm />}
+			{formType === LOG_IN && <LoginForm />}
+			{formType === SIGN_UP && <SignupForm />}
+			{formType === RECOVER_PASSWORD_1 && <RecoverPassFirstForm />}
+			{formType === ROLE_SELECTION && <RoleSelectionForm />}
 			<StyledParagraph fontSize="md">
 				{signText}
 				{isRightSide || !isSignForm ? (
