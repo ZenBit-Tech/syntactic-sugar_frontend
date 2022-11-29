@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import {
 	StyledPage,
@@ -11,60 +11,25 @@ import {
 	InputWrapper,
 } from "./style";
 import { Dashboard, StyledTitle, StyledButton } from "@freelance/components";
-
-interface educationProps {
-	institute: string;
-	occupation: string;
-	period: string;
-}
-
-interface workExperienceProps {
-	company: string;
-	workPosition: string;
-	period: string;
-}
-
-const education = {
-	institute: "",
-	occupation: "",
-	period: "",
-};
-
-const workExperience = {
-	company: "",
-	workPosition: "",
-	period: "",
-};
+import { useEducationHandler } from "./useEducationHandler";
+import { useWorkExperienceHandler } from "./useWorkExperienceHandler";
 
 export function CreateProfile2() {
 	const { t } = useTranslation();
-	const [educationList, setEducationList] = useState<educationProps[]>([]);
-	const [workExperienceList, setWorkExperienceList] = useState<workExperienceProps[]>([]);
+	const { handleAddEducation, handleRemoveEducation, educationList, setEducationList, education } =
+		useEducationHandler();
+	const {
+		handleAddWorkExperience,
+		handleRemoveWorkExperience,
+		workExperienceList,
+		setWorkExperienceList,
+		workExperience,
+	} = useWorkExperienceHandler();
 
 	useEffect(() => {
 		setEducationList([education]);
 		setWorkExperienceList([workExperience]);
 	}, []);
-
-	const handleAddEducation = () => {
-		setEducationList(prev => [...prev, education]);
-	};
-
-	const handleRemoveEducation = (index: number) => {
-		const list = [...educationList];
-		list.splice(index, 1);
-		setEducationList(list);
-	};
-
-	const handleAddWorkExperience = () => {
-		setWorkExperienceList(prev => [...prev, workExperience]);
-	};
-
-	const handleRemoveWorkExperience = (index: number) => {
-		const list = [...workExperienceList];
-		list.splice(index, 1);
-		setWorkExperienceList(list);
-	};
 
 	return (
 		<StyledPage>
