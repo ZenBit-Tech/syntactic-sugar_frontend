@@ -1,11 +1,8 @@
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { ThemeProvider } from "styled-components";
-import Select from "react-select";
 import { useTranslation } from "react-i18next";
-import { addFreelancerInfo } from "redux/createFreelancer/freelancer-slice";
-import { useAppDispatch } from "redux/example-hooks";
-import { useNavigate } from "react-router-dom";
 import { StyledPage, Form, SelectElement, Input } from "./style";
+import { useCreateFreelancer, IFormInput } from "./hooks";
 import {
 	countries,
 	categories,
@@ -15,7 +12,6 @@ import {
 	hoursAmount,
 	workExperience,
 	englishLevel,
-	SelectOptions,
 } from "utils/select-options/options";
 
 import {
@@ -29,45 +25,10 @@ import {
 /* eslint-disable-next-line */
 export interface ProfilePageProps {}
 
-interface IFormInput {
-	fullName: string;
-	category: SelectOptions;
-	position: string;
-	skills: SelectOptions[];
-	employmentType: SelectOptions;
-	country: SelectOptions;
-	hourRate: SelectOptions;
-	availableAmountOfHour: SelectOptions;
-	workExperience: SelectOptions;
-	englishLevel: SelectOptions;
-}
-
 export function CreateProfile1(props: ProfilePageProps) {
 	const { t } = useTranslation();
-	const navigate = useNavigate();
-	const dispatch = useAppDispatch();
+	const onSubmit = useCreateFreelancer();
 	const { handleSubmit, control } = useForm<IFormInput>();
-
-	const onSubmit: SubmitHandler<IFormInput> = async values => {
-		const freelancerInfo = {
-			fullName: values.fullName,
-			category: values.category.label,
-			position: values.position,
-			skills: values.skills.map(skill => skill.label),
-			employmentType: values.employmentType.label,
-			country: values.country.label,
-			hourRate: values.hourRate.label,
-			availableAmountOfHour: values.availableAmountOfHour.label,
-			workExperience: values.workExperience.label,
-			englishLevel: values.englishLevel.label,
-		};
-		try {
-			await dispatch(addFreelancerInfo(freelancerInfo));
-			navigate("/profile_1");
-		} catch (error) {
-			alert(error);
-		}
-	};
 
 	return (
 		<ThemeProvider theme={ThemeColors && ThemeBackground}>
