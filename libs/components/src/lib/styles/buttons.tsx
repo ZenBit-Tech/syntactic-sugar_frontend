@@ -1,12 +1,19 @@
 import styled, { css } from "styled-components";
 
 interface iStyledButtonProps {
-	buttonSize: "lg" | "md" | "modal";
-	buttonColor: "redGradient" | "blue";
+	buttonSize: "lg" | "md" | "sm";
+	buttonColor: "redGradient" | "blue" | "lightRed" | "darkRed";
+	fontSize?: "lg" | "md" | "sm";
 }
 
 export const StyledButton = styled.button<iStyledButtonProps>`
-	font-weight: 700;
+	font-weight: 400;
+
+	strong,
+	b {
+		font-weight: 700;
+	}
+
 	font-size: 1.1rem;
 	color: ${({ theme }) => theme.colors.white};
 	display: inline-flex;
@@ -14,7 +21,7 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 	justify-content: center;
 	gap: 0.6rem;
 	border-radius: 100px;
-	padding: 0.7rem 0;
+	padding: 0.6rem 0;
 	transition: all ease-in-out 0.4s;
 
 	${({ buttonSize }) => {
@@ -27,9 +34,9 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 				return css`
 					width: 55%;
 				`;
-			case "modal":
+			case "sm":
 				return css`
-					width: 48%;
+					width: 35%;
 				`;
 		}
 	}}
@@ -48,7 +55,33 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 				return css`
 					background: ${({ theme }) => theme.colors.blue};
 				`;
+			case "lightRed":
+				return css`
+					background: ${({ theme }) => theme.colors.lightRed};
+				`;
+			case "darkRed":
+				return css`
+					background: ${({ theme }) => theme.colors.darkRed};
+				`;
 		}
+	}}
+
+${({ fontSize }) => {
+		switch (fontSize) {
+			case "lg":
+				return css`
+					font-size: 1.2rem;
+				`;
+			case "md":
+				return css`
+					font-size: 0.8rem;
+				`;
+			case "sm":
+				return css`
+					font-size: 0.4rem;
+				`;
+		}
+		return;
 	}}
   
   &:hover {

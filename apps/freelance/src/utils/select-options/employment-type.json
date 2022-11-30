@@ -1,0 +1,22 @@
+[
+	{
+		"name": "Remote",
+		"value": "remote"
+	},
+	{
+		"name": "Office",
+		"value": "office"
+	},
+	{
+		"name": "Freelancer for project",
+		"value": "freelancer"
+	},
+	{
+		"name": "Move to another city",
+		"value": "city relocate"
+	},
+	{
+		"name": "Move to another country",
+		"value": "abroad relocate"
+	}
+]

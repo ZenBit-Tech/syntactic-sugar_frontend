@@ -60,11 +60,11 @@ export function FormContainer({
 			<StyledParagraph fontSize="md">
 				{signText}
 				{isRightSide || !isSignForm ? (
-					<Link to="/">
+					<Link to="/login">
 						<strong>{signLink}</strong>
 					</Link>
 				) : (
-					<Link to="/signup">
+					<Link to="/">
 						<strong>{signLink}</strong>
 					</Link>
 				)}
