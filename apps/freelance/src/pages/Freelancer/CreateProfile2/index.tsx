@@ -20,6 +20,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useAppDispatch } from "redux/example-hooks";
 import { createFreelancerP2 } from "redux/create-freelancer-page2/create-freelancer-p2.slice";
 import { useAddPublishedMutation } from "redux/create-freelancer-page2/create-freelancer-p2.api";
+import { useNavigate } from "react-router-dom";
 
 enum listOption {
 	EDUCATION = "EDUCATION",
@@ -29,6 +30,7 @@ enum listOption {
 export function CreateProfile2() {
 	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 	const [addPublished] = useAddPublishedMutation();
 	const { handleAddEducation, handleRemoveEducation, educationList, setEducationList, education } =
 		useEducationHandler();
@@ -57,9 +59,12 @@ export function CreateProfile2() {
 
 	const handlePublishedButton = () => {
 		addPublished({ isPublished: true });
+    navigate('/searchworkpage')
 	};
 
-	const handleWithoutPublishButton = () => {};
+	const handleWithoutPublishButton = () => {
+    navigate("/searchworkpage");
+  };
 
 	const ToastButtons = () => (
 		<>
@@ -68,7 +73,7 @@ export function CreateProfile2() {
 				buttonColor="redGradient"
 				buttonSize="sm"
 				fontSize="md"
-				onClick={handlePublishedButton}
+				onClick={handleWithoutPublishButton}
 			>
 				<strong>{t("freelancer.createProfile.modalBtnNo")}</strong>
 			</StyledButton>
