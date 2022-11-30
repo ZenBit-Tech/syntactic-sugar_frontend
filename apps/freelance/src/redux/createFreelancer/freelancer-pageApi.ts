@@ -23,7 +23,7 @@ export const createFreelancerApi = createApi({
 	endpoints: builder => ({
 		createFreelancer: builder.mutation({
 			query: (body: IFormInput) => ({
-				url: "freelancer/freelancer/create", // here must be correct path from be
+				url: "freelancer/create", // here must be correct path from be
 				method: "POST",
 				body,
 			}),
