@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Container } from "./dashboard-menu.styled";
 import { StyledButton } from "@freelance/components";
+import { ROLES } from "utils/constants/roles";
 
 export interface DashboardMenuProps {
 	userRole: "freelancer";
@@ -12,7 +13,7 @@ export function DashboardMenu({ userRole }: DashboardMenuProps) {
 	return (
 		<Container>
 			<img id="logo" src="/assets/images/white_logo.png" alt="logo" />
-			{userRole === "freelancer" && (
+			{userRole === ROLES.FREELANCER && (
 				<>
 					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
 						{t("dashboard.menu.myContracts")}
