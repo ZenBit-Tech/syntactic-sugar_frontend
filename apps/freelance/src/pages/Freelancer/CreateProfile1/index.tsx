@@ -1,7 +1,6 @@
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { addFreelancerInfo } from "redux/createFreelancer/freelancer-slice";
 import { useAppDispatch } from "redux/example-hooks";
-import { useCreateFreelancerMutation } from "redux/createFreelancer/freelancer-pageApi";
 import { useNavigate } from "react-router-dom";
 import {
 	countries,
@@ -45,7 +44,6 @@ interface IFormInput {
 export function CreateProfile1(props: ProfilePageProps) {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
-	const [createFrelancer, { status }] = useCreateFreelancerMutation();
 	const dispatch = useAppDispatch();
 	const { handleSubmit, control } = useForm<IFormInput>();
 
@@ -64,7 +62,6 @@ export function CreateProfile1(props: ProfilePageProps) {
 		};
 		try {
 			await dispatch(addFreelancerInfo(freelancerInfo));
-			await createFrelancer(freelancerInfo);
 			navigate("/profile_1");
 		} catch (error) {
 			alert(error);
