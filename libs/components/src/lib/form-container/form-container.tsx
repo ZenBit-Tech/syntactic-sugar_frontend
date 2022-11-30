@@ -7,6 +7,7 @@ import {
 	LoginForm,
 	SignupForm,
 	RecoverPassFirstForm,
+	RecoverPasswordSecondForm,
 	StyledButton,
 } from "@freelance/components";
 import { useGoogleAuthentication } from "./form-containerHooks";
@@ -20,7 +21,7 @@ export interface FormContainerProps {
 	forgotPassLink?: React.ReactNode;
 	isRightSide: boolean;
 	isSignForm: boolean;
-	formType: "login" | "signup" | "recoverPass1";
+	formType: "login" | "signup" | "recoverPass1" | "recoverPass2";
 }
 
 export function FormContainer({
@@ -46,6 +47,7 @@ export function FormContainer({
 			{formType === "login" && <LoginForm />}
 			{formType === "signup" && <SignupForm />}
 			{formType === "recoverPass1" && <RecoverPassFirstForm />}
+			{formType === "recoverPass2" && <RecoverPasswordSecondForm />}
 			<StyledParagraph fontSize="md">
 				{signText}
 				{isRightSide || !isSignForm ? (
