@@ -1,14 +1,14 @@
 import { useTranslation } from "react-i18next";
+import { Container, StyledPage } from "./style";
 import { ThemeProvider } from "styled-components";
 import {
 	ThemeColors,
-	ThemeBackground,
 	FormContainer,
 	MessageContainer,
+	ThemeBackground,
 } from "@freelance/components";
-import { Container, StyledPage } from "./style";
 
-export function RecoverPasswordReset() {
+export function Role() {
 	const { t } = useTranslation();
 
 	return (
@@ -18,20 +18,20 @@ export function RecoverPasswordReset() {
 					<FormContainer
 						isSignForm={false}
 						isRightSide={false}
-						formType="recoverPass2"
-						title={t("recoverPassForm.newPassword")}
-						subTitle={t("recoverPassForm.enterPassword")}
-						signText={t("recoverPassForm.rememberPass")}
-						signLink={t("signForm.signInNow")}
+						formType="roleSelection"
+						title={t("roleSelection.roleTitle")}
+						subTitle={t("roleSelection.roleSubtitle")}
 					/>
 					<MessageContainer
 						isRightSide={true}
-						isSignForm={false}
-						title={t("recoverPassForm.title")}
-						subTitle={t("recoverPassForm.subtitle")}
+						isSignForm={true}
+						title={t("signForm.title")}
+						subTitle={t("signForm.subtitle")}
 					/>
 				</Container>
 			</StyledPage>
 		</ThemeProvider>
 	);
 }
+
+export default Role;

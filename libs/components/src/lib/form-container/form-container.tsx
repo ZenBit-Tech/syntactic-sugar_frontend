@@ -7,9 +7,18 @@ import {
 	LoginForm,
 	SignupForm,
 	RecoverPassFirstForm,
+	RecoverPasswordSecondForm,
 	StyledButton,
+	RoleSelectionForm,
 } from "@freelance/components";
 import { useGoogleAuthentication } from "./form-containerHooks";
+import {
+	LOG_IN,
+	RECOVER_PASSWORD_1,
+	RECOVER_PASSWORD_2,
+	ROLE_SELECTION,
+	SIGN_UP,
+} from "utils/constants/breakpoint";
 
 export interface FormContainerProps {
 	title: React.ReactNode;
@@ -20,7 +29,7 @@ export interface FormContainerProps {
 	forgotPassLink?: React.ReactNode;
 	isRightSide: boolean;
 	isSignForm: boolean;
-	formType: "login" | "signup" | "recoverPass1";
+	formType: "login" | "signup" | "roleSelection" | "recoverPass1" | "recoverPass2";
 }
 
 export function FormContainer({
@@ -43,9 +52,11 @@ export function FormContainer({
 	return (
 		<Container isRightSide={isRightSide}>
 			<FormHeader title={title} subTitle={subTitle} isSignForm={isSignForm} />
-			{formType === "login" && <LoginForm />}
-			{formType === "signup" && <SignupForm />}
-			{formType === "recoverPass1" && <RecoverPassFirstForm />}
+			{formType === LOG_IN && <LoginForm />}
+			{formType === SIGN_UP && <SignupForm />}
+			{formType === RECOVER_PASSWORD_1 && <RecoverPassFirstForm />}
+			{formType === RECOVER_PASSWORD_2 && <RecoverPasswordSecondForm />}
+			{formType === ROLE_SELECTION && <RoleSelectionForm />}
 			<StyledParagraph fontSize="md">
 				{signText}
 				{isRightSide || !isSignForm ? (

@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 interface iStyledButtonProps {
-	buttonSize: "lg" | "md" | "sm";
+	buttonSize: "lg" | "md" | "sm" | "modal";
 	buttonColor: "redGradient" | "blue" | "lightRed" | "darkRed";
 	fontSize?: "lg" | "md" | "sm";
 }
@@ -38,6 +38,10 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 				return css`
 					width: 35%;
 				`;
+			case "modal":
+				return css`
+					width: 48%;
+				`;
 		}
 	}}
 
@@ -65,8 +69,12 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 				`;
 		}
 	}}
+	
+	  &:hover {
+		filter: brightness(1.1);
+	}
 
-${({ fontSize }) => {
+	${({ fontSize }) => {
 		switch (fontSize) {
 			case "lg":
 				return css`
@@ -83,8 +91,4 @@ ${({ fontSize }) => {
 		}
 		return;
 	}}
-  
-  &:hover {
-		filter: brightness(1.1);
-	}
 `;

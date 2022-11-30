@@ -11,7 +11,7 @@
 	"resetPasswordPage": {
 		"formTitle": "Forgot your password?",
 		"firstPageInstructions": "Enter your email to reset your password!",
-		"checkYourEmail": "We sent a link to your registered e-mail! Click the link to reset your password."
+		"checkYourEmail": "If your email exist we will send you a link! Please, check your mail box!"
 	},
 	"signForm": {
 		"welcome": "WELCOME TO",
@@ -40,6 +40,8 @@
 		"title": "PASSWORD RECOVERY",
 		"subtitle": "Follow the next steps to get access to your account and the better opportunities for your project or career.",
 		"rememberPass": "Did you remember your password?",
+		"newPassword": "Create new password",
+		"enterPassword": "Enter your new password and confirm, please.",
 		"validationEmailMessage": "Email must be such view email@domain.com",
 		"validationRequiredMessage": "Email is required",
 		"validationMinChar": "Has to be at least 6 characters",
@@ -53,7 +55,9 @@
 		"loader": "SENDING EMAIL",
 		"errorMessageWrongEmail": "User with this email does not exist",
 		"errorMessageServerError": "Somethig went wrong",
-		"errorMessageExpiredLink": "Your link has expired",
+		"errorMessageExpiredLinkTitle": "Your link has broken or has expired",
+		"errorMessageExpiredLinkSubTitle": "Please, try again",
+		"tryAgainButton": "Try again",
 		"passwordHasUpdated": "Your password has updated",
 		"resetSuccess": "Your password reset is successfully done! Go to Home Page.",
 		"homePageBtn": "HOME PAGE"
@@ -92,6 +96,12 @@
 				"employmentType": "Employment Type",
 				"englishLevel": "English Level"
 			}
+		},
+		"roleSelection": {
+			"roleTitle": "What do you want?",
+			"roleSubtitle": "Choose your goal and find the best solutions for your project or career.",
+			"roleJobOwner": "I am a Job Owner, hiring for a project.",
+			"roleFreelancer": "I am a Freelancer, looking for a job."
 		}
 	}
 }
