@@ -1,18 +1,13 @@
 import { useTranslation } from "react-i18next";
 import { Container, StyledPage } from "./style";
 import { ThemeProvider } from "styled-components";
-import {
-	ThemeColors,
-	FormContainer,
-	MessageContainer,
-	ThemeBackground,
-} from "@freelance/components";
+import { ThemeColors, FormContainer, MessageContainer } from "@freelance/components";
 
 export function RecoverPasswordRequest() {
 	const { t } = useTranslation();
 
 	return (
-		<ThemeProvider theme={ThemeColors && ThemeBackground}>
+		<ThemeProvider theme={ThemeColors}>
 			<StyledPage>
 				<Container>
 					<FormContainer
