@@ -66,10 +66,42 @@
 		"title": "You have successfully registered!",
 		"subtitle": "Check your e-mail and activate your account. After activation, you can begin to find your perfect job match."
 	},
-	"roleSelection": {
-		"roleTitle": "What do you want?",
-		"roleSubtitle": "Choose your goal and find the best solutions for your project or career.",
-		"roleJobOwner": "I am a Job Owner, hiring for a project.",
-		"roleFreelancer": "I am a Freelancer, looking for a job."
+	"dashboard": {
+		"menu": {
+			"myContracts": "MY CONTRACTS",
+			"searchWorks": "SEARCH WORKS",
+			"proposals": "PROPOSALS"
+		},
+		"profilePage": {
+			"title": "My Profile"
+		},
+		"header": {
+			"userName": "John Doe",
+			"userEmail": "johndoe@gmail.com",
+			"chat": "CHAT",
+			"logout": "LOGOUT"
+		}
+	},
+	"freelancer": {
+		"createProfile": {
+			"fullNamePlaceholder": "Full Name",
+			"positionPlaceholder": "Position",
+			"selectOption": {
+				"country": "Country",
+				"category": "Category",
+				"hourRate": "Hour rate (one price)",
+				"amountHours": "Available amount of hours",
+				"skills": "Skills",
+				"workExperience": "Work Experience",
+				"employmentType": "Employment Type",
+				"englishLevel": "English Level"
+			}
+		},
+		"roleSelection": {
+			"roleTitle": "What do you want?",
+			"roleSubtitle": "Choose your goal and find the best solutions for your project or career.",
+			"roleJobOwner": "I am a Job Owner, hiring for a project.",
+			"roleFreelancer": "I am a Freelancer, looking for a job."
+		}
 	}
 }

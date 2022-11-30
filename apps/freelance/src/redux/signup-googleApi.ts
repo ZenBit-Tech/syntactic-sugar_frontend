@@ -26,4 +26,4 @@ export const signupGoogleApi = createApi({
     })
 })
 
-export const {useSignUpMutation} = signupGoogleApi;
+export const { useSignUpMutation } = signupGoogleApi;
