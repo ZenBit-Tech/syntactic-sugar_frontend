@@ -5,6 +5,7 @@ import { signupGoogleApi } from "./signup-googleApi";
 import { loginApi } from "./login.api";
 import { createFreelancerP2Api } from "./create-freelancer-page2/create-freelancer-p2.api";
 import { createFreelancerP2Reducer } from "./create-freelancer-page2/create-freelancer-p2.slice";
+import { roleApi } from "./role.api";
 
 const store = configureStore({
 	reducer: {
@@ -13,13 +14,16 @@ const store = configureStore({
 		[loginApi.reducerPath]: loginApi.reducer,
 		[resetPasswordApi.reducerPath]: resetPasswordApi.reducer,
     createFreelancerP2: createFreelancerP2Reducer,
-    [createFreelancerP2Api.reducerPath]: createFreelancerP2Api.reducer
+    [createFreelancerP2Api.reducerPath]: createFreelancerP2Api.reducer,
+    [roleApi.reducerPath]: roleApi.reducer
 	},
 	middleware: getDefaultMiddleware =>
 		getDefaultMiddleware().concat(
 			signupGoogleApi.middleware,
 			loginApi.middleware,
 			resetPasswordApi.middleware,
+      createFreelancerP2Api.middleware,
+      roleApi.middleware
 		),
 });
 
