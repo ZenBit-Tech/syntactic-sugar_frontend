@@ -2,18 +2,14 @@ import styled from "styled-components";
 import Select from "react-select";
 
 export const SelectElement = styled(Select)`
-	.react-select__value-container {
-		width: 80%;
-		height: inherit;
+	.react-select__placeholder {
+		color: ${({ theme }) => theme.colors.grey};
 	}
 
 	.react-select__control {
 		border: 2px solid ${({ theme }) => theme.colors.grey};
 		border-radius: 100px;
-		height: 50px;
-		padding-left: 1rem;
-		width: 100%;
-		color: ${({ theme }) => theme.colors.grey};
+		min-height: 50px;
 		outline: none;
 	}
 
@@ -21,16 +17,8 @@ export const SelectElement = styled(Select)`
 		display: none;
 	}
 
-	.react-select__input-container {
-		margin: 0;
-		::after {
-			display: none;
-		}
-	}
-
-	.react-select__placeholder {
-		color: ${({ theme }) => theme.colors.grey};
-		margin: 0;
+	.react-select__multi-value {
+		background-color: transparent;
 	}
 `;
 
@@ -48,25 +36,6 @@ export const Form = styled.form`
 	height: 95%;
 	align-items: center;
 	justify-items: center;
-
-	input,
-	select {
-		border: 2px solid ${({ theme }) => theme.colors.grey};
-		border-radius: 100px;
-		height: 50px;
-		padding-left: 1rem;
-		width: 80%;
-		color: ${({ theme }) => theme.colors.grey};
-		outline: none;
-
-		:valid {
-			color: ${({ theme }) => theme.colors.black};
-		}
-
-		::placeholder {
-			color: ${({ theme }) => theme.colors.grey};
-		}
-	}
 
 	.selectContainer {
 		position: relative;
@@ -142,6 +111,23 @@ export const Form = styled.form`
 	button {
 		grid-column: 1 / -1;
 		max-width: 200px;
+	}
+`;
+export const Input = styled.input`
+	border: 2px solid ${({ theme }) => theme.colors.grey};
+	border-radius: 100px;
+	height: 50px;
+	padding-left: 1rem;
+	width: 80%;
+	color: ${({ theme }) => theme.colors.grey};
+	outline: none;
+
+	:valid {
+		color: ${({ theme }) => theme.colors.black};
+	}
+
+	::placeholder {
+		color: ${({ theme }) => theme.colors.grey};
 	}
 `;
 

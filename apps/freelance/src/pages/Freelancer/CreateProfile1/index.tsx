@@ -1,7 +1,11 @@
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { ThemeProvider } from "styled-components";
+import Select from "react-select";
+import { useTranslation } from "react-i18next";
 import { addFreelancerInfo } from "redux/createFreelancer/freelancer-slice";
 import { useAppDispatch } from "redux/example-hooks";
 import { useNavigate } from "react-router-dom";
+import { StyledPage, Form, SelectElement, Input } from "./style";
 import {
 	countries,
 	categories,
@@ -13,7 +17,7 @@ import {
 	englishLevel,
 	SelectOptions,
 } from "utils/select-options/options";
-import { StyledPage, Form } from "./style";
+
 import {
 	ThemeColors,
 	ThemeBackground,
@@ -21,9 +25,6 @@ import {
 	StyledTitle,
 	StyledButton,
 } from "@freelance/components";
-import { ThemeProvider } from "styled-components";
-import { SelectElement } from "./style";
-import { useTranslation } from "react-i18next";
 
 /* eslint-disable-next-line */
 export interface ProfilePageProps {}
@@ -81,7 +82,7 @@ export function CreateProfile1(props: ProfilePageProps) {
 							control={control}
 							rules={{ required: true }}
 							render={({ field }) => (
-								<input
+								<Input
 									type="text"
 									required
 									{...field}
@@ -112,7 +113,7 @@ export function CreateProfile1(props: ProfilePageProps) {
 							control={control}
 							rules={{ required: true }}
 							render={({ field }) => (
-								<input
+								<Input
 									{...field}
 									placeholder={t("freelancer.createProfile.positionPlaceholder")}
 									required
