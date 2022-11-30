@@ -4,7 +4,7 @@ type Freelancer = {
 	fullName: string;
 	category: string;
 	position: string;
-	skills: string[];
+	skills: [];
 	employmentType: string;
 	country: string;
 	hourRate: string;
