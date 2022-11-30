@@ -80,10 +80,6 @@ export const RightSide = styled.div`
 	width: 50%;
 `;
 
-// export const Top = styled.div`
-// 	height: 70%;
-// `;
-
 export const Bottom = styled.div`
 	display: flex;
 	width: 95%;

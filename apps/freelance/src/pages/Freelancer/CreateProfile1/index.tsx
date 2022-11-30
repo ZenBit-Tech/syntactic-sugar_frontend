@@ -1,12 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { StyledPage, Form } from "./style";
-import {
-	ThemeColors,
-	ThemeBackground,
-	Dashboard,
-	StyledTitle,
-	StyledButton,
-} from "@freelance/components";
+import { ThemeColors, Dashboard, StyledTitle, StyledButton } from "@freelance/components";
 import { ThemeProvider } from "styled-components";
 import countries from "utils/select-options/eu-countries.json";
 import categories from "utils/select-options/categories.json";
@@ -21,7 +15,7 @@ export function CreateProfile1() {
 	const { t } = useTranslation();
 
 	return (
-		<ThemeProvider theme={ThemeColors && ThemeBackground}>
+		<ThemeProvider theme={ThemeColors}>
 			<StyledPage>
 				<Dashboard userRole="freelancer">
 					<StyledTitle tag="h2" fontSize="md" fontWeight={700}>

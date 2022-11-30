@@ -11,20 +11,14 @@ import {
 	Subtitle,
 	Subcontainer,
 } from "./style";
-import {
-	ThemeColors,
-	ThemeBackground,
-	Dashboard,
-	StyledTitle,
-	StyledButton,
-} from "@freelance/components";
+import { ThemeColors, Dashboard, StyledTitle, StyledButton } from "@freelance/components";
 import { ThemeProvider } from "styled-components";
 
 export function ViewProfile() {
 	const { t } = useTranslation();
 
 	return (
-		<ThemeProvider theme={ThemeColors && ThemeBackground}>
+		<ThemeProvider theme={ThemeColors}>
 			<StyledPage>
 				<Dashboard userRole="freelancer">
 					<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
