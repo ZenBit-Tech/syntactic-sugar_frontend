@@ -10,6 +10,7 @@ import { RecoverPasswordUpdate } from "@pages/RecoverPasswordUpdate";
 import { Invitation } from "@pages/Invitation";
 import { Role } from "@pages/Role";
 import CreateProfile1 from "@pages/Freelancer/CreateProfile1";
+import { CreateProfile2 } from "@pages/Freelancer/CreateProfile2";
 
 import store from "redux/store";
 import { GoogleOAuthProvider } from "@react-oauth/google";
@@ -30,6 +31,7 @@ export function App() {
 							<Route path="/password-updated" element={<RecoverPasswordUpdate />} />
 							<Route path="/invitation" element={<Invitation />} />
 							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />
+							<Route path="/freelancer/create-profile2" element={<CreateProfile2 />} />
 						</Routes>
 					</BrowserRouter>
 				</Provider>

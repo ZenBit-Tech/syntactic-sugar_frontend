@@ -92,6 +92,18 @@
 		"createProfile": {
 			"fullNamePlaceholder": "Full Name",
 			"positionPlaceholder": "Position",
+			"educationLabel": "Education",
+			"institutePlaceholder": "Institute",
+			"occupationPlaceholder": "Occupation",
+			"periodPlaceholder": "Period",
+			"removeBtn": "REMOVE",
+			"workExperienceLabel": "Work Experience",
+			"addBtn": "+",
+			"companyPlaceholder": "Company",
+			"otherExperienceLabel": "Other Experience",
+			"viewProfileBtn": "VIEW PROFILE",
+			"backBtn": "BACK",
+			"createProfileBtn": "CREATE PROFILE",
 			"selectOption": {
 				"country": "Country",
 				"category": "Category",
