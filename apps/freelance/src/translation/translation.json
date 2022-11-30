@@ -59,7 +59,39 @@
 		"newPassword": "Create new password",
 		"enterPassword": "Enter your new password and confirm, please."
 	},
-  	"invitationPage": {
+	"dashboard": {
+		"menu": {
+			"myContracts": "MY CONTRACTS",
+			"searchWorks": "SEARCH WORKS",
+			"proposals": "PROPOSALS"
+		},
+		"profilePage": {
+			"title": "My Profile"
+		},
+		"header": {
+			"userName": "John Doe",
+			"userEmail": "johndoe@gmail.com",
+			"chat": "CHAT",
+			"logout": "LOGOUT"
+		}
+	},
+	"freelancer": {
+		"createProfile": {
+			"fullNamePlaceholder": "Full Name",
+			"positionPlaceholder": "Position",
+			"selectOption": {
+				"country": "Country",
+				"category": "Category",
+				"hourRate": "Hour rate (one price)",
+				"amountHours": "Available amount of hours",
+				"skills": "Skills",
+				"workExperience": "Work Experience",
+				"employmentType": "Employment Type",
+				"englishLevel": "English Level"
+			}
+		}
+	},
+	"invitationPage": {
 		"title": "You have successfully registered!",
 		"subtitle": "Check your e-mail and activate your account. After activation, you can begin to find your perfect job match."
 	},
