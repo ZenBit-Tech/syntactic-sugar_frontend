@@ -10,6 +10,7 @@ import { CreateProfile1 } from "@pages/Freelancer/CreateProfile1";
 import { CreateProfile2 } from "@pages/Freelancer/CreateProfile2";
 import { RecoverPasswordUpdate } from "@pages/RecoverPasswordUpdate";
 import { Invitation } from "@pages/Invitation";
+import { ViewProfile } from "@pages/Freelancer/ViewProfile";
 import { Role } from "@pages/Role";
 
 import store from "redux/store";
@@ -32,6 +33,7 @@ export function App() {
 							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />
 							<Route path="/freelancer/create-profile2" element={<CreateProfile2 />} />
 							<Route path="/invitation" element={<Invitation />} />
+							<Route path="/freelancer/view-profile" element={<ViewProfile />} />
 						</Routes>
 					</BrowserRouter>
 				</Provider>
