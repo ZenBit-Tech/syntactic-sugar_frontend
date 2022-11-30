@@ -1,3 +1,4 @@
+export * from "./lib/role-selection-form/role-selection-form";
 export * from "./lib/message/message";
 export * from "./lib/signup-form/signup-form";
 export * from "./lib/form-header/form-header";
