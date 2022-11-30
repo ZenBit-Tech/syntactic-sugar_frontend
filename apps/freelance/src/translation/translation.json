@@ -36,26 +36,60 @@
 		"forgotPass": "Forgot your password?",
 		"enterEmail": "Enter you registered e-mail and we'll send you instructions on how to reset your password.",
 		"buttonContinue": "CONTINUE",
-		"submitResetPassword": "Reset password",
+		"submitResetPassword": "RESET",
 		"title": "PASSWORD RECOVERY",
 		"subtitle": "Follow the next steps to get access to your account and the better opportunities for your project or career.",
 		"rememberPass": "Did you remember your password?",
 		"validationEmailMessage": "Email must be such view email@domain.com",
 		"validationRequiredMessage": "Email is required",
-		"validationMinChar": "Has to be at least 6 characters",
-		"validationMaxChar": "Not more then 15 characters",
+		"validationMinChar": "Minimum 8 characters",
+		"validationMaxChar": "Maximum 24 characters",
 		"validationRequiredPassword": "Password  is required",
-		"validationConfirmPassword": "Please, confirm your password",
-		"validationMatchingPasswords": "Passwords have to match",
-		"inputNewPassword": "Input new password",
-		"confirmNewPassword": "Confirm your new password",
+		"validationConfirmPassword": "Passwords must match",
+		"validationMatchingPasswords": "Passwords must match",
+		"inputNewPassword": "New Password",
+		"confirmNewPassword": "Confirm New Password",
 		"updatingPassword": "Updating password",
 		"loader": "SENDING EMAIL",
 		"errorMessageWrongEmail": "User with this email does not exist",
 		"errorMessageServerError": "Somethig went wrong",
 		"errorMessageExpiredLink": "Your link has expired",
 		"resetSuccess": "Your password reset is successfully done! Go to Home Page.",
-		"homePageBtn": "HOME PAGE"
+		"homePageBtn": "HOME PAGE",
+		"newPassword": "Create new password",
+		"enterPassword": "Enter your new password and confirm, please."
+	},
+	"dashboard": {
+		"menu": {
+			"myContracts": "MY CONTRACTS",
+			"searchWorks": "SEARCH WORKS",
+			"proposals": "PROPOSALS"
+		},
+		"profilePage": {
+			"title": "My Profile"
+		},
+		"header": {
+			"userName": "John Doe",
+			"userEmail": "johndoe@gmail.com",
+			"chat": "CHAT",
+			"logout": "LOGOUT"
+		}
+	},
+	"freelancer": {
+		"createProfile": {
+			"fullNamePlaceholder": "Full Name",
+			"positionPlaceholder": "Position",
+			"selectOption": {
+				"country": "Country",
+				"category": "Category",
+				"hourRate": "Hour rate (one price)",
+				"amountHours": "Available amount of hours",
+				"skills": "Skills",
+				"workExperience": "Work Experience",
+				"employmentType": "Employment Type",
+				"englishLevel": "English Level"
+			}
+		}
 	},
 	"dashboard": {
 		"menu": {
@@ -93,5 +127,11 @@
 	"invitationPage": {
 		"title": "You have successfully registered!",
 		"subtitle": "Check your e-mail and activate your account. After activation, you can begin to find your perfect job match."
+	},
+	"roleSelection": {
+		"roleTitle": "What do you want?",
+		"roleSubtitle": "Choose your goal and find the best solutions for your project or career.",
+		"roleJobOwner": "I am a Job Owner, hiring for a project.",
+		"roleFreelancer": "I am a Freelancer, looking for a job."
 	}
 }
