@@ -32,7 +32,7 @@ interface IFormInput {
 	fullName: string;
 	category: SelectOptions;
 	position: string;
-	skills: SelectOptions;
+	skills: SelectOptions[];
 	employmentType: SelectOptions;
 	country: SelectOptions;
 	hourRate: SelectOptions;
@@ -52,7 +52,7 @@ export function CreateProfile1(props: ProfilePageProps) {
 			fullName: values.fullName,
 			category: values.category.label,
 			position: values.position,
-			skills: values.skills,
+			skills: values.skills.map(skill => skill.label),
 			employmentType: values.employmentType.label,
 			country: values.country.label,
 			hourRate: values.hourRate.label,
