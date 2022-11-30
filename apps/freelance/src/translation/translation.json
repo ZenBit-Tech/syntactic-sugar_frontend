@@ -121,7 +121,10 @@
       "otherExperienceLabel": "Other Experience",
       "viewProfileBtn": "VIEW PROFILE",
       "backBtn": "BACK",
-      "createProfileBtn": "CREATE PROFILE"
+      "createProfileBtn": "CREATE PROFILE",
+      "modal": "Do you want to publish profile",
+      "modalBtnNo": "No",
+      "modalBtnYes": "Yes"
 		}
 	},
 	"invitationPage": {
