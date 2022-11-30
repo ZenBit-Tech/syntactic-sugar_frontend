@@ -1,4 +1,18 @@
-import { useTranslation } from "react-i18next";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { addFreelancerInfo } from "redux/createFreelancer/freelancer-slice";
+import { useAppDispatch } from "redux/example-hooks";
+import { useNavigate } from "react-router-dom";
+import {
+	countries,
+	categories,
+	skills,
+	employmentType,
+	hourRate,
+	hoursAmount,
+	workExperience,
+	englishLevel,
+	SelectOptions,
+} from "utils/select-options/options";
 import { StyledPage, Form } from "./style";
 import {
 	ThemeColors,
@@ -8,22 +22,50 @@ import {
 	StyledButton,
 } from "@freelance/components";
 import { ThemeProvider } from "styled-components";
-import countries from "utils/select-options/eu-countries.json";
-import categories from "utils/select-options/categories.json";
-import hourRate from "utils/select-options/hour-rate.json";
-import workHours from "utils/select-options/hours-amount.json";
-import skills from "utils/select-options/skills.json";
-import workExperience from "utils/select-options/work-experience.json";
-import employmentType from "utils/select-options/employment-type.json";
-import englishLevel from "utils/select-options/english-level.json";
-import { useNavigate } from "react-router-dom";
+import { SelectElement } from "./style";
+import { useTranslation } from "react-i18next";
 
-export function CreateProfile1() {
+/* eslint-disable-next-line */
+export interface ProfilePageProps {}
+
+interface IFormInput {
+	fullName: string;
+	category: SelectOptions;
+	position: string;
+	skills: SelectOptions[];
+	employmentType: SelectOptions;
+	country: SelectOptions;
+	hourRate: SelectOptions;
+	availableAmountOfHour: SelectOptions;
+	workExperience: SelectOptions;
+	englishLevel: SelectOptions;
+}
+
+export function CreateProfile1(props: ProfilePageProps) {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
+	const dispatch = useAppDispatch();
+	const { handleSubmit, control } = useForm<IFormInput>();
 
-	const redirect = () => {
-		navigate("/freelancer/create-profile2");
+	const onSubmit: SubmitHandler<IFormInput> = async values => {
+		const freelancerInfo = {
+			fullName: values.fullName,
+			category: values.category.label,
+			position: values.position,
+			skills: values.skills.map(skill => skill.label),
+			employmentType: values.employmentType.label,
+			country: values.country.label,
+			hourRate: values.hourRate.label,
+			availableAmountOfHour: values.availableAmountOfHour.label,
+			workExperience: values.workExperience.label,
+			englishLevel: values.englishLevel.label,
+		};
+		try {
+			await dispatch(addFreelancerInfo(freelancerInfo));
+			navigate("/freelancer/create-profile2");
+		} catch (error) {
+			alert(error);
+		}
 	};
 
 	return (
@@ -33,108 +75,170 @@ export function CreateProfile1() {
 					<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
 						{t("dashboard.profilePage.title")}
 					</StyledTitle>
-					<Form>
-						<input
-							id="fullName"
-							type="text"
+					<Form onSubmit={handleSubmit(onSubmit)}>
+						<Controller
 							name="fullName"
-							placeholder={t("freelancer.createProfile.fullNamePlaceholder")}
-							required
+							control={control}
+							rules={{ required: true }}
+							render={({ field }) => (
+								<input
+									type="text"
+									required
+									{...field}
+									placeholder={t("freelancer.createProfile.fullNamePlaceholder")}
+								/>
+							)}
 						/>
 						<div className="selectContainer">
-							<select id="country" name="country" required>
-								<option value="" disabled selected hidden>
-									{t("freelancer.createProfile.selectOption.country")}
-								</option>
-								{countries.map(({ name }) => {
-									return <option>{name}</option>;
-								})}
-							</select>
+							<Controller
+								name="category"
+								control={control}
+								rules={{ required: true }}
+								render={({ field }) => (
+									<SelectElement
+										options={categories}
+										{...field}
+										required
+										placeholder={t("freelancer.createProfile.selectOption.category")}
+										isSearchable
+										classNamePrefix="react-select"
+									/>
+								)}
+							/>
 						</div>
-						<div className="selectContainer">
-							<select id="category" name="category" required>
-								<option value="" disabled selected hidden>
-									{t("freelancer.createProfile.selectOption.category")}
-								</option>
-								{categories.map(({ name }) => {
-									return <option>{name}</option>;
-								})}
-							</select>
-						</div>
-						<div className="selectContainer">
-							<select id="hourRate" name="hourRate" required>
-								<option value="" disabled selected hidden>
-									{t("freelancer.createProfile.selectOption.hourRate")}
-								</option>
-								{hourRate.map(({ name }) => {
-									return <option>{name}</option>;
-								})}
-							</select>
-						</div>
-						<input
-							id="position"
-							type="text"
+
+						<Controller
 							name="position"
-							placeholder={t("freelancer.createProfile.positionPlaceholder")}
-							required
+							control={control}
+							rules={{ required: true }}
+							render={({ field }) => (
+								<input
+									{...field}
+									placeholder={t("freelancer.createProfile.positionPlaceholder")}
+									required
+								/>
+							)}
 						/>
 						<div className="selectContainer">
-							<select id="amountHours" name="amountHours" required>
-								<option value="" disabled selected hidden>
-									{t("freelancer.createProfile.selectOption.amountHours")}
-								</option>
-								{workHours.map(({ name }) => {
-									return <option>{name}</option>;
-								})}
-							</select>
+							<Controller
+								name="skills"
+								control={control}
+								rules={{ required: true }}
+								render={({ field }) => (
+									<SelectElement
+										options={skills}
+										{...field}
+										required
+										placeholder={t("freelancer.createProfile.selectOption.skills")}
+										isSearchable
+										isMulti
+										classNamePrefix="react-select"
+									/>
+								)}
+							/>
 						</div>
 						<div className="selectContainer">
-							<select id="skills" name="skills" required>
-								<option value="" disabled selected hidden>
-									{t("freelancer.createProfile.selectOption.skills")}
-								</option>
-								{skills.map(({ name }) => {
-									return <option>{name}</option>;
-								})}
-							</select>
+							<Controller
+								name="employmentType"
+								control={control}
+								rules={{ required: true }}
+								render={({ field }) => (
+									<SelectElement
+										options={employmentType}
+										{...field}
+										required
+										placeholder={t("freelancer.createProfile.selectOption.employmentType")}
+										classNamePrefix="react-select"
+									/>
+								)}
+							/>
 						</div>
 						<div className="selectContainer">
-							<select id="workExperience" name="workExperience" required>
-								<option value="" disabled selected hidden>
-									{t("freelancer.createProfile.selectOption.workExperience")}
-								</option>
-								{workExperience.map(({ name }) => {
-									return <option>{name}</option>;
-								})}
-							</select>
+							<Controller
+								name="country"
+								control={control}
+								rules={{ required: true }}
+								render={({ field }) => (
+									<SelectElement
+										options={countries}
+										{...field}
+										required
+										placeholder={t("freelancer.createProfile.selectOption.country")}
+										isSearchable
+										classNamePrefix="react-select"
+									/>
+								)}
+							/>
 						</div>
 						<div className="selectContainer">
-							<select id="employmentType" name="employmentType" required>
-								<option value="" disabled selected hidden>
-									{t("freelancer.createProfile.selectOption.employmentType")}
-								</option>
-								{employmentType.map(({ name }) => {
-									return <option>{name}</option>;
-								})}
-							</select>
+							<Controller
+								name="hourRate"
+								control={control}
+								rules={{ required: true }}
+								render={({ field }) => (
+									<SelectElement
+										options={hourRate}
+										{...field}
+										required
+										placeholder={t("freelancer.createProfile.selectOption.hourRate")}
+										isSearchable
+										classNamePrefix="react-select"
+									/>
+								)}
+							/>
 						</div>
 						<div className="selectContainer">
-							<select id="englishLevel" name="englishLevel" required>
-								<option value="" disabled selected hidden>
-									{t("freelancer.createProfile.selectOption.englishLevel")}
-								</option>
-								{englishLevel.map(({ name }) => {
-									return <option>{name}</option>;
-								})}
-							</select>
+							<Controller
+								name="availableAmountOfHour"
+								control={control}
+								rules={{ required: true }}
+								render={({ field }) => (
+									<SelectElement
+										options={hoursAmount}
+										{...field}
+										required
+										placeholder={t("freelancer.createProfile.selectOption.amountHours")}
+										isSearchable
+										classNamePrefix="react-select"
+									/>
+								)}
+							/>
 						</div>
-						<StyledButton
-							type="button"
-							buttonColor="redGradient"
-							buttonSize="sm"
-							fontSize="md"
-							onClick={redirect}
-						>
+						<div className="selectContainer">
+							<Controller
+								name="workExperience"
+								control={control}
+								rules={{ required: true }}
+								render={({ field }) => (
+									<SelectElement
+										options={workExperience}
+										{...field}
+										required
+										placeholder={t("freelancer.createProfile.selectOption.workExperience")}
+										isSearchable
+										classNamePrefix="react-select"
+									/>
+								)}
+							/>
+						</div>
+						<div className="selectContainer">
+							<Controller
+								name="englishLevel"
+								control={control}
+								rules={{ required: true }}
+								render={({ field }) => (
+									<SelectElement
+										options={englishLevel}
+										{...field}
+										required
+										placeholder={t("freelancer.createProfile.selectOption.englishLevel")}
+										isSearchable
+										classNamePrefix="react-select"
+									/>
+								)}
+							/>
+						</div>
+						<StyledButton type="submit" buttonColor="redGradient" buttonSize="sm" fontSize="md">
 							<strong>{t("recoverPassForm.buttonContinue")}</strong>
 						</StyledButton>
 					</Form>
