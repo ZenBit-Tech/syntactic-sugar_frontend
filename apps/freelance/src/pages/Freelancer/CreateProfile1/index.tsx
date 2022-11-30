@@ -1,6 +1,5 @@
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import Select from "react-select";
-import { useEffect } from "react";
 import { addFreelancerInfo } from "redux/createFreelancer/freelancer-slice";
 import { useAppDispatch } from "redux/example-hooks";
 import { useCreateFreelancerMutation } from "redux/createFreelancer/freelancer-pageApi";
@@ -16,7 +15,6 @@ import {
 	englishLevel,
 	SelectOptions,
 } from "utils/select-options/options";
-import { Input } from "antd";
 import { StyledPage, Form } from "./style";
 import {
 	ThemeColors,
@@ -50,12 +48,6 @@ export function CreateProfile1(props: ProfilePageProps) {
 	const [createFrelancer, { status }] = useCreateFreelancerMutation();
 	const dispatch = useAppDispatch();
 	const { handleSubmit, control } = useForm<IFormInput>();
-
-	useEffect(() => {
-		if (status === "rejected") {
-			alert(t("createFreelancer.alert"));
-		}
-	}, [status]);
 
 	const onSubmit: SubmitHandler<IFormInput> = async values => {
 		const freelancerInfo = {
