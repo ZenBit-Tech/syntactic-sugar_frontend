@@ -1,5 +1,4 @@
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import Select from "react-select";
 import { addFreelancerInfo } from "redux/createFreelancer/freelancer-slice";
 import { useAppDispatch } from "redux/example-hooks";
 import { useCreateFreelancerMutation } from "redux/createFreelancer/freelancer-pageApi";
@@ -24,6 +23,7 @@ import {
 	StyledButton,
 } from "@freelance/components";
 import { ThemeProvider } from "styled-components";
+import { SelectElement } from "./style";
 import { useTranslation } from "react-i18next";
 
 /* eslint-disable-next-line */
@@ -65,7 +65,7 @@ export function CreateProfile1(props: ProfilePageProps) {
 		try {
 			await dispatch(addFreelancerInfo(freelancerInfo));
 			await createFrelancer(freelancerInfo);
-			navigate("./profile_1");
+			navigate("/profile_1");
 		} catch (error) {
 			alert(error);
 		}
@@ -98,12 +98,13 @@ export function CreateProfile1(props: ProfilePageProps) {
 								control={control}
 								rules={{ required: true }}
 								render={({ field }) => (
-									<Select
+									<SelectElement
 										options={categories}
 										{...field}
 										required
 										placeholder={t("freelancer.createProfile.selectOption.category")}
 										isSearchable
+										classNamePrefix="react-select"
 									/>
 								)}
 							/>
@@ -127,13 +128,14 @@ export function CreateProfile1(props: ProfilePageProps) {
 								control={control}
 								rules={{ required: true }}
 								render={({ field }) => (
-									<Select
+									<SelectElement
 										options={skills}
 										{...field}
 										required
 										placeholder={t("freelancer.createProfile.selectOption.skills")}
 										isSearchable
 										isMulti
+										classNamePrefix="react-select"
 									/>
 								)}
 							/>
@@ -144,11 +146,12 @@ export function CreateProfile1(props: ProfilePageProps) {
 								control={control}
 								rules={{ required: true }}
 								render={({ field }) => (
-									<Select
+									<SelectElement
 										options={employmentType}
 										{...field}
 										required
 										placeholder={t("freelancer.createProfile.selectOption.employmentType")}
+										classNamePrefix="react-select"
 									/>
 								)}
 							/>
@@ -159,12 +162,13 @@ export function CreateProfile1(props: ProfilePageProps) {
 								control={control}
 								rules={{ required: true }}
 								render={({ field }) => (
-									<Select
+									<SelectElement
 										options={countries}
 										{...field}
 										required
 										placeholder={t("freelancer.createProfile.selectOption.country")}
 										isSearchable
+										classNamePrefix="react-select"
 									/>
 								)}
 							/>
@@ -175,12 +179,13 @@ export function CreateProfile1(props: ProfilePageProps) {
 								control={control}
 								rules={{ required: true }}
 								render={({ field }) => (
-									<Select
+									<SelectElement
 										options={hourRate}
 										{...field}
 										required
 										placeholder={t("freelancer.createProfile.selectOption.hourRate")}
 										isSearchable
+										classNamePrefix="react-select"
 									/>
 								)}
 							/>
@@ -191,12 +196,13 @@ export function CreateProfile1(props: ProfilePageProps) {
 								control={control}
 								rules={{ required: true }}
 								render={({ field }) => (
-									<Select
+									<SelectElement
 										options={hoursAmount}
 										{...field}
 										required
 										placeholder={t("freelancer.createProfile.selectOption.amountHours")}
 										isSearchable
+										classNamePrefix="react-select"
 									/>
 								)}
 							/>
@@ -207,12 +213,13 @@ export function CreateProfile1(props: ProfilePageProps) {
 								control={control}
 								rules={{ required: true }}
 								render={({ field }) => (
-									<Select
+									<SelectElement
 										options={workExperience}
 										{...field}
 										required
 										placeholder={t("freelancer.createProfile.selectOption.workExperience")}
 										isSearchable
+										classNamePrefix="react-select"
 									/>
 								)}
 							/>
@@ -223,12 +230,13 @@ export function CreateProfile1(props: ProfilePageProps) {
 								control={control}
 								rules={{ required: true }}
 								render={({ field }) => (
-									<Select
+									<SelectElement
 										options={englishLevel}
 										{...field}
 										required
 										placeholder={t("freelancer.createProfile.selectOption.englishLevel")}
 										isSearchable
+										classNamePrefix="react-select"
 									/>
 								)}
 							/>

@@ -1,4 +1,38 @@
 import styled from "styled-components";
+import Select from "react-select";
+
+export const SelectElement = styled(Select)`
+	.react-select__value-container {
+		width: 80%;
+		height: inherit;
+	}
+
+	.react-select__control {
+		border: 2px solid ${({ theme }) => theme.colors.grey};
+		border-radius: 100px;
+		height: 50px;
+		padding-left: 1rem;
+		width: 100%;
+		color: ${({ theme }) => theme.colors.grey};
+		outline: none;
+	}
+
+	.react-select__indicator-separator {
+		display: none;
+	}
+
+	.react-select__input-container {
+		margin: 0;
+		::after {
+			display: none;
+		}
+	}
+
+	.react-select__placeholder {
+		color: ${({ theme }) => theme.colors.grey};
+		margin: 0;
+	}
+`;
 
 const StyledPage = styled.div`
 	margin: auto;
@@ -20,7 +54,7 @@ export const Form = styled.form`
 		border: 2px solid ${({ theme }) => theme.colors.grey};
 		border-radius: 100px;
 		height: 50px;
-		padding-left: 3rem;
+		padding-left: 1rem;
 		width: 80%;
 		color: ${({ theme }) => theme.colors.grey};
 		outline: none;
