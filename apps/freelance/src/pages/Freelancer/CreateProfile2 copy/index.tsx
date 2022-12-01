@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import {
 	StyledPage,
@@ -9,31 +9,16 @@ import {
 	ButtonsContainer,
 	InputHeader,
 	InputWrapper,
-	StyledToastContainer,
 } from "./style";
 import { Dashboard, StyledTitle, StyledButton } from "@freelance/components";
 import { useEducationHandler } from "./useEducationHandler";
 import { useWorkExperienceHandler } from "./useWorkExperienceHandler";
-import { it } from "node:test";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useAppDispatch } from "redux/example-hooks";
-import { createFreelancerP2 } from "redux/create-freelancer-page2/create-freelancer-p2.slice";
-import { useAddPublishedMutation } from "redux/create-freelancer-page2/create-freelancer-p2.api";
-import { useNavigate } from "react-router-dom";
 import { ThemeColors, ThemeBackground } from "@freelance/components";
 import { ThemeProvider } from "styled-components";
-
-enum listOption {
-	EDUCATION = "EDUCATION",
-	WORK_EXPERIENCE = "WORK_EXPERIENCE",
-}
+import { useNavigate } from "react-router-dom";
 
 export function CreateProfile2() {
 	const { t } = useTranslation();
-	const dispatch = useAppDispatch();
-	const navigate = useNavigate();
-	const [addPublished] = useAddPublishedMutation();
 	const { handleAddEducation, handleRemoveEducation, educationList, setEducationList, education } =
 		useEducationHandler();
 	const {
@@ -43,81 +28,12 @@ export function CreateProfile2() {
 		setWorkExperienceList,
 		workExperience,
 	} = useWorkExperienceHandler();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		setEducationList([education]);
 		setWorkExperienceList([workExperience]);
 	}, []);
-
-	const handleCreateProfileButton = () => {
-		const payload = { education: educationList, workExperience: workExperienceList };
-		toast(t("freelancer.createProfile.modal"), {
-			position: toast.POSITION.BOTTOM_CENTER,
-			toastId: "1",
-		});
-		console.log(payload);
-		dispatch(createFreelancerP2(payload));
-	};
-
-	const handlePublishedButton = () => {
-		addPublished({ isPublished: true });
-		navigate("/searchworkpage");
-	};
-
-	const handleWithoutPublishButton = () => {
-		navigate("/searchworkpage");
-	};
-
-	const ToastButtons = () => (
-		<>
-			<StyledButton
-				type="button"
-				buttonColor="redGradient"
-				buttonSize="sm"
-				fontSize="md"
-				onClick={handleWithoutPublishButton}
-			>
-				<strong>{t("freelancer.createProfile.modalBtnNo")}</strong>
-			</StyledButton>
-			<StyledButton
-				type="button"
-				buttonColor="redGradient"
-				buttonSize="sm"
-				fontSize="md"
-				onClick={handlePublishedButton}
-			>
-				<strong>{t("freelancer.createProfile.modalBtnYes")}</strong>
-			</StyledButton>
-		</>
-	);
-
-	const handleChangeList = (
-		index: number,
-		event: React.FormEvent<HTMLInputElement>,
-		option: listOption,
-	): void => {
-		const name = (event.target as HTMLInputElement).name;
-		const value = (event.target as HTMLInputElement).value;
-		if (option === listOption.EDUCATION) {
-			const list = [...educationList];
-			const newEducationList = list.map((it, pos) => {
-				if (pos === index) {
-					return { ...it, [name]: value };
-				}
-				return it;
-			});
-			setEducationList(newEducationList);
-		} else {
-			const list = [...workExperienceList];
-			const newWorkExperienceList = list.map((it, position) => {
-				if (position === index) {
-					return { ...it, [name]: value };
-				}
-				return it;
-			});
-			setWorkExperienceList(newWorkExperienceList);
-		}
-	};
 
 	return (
 		<ThemeProvider theme={ThemeColors && ThemeBackground}>
@@ -149,9 +65,6 @@ export function CreateProfile2() {
 											name="institute"
 											placeholder={t("freelancer.createProfile.institutePlaceholder")}
 											required
-											onChange={event => {
-												handleChangeList(index, event, listOption.EDUCATION);
-											}}
 										/>
 										<input
 											id="occupation"
@@ -159,9 +72,6 @@ export function CreateProfile2() {
 											name="occupation"
 											placeholder={t("freelancer.createProfile.occupationPlaceholder")}
 											required
-											onChange={event => {
-												handleChangeList(index, event, listOption.EDUCATION);
-											}}
 										/>
 										<input
 											id="period"
@@ -169,9 +79,6 @@ export function CreateProfile2() {
 											name="period"
 											placeholder={t("freelancer.createProfile.periodPlaceholder")}
 											required
-											onChange={event => {
-												handleChangeList(index, event, listOption.EDUCATION);
-											}}
 										/>
 										{educationList.length > 1 && (
 											<>
@@ -211,9 +118,6 @@ export function CreateProfile2() {
 											name="company"
 											placeholder={t("freelancer.createProfile.companyPlaceholder")}
 											required
-											onChange={event => {
-												handleChangeList(index, event, listOption.WORK_EXPERIENCE);
-											}}
 										/>
 										<input
 											id="workPosition"
@@ -221,9 +125,6 @@ export function CreateProfile2() {
 											name="workPosition"
 											placeholder={t("freelancer.createProfile.positionPlaceholder")}
 											required
-											onChange={event => {
-												handleChangeList(index, event, listOption.WORK_EXPERIENCE);
-											}}
 										/>
 										<input
 											id="period"
@@ -231,9 +132,6 @@ export function CreateProfile2() {
 											name="period"
 											placeholder={t("freelancer.createProfile.periodPlaceholder")}
 											required
-											onChange={event => {
-												handleChangeList(index, event, listOption.WORK_EXPERIENCE);
-											}}
 										/>
 										{workExperienceList.length > 1 && (
 											<>
@@ -258,22 +156,27 @@ export function CreateProfile2() {
 							<textarea />
 						</TextAreaContainer>
 						<ButtonsContainer>
-							<StyledButton type="button" buttonColor="redGradient" buttonSize="sm" fontSize="md">
+							<StyledButton
+								type="button"
+								buttonColor="redGradient"
+								buttonSize="sm"
+								fontSize="md"
+								onClick={() => navigate("/freelancer/view-profile")}
+							>
 								<strong>{t("freelancer.createProfile.viewProfileBtn")}</strong>
-							</StyledButton>
-							<StyledButton type="button" buttonColor="redGradient" buttonSize="sm" fontSize="md">
-								<strong>{t("freelancer.createProfile.backBtn")}</strong>
 							</StyledButton>
 							<StyledButton
 								type="button"
 								buttonColor="redGradient"
 								buttonSize="sm"
 								fontSize="md"
-								onClick={handleCreateProfileButton}
+								onClick={() => navigate("/freelancer/create-profile1")}
 							>
+								<strong>{t("freelancer.createProfile.backBtn")}</strong>
+							</StyledButton>
+							<StyledButton type="button" buttonColor="redGradient" buttonSize="sm" fontSize="md">
 								<strong>{t("freelancer.createProfile.createProfileBtn")}</strong>
 							</StyledButton>
-							<StyledToastContainer closeButton={ToastButtons} autoClose={false} />
 						</ButtonsContainer>
 					</Form>
 				</Dashboard>
