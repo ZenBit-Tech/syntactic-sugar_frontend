@@ -7,7 +7,7 @@ import { InferType } from "yup";
 import { signInSchema } from "utils/validations/loginForm";
 import { useLoginMutation } from "redux/login.api";
 import { useDispatch } from "react-redux";
-import { setToken } from "redux/userState/userSlice";
+import { setUserData } from "redux/userState/userSlice";
 import { useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -28,7 +28,7 @@ export function LoginForm() {
 
 	const formSubmitHandler = async (data: Props) => {
 		try {
-			const result = await login(data);
+			await login(data);
 		} catch (error) {
 			toast.error(t("recoverPassForm.errorMessageServerError"));
 		}
@@ -36,7 +36,7 @@ export function LoginForm() {
 
 	useEffect(() => {
 		if (isSuccess) {
-			dispatch(setToken({ token: userData.token }));
+			dispatch(setUserData({ token: userData.token, role: userData.role }));
 		}
 		if (isError) {
 			toast.error(t("recoverPassForm.errorMessageServerError"));
