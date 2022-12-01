@@ -1,5 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { baseUrl } from "utils/constants/redux-query";
+import { IUserState } from "./interfaces/IUserData";
+import { Token } from "./interfaces/Token";
 import { RootState } from "./store";
 
 interface IForm {
@@ -14,7 +16,7 @@ interface IServerResponse {
 }
 
 interface IToken {
-	token: string;
+	token: Token;
 }
 
 export const loginApi = createApi({
@@ -32,7 +34,7 @@ export const loginApi = createApi({
 	}),
 	refetchOnFocus: true,
 	endpoints: build => ({
-		login: build.mutation({
+		login: build.mutation<IUserState, IForm>({
 			query: (body: IForm) => ({
 				url: "auth/login",
 				method: "POST",

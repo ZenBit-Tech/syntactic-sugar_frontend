@@ -16,8 +16,6 @@ export function LoginForm() {
 	const dispatch = useDispatch();
 	const [login, { data: userData, isSuccess, isError }] = useLoginMutation();
 
-	type Props = InferType<typeof signInSchema>;
-
 	const {
 		register,
 		handleSubmit,
@@ -25,6 +23,8 @@ export function LoginForm() {
 	} = useForm<Props>({
 		resolver: yupResolver(signInSchema),
 	});
+
+	type Props = InferType<typeof signInSchema>;
 
 	const formSubmitHandler = async (data: Props) => {
 		try {
@@ -36,7 +36,7 @@ export function LoginForm() {
 
 	useEffect(() => {
 		if (isSuccess) {
-			dispatch(setUserData({ token: userData.token, role: userData.role }));
+			dispatch(setUserData({ token: userData?.token, role: userData?.role }));
 		}
 		if (isError) {
 			toast.error(t("recoverPassForm.errorMessageServerError"));
