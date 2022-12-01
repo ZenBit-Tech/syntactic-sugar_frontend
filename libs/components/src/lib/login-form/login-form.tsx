@@ -6,11 +6,17 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { InferType } from "yup";
 import { signInSchema } from "utils/validations/loginForm";
 import { useLoginMutation } from "redux/login.api";
+import { useDispatch } from "react-redux";
+import { setToken } from "redux/userState/userSlice";
+import { useEffect } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 export function LoginForm() {
 	const { t } = useTranslation();
+	const dispatch = useDispatch();
+	const [login, { data: userData, isSuccess, isError }] = useLoginMutation();
+
 	type Props = InferType<typeof signInSchema>;
-	const [login] = useLoginMutation();
 
 	const {
 		register,
@@ -21,9 +27,21 @@ export function LoginForm() {
 	});
 
 	const formSubmitHandler = async (data: Props) => {
-		const result = await login(data);
-		console.log(result);
+		try {
+			const result = await login(data);
+		} catch (error) {
+			toast.error(t("recoverPassForm.errorMessageServerError"));
+		}
 	};
+
+	useEffect(() => {
+		if (isSuccess) {
+			dispatch(setToken({ token: userData.token }));
+		}
+		if (isError) {
+			toast.error(t("recoverPassForm.errorMessageServerError"));
+		}
+	}, [isSuccess, isError]);
 
 	return (
 		<Form onSubmit={handleSubmit(formSubmitHandler)}>
@@ -56,6 +74,7 @@ export function LoginForm() {
 			<StyledButton buttonSize="lg" buttonColor="redGradient">
 				{t("signForm.buttonSignIn")}
 			</StyledButton>
+			<ToastContainer />
 		</Form>
 	);
 }

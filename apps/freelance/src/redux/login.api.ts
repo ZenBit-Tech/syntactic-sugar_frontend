@@ -34,7 +34,7 @@ export const loginApi = createApi({
 	endpoints: build => ({
 		login: build.mutation({
 			query: (body: IForm) => ({
-				url: "auth/login",
+				url: "auth/loging",
 				method: "POST",
 				body,
 			}),

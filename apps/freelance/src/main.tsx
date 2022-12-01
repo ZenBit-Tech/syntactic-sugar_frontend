@@ -7,8 +7,6 @@ import { ThemeColors, GlobalStyle } from "@freelance/components";
 import store, { persistor } from "src/redux/store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import { BrowserRouter } from "react-router-dom";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
