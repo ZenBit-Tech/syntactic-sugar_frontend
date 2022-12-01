@@ -17,8 +17,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 export function App() {
 	return (
 		<StyledApp>
-			<GoogleOAuthProvider clientId="110800861359-ddacb8lgsjcjbjoftnuvmmsr56tt65m3.apps.googleusercontent.com">
-				{/* // {`${process.env["NX_APP_GOOGLE_KEY"]}`} */}
+			<GoogleOAuthProvider clientId={`${process.env["NX_APP_GOOGLE_KEY"]}`}>
 				<Provider store={store}>
 					<BrowserRouter>
 						<Routes>

@@ -11,6 +11,9 @@ export const SelectElement = styled(Select)`
 		border-radius: 100px;
 		min-height: 50px;
 		outline: none;
+		&--is-focused {
+			border-color: ${({ theme }) => theme.colors.grey};
+		}
 	}
 
 	.react-select__indicator-separator {
@@ -128,6 +131,10 @@ export const Input = styled.input`
 
 	::placeholder {
 		color: ${({ theme }) => theme.colors.grey};
+	}
+
+	::hover {
+		border-color: ${({ theme }) => theme.colors.grey};
 	}
 `;
 
