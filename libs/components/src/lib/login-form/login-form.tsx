@@ -20,8 +20,9 @@ export function LoginForm() {
 		resolver: yupResolver(signInSchema),
 	});
 
-	const formSubmitHandler = (data: Props) => {
-		login(data);
+	const formSubmitHandler = async (data: Props) => {
+		const result = await login(data);
+		console.log(result);
 	};
 
 	return (

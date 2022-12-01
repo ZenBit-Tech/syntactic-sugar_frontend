@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { baseUrl } from "utils/constants/redux-query";
+import { RootState } from "./store";
 
 interface IForm {
 	email: string;
@@ -20,6 +21,14 @@ export const loginApi = createApi({
 	reducerPath: "auth/api",
 	baseQuery: fetchBaseQuery({
 		baseUrl: baseUrl,
+		prepareHeaders: (headers, { getState }) => {
+			const token = (getState() as RootState).user.token;
+			if (token) {
+				headers.set("Authorization", `Bearer ${token}`);
+			}
+
+			return headers;
+		},
 	}),
 	refetchOnFocus: true,
 	endpoints: build => ({

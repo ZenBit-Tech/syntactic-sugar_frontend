@@ -1,7 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { SendEmail, SendPassAndToken } from "./types";
 
 const BASE_URL: string = process.env["NX_HOST"] || "";
+
+export interface SendEmail {
+	email?: string;
+}
+
+export interface SendPassAndToken {
+	token: string | undefined;
+	password: string;
+}
 
 export const resetPasswordApi = createApi({
 	reducerPath: "resetPasswordApi",
