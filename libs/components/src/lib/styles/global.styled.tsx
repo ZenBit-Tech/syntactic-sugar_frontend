@@ -11,9 +11,6 @@ export const ThemeColors = {
 		white: "#FFFFFF",
 		black: "#000000",
 	},
-};
-
-export const ThemeBackground = {
 	signPages: {
 		image: `url('/assets/images/top_elipse.png') no-repeat top left,
     url('/assets/images/bottom_elipse.png') no-repeat bottom right`,
