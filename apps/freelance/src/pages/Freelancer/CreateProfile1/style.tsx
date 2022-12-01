@@ -2,38 +2,28 @@ import styled from "styled-components";
 import Select from "react-select";
 
 export const SelectElement = styled(Select)`
-	.react-select__value-container {
-		width: 80%;
-		height: inherit;
+	.react-select__placeholder {
+		color: ${({ theme }) => theme.colors.grey};
 	}
 
 	.react-select__control {
 		border: 2px solid ${({ theme }) => theme.colors.grey};
 		border-radius: 100px;
-		height: 50px;
-		padding-left: 1rem;
-		width: 100%;
-		color: ${({ theme }) => theme.colors.grey};
+		min-height: 50px;
 		outline: none;
+		&--is-focused {
+			border-color: ${({ theme }) => theme.colors.grey};
+		}
 	}
 
 	.react-select__indicator-separator {
 		display: none;
 	}
 
-	.react-select__input-container {
-		margin: 0;
-		::after {
-			display: none;
-		}
-	}
-
-	.react-select__placeholder {
-		color: ${({ theme }) => theme.colors.grey};
-		margin: 0;
+	.react-select__multi-value {
+		background-color: transparent;
 	}
 `;
-
 
 const StyledPage = styled.div`
 	margin: auto;
@@ -50,25 +40,6 @@ export const Form = styled.form`
 	align-items: center;
 	justify-items: center;
 
-	input,
-	select {
-		border: 2px solid ${({ theme }) => theme.colors.grey};
-		border-radius: 100px;
-		height: 50px;
-		padding-left: 3rem;
-		width: 80%;
-		color: ${({ theme }) => theme.colors.grey};
-		outline: none;
-
-		:valid {
-			color: ${({ theme }) => theme.colors.black};
-		}
-
-		::placeholder {
-			color: ${({ theme }) => theme.colors.grey};
-		}
-	}
-
 	.selectContainer {
 		position: relative;
 		width: 80%;
@@ -80,20 +51,6 @@ export const Form = styled.form`
 			option {
 				color: ${({ theme }) => theme.colors.black};
 			}
-		}
-
-		::after {
-			width: 0;
-			height: 0;
-			border-left: 6px solid transparent;
-			border-right: 6px solid transparent;
-			border-top: 6px solid ${({ theme }) => theme.colors.grey};
-			position: absolute;
-			top: 45%;
-			right: 1rem;
-			content: "";
-			z-index: 99;
-			pointer-events: none;
 		}
 	}
 
@@ -157,6 +114,27 @@ export const Form = styled.form`
 	button {
 		grid-column: 1 / -1;
 		max-width: 200px;
+	}
+`;
+export const Input = styled.input`
+	border: 2px solid ${({ theme }) => theme.colors.grey};
+	border-radius: 100px;
+	height: 50px;
+	padding-left: 1rem;
+	width: 80%;
+	color: ${({ theme }) => theme.colors.grey};
+	outline: none;
+
+	:valid {
+		color: ${({ theme }) => theme.colors.black};
+	}
+
+	::placeholder {
+		color: ${({ theme }) => theme.colors.grey};
+	}
+
+	::hover {
+		border-color: ${({ theme }) => theme.colors.grey};
 	}
 `;
 

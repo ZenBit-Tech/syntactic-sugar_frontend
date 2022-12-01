@@ -1,7 +1,8 @@
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { addFreelancerInfo } from "redux/createFreelancer/freelancer-slice";
-import { useAppDispatch } from "redux/example-hooks";
-import { useNavigate } from "react-router-dom";
+import { useForm, Controller } from "react-hook-form";
+import { ThemeProvider } from "styled-components";
+import { useTranslation } from "react-i18next";
+import { StyledPage, Form, SelectElement, Input } from "./style";
+import { useCreateFreelancer, IFormInput } from "./hooks";
 import {
 	countries,
 	categories,
@@ -11,9 +12,8 @@ import {
 	hoursAmount,
 	workExperience,
 	englishLevel,
-	SelectOptions,
 } from "utils/select-options/options";
-import { StyledPage, Form } from "./style";
+
 import {
 	ThemeColors,
 	ThemeBackground,
@@ -21,52 +21,14 @@ import {
 	StyledTitle,
 	StyledButton,
 } from "@freelance/components";
-import { ThemeProvider } from "styled-components";
-import { SelectElement } from "./style";
-import { useTranslation } from "react-i18next";
 
 /* eslint-disable-next-line */
 export interface ProfilePageProps {}
 
-interface IFormInput {
-	fullName: string;
-	category: SelectOptions;
-	position: string;
-	skills: SelectOptions[];
-	employmentType: SelectOptions;
-	country: SelectOptions;
-	hourRate: SelectOptions;
-	availableAmountOfHour: SelectOptions;
-	workExperience: SelectOptions;
-	englishLevel: SelectOptions;
-}
-
 export function CreateProfile1(props: ProfilePageProps) {
 	const { t } = useTranslation();
-	const navigate = useNavigate();
-	const dispatch = useAppDispatch();
+	const onSubmit = useCreateFreelancer();
 	const { handleSubmit, control } = useForm<IFormInput>();
-
-	const onSubmit: SubmitHandler<IFormInput> = async values => {
-		const freelancerInfo = {
-			fullName: values.fullName,
-			category: values.category.label,
-			position: values.position,
-			skills: values.skills.map(skill => skill.label),
-			employmentType: values.employmentType.label,
-			country: values.country.label,
-			hourRate: values.hourRate.label,
-			availableAmountOfHour: values.availableAmountOfHour.label,
-			workExperience: values.workExperience.label,
-			englishLevel: values.englishLevel.label,
-		};
-		try {
-			await dispatch(addFreelancerInfo(freelancerInfo));
-			navigate("/freelancer/create-profile2");
-		} catch (error) {
-			alert(error);
-		}
-	};
 
 	return (
 		<ThemeProvider theme={ThemeColors && ThemeBackground}>
@@ -81,9 +43,10 @@ export function CreateProfile1(props: ProfilePageProps) {
 							control={control}
 							rules={{ required: true }}
 							render={({ field }) => (
-								<input
+								<Input
 									type="text"
 									required
+									autoComplete="off"
 									{...field}
 									placeholder={t("freelancer.createProfile.fullNamePlaceholder")}
 								/>
@@ -101,6 +64,7 @@ export function CreateProfile1(props: ProfilePageProps) {
 										required
 										placeholder={t("freelancer.createProfile.selectOption.category")}
 										isSearchable
+										isClearable
 										classNamePrefix="react-select"
 									/>
 								)}
@@ -112,8 +76,10 @@ export function CreateProfile1(props: ProfilePageProps) {
 							control={control}
 							rules={{ required: true }}
 							render={({ field }) => (
-								<input
+								<Input
+									type="text"
 									{...field}
+									autoComplete="off"
 									placeholder={t("freelancer.createProfile.positionPlaceholder")}
 									required
 								/>
@@ -131,6 +97,7 @@ export function CreateProfile1(props: ProfilePageProps) {
 										required
 										placeholder={t("freelancer.createProfile.selectOption.skills")}
 										isSearchable
+										isClearable
 										isMulti
 										classNamePrefix="react-select"
 									/>
@@ -147,6 +114,8 @@ export function CreateProfile1(props: ProfilePageProps) {
 										options={employmentType}
 										{...field}
 										required
+										isSearchable
+										isClearable
 										placeholder={t("freelancer.createProfile.selectOption.employmentType")}
 										classNamePrefix="react-select"
 									/>
@@ -165,6 +134,7 @@ export function CreateProfile1(props: ProfilePageProps) {
 										required
 										placeholder={t("freelancer.createProfile.selectOption.country")}
 										isSearchable
+										isClearable
 										classNamePrefix="react-select"
 									/>
 								)}
@@ -182,6 +152,7 @@ export function CreateProfile1(props: ProfilePageProps) {
 										required
 										placeholder={t("freelancer.createProfile.selectOption.hourRate")}
 										isSearchable
+										isClearable
 										classNamePrefix="react-select"
 									/>
 								)}
@@ -199,6 +170,7 @@ export function CreateProfile1(props: ProfilePageProps) {
 										required
 										placeholder={t("freelancer.createProfile.selectOption.amountHours")}
 										isSearchable
+										isClearable
 										classNamePrefix="react-select"
 									/>
 								)}
@@ -216,6 +188,7 @@ export function CreateProfile1(props: ProfilePageProps) {
 										required
 										placeholder={t("freelancer.createProfile.selectOption.workExperience")}
 										isSearchable
+										isClearable
 										classNamePrefix="react-select"
 									/>
 								)}
@@ -233,6 +206,7 @@ export function CreateProfile1(props: ProfilePageProps) {
 										required
 										placeholder={t("freelancer.createProfile.selectOption.englishLevel")}
 										isSearchable
+										isClearable
 										classNamePrefix="react-select"
 									/>
 								)}
