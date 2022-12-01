@@ -13,6 +13,7 @@ import { Role } from "@pages/Role";
 
 import store from "redux/store";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import CreateProfile2 from "@pages/Freelancer/CreateProfile2";
 
 export function App() {
 	return (
@@ -30,6 +31,7 @@ export function App() {
 							<Route path="/password-updated" element={<RecoverPasswordUpdate />} />
 							<Route path="/invitation" element={<Invitation />} />
 							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />
+							<Route path="/freelancer/create-profile2" element={<CreateProfile2 />} />
 							<Route path="/profile_1" element={<h1>profilePage3.1</h1>} />
 						</Routes>
 					</BrowserRouter>
