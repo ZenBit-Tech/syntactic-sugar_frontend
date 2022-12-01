@@ -2,17 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { addFreelancerInfo } from "src/redux/createFreelancer/freelancer-slice";
 import { useAppDispatch } from "src/redux/example-hooks";
-import {
-	countries,
-	categories,
-	skills,
-	employmentType,
-	hourRate,
-	hoursAmount,
-	workExperience,
-	englishLevel,
-	SelectOptions,
-} from "utils/select-options/options";
+import { SelectOptions } from "utils/select-options/options";
 
 export interface IFormInput {
 	fullName: string;

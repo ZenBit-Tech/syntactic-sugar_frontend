@@ -82,8 +82,8 @@
 			"title": "My Profile"
 		},
 		"header": {
-			"userName": "John Doe",
-			"userEmail": "johndoe@gmail.com",
+			"userName": "Braulio Portela",
+			"userEmail": "braulioportela@outlook.com",
 			"chat": "CHAT",
 			"logout": "LOGOUT"
 		}
@@ -104,6 +104,9 @@
 			"viewProfileBtn": "VIEW PROFILE",
 			"backBtn": "BACK",
 			"createProfileBtn": "CREATE PROFILE",
+			"modal": "Do you want to publish profile",
+			"modalBtnNo": "No",
+			"modalBtnYes": "Yes",
 			"selectOption": {
 				"country": "Country",
 				"category": "Category",

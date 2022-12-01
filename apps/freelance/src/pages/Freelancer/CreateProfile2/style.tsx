@@ -175,6 +175,13 @@ export const StyledToastContainer = styled(ToastContainer)`
 	}
 	.Toastify__progress-bar {
 	}
+
+	button {
+		margin-left: 1rem;
+		margin-top: 1rem;
+		width: 10%;
+		height: 40%;
+	}
 `;
 
 export { StyledPage };

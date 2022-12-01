@@ -59,6 +59,13 @@ export function CreateProfile2() {
 		dispatch(createFreelancerP2(payload));
 	};
 
+	const handleViewProfile = async () => {
+		const payload = { education: educationList, workExperience: workExperienceList };
+		console.log(payload);
+		await dispatch(createFreelancerP2(payload));
+		navigate("/freelancer/view-profile");
+	};
+
 	const handlePublishedButton = () => {
 		addPublished({ isPublished: true });
 		navigate("/searchworkpage");
@@ -258,10 +265,23 @@ export function CreateProfile2() {
 							<textarea />
 						</TextAreaContainer>
 						<ButtonsContainer>
-							<StyledButton type="button" buttonColor="redGradient" buttonSize="sm" fontSize="md">
+							<StyledButton
+								type="button"
+								buttonColor="redGradient"
+								buttonSize="sm"
+								fontSize="md"
+								// onClick={() => navigate("/freelancer/view-profile")}
+								onClick={handleViewProfile}
+							>
 								<strong>{t("freelancer.createProfile.viewProfileBtn")}</strong>
 							</StyledButton>
-							<StyledButton type="button" buttonColor="redGradient" buttonSize="sm" fontSize="md">
+							<StyledButton
+								type="button"
+								buttonColor="redGradient"
+								buttonSize="sm"
+								fontSize="md"
+								onClick={() => navigate("/freelancer/create-profile1")}
+							>
 								<strong>{t("freelancer.createProfile.backBtn")}</strong>
 							</StyledButton>
 							<StyledButton

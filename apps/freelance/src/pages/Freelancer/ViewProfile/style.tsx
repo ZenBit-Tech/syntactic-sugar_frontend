@@ -6,6 +6,27 @@ export const StyledPage = styled.div`
 	height: 100vh;
 
 	background: ${({ theme }) => theme.signPages.image}, ${({ theme }) => theme.colors.lightGrey};
+
+	
+
+	* {
+		scrollbar-width: auto;
+		scrollbar-color: ${({ theme }) => theme.colors.lightRed} ${({ theme }) => theme.colors.white};
+	}
+
+	*::-webkit-scrollbar {
+		width: 15px;
+	}
+
+	*::-webkit-scrollbar-track {
+		background: ${({ theme }) => theme.colors.white};
+	}
+
+	*::-webkit-scrollbar-thumb {
+		background-color: ${({ theme }) => theme.colors.lightRed};
+		border-radius: 10px;
+		border: 3px solid ${({ theme }) => theme.colors.white};
+	}
 `;
 
 export const Container = styled.div`
