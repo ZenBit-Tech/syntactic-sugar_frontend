@@ -14,18 +14,14 @@ const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 root.render(
 	<StrictMode>
 		<Suspense fallback={"Loading..."}>
-			<GoogleOAuthProvider clientId={`${process.env["NX_APP_GOOGLE_KEY"]}`}>
-				<Provider store={store}>
-					<PersistGate loading={null} persistor={persistor}>
-						<GlobalStyle />
-						<ThemeProvider theme={ThemeColors}>
-							{/* <BrowserRouter> */}
-							<App />
-							{/* </BrowserRouter> */}
-						</ThemeProvider>
-					</PersistGate>
-				</Provider>
-			</GoogleOAuthProvider>
+			<Provider store={store}>
+				<PersistGate loading={null} persistor={persistor}>
+					<GlobalStyle />
+					<ThemeProvider theme={ThemeColors}>
+						<App />
+					</ThemeProvider>
+				</PersistGate>
+			</Provider>
 		</Suspense>
 	</StrictMode>,
 );
