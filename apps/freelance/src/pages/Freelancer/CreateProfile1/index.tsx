@@ -46,6 +46,7 @@ export function CreateProfile1(props: ProfilePageProps) {
 								<Input
 									type="text"
 									required
+									autoComplete="off"
 									{...field}
 									placeholder={t("freelancer.createProfile.fullNamePlaceholder")}
 								/>
@@ -75,7 +76,9 @@ export function CreateProfile1(props: ProfilePageProps) {
 							rules={{ required: true }}
 							render={({ field }) => (
 								<Input
+									type="text"
 									{...field}
+									autoComplete="off"
 									placeholder={t("freelancer.createProfile.positionPlaceholder")}
 									required
 								/>
