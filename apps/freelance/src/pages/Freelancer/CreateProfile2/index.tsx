@@ -273,7 +273,13 @@ export function CreateProfile2() {
 						/>
 					</TextAreaContainer>
 					<ButtonsContainer>
-						<StyledButton type="button" buttonColor="redGradient" buttonSize="sm" fontSize="md">
+						<StyledButton
+							type="button"
+							buttonColor="redGradient"
+							buttonSize="sm"
+							fontSize="md"
+							onClick={handleCreateProfileButton}
+						>
 							<strong>{t("freelancer.createProfile.viewProfileBtn")}</strong>
 						</StyledButton>
 						<StyledButton type="button" buttonColor="redGradient" buttonSize="sm" fontSize="md">
