@@ -57,17 +57,26 @@ export function CreateProfile2() {
 		setOtherExperience((event.target as HTMLTextAreaElement).value);
 	};
 
-	const handleCreateProfileButton = () => {
+	const handleCreateProfileButton = (type: string) => {
 		const payload = {
 			education: educationList,
 			workHistory: workHistoryList,
 			otherExperience: otherExperience,
 		};
-		toast(t("freelancer.createProfile.modal"), {
-			position: toast.POSITION.BOTTOM_CENTER,
-			toastId: "1",
-		});
-		dispatch(addFreelancerInfo(payload));
+		if (type === "create") {
+			toast(t("freelancer.createProfile.modal"), {
+				position: toast.POSITION.BOTTOM_CENTER,
+				toastId: "1",
+			});
+			dispatch(addFreelancerInfo(payload));
+		}
+		if (type === "view") {
+			dispatch(addFreelancerInfo(payload));
+      navigate("/freelancer/viewprofile");
+		}
+		if (type === "back") {
+			navigate("/freelancer/create-profile1");
+		}
 	};
 
 	const handlePublishedButton = () => {
@@ -278,11 +287,21 @@ export function CreateProfile2() {
 							buttonColor="redGradient"
 							buttonSize="sm"
 							fontSize="md"
-							onClick={handleCreateProfileButton}
+							onClick={() => {
+								handleCreateProfileButton("view");
+							}}
 						>
 							<strong>{t("freelancer.createProfile.viewProfileBtn")}</strong>
 						</StyledButton>
-						<StyledButton type="button" buttonColor="redGradient" buttonSize="sm" fontSize="md">
+						<StyledButton
+							type="button"
+							buttonColor="redGradient"
+							buttonSize="sm"
+							fontSize="md"
+							onClick={() => {
+								handleCreateProfileButton("back");
+							}}
+						>
 							<strong>{t("freelancer.createProfile.backBtn")}</strong>
 						</StyledButton>
 						<StyledButton
@@ -290,7 +309,9 @@ export function CreateProfile2() {
 							buttonColor="redGradient"
 							buttonSize="sm"
 							fontSize="md"
-							onClick={handleCreateProfileButton}
+							onClick={() => {
+								handleCreateProfileButton("create");
+							}}
 						>
 							<strong>{t("freelancer.createProfile.createProfileBtn")}</strong>
 						</StyledButton>
