@@ -1,10 +1,5 @@
 import { useState } from "react";
-
-export interface educationProps {
-	institute: string;
-	occupation: string;
-	period: string;
-}
+import { educationProps } from "redux/createFreelancer/freelancer-slice";
 
 export const education = {
 	institute: "",

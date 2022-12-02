@@ -13,61 +13,66 @@ import {
 } from "./style";
 import { Dashboard, StyledTitle, StyledButton } from "@freelance/components";
 import { useEducationHandler } from "./useEducationHandler";
-import { useWorkExperienceHandler } from "./useWorkExperienceHandler";
+import { useWorkHistoryHandler } from "./useWorkHistoryHandler";
 import { it } from "node:test";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useAppDispatch } from "redux/example-hooks";
-// import { createFreelancerP2 } from "redux/create-freelancer-page2/create-freelancer-p2.slice";
-// import { useAddPublishedMutation } from "redux/create-freelancer-page2/create-freelancer-p2.api";
+import { useAppDispatch, useAppSelector } from "redux/example-hooks";
+import { addFreelancerInfo } from "redux/createFreelancer/freelancer-slice";
+import {
+	useCreateFreelancerMutation,
+	useAddPublishedMutation,
+} from "redux/createFreelancer/freelancer-pageApi";
 import { useNavigate } from "react-router-dom";
 
 enum listOption {
 	EDUCATION = "EDUCATION",
-	WORK_EXPERIENCE = "WORK_EXPERIENCE",
+	WORK_HISTORY = "WORK_HISTORY",
 }
 
 export function CreateProfile2() {
 	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
-	const [otherExperience, setOtherExperience] = useState<string>();
-	// const [addPublished] = useAddPublishedMutation();
+	const freelancerState = useAppSelector(state => state.freelancer);
+	const [createFreelancer] = useCreateFreelancerMutation();
+	const [otherExperience, setOtherExperience] = useState<string>("");
+	const [addPublished] = useAddPublishedMutation();
 	const { handleAddEducation, handleRemoveEducation, educationList, setEducationList, education } =
 		useEducationHandler();
 	const {
-		handleAddWorkExperience,
-		handleRemoveWorkExperience,
-		workExperienceList,
-		setWorkExperienceList,
-		workExperience,
-	} = useWorkExperienceHandler();
+		handleAddWorkHistory,
+		handleRemoveWorkHistory,
+		workHistoryList,
+		setWorkHistoryList,
+		workHistory,
+	} = useWorkHistoryHandler();
 
 	useEffect(() => {
 		setEducationList([education]);
-		setWorkExperienceList([workExperience]);
+		setWorkHistoryList([workHistory]);
 	}, []);
 
-	const handleOtherExperienceChange = (event: React.FormEvent<HTMLTextAreaElement>) => {
+	const handleotherExperienceChange = (event: React.FormEvent<HTMLTextAreaElement>) => {
 		setOtherExperience((event.target as HTMLTextAreaElement).value);
 	};
 
 	const handleCreateProfileButton = () => {
 		const payload = {
 			education: educationList,
-			workExperience: workExperienceList,
+			workHistory: workHistoryList,
 			otherExperience: otherExperience,
 		};
 		toast(t("freelancer.createProfile.modal"), {
 			position: toast.POSITION.BOTTOM_CENTER,
 			toastId: "1",
 		});
-		console.log(payload);
-		// dispatch(createFreelancerP2(payload));
+		dispatch(addFreelancerInfo(payload));
 	};
 
 	const handlePublishedButton = () => {
-		// addPublished({ isPublished: true });
+		createFreelancer(freelancerState);
+		addPublished({ isPublished: true });
 		navigate("/searchworkpage");
 	};
 
@@ -107,22 +112,22 @@ export function CreateProfile2() {
 		const value = (event.target as HTMLInputElement).value;
 		if (option === listOption.EDUCATION) {
 			const list = [...educationList];
-			const newEducationList = list.map((it, pos) => {
-				if (pos === index) {
+			const newEducationList = list.map((it, position) => {
+				if (position === index) {
 					return { ...it, [name]: value };
 				}
 				return it;
 			});
 			setEducationList(newEducationList);
 		} else {
-			const list = [...workExperienceList];
-			const newWorkExperienceList = list.map((it, position) => {
+			const list = [...workHistoryList];
+			const newWorkHistoryList = list.map((it, position) => {
 				if (position === index) {
 					return { ...it, [name]: value };
 				}
 				return it;
 			});
-			setWorkExperienceList(newWorkExperienceList);
+			setWorkHistoryList(newWorkHistoryList);
 		}
 	};
 
@@ -198,18 +203,18 @@ export function CreateProfile2() {
 						</InputContainer>
 						<InputContainer>
 							<InputHeader>
-								<label>{t("freelancer.createProfile.workExperienceLabel")}</label>
+								<label>{t("freelancer.createProfile.workHistoryLabel")}</label>
 								<StyledButton
 									type="button"
 									buttonColor="redGradient"
 									buttonSize="sm"
 									fontSize="md"
-									onClick={handleAddWorkExperience}
+									onClick={handleAddWorkHistory}
 								>
 									{t("freelancer.createProfile.addBtn")}
 								</StyledButton>
 							</InputHeader>
-							{workExperienceList.map((item, index) => (
+							{workHistoryList.map((item, index) => (
 								<InputWrapper key={index}>
 									<input
 										id="company"
@@ -218,7 +223,7 @@ export function CreateProfile2() {
 										placeholder={t("freelancer.createProfile.companyPlaceholder")}
 										required
 										onChange={event => {
-											handleChangeList(index, event, listOption.WORK_EXPERIENCE);
+											handleChangeList(index, event, listOption.WORK_HISTORY);
 										}}
 									/>
 									<input
@@ -228,7 +233,7 @@ export function CreateProfile2() {
 										placeholder={t("freelancer.createProfile.positionPlaceholder")}
 										required
 										onChange={event => {
-											handleChangeList(index, event, listOption.WORK_EXPERIENCE);
+											handleChangeList(index, event, listOption.WORK_HISTORY);
 										}}
 									/>
 									<input
@@ -238,21 +243,21 @@ export function CreateProfile2() {
 										placeholder={t("freelancer.createProfile.periodPlaceholder")}
 										required
 										onChange={event => {
-											handleChangeList(index, event, listOption.WORK_EXPERIENCE);
+											handleChangeList(index, event, listOption.WORK_HISTORY);
 										}}
 									/>
-									{workExperienceList.length > 1 && (
+									{workHistoryList.length > 1 && (
 										<>
 											<StyledButton
 												type="button"
 												buttonColor="redGradient"
 												buttonSize="sm"
 												fontSize="md"
-												onClick={() => handleRemoveWorkExperience(index)}
+												onClick={() => handleRemoveWorkHistory(index)}
 											>
 												<strong>{t("freelancer.createProfile.removeBtn")}</strong>
 											</StyledButton>
-											{workExperienceList.length - 1 === index ? "" : <hr />}
+											{workHistoryList.length - 1 === index ? "" : <hr />}
 										</>
 									)}
 								</InputWrapper>
@@ -263,7 +268,7 @@ export function CreateProfile2() {
 						<label>{t("freelancer.createProfile.otherExperienceLabel")}</label>
 						<textarea
 							onChange={event => {
-								handleOtherExperienceChange(event);
+								handleotherExperienceChange(event);
 							}}
 						/>
 					</TextAreaContainer>
