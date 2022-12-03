@@ -1,3 +1,7 @@
+// export * from "./lib/job-posting-third-form/job-posting-third-form";
+// export * from "./lib/job-posting-second-form/job-posting-second-form";
+// export * from "./lib/job-posting-first-form/job-posting-first-form";
+// export * from "./lib/job-posting-container/job-posting-container";
 export * from "./lib/dashboard-header/dashboard-header";
 export * from "./lib/dashboard-menu/dashboard-menu";
 export * from "./lib/dashboard/dashboard";
@@ -13,6 +17,7 @@ export * from "./lib/base-title/base-title";
 export * from "./lib/styles/global.styled";
 export * from "./lib/styles/typograghy";
 export * from "./lib/styles/buttons";
+export * from "./lib/styles/layouts";
 
 // Reset password forms
 
@@ -20,3 +25,10 @@ export * from "./lib/recover-pass-first-form/recover-pass-first-form";
 export * from "./lib/recover-pass-second-form/recover-pass-second-form";
 export * from "./lib/recover-pass-first-form/interfaces";
 export * from "./lib/recover-pass-second-form/interfaces";
+
+// New Job Posting
+
+export * from "./lib/job-posting-container/job-posting-container";
+export * from "./lib/job-posting-first-form/job-posting-first-form";
+export * from "./lib/job-posting-second-form/job-posting-second-form";
+export * from "./lib/job-posting-third-form/job-posting-third-form";

@@ -103,5 +103,13 @@
 			"roleJobOwner": "I am a Job Owner, hiring for a project.",
 			"roleFreelancer": "I am a Freelancer, looking for a job."
 		}
+	},
+	"newJobPosting": {
+		"mainTitle": "New job posting",
+		"subTitle": "Define search criterias",
+		"description": "We'll use them to finde you relevant candidates",
+		"goBackButton": "Go back",
+		"continueButton": "Continue",
+		"createButton": "Create a job"
 	}
 }
