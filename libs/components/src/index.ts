@@ -34,3 +34,6 @@ export * from "./lib/job-posting-second-form/job-posting-second-form";
 export * from "./lib/job-posting-third-form/job-posting-third-form";
 export * from "./lib/job-posting-container/interfaces";
 export * from "./lib/job-posting-first-form/interfaces";
+export * from "./lib/job-posting-second-form/interfaces";
+export * from "./lib/job-posting-third-form/interfaces";
+export * from "./lib/styles/newJoPostingCommonStyles";

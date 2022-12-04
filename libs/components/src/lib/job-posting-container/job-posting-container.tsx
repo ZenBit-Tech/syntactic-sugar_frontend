@@ -51,8 +51,8 @@ export function JobPostingContainer({ page, title, subTitle, createButton }: INe
 					)}
 					<FormWrapper>
 						{page === FIRST_PAGE && <JobPostingFirstForm page={page} />}
-						{page === SECOND_PAGE && <JobPostingSecondForm />}
-						{page === THIRD_PAGE && <JobPostingThirdForm />}
+						{page === SECOND_PAGE && <JobPostingSecondForm page={page} />}
+						{page === THIRD_PAGE && <JobPostingThirdForm page={page} />}
 					</FormWrapper>
 					<ButtonContainer>
 						<FormButton type="button" onClick={goBack} buttonSize="sm" buttonColor="redGradient">

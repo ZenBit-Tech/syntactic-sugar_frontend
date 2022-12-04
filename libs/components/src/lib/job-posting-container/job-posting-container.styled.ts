@@ -15,6 +15,7 @@ export const JobPostingStyledTitle = styled(StyledTitle)`
 `;
 
 export const Description = styled(StyledParagraph)`
+	margin-bottom: 5vh;
 	color: ${({ theme }) => theme.colors.darkGrey};
 `;
 

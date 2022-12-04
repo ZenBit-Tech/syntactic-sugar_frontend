@@ -122,6 +122,30 @@
 				"messageJobTitleRequired": "Job title is required",
 				"messageDescriptionRequired": "Job description is required"
 			}
+		},
+		"secondForm": {
+			"countriesLabel": "Country",
+			"countriesPlaceholder": "Choose up to 5 countries where your company offices are located",
+			"categoryLabel": "Category",
+			"categoryPlaceholder": "Choose category",
+			"positionLabel": "Position",
+			"postitonPlaceholder": "Add position",
+			"employmentTypeLabel": "Employment type",
+			"employmentTypePlaceholder": "Add employment type",
+			"hoursAmountLabel": "The available amount of hours",
+			"hoursAmountPlaceholder": "Choose available amount of hours",
+			"workExperienceLabel": "Work experience",
+			"workExperiencePlaceholder": "Choose work experience",
+			"hourRateLabel": "Hour rate (one price)",
+			"hourRatePlaceholder": "Choose hour rate (one price)"
+		},
+		"thirdForm": {
+			"skillsLabel": "Skills",
+			"skillsPlaceholder": "Choose required skills",
+			"englishLevelLabel": "English Level",
+			"englishLevelPlaceholder": "Choose required english level",
+			"otherRequirenmentsLabel": "Other requirenments",
+			"otherRequirenmentsPlaceholder": "Add Text"
 		}
 	}
 }
