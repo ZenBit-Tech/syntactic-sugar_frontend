@@ -15,6 +15,7 @@ import {
 	FormButton,
 	FormWrapper,
 	PageContainer,
+	JobPostingStyledTitle,
 } from "./job-posting-container.styled";
 import { useJobPostingContainerHook } from "./job-posting-containerHooks";
 
@@ -36,9 +37,9 @@ export function JobPostingContainer({ page, title, subTitle, createButton }: INe
 			<StyledPage>
 				<PageContainer>
 					{title && (
-						<StyledTitle tag="h1" fontWeight={700} fontSize="lg">
+						<JobPostingStyledTitle tag="h1" fontWeight={700} fontSize="lg">
 							{title}
-						</StyledTitle>
+						</JobPostingStyledTitle>
 					)}
 					{subTitle && (
 						<StyledTitle tag="h1" fontWeight={400} fontSize="lg">
@@ -49,7 +50,7 @@ export function JobPostingContainer({ page, title, subTitle, createButton }: INe
 						<Description fontSize="lg">{description}</Description>
 					)}
 					<FormWrapper>
-						{page === FIRST_PAGE && <JobPostingFirstForm />}
+						{page === FIRST_PAGE && <JobPostingFirstForm page={page} />}
 						{page === SECOND_PAGE && <JobPostingSecondForm />}
 						{page === THIRD_PAGE && <JobPostingThirdForm />}
 					</FormWrapper>
