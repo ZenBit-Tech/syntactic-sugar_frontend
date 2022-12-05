@@ -1,3 +1,4 @@
+export * from "./lib/modal-window/modal-window";
 export * from "./lib/dashboard-header/dashboard-header";
 export * from "./lib/dashboard-menu/dashboard-menu";
 export * from "./lib/dashboard/dashboard";
@@ -13,6 +14,7 @@ export * from "./lib/base-title/base-title";
 export * from "./lib/styles/global.styled";
 export * from "./lib/styles/typograghy";
 export * from "./lib/styles/buttons";
+export * from "./lib/modal-window/modal-window"
 
 // Reset password forms
 
