@@ -11,9 +11,16 @@ import {
 	InputWrapper,
 	StyledToastContainer,
 } from "./style";
-import { Dashboard, StyledTitle, StyledButton } from "@freelance/components";
+import {
+	Dashboard,
+	StyledTitle,
+	StyledButton,
+	ModalWindow,
+	ModalWindowProps,
+} from "@freelance/components";
 import { useEducationHandler } from "./useEducationHandler";
 import { useWorkHistoryHandler } from "./useWorkHistoryHandler";
+import { useChangeListHandler, listOption } from "./useChangeListHandler";
 import { it } from "node:test";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -24,11 +31,6 @@ import {
 	useAddPublishedMutation,
 } from "redux/createFreelancer/freelancer-pageApi";
 import { useNavigate } from "react-router-dom";
-
-enum listOption {
-	EDUCATION = "EDUCATION",
-	WORK_HISTORY = "WORK_HISTORY",
-}
 
 export function CreateProfile2() {
 	const { t } = useTranslation();
@@ -53,6 +55,13 @@ export function CreateProfile2() {
 		setWorkHistoryList([workHistory]);
 	}, []);
 
+	const { handleChangeList } = useChangeListHandler(
+		setEducationList,
+		setWorkHistoryList,
+		educationList,
+		workHistoryList,
+	);
+
 	const handleotherExperienceChange = (event: React.FormEvent<HTMLTextAreaElement>) => {
 		setOtherExperience((event.target as HTMLTextAreaElement).value);
 	};
@@ -72,7 +81,7 @@ export function CreateProfile2() {
 		}
 		if (type === "view") {
 			dispatch(addFreelancerInfo(payload));
-      navigate("/freelancer/viewprofile");
+			navigate("/freelancer/viewprofile");
 		}
 		if (type === "back") {
 			navigate("/freelancer/create-profile1");
@@ -89,56 +98,7 @@ export function CreateProfile2() {
 		navigate("/searchworkpage");
 	};
 
-	const ToastButtons = () => (
-		<>
-			<StyledButton
-				type="button"
-				buttonColor="redGradient"
-				buttonSize="sm"
-				fontSize="md"
-				onClick={handleWithoutPublishButton}
-			>
-				<strong>{t("freelancer.createProfile.modalBtnNo")}</strong>
-			</StyledButton>
-			<StyledButton
-				type="button"
-				buttonColor="redGradient"
-				buttonSize="sm"
-				fontSize="md"
-				onClick={handlePublishedButton}
-			>
-				<strong>{t("freelancer.createProfile.modalBtnYes")}</strong>
-			</StyledButton>
-		</>
-	);
-
-	const handleChangeList = (
-		index: number,
-		event: React.FormEvent<HTMLInputElement>,
-		option: listOption,
-	): void => {
-		const name = (event.target as HTMLInputElement).name;
-		const value = (event.target as HTMLInputElement).value;
-		if (option === listOption.EDUCATION) {
-			const list = [...educationList];
-			const newEducationList = list.map((it, position) => {
-				if (position === index) {
-					return { ...it, [name]: value };
-				}
-				return it;
-			});
-			setEducationList(newEducationList);
-		} else {
-			const list = [...workHistoryList];
-			const newWorkHistoryList = list.map((it, position) => {
-				if (position === index) {
-					return { ...it, [name]: value };
-				}
-				return it;
-			});
-			setWorkHistoryList(newWorkHistoryList);
-		}
-	};
+	const ToastButtons = ModalWindow({ handlePublishedButton, handleWithoutPublishButton });
 
 	return (
 		<StyledPage>
