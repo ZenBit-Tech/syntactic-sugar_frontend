@@ -3,19 +3,24 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { StyledButton } from "@freelance/components";
 import { Form, RadioGroup } from "./role-selection-form.styled";
+import { useAddRoleMutation, UserRoles } from "redux/role.api";
 
 type RoleOptions = "job-owner" | "freelancer";
 
 export function RoleSelectionForm() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
+	const [addRole] = useAddRoleMutation();
 	const [radioOption, setRadioOption] = useState<RoleOptions | null>(null);
 
 	const roleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setRadioOption(e.target.value as RoleOptions);
 	};
 
-	const redirect = () => {
+	const handleContinueButton = () => {
+		addRole(
+			radioOption === "job-owner" ? { role: UserRoles.EMPLOYER } : { role: UserRoles.FREELANCER },
+		);
 		navigate(`/${radioOption}/create-profile1`);
 	};
 
@@ -28,7 +33,7 @@ export function RoleSelectionForm() {
 				<label htmlFor="freelancer">{t("roleSelection.roleFreelancer")}</label>
 			</RadioGroup>
 			{radioOption ? (
-				<StyledButton buttonSize="lg" buttonColor="redGradient" onClick={redirect}>
+				<StyledButton buttonSize="lg" buttonColor="redGradient" onClick={handleContinueButton}>
 					{t("recoverPassForm.buttonContinue")}
 				</StyledButton>
 			) : (
