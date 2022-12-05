@@ -2,7 +2,7 @@ import { SubmitHandler } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { CREATE_NEW_JOB_SECOND_PAGE } from "utils/constants/links";
-import { IJobPostingFirstForm, IUseJobPostingFirstForm } from "./interfaces";
+import { IJobPostingFirstForm, IUseJobPostingFirstForm } from "@freelance/components";
 
 export const useJobPostingFirstFormHook = (): IUseJobPostingFirstForm => {
 	const navigate = useNavigate();
@@ -14,6 +14,7 @@ export const useJobPostingFirstFormHook = (): IUseJobPostingFirstForm => {
 	const descriptionLabel: string = t("newJobPosting.firstForm.descriptionLabel");
 
 	const onSubmit: SubmitHandler<IJobPostingFirstForm> = data => {
+		// Will add storing to redux, for now only console.log
 		console.log(data);
 		navigate(CREATE_NEW_JOB_SECOND_PAGE);
 	};

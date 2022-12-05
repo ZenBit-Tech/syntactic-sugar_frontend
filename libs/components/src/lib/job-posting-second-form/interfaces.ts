@@ -26,5 +26,6 @@ export interface IUseJobPostingSecondForm {
 	workExperiencePlaceholder: string;
 	hourRateLabel: string;
 	hourRatePlaceholder: string;
+	fieldRequired: string;
 	onSubmit: SubmitHandler<IJobPostingSecondForm>;
 }

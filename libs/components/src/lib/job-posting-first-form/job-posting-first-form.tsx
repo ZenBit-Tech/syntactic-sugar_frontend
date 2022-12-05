@@ -3,13 +3,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useJobPostingFirstFormHook } from "./job-posting-first-formHooks";
 import {
 	IJobPostingFormProps,
+	IJobPostingFirstForm,
 	Form,
 	StyledSpan,
 	Input,
 	JobPostingTextArea,
 	JobPostingLabel,
 } from "@freelance/components";
-import { IJobPostingFirstForm } from "./interfaces";
 import { useFirstFormSchema } from "utils/validations/newJobPostingSchemas";
 import { FirstFormInputWrapper } from "./job-posting-first-form.styled";
 
@@ -28,7 +28,7 @@ export function JobPostingFirstForm({ page }: IJobPostingFormProps) {
 	return (
 		<Form id={page} onSubmit={handleSubmit(onSubmit)}>
 			<JobPostingLabel>{inputLabel}</JobPostingLabel>
-			<FirstFormInputWrapper>
+			<FirstFormInputWrapper positionRight={0} width={10}>
 				<Input
 					{...register("jobTitle")}
 					type="text"
@@ -42,7 +42,7 @@ export function JobPostingFirstForm({ page }: IJobPostingFormProps) {
 				)}
 			</FirstFormInputWrapper>
 			<JobPostingLabel>{descriptionLabel}</JobPostingLabel>
-			<FirstFormInputWrapper>
+			<FirstFormInputWrapper positionRight={0} width={10}>
 				<JobPostingTextArea
 					{...register("jobDescription")}
 					rows={10}

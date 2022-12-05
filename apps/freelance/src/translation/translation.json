@@ -111,6 +111,9 @@
 		"goBackButton": "Go back",
 		"continueButton": "Continue",
 		"createButton": "Create a job",
+		"validation": {
+			"messageFieldRequired": "Field is requierd"
+		},
 		"firstForm": {
 			"inputLabel": "Who are you looking for?",
 			"jobTitlePlaceholder": "E.g.: Java script developer for a big education project",

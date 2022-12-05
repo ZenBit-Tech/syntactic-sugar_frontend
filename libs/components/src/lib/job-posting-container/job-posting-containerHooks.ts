@@ -6,7 +6,7 @@ interface INewJobPostingHook {
 	goBackButton: string;
 	createButtonText: string;
 	continueButton: string;
-	goBack: () => void;
+	goBack: (goBackLink: string) => void;
 }
 
 export const useJobPostingContainerHook = (): INewJobPostingHook => {
@@ -18,8 +18,8 @@ export const useJobPostingContainerHook = (): INewJobPostingHook => {
 	const createButtonText: string = t("newJobPosting.createButton");
 	const continueButton: string = t("newJobPosting.continueButton");
 
-	const goBack = (): void => {
-		navigate(-1);
+	const goBack = (goBackLink: string): void => {
+		navigate(goBackLink);
 	};
 
 	return {

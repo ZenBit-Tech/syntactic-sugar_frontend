@@ -9,15 +9,16 @@ import {
 } from "utils/select-options/options";
 import {
 	IJobPostingFormProps,
-	InputWrapper,
+	IJobPostingSecondForm,
+	ErrorsHandlerWrapper,
 	IncreasedFieldWrapper,
 	FieldWrapper,
 	JobPostingGridForm,
 	JobPostingLabel,
 	SelectElement,
 	JobPostingInput,
+	StyledSpan,
 } from "@freelance/components";
-import { IJobPostingSecondForm } from "./interfaces";
 import { useJobPostingSecondFormHook } from "./job-posting-second-formHooks";
 
 export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
@@ -36,19 +37,25 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 		workExperiencePlaceholder,
 		hourRateLabel,
 		hourRatePlaceholder,
+		fieldRequired,
 		onSubmit,
 	} = useJobPostingSecondFormHook();
-	const { handleSubmit, control, register } = useForm<IJobPostingSecondForm>();
+	const {
+		handleSubmit,
+		control,
+		register,
+		formState: { errors },
+	} = useForm<IJobPostingSecondForm>();
 
 	return (
 		<JobPostingGridForm id={page} onSubmit={handleSubmit(onSubmit)} justifyItems="center">
 			<IncreasedFieldWrapper gridRow={1} typeOfLength="full">
 				<JobPostingLabel>{countreisLabel}</JobPostingLabel>
-				<InputWrapper>
+				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="countries"
 						control={control}
-						rules={{ required: true }}
+						rules={{ required: fieldRequired }}
 						render={({ field }) => (
 							<SelectElement
 								options={countries}
@@ -60,15 +67,20 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 							/>
 						)}
 					/>
-				</InputWrapper>
+					{errors?.countries && (
+						<StyledSpan fontSize="sm" type="validation">
+							<strong>{errors?.countries?.message}</strong>
+						</StyledSpan>
+					)}
+				</ErrorsHandlerWrapper>
 			</IncreasedFieldWrapper>
 			<FieldWrapper>
 				<JobPostingLabel>{categoryLabel}</JobPostingLabel>
-				<InputWrapper>
+				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="category"
 						control={control}
-						rules={{ required: true }}
+						rules={{ required: fieldRequired }}
 						render={({ field }) => (
 							<SelectElement
 								options={categories}
@@ -78,25 +90,35 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 							/>
 						)}
 					/>
-				</InputWrapper>
+					{errors?.category && (
+						<StyledSpan fontSize="sm" type="validation">
+							<strong>{errors?.category?.message}</strong>
+						</StyledSpan>
+					)}
+				</ErrorsHandlerWrapper>
 			</FieldWrapper>
 			<FieldWrapper>
 				<JobPostingLabel>{positionLabel}</JobPostingLabel>
-				<InputWrapper>
+				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<JobPostingInput
-						{...register("position", { required: true })}
+						{...register("position", { required: fieldRequired })}
 						type="text"
 						placeholder={postitonPlaceholder}
 					/>
-				</InputWrapper>
+					{errors?.position && (
+						<StyledSpan fontSize="sm" type="validation">
+							<strong>{errors?.position?.message}</strong>
+						</StyledSpan>
+					)}
+				</ErrorsHandlerWrapper>
 			</FieldWrapper>
 			<FieldWrapper>
 				<JobPostingLabel>{employmentTypeLabel}</JobPostingLabel>
-				<InputWrapper>
+				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="employmentType"
 						control={control}
-						rules={{ required: true }}
+						rules={{ required: fieldRequired }}
 						render={({ field }) => (
 							<SelectElement
 								options={employmentType}
@@ -106,15 +128,20 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 							/>
 						)}
 					/>
-				</InputWrapper>
+					{errors?.employmentType && (
+						<StyledSpan fontSize="sm" type="validation">
+							<strong>{errors?.employmentType?.message}</strong>
+						</StyledSpan>
+					)}
+				</ErrorsHandlerWrapper>
 			</FieldWrapper>
 			<FieldWrapper>
 				<JobPostingLabel>{hoursAmountLabel}</JobPostingLabel>
-				<InputWrapper>
+				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="availableAmountOfHour"
 						control={control}
-						rules={{ required: true }}
+						rules={{ required: fieldRequired }}
 						render={({ field }) => (
 							<SelectElement
 								options={hoursAmount}
@@ -124,15 +151,20 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 							/>
 						)}
 					/>
-				</InputWrapper>
+					{errors?.availableAmountOfHour && (
+						<StyledSpan fontSize="sm" type="validation">
+							<strong>{errors?.availableAmountOfHour?.message}</strong>
+						</StyledSpan>
+					)}
+				</ErrorsHandlerWrapper>
 			</FieldWrapper>
 			<FieldWrapper>
 				<JobPostingLabel>{workExperienceLabel}</JobPostingLabel>
-				<InputWrapper>
+				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="workExperience"
 						control={control}
-						rules={{ required: true }}
+						rules={{ required: fieldRequired }}
 						render={({ field }) => (
 							<SelectElement
 								options={workExperience}
@@ -142,15 +174,20 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 							/>
 						)}
 					/>
-				</InputWrapper>
+					{errors?.workExperience && (
+						<StyledSpan fontSize="sm" type="validation">
+							<strong>{errors?.workExperience?.message}</strong>
+						</StyledSpan>
+					)}
+				</ErrorsHandlerWrapper>
 			</FieldWrapper>
 			<FieldWrapper>
 				<JobPostingLabel>{hourRateLabel}</JobPostingLabel>
-				<InputWrapper>
+				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="hourRate"
 						control={control}
-						rules={{ required: true }}
+						rules={{ required: fieldRequired }}
 						render={({ field }) => (
 							<SelectElement
 								options={hourRate}
@@ -160,7 +197,12 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 							/>
 						)}
 					/>
-				</InputWrapper>
+					{errors?.hourRate && (
+						<StyledSpan fontSize="sm" type="validation">
+							<strong>{errors?.hourRate?.message}</strong>
+						</StyledSpan>
+					)}
+				</ErrorsHandlerWrapper>
 			</FieldWrapper>
 		</JobPostingGridForm>
 	);

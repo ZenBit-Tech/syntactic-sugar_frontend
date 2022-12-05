@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { TextArea, InputWrapper } from "@freelance/components";
+import { ErrorsHandlerWrapper } from "@freelance/components";
 
-export const FirstFormInputWrapper = styled(InputWrapper)`
+export const FirstFormInputWrapper = styled(ErrorsHandlerWrapper)`
 	:not(:last-of-type) {
 		margin-bottom: 5vh;
 	}

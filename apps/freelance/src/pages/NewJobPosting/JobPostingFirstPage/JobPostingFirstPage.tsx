@@ -7,7 +7,7 @@ export function JobPostingFirstPage() {
 
 	const title: string = t("newJobPosting.mainTitle");
 
-	return <JobPostingContainer page={FIRST_PAGE} title={title} />;
+	return <JobPostingContainer page={FIRST_PAGE} goBackLink={"#"} title={title} />;
 }
 
 export default JobPostingFirstPage;

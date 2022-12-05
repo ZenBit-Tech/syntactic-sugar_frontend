@@ -40,20 +40,25 @@ export const TextArea = styled.textarea`
 	${styles}
 `;
 
-export const InputWrapper = styled.div`
+interface IErrorsHandlerWrapper {
+	positionRight: number;
+	width: number;
+}
+
+export const ErrorsHandlerWrapper = styled.div<IErrorsHandlerWrapper>`
 	position: relative;
 
 	span {
 		opacity: 0.8;
 		top: 50%;
-		right: 0%;
+		right: ${({ positionRight }) => positionRight}%;
 		text-align: center;
 		align-items: center;
 		justify-content: center;
 		display: inline-flex;
 		height: auto;
 		max-height: 50px;
-		width: 10%;
+		width: ${({ width }) => width}%;
 		padding: 0.5rem;
 		color: ${({ theme }) => theme.colors.white};
 		position: absolute;

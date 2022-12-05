@@ -7,14 +7,20 @@ import {
 	IncreasedFieldWrapper,
 	FieldWrapper,
 	JobPostingLabel,
-	InputWrapper,
+	ErrorsHandlerWrapper,
 	SelectElement,
 	JobPostingTextArea,
+	StyledSpan,
 } from "@freelance/components";
 import { useJobPostingThirdFormHook } from "./job-posting-third-formHooks";
 
 export function JobPostingThirdForm({ page }: IJobPostingFormProps) {
-	const { register, handleSubmit, control } = useForm<IJobPostingThirdForm>();
+	const {
+		register,
+		handleSubmit,
+		control,
+		formState: { errors },
+	} = useForm<IJobPostingThirdForm>();
 	const {
 		skillsLabel,
 		skillsPlaceholder,
@@ -22,6 +28,7 @@ export function JobPostingThirdForm({ page }: IJobPostingFormProps) {
 		englishLevelPlaceholder,
 		otherRequirenmentsLabel,
 		otherRequirenmentsPlaceholder,
+		fieldRequired,
 		onSubmit,
 	} = useJobPostingThirdFormHook();
 
@@ -29,11 +36,11 @@ export function JobPostingThirdForm({ page }: IJobPostingFormProps) {
 		<JobPostingGridForm id={page} onSubmit={handleSubmit(onSubmit)} justifyItems="start">
 			<IncreasedFieldWrapper gridRow={1} typeOfLength="half">
 				<JobPostingLabel>{skillsLabel}</JobPostingLabel>
-				<InputWrapper>
+				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="skills"
 						control={control}
-						rules={{ required: true }}
+						rules={{ required: fieldRequired }}
 						render={({ field }) => (
 							<SelectElement
 								options={skills}
@@ -45,15 +52,20 @@ export function JobPostingThirdForm({ page }: IJobPostingFormProps) {
 							/>
 						)}
 					/>
-				</InputWrapper>
+					{errors?.skills && (
+						<StyledSpan fontSize="sm" type="validation">
+							<strong>{errors?.skills?.message}</strong>
+						</StyledSpan>
+					)}
+				</ErrorsHandlerWrapper>
 			</IncreasedFieldWrapper>
 			<FieldWrapper>
 				<JobPostingLabel>{englishLevelLabel}</JobPostingLabel>
-				<InputWrapper>
+				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="englishLevel"
 						control={control}
-						rules={{ required: true }}
+						rules={{ required: fieldRequired }}
 						render={({ field }) => (
 							<SelectElement
 								options={englishLevel}
@@ -64,18 +76,28 @@ export function JobPostingThirdForm({ page }: IJobPostingFormProps) {
 							/>
 						)}
 					/>
-				</InputWrapper>
+					{errors?.englishLevel && (
+						<StyledSpan fontSize="sm" type="validation">
+							<strong>{errors?.englishLevel?.message}</strong>
+						</StyledSpan>
+					)}
+				</ErrorsHandlerWrapper>
 			</FieldWrapper>
 			<IncreasedFieldWrapper gridRow="auto" typeOfLength="full">
 				<JobPostingLabel>{otherRequirenmentsLabel}</JobPostingLabel>
-				<InputWrapper>
+				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<JobPostingTextArea
-						{...register("otherRequirenments", { required: true })}
-						rows={10}
+						{...register("otherRequirenments", { required: fieldRequired })}
+						rows={5}
 						maxLength={600}
 						placeholder={otherRequirenmentsPlaceholder}
 					/>
-				</InputWrapper>
+					{errors?.otherRequirenments && (
+						<StyledSpan fontSize="sm" type="validation">
+							<strong>{errors?.otherRequirenments?.message}</strong>
+						</StyledSpan>
+					)}
+				</ErrorsHandlerWrapper>
 			</IncreasedFieldWrapper>
 		</JobPostingGridForm>
 	);

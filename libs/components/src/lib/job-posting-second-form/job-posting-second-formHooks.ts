@@ -2,7 +2,7 @@ import { SubmitHandler } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { CREATE_NEW_JOB_THIRD_PAGE } from "utils/constants/links";
-import { IJobPostingSecondForm, IUseJobPostingSecondForm } from "./interfaces";
+import { IJobPostingSecondForm, IUseJobPostingSecondForm } from "@freelance/components";
 
 export const useJobPostingSecondFormHook = (): IUseJobPostingSecondForm => {
 	const navigate = useNavigate();
@@ -22,8 +22,10 @@ export const useJobPostingSecondFormHook = (): IUseJobPostingSecondForm => {
 	const workExperiencePlaceholder: string = t("newJobPosting.secondForm.workExperiencePlaceholder");
 	const hourRateLabel: string = t("newJobPosting.secondForm.hourRateLabel");
 	const hourRatePlaceholder: string = t("newJobPosting.secondForm.hourRatePlaceholder");
+	const fieldRequired: string = t("newJobPosting.validation.messageFieldRequired");
 
 	const onSubmit: SubmitHandler<IJobPostingSecondForm> = data => {
+		// Will add storing to redux, forn now only console.log
 		console.log(data);
 		navigate(CREATE_NEW_JOB_THIRD_PAGE);
 	};
@@ -43,6 +45,7 @@ export const useJobPostingSecondFormHook = (): IUseJobPostingSecondForm => {
 		workExperiencePlaceholder,
 		hourRateLabel,
 		hourRatePlaceholder,
+		fieldRequired,
 		onSubmit,
 	};
 };

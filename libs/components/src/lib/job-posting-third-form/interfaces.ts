@@ -14,5 +14,6 @@ export interface IUseJobPostingThirdForm {
 	englishLevelPlaceholder: string;
 	otherRequirenmentsLabel: string;
 	otherRequirenmentsPlaceholder: string;
+	fieldRequired: string;
 	onSubmit: SubmitHandler<IJobPostingThirdForm>;
 }

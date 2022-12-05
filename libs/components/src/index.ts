@@ -17,7 +17,7 @@ export * from "./lib/styles/global.styled";
 export * from "./lib/styles/typograghy";
 export * from "./lib/styles/buttons";
 export * from "./lib/styles/layouts";
-export * from "./lib/styles/inputData";
+export * from "./lib/styles/inputComponents";
 
 // Reset password forms
 
@@ -36,4 +36,4 @@ export * from "./lib/job-posting-container/interfaces";
 export * from "./lib/job-posting-first-form/interfaces";
 export * from "./lib/job-posting-second-form/interfaces";
 export * from "./lib/job-posting-third-form/interfaces";
-export * from "./lib/styles/newJoPostingCommonStyles";
+export * from "./lib/styles/newJobPostingCommonStyles";

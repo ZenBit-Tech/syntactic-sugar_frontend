@@ -1,4 +1,5 @@
 import {
+	Page,
 	StyledPage,
 	ThemeBackground,
 	ThemeColors,
@@ -19,16 +20,21 @@ import {
 } from "./job-posting-container.styled";
 import { useJobPostingContainerHook } from "./job-posting-containerHooks";
 
-type Page = "firstPage" | "secondPage" | "thirdPage";
-
 interface INewJobPostingProps {
 	page: Page;
+	goBackLink: string;
 	title?: React.ReactNode;
 	subTitle?: React.ReactNode;
 	createButton?: boolean;
 }
 
-export function JobPostingContainer({ page, title, subTitle, createButton }: INewJobPostingProps) {
+export function JobPostingContainer({
+	page,
+	goBackLink,
+	title,
+	subTitle,
+	createButton,
+}: INewJobPostingProps) {
 	const { description, goBackButton, createButtonText, continueButton, goBack } =
 		useJobPostingContainerHook();
 
@@ -55,7 +61,12 @@ export function JobPostingContainer({ page, title, subTitle, createButton }: INe
 						{page === THIRD_PAGE && <JobPostingThirdForm page={page} />}
 					</FormWrapper>
 					<ButtonContainer>
-						<FormButton type="button" onClick={goBack} buttonSize="sm" buttonColor="redGradient">
+						<FormButton
+							type="button"
+							onClick={() => goBack(goBackLink)}
+							buttonSize="sm"
+							buttonColor="redGradient"
+						>
 							{goBackButton}
 						</FormButton>
 						<FormButton type="submit" form={page} buttonSize="sm" buttonColor="redGradient">
