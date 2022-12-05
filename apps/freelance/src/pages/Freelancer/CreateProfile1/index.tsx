@@ -62,7 +62,7 @@ export function CreateProfile1(props: ProfilePageProps) {
 		};
 		try {
 			await dispatch(addFreelancerInfo(freelancerInfo));
-			navigate("/profile_1");
+			navigate("/freelancer/create-profile2");
 		} catch (error) {
 			alert(error);
 		}

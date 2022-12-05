@@ -1,4 +1,17 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { stat } from "node:fs";
+
+export interface educationProps {
+	institute: string;
+	occupation: string;
+	period: string;
+}
+
+export interface workHistoryProps {
+	company: string;
+	workPosition: string;
+	period: string;
+}
 
 type Freelancer = {
 	fullName: string;
@@ -11,18 +24,39 @@ type Freelancer = {
 	availableAmountOfHour: string;
 	workExperience: string;
 	englishLevel: string;
+	education: educationProps[];
+	workHistory: workHistoryProps[];
+	otherExperience: string;
 };
 
-type FreelancerState = Freelancer[];
-
-const initialState: FreelancerState = [];
+const initialState: Freelancer = {
+	fullName: "",
+	category: "",
+	position: "",
+	skills: [],
+	employmentType: "",
+	country: "",
+	hourRate: "",
+	availableAmountOfHour: "",
+	workExperience: "",
+	englishLevel: "",
+	education: [],
+	workHistory: [],
+	otherExperience: "",
+};
 
 const freelancer = createSlice({
 	name: "freelancer",
 	initialState,
 	reducers: {
 		addFreelancerInfo(state, action) {
-			state.push(action.payload);
+			const payload = action.payload;
+			const currentState = JSON.parse(JSON.stringify(state));
+			Object.keys(currentState).map(key => {
+				if (payload[key]) {
+					state[key as keyof typeof initialState] = payload[key];
+				}
+			});
 		},
 	},
 });
