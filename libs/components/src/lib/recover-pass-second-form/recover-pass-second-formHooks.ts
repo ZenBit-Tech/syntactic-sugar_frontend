@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useResetPasswordMutation } from "redux/reset-password/reset-password-slice";
+import { useResetPasswordMutation } from "redux/resetPassword/resetPasswordSlice";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { SubmitHandler } from "react-hook-form";

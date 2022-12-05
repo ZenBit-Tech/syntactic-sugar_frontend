@@ -1,15 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./example-slice";
+import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
+import { persistedReducer } from "./userState/userPersist";
 import freelancerReducer from "./createFreelancer/freelancer-slice";
 import { signupGoogleApi } from "./signup-googleApi";
-import { resetPasswordApi } from "./reset-password/reset-password-slice";
+import { resetPasswordApi } from "./resetPassword/resetPasswordSlice";
 import { createFreelancerApi } from "./createFreelancer/freelancer-pageApi";
 import { loginApi } from "./login.api";
 import { roleApi } from "./role.api";
 
 const store = configureStore({
 	reducer: {
-		user: userReducer,
+		user: persistedReducer,
 		freelancer: freelancerReducer,
 		[signupGoogleApi.reducerPath]: signupGoogleApi.reducer,
 		[loginApi.reducerPath]: loginApi.reducer,
@@ -18,7 +19,11 @@ const store = configureStore({
 		[roleApi.reducerPath]: roleApi.reducer,
 	},
 	middleware: getDefaultMiddleware =>
-		getDefaultMiddleware().concat(
+		getDefaultMiddleware({
+			serializableCheck: {
+				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+			},
+		}).concat(
 			signupGoogleApi.middleware,
 			loginApi.middleware,
 			resetPasswordApi.middleware,
@@ -26,6 +31,8 @@ const store = configureStore({
 			roleApi.middleware,
 		),
 });
+
+export const persistor = persistStore(store);
 
 export default store;
 
