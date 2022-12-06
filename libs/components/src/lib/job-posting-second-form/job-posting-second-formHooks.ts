@@ -1,12 +1,15 @@
 import { SubmitHandler } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "redux/example-hooks";
+import { addNewJobInfo } from "redux/newJobPosting";
 import { CREATE_NEW_JOB_THIRD_PAGE } from "utils/constants/links";
 import { IJobPostingSecondForm, IUseJobPostingSecondForm } from "@freelance/components";
 
 export const useJobPostingSecondFormHook = (): IUseJobPostingSecondForm => {
 	const navigate = useNavigate();
 	const { t } = useTranslation();
+	const dispatch = useAppDispatch();
 
 	const countreisLabel: string = t("newJobPosting.secondForm.countriesLabel");
 	const countriesPlaceholder: string = t("newJobPosting.secondForm.countriesPlaceholder");
@@ -25,8 +28,17 @@ export const useJobPostingSecondFormHook = (): IUseJobPostingSecondForm => {
 	const fieldRequired: string = t("newJobPosting.validation.messageFieldRequired");
 
 	const onSubmit: SubmitHandler<IJobPostingSecondForm> = data => {
-		// Will add storing to redux, forn now only console.log
-		console.log(data);
+		const resultData = {
+			countries: data.countries.map(country => country.label),
+			category: data.category.label,
+			position: data.position,
+			employmentType: data.employmentType.label,
+			availableAmountOfHour: data.availableAmountOfHour.label,
+			hourRate: data.hourRate.label,
+			workExperience: data.workExperience.label,
+		};
+
+		dispatch(addNewJobInfo(resultData));
 		navigate(CREATE_NEW_JOB_THIRD_PAGE);
 	};
 

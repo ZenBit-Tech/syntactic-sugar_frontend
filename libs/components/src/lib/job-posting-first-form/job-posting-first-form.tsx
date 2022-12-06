@@ -12,9 +12,12 @@ import {
 } from "@freelance/components";
 import { useFirstFormSchema } from "utils/validations/newJobPostingSchemas";
 import { FirstFormInputWrapper } from "./job-posting-first-form.styled";
+import { useAppSelector } from "redux/example-hooks";
+import { getStoredJobInfo } from "redux/newJobPosting/new-job-posting-slice";
 
 export function JobPostingFirstForm({ page }: IJobPostingFormProps) {
 	const schema = useFirstFormSchema();
+	const { jobTitle, jobDescription } = useAppSelector(getStoredJobInfo);
 	const { jobTitlePlaceholder, jobDescriptionPlaceholder, inputLabel, descriptionLabel, onSubmit } =
 		useJobPostingFirstFormHook();
 	const {
@@ -30,6 +33,7 @@ export function JobPostingFirstForm({ page }: IJobPostingFormProps) {
 			<JobPostingLabel>{inputLabel}</JobPostingLabel>
 			<FirstFormInputWrapper positionRight={0} width={10}>
 				<Input
+					defaultValue={jobTitle}
 					{...register("jobTitle")}
 					type="text"
 					placeholder={jobTitlePlaceholder}
@@ -44,6 +48,7 @@ export function JobPostingFirstForm({ page }: IJobPostingFormProps) {
 			<JobPostingLabel>{descriptionLabel}</JobPostingLabel>
 			<FirstFormInputWrapper positionRight={0} width={10}>
 				<JobPostingTextArea
+					defaultValue={jobDescription}
 					{...register("jobDescription")}
 					rows={10}
 					maxLength={600}

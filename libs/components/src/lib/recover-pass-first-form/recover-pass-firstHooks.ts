@@ -1,4 +1,4 @@
-import { useSendLinkEmailMutation } from "redux/reset-password/reset-password-slice";
+import { useSendLinkEmailMutation } from "redux/resetPassword/reset-password-slice";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { SubmitHandler } from "react-hook-form";

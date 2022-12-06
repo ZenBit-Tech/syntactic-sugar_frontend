@@ -18,10 +18,23 @@ import {
 	SelectElement,
 	JobPostingInput,
 	StyledSpan,
+	selectDefaultArray,
+	selectDefaultObject,
 } from "@freelance/components";
 import { useJobPostingSecondFormHook } from "./job-posting-second-formHooks";
+import { useAppSelector } from "redux/example-hooks";
+import { getStoredJobInfo } from "redux/newJobPosting";
 
 export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
+	const {
+		countries: storedCountries,
+		category,
+		position,
+		employmentType: storedEmploymentType,
+		availableAmountOfHour,
+		hourRate: storedHourRate,
+		workExperience: storedWorkExperience,
+	} = useAppSelector(getStoredJobInfo);
 	const {
 		countreisLabel,
 		countriesPlaceholder,
@@ -47,6 +60,8 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 		formState: { errors },
 	} = useForm<IJobPostingSecondForm>();
 
+	const array = selectDefaultArray(storedCountries, countries);
+
 	return (
 		<JobPostingGridForm id={page} onSubmit={handleSubmit(onSubmit)} justifyItems="center">
 			<IncreasedFieldWrapper gridRow={1} typeOfLength="full">
@@ -54,6 +69,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="countries"
+						defaultValue={JSON.parse(JSON.stringify(array))}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (
@@ -79,6 +95,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="category"
+						defaultValue={selectDefaultObject(category, categories) || undefined}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (
@@ -101,6 +118,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 				<JobPostingLabel>{positionLabel}</JobPostingLabel>
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<JobPostingInput
+						defaultValue={position}
 						{...register("position", { required: fieldRequired })}
 						type="text"
 						placeholder={postitonPlaceholder}
@@ -117,6 +135,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="employmentType"
+						defaultValue={selectDefaultObject(storedEmploymentType, employmentType) || undefined}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (
@@ -140,6 +159,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="availableAmountOfHour"
+						defaultValue={selectDefaultObject(availableAmountOfHour, hoursAmount) || undefined}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (
@@ -163,6 +183,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="workExperience"
+						defaultValue={selectDefaultObject(storedWorkExperience, workExperience) || undefined}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (
@@ -186,6 +207,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="hourRate"
+						defaultValue={selectDefaultObject(storedHourRate, hourRate) || undefined}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (

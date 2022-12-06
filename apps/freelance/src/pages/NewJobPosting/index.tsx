@@ -1,3 +1,3 @@
-export { JobPostingFirstPage } from "./JobPostingFirstPage/JobPostingFirstPage";
-export { JobPostingSecondPage } from "./JobPostingSecondPage/JobPostingSeconfPage";
-export { JobPostingThirdPage } from "./JobPostingThirdPage/JobPostingThirdPage";
+export { JobPostingFirstPage } from "./JobPostingFirstPage";
+export { JobPostingSecondPage } from "./JobPostingSecondPage";
+export { JobPostingThirdPage } from "./JobPostingThirdPage";

@@ -1,5 +1,7 @@
 import { useForm, Controller } from "react-hook-form";
 import { englishLevel, skills } from "utils/select-options/options";
+import { useAppSelector } from "redux/example-hooks";
+import { getStoredJobInfo } from "redux/newJobPosting";
 import {
 	IJobPostingFormProps,
 	IJobPostingThirdForm,
@@ -11,10 +13,17 @@ import {
 	SelectElement,
 	JobPostingTextArea,
 	StyledSpan,
+	selectDefaultArray,
+	selectDefaultObject,
 } from "@freelance/components";
 import { useJobPostingThirdFormHook } from "./job-posting-third-formHooks";
 
 export function JobPostingThirdForm({ page }: IJobPostingFormProps) {
+	const {
+		skills: storedSkills,
+		englishLevel: storedEnglishLevel,
+		otherRequirenments,
+	} = useAppSelector(getStoredJobInfo);
 	const {
 		register,
 		handleSubmit,
@@ -32,6 +41,8 @@ export function JobPostingThirdForm({ page }: IJobPostingFormProps) {
 		onSubmit,
 	} = useJobPostingThirdFormHook();
 
+	const array = selectDefaultArray(storedSkills, skills);
+
 	return (
 		<JobPostingGridForm id={page} onSubmit={handleSubmit(onSubmit)} justifyItems="start">
 			<IncreasedFieldWrapper gridRow={1} typeOfLength="half">
@@ -39,6 +50,7 @@ export function JobPostingThirdForm({ page }: IJobPostingFormProps) {
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="skills"
+						defaultValue={JSON.parse(JSON.stringify(array))}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (
@@ -64,6 +76,7 @@ export function JobPostingThirdForm({ page }: IJobPostingFormProps) {
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="englishLevel"
+						defaultValue={selectDefaultObject(storedEnglishLevel, englishLevel) || undefined}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (
@@ -87,6 +100,7 @@ export function JobPostingThirdForm({ page }: IJobPostingFormProps) {
 				<JobPostingLabel>{otherRequirenmentsLabel}</JobPostingLabel>
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<JobPostingTextArea
+						defaultValue={otherRequirenments}
 						{...register("otherRequirenments", { required: fieldRequired })}
 						rows={5}
 						maxLength={600}

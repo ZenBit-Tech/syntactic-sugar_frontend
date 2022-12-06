@@ -1,9 +1,12 @@
 import { SubmitHandler } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useAppDispatch } from "redux/example-hooks";
+import { addNewJobInfo } from "redux/newJobPosting";
 import { IJobPostingThirdForm, IUseJobPostingThirdForm } from "@freelance/components";
 
 export const useJobPostingThirdFormHook = (): IUseJobPostingThirdForm => {
 	const { t } = useTranslation();
+	const dispatch = useAppDispatch();
 
 	const skillsLabel: string = t("newJobPosting.thirdForm.skillsLabel");
 	const skillsPlaceholder: string = t("newJobPosting.thirdForm.skillsPlaceholder");
@@ -16,8 +19,13 @@ export const useJobPostingThirdFormHook = (): IUseJobPostingThirdForm => {
 	const fieldRequired: string = t("newJobPosting.validation.messageFieldRequired");
 
 	const onSubmit: SubmitHandler<IJobPostingThirdForm> = data => {
-		//Will add storing to redux, for now only console.log
-		console.log(data);
+		const resultData = {
+			skills: data.skills.map(skill => skill.label),
+			englishLevel: data.englishLevel.label,
+			otherRequirenments: data.otherRequirenments,
+		};
+
+		dispatch(addNewJobInfo(resultData));
 	};
 
 	return {
