@@ -11,35 +11,22 @@ import {
 	InputWrapper,
 	StyledToastContainer,
 } from "./style";
-import {
-	Dashboard,
-	StyledTitle,
-	StyledButton,
-	ModalWindow,
-	ModalWindowProps,
-} from "@freelance/components";
+import { Dashboard, StyledTitle, StyledButton, ModalWindow } from "@freelance/components";
 import { useEducationHandler } from "./useEducationHandler";
 import { useWorkHistoryHandler } from "./useWorkHistoryHandler";
 import { useChangeListHandler, listOption } from "./useChangeListHandler";
 import { it } from "node:test";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useAppDispatch, useAppSelector } from "redux/example-hooks";
+import { useAppDispatch } from "redux/example-hooks";
 import { addFreelancerInfo } from "redux/createFreelancer/freelancer-slice";
-import {
-	useCreateFreelancerMutation,
-	useAddPublishedMutation,
-} from "redux/createFreelancer/freelancer-pageApi";
 import { useNavigate } from "react-router-dom";
 
 export function CreateProfile2() {
 	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
-	const freelancerState = useAppSelector(state => state.freelancer);
-	const [createFreelancer] = useCreateFreelancerMutation();
 	const [otherExperience, setOtherExperience] = useState<string>("");
-	const [addPublished] = useAddPublishedMutation();
 	const { handleAddEducation, handleRemoveEducation, educationList, setEducationList, education } =
 		useEducationHandler();
 	const {
@@ -87,18 +74,6 @@ export function CreateProfile2() {
 			navigate("/freelancer/create-profile1");
 		}
 	};
-
-	const handlePublishedButton = () => {
-		createFreelancer(freelancerState);
-		addPublished({ isPublished: true });
-		navigate("/searchworkpage");
-	};
-
-	const handleWithoutPublishButton = () => {
-		navigate("/searchworkpage");
-	};
-
-	const ToastButtons = ModalWindow({ handlePublishedButton, handleWithoutPublishButton });
 
 	return (
 		<StyledPage>
@@ -275,7 +250,7 @@ export function CreateProfile2() {
 						>
 							<strong>{t("freelancer.createProfile.createProfileBtn")}</strong>
 						</StyledButton>
-						<StyledToastContainer closeButton={ToastButtons} autoClose={false} />
+						<StyledToastContainer closeButton={ModalWindow} autoClose={false} />
 					</ButtonsContainer>
 				</Form>
 			</Dashboard>
