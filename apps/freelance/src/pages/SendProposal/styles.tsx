@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledPage = styled.div`
+export const StyledPage = styled.div`
 	margin: auto;
 	display: flex;
 	height: 100vh;
@@ -15,6 +15,6 @@ export const Container = styled.div`
 	width: 90%;
 	height: 80%;
 	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 `;
-
-export { StyledPage };

@@ -1,6 +1,4 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
-import { StyledHeader } from "./example-header.styled";
 import { StyledTitle } from "@freelance/components";
 import { ThemeColors } from "@freelance/components";
 import { ThemeProvider } from "styled-components";
@@ -13,11 +11,9 @@ export function ExampleHeader(props: ExampleHeaderProps) {
 
 	return (
 		<ThemeProvider theme={ThemeColors}>
-			<StyledHeader>
-				<StyledTitle tag="h1" fontWeight={800} fontSize="lg">
-					{t("Hello, Syntactic sugar!")}
-				</StyledTitle>
-			</StyledHeader>
+			<StyledTitle tag="h1" fontWeight={800} fontSize="lg">
+				{t("Hello, Syntactic sugar!")}
+			</StyledTitle>
 		</ThemeProvider>
 	);
 }

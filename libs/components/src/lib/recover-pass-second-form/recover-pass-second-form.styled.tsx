@@ -1,32 +1,82 @@
-import styled from 'styled-components';
+import { Modal } from "antd";
+import styled from "styled-components";
+import { StyledButton } from "../styles/buttons";
 
-export const FormWrapper = styled.div`
-  position: relative;
-  width: 100vw;
-  height: 100vh;
+export const Form = styled.form`
+	display: flex;
+	flex-direction: column;
+	width: 70%;
+	align-items: center;
+	gap: 0.5rem;
+	margin: 1rem;
+	position: relative;
 
-  form {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+	input {
+		border: 2px solid ${({ theme }) => theme.colors.grey};
+		border-radius: 100px;
+		width: 75%;
+		align-self: center;
+		align-items: center;
+		height: 50px;
+		padding-left: 50px;
 
-    padding: 20px;
-  }
+		::placeholder {
+			color: ${({ theme }) => theme.colors.grey};
+		}
+	}
 
-  input {
-    display: block;
-    width: 300px;
-    height: 50px;
-    margin-bottom: 10px;
-    padding: 10px;
-  }
+	input[type="email"] {
+		background: url("/assets/images/user_icon.png") no-repeat 20px center;
+		background-size: 15px;
+	}
 
-  button {
-    display: block;
-    padding: 10px;
-    border: 1px solid ${({theme}) => theme.color.black};
-    background-color: ${({theme}) => theme.color.blue};
-    color: ${({theme})=>theme.color.white};
-  }
+	input[type="password"] {
+		background: url("/assets/images/password_icon.png") no-repeat 20px center;
+		background-size: 15px;
+	}
+`;
+
+export const InputWrapper = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+
+	span {
+		opacity: 0.8;
+		right: -15%;
+		text-align: center;
+		align-items: center;
+		justify-content: center;
+		display: inline-flex;
+		height: auto;
+		max-height: 50px;
+		width: 20%;
+		padding: 0.5rem;
+		color: ${({ theme }) => theme.colors.white};
+		position: absolute;
+	}
+`;
+
+export const StyledButtonModal = styled(StyledButton)`
+	display: flex;
+	margin-left: auto;
+	margin-right: auto;
+`;
+
+export const StyledModal = styled(Modal)`
+	border-radius: 20px;
+	overflow: hidden;
+	padding-bottom: 0;
+	border: 10px solid ${({ theme }) => theme.colors.darkRed};
+
+	p {
+		color: ${({ theme }) => theme.colors.darkGrey};
+		margin: 0 2rem;
+		text-align: center;
+	}
+
+	span.ant-modal-close-x {
+		display: none;
+	}
 `;

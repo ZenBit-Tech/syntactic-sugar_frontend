@@ -4,13 +4,17 @@ import { Provider } from "react-redux";
 import Login from "@pages/Login";
 import Signup from "@pages/Signup";
 import { RecoverPasswordRequest } from "@pages/RecoverPasswordRequest";
-import { CheckYourEmail } from "@pages/RecoverPasswordRequest/check-your-email";
+import { RecoverPasswordCheck } from "@pages/RecoverPasswordCheck";
 import { RecoverPasswordReset } from "@pages/RecoverPasswordReset";
-import { PasswordUpdated } from "@pages/RecoverPasswordReset/password-updated";
+import { CreateProfile1 } from "@pages/Freelancer/CreateProfile1";
+import { RecoverPasswordUpdate } from "@pages/RecoverPasswordUpdate";
+import { Invitation } from "@pages/Invitation";
+import { Role } from "@pages/Role";
 
 import store from "redux/store";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import SendProposal from "@pages/SendProposal";
+import CreateProfile2 from "@pages/Freelancer/CreateProfile2";
 
 export function App() {
 	return (
@@ -21,12 +25,17 @@ export function App() {
 						<Routes>
 							<Route path="/" element={<Login />} />
 							<Route path="/signup" element={<Signup />} />
-							<Route path="/role" element={<h1>hello</h1>} />
+							<Route path="/role" element={<Role />} />
 							<Route path="/recover-password" element={<RecoverPasswordRequest />} />
-							<Route path="/check-your-email" element={<CheckYourEmail />} />
+							<Route path="/check-your-email" element={<RecoverPasswordCheck />} />
 							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
-							<Route path="/password-updated" element={<PasswordUpdated />} />
 							<Route path="/send-proposal-freelancer" element={<SendProposal />} />
+							<Route path="/work-details" element={<h1>Work Details Page 4.1</h1>} />
+							<Route path="/password-updated" element={<RecoverPasswordUpdate />} />
+							<Route path="/invitation" element={<Invitation />} />
+							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />
+							<Route path="/freelancer/create-profile2" element={<CreateProfile2 />} />
+							<Route path="/profile_1" element={<h1>profilePage3.1</h1>} />
 						</Routes>
 					</BrowserRouter>
 				</Provider>
