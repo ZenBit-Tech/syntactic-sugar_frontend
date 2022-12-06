@@ -1,8 +1,9 @@
 import { useTranslation } from "react-i18next";
+import { useAppDispatch } from "src/redux/hooks";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { StyledPage, Container } from "./styles";
-import { StyledButton, ThemeColors, StyledParagraph, BaseTitle } from "@freelance/components";
+import { StyledButton, ThemeColors, BaseTitle } from "@freelance/components";
 import { ThemeProvider } from "styled-components";
 import { Input } from "antd";
 import "antd/dist/antd.css";
@@ -12,14 +13,9 @@ const { TextArea } = Input;
 
 export function SendProposal() {
 	const { t } = useTranslation();
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
-	const {
-		register,
-		handleSubmit,
-		control,
-		reset,
-		formState: { isSubmitSuccessful },
-	} = useForm<IFormInput>();
+	const { register, handleSubmit, control, reset } = useForm<IFormInput>();
 
 	const goBack = () => {
 		navigate("/work-details");
