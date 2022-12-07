@@ -62,6 +62,10 @@
 		"resetSuccess": "Your password reset is successfully done! Go to Home Page.",
 		"homePageBtn": "HOME PAGE"
 	},
+  "jobCard": {
+		"sendProposal": "Send proposal",
+		"publishJob": "Publish Job"
+	},
 	"invitationPage": {
 		"title": "You have successfully registered!",
 		"subtitle": "Check your e-mail and activate your account. After activation, you can begin to find your perfect job match."
@@ -86,22 +90,22 @@
 		"createProfile": {
 			"fullNamePlaceholder": "Full Name",
 			"positionPlaceholder": "Position",
-      "educationLabel": "Education",
-				"institutePlaceholder": "Institute",
-				"occupationPlaceholder": "Occupation",
-				"periodPlaceholder": "Period",
-				"removeBtn": "REMOVE",
-				"workHistoryLabel": "Work Experience",
-				"addBtn": "+",
-				"companyPlaceholder": "Company",
-				"positionPlaceholder": "Position",
-				"otherExperienceLabel": "Other Experience",
-				"viewProfileBtn": "VIEW PROFILE",
-				"backBtn": "BACK",
-				"createProfileBtn": "CREATE PROFILE",
-				"modal": "Do you want to publish profile",
-				"modalBtnNo": "No",
-				"modalBtnYes": "Yes",
+			"educationLabel": "Education",
+			"institutePlaceholder": "Institute",
+			"occupationPlaceholder": "Occupation",
+			"periodPlaceholder": "Period",
+			"removeBtn": "REMOVE",
+			"workHistoryLabel": "Work Experience",
+			"addBtn": "+",
+			"companyPlaceholder": "Company",
+			"positionPlaceholder": "Position",
+			"otherExperienceLabel": "Other Experience",
+			"viewProfileBtn": "VIEW PROFILE",
+			"backBtn": "BACK",
+			"createProfileBtn": "CREATE PROFILE",
+			"modal": "Do you want to publish profile",
+			"modalBtnNo": "No",
+			"modalBtnYes": "Yes",
 			"selectOption": {
 				"country": "Country",
 				"category": "Category",
@@ -112,6 +116,11 @@
 				"employmentType": "Employment Type",
 				"englishLevel": "English Level"
 			}
+		},
+		"searchWork": {
+			"filter": "Filter",
+			"unFilter": "Reset filter",
+      "jobsList": "Jobs list"
 		},
 		"roleSelection": {
 			"roleTitle": "What do you want?",

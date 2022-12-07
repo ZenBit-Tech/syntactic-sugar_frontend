@@ -1,3 +1,5 @@
+export * from "./lib/pagination/pagination";
+export * from "./lib/job-card/job-card";
 export * from "./lib/modal-window/modal-window";
 export * from "./lib/dashboard-header/dashboard-header";
 export * from "./lib/dashboard-menu/dashboard-menu";
@@ -14,7 +16,9 @@ export * from "./lib/base-title/base-title";
 export * from "./lib/styles/global.styled";
 export * from "./lib/styles/typograghy";
 export * from "./lib/styles/buttons";
-export * from "./lib/modal-window/modal-window"
+export * from "./lib/modal-window/modal-window";
+export * from "./lib/job-card/job-card";
+export * from "./lib/pagination/pagination";
 
 // Reset password forms
 

@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 interface iStyledButtonProps {
-	buttonSize: "lg" | "md" | "sm" | "modal";
+	buttonSize: "lg" | "md" | "sm" | "modal" | "card";
 	buttonColor: "redGradient" | "blue" | "lightRed" | "darkRed";
 	fontSize?: "lg" | "md" | "sm";
 }
@@ -42,6 +42,10 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 				return css`
 					width: 48%;
 				`;
+			case "card":
+				return css`
+					width: 20%;
+				`;
 		}
 	}}
 
@@ -69,7 +73,7 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 				`;
 		}
 	}}
-	
+
 	  &:hover {
 		filter: brightness(1.1);
 	}
