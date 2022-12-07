@@ -95,6 +95,7 @@ export const InputContainer = styled.div`
 
 	height: 150%;
 
+
 	#institute {
 		background: url("/assets/images/institute_icon.png") no-repeat 20px center;
 	}
@@ -165,6 +166,7 @@ export const InputWrapper = styled.div`
 		height: 100px;
 		margin: 2px;
 		border: 1px solid ${({ theme }) => theme.colors.darkGrey};
+		border-radius: 10px;
 		:hover {
 			box-shadow: 10px 5px 5px ${({ theme }) => theme.colors.lightRed};
 		}

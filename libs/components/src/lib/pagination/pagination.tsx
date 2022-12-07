@@ -8,7 +8,7 @@ import { Items, JobsInterface } from "./items";
 /* eslint-disable-next-line */
 export interface PaginationProps {
 	itemsPerPage: number;
-  user: string;
+	user: string;
 }
 
 export interface ReactPaginateEvent {
@@ -16,7 +16,7 @@ export interface ReactPaginateEvent {
 }
 
 export function Pagination({ itemsPerPage, user }: PaginationProps) {
-	const [itemOffset, setItemOffset] = useState(0);
+	const [itemOffset, setItemOffset] = useState<number>(0);
 	const endOffset = itemOffset + itemsPerPage;
 	const currentItems = jobs.slice(itemOffset, endOffset);
 	const pageCount = Math.ceil(jobs.length / itemsPerPage);
@@ -27,7 +27,7 @@ export function Pagination({ itemsPerPage, user }: PaginationProps) {
 
 	return (
 		<>
-			<Items currentItems={currentItems} user={user}/>
+			<Items currentItems={currentItems} user={user} />
 			<StyledReactPagination
 				breakLabel="..."
 				nextLabel="next >"

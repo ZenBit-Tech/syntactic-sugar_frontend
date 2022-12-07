@@ -39,7 +39,7 @@ interface IFormInput {
 }
 
 export function SearchWork() {
-  const user: user = "freelancer"
+	const user: user = "freelancer";
 	const { t } = useTranslation();
 	const { handleSubmit, control, getValues, reset } = useForm<IFormInput>();
 	const emptyValue = {
@@ -72,7 +72,7 @@ export function SearchWork() {
 								</StyledTitle>
 							</InputHeader>
 							<InputWrapper>
-								<Pagination itemsPerPage={6} user={user}/>
+								<Pagination itemsPerPage={6} user={user} />
 							</InputWrapper>
 						</InputContainer>
 						<InputContainer>
