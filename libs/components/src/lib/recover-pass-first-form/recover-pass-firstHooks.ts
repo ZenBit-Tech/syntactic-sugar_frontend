@@ -4,9 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { SubmitHandler } from "react-hook-form";
 import { IForgotPasswordForm, IonSubmitForgotPassword } from "./interfaces";
 import { toast } from "react-toastify";
+import { CHECK_YOUR_EMAIL_PAGE } from "utils/constants/links";
 import "react-toastify/dist/ReactToastify.css";
-
-const CHECK_YOUR_EMAIL_PAGE = "/check-your-email";
 
 export function useForgotPasswordSendEmail(): IonSubmitForgotPassword {
 	const { t } = useTranslation();
