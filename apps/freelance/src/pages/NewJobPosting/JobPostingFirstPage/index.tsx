@@ -5,9 +5,9 @@ import { FIRST_PAGE } from "src/utils/constants/breakpoint";
 export function JobPostingFirstPage() {
 	const { t } = useTranslation();
 
-	const title: string = t("newJobPosting.mainTitle");
-
-	return <JobPostingContainer page={FIRST_PAGE} goBackLink={"#"} title={title} />;
+	return (
+		<JobPostingContainer page={FIRST_PAGE} goBackLink={"#"} title={t("newJobPosting.mainTitle")} />
+	);
 }
 
 export default JobPostingFirstPage;

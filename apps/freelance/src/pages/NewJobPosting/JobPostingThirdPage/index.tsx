@@ -6,13 +6,11 @@ import { CREATE_NEW_JOB_SECOND_PAGE } from "utils/constants/links";
 export function JobPostingThirdPage() {
 	const { t } = useTranslation();
 
-	const subTitle: string = t("newJobPosting.subTitle");
-
 	return (
 		<JobPostingContainer
 			page={THIRD_PAGE}
 			goBackLink={CREATE_NEW_JOB_SECOND_PAGE}
-			subTitle={subTitle}
+			subTitle={t("newJobPosting.subTitle")}
 			createButton
 		/>
 	);

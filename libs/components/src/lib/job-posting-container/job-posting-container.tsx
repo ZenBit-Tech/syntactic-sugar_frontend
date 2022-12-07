@@ -62,7 +62,8 @@ export function JobPostingContainer({
 					</FormWrapper>
 					<ButtonContainer>
 						<FormButton
-							type="button"
+							type="submit"
+							form={page}
 							onClick={() => goBack(goBackLink)}
 							buttonSize="sm"
 							buttonColor="redGradient"
