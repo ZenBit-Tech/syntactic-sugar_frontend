@@ -12,9 +12,17 @@ export const StyledPage = styled.div`
 
 export const Container = styled.div`
 	margin: auto;
-	width: 90%;
 	height: 80%;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: center;
+	align-items: center;
+	border-radius: 30px;
+	width: 80%;
+	min-width: 50%;
+	background-color: ${({ theme }) => theme.colors.white};
+`;
+
+export const Buttons = styled.div`
+	margin-top: 15px;
 `;

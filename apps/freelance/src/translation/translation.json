@@ -121,6 +121,12 @@
 		"roleFreelancer": "I am a Freelancer, looking for a job."
 	},
 	"sendProposalFreelancer": {
-		"greeting": "Create your proposal!"
+		"greeting": "Create your proposal!",
+		"send": "Send proposal",
+		"back": "Go back",
+		"cv": "Add your CV:",
+		"placeholderCoverLetter": "cover letter",
+		"coverLetter": "Add your cover letter",
+		"alert": "Something went wrong, try again"
 	}
 }

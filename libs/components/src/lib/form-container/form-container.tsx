@@ -22,7 +22,7 @@ import {
 
 export interface FormContainerProps {
 	title: React.ReactNode;
-	subTitle: React.ReactNode;
+	subTitle?: React.ReactNode;
 	signText?: React.ReactNode;
 	signLink?: React.ReactNode;
 	forgotPassText?: React.ReactNode;
