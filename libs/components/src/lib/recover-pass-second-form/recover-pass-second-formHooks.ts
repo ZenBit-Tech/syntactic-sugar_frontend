@@ -5,10 +5,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { SubmitHandler } from "react-hook-form";
 import { IResetPasswordForm, IonSubmitResetPassword } from "./interfaces";
 import { toast } from "react-toastify";
+import { PASSWORD_UPDATED_PAGE, RECOVER_PASSWORD_PAGE } from "utils/constants/links";
 import "react-toastify/dist/ReactToastify.css";
-
-const PASSWORD_UPDATED = "/password-updated";
-const RECOVER_PASSWORD = "/recover-password";
 
 export function useResetPassword(): IonSubmitResetPassword {
 	const { t } = useTranslation();
@@ -18,13 +16,13 @@ export function useResetPassword(): IonSubmitResetPassword {
 	const [resetPassword, { isLoading }] = useResetPasswordMutation();
 
 	const handleModalOk = () => {
-		navigate(RECOVER_PASSWORD);
+		navigate(RECOVER_PASSWORD_PAGE);
 	};
 
 	const onSubmit: SubmitHandler<IResetPasswordForm> = async ({ password }) => {
 		try {
 			const result = await resetPassword({ token, password });
-			"data" in result && navigate(PASSWORD_UPDATED);
+			"data" in result && navigate(PASSWORD_UPDATED_PAGE);
 			"error" in result && setModalOpen(true);
 		} catch (err) {
 			toast.error(t("recoverPassForm.errorMessageServerError"));

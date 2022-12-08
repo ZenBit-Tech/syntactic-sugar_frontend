@@ -7,4 +7,5 @@ export const schema = yup.object().shape({
 		.test("type", "Only doc, docx, pdf allowed", value => {
 			return (value && value[0].type === "doc") || "docx" || "pdf";
 		}),
+	coverLetter: yup.string().required("Min 100 symbols"),
 });

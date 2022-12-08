@@ -3,16 +3,13 @@ import { useAppDispatch } from "src/redux/hooks";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { StyledPage, Container, Buttons } from "./styles";
-import { StyledButton, ThemeColors, BaseTitle, StyledParagraph } from "@freelance/components";
+import { Page, Container, Buttons, FileUpload, Form, Title, SubTitle, Label } from "./styles";
+import { StyledButton, ThemeColors } from "@freelance/components";
 import { ThemeProvider } from "styled-components";
-import { Input } from "antd";
-import "antd/dist/antd.css";
 import { useCreateProposalMutation } from "redux/sendProposalFreelancer/proposalApi";
 import { IProposal } from "src/redux/interfaces/IProposal";
 import { schema } from "utils/validations/fileUpload";
-
-const { TextArea } = Input;
+import { Textarea } from "./styles";
 
 export function SendProposal() {
 	const { t } = useTranslation();
@@ -22,20 +19,19 @@ export function SendProposal() {
 		register,
 		handleSubmit,
 		control,
-		reset,
-		formState,
 		formState: { errors },
-	} = useForm<IProposal>({ resolver: yupResolver(schema) });
+	} = useForm<IProposal>();
 	const [createProposal, { isError }] = useCreateProposalMutation({});
 
 	const goBack = () => {
 		navigate("/work-details");
 	};
 
-	const onSubmit: SubmitHandler<IProposal> = async (values: IProposal) => {
+	const onSubmit = async (values: IProposal) => {
 		const data: any = new FormData();
 		data.append("file", values.file[0]);
 		data.append("coverLetter", values.coverLetter);
+		console.log("click");
 
 		try {
 			await createProposal(data);
@@ -50,28 +46,27 @@ export function SendProposal() {
 
 	return (
 		<ThemeProvider theme={ThemeColors}>
-			<StyledPage>
+			<Page>
 				<Container>
-					<form onSubmit={handleSubmit(onSubmit)}>
-						<BaseTitle fontSize="lg" tag="h1" fontWeight={500}>
-							{t("sendProposalFreelancer.greeting")}
-						</BaseTitle>
-						<BaseTitle fontSize="md" tag="h2" fontWeight={500}>
-							Marketing, Ukraine, 3 years of experience, English: Upper Int, full time work
-						</BaseTitle>
-						<StyledParagraph fontSize="md">
-							{t("sendProposalFreelancer.coverLetter")}
-						</StyledParagraph>
+					<Title fontSize="lg" tag="h1" fontWeight={700}>
+						{t("sendProposalFreelancer.greeting")}
+					</Title>
+					<SubTitle fontSize="md" tag="h3" fontWeight={500}>
+						Marketing, Ukraine, 3 years of experience, English: Upper Int, full time work
+					</SubTitle>
+					<Form onSubmit={handleSubmit(onSubmit)}>
+						<Label>{t("sendProposalFreelancer.coverLetter")}</Label>
 						<Controller
 							name="coverLetter"
 							control={control}
 							render={({ field }) => (
-								<TextArea
+								<Textarea
 									{...field}
-									showCount
+									// showCount
 									id="coverLetter"
+									rows={10}
 									maxLength={1000}
-									style={{ height: 200, width: 500, marginBottom: 10, resize: "none" }}
+									minLength={100}
 									placeholder={t("sendProposalFreelancer.placeholderCoverLetter")}
 								/>
 							)}
@@ -80,16 +75,16 @@ export function SendProposal() {
 								minLength: 100,
 							}}
 						/>
-						{errors.coverLetter && <p>Min 100 symbols</p>}
 
-						<StyledParagraph fontSize="md">{t("sendProposalFreelancer.cv")}</StyledParagraph>
-						<input
-							type="file"
-							id="file"
-							accept=".doc, .docs, .pdf"
-							{...register("file", { required: true })}
-						/>
-						{errors.file && <p>Please, add your CV</p>}
+						<FileUpload>
+							<Label>{t("sendProposalFreelancer.cv")}</Label>
+							<input
+								type="file"
+								id="file"
+								accept=".doc, .docs, .pdf"
+								{...register("file", { required: true })}
+							/>
+						</FileUpload>
 						<Buttons>
 							<StyledButton
 								buttonSize="sm"
@@ -103,9 +98,9 @@ export function SendProposal() {
 								{t("sendProposalFreelancer.send")}
 							</StyledButton>
 						</Buttons>
-					</form>
+					</Form>
 				</Container>
-			</StyledPage>
+			</Page>
 		</ThemeProvider>
 	);
 }
