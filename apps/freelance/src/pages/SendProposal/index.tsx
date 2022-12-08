@@ -3,13 +3,23 @@ import { useAppDispatch } from "src/redux/hooks";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Page, Container, Buttons, FileUpload, Form, Title, SubTitle, Label } from "./styles";
+import {
+	Page,
+	Container,
+	Buttons,
+	FileUpload,
+	Form,
+	Title,
+	SubTitle,
+	Label,
+	Textarea,
+	Span,
+} from "./styles";
 import { StyledButton, ThemeColors } from "@freelance/components";
 import { ThemeProvider } from "styled-components";
 import { useCreateProposalMutation } from "redux/sendProposalFreelancer/proposalApi";
 import { IProposal } from "src/redux/interfaces/IProposal";
 import { schema } from "utils/validations/fileUpload";
-import { Textarea } from "./styles";
 
 export function SendProposal() {
 	const { t } = useTranslation();
@@ -20,7 +30,7 @@ export function SendProposal() {
 		handleSubmit,
 		control,
 		formState: { errors },
-	} = useForm<IProposal>();
+	} = useForm<IProposal>({ resolver: yupResolver(schema) });
 	const [createProposal, { isError }] = useCreateProposalMutation({});
 
 	const goBack = () => {
@@ -28,17 +38,17 @@ export function SendProposal() {
 	};
 
 	const onSubmit = async (values: IProposal) => {
+		console.log(values);
 		const data: any = new FormData();
 		data.append("file", values.file[0]);
 		data.append("coverLetter", values.coverLetter);
-		console.log("click");
 
 		try {
 			await createProposal(data);
 			if (isError) {
 				alert(t("sendProposalFreelancer.alert"));
 			}
-			await navigate("/search-work");
+			navigate("/search-work");
 		} catch (error) {
 			alert(error);
 		}
@@ -56,34 +66,26 @@ export function SendProposal() {
 					</SubTitle>
 					<Form onSubmit={handleSubmit(onSubmit)}>
 						<Label>{t("sendProposalFreelancer.coverLetter")}</Label>
-						<Controller
-							name="coverLetter"
-							control={control}
-							render={({ field }) => (
-								<Textarea
-									{...field}
-									// showCount
-									id="coverLetter"
-									rows={10}
-									maxLength={1000}
-									minLength={100}
-									placeholder={t("sendProposalFreelancer.placeholderCoverLetter")}
-								/>
-							)}
-							rules={{
-								required: true,
-								minLength: 100,
-							}}
+						<Textarea
+							{...register("coverLetter")}
+							rows={10}
+							maxLength={1000}
+							placeholder={t("sendProposalFreelancer.placeholderCoverLetter")}
 						/>
+						{errors?.coverLetter && (
+							<Span>
+								<strong>{errors?.coverLetter?.message}</strong>
+							</Span>
+						)}
 
 						<FileUpload>
 							<Label>{t("sendProposalFreelancer.cv")}</Label>
-							<input
-								type="file"
-								id="file"
-								accept=".doc, .docs, .pdf"
-								{...register("file", { required: true })}
-							/>
+							<input type="file" id="file" accept=".doc, .docs, .pdf" {...register("file")} />
+							{errors?.file && (
+								<Span>
+									<strong>{errors?.file?.message}</strong>
+								</Span>
+							)}
 						</FileUpload>
 						<Buttons>
 							<StyledButton

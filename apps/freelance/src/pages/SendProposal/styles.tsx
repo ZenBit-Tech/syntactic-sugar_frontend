@@ -30,11 +30,12 @@ export const Buttons = styled.div`
 `;
 
 export const FileUpload = styled.div`
+	margin-top: 15px;
 	display: flex;
 	flex-direction: column;
 `;
 
-export const Form = styled.div`
+export const Form = styled.form`
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -60,4 +61,12 @@ export const SubTitle = styled(BaseTitle)`
 
 export const Label = styled.label`
 	font-size: 1.2rem;
+`;
+
+export const Span = styled.span`
+	background-color: ${({ theme }) => theme.colors.darkRed};
+	color: ${({ theme }) => theme.colors.black};
+	width: fit-content;
+	height: auto;
+	border-radius: 2px;
 `;

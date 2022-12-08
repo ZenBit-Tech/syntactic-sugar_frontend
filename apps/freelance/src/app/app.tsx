@@ -40,7 +40,6 @@ export function App() {
 							<Route path="/invitation" element={<Invitation />} />
 							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />
 							<Route path="/freelancer/create-profile2" element={<CreateProfile2 />} />
-							<Route path="/profile_1" element={<h1>profilePage3.1</h1>} />
 							<Route path="/create-new-job-first-page" element={<JobPostingFirstPage />} />
 							<Route path="/create-new-job-second-page" element={<JobPostingSecondPage />} />
 							<Route path="/create-new-job-third-page" element={<JobPostingThirdPage />} />
