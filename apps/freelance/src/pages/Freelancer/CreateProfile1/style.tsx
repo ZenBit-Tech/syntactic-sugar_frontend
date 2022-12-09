@@ -126,9 +126,14 @@ export const Form = styled.form`
 		background: url("/assets/images/english_level_icon.png") no-repeat 20px center;
 	}
 
+	#companyName {
+		background: url("/assets/images/company_icon.png") no-repeat 20px center;
+	}
+
 	#fullName,
 	#country,
 	#category,
+	#companyName,
 	#hourRate,
 	#position,
 	#amountHours,
