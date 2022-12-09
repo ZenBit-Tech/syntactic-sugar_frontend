@@ -10,7 +10,7 @@ export const jobs = [
 		isPublished: false,
 		isProposal: true,
 		category: "Category",
-		skills: [1, 2, 3],
+		skills: ["Java"],
 		hourRate: "Hour Rate",
 	},
 	{
@@ -24,7 +24,7 @@ export const jobs = [
 		isPublished: true,
 		isProposal: false,
 		category: "Category",
-		skills: [1, 2, 3],
+		skills: ["Android", "Embedded"],
 		hourRate: "Hour Rate",
 	},
 	{
@@ -38,7 +38,7 @@ export const jobs = [
 		isPublished: true,
 		isProposal: true,
 		category: "Category",
-		skills: [1, 2, 3],
+		skills: ["Golang", "Rust"],
 		hourRate: "Hour Rate",
 	},
 	{
@@ -52,7 +52,7 @@ export const jobs = [
 		isPublished: false,
 		isProposal: true,
 		category: "Category",
-		skills: [1, 2, 3],
+		skills: ["JavaScript/Front-End", "Java"],
 		hourRate: "Hour Rate",
 	},
 	{
@@ -66,7 +66,7 @@ export const jobs = [
 		isPublished: true,
 		isProposal: false,
 		category: "Category",
-		skills: [1, 2, 3],
+		skills: ["JavaScript/Front-End"],
 		hourRate: "Hour Rate",
 	},
 	{
@@ -80,7 +80,7 @@ export const jobs = [
 		isPublished: true,
 		isProposal: true,
 		category: "Category",
-		skills: [1, 2, 3],
+		skills: ["JavaScript/Front-End"],
 		hourRate: "Hour Rate",
 	},
 	{
@@ -94,7 +94,7 @@ export const jobs = [
 		isPublished: true,
 		isProposal: true,
 		category: "Category",
-		skills: [1, 2, 3],
+		skills: ["C#"],
 		hourRate: "Hour Rate",
 	},
 	{
@@ -108,7 +108,7 @@ export const jobs = [
 		isPublished: false,
 		isProposal: true,
 		category: "Category",
-		skills: [1, 2, 3],
+		skills: ["Python"],
 		hourRate: "Hour Rate",
 	},
 	{
@@ -122,7 +122,7 @@ export const jobs = [
 		isPublished: true,
 		isProposal: true,
 		category: "Category",
-		skills: [1, 2, 3],
+		skills: ["Node.js", "JavaScript/Front-End"],
 		hourRate: "Hour Rate",
 	},
 	{
@@ -136,7 +136,7 @@ export const jobs = [
 		isPublished: true,
 		isProposal: true,
 		category: "Category",
-		skills: [1, 2, 3],
+		skills: ["Node.js", "JavaScript/Front-End"],
 		hourRate: "Hour Rate",
 	},
 ];

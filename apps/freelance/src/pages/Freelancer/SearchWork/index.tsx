@@ -63,15 +63,36 @@ export function SearchWork() {
 
 	useEffect(() => {
 		if (toggleFilter === "filter") {
-			const newFilterJobs = jobs.filter(
-				job =>
-					job.position.toLowerCase().includes(filter.position.toLowerCase()) &&
-					job.category.includes(filter.category) &&
-					job.employmentType.includes(filter.employmentType) &&
-					job.levelEnglish.includes(filter.englishLevel) &&
-					job.hourRate.includes(filter.hourRate),
+			const jobSkills = jobs.map(job => job.skills);
+			const filterSkills = filter.skills;
+			const jobSkillsIncludes = jobSkills.map(jobSkill =>
+				filterSkills.map((filterSkill: any) => jobSkill.includes(filterSkill)),
 			);
-			setFilterJobs(newFilterJobs);
+      const skillsIncludes = jobSkillsIncludes.map((jobSkills) => jobSkills.filter((it:any) => !!it))
+      const emptySkills = skillsIncludes.filter((skill) => skill.length>0)
+			// console.log(jobSkills, filterSkills, jobSkillsIncludes, skillsIncludes, emptySkills)
+      if (emptySkills.length > 0) {
+        const newFilterJobs = jobs.filter(
+					(job, index) =>
+						job.position.toLowerCase().includes(filter.position.toLowerCase()) &&
+						job.category.includes(filter.category) &&
+						job.employmentType.includes(filter.employmentType) &&
+						job.levelEnglish.includes(filter.englishLevel) &&
+						job.hourRate.includes(filter.hourRate) &&
+						skillsIncludes[index].length === 1,
+				);
+				setFilterJobs(newFilterJobs);
+      } else {
+        const newFilterJobs = jobs.filter(
+					(job, index) =>
+						job.position.toLowerCase().includes(filter.position.toLowerCase()) &&
+						job.category.includes(filter.category) &&
+						job.employmentType.includes(filter.employmentType) &&
+						job.levelEnglish.includes(filter.englishLevel) &&
+						job.hourRate.includes(filter.hourRate)
+				);
+				setFilterJobs(newFilterJobs);
+      }
 		}
 	}, [toggleFilter, filter]);
 
@@ -85,12 +106,12 @@ export function SearchWork() {
 			hourRate: values.hourRate.label,
 			availableAmountOfHour: values.availableAmountOfHour.label,
 		};
-		console.log({ onSubmit: freelancerInfo, position: freelancerInfo.position });
+		// console.log({ onSubmit: freelancerInfo, skills: freelancerInfo.position });
 		setFilter(freelancerInfo);
 		setToggleFilter("filter");
 	};
 
-	console.log(toggleFilter, filter, filterJobs);
+	// console.log(toggleFilter, filter, filterJobs);
 
 	return (
 		<StyledPage>
