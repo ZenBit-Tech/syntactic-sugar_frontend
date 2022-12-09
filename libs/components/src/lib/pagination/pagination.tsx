@@ -2,20 +2,20 @@ import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import ReactPaginate, { ReactPaginateProps } from "react-paginate";
 import { Container, StyledReactPagination } from "./pagination.styled";
-import { jobs } from "utils/jobs/jobs";
 import { Items, JobsInterface } from "./items";
 
 /* eslint-disable-next-line */
 export interface PaginationProps {
 	itemsPerPage: number;
 	user: string;
+	jobs: JobsInterface[];
 }
 
 export interface ReactPaginateEvent {
 	selected: number;
 }
 
-export function Pagination({ itemsPerPage, user }: PaginationProps) {
+export function Pagination({ itemsPerPage, user, jobs }: PaginationProps) {
 	const [itemOffset, setItemOffset] = useState<number>(0);
 	const endOffset = itemOffset + itemsPerPage;
 	const currentItems = jobs.slice(itemOffset, endOffset);

@@ -7,6 +7,7 @@ import { resetPasswordApi } from "./resetPassword/resetPasswordSlice";
 import { createFreelancerApi } from "./createFreelancer/freelancer-pageApi";
 import { loginApi } from "./login.api";
 import { roleApi } from "./role.api";
+import { getJobsApi } from "./jobs/jobs.api";
 
 const store = configureStore({
 	reducer: {
@@ -17,6 +18,7 @@ const store = configureStore({
 		[resetPasswordApi.reducerPath]: resetPasswordApi.reducer,
 		[createFreelancerApi.reducerPath]: createFreelancerApi.reducer,
 		[roleApi.reducerPath]: roleApi.reducer,
+		[getJobsApi.reducerPath]: getJobsApi.reducer,
 	},
 	middleware: getDefaultMiddleware =>
 		getDefaultMiddleware({
@@ -29,6 +31,7 @@ const store = configureStore({
 			resetPasswordApi.middleware,
 			createFreelancerApi.middleware,
 			roleApi.middleware,
+			getJobsApi.middleware,
 		),
 });
 

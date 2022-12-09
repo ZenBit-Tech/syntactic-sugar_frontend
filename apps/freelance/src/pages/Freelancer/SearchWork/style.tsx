@@ -95,7 +95,6 @@ export const InputContainer = styled.div`
 
 	height: 150%;
 
-
 	#institute {
 		background: url("/assets/images/institute_icon.png") no-repeat 20px center;
 	}

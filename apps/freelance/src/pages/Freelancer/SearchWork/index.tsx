@@ -25,6 +25,7 @@ import {
 import { jobs } from "utils/jobs/jobs";
 import { Dashboard, StyledTitle, StyledButton, JobCard, Pagination } from "@freelance/components";
 import { it } from "node:test";
+import { useGetJobsQuery } from "redux/jobs/jobs.api";
 
 type user = "freelancer" | "employer";
 
@@ -42,23 +43,54 @@ export function SearchWork() {
 	const user: user = "freelancer";
 	const { t } = useTranslation();
 	const { handleSubmit, control, getValues, reset } = useForm<IFormInput>();
+	const { isLoading, isError, data } = useGetJobsQuery();
 	const emptyValue = {
 		value: "",
 		label: "",
 	};
 
+	const [filterJobs, setFilterJobs] = useState(jobs);
+	const [filter, setFilter] = useState<any>({
+		category: "",
+		position: "",
+		skills: [],
+		employmentType: "",
+		englishLevel: "",
+		hourRate: "",
+		availableAmountOfHour: "",
+	});
+	const [toggleFilter, setToggleFilter] = useState<string>("reset");
+
+	useEffect(() => {
+		if (toggleFilter === "filter") {
+			const newFilterJobs = jobs.filter(
+				job =>
+					job.position.toLowerCase().includes(filter.position.toLowerCase()) &&
+					job.category.includes(filter.category) &&
+					job.employmentType.includes(filter.employmentType) &&
+					job.levelEnglish.includes(filter.englishLevel) &&
+					job.hourRate.includes(filter.hourRate),
+			);
+			setFilterJobs(newFilterJobs);
+		}
+	}, [toggleFilter, filter]);
+
 	const onSubmit: SubmitHandler<IFormInput> = async values => {
 		const freelancerInfo = {
 			category: values.category.label,
-			position: values.position,
+			position: values.position || "",
 			skills: values.skills.map(skill => skill.label),
 			employmentType: values.employmentType.label,
 			englishLevel: values.englishLevel.label,
 			hourRate: values.hourRate.label,
 			availableAmountOfHour: values.availableAmountOfHour.label,
 		};
-		console.log(freelancerInfo);
+		console.log({ onSubmit: freelancerInfo, position: freelancerInfo.position });
+		setFilter(freelancerInfo);
+		setToggleFilter("filter");
 	};
+
+	console.log(toggleFilter, filter, filterJobs);
 
 	return (
 		<StyledPage>
@@ -72,7 +104,7 @@ export function SearchWork() {
 								</StyledTitle>
 							</InputHeader>
 							<InputWrapper>
-								<Pagination itemsPerPage={6} user={user} />
+								<Pagination itemsPerPage={6} user={user} jobs={filterJobs} />
 							</InputWrapper>
 						</InputContainer>
 						<InputContainer>
@@ -244,6 +276,8 @@ export function SearchWork() {
 									<StyledButton
 										type="reset"
 										onClick={() => {
+											setFilterJobs(jobs);
+											setToggleFilter("reset");
 											reset();
 										}}
 										buttonColor="redGradient"

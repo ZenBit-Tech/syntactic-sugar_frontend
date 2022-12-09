@@ -2,7 +2,6 @@ import { JobCard } from "@freelance/components";
 import { userInfo } from "os";
 import { jobs } from "utils/jobs/jobs";
 
-
 export interface JobsInterface {
 	position: string;
 	location: string;
@@ -16,7 +15,7 @@ export interface JobsInterface {
 }
 export interface CurrentItems {
 	currentItems: JobsInterface[];
-  user: string;
+	user: string;
 }
 
 export function Items({ currentItems, user }: CurrentItems) {
@@ -35,7 +34,7 @@ export function Items({ currentItems, user }: CurrentItems) {
 								levelEnglish={job.levelEnglish}
 								date={job.date}
 								userType={user}
-								jobActive={job.isProposal}
+								jobActive={user === "freelancer" ? job.isProposal : job.isPublished}
 							/>
 						</div>
 					);
