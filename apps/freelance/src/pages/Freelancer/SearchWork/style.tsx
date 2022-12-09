@@ -138,7 +138,7 @@ export const InputHeader = styled.div`
 	gap: 2rem;
 
 	button {
-		width: 40px;
+		width: 100px;
 		height: 20px;
 	}
 `;

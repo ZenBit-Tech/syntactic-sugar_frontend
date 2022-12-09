@@ -49,8 +49,18 @@ export function SearchWork() {
 		label: "",
 	};
 
+	const freelancerFilter = {
+		position: "",
+		category: "Category",
+		skills: ["JavaScript/Front-End"],
+		employmentType: "",
+		englishLevel: "",
+		hourRate: "",
+		availableAmountOfHour: "",
+	};
+
 	const [filterJobs, setFilterJobs] = useState(jobs);
-	const [filter, setFilter] = useState<any>({
+	const [filter, setFilter] = useState<IFormInput | any>({
 		category: "",
 		position: "",
 		skills: [],
@@ -63,16 +73,19 @@ export function SearchWork() {
 
 	useEffect(() => {
 		if (toggleFilter === "filter") {
+      console.log(filter)
 			const jobSkills = jobs.map(job => job.skills);
 			const filterSkills = filter.skills;
 			const jobSkillsIncludes = jobSkills.map(jobSkill =>
-				filterSkills.map((filterSkill: any) => jobSkill.includes(filterSkill)),
+				filterSkills.map((filterSkill: string) => jobSkill.includes(filterSkill)),
 			);
-      const skillsIncludes = jobSkillsIncludes.map((jobSkills) => jobSkills.filter((it:any) => !!it))
-      const emptySkills = skillsIncludes.filter((skill) => skill.length>0)
+			const skillsIncludes = jobSkillsIncludes.map(jobSkills =>
+				jobSkills.filter((it: boolean) => !!it),
+			);
+			const emptySkills = skillsIncludes.filter(skill => skill.length > 0);
 			// console.log(jobSkills, filterSkills, jobSkillsIncludes, skillsIncludes, emptySkills)
-      if (emptySkills.length > 0) {
-        const newFilterJobs = jobs.filter(
+			if (emptySkills.length > 0) {
+				const newFilterJobs = jobs.filter(
 					(job, index) =>
 						job.position.toLowerCase().includes(filter.position.toLowerCase()) &&
 						job.category.includes(filter.category) &&
@@ -82,17 +95,17 @@ export function SearchWork() {
 						skillsIncludes[index].length === 1,
 				);
 				setFilterJobs(newFilterJobs);
-      } else {
-        const newFilterJobs = jobs.filter(
+			} else {
+				const newFilterJobs = jobs.filter(
 					(job, index) =>
 						job.position.toLowerCase().includes(filter.position.toLowerCase()) &&
 						job.category.includes(filter.category) &&
 						job.employmentType.includes(filter.employmentType) &&
 						job.levelEnglish.includes(filter.englishLevel) &&
-						job.hourRate.includes(filter.hourRate)
+						job.hourRate.includes(filter.hourRate),
 				);
 				setFilterJobs(newFilterJobs);
-      }
+			}
 		}
 	}, [toggleFilter, filter]);
 
@@ -123,6 +136,30 @@ export function SearchWork() {
 								<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
 									{t("freelancer.searchWork.jobsList")}
 								</StyledTitle>
+								<StyledButton
+									type="button"
+									buttonColor="redGradient"
+									buttonSize="sm"
+									fontSize="md"
+									onClick={() => {
+										setToggleFilter("reset");
+										setFilterJobs(jobs);
+									}}
+								>
+									All
+								</StyledButton>
+								<StyledButton
+									type="button"
+									buttonColor="redGradient"
+									buttonSize="sm"
+									fontSize="md"
+									onClick={() => {
+										setToggleFilter("filter");
+										setFilter(freelancerFilter);
+									}}
+								>
+									By my profile
+								</StyledButton>
 							</InputHeader>
 							<InputWrapper>
 								<Pagination itemsPerPage={6} user={user} jobs={filterJobs} />
