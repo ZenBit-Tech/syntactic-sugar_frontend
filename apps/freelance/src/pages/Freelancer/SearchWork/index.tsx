@@ -70,6 +70,7 @@ export function SearchWork() {
 		availableAmountOfHour: "",
 	});
 	const [toggleFilter, setToggleFilter] = useState<string>("reset");
+  const [useFilters, setUseFilters] = useState<boolean>(false)
 
 	useEffect(() => {
 		if (toggleFilter === "filter") {
@@ -124,7 +125,7 @@ export function SearchWork() {
 		setToggleFilter("filter");
 	};
 
-	// console.log(toggleFilter, filter, filterJobs);
+	console.log(useFilters);
 
 	return (
 		<StyledPage>
@@ -137,28 +138,46 @@ export function SearchWork() {
 									{t("freelancer.searchWork.jobsList")}
 								</StyledTitle>
 								<StyledButton
-									type="button"
+									type="reset"
 									buttonColor="redGradient"
 									buttonSize="sm"
 									fontSize="md"
 									onClick={() => {
 										setToggleFilter("reset");
 										setFilterJobs(jobs);
+										setUseFilters(false);
+										reset();
 									}}
 								>
-									All
+									{t("freelancer.searchWork.buttonAll")}
 								</StyledButton>
 								<StyledButton
-									type="button"
+									type="reset"
 									buttonColor="redGradient"
 									buttonSize="sm"
 									fontSize="md"
 									onClick={() => {
 										setToggleFilter("filter");
 										setFilter(freelancerFilter);
+										setUseFilters(false);
+										reset();
 									}}
 								>
-									By my profile
+									{t("freelancer.searchWork.buttonProfile")}
+								</StyledButton>
+								<StyledButton
+									type="button"
+									disabled={useFilters ? true : false}
+									buttonColor="redGradient"
+									buttonSize="sm"
+									fontSize="md"
+									onClick={() => {
+										setToggleFilter("reset");
+										setFilterJobs(jobs);
+										setUseFilters(true);
+									}}
+								>
+									{t("freelancer.searchWork.buttonFilter")}
 								</StyledButton>
 							</InputHeader>
 							<InputWrapper>
@@ -177,6 +196,7 @@ export function SearchWork() {
 									control={control}
 									render={({ field }) => (
 										<input
+											disabled={useFilters ? false : true}
 											{...field}
 											defaultValue=""
 											placeholder={t("freelancer.createProfile.positionPlaceholder")}
@@ -197,6 +217,7 @@ export function SearchWork() {
 														</label>
 														<SelectElement
 															id="skills"
+															isDisabled={useFilters ? false : true}
 															options={skills}
 															{...field}
 															placeholder=""
@@ -220,6 +241,7 @@ export function SearchWork() {
 														</label>
 														<SelectElement
 															id="category"
+															isDisabled={useFilters ? false : true}
 															options={categories}
 															{...field}
 															placeholder={t("freelancer.createProfile.selectOption.category")}
@@ -242,6 +264,7 @@ export function SearchWork() {
 														</label>
 														<SelectElement
 															id="employmentType"
+															isDisabled={useFilters ? false : true}
 															options={employmentType}
 															{...field}
 															placeholder={t(
@@ -267,6 +290,7 @@ export function SearchWork() {
 														</label>
 														<SelectElement
 															id="hourRate"
+															isDisabled={useFilters ? false : true}
 															options={hourRate}
 															{...field}
 															placeholder={t("freelancer.createProfile.selectOption.hourRate")}
@@ -289,6 +313,7 @@ export function SearchWork() {
 														</label>
 														<SelectElement
 															id="englishLevel"
+															isDisabled={useFilters ? false : true}
 															options={englishLevel}
 															{...field}
 															placeholder={t("freelancer.createProfile.selectOption.englishLevel")}
@@ -311,6 +336,7 @@ export function SearchWork() {
 														</label>
 														<SelectElement
 															id="availableAmountOfHour"
+															isDisabled={useFilters ? false : true}
 															options={hoursAmount}
 															{...field}
 															placeholder={t("freelancer.createProfile.selectOption.amountHours")}
@@ -325,6 +351,7 @@ export function SearchWork() {
 								<div className="selectContainer__buttons">
 									<StyledButton
 										type="submit"
+										disabled={useFilters ? false : true}
 										buttonColor="redGradient"
 										buttonSize="sm"
 										fontSize="md"
@@ -333,6 +360,7 @@ export function SearchWork() {
 									</StyledButton>
 									<StyledButton
 										type="reset"
+										disabled={useFilters ? false : true}
 										onClick={() => {
 											setFilterJobs(jobs);
 											setToggleFilter("reset");
