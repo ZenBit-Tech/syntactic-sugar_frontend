@@ -59,7 +59,12 @@ export function CreateEmployerProfile() {
 							name="position"
 							control={control}
 							render={({ field }) => (
-								<input type="text" {...field} placeholder={t("employer.create.positionLabel")} />
+								<input
+									type="text"
+									{...field}
+									id="position"
+									placeholder={t("employer.create.positionLabel")}
+								/>
 							)}
 						/>
 						<Controller
@@ -79,14 +84,24 @@ export function CreateEmployerProfile() {
 							name="phone"
 							control={control}
 							render={({ field }) => (
-								<input type="text" {...field} placeholder={t("employer.create.phoneLabel")} />
+								<input
+									type="text"
+									{...field}
+									id="phone"
+									placeholder={t("employer.create.phoneLabel")}
+								/>
 							)}
 						/>
 						<Controller
 							name="linkedIn"
 							control={control}
 							render={({ field }) => (
-								<input type="text" {...field} placeholder={t("employer.create.linkedinLabel")} />
+								<input
+									type="text"
+									{...field}
+									id="linkedIn"
+									placeholder={t("employer.create.linkedinLabel")}
+								/>
 							)}
 						/>
 
@@ -94,7 +109,12 @@ export function CreateEmployerProfile() {
 							name="website"
 							control={control}
 							render={({ field }) => (
-								<input type="text" {...field} placeholder={t("employer.create.websiteLabel")} />
+								<input
+									type="text"
+									{...field}
+									id="website"
+									placeholder={t("employer.create.websiteLabel")}
+								/>
 							)}
 						/>
 						<Controller

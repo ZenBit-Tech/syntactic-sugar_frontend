@@ -110,10 +110,6 @@ export const Form = styled.form`
 		background: url("/assets/images/skills_icon.png") no-repeat 20px center;
 	}
 
-	#skills {
-		background: url("/assets/images/skills_icon.png") no-repeat 20px center;
-	}
-
 	#workExperience {
 		background: url("/assets/images/work_experience_icon.png") no-repeat 20px center;
 	}
@@ -130,17 +126,32 @@ export const Form = styled.form`
 		background: url("/assets/images/company_icon.png") no-repeat 20px center;
 	}
 
+	#linkedIn {
+		background: url("/assets/images/linkedin_icon.png") no-repeat 20px center;
+	}
+
+	#website {
+		background: url("/assets/images/website_icon.png") no-repeat 20px center;
+	}
+
+	#phone {
+		background: url("/assets/images/phone_icon.png") no-repeat 20px center;
+	}
+
 	#fullName,
 	#country,
 	#category,
 	#companyName,
 	#hourRate,
+	#linkedIn,
 	#position,
 	#amountHours,
 	#skills,
 	#workExperience,
 	#employmentType,
-	#englishLevel {
+	#englishLevel,
+	#phone,
+	#website {
 		background-size: 15px 15px;
 	}
 
