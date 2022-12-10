@@ -94,34 +94,6 @@ export const InputContainer = styled.div`
 	overflow-y: auto;
 
 	height: 150%;
-
-	#institute {
-		background: url("/assets/images/institute_icon.png") no-repeat 20px center;
-	}
-
-	#occupation {
-		background: url("/assets/images/occupation_icon.png") no-repeat 20px center;
-	}
-
-	#period {
-		background: url("/assets/images/period_icon.png") no-repeat 20px center;
-	}
-
-	#company {
-		background: url("/assets/images/company_icon.png") no-repeat 20px center;
-	}
-
-	#workPosition {
-		background: url("/assets/images/work_position_icon.png") no-repeat 20px center;
-	}
-
-	#institute,
-	#occupation,
-	#period,
-	#company,
-	#workPosition {
-		background-size: 15px 15px;
-	}
 `;
 
 export const InputHeader = styled.div`

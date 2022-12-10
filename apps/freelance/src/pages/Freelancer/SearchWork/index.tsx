@@ -70,11 +70,10 @@ export function SearchWork() {
 		availableAmountOfHour: "",
 	});
 	const [toggleFilter, setToggleFilter] = useState<string>("reset");
-  const [useFilters, setUseFilters] = useState<boolean>(false)
+	const [useFilters, setUseFilters] = useState<boolean>(false);
 
 	useEffect(() => {
 		if (toggleFilter === "filter") {
-      console.log(filter)
 			const jobSkills = jobs.map(job => job.skills);
 			const filterSkills = filter.skills;
 			const jobSkillsIncludes = jobSkills.map(jobSkill =>
@@ -84,7 +83,6 @@ export function SearchWork() {
 				jobSkills.filter((it: boolean) => !!it),
 			);
 			const emptySkills = skillsIncludes.filter(skill => skill.length > 0);
-			// console.log(jobSkills, filterSkills, jobSkillsIncludes, skillsIncludes, emptySkills)
 			if (emptySkills.length > 0) {
 				const newFilterJobs = jobs.filter(
 					(job, index) =>
@@ -120,12 +118,9 @@ export function SearchWork() {
 			hourRate: values.hourRate.label,
 			availableAmountOfHour: values.availableAmountOfHour.label,
 		};
-		// console.log({ onSubmit: freelancerInfo, skills: freelancerInfo.position });
 		setFilter(freelancerInfo);
 		setToggleFilter("filter");
 	};
-
-	console.log(useFilters);
 
 	return (
 		<StyledPage>
