@@ -1,9 +1,10 @@
+import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { englishLevel, skills } from "utils/select-options/options";
 import { useAppSelector } from "redux/example-hooks";
 import { getStoredJobInfo } from "redux/newJobPosting";
 import {
-	IJobPostingFormProps,
+	IJobPostingThirdFormProps,
 	IJobPostingThirdForm,
 	JobPostingGridForm,
 	IncreasedFieldWrapper,
@@ -18,7 +19,7 @@ import {
 } from "@freelance/components";
 import { useJobPostingThirdFormHook } from "./job-posting-third-formHooks";
 
-export function JobPostingThirdForm({ page }: IJobPostingFormProps) {
+export function JobPostingThirdForm({ page, textButtonHandler }: IJobPostingThirdFormProps) {
 	const {
 		skills: storedSkills,
 		englishLevel: storedEnglishLevel,
@@ -38,10 +39,13 @@ export function JobPostingThirdForm({ page }: IJobPostingFormProps) {
 		otherRequirenmentsLabel,
 		otherRequirenmentsPlaceholder,
 		fieldRequired,
+		isLoading,
 		onSubmit,
 	} = useJobPostingThirdFormHook();
 
-	const array = selectDefaultArray(storedSkills, skills);
+	useEffect(() => {
+		textButtonHandler(isLoading);
+	}, [isLoading]);
 
 	return (
 		<JobPostingGridForm id={page} onSubmit={handleSubmit(onSubmit)} justifyItems="start">
@@ -50,7 +54,7 @@ export function JobPostingThirdForm({ page }: IJobPostingFormProps) {
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="skills"
-						defaultValue={JSON.parse(JSON.stringify(array))}
+						defaultValue={JSON.parse(JSON.stringify(selectDefaultArray(storedSkills, skills)))}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (
@@ -85,6 +89,7 @@ export function JobPostingThirdForm({ page }: IJobPostingFormProps) {
 								{...field}
 								placeholder={englishLevelPlaceholder}
 								isSearchable
+								isClearable
 								classNamePrefix="react-select"
 							/>
 						)}

@@ -31,7 +31,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 		category,
 		position,
 		employmentType: storedEmploymentType,
-		availableAmountOfHour,
+		availableAmountOfHours,
 		hourRate: storedHourRate,
 		workExperience: storedWorkExperience,
 	} = useAppSelector(getStoredJobInfo);
@@ -60,8 +60,6 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 		formState: { errors },
 	} = useForm<IJobPostingSecondForm>();
 
-	const array = selectDefaultArray(storedCountries, countries);
-
 	return (
 		<JobPostingGridForm id={page} onSubmit={handleSubmit(onSubmit)} justifyItems="center">
 			<IncreasedFieldWrapper gridRow={1} typeOfLength="full">
@@ -69,7 +67,9 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="countries"
-						defaultValue={JSON.parse(JSON.stringify(array))}
+						defaultValue={JSON.parse(
+							JSON.stringify(selectDefaultArray(storedCountries, countries)),
+						)}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (
@@ -103,6 +103,8 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 								options={categories}
 								{...field}
 								placeholder={categoryPlaceholder}
+								isSearchable
+								isClearable
 								classNamePrefix="react-select"
 							/>
 						)}
@@ -143,6 +145,8 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 								options={employmentType}
 								{...field}
 								placeholder={employmentTypePlaceholder}
+								isSearchable
+								isClearable
 								classNamePrefix="react-select"
 							/>
 						)}
@@ -158,8 +162,8 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 				<JobPostingLabel>{hoursAmountLabel}</JobPostingLabel>
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
-						name="availableAmountOfHour"
-						defaultValue={selectDefaultObject(availableAmountOfHour, hoursAmount) || undefined}
+						name="availableAmountOfHours"
+						defaultValue={selectDefaultObject(availableAmountOfHours, hoursAmount) || undefined}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (
@@ -167,13 +171,15 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 								options={hoursAmount}
 								{...field}
 								placeholder={hoursAmountPlaceholder}
+								isSearchable
+								isClearable
 								classNamePrefix="react-select"
 							/>
 						)}
 					/>
-					{errors?.availableAmountOfHour && (
+					{errors?.availableAmountOfHours && (
 						<StyledSpan fontSize="sm" type="validation">
-							<strong>{errors?.availableAmountOfHour?.message}</strong>
+							<strong>{errors?.availableAmountOfHours?.message}</strong>
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>
@@ -191,6 +197,8 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 								options={workExperience}
 								{...field}
 								placeholder={workExperiencePlaceholder}
+								isSearchable
+								isClearable
 								classNamePrefix="react-select"
 							/>
 						)}
@@ -215,6 +223,8 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 								options={hourRate}
 								{...field}
 								placeholder={hourRatePlaceholder}
+								isSearchable
+								isClearable
 								classNamePrefix="react-select"
 							/>
 						)}

@@ -352,6 +352,10 @@ export const englishLevel: SelectOptions[] = [
 		label: "Advanced",
 		value: "advanced",
 	},
+	{
+		label: "Master",
+		value: "master",
+	},
 ];
 
 export const hoursAmount: SelectOptions[] = [
@@ -477,7 +481,7 @@ export const employmentType: SelectOptions[] = [
 		value: "office",
 	},
 	{
-		label: "Freelancer for project",
+		label: "Freelancer for a project",
 		value: "freelancer",
 	},
 	{
@@ -520,23 +524,23 @@ export const workExperience: SelectOptions[] = [
 		value: "5",
 	},
 	{
-		label: "more than 5 years",
+		label: "More than 5 years",
 		value: "more5",
 	},
 	{
-		label: "more than 10 years",
+		label: "More than 10 years",
 		value: "more10",
 	},
 	{
-		label: "more than 15 years",
+		label: "More than 15 years",
 		value: "more15",
 	},
 	{
-		label: "more than 20 years",
+		label: "More than 20 years",
 		value: "more20",
 	},
 	{
-		label: "more than 25 years",
+		label: "More than 25 years",
 		value: "more25",
 	},
 ];
