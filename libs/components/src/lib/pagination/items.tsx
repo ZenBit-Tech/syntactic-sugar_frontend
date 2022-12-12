@@ -1,5 +1,4 @@
 import { JobCard } from "@freelance/components";
-import { userInfo } from "os";
 import { jobs } from "utils/jobs/jobs";
 
 export interface JobsInterface {
