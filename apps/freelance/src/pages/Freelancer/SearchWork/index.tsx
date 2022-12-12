@@ -78,6 +78,7 @@ export function SearchWork() {
 
 	const filterSkillsCheck = (arr1: string[], arr2: string[]) => {
 		const skillsIncluded = arr2.every(skill => arr1.includes(skill));
+
 		return skillsIncluded;
 	};
 
@@ -85,6 +86,7 @@ export function SearchWork() {
 		arr1.map(job => {
 			skillsIncludesArr.push(filterSkillsCheck(job, arr2));
 		});
+    
 		return skillsIncludesArr;
 	};
 
