@@ -22,6 +22,7 @@ import {
 	englishLevel,
 	SelectOptions,
 } from "utils/select-options/options";
+ // hardcoded  - get jobs from server not provided yet
 import { jobs } from "utils/jobs/jobs";
 import { Dashboard, StyledTitle, StyledButton, JobCard, Pagination } from "@freelance/components";
 import { it } from "node:test";
@@ -49,6 +50,7 @@ export function SearchWork() {
 		label: "",
 	};
 
+  // hardcoded  - get freelanceer profile not provided yet
 	const freelancerFilter = {
 		position: "",
 		category: "Category",
@@ -91,7 +93,6 @@ export function SearchWork() {
 			const jobSkills = jobs.map(job => job.skills);
 			const filterSkills = filter.skills;
 			const skillsFilter = skillIncludesFunc(jobSkills, filterSkills);
-			console.log(jobSkills, filterSkills, skillsFilter);
 			const newFilterJobs = jobs.filter(
 				(job, index) =>
 					job.position.toLowerCase().includes(filter.position.toLowerCase()) &&
