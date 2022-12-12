@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { baseUrl } from "utils/constants/redux-query";
+import { RootState } from "redux/store";
 
 interface IFormInput {
 	fullName: string;
@@ -12,8 +13,17 @@ interface IFormInput {
 }
 
 export const createEmployerApi = createApi({
+	reducerPath: "createEmployer",
 	baseQuery: fetchBaseQuery({
 		baseUrl: baseUrl,
+		prepareHeaders: (headers, { getState }) => {
+			const token = (getState() as RootState).user.token;
+			if (token) {
+				headers.set("Authorization", `Bearer ${token}`);
+			}
+
+			return headers;
+		},
 	}),
 	tagTypes: ["employer"],
 	endpoints: builder => ({
