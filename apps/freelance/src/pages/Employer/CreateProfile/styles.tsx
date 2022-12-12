@@ -22,11 +22,21 @@ export const FormBox = styled(Form)`
 			color: ${({ theme }) => theme.colors.grey};
 		}
 	}
+
+	span {
+		color: ${({ theme }) => theme.colors.black};
+		background-color: ${({ theme }) => theme.colors.darkRed};
+		border-radius: 3px;
+		display: block;
+	}
 `;
 
-export const BtnBox = styled.div`
+export const InputContainer = styled.div`
+	color: ${({ theme }) => theme.colors.black};
+
+	width: 100%;
 	display: flex;
-	justify-content: space-between;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 `;
-
-export const TextArea = styled(TextAreaContainer)``;

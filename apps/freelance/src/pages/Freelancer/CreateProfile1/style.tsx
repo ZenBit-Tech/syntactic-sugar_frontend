@@ -5,13 +5,18 @@ export const SelectElement = styled(Select)`
 	.react-select__value-container {
 		width: 80%;
 		height: inherit;
+		padding-left: 3rem;
+	}
+
+	.react-select__multi-value {
+		background-color: transparent;
 	}
 
 	.react-select__control {
 		border: 2px solid ${({ theme }) => theme.colors.grey};
 		border-radius: 100px;
 		height: 50px;
-		padding-left: 1rem;
+
 		width: 100%;
 		color: ${({ theme }) => theme.colors.grey};
 		outline: none;
@@ -54,7 +59,7 @@ export const Form = styled.form`
 		border: 2px solid ${({ theme }) => theme.colors.grey};
 		border-radius: 100px;
 		height: 50px;
-		padding-left: 1rem;
+		padding-left: 3rem;
 		width: 80%;
 		color: ${({ theme }) => theme.colors.grey};
 		outline: none;

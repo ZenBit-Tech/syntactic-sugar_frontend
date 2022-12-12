@@ -84,6 +84,7 @@ export function CreateProfile1(props: ProfilePageProps) {
 								<input
 									type="text"
 									required
+									id="fullName"
 									{...field}
 									placeholder={t("freelancer.createProfile.fullNamePlaceholder")}
 								/>
@@ -99,6 +100,8 @@ export function CreateProfile1(props: ProfilePageProps) {
 										options={categories}
 										{...field}
 										required
+										id="category"
+										isClearable
 										placeholder={t("freelancer.createProfile.selectOption.category")}
 										isSearchable
 										classNamePrefix="react-select"
@@ -114,6 +117,7 @@ export function CreateProfile1(props: ProfilePageProps) {
 							render={({ field }) => (
 								<input
 									{...field}
+									id="position"
 									placeholder={t("freelancer.createProfile.positionPlaceholder")}
 									required
 								/>
@@ -129,8 +133,10 @@ export function CreateProfile1(props: ProfilePageProps) {
 										options={skills}
 										{...field}
 										required
+										id="skills"
 										placeholder={t("freelancer.createProfile.selectOption.skills")}
 										isSearchable
+										isClearable
 										isMulti
 										classNamePrefix="react-select"
 									/>
@@ -147,6 +153,9 @@ export function CreateProfile1(props: ProfilePageProps) {
 										options={employmentType}
 										{...field}
 										required
+										id="employmentType"
+										isSearchable
+										isClearable
 										placeholder={t("freelancer.createProfile.selectOption.employmentType")}
 										classNamePrefix="react-select"
 									/>
@@ -163,8 +172,10 @@ export function CreateProfile1(props: ProfilePageProps) {
 										options={countries}
 										{...field}
 										required
+										id="country"
 										placeholder={t("freelancer.createProfile.selectOption.country")}
 										isSearchable
+										isClearable
 										classNamePrefix="react-select"
 									/>
 								)}
@@ -180,8 +191,10 @@ export function CreateProfile1(props: ProfilePageProps) {
 										options={hourRate}
 										{...field}
 										required
-										placeholder={t("freelancer.createProfile.selectOption.hourRate")}
+										id="hourRate"
 										isSearchable
+										isClearable
+										placeholder={t("freelancer.createProfile.selectOption.hourRate")}
 										classNamePrefix="react-select"
 									/>
 								)}
@@ -197,8 +210,10 @@ export function CreateProfile1(props: ProfilePageProps) {
 										options={hoursAmount}
 										{...field}
 										required
-										placeholder={t("freelancer.createProfile.selectOption.amountHours")}
+										id="amountHours"
 										isSearchable
+										isClearable
+										placeholder={t("freelancer.createProfile.selectOption.amountHours")}
 										classNamePrefix="react-select"
 									/>
 								)}
@@ -214,8 +229,10 @@ export function CreateProfile1(props: ProfilePageProps) {
 										options={workExperience}
 										{...field}
 										required
+										id="workExperience"
 										placeholder={t("freelancer.createProfile.selectOption.workExperience")}
 										isSearchable
+										isClearable
 										classNamePrefix="react-select"
 									/>
 								)}
@@ -230,9 +247,11 @@ export function CreateProfile1(props: ProfilePageProps) {
 									<SelectElement
 										options={englishLevel}
 										{...field}
+										id="englishLevel"
 										required
 										placeholder={t("freelancer.createProfile.selectOption.englishLevel")}
 										isSearchable
+										isClearable
 										classNamePrefix="react-select"
 									/>
 								)}
