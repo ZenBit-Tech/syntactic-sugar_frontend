@@ -72,39 +72,36 @@ export function SearchWork() {
 	const [toggleFilter, setToggleFilter] = useState<string>("reset");
 	const [useFilters, setUseFilters] = useState<boolean>(false);
 
+	let skillsIncludesArr: boolean[] = [];
+
+	const filterSkillsCheck = (arr1: string[], arr2: string[]) => {
+		const skillsIncluded = arr2.every(skill => arr1.includes(skill));
+		return skillsIncluded;
+	};
+
+	const skillIncludesFunc = (arr1: string[][], arr2: string[]) => {
+		arr1.map(job => {
+			skillsIncludesArr.push(filterSkillsCheck(job, arr2));
+		});
+		return skillsIncludesArr;
+	};
+
 	useEffect(() => {
 		if (toggleFilter === "filter") {
 			const jobSkills = jobs.map(job => job.skills);
 			const filterSkills = filter.skills;
-			const jobSkillsIncludes = jobSkills.map(jobSkill =>
-				filterSkills.map((filterSkill: string) => jobSkill.includes(filterSkill)),
+			const skillsFilter = skillIncludesFunc(jobSkills, filterSkills);
+			console.log(jobSkills, filterSkills, skillsFilter);
+			const newFilterJobs = jobs.filter(
+				(job, index) =>
+					job.position.toLowerCase().includes(filter.position.toLowerCase()) &&
+					job.category.includes(filter.category) &&
+					job.employmentType.includes(filter.employmentType) &&
+					job.levelEnglish.includes(filter.englishLevel) &&
+					job.hourRate.includes(filter.hourRate) &&
+					skillsFilter[index],
 			);
-			const skillsIncludes = jobSkillsIncludes.map(jobSkills =>
-				jobSkills.filter((it: boolean) => !!it),
-			);
-			const emptySkills = skillsIncludes.filter(skill => skill.length > 0);
-			if (emptySkills.length > 0) {
-				const newFilterJobs = jobs.filter(
-					(job, index) =>
-						job.position.toLowerCase().includes(filter.position.toLowerCase()) &&
-						job.category.includes(filter.category) &&
-						job.employmentType.includes(filter.employmentType) &&
-						job.levelEnglish.includes(filter.englishLevel) &&
-						job.hourRate.includes(filter.hourRate) &&
-						skillsIncludes[index].length === 1,
-				);
-				setFilterJobs(newFilterJobs);
-			} else {
-				const newFilterJobs = jobs.filter(
-					(job, index) =>
-						job.position.toLowerCase().includes(filter.position.toLowerCase()) &&
-						job.category.includes(filter.category) &&
-						job.employmentType.includes(filter.employmentType) &&
-						job.levelEnglish.includes(filter.englishLevel) &&
-						job.hourRate.includes(filter.hourRate),
-				);
-				setFilterJobs(newFilterJobs);
-			}
+			setFilterJobs(newFilterJobs);
 		}
 	}, [toggleFilter, filter]);
 
