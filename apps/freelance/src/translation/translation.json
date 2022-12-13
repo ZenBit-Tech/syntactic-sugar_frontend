@@ -74,7 +74,9 @@
 		"menu": {
 			"myContracts": "MY CONTRACTS",
 			"searchWorks": "SEARCH WORKS",
-			"proposals": "PROPOSALS"
+			"proposals": "PROPOSALS",
+			"talents": "TALENTS",
+			"jobs": "MY JOBS"
 		},
 		"profilePage": {
 			"title": "My Profile"
@@ -115,6 +117,51 @@
 				"employmentType": "Employment Type",
 				"englishLevel": "English Level"
 			}
+		}
+	},
+	"roleSelection": {
+		"roleTitle": "What do you want?",
+		"roleSubtitle": "Choose your goal and find the best solutions for your project or career.",
+		"roleJobOwner": "I am a Job Owner, hiring for a project.",
+		"roleFreelancer": "I am a Freelancer, looking for a job."
+	},
+	"newJobPosting": {
+		"mainTitle": "New job posting",
+		"subTitle": "Define search criterias",
+		"description": "We'll use them to finde you relevant candidates",
+		"goBackButton": "Go back",
+		"continueButton": "Continue",
+		"createButton": "Create a job",
+		"validation": {
+			"messageFieldRequired": "Field is requierd"
+		},
+		"firstForm": {
+			"inputLabel": "Who are you looking for?",
+			"jobTitlePlaceholder": "E.g.: Java script developer for a big education project",
+			"descriptionLabel": "Job Description",
+			"jobDescription": "We use this description on the website to get the candidates attention.",
+			"validation": {
+				"messageJobTitleMaxChar": "not mo than 50 characters for this field",
+				"messageDescriptionMaxChar": "not more then 600 characters for this field",
+				"messageJobTitleRequired": "Job title is required",
+				"messageDescriptionRequired": "Job description is required"
+			}
+		},
+		"secondForm": {
+			"countriesLabel": "Country",
+			"countriesPlaceholder": "Choose up to 5 countries where your company offices are located",
+			"categoryLabel": "Category",
+			"categoryPlaceholder": "Choose category",
+			"positionLabel": "Position",
+			"postitonPlaceholder": "Add position",
+			"employmentTypeLabel": "Employment type",
+			"employmentTypePlaceholder": "Add employment type",
+			"hoursAmountLabel": "The available amount of hours",
+			"hoursAmountPlaceholder": "Choose available amount of hours",
+			"workExperienceLabel": "Work experience",
+			"workExperiencePlaceholder": "Choose work experience",
+			"hourRateLabel": "Hour rate (one price)",
+			"hourRatePlaceholder": "Choose hour rate (one price)"
 		},
 		"searchWork": {
 			"filter": "Filter",
@@ -129,6 +176,26 @@
 			"roleSubtitle": "Choose your goal and find the best solutions for your project or career.",
 			"roleJobOwner": "I am a Job Owner, hiring for a project.",
 			"roleFreelancer": "I am a Freelancer, looking for a job."
+		"thirdForm": {
+			"skillsLabel": "Skills",
+			"skillsPlaceholder": "Choose required skills",
+			"englishLevelLabel": "English Level",
+			"englishLevelPlaceholder": "Choose required english level",
+			"otherRequirenmentsLabel": "Other requirenments",
+			"otherRequirenmentsPlaceholder": "Add Text"
+		}
+	},
+	"employer": {
+		"create": {
+			"title": "Fill the profile to post jobs and hire the best employees!",
+			"fullNameLabel": "Full name",
+			"positionLabel": "Position",
+			"phoneLabel": "Phone",
+			"companyNameLabel": "Company name",
+			"linkedinLabel": "LinkedIn",
+			"websiteLabel": "Website",
+			"aboutusLabel": "About us",
+			"btn1": " Create profile"
 		}
 	}
 }
