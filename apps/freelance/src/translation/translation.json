@@ -180,5 +180,8 @@
 			"aboutusLabel": "About us",
 			"btn1": " Create profile"
 		}
+	},
+	"jobDetails": {
+		"title": "What are you looking for?"
 	}
 }

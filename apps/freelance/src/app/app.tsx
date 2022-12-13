@@ -19,6 +19,7 @@ import {
 import store from "redux/store";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import CreateProfile2 from "@pages/Freelancer/CreateProfile2";
+import { WorkDetails } from "@pages/WorkDetails";
 
 export function App() {
 	return (
@@ -42,6 +43,7 @@ export function App() {
 							<Route path="/create-new-job-first-page" element={<JobPostingFirstPage />} />
 							<Route path="/create-new-job-second-page" element={<JobPostingSecondPage />} />
 							<Route path="/create-new-job-third-page" element={<JobPostingThirdPage />} />
+							<Route path="/jobs/details" element={<WorkDetails />} />
 						</Routes>
 					</BrowserRouter>
 				</Provider>
