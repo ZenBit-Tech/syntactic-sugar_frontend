@@ -41,7 +41,7 @@ export const loginApi = createApi({
 				body,
 			}),
 		}),
-		loginWithGoogle: build.mutation<IServerResponse, IToken>({
+		loginWithGoogle: build.mutation<IUserState, IToken>({
 			query: (body: IToken) => ({
 				url: "auth/google/login",
 				method: "POST",
