@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { englishLevel, skills } from "utils/select-options/options";
 import { useAppSelector } from "redux/example-hooks";
 import { getStoredJobInfo } from "redux/newJobPosting";
 import {
@@ -17,6 +16,7 @@ import {
 	selectDefaultArray,
 	selectDefaultObject,
 } from "@freelance/components";
+import { useOptions } from "utils/select-options/options";
 import { useJobPostingThirdFormHook } from "./job-posting-third-formHooks";
 
 export function JobPostingThirdForm({ page, textButtonHandler }: IJobPostingThirdFormProps) {
@@ -42,6 +42,7 @@ export function JobPostingThirdForm({ page, textButtonHandler }: IJobPostingThir
 		isLoading,
 		onSubmit,
 	} = useJobPostingThirdFormHook();
+	const { skills, englishLevel } = useOptions();
 
 	useEffect(() => {
 		textButtonHandler(isLoading);

@@ -1,13 +1,5 @@
 import { useForm, Controller } from "react-hook-form";
 import {
-	countries,
-	categories,
-	employmentType,
-	hoursAmount,
-	hourRate,
-	workExperience,
-} from "utils/select-options/options";
-import {
 	IJobPostingFormProps,
 	IJobPostingSecondForm,
 	ErrorsHandlerWrapper,
@@ -21,9 +13,10 @@ import {
 	selectDefaultArray,
 	selectDefaultObject,
 } from "@freelance/components";
-import { useJobPostingSecondFormHook } from "./job-posting-second-formHooks";
 import { useAppSelector } from "redux/example-hooks";
 import { getStoredJobInfo } from "redux/newJobPosting";
+import { useOptions } from "utils/select-options/options";
+import { useJobPostingSecondFormHook } from "./job-posting-second-formHooks";
 
 export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 	const {
@@ -59,6 +52,8 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 		register,
 		formState: { errors },
 	} = useForm<IJobPostingSecondForm>();
+	const { countries, categories, hoursAmount, hourRate, employmentType, workExperience } =
+		useOptions();
 
 	return (
 		<JobPostingGridForm id={page} onSubmit={handleSubmit(onSubmit)} justifyItems="center">

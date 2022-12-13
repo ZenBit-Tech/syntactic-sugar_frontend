@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 export type SelectOptions = {
 	value: string;
 	label: string;
@@ -5,542 +7,416 @@ export type SelectOptions = {
 
 export type SkillsType = Array<SelectOptions>;
 
-export const countries: SelectOptions[] = [
-	{
-		label: "Andorra",
-		value: "AD",
-	},
-	{
-		label: "Albania",
-		value: "AL",
-	},
-	{
-		label: "Austria",
-		value: "AT",
-	},
-	{
-		label: "Åland Islands",
-		value: "AX",
-	},
-	{
-		label: "Bosnia and Herzegovina",
-		value: "BA",
-	},
-	{
-		label: "Belgium",
-		value: "BE",
-	},
-	{
-		label: "Bulgaria",
-		value: "BG",
-	},
-	{
-		label: "Belarus",
-		value: "BY",
-	},
-	{
-		label: "Switzerland",
-		value: "CH",
-	},
-	{
-		label: "Cyprus",
-		value: "CY",
-	},
-	{
-		label: "Czech Republic",
-		value: "CZ",
-	},
-	{
-		label: "Germany",
-		value: "DE",
-	},
-	{
-		label: "Denmark",
-		value: "DK",
-	},
-	{
-		label: "Estonia",
-		value: "EE",
-	},
-	{
-		label: "Spain",
-		value: "ES",
-	},
-	{
-		label: "Finland",
-		value: "FI",
-	},
-	{
-		label: "Faroe Islands",
-		value: "FO",
-	},
-	{
-		label: "France",
-		value: "FR",
-	},
-	{
-		label: "United Kingdom",
-		value: "GB",
-	},
-	{
-		label: "United States of America",
-		value: "US",
-	},
-	{
-		label: "Guernsey",
-		value: "GG",
-	},
-	{
-		label: "Greece",
-		value: "GR",
-	},
-	{
-		label: "Croatia",
-		value: "HR",
-	},
-	{
-		label: "Hungary",
-		value: "HU",
-	},
-	{
-		label: "Ireland",
-		value: "IE",
-	},
-	{
-		label: "Isle of Man",
-		value: "IM",
-	},
-	{
-		label: "Iceland",
-		value: "IC",
-	},
-	{
-		label: "Italy",
-		value: "IT",
-	},
-	{
-		label: "Jersey",
-		value: "JE",
-	},
-	{
-		label: "Liechtenstein",
-		value: "LI",
-	},
-	{
-		label: "Lithuania",
-		value: "LT",
-	},
-	{
-		label: "Luxembourg",
-		value: "LU",
-	},
-	{
-		label: "Latvia",
-		value: "LV",
-	},
-	{
-		label: "Monaco",
-		value: "MC",
-	},
-	{
-		label: "Moldova, Republic of",
-		value: "MD",
-	},
-	{
-		label: "Macedonia, The Former Yugoslav Republic of",
-		value: "MK",
-	},
-	{
-		label: "Malta",
-		value: "MT",
-	},
-	{
-		label: "Netherlands",
-		value: "NL",
-	},
-	{
-		label: "Norway",
-		value: "NO",
-	},
-	{
-		label: "Poland",
-		value: "PL",
-	},
-	{
-		label: "Portugal",
-		value: "PT",
-	},
-	{
-		label: "Romania",
-		value: "RO",
-	},
-	{
-		label: "Russian Federation",
-		value: "RU",
-	},
-	{
-		label: "Sweden",
-		value: "SE",
-	},
-	{
-		label: "Slovenia",
-		value: "SI",
-	},
-	{
-		label: "Svalbard and Jan Mayen",
-		value: "SJ",
-	},
-	{
-		label: "Slovakia",
-		value: "SK",
-	},
-	{
-		label: "San Marino",
-		value: "SM",
-	},
-	{
-		label: "Ukraine",
-		value: "UA",
-	},
-	{
-		label: "Holy See (Vatican City State)",
-		value: "VA",
-	},
-];
+interface iOptions {
+	countries: SelectOptions[];
+	categories: SelectOptions[];
+	englishLevel: SelectOptions[];
+	hoursAmount: SelectOptions[];
+	skills: SelectOptions[];
+	hourRate: SelectOptions[];
+	employmentType: SelectOptions[];
+	workExperience: SelectOptions[];
+}
 
-export const categories: SelectOptions[] = [
-	{
-		label: "Service sector",
-		value: "service",
-	},
-	{
-		label: "Skilled trades & manufactoring",
-		value: "skilled trades",
-	},
-	{
-		label: "Sales & procurement",
-		value: "sales",
-	},
-	{
-		label: "Retail",
-		value: "retail",
-	},
-	{
-		label: "Hotels, restaurants & tourism",
-		value: "hotels",
-	},
-	{
-		label: "Administration & middle management",
-		value: "administration",
-	},
-	{
-		label: "IT, computers & Internet",
-		value: "IT",
-	},
-	{
-		label: "Logistics, warehouse & international commerce",
-		value: "logistics",
-	},
-	{
-		label: "Transportation & auto industry",
-		value: "auto",
-	},
-	{
-		label: "Medicine & pharmaceuticals",
-		value: "medicine",
-	},
-	{
-		label: "Marketing, advertising & PR",
-		value: "marketing",
-	},
-	{
-		label: "Accounting & auditing",
-		value: "accounting",
-	},
-	{
-		label: "Secretarial, clerical & administrative assistants",
-		value: "secretarial",
-	},
-	{
-		label: "Education & science",
-		value: "education",
-	},
-	{
-		label: "Telecommunications",
-		value: "telecommunications",
-	},
-	{
-		label: "Finance & banking",
-		value: "finance",
-	},
-	{
-		label: "Construction & architecture",
-		value: "architecture",
-	},
-	{
-		label: "Design & creativity",
-		value: "design",
-	},
-	{
-		label: "Beauty, fitness & sports",
-		value: "sports",
-	},
-	{
-		label: "Journalism, publishing & printing",
-		value: "publishing",
-	},
-	{
-		label: "HR & personnel management",
-		value: "hr",
-	},
-	{
-		label: "Upper & senior management",
-		value: "management",
-	},
-	{
-		label: "Agriculture & agribusiness",
-		value: "agribusiness",
-	},
-	{
-		label: "Security & guarding",
-		value: "security",
-	},
-	{
-		label: "Legal",
-		value: "legal",
-	},
-	{
-		label: "Real estate",
-		value: "real estate",
-	},
-	{
-		label: "Culture, music & entertainment",
-		value: "culture",
-	},
-	{
-		label: "Insurance",
-		value: "insurance",
-	},
-];
+export const useOptions = (): iOptions => {
+	const { t } = useTranslation();
 
-export const englishLevel: SelectOptions[] = [
-	{
-		label: "No English",
-		value: "noEnglish",
-	},
-	{
-		label: "Beginner",
-		value: "begginner",
-	},
-	{
-		label: "Elementary",
-		value: "elementary",
-	},
-	{
-		label: "Pre-Intermediate",
-		value: "preInt",
-	},
-	{
-		label: "Intermediate",
-		value: "intermediate",
-	},
-	{
-		label: "Upper-Intermediate",
-		value: "upperInt",
-	},
-	{
-		label: "Advanced",
-		value: "advanced",
-	},
-	{
-		label: "Master",
-		value: "master",
-	},
-];
+	const countries: SelectOptions[] = [
+		{
+			label: t("countries.germany"),
+			value: "DE",
+		},
+		{
+			label: t("countries.spain"),
+			value: "ES",
+		},
+		{
+			label: t("countries.france"),
+			value: "FR",
+		},
+		{
+			label: t("countries.uk"),
+			value: "GB",
+		},
+		{
+			label: t("countries.usa"),
+			value: "US",
+		},
+		{
+			label: t("countries.italy"),
+			value: "IT",
+		},
+		{
+			label: t("countries.lithuania"),
+			value: "LT",
+		},
+		{
+			label: t("countries.latvia"),
+			value: "LV",
+		},
+		{
+			label: t("countries.moldova"),
+			value: "MD",
+		},
+		{
+			label: t("countries.poland"),
+			value: "PL",
+		},
+		{
+			label: t("countries.romania"),
+			value: "RO",
+		},
+		{
+			label: t("countries.ukraine"),
+			value: "UA",
+		},
+	];
 
-export const hoursAmount: SelectOptions[] = [
-	{
-		label: "Full time",
-		value: "full",
-	},
-	{
-		label: "Part time",
-		value: "part",
-	},
-];
+	const categories: SelectOptions[] = [
+		{
+			label: t("categories.serviceSector"),
+			value: "service",
+		},
+		{
+			label: t("categories.skilledTradesManufac"),
+			value: "skilled trades",
+		},
+		{
+			label: t("categories.salesProcur"),
+			value: "sales",
+		},
+		{
+			label: t("categories.retail"),
+			value: "retail",
+		},
+		{
+			label: t("categories.hotelRestTourism"),
+			value: "hotels",
+		},
+		{
+			label: t("categories.adminMiddleManag"),
+			value: "administration",
+		},
+		{
+			label: t("categories.itCompInt"),
+			value: "IT",
+		},
+		{
+			label: t("categories.logWarehIntComm"),
+			value: "logistics",
+		},
+		{
+			label: t("categories.transportAutoInd"),
+			value: "auto",
+		},
+		{
+			label: t("categories.medPharm"),
+			value: "medicine",
+		},
+		{
+			label: t("categories.marketAdvPr"),
+			value: "marketing",
+		},
+		{
+			label: t("categories.accAudit"),
+			value: "accounting",
+		},
+		{
+			label: t("categories.secrClerAdmAssist"),
+			value: "secretarial",
+		},
+		{
+			label: t("categories.educationScience"),
+			value: "education",
+		},
+		{
+			label: t("categories.telecom"),
+			value: "telecommunications",
+		},
+		{
+			label: t("categories.finBank"),
+			value: "finance",
+		},
+		{
+			label: t("categories.constractArchitect"),
+			value: "architecture",
+		},
+		{
+			label: t("categories.desCreativity"),
+			value: "design",
+		},
+		{
+			label: t("categories.beautyFitSport"),
+			value: "sports",
+		},
+		{
+			label: t("categories.journPublishPrint"),
+			value: "publishing",
+		},
+		{
+			label: t("categories.hrPersonManag"),
+			value: "hr",
+		},
+		{
+			label: t("categories.upperSenManag"),
+			value: "management",
+		},
+		{
+			label: t("categories.agribusiness"),
+			value: "agribusiness",
+		},
+		{
+			label: t("categories.securGuard"),
+			value: "security",
+		},
+		{
+			label: t("categories.legal"),
+			value: "legal",
+		},
+		{
+			label: t("categories.realEstate"),
+			value: "real estate",
+		},
+		{
+			label: t("categories.cultMusicEnt"),
+			value: "culture",
+		},
+		{
+			label: t("categories.insurance"),
+			value: "insurance",
+		},
+	];
 
-export const skills: SelectOptions[] = [
-	{
-		label: "JavaScript/Front-End",
-		value: "js",
-	},
-	{
-		label: "Java",
-		value: "java",
-	},
-	{
-		label: "C#",
-		value: "c#",
-	},
-	{
-		label: ".NET",
-		value: ".net",
-	},
-	{
-		label: "Python",
-		value: "python",
-	},
-	{
-		label: "PHP",
-		value: "php",
-	},
-	{
-		label: "Node.js",
-		value: "node",
-	},
-	{
-		label: "iOS",
-		value: "ios",
-	},
-	{
-		label: "Android",
-		value: "android",
-	},
-	{
-		label: "C",
-		value: "c",
-	},
-	{
-		label: "C++",
-		value: "c++",
-	},
-	{
-		label: "Embedded",
-		value: "embedded",
-	},
-	{
-		label: "Flutter",
-		value: "flutter",
-	},
-	{
-		label: "Golang",
-		value: "golang",
-	},
-	{
-		label: "Ruby",
-		value: "ruby",
-	},
-	{
-		label: "Scala",
-		value: "scala",
-	},
-	{
-		label: "Salesforce",
-		value: "salesforce",
-	},
-	{
-		label: "Rust",
-		value: "rust",
-	},
-	{
-		label: "Other",
-		value: "other",
-	},
-];
+	const englishLevel: SelectOptions[] = [
+		{
+			label: t("englishLevel.noEnglish"),
+			value: "noEnglish",
+		},
+		{
+			label: t("englishLevel.beginner"),
+			value: "begginner",
+		},
+		{
+			label: t("englishLevel.elementary"),
+			value: "elementary",
+		},
+		{
+			label: t("englishLevel.preInterm"),
+			value: "preInt",
+		},
+		{
+			label: t("englishLevel.intermediate"),
+			value: "intermediate",
+		},
+		{
+			label: t("englishLevel.upperInterm"),
+			value: "upperInt",
+		},
+		{
+			label: t("englishLevel.advanced"),
+			value: "advanced",
+		},
+		{
+			label: t("englishLevel.master"),
+			value: "master",
+		},
+	];
 
-export const hourRate: SelectOptions[] = [
-	{
-		label: "Less than 500$",
-		value: "less 500",
-	},
-	{
-		label: "From 500$ to 1000$",
-		value: "500-1000",
-	},
-	{
-		label: "From 1000$ to 1500$",
-		value: "1000-1500",
-	},
-	{
-		label: "From 1500$",
-		value: "more 1500",
-	},
-	{
-		label: "From 15000$",
-		value: "more 15000",
-	},
-];
+	const hoursAmount: SelectOptions[] = [
+		{
+			label: t("hoursAmount.full"),
+			value: "full",
+		},
+		{
+			label: t("hoursAmount.part"),
+			value: "part",
+		},
+	];
 
-export const employmentType: SelectOptions[] = [
-	{
-		label: "Remote",
-		value: "remote",
-	},
-	{
-		label: "Office",
-		value: "office",
-	},
-	{
-		label: "Freelancer for a project",
-		value: "freelancer",
-	},
-	{
-		label: "Move to another city",
-		value: "city relocate",
-	},
-	{
-		label: "Move to another country",
-		value: "abroad relocate",
-	},
-];
+	const skills: SelectOptions[] = [
+		{
+			label: t("skills.jsFe"),
+			value: "js",
+		},
+		{
+			label: t("skills.java"),
+			value: "java",
+		},
+		{
+			label: t("skills.cSharp"),
+			value: "c#",
+		},
+		{
+			label: t("skills.net"),
+			value: ".net",
+		},
+		{
+			label: t("skills.python"),
+			value: "python",
+		},
+		{
+			label: t("skills.php"),
+			value: "php",
+		},
+		{
+			label: t("skills.nodejs"),
+			value: "node",
+		},
+		{
+			label: t("skills.ios"),
+			value: "ios",
+		},
+		{
+			label: t("skills.android"),
+			value: "android",
+		},
+		{
+			label: t("skills.c"),
+			value: "c",
+		},
+		{
+			label: t("skills.cPlus"),
+			value: "c++",
+		},
+		{
+			label: t("skills.embedded"),
+			value: "embedded",
+		},
+		{
+			label: t("skills.flutter"),
+			value: "flutter",
+		},
+		{
+			label: t("skills.golang"),
+			value: "golang",
+		},
+		{
+			label: t("skills.ruby"),
+			value: "ruby",
+		},
+		{
+			label: t("skills.scala"),
+			value: "scala",
+		},
+		{
+			label: t("skills.salesforce"),
+			value: "salesforce",
+		},
+		{
+			label: t("skills.rust"),
+			value: "rust",
+		},
+		{
+			label: t("skills.other"),
+			value: "other",
+		},
+	];
 
-export const workExperience: SelectOptions[] = [
-	{
-		label: "No experience",
-		value: "no",
-	},
-	{
-		label: "Less than 1 year",
-		value: "less 1year",
-	},
-	{
-		label: "1 year",
-		value: "1",
-	},
-	{
-		label: "2 years",
-		value: "2",
-	},
-	{
-		label: "3 years",
-		value: "3",
-	},
-	{
-		label: "4 years",
-		value: "4",
-	},
-	{
-		label: "5 years",
-		value: "5",
-	},
-	{
-		label: "More than 5 years",
-		value: "more5",
-	},
-	{
-		label: "More than 10 years",
-		value: "more10",
-	},
-	{
-		label: "More than 15 years",
-		value: "more15",
-	},
-	{
-		label: "More than 20 years",
-		value: "more20",
-	},
-	{
-		label: "More than 25 years",
-		value: "more25",
-	},
-];
+	const hourRate: SelectOptions[] = [
+		{
+			label: t("hourRate.lessThan500"),
+			value: "less 500",
+		},
+		{
+			label: t("hourRate.from500To1000"),
+			value: "500-1000",
+		},
+		{
+			label: t("hourRate.from1000To1500"),
+			value: "1000-1500",
+		},
+		{
+			label: t("hourRate.from1500"),
+			value: "more 1500",
+		},
+		{
+			label: t("hourRate.from15000"),
+			value: "more 15000",
+		},
+	];
+
+	const employmentType: SelectOptions[] = [
+		{
+			label: t("employmentType.remote"),
+			value: "remote",
+		},
+		{
+			label: t("employmentType.office"),
+			value: "office",
+		},
+		{
+			label: t("employmentType.forProject"),
+			value: "freelancer",
+		},
+		{
+			label: t("employmentType.moveToAnotherCity"),
+			value: "city relocate",
+		},
+		{
+			label: t("employmentType.moveToAnotherCountry"),
+			value: "abroad relocate",
+		},
+	];
+
+	const workExperience: SelectOptions[] = [
+		{
+			label: t("workExperience.noExp"),
+			value: "no",
+		},
+		{
+			label: t("workExperience.lessThanYear"),
+			value: "less 1year",
+		},
+		{
+			label: t("workExperience.oneYear"),
+			value: "1",
+		},
+		{
+			label: t("workExperience.twoYears"),
+			value: "2",
+		},
+		{
+			label: t("workExperience.threeYears"),
+			value: "3",
+		},
+		{
+			label: t("workExperience.fourYears"),
+			value: "4",
+		},
+		{
+			label: t("workExperience.fiveYears"),
+			value: "5",
+		},
+		{
+			label: t("workExperience.moreThanFiveYears"),
+			value: "more5",
+		},
+		{
+			label: t("workExperience.moreThanTenYears"),
+			value: "more10",
+		},
+		{
+			label: t("workExperience.moreThanFifteenYears"),
+			value: "more15",
+		},
+		{
+			label: t("workExperience.moreThanTwentyYears"),
+			value: "more20",
+		},
+		{
+			label: t("workExperience.moreThanTwentyFiveYears"),
+			value: "more25",
+		},
+	];
+
+	return {
+		countries,
+		categories,
+		englishLevel,
+		hoursAmount,
+		skills,
+		hourRate,
+		employmentType,
+		workExperience,
+	};
+};

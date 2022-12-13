@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { SubmitHandler } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "redux/example-hooks";
 import {
@@ -10,7 +11,6 @@ import {
 	initialState,
 } from "redux/newJobPosting";
 import { IJobPostingThirdForm, IUseJobPostingThirdForm } from "@freelance/components";
-import { useNavigate } from "react-router-dom";
 import { EMPLOYER_JOBS_PAGE } from "utils/constants/links";
 
 export const useJobPostingThirdFormHook = (): IUseJobPostingThirdForm => {

@@ -1,18 +1,15 @@
 import { useEffect } from "react";
-import { Form } from "./recover-pass-first-form.styled";
 import { useTranslation } from "react-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { ToastContainer } from "react-toastify";
 import { StyledButton } from "@freelance/components";
-import { IForgotPasswordForm } from "./interfaces";
 import { useForgotPasswordSchema } from "utils/validations";
+import { IForgotPasswordForm } from "./interfaces";
 import { useForgotPasswordSendEmail } from "./recover-pass-firstHooks";
+import { Form } from "./recover-pass-first-form.styled";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface RecoverPassFirstFormProps {}
-
-export function RecoverPassFirstForm(props: RecoverPassFirstFormProps) {
+export function RecoverPassFirstForm() {
 	const { t } = useTranslation();
 	const schema = useForgotPasswordSchema();
 	const { onSubmit, isLoading } = useForgotPasswordSendEmail();

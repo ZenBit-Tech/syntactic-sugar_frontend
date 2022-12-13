@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useJobPostingFirstFormHook } from "./job-posting-first-formHooks";
 import {
 	IJobPostingFormProps,
 	IJobPostingFirstForm,
@@ -11,9 +10,10 @@ import {
 	JobPostingLabel,
 } from "@freelance/components";
 import { useFirstFormSchema } from "utils/validations/newJobPostingSchemas";
-import { FirstFormInputWrapper } from "./job-posting-first-form.styled";
 import { useAppSelector } from "redux/example-hooks";
 import { getStoredJobInfo } from "redux/newJobPosting/new-job-posting-slice";
+import { useJobPostingFirstFormHook } from "./job-posting-first-formHooks";
+import { FirstFormInputWrapper } from "./job-posting-first-form.styled";
 
 export function JobPostingFirstForm({ page }: IJobPostingFormProps) {
 	const schema = useFirstFormSchema();

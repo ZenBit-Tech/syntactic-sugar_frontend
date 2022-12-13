@@ -1,3 +1,6 @@
+import { ToastContainer } from "react-toastify";
+import { ThemeProvider } from "styled-components";
+import { FIRST_PAGE, SECOND_PAGE, THIRD_PAGE } from "utils/constants/breakpoint";
 import {
 	Page,
 	StyledPage,
@@ -8,9 +11,6 @@ import {
 	JobPostingSecondForm,
 	JobPostingThirdForm,
 } from "@freelance/components";
-import { ToastContainer } from "react-toastify";
-import { ThemeProvider } from "styled-components";
-import { FIRST_PAGE, SECOND_PAGE, THIRD_PAGE } from "utils/constants/breakpoint";
 import {
 	ButtonContainer,
 	Description,
