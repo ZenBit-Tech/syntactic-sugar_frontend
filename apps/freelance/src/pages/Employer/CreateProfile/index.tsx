@@ -14,6 +14,7 @@ import { StyledPage } from "@pages/Freelancer/CreateProfile1/style";
 import { ThemeProvider } from "styled-components";
 import { FormBox, InputContainer } from "./styles";
 import { useCreateEmployerMutation } from "redux/createEmployer/employerApi";
+import { MY_JOBS } from "src/utils/constants/breakpoint";
 
 interface IFormInput {
 	fullName: string;
@@ -47,7 +48,7 @@ export function CreateEmployerProfile() {
 		};
 		try {
 			await createProfile(employerInfo);
-			navigate("/employer/my-jobs");
+			navigate(MY_JOBS);
 		} catch (error) {
 			alert(error);
 		}

@@ -21,6 +21,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useAppDispatch } from "redux/example-hooks";
 import { addFreelancerInfo } from "redux/createFreelancer/freelancer-slice";
 import { useNavigate } from "react-router-dom";
+import { CREATE_PROFILE_1, VIEW_PROFILE } from "src/utils/constants/breakpoint";
 
 export function CreateProfile2() {
 	const { t } = useTranslation();
@@ -68,10 +69,10 @@ export function CreateProfile2() {
 		}
 		if (type === "view") {
 			dispatch(addFreelancerInfo(payload));
-			navigate("/freelancer/viewprofile");
+			navigate(VIEW_PROFILE);
 		}
 		if (type === "back") {
-			navigate("/freelancer/create-profile1");
+			navigate(CREATE_PROFILE_1);
 		}
 	};
 

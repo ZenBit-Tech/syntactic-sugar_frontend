@@ -24,6 +24,7 @@ import {
 import { ThemeProvider } from "styled-components";
 import { SelectElement } from "./style";
 import { useTranslation } from "react-i18next";
+import { CREATE_PROFILE_2 } from "src/utils/constants/breakpoint";
 
 /* eslint-disable-next-line */
 export interface ProfilePageProps {}
@@ -62,7 +63,7 @@ export function CreateProfile1(props: ProfilePageProps) {
 		};
 		try {
 			await dispatch(addFreelancerInfo(freelancerInfo));
-			navigate("/freelancer/create-profile2");
+			navigate(CREATE_PROFILE_2);
 		} catch (error) {
 			alert(error);
 		}
