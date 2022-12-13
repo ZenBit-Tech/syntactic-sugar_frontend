@@ -51,7 +51,6 @@ export function App() {
 						</Routes>
 					</BrowserRouter>
 				</Provider>
-				€
 			</GoogleOAuthProvider>
 		</StyledApp>
 	);
