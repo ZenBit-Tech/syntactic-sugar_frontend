@@ -1,3 +1,6 @@
+import { useTranslation } from "react-i18next";
+import { StyledTitle, StyledParagraph, StyledButton } from "@freelance/components";
+import styled from "styled-components";
 import {
 	Container,
 	StyledJobCard,
@@ -5,9 +8,6 @@ import {
 	StyledJobCardParagraph,
 	StyledJobCardHeaderLeft,
 } from "./job-card.styled";
-import { useTranslation } from "react-i18next";
-import { StyledTitle, StyledParagraph, StyledButton } from "@freelance/components";
-import styled from "styled-components";
 
 /* eslint-disable-next-line */
 export interface JobCardProps {
