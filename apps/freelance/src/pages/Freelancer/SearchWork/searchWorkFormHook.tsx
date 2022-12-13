@@ -1,6 +1,6 @@
-import { IFormInput } from "./index";
 import { SubmitHandler } from "react-hook-form";
 import React, { useState } from "react";
+import { IFormInput } from "./index";
 
 export const useSearchWorkFormHook = () => {
 	const [toggleFilter, setToggleFilter] = useState<string>("reset");

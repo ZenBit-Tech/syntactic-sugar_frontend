@@ -2,16 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useForm, SubmitHandler, Controller, ChangeHandler } from "react-hook-form";
 import {
-	StyledPage,
-	Form,
-	InputContainer,
-	Wrapper,
-	ButtonsContainer,
-	InputHeader,
-	InputWrapper,
-	SelectElement,
-} from "./style";
-import {
 	countries,
 	categories,
 	skills,
@@ -27,6 +17,16 @@ import { jobs } from "utils/jobs/jobs";
 import { Dashboard, StyledTitle, StyledButton, JobCard, Pagination } from "@freelance/components";
 import { useGetJobsQuery } from "redux/jobs/jobs.api";
 import { useSearchWorkFormHook } from "./searchWorkFormHook";
+import {
+	StyledPage,
+	Form,
+	InputContainer,
+	Wrapper,
+	ButtonsContainer,
+	InputHeader,
+	InputWrapper,
+	SelectElement,
+} from "./style";
 
 type user = "freelancer" | "employer";
 
