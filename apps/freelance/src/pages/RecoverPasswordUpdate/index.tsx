@@ -1,8 +1,8 @@
-import { StyledPage, Container } from "./style";
 import { useTranslation } from "react-i18next";
 import { ThemeProvider } from "styled-components";
-import { ThemeColors, Message, StyledButton } from "@freelance/components";
 import { useNavigate } from "react-router-dom";
+import { ThemeColors, Message, StyledButton } from "@freelance/components";
+import { StyledPage, Container } from "./style";
 
 export function RecoverPasswordUpdate() {
 	const { t } = useTranslation();

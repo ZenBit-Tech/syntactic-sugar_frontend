@@ -1,7 +1,7 @@
-import { StyledPage, Container } from "./style";
 import { useTranslation } from "react-i18next";
 import { ThemeProvider } from "styled-components";
 import { ThemeColors, Message } from "@freelance/components";
+import { StyledPage, Container } from "./style";
 
 export function RecoverPasswordCheck() {
 	const { t } = useTranslation();

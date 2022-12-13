@@ -4,7 +4,7 @@ import { ROLES } from "utils/constants/roles";
 import { Container } from "./dashboard-menu.styled";
 
 export interface DashboardMenuProps {
-	userRole: "freelancer" | "guest" | "employer";
+	userRole: "freelancer" | "employer";
 }
 
 export function DashboardMenu({ userRole }: DashboardMenuProps) {
