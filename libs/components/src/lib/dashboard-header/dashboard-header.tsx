@@ -4,7 +4,7 @@ import { StyledButton, StyledParagraph } from "@freelance/components";
 import { ROLES } from "utils/constants/roles";
 
 export interface DashboardHeaderProps {
-	userRole: "freelancer" | "guest" | "employer";
+	userRole: "freelancer" | "employer";
 }
 
 export function DashboardHeader({ userRole }: DashboardHeaderProps) {
@@ -22,6 +22,18 @@ export function DashboardHeader({ userRole }: DashboardHeaderProps) {
 				</UserDetails>
 			</UserInfoWrapper>
 			{userRole === ROLES.FREELANCER && (
+				<ButtonsWrapper>
+					<StyledButton buttonSize="md" buttonColor="lightRed" fontSize="md">
+						{t("dashboard.header.chat")}
+						<img src="/assets/images/chat_btn_icon.png" alt="Chat Icon" />
+					</StyledButton>
+					<StyledButton buttonSize="md" buttonColor="darkRed" fontSize="md">
+						{t("dashboard.header.logout")}
+						<img src="/assets/images/logout_btn_icon.png" alt="Logout Icon" />
+					</StyledButton>
+				</ButtonsWrapper>
+			)}
+			{userRole === ROLES.EMPLOYER && (
 				<ButtonsWrapper>
 					<StyledButton buttonSize="md" buttonColor="lightRed" fontSize="md">
 						{t("dashboard.header.chat")}

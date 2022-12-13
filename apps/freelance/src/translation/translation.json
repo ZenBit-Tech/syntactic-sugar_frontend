@@ -113,6 +113,12 @@
 				"employmentType": "Employment Type",
 				"englishLevel": "English Level"
 			}
+		},
+		"viewProfile": {
+			"employmentType": "Employment",
+			"hourRate": "Rate hour",
+			"workingHours": "Working hours",
+			"workHistory": "Work history"
 		}
 	},
 	"roleSelection": {

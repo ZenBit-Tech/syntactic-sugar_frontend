@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { ThemeProvider } from "styled-components";
 import {
 	StyledPage,
 	Container,
@@ -19,15 +20,31 @@ import {
 	StyledTitle,
 	StyledButton,
 } from "@freelance/components";
-import { ThemeProvider } from "styled-components";
+import { RootState } from "src/redux/store";
+import { Freelancer } from "src/redux/createFreelancer/freelancer-slice";
 
 export function ViewProfile() {
 	const { t } = useTranslation();
+	const profile = useSelector<RootState, Freelancer>(state => state.freelancer);
+	const {
+		category,
+		position,
+		skills,
+		employmentType,
+		country,
+		hourRate,
+		availableAmountOfHour,
+		workExperience,
+		englishLevel,
+		education,
+		workHistory,
+		otherExperience,
+	} = profile;
 
 	return (
 		<ThemeProvider theme={ThemeColors && ThemeBackground}>
 			<StyledPage>
-				<Dashboard userRole="guest">
+				<Dashboard userRole="freelancer">
 					<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
 						{t("dashboard.profilePage.title")}
 					</StyledTitle>
@@ -36,123 +53,125 @@ export function ViewProfile() {
 							<LeftSide>
 								<Item>
 									<Title id="country">
-										<strong>Country</strong>
+										<strong>{t("freelancer.createProfile.selectOption.country")}</strong>
 									</Title>
-									<p>Brazil</p>
+									<p>{country}</p>
 								</Item>
 								<Item>
 									<Title id="category">
-										<strong>Category</strong>
+										<strong>{t("freelancer.createProfile.selectOption.category")}</strong>
 									</Title>
-									<p>IT, computers & Internet </p>
+									<p>{category}</p>
 								</Item>
 								<Item>
 									<Title id="position">
-										<strong>Position</strong>
+										<strong>{t("freelancer.createProfile.positionPlaceholder")}</strong>
 									</Title>
-									<p>Full Stack Developer</p>
+									<p>{position}</p>
 								</Item>
 								<Item>
 									<Title id="employment">
-										<strong>Employment</strong>
+										<strong>{t("freelancer.viewProfile.employmentType")}</strong>
 									</Title>
-									<p>Remote</p>
+									<p>{employmentType}</p>
 								</Item>
 								<Item>
 									<Title id="englishLevel">
-										<strong>English Level</strong>
+										<strong>{t("freelancer.createProfile.selectOption.englishLevel")}</strong>
 									</Title>
-									<p>Upper-intermediate</p>
+									<p>{englishLevel}</p>
 								</Item>
 							</LeftSide>
 							<RightSide>
 								<Item>
 									<Title id="workExperience">
-										<strong>Work Experience</strong>
+										<strong>{t("freelancer.createProfile.selectOption.workExperience")}</strong>
 									</Title>
-									<p>More than 5 years</p>
+									<p>{workExperience}</p>
 								</Item>
 
 								<Item>
 									<Title id="rateHour">
-										<strong>Rate Hour</strong>
+										<strong>{t("freelancer.viewProfile.hourRate")}</strong>
 									</Title>
-									<p>From 1000$</p>
+									<p>{hourRate}</p>
 								</Item>
 								<Item>
 									<Title id="workingHour">
-										<strong>Working Hour</strong>
+										<strong>{t("freelancer.viewProfile.workingHours")}</strong>
 									</Title>
-									<p>Full Time</p>
+									<p>{availableAmountOfHour}</p>
 								</Item>
 								<Item>
 									<Title id="skills">
-										<strong>Skills</strong>
+										<strong>{t("freelancer.createProfile.selectOption.skills")}</strong>
 									</Title>
-									<p>
-										.NET, Python, PHP, Node.js, iOS Android JavaScript / Front-End, Java, Front-End,
-										Java, Front-End, Java,Front-End, Java,Front-End, Java,Front-End, Java,
-									</p>
+									<p>{skills.join(", ")}</p>
 								</Item>
 							</RightSide>
 						</ItemContainer>
 						<Bottom>
 							<ItemContainer id="workHistory">
 								<Title id="workHistory">
-									<strong>Work History</strong>
+									<strong>{t("freelancer.viewProfile.workHistory")}</strong>
 								</Title>
 								<Subcontainer>
 									<Item id="workHistory">
-										<Subtitle>Company</Subtitle>
-										<p>Developer Company</p>
+										<Subtitle>{t("freelancer.createProfile.companyPlaceholder")}</Subtitle>
+										{workHistory.map(item => (
+											<p>{item.company}</p>
+										))}
 									</Item>
 									<Item id="workHistory">
-										<Subtitle>Position</Subtitle>
-										<p>FullStack Developer</p>
+										<Subtitle>{t("freelancer.createProfile.positionPlaceholder")}</Subtitle>
+										{workHistory.map(item => (
+											<p>{item.workPosition}</p>
+										))}
 									</Item>
 									<Item id="workHistory">
-										<Subtitle>Period</Subtitle>
-										<p>3 years</p>
+										<Subtitle>{t("freelancer.createProfile.periodPlaceholder")}</Subtitle>
+										{workHistory.map(item => (
+											<p>{item.period}</p>
+										))}
 									</Item>
 								</Subcontainer>
 							</ItemContainer>
 							<ItemContainer id="workHistory">
 								<Title id="workHistory">
-									<strong>Education</strong>
+									<strong>{t("freelancer.createProfile.educationLabel")}</strong>
 								</Title>
 								<Subcontainer>
 									<Item id="workHistory">
-										<Subtitle>Institute</Subtitle>
-										<p>University of DevOps</p>
+										<Subtitle>{t("freelancer.createProfile.institutePlaceholder")}</Subtitle>
+										{education.map(item => (
+											<p>{item.institute}</p>
+										))}
 									</Item>
 									<Item id="workHistory">
-										<Subtitle>Ocuppation</Subtitle>
-										<p>DevOp</p>
+										<Subtitle>{t("freelancer.createProfile.occupationPlaceholder")}</Subtitle>
+										{education.map(item => (
+											<p>{item.occupation}</p>
+										))}
 									</Item>
 									<Item id="workHistory">
-										<Subtitle>Period</Subtitle>
-										<p>10 years</p>
+										<Subtitle>{t("freelancer.createProfile.periodPlaceholder")}</Subtitle>
+										{education.map(item => (
+											<p>{item.period}</p>
+										))}
 									</Item>
 								</Subcontainer>
 							</ItemContainer>
 							<ItemContainer id="workHistory">
 								<Title id="workHistory">
-									<strong>Other Experience</strong>
+									<strong>{t("freelancer.createProfile.otherExperienceLabel")}</strong>
 								</Title>
 								<Subcontainer>
-									<p>
-										Lorem, ipsum dolor sit amet consectetur adipisicing elit. Omnis deserunt culpa
-										nesciunt ex quod veritatis aliquid doloribus mollitia expedita? Quas soluta
-										officiis quo enim doloribus consequuntur animi, quia architecto omnis. Lorem,
-										ipsum dolor sit amet consectetur adipisicing elit. Omnis deserunt culpa nesciunt
-										ex quod veritatis aliquid doloribus mollitia expedita? Quas soluta officiis quo
-										enim doloribus consequuntur animi, quia architecto omnis.
-									</p>
+									<p>{otherExperience}</p>
 								</Subcontainer>
 							</ItemContainer>
 						</Bottom>
 						<StyledButton type="button" buttonColor="redGradient" buttonSize="sm" fontSize="md">
-							<strong>BACK</strong>
+							<strong>{t("freelancer.createProfile.backBtn")}</strong>
 						</StyledButton>
 					</Container>
 				</Dashboard>
