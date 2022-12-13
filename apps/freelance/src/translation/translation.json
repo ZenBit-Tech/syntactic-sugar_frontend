@@ -117,6 +117,14 @@
 				"employmentType": "Employment Type",
 				"englishLevel": "English Level"
 			}
+		},
+		"searchWork": {
+			"filter": "Filter",
+			"unFilter": "Reset filter",
+			"jobsList": "Jobs list",
+			"buttonAll": "All",
+			"buttonProfile": "By my profile",
+			"buttonFilter": "Use filters"
 		}
 	},
 	"roleSelection": {
@@ -163,19 +171,12 @@
 			"hourRateLabel": "Hour rate (one price)",
 			"hourRatePlaceholder": "Choose hour rate (one price)"
 		},
-		"searchWork": {
-			"filter": "Filter",
-			"unFilter": "Reset filter",
-      "jobsList": "Jobs list",
-      "buttonAll": "All",
-      "buttonProfile": "By my profile",
-      "buttonFilter": "Use filters"
-		},
 		"roleSelection": {
 			"roleTitle": "What do you want?",
 			"roleSubtitle": "Choose your goal and find the best solutions for your project or career.",
 			"roleJobOwner": "I am a Job Owner, hiring for a project.",
 			"roleFreelancer": "I am a Freelancer, looking for a job."
+    },
 		"thirdForm": {
 			"skillsLabel": "Skills",
 			"skillsPlaceholder": "Choose required skills",
