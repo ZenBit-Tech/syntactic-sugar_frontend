@@ -1,15 +1,16 @@
-import { StyledPage, Container } from "./style";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { ThemeColors, Message, StyledButton } from "@freelance/components";
-import { useNavigate } from "react-router-dom";
+import { ROLE_PAGE } from "src/utils/constants/breakpoint";
+import { StyledPage, Container } from "./style";
 
 export function Invitation() {
 	const { t } = useTranslation();
 	const navigation = useNavigate();
 
 	const redirect = () => {
-		navigation("/role-page");
+		navigation(ROLE_PAGE);
 	};
 
 	return (

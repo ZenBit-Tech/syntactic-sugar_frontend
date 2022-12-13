@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { StyledButton } from "@freelance/components";
-import { Form, RadioGroup } from "./role-selection-form.styled";
 import { useAddRoleMutation, UserRoles } from "redux/role.api";
+import { Form, RadioGroup } from "./role-selection-form.styled";
 
 type RoleOptions = "employer" | "freelancer";
 

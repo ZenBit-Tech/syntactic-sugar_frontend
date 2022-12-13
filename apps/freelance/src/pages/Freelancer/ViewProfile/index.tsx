@@ -2,6 +2,15 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import {
+	ThemeColors,
+	ThemeBackground,
+	Dashboard,
+	StyledTitle,
+	StyledButton,
+} from "@freelance/components";
+import { RootState } from "src/redux/store";
+import { Freelancer } from "src/redux/createFreelancer/freelancer-slice";
+import {
 	StyledPage,
 	Container,
 	Item,
@@ -13,19 +22,11 @@ import {
 	Subtitle,
 	Subcontainer,
 } from "./style";
-import {
-	ThemeColors,
-	ThemeBackground,
-	Dashboard,
-	StyledTitle,
-	StyledButton,
-} from "@freelance/components";
-import { RootState } from "src/redux/store";
-import { Freelancer } from "src/redux/createFreelancer/freelancer-slice";
 
 export function ViewProfile() {
 	const { t } = useTranslation();
 	const profile = useSelector<RootState, Freelancer>(state => state.freelancer);
+
 	const {
 		category,
 		position,

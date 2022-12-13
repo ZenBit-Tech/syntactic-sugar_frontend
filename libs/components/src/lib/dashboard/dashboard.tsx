@@ -1,5 +1,5 @@
-import { Container, Page, Area } from "./dashboard.styled";
 import { DashboardHeader, DashboardMenu } from "@freelance/components";
+import { Container, Page, Area } from "./dashboard.styled";
 
 export interface DashboardProps {
 	children: React.ReactNode;

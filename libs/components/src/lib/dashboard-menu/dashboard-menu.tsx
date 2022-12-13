@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
-import { Container } from "./dashboard-menu.styled";
 import { StyledButton } from "@freelance/components";
 import { ROLES } from "utils/constants/roles";
+import { Container } from "./dashboard-menu.styled";
 
 export interface DashboardMenuProps {
 	userRole: "freelancer" | "guest" | "employer";
