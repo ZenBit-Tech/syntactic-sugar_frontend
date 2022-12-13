@@ -11,7 +11,7 @@
 	"resetPasswordPage": {
 		"formTitle": "Forgot your password?",
 		"firstPageInstructions": "Enter your email to reset your password!",
-		"checkYourEmail": "We sent a link to your registered e-mail! Click the link to reset your password."
+		"checkYourEmail": "If your email exist we will send you a link! Please, check your mail box!"
 	},
 	"signForm": {
 		"welcome": "WELCOME TO",
@@ -36,34 +36,43 @@
 		"forgotPass": "Forgot your password?",
 		"enterEmail": "Enter you registered e-mail and we'll send you instructions on how to reset your password.",
 		"buttonContinue": "CONTINUE",
-		"submitResetPassword": "RESET",
+		"submitResetPassword": "Reset password",
 		"title": "PASSWORD RECOVERY",
 		"subtitle": "Follow the next steps to get access to your account and the better opportunities for your project or career.",
 		"rememberPass": "Did you remember your password?",
+		"newPassword": "Create new password",
+		"enterPassword": "Enter your new password and confirm, please.",
 		"validationEmailMessage": "Email must be such view email@domain.com",
 		"validationRequiredMessage": "Email is required",
-		"validationMinChar": "Minimum 8 characters",
-		"validationMaxChar": "Maximum 24 characters",
+		"validationMinChar": "Has to be at least 6 characters",
+		"validationMaxChar": "Not more then 15 characters",
 		"validationRequiredPassword": "Password  is required",
-		"validationConfirmPassword": "Passwords must match",
-		"validationMatchingPasswords": "Passwords must match",
-		"inputNewPassword": "New Password",
-		"confirmNewPassword": "Confirm New Password",
+		"validationConfirmPassword": "Please, confirm your password",
+		"validationMatchingPasswords": "Passwords have to match",
+		"inputNewPassword": "Input new password",
+		"confirmNewPassword": "Confirm your new password",
 		"updatingPassword": "Updating password",
 		"loader": "SENDING EMAIL",
 		"errorMessageWrongEmail": "User with this email does not exist",
 		"errorMessageServerError": "Somethig went wrong",
-		"errorMessageExpiredLink": "Your link has expired",
+		"errorMessageExpiredLinkTitle": "Your link has broken or has expired",
+		"errorMessageExpiredLinkSubTitle": "Please, try again",
+		"tryAgainButton": "Try again",
+		"passwordHasUpdated": "Your password has updated",
 		"resetSuccess": "Your password reset is successfully done! Go to Home Page.",
-		"homePageBtn": "HOME PAGE",
-		"newPassword": "Create new password",
-		"enterPassword": "Enter your new password and confirm, please."
+		"homePageBtn": "HOME PAGE"
+	},
+	"invitationPage": {
+		"title": "You have successfully registered!",
+		"subtitle": "Check your e-mail and activate your account. After activation, you can begin to find your perfect job match."
 	},
 	"dashboard": {
 		"menu": {
 			"myContracts": "MY CONTRACTS",
 			"searchWorks": "SEARCH WORKS",
-			"proposals": "PROPOSALS"
+			"proposals": "PROPOSALS",
+			"talents": "TALENTS",
+			"jobs": "MY JOBS"
 		},
 		"profilePage": {
 			"title": "My Profile"
@@ -79,6 +88,21 @@
 		"createProfile": {
 			"fullNamePlaceholder": "Full Name",
 			"positionPlaceholder": "Position",
+			"educationLabel": "Education",
+			"institutePlaceholder": "Institute",
+			"occupationPlaceholder": "Occupation",
+			"periodPlaceholder": "Period",
+			"removeBtn": "REMOVE",
+			"workHistoryLabel": "Work Experience",
+			"addBtn": "+",
+			"companyPlaceholder": "Company",
+			"otherExperienceLabel": "Other Experience",
+			"viewProfileBtn": "VIEW PROFILE",
+			"backBtn": "BACK",
+			"createProfileBtn": "CREATE PROFILE",
+			"modal": "Do you want to publish profile",
+			"modalBtnNo": "No",
+			"modalBtnYes": "Yes",
 			"selectOption": {
 				"country": "Country",
 				"category": "Category",
@@ -91,47 +115,70 @@
 			}
 		}
 	},
-	"dashboard": {
-		"menu": {
-			"myContracts": "MY CONTRACTS",
-			"searchWorks": "SEARCH WORKS",
-			"proposals": "PROPOSALS"
-		},
-		"profilePage": {
-			"title": "My Profile"
-		},
-		"header": {
-			"userName": "John Doe",
-			"userEmail": "johndoe@gmail.com",
-			"chat": "CHAT",
-			"logout": "LOGOUT"
-		}
-	},
-	"freelancer": {
-		"createProfile": {
-			"educationLabel": "Education",
-			"institutePlaceholder": "Institute",
-      "occupationPlaceholder": "Occupation",
-      "periodPlaceholder": "Period",
-      "removeBtn": "REMOVE",
-      "workExperienceLabel": "Work Experience",
-      "addBtn": "+",
-      "companyPlaceholder": "Company",
-      "positionPlaceholder": "Position",
-      "otherExperienceLabel": "Other Experience",
-      "viewProfileBtn": "VIEW PROFILE",
-      "backBtn": "BACK",
-      "createProfileBtn": "CREATE PROFILE"
-		}
-	},
-	"invitationPage": {
-		"title": "You have successfully registered!",
-		"subtitle": "Check your e-mail and activate your account. After activation, you can begin to find your perfect job match."
-	},
 	"roleSelection": {
 		"roleTitle": "What do you want?",
 		"roleSubtitle": "Choose your goal and find the best solutions for your project or career.",
 		"roleJobOwner": "I am a Job Owner, hiring for a project.",
 		"roleFreelancer": "I am a Freelancer, looking for a job."
+	},
+	"newJobPosting": {
+		"mainTitle": "New job posting",
+		"subTitle": "Define search criterias",
+		"description": "We'll use them to finde you relevant candidates",
+		"goBackButton": "Go back",
+		"continueButton": "Continue",
+		"createButton": "Create a job",
+		"validation": {
+			"messageFieldRequired": "Field is requierd"
+		},
+		"firstForm": {
+			"inputLabel": "Who are you looking for?",
+			"jobTitlePlaceholder": "E.g.: Java script developer for a big education project",
+			"descriptionLabel": "Job Description",
+			"jobDescription": "We use this description on the website to get the candidates attention.",
+			"validation": {
+				"messageJobTitleMaxChar": "not mo than 50 characters for this field",
+				"messageDescriptionMaxChar": "not more then 600 characters for this field",
+				"messageJobTitleRequired": "Job title is required",
+				"messageDescriptionRequired": "Job description is required"
+			}
+		},
+		"secondForm": {
+			"countriesLabel": "Country",
+			"countriesPlaceholder": "Choose up to 5 countries where your company offices are located",
+			"categoryLabel": "Category",
+			"categoryPlaceholder": "Choose category",
+			"positionLabel": "Position",
+			"postitonPlaceholder": "Add position",
+			"employmentTypeLabel": "Employment type",
+			"employmentTypePlaceholder": "Add employment type",
+			"hoursAmountLabel": "The available amount of hours",
+			"hoursAmountPlaceholder": "Choose available amount of hours",
+			"workExperienceLabel": "Work experience",
+			"workExperiencePlaceholder": "Choose work experience",
+			"hourRateLabel": "Hour rate (one price)",
+			"hourRatePlaceholder": "Choose hour rate (one price)"
+		},
+		"thirdForm": {
+			"skillsLabel": "Skills",
+			"skillsPlaceholder": "Choose required skills",
+			"englishLevelLabel": "English Level",
+			"englishLevelPlaceholder": "Choose required english level",
+			"otherRequirenmentsLabel": "Other requirenments",
+			"otherRequirenmentsPlaceholder": "Add Text"
+		}
+	},
+	"employer": {
+		"create": {
+			"title": "Fill the profile to post jobs and hire the best employees!",
+			"fullNameLabel": "Full name",
+			"positionLabel": "Position",
+			"phoneLabel": "Phone",
+			"companyNameLabel": "Company name",
+			"linkedinLabel": "LinkedIn",
+			"websiteLabel": "Website",
+			"aboutusLabel": "About us",
+			"btn1": " Create profile"
+		}
 	}
 }

@@ -4,6 +4,7 @@ import { IResetPasswordForm } from "@freelance/components";
 
 export const useResetPasswordSchema = (): SchemaOf<IResetPasswordForm> => {
 	const { t } = useTranslation();
+
 	const messageMinChar: string = t("recoverPassForm.validationMinChar");
 	const messageMaxChar: string = t("recoverPassForm.validationMaxChar");
 	const messageRequiredPassword: string = t("recoverPassForm.validationRequiredPassword");

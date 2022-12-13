@@ -4,7 +4,7 @@ import DashboardMenu from "./dashboard-menu";
 
 describe("DashboardMenu", () => {
 	it("should render successfully", () => {
-		const { baseElement } = render(<DashboardMenu />);
+		const { baseElement } = render(<DashboardMenu userRole={"freelancer" || "employer" || "guest"}/>);
 		expect(baseElement).toBeTruthy();
 	});
 });

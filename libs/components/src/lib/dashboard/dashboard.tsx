@@ -9,11 +9,33 @@ export interface DashboardProps {
 export function Dashboard({ children, userRole }: DashboardProps) {
 	return (
 		<Container>
-			{userRole === "guest" && <DashboardMenu userRole="guest" />}
-			<Area>
-				<DashboardHeader userRole="guest" />
-				<Page>{children}</Page>
-			</Area>
+			{userRole === "guest" && (
+				<>
+					<DashboardMenu userRole="guest" />
+					<Area>
+						<DashboardHeader userRole="guest" />
+						<Page>{children}</Page>
+					</Area>
+				</>
+			)}
+			{userRole === "freelancer" && (
+				<>
+					<DashboardMenu userRole="freelancer" />
+					<Area>
+						<DashboardHeader userRole="freelancer" />
+						<Page>{children}</Page>
+					</Area>
+				</>
+			)}
+			{userRole === "employer" && (
+				<>
+					<DashboardMenu userRole="employer" />
+					<Area>
+						<DashboardHeader userRole="employer" />
+						<Page>{children}</Page>
+					</Area>
+				</>
+			)}
 		</Container>
 	);
 }

@@ -26,7 +26,16 @@ export function DashboardMenu({ userRole }: DashboardMenuProps) {
 					</StyledButton>
 				</>
 			)}
-			{/* {userRole === ROLES.GUEST &&} */}
+			{userRole === ROLES.EMPLOYER && (
+				<>
+					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
+						{t("dashboard.menu.talents")}
+					</StyledButton>
+					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
+						{t("dashboard.menu.jobs")}
+					</StyledButton>
+				</>
+			)}
 		</Container>
 	);
 }

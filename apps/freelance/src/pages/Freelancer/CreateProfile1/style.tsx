@@ -1,4 +1,43 @@
 import styled from "styled-components";
+import Select from "react-select";
+
+export const SelectElement = styled(Select)`
+	.react-select__value-container {
+		width: 80%;
+		height: inherit;
+		padding-left: 3rem;
+	}
+
+	.react-select__multi-value {
+		background-color: transparent;
+	}
+
+	.react-select__control {
+		border: 2px solid ${({ theme }) => theme.colors.grey};
+		border-radius: 100px;
+		height: 50px;
+
+		width: 100%;
+		color: ${({ theme }) => theme.colors.grey};
+		outline: none;
+	}
+
+	.react-select__indicator-separator {
+		display: none;
+	}
+
+	.react-select__input-container {
+		margin: 0;
+		::after {
+			display: none;
+		}
+	}
+
+	.react-select__placeholder {
+		color: ${({ theme }) => theme.colors.grey};
+		margin: 0;
+	}
+`;
 
 const StyledPage = styled.div`
 	margin: auto;
@@ -46,20 +85,6 @@ export const Form = styled.form`
 				color: ${({ theme }) => theme.colors.black};
 			}
 		}
-
-		::after {
-			width: 0;
-			height: 0;
-			border-left: 6px solid transparent;
-			border-right: 6px solid transparent;
-			border-top: 6px solid ${({ theme }) => theme.colors.grey};
-			position: absolute;
-			top: 45%;
-			right: 1rem;
-			content: "";
-			z-index: 99;
-			pointer-events: none;
-		}
 	}
 
 	#fullName {
@@ -90,10 +115,6 @@ export const Form = styled.form`
 		background: url("/assets/images/skills_icon.png") no-repeat 20px center;
 	}
 
-	#skills {
-		background: url("/assets/images/skills_icon.png") no-repeat 20px center;
-	}
-
 	#workExperience {
 		background: url("/assets/images/work_experience_icon.png") no-repeat 20px center;
 	}
@@ -106,16 +127,36 @@ export const Form = styled.form`
 		background: url("/assets/images/english_level_icon.png") no-repeat 20px center;
 	}
 
+	#companyName {
+		background: url("/assets/images/company_icon.png") no-repeat 20px center;
+	}
+
+	#linkedIn {
+		background: url("/assets/images/linkedin_icon.png") no-repeat 20px center;
+	}
+
+	#website {
+		background: url("/assets/images/website_icon.png") no-repeat 20px center;
+	}
+
+	#phone {
+		background: url("/assets/images/phone_icon.png") no-repeat 20px center;
+	}
+
 	#fullName,
 	#country,
 	#category,
+	#companyName,
 	#hourRate,
+	#linkedIn,
 	#position,
 	#amountHours,
 	#skills,
 	#workExperience,
 	#employmentType,
-	#englishLevel {
+	#englishLevel,
+	#phone,
+	#website {
 		background-size: 15px 15px;
 	}
 

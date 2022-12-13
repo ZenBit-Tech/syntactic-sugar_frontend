@@ -1,3 +1,4 @@
+import { ToastContainer } from "react-toastify";
 import styled from "styled-components";
 
 const StyledPage = styled.div`
@@ -156,6 +157,23 @@ export const ButtonsContainer = styled.div`
 
 	button {
 		max-width: 200px;
+	}
+`;
+
+export const StyledToastContainer = styled(ToastContainer)`
+	&&&.Toastify__toast-container {
+		height: 60%;
+		width: 50%;
+	}
+	.Toastify__toast {
+		height: 15%;
+		border: 2px solid ${({ theme }) => theme.colors.lightRed};
+		display: flex;
+	}
+	.Toastify__toast-body {
+		height: 50%;
+	}
+	.Toastify__progress-bar {
 	}
 `;
 

@@ -1,4 +1,6 @@
+import { Modal } from "antd";
 import styled from "styled-components";
+import { StyledButton } from "../styles/buttons";
 
 export const Form = styled.form`
 	display: flex;
@@ -53,5 +55,28 @@ export const InputWrapper = styled.div`
 		padding: 0.5rem;
 		color: ${({ theme }) => theme.colors.white};
 		position: absolute;
+	}
+`;
+
+export const StyledButtonModal = styled(StyledButton)`
+	display: flex;
+	margin-left: auto;
+	margin-right: auto;
+`;
+
+export const StyledModal = styled(Modal)`
+	border-radius: 20px;
+	overflow: hidden;
+	padding-bottom: 0;
+	border: 10px solid ${({ theme }) => theme.colors.darkRed};
+
+	p {
+		color: ${({ theme }) => theme.colors.darkGrey};
+		margin: 0 2rem;
+		text-align: center;
+	}
+
+	span.ant-modal-close-x {
+		display: none;
 	}
 `;
