@@ -13,7 +13,7 @@ export const useSearchWorkFormHook = () => {
 		hourRate: "",
 		availableAmountOfHour: "",
 	});
-	const onSubmit: SubmitHandler<IFormInput> = async values => {
+	const onSubmit: SubmitHandler<IFormInput> = values => {
 		const freelancerInfo = {
 			category: values.category.label,
 			position: values.position || "",
