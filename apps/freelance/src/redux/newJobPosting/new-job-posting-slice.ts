@@ -22,22 +22,12 @@ const newJob = createSlice({
 	initialState,
 	reducers: {
 		addNewJobInfo(state, action: PayloadAction<Object>) {
-			const payload = JSON.parse(JSON.stringify(action.payload));
-			const currentState = JSON.parse(JSON.stringify(state));
+			const { payload } = action;
 
-			Object.keys(currentState).map(key => {
-				if (payload[key]) {
-					state[key as keyof typeof initialState] = payload[key];
-				}
-			});
+			return { ...state, ...payload };
 		},
-		resetState(state, action: PayloadAction<Object>) {
-			const payload = JSON.parse(JSON.stringify(action.payload));
-			const currentState = JSON.parse(JSON.stringify(state));
-
-			Object.keys(currentState).map(key => {
-				state[key as keyof typeof initialState] = payload[key];
-			});
+		resetState() {
+			return { ...initialState };
 		},
 	},
 });

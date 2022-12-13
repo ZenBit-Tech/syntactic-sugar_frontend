@@ -8,7 +8,6 @@ import {
 	resetState,
 	getStoredJobInfo,
 	useCreateJobMutation,
-	initialState,
 } from "redux/newJobPosting";
 import { IJobPostingThirdForm, IUseJobPostingThirdForm } from "@freelance/components";
 import { EMPLOYER_JOBS_PAGE } from "utils/constants/links";
@@ -47,7 +46,7 @@ export const useJobPostingThirdFormHook = (): IUseJobPostingThirdForm => {
 
 	useEffect(() => {
 		if (isSuccess) {
-			dispatch(resetState(initialState));
+			dispatch(resetState());
 			navigate(EMPLOYER_JOBS_PAGE);
 		}
 
