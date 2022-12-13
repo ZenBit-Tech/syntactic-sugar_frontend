@@ -67,9 +67,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="countries"
-						defaultValue={JSON.parse(
-							JSON.stringify(selectDefaultArray(storedCountries, countries)),
-						)}
+						defaultValue={selectDefaultArray(storedCountries, countries)}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (
@@ -95,7 +93,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="category"
-						defaultValue={selectDefaultObject(category, categories) || undefined}
+						defaultValue={selectDefaultObject(category, categories)}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (
@@ -137,7 +135,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="employmentType"
-						defaultValue={selectDefaultObject(storedEmploymentType, employmentType) || undefined}
+						defaultValue={selectDefaultObject(storedEmploymentType, employmentType)}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (
@@ -163,7 +161,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="availableAmountOfHours"
-						defaultValue={selectDefaultObject(availableAmountOfHours, hoursAmount) || undefined}
+						defaultValue={selectDefaultObject(availableAmountOfHours, hoursAmount)}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (
@@ -189,7 +187,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="workExperience"
-						defaultValue={selectDefaultObject(storedWorkExperience, workExperience) || undefined}
+						defaultValue={selectDefaultObject(storedWorkExperience, workExperience)}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (
@@ -215,7 +213,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="hourRate"
-						defaultValue={selectDefaultObject(storedHourRate, hourRate) || undefined}
+						defaultValue={selectDefaultObject(storedHourRate, hourRate)}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (

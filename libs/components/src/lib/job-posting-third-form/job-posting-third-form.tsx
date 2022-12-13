@@ -54,7 +54,7 @@ export function JobPostingThirdForm({ page, textButtonHandler }: IJobPostingThir
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="skills"
-						defaultValue={JSON.parse(JSON.stringify(selectDefaultArray(storedSkills, skills)))}
+						defaultValue={selectDefaultArray(storedSkills, skills)}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (
@@ -80,7 +80,7 @@ export function JobPostingThirdForm({ page, textButtonHandler }: IJobPostingThir
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="englishLevel"
-						defaultValue={selectDefaultObject(storedEnglishLevel, englishLevel) || undefined}
+						defaultValue={selectDefaultObject(storedEnglishLevel, englishLevel)}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (
