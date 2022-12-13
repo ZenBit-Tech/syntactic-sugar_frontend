@@ -109,7 +109,7 @@
 				"country": "Country",
 				"category": "Category",
 				"hourRate": "Hour rate (one price)",
-				"amountHours": "Available amount of hours",
+				"availableAmountOfHour": "Available amount of hours",
 				"skills": "Skills",
 				"workExperience": "Work Experience",
 				"employmentType": "Employment Type",

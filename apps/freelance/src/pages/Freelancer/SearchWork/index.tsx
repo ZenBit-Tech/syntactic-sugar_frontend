@@ -22,15 +22,15 @@ import {
 	englishLevel,
 	SelectOptions,
 } from "utils/select-options/options";
- // hardcoded  - get jobs from server not provided yet
+// hardcoded  - get jobs from server not provided yet
 import { jobs } from "utils/jobs/jobs";
 import { Dashboard, StyledTitle, StyledButton, JobCard, Pagination } from "@freelance/components";
-import { it } from "node:test";
 import { useGetJobsQuery } from "redux/jobs/jobs.api";
+import { useSearchWorkFormHook } from "./searchWorkFormHook";
 
 type user = "freelancer" | "employer";
 
-interface IFormInput {
+export interface IFormInput {
 	category: SelectOptions;
 	position: string;
 	skills: SelectOptions[];
@@ -50,7 +50,7 @@ export function SearchWork() {
 		label: "",
 	};
 
-  // hardcoded  - get freelanceer profile not provided yet
+	// hardcoded  - get freelanceer profile not provided yet
 	const freelancerFilter = {
 		position: "",
 		category: "Category",
@@ -61,20 +61,18 @@ export function SearchWork() {
 		availableAmountOfHour: "",
 	};
 
-	const [filterJobs, setFilterJobs] = useState(jobs);
-	const [filter, setFilter] = useState<IFormInput | any>({
-		category: "",
-		position: "",
-		skills: [],
-		employmentType: "",
-		englishLevel: "",
-		hourRate: "",
-		availableAmountOfHour: "",
-	});
-	const [toggleFilter, setToggleFilter] = useState<string>("reset");
-	const [useFilters, setUseFilters] = useState<boolean>(false);
+	const filtersObj = {
+		category: categories,
+		skills: skills,
+		employmentType: employmentType,
+		englishLevel: englishLevel,
+		hourRate: hourRate,
+		availableAmountOfHour: hoursAmount,
+	};
 
-	let skillsIncludesArr: boolean[] = [];
+	const [filterJobs, setFilterJobs] = useState(jobs);
+	const [useFilters, setUseFilters] = useState<boolean>(false);
+	const { onSubmit, setFilter, setToggleFilter, filter, toggleFilter } = useSearchWorkFormHook();
 
 	const filterSkillsCheck = (arr1: string[], arr2: string[]) => {
 		const skillsIncluded = arr2.every(skill => arr1.includes(skill));
@@ -83,10 +81,11 @@ export function SearchWork() {
 	};
 
 	const skillIncludesFunc = (arr1: string[][], arr2: string[]) => {
+		const skillsIncludesArr: boolean[] = [];
 		arr1.map(job => {
 			skillsIncludesArr.push(filterSkillsCheck(job, arr2));
 		});
-    
+
 		return skillsIncludesArr;
 	};
 
@@ -107,20 +106,6 @@ export function SearchWork() {
 			setFilterJobs(newFilterJobs);
 		}
 	}, [toggleFilter, filter]);
-
-	const onSubmit: SubmitHandler<IFormInput> = async values => {
-		const freelancerInfo = {
-			category: values.category.label,
-			position: values.position || "",
-			skills: values.skills.map(skill => skill.label),
-			employmentType: values.employmentType.label,
-			englishLevel: values.englishLevel.label,
-			hourRate: values.hourRate.label,
-			availableAmountOfHour: values.availableAmountOfHour.label,
-		};
-		setFilter(freelancerInfo);
-		setToggleFilter("filter");
-	};
 
 	return (
 		<StyledPage>
@@ -200,147 +185,34 @@ export function SearchWork() {
 								/>
 								<div className="selectContainer">
 									<div className="selectContainer__left">
-										<div className="selectContainer__select">
-											<Controller
-												name="skills"
-												control={control}
-												defaultValue={[]}
-												render={({ field }) => (
-													<>
-														<label htmlFor="skills">
-															{t("freelancer.createProfile.selectOption.skills")}
-														</label>
-														<SelectElement
-															id="skills"
-															isDisabled={useFilters ? false : true}
-															options={skills}
-															{...field}
-															placeholder=""
-															isSearchable
-															isMulti
-															classNamePrefix="react-select"
-														/>
-													</>
-												)}
-											/>
-										</div>
-										<div className="selectContainer__select">
-											<Controller
-												name="category"
-												control={control}
-												defaultValue={emptyValue}
-												render={({ field }) => (
-													<>
-														<label htmlFor="category">
-															{t("freelancer.createProfile.selectOption.category")}
-														</label>
-														<SelectElement
-															id="category"
-															isDisabled={useFilters ? false : true}
-															options={categories}
-															{...field}
-															placeholder={t("freelancer.createProfile.selectOption.category")}
-															isSearchable
-															classNamePrefix="react-select"
-														/>
-													</>
-												)}
-											/>
-										</div>
-										<div className="selectContainer__select">
-											<Controller
-												name="employmentType"
-												control={control}
-												defaultValue={emptyValue}
-												render={({ field }) => (
-													<>
-														<label htmlFor="employmentType">
-															{t("freelancer.createProfile.selectOption.employmentType")}
-														</label>
-														<SelectElement
-															id="employmentType"
-															isDisabled={useFilters ? false : true}
-															options={employmentType}
-															{...field}
-															placeholder={t(
-																"freelancer.createProfile.selectOption.employmentType",
-															)}
-															classNamePrefix="react-select"
-														/>
-													</>
-												)}
-											/>
-										</div>
-									</div>
-									<div className="selectContainer__right">
-										<div className="selectContainer__select">
-											<Controller
-												name="hourRate"
-												control={control}
-												defaultValue={emptyValue}
-												render={({ field }) => (
-													<>
-														<label htmlFor="hourRate">
-															{t("freelancer.createProfile.selectOption.hourRate")}
-														</label>
-														<SelectElement
-															id="hourRate"
-															isDisabled={useFilters ? false : true}
-															options={hourRate}
-															{...field}
-															placeholder={t("freelancer.createProfile.selectOption.hourRate")}
-															isSearchable
-															classNamePrefix="react-select"
-														/>
-													</>
-												)}
-											/>
-										</div>
-										<div className="selectContainer__select">
-											<Controller
-												name="englishLevel"
-												control={control}
-												defaultValue={emptyValue}
-												render={({ field }) => (
-													<>
-														<label htmlFor="englishLevel">
-															{t("freelancer.createProfile.selectOption.englishLevel")}
-														</label>
-														<SelectElement
-															id="englishLevel"
-															isDisabled={useFilters ? false : true}
-															options={englishLevel}
-															{...field}
-															placeholder={t("freelancer.createProfile.selectOption.englishLevel")}
-															isSearchable
-															classNamePrefix="react-select"
-														/>
-													</>
-												)}
-											/>
-										</div>
-										<div className="selectContainer__select">
-											<Controller
-												name="availableAmountOfHour"
-												control={control}
-												defaultValue={emptyValue}
-												render={({ field }) => (
-													<>
-														<label htmlFor="availableAmountOfHour">
-															{t("freelancer.createProfile.selectOption.amountHours")}
-														</label>
-														<SelectElement
-															id="availableAmountOfHour"
-															isDisabled={useFilters ? false : true}
-															options={hoursAmount}
-															{...field}
-															placeholder={t("freelancer.createProfile.selectOption.amountHours")}
-															classNamePrefix="react-select"
-														/>
-													</>
-												)}
-											/>
-										</div>
+										{Object.keys(filtersObj).map((key: string, index: number) => {
+											return (
+												<div className="selectContainer__select_map">
+													<Controller
+														name={key as keyof typeof filtersObj}
+														control={control}
+														defaultValue={key === "skills" ? [] : emptyValue}
+														render={({ field }) => (
+															<>
+																<label htmlFor={key}>
+																	{t(`freelancer.createProfile.selectOption.${key}`)}
+																</label>
+																<SelectElement
+																	id={key}
+																	isDisabled={useFilters ? false : true}
+																	options={filtersObj[key as keyof typeof filtersObj]}
+																	{...field}
+																	placeholder=""
+																	isSearchable
+																	isMulti={key === "skills" ? true : false}
+																	classNamePrefix="react-select"
+																/>
+															</>
+														)}
+													/>
+												</div>
+											);
+										})}
 									</div>
 								</div>
 								<div className="selectContainer__buttons">

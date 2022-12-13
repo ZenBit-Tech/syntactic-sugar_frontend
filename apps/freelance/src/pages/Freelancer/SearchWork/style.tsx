@@ -63,12 +63,21 @@ export const Form = styled.form`
 			}
 		}
 		.selectContainer__select {
-			margin: 10%;
+			margin: 5%;
+
+		}
+		.selectContainer__select_map {
+			margin: 5%;
+			padding: 5%;
+			width: 100%;
 		}
 	}
 	.selectContainer__left {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-auto-rows: 150px;
 		position: relative;
-		width: 40%;
+		width: 80%;
 	}
 	.selectContainer__right {
 		position: relative;
