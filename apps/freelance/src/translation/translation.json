@@ -62,6 +62,10 @@
 		"resetSuccess": "Your password reset is successfully done! Go to Home Page.",
 		"homePageBtn": "HOME PAGE"
 	},
+	"jobCard": {
+		"sendProposal": "Send proposal",
+		"publishJob": "Publish Job"
+	},
 	"invitationPage": {
 		"title": "You have successfully registered!",
 		"subtitle": "Check your e-mail and activate your account. After activation, you can begin to find your perfect job match."
@@ -70,7 +74,9 @@
 		"menu": {
 			"myContracts": "MY CONTRACTS",
 			"searchWorks": "SEARCH WORKS",
-			"proposals": "PROPOSALS"
+			"proposals": "PROPOSALS",
+			"talents": "TALENTS",
+			"jobs": "MY JOBS"
 		},
 		"profilePage": {
 			"title": "My Profile"
@@ -94,7 +100,6 @@
 			"workHistoryLabel": "Work Experience",
 			"addBtn": "+",
 			"companyPlaceholder": "Company",
-			"positionPlaceholder": "Position",
 			"otherExperienceLabel": "Other Experience",
 			"viewProfileBtn": "VIEW PROFILE",
 			"backBtn": "BACK",
@@ -106,19 +111,19 @@
 				"country": "Country",
 				"category": "Category",
 				"hourRate": "Hour rate (one price)",
-				"amountHours": "Available amount of hours",
+				"availableAmountOfHour": "Available amount of hours",
 				"skills": "Skills",
 				"workExperience": "Work Experience",
 				"employmentType": "Employment Type",
 				"englishLevel": "English Level"
 			}
-		},
-		"roleSelection": {
-			"roleTitle": "What do you want?",
-			"roleSubtitle": "Choose your goal and find the best solutions for your project or career.",
-			"roleJobOwner": "I am a Job Owner, hiring for a project.",
-			"roleFreelancer": "I am a Freelancer, looking for a job."
 		}
+	},
+	"roleSelection": {
+		"roleTitle": "What do you want?",
+		"roleSubtitle": "Choose your goal and find the best solutions for your project or career.",
+		"roleJobOwner": "I am a Job Owner, hiring for a project.",
+		"roleFreelancer": "I am a Freelancer, looking for a job."
 	},
 	"newJobPosting": {
 		"mainTitle": "New job posting",
@@ -158,6 +163,14 @@
 			"workExperiencePlaceholder": "Choose work experience",
 			"hourRateLabel": "Hour rate (one price)",
 			"hourRatePlaceholder": "Choose hour rate (one price)"
+		},
+		"searchWork": {
+			"filter": "Filter",
+			"unFilter": "Reset filter",
+			"jobsList": "Jobs list",
+			"buttonAll": "All",
+			"buttonProfile": "By my profile",
+			"buttonFilter": "Use filters"
 		},
 		"thirdForm": {
 			"skillsLabel": "Skills",
@@ -274,5 +287,18 @@
 		"moreThanFifteenYears": "More than 15 years",
 		"moreThanTwentyYears": "More than 20 years",
 		"moreThanTwentyFiveYears": "More than 25 years"
+	},
+	"employer": {
+		"create": {
+			"title": "Fill the profile to post jobs and hire the best employees!",
+			"fullNameLabel": "Full name",
+			"positionLabel": "Position",
+			"phoneLabel": "Phone",
+			"companyNameLabel": "Company name",
+			"linkedinLabel": "LinkedIn",
+			"websiteLabel": "Website",
+			"aboutusLabel": "About us",
+			"btn1": " Create profile"
+		}
 	}
 }

@@ -12,6 +12,7 @@ import {
 	StyledButton,
 } from "@freelance/components";
 import { useOptions, SelectOptions } from "utils/select-options/options";
+import { CREATE_PROFILE_2 } from "src/utils/constants/breakpoint";
 import { StyledPage, Form, SelectElement } from "./style";
 
 interface IFormInput {
@@ -56,9 +57,10 @@ export function CreateProfile1() {
 			workExperience: values.workExperience.label,
 			englishLevel: values.englishLevel.label,
 		};
+
 		try {
 			dispatch(addFreelancerInfo(freelancerInfo));
-			navigate("/freelancer/create-profile2");
+			navigate(CREATE_PROFILE_2);
 		} catch (error) {
 			alert(error);
 		}
@@ -80,6 +82,7 @@ export function CreateProfile1() {
 								<input
 									type="text"
 									required
+									id="fullName"
 									{...field}
 									placeholder={t("freelancer.createProfile.fullNamePlaceholder")}
 								/>
@@ -95,6 +98,8 @@ export function CreateProfile1() {
 										options={categories}
 										{...field}
 										required
+										id="category"
+										isClearable
 										placeholder={t("freelancer.createProfile.selectOption.category")}
 										isSearchable
 										classNamePrefix="react-select"
@@ -110,6 +115,7 @@ export function CreateProfile1() {
 							render={({ field }) => (
 								<input
 									{...field}
+									id="position"
 									placeholder={t("freelancer.createProfile.positionPlaceholder")}
 									required
 								/>
@@ -125,8 +131,10 @@ export function CreateProfile1() {
 										options={skills}
 										{...field}
 										required
+										id="skills"
 										placeholder={t("freelancer.createProfile.selectOption.skills")}
 										isSearchable
+										isClearable
 										isMulti
 										classNamePrefix="react-select"
 									/>
@@ -143,6 +151,9 @@ export function CreateProfile1() {
 										options={employmentType}
 										{...field}
 										required
+										id="employmentType"
+										isSearchable
+										isClearable
 										placeholder={t("freelancer.createProfile.selectOption.employmentType")}
 										classNamePrefix="react-select"
 									/>
@@ -159,8 +170,10 @@ export function CreateProfile1() {
 										options={countries}
 										{...field}
 										required
+										id="country"
 										placeholder={t("freelancer.createProfile.selectOption.country")}
 										isSearchable
+										isClearable
 										classNamePrefix="react-select"
 									/>
 								)}
@@ -176,8 +189,10 @@ export function CreateProfile1() {
 										options={hourRate}
 										{...field}
 										required
-										placeholder={t("freelancer.createProfile.selectOption.hourRate")}
+										id="hourRate"
 										isSearchable
+										isClearable
+										placeholder={t("freelancer.createProfile.selectOption.hourRate")}
 										classNamePrefix="react-select"
 									/>
 								)}
@@ -193,8 +208,10 @@ export function CreateProfile1() {
 										options={hoursAmount}
 										{...field}
 										required
-										placeholder={t("freelancer.createProfile.selectOption.amountHours")}
+										id="amountHours"
 										isSearchable
+										isClearable
+										placeholder={t("freelancer.createProfile.selectOption.amountHours")}
 										classNamePrefix="react-select"
 									/>
 								)}
@@ -210,8 +227,10 @@ export function CreateProfile1() {
 										options={workExperience}
 										{...field}
 										required
+										id="workExperience"
 										placeholder={t("freelancer.createProfile.selectOption.workExperience")}
 										isSearchable
+										isClearable
 										classNamePrefix="react-select"
 									/>
 								)}
@@ -226,9 +245,11 @@ export function CreateProfile1() {
 									<SelectElement
 										options={englishLevel}
 										{...field}
+										id="englishLevel"
 										required
 										placeholder={t("freelancer.createProfile.selectOption.englishLevel")}
 										isSearchable
+										isClearable
 										classNamePrefix="react-select"
 									/>
 								)}

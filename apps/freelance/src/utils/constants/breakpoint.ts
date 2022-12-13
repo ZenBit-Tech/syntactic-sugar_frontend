@@ -14,3 +14,13 @@ export const RECOVER_PASSWORD_2 = "recoverPass2";
 export const FIRST_PAGE = "firstPage";
 export const SECOND_PAGE = "secondPage";
 export const THIRD_PAGE = "thirdPage";
+
+// Employer
+
+export const MY_JOBS = "/employer/my-jobs";
+
+// Freelancer
+
+export const VIEW_PROFILE = "/freelancer/viewprofile";
+export const CREATE_PROFILE_1 = "/freelancer/create-profile1";
+export const CREATE_PROFILE_2 = "/freelancer/create-profile2";

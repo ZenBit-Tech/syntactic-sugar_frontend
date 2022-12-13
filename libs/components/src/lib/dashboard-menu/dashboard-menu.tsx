@@ -3,7 +3,7 @@ import { Container } from "./dashboard-menu.styled";
 import { StyledButton } from "@freelance/components";
 
 export interface DashboardMenuProps {
-	userRole: "freelancer";
+	userRole: "freelancer" | "employer";
 }
 
 export function DashboardMenu({ userRole }: DashboardMenuProps) {
@@ -22,6 +22,16 @@ export function DashboardMenu({ userRole }: DashboardMenuProps) {
 					</StyledButton>
 					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
 						{t("dashboard.menu.proposals")}
+					</StyledButton>
+				</>
+			)}
+			{userRole === "employer" && (
+				<>
+					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
+						{t("dashboard.menu.talents")}
+					</StyledButton>
+					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
+						{t("dashboard.menu.jobs")}
 					</StyledButton>
 				</>
 			)}
