@@ -25,8 +25,6 @@ import {
 
 export function ViewProfile() {
 	const { t } = useTranslation();
-	const profile = useSelector<RootState, Freelancer>(state => state.freelancer);
-
 	const {
 		category,
 		position,
@@ -40,7 +38,7 @@ export function ViewProfile() {
 		education,
 		workHistory,
 		otherExperience,
-	} = profile;
+	} = useSelector<RootState, Freelancer>(state => state.freelancer);
 
 	return (
 		<ThemeProvider theme={ThemeColors && ThemeBackground}>
