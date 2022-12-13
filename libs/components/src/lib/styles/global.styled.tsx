@@ -17,6 +17,13 @@ export const ThemeColors = {
 	},
 };
 
+export const ThemeBackground = {
+	signPages: {
+		image: `url('/assets/images/top_elipse.png') no-repeat top left,
+    url('/assets/images/bottom_elipse.png') no-repeat bottom right`,
+	},
+};
+
 export const GlobalStyle = createGlobalStyle`${css`
 	* {
 		margin: 0;

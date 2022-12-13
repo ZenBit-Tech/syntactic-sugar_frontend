@@ -26,7 +26,7 @@ export function ViewProfile() {
 	return (
 		<ThemeProvider theme={ThemeColors && ThemeBackground}>
 			<StyledPage>
-				<Dashboard userRole="freelancer">
+				<Dashboard userRole="guest">
 					<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
 						{t("dashboard.profilePage.title")}
 					</StyledTitle>
@@ -114,39 +114,11 @@ export function ViewProfile() {
 										<p>3 years</p>
 									</Item>
 								</Subcontainer>
-								<Subcontainer>
-									<Item id="workHistory">
-										<Subtitle>Company</Subtitle>
-										<p>DevOps Company</p>
-									</Item>
-									<Item id="workHistory">
-										<Subtitle>Position</Subtitle>
-										<p>DevOp</p>
-									</Item>
-									<Item id="workHistory">
-										<Subtitle>Period</Subtitle>
-										<p>10 years</p>
-									</Item>
-								</Subcontainer>
 							</ItemContainer>
 							<ItemContainer id="workHistory">
 								<Title id="workHistory">
 									<strong>Education</strong>
 								</Title>
-								<Subcontainer>
-									<Item id="workHistory">
-										<Subtitle>Institute</Subtitle>
-										<p>University of Developers</p>
-									</Item>
-									<Item id="workHistory">
-										<Subtitle>Ocuppation</Subtitle>
-										<p>Developer</p>
-									</Item>
-									<Item id="workHistory">
-										<Subtitle>Period</Subtitle>
-										<p>2 years</p>
-									</Item>
-								</Subcontainer>
 								<Subcontainer>
 									<Item id="workHistory">
 										<Subtitle>Institute</Subtitle>

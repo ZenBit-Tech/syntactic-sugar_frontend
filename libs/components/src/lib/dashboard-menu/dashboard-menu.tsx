@@ -4,7 +4,7 @@ import { StyledButton } from "@freelance/components";
 import { ROLES } from "utils/constants/roles";
 
 export interface DashboardMenuProps {
-	userRole: "freelancer";
+	userRole: "freelancer" | "guest" | "employer";
 }
 
 export function DashboardMenu({ userRole }: DashboardMenuProps) {
@@ -26,6 +26,7 @@ export function DashboardMenu({ userRole }: DashboardMenuProps) {
 					</StyledButton>
 				</>
 			)}
+			{/* {userRole === ROLES.GUEST &&} */}
 		</Container>
 	);
 }

@@ -3,15 +3,15 @@ import { DashboardHeader, DashboardMenu } from "@freelance/components";
 
 export interface DashboardProps {
 	children: React.ReactNode;
-	userRole: "freelancer";
+	userRole: "freelancer" | "guest" | "employer";
 }
 
 export function Dashboard({ children, userRole }: DashboardProps) {
 	return (
 		<Container>
-			{userRole === "freelancer" && <DashboardMenu userRole="freelancer" />}
+			{userRole === "guest" && <DashboardMenu userRole="guest" />}
 			<Area>
-				<DashboardHeader />
+				<DashboardHeader userRole="guest" />
 				<Page>{children}</Page>
 			</Area>
 		</Container>

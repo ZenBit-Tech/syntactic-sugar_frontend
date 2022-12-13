@@ -28,7 +28,7 @@ export function App() {
 							<Route path="/role" element={<Role />} />
 							<Route path="/recover-password" element={<RecoverPasswordRequest />} />
 							<Route path="/check-your-email" element={<RecoverPasswordCheck />} />
-              <Route path="/password-updated" element={<RecoverPasswordUpdate />} />
+							<Route path="/password-updated" element={<RecoverPasswordUpdate />} />
 							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
 							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />
 							<Route path="/freelancer/create-profile2" element={<CreateProfile2 />} />

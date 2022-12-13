@@ -23,7 +23,7 @@ export interface FormContainerProps {
 	forgotPassLink?: React.ReactNode;
 	isRightSide: boolean;
 	isSignForm: boolean;
-	formType: "login" | "signup" | "recoverPass1" | "recoverPass2" | "roleSelection";;
+	formType: "login" | "signup" | "recoverPass1" | "recoverPass2" | "roleSelection";
 }
 
 export function FormContainer({
@@ -50,7 +50,7 @@ export function FormContainer({
 			{formType === "signup" && <SignupForm />}
 			{formType === "recoverPass1" && <RecoverPassFirstForm />}
 			{formType === "recoverPass2" && <RecoverPasswordSecondForm />}
-      {formType === ROLE_SELECTION && <RoleSelectionForm />}
+			{formType === ROLE_SELECTION && <RoleSelectionForm />}
 			<StyledParagraph fontSize="md">
 				{signText}
 				{isRightSide || !isSignForm ? (
