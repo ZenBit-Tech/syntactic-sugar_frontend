@@ -5,7 +5,7 @@ import { StyledButton } from "@freelance/components";
 import { Form, RadioGroup } from "./role-selection-form.styled";
 import { useAddRoleMutation, UserRoles } from "redux/role.api";
 
-type RoleOptions = "job-owner" | "freelancer";
+type RoleOptions = "employer" | "freelancer";
 
 export function RoleSelectionForm() {
 	const { t } = useTranslation();
@@ -19,7 +19,7 @@ export function RoleSelectionForm() {
 
 	const handleContinueButton = () => {
 		addRole(
-			radioOption === "job-owner" ? { role: UserRoles.EMPLOYER } : { role: UserRoles.FREELANCER },
+			radioOption === "employer" ? { role: UserRoles.EMPLOYER } : { role: UserRoles.FREELANCER },
 		);
 		navigate(`/${radioOption}/create-profile1`);
 	};
@@ -27,7 +27,7 @@ export function RoleSelectionForm() {
 	return (
 		<Form>
 			<RadioGroup>
-				<input type="radio" name="role" value="job-owner" id="jobOwner" onChange={roleHandler} />
+				<input type="radio" name="role" value="employer" id="jobOwner" onChange={roleHandler} />
 				<label htmlFor="jobOwner">{t("roleSelection.roleJobOwner")}</label>
 				<input type="radio" name="role" value="freelancer" id="freelancer" onChange={roleHandler} />
 				<label htmlFor="freelancer">{t("roleSelection.roleFreelancer")}</label>

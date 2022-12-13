@@ -5,13 +5,18 @@ export const SelectElement = styled(Select)`
 	.react-select__value-container {
 		width: 80%;
 		height: inherit;
+		padding-left: 3rem;
+	}
+
+	.react-select__multi-value {
+		background-color: transparent;
 	}
 
 	.react-select__control {
 		border: 2px solid ${({ theme }) => theme.colors.grey};
 		border-radius: 100px;
 		height: 50px;
-		padding-left: 1rem;
+
 		width: 100%;
 		color: ${({ theme }) => theme.colors.grey};
 		outline: none;
@@ -54,7 +59,7 @@ export const Form = styled.form`
 		border: 2px solid ${({ theme }) => theme.colors.grey};
 		border-radius: 100px;
 		height: 50px;
-		padding-left: 1rem;
+		padding-left: 3rem;
 		width: 80%;
 		color: ${({ theme }) => theme.colors.grey};
 		outline: none;
@@ -110,10 +115,6 @@ export const Form = styled.form`
 		background: url("/assets/images/skills_icon.png") no-repeat 20px center;
 	}
 
-	#skills {
-		background: url("/assets/images/skills_icon.png") no-repeat 20px center;
-	}
-
 	#workExperience {
 		background: url("/assets/images/work_experience_icon.png") no-repeat 20px center;
 	}
@@ -126,16 +127,36 @@ export const Form = styled.form`
 		background: url("/assets/images/english_level_icon.png") no-repeat 20px center;
 	}
 
+	#companyName {
+		background: url("/assets/images/company_icon.png") no-repeat 20px center;
+	}
+
+	#linkedIn {
+		background: url("/assets/images/linkedin_icon.png") no-repeat 20px center;
+	}
+
+	#website {
+		background: url("/assets/images/website_icon.png") no-repeat 20px center;
+	}
+
+	#phone {
+		background: url("/assets/images/phone_icon.png") no-repeat 20px center;
+	}
+
 	#fullName,
 	#country,
 	#category,
+	#companyName,
 	#hourRate,
+	#linkedIn,
 	#position,
 	#amountHours,
 	#skills,
 	#workExperience,
 	#employmentType,
-	#englishLevel {
+	#englishLevel,
+	#phone,
+	#website {
 		background-size: 15px 15px;
 	}
 
