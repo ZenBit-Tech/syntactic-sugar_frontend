@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { Form, InputWrapper } from "./login-form.styled";
 import { StyledButton, StyledSpan } from "@freelance/components";
 import { useForm } from "react-hook-form";
@@ -14,6 +15,7 @@ import { toast, ToastContainer } from "react-toastify";
 export function LoginForm() {
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
+  const navigate = useNavigate();
 	const [login, { data: userData, isSuccess, isError }] = useLoginMutation();
 
 	const {
@@ -42,6 +44,20 @@ export function LoginForm() {
 			toast.error(t("recoverPassForm.errorMessageServerError"));
 		}
 	}, [isSuccess, isError]);
+
+  	useEffect(() => {
+				if (userData?.role === "GUEST") {
+					navigate("/role");
+				}
+				if (userData?.role === "FREELANCER") {
+					navigate("/freelancer/searchwork");
+				}
+				if (userData?.role === "JOB_OWNER") {
+					navigate("/employer/my-jobs");
+				}
+		}, [userData]);
+
+
 
 	return (
 		<Form onSubmit={handleSubmit(formSubmitHandler)}>
