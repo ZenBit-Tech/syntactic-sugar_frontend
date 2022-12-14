@@ -3,7 +3,7 @@ import { DashboardHeader, DashboardMenu } from "@freelance/components";
 
 export interface DashboardProps {
 	children: React.ReactNode;
-	userRole: "freelancer" | "employer";
+	userRole: "freelancer" | "employer" | "guest";
 }
 
 export function Dashboard({ children, userRole }: DashboardProps) {
@@ -14,6 +14,7 @@ export function Dashboard({ children, userRole }: DashboardProps) {
 			) : (
 				<DashboardMenu userRole="employer" />
 			)}
+
 			<Area>
 				<DashboardHeader />
 				<Page>{children}</Page>
