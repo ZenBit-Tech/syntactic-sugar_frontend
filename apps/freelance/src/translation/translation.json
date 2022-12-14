@@ -117,6 +117,14 @@
 				"employmentType": "Employment Type",
 				"englishLevel": "English Level"
 			}
+		},
+		"searchWork": {
+			"filter": "Filter",
+			"unFilter": "Reset filter",
+			"jobsList": "Jobs list",
+			"buttonAll": "All",
+			"buttonProfile": "By my profile",
+			"buttonFilter": "Use filters"
 		}
 	},
 	"roleSelection": {
