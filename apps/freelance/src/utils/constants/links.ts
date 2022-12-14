@@ -1,8 +1,8 @@
 // New Job Posting
 
-export const CREATE_NEW_JOB_FIRST_PAGE = "/create-new-job-first-page";
-export const CREATE_NEW_JOB_SECOND_PAGE = "/create-new-job-second-page";
-export const CREATE_NEW_JOB_THIRD_PAGE = "/create-new-job-third-page";
+export const CREATE_NEW_JOB_FIRST_PAGE = "/employer/create-new-job-first-page";
+export const CREATE_NEW_JOB_SECOND_PAGE = "/employer/create-new-job-second-page";
+export const CREATE_NEW_JOB_THIRD_PAGE = "/employer/create-new-job-third-page";
 
 // Reset Password
 
@@ -12,4 +12,4 @@ export const RECOVER_PASSWORD_PAGE = "/recover-password";
 
 // Others
 
-export const EMPLOYER_JOBS_PAGE = "employer/my-jobs-page";
+export const EMPLOYER_JOBS_PAGE = "/employer/my-jobs-page";

@@ -171,14 +171,6 @@
 			"hourRateLabel": "Hour rate (one price)",
 			"hourRatePlaceholder": "Choose hour rate (one price)"
 		},
-		"searchWork": {
-			"filter": "Filter",
-			"unFilter": "Reset filter",
-			"jobsList": "Jobs list",
-			"buttonAll": "All",
-			"buttonProfile": "By my profile",
-			"buttonFilter": "Use filters"
-		},
 		"thirdForm": {
 			"skillsLabel": "Skills",
 			"skillsPlaceholder": "Choose required skills",
@@ -187,6 +179,10 @@
 			"otherRequirenmentsLabel": "Other requirenments",
 			"otherRequirenmentsPlaceholder": "Add Text"
 		}
+	},
+	"employerJobsPage": {
+		"noJobs": "You haven't posted a job yet! Create your job!",
+		"createButton": "Create the fist job"
 	},
 	"employer": {
 		"create": {

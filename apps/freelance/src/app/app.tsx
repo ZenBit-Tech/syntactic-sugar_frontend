@@ -42,9 +42,12 @@ export function App() {
 							<Route path="/freelancer/searchwork" element={<SearchWork />} />
 							<Route path="/employer/create-profile1" element={<CreateEmployerProfile />} />
 							<Route path="/employer/my-jobs-page" element={<EmployerJobsPage />} />
-							<Route path="/create-new-job-first-page" element={<JobPostingFirstPage />} />
-							<Route path="/create-new-job-second-page" element={<JobPostingSecondPage />} />
-							<Route path="/create-new-job-third-page" element={<JobPostingThirdPage />} />
+							<Route path="/employer/create-new-job-first-page" element={<JobPostingFirstPage />} />
+							<Route
+								path="/employer/create-new-job-second-page"
+								element={<JobPostingSecondPage />}
+							/>
+							<Route path="/employer/create-new-job-third-page" element={<JobPostingThirdPage />} />
 						</Routes>
 					</BrowserRouter>
 				</Provider>

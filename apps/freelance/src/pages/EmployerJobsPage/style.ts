@@ -2,15 +2,14 @@ import styled from "styled-components";
 import { StyledParagraph } from "@freelance/components";
 
 export const JobsContainer = styled.div`
-	display: flex;
-	flex-direction: column;
+	display: grid;
+	grid-template-rows: 6fr 1fr;
 	align-items: center;
-	justify-content: space-between;
+	justify-items: center;
 	height: 100%;
 `;
 
 export const JobsParagraph = styled(StyledParagraph)`
-	height: 30%;
 	max-width: 410px;
 	text-align: center;
 	font-size: 2rem;
