@@ -16,6 +16,7 @@ import {
 	ContainerBox,
 	Container,
 	Item,
+	ButtonWrapper,
 	ImageWrapper,
 	Title,
 	Box,
@@ -131,9 +132,14 @@ export function WorkDetails() {
 								</Item>
 							</ItemContainer>
 						</Bottom>
-						<StyledButton type="button" buttonColor="redGradient" buttonSize="sm" fontSize="md">
-							<strong>{t("freelancer.createProfile.backBtn")}</strong>
-						</StyledButton>
+						<ButtonWrapper>
+							<StyledButton type="button" buttonColor="redGradient" buttonSize="sm" fontSize="md">
+								<strong>{t("freelancer.createProfile.backBtn")}</strong>
+							</StyledButton>
+							<StyledButton type="button" buttonColor="redGradient" buttonSize="sm" fontSize="md">
+								<strong>SEND PROPOSAL</strong>
+							</StyledButton>
+						</ButtonWrapper>
 					</ContainerBox>
 					{/* </Dashboard> */}
 				</Container>

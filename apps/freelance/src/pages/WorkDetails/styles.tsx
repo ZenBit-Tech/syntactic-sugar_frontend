@@ -16,8 +16,14 @@ export const ContainerBox = styled.div`
 	align-items: center;
 
 	button {
-		max-width: 200px;
+		min-width: 200px;
 	}
+`;
+
+export const ButtonWrapper = styled.div`
+	display: flex;
+	justify-content: space-around;
+	gap: 2rem;
 `;
 
 export const Box = styled.div`
