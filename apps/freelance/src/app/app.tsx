@@ -20,6 +20,7 @@ import store from "redux/store";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import CreateProfile2 from "@pages/Freelancer/CreateProfile2";
 import { WorkDetails } from "@pages/WorkDetails";
+import SearchWork from "@pages/Freelancer/SearchWork";
 
 export function App() {
 	return (
@@ -38,6 +39,7 @@ export function App() {
 							<Route path="/invitation" element={<Invitation />} />
 							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />
 							<Route path="/freelancer/create-profile2" element={<CreateProfile2 />} />
+							<Route path="/freelancer/searchwork" element={<SearchWork />} />
 							<Route path="/employer/create-profile1" element={<CreateEmployerProfile />} />
 							<Route path="/employer/my-jobs" element={<h1>My jobs page 3.0</h1>} />
 							<Route path="/create-new-job-first-page" element={<JobPostingFirstPage />} />
@@ -47,6 +49,7 @@ export function App() {
 						</Routes>
 					</BrowserRouter>
 				</Provider>
+				€
 			</GoogleOAuthProvider>
 		</StyledApp>
 	);
