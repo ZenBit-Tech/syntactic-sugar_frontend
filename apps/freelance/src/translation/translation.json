@@ -62,7 +62,7 @@
 		"resetSuccess": "Your password reset is successfully done! Go to Home Page.",
 		"homePageBtn": "HOME PAGE"
 	},
-  "jobCard": {
+	"jobCard": {
 		"sendProposal": "Send proposal",
 		"publishJob": "Publish Job"
 	},
@@ -127,12 +127,6 @@
 			"buttonFilter": "Use filters"
 		}
 	},
-	"roleSelection": {
-		"roleTitle": "What do you want?",
-		"roleSubtitle": "Choose your goal and find the best solutions for your project or career.",
-		"roleJobOwner": "I am a Job Owner, hiring for a project.",
-		"roleFreelancer": "I am a Freelancer, looking for a job."
-	},
 	"newJobPosting": {
 		"mainTitle": "New job posting",
 		"subTitle": "Define search criterias",
@@ -171,12 +165,6 @@
 			"hourRateLabel": "Hour rate (one price)",
 			"hourRatePlaceholder": "Choose hour rate (one price)"
 		},
-		"roleSelection": {
-			"roleTitle": "What do you want?",
-			"roleSubtitle": "Choose your goal and find the best solutions for your project or career.",
-			"roleJobOwner": "I am a Job Owner, hiring for a project.",
-			"roleFreelancer": "I am a Freelancer, looking for a job."
-    },
 		"thirdForm": {
 			"skillsLabel": "Skills",
 			"skillsPlaceholder": "Choose required skills",
@@ -200,6 +188,12 @@
 		}
 	},
 	"jobDetails": {
-		"title": "Job details"
+		"title": "Job details",
+		"sendProposalBtn": "SEND PROPOSAL",
+		"skills": "Required skills",
+		"exp": "Experience",
+		"salary": "Salary",
+		"duration": "Duration",
+		"date": "Posting date"
 	}
 }

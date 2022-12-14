@@ -36,15 +36,12 @@ export function WorkDetails() {
 		<ThemeProvider theme={ThemeColors && ThemeBackground}>
 			<StyledPage>
 				<Container>
-					{/* <Dashboard userRole="guest"> */}
 					<Box>
 						<StyledTitle tag="h1" fontSize="lg" fontWeight={700}>
 							Job details
 						</StyledTitle>
 						<Wrapper>
-							{/* <ImageWrapper> */}
 							<img src="/assets/images/user_avatar.png" alt="User Avatar" />
-							{/* </ImageWrapper> */}
 							<div>
 								<StyledTitle tag="h3" fontSize="md" fontWeight={500}>
 									ZenBit
@@ -61,25 +58,25 @@ export function WorkDetails() {
 							<LeftSide>
 								<Item>
 									<Title id="country">
-										<strong>Position</strong>
+										<strong>{t("newJobPosting.secondForm.positionLabel")}</strong>
 									</Title>
 									<p>Full stack Developer</p>
 								</Item>
 								<Item>
 									<Title id="category">
-										<strong>Employment type</strong>
+										<strong>{t("newJobPosting.secondForm.employmentTypeLabel")}</strong>
 									</Title>
 									<p>Remote</p>
 								</Item>
 								<Item>
 									<Title id="position">
-										<strong>Date</strong>
+										<strong>{t("jobDetails.date")}</strong>
 									</Title>
 									<p>date</p>
 								</Item>
 								<Item>
 									<Title id="employment">
-										<strong>Duration</strong>
+										<strong>{t("jobDetails.duration")}</strong>
 									</Title>
 									<p>Part time</p>
 								</Item>
@@ -87,26 +84,26 @@ export function WorkDetails() {
 							<RightSide>
 								<Item>
 									<Title id="workExperience">
-										<strong>Salary</strong>
+										<strong>{t("jobDetails.salary")}</strong>
 									</Title>
 									<p>3500$</p>
 								</Item>
 
 								<Item>
 									<Title id="rateHour">
-										<strong>English level</strong>
+										<strong>{t("newJobPosting.thirdForm.englishLevelLabel")}</strong>
 									</Title>
 									<p>Upper interm</p>
 								</Item>
 								<Item>
 									<Title id="workingHour">
-										<strong>Experience</strong>
+										<strong>{t("jobDetails.exp")}</strong>
 									</Title>
 									<p>2 years</p>
 								</Item>
 								<Item>
 									<Title id="skills">
-										<strong>Skills required</strong>
+										<strong>{t("jobDetails.skills")}</strong>
 									</Title>
 									<p></p>
 								</Item>
@@ -115,7 +112,7 @@ export function WorkDetails() {
 						<Bottom>
 							<ItemContainer id="workHistory">
 								<Title id="workHistory">
-									<strong>Description</strong>
+									<strong>{t("newJobPosting.thirdForm.descriptionLabel")}</strong>
 								</Title>
 								<Subcontainer>
 									<Item id="workHistory">
@@ -125,7 +122,7 @@ export function WorkDetails() {
 							</ItemContainer>
 							<ItemContainer id="workHistory">
 								<Title id="workHistory">
-									<strong>Other requirenments</strong>
+									<strong>{t("newJobPosting.thirdForm.otherRequirenmentsLabel")}</strong>
 								</Title>
 								<Item id="workHistory">
 									<p></p>
@@ -137,11 +134,10 @@ export function WorkDetails() {
 								<strong>{t("freelancer.createProfile.backBtn")}</strong>
 							</StyledButton>
 							<StyledButton type="button" buttonColor="redGradient" buttonSize="sm" fontSize="md">
-								<strong>SEND PROPOSAL</strong>
+								<strong>{t("jobDetails.sendProposalBtn")}</strong>
 							</StyledButton>
 						</ButtonWrapper>
 					</ContainerBox>
-					{/* </Dashboard> */}
 				</Container>
 			</StyledPage>
 		</ThemeProvider>
