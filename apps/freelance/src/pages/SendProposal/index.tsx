@@ -20,6 +20,9 @@ import { ThemeProvider } from "styled-components";
 import { useCreateProposalMutation } from "redux/sendProposalFreelancer/proposalApi";
 import { IProposal } from "src/redux/interfaces/IProposal";
 import { schema } from "utils/validations/fileUpload";
+import { WORK_DETAILS, SEARCH_WORK } from "src/utils/constants/breakpoint";
+import { useGetFreelancerMutation } from "src/redux/createFreelancer/freelancer-pageApi";
+import { useEffect } from "react";
 
 export function SendProposal() {
 	const { t } = useTranslation();
@@ -32,13 +35,21 @@ export function SendProposal() {
 		formState: { errors },
 	} = useForm<IProposal>({ resolver: yupResolver(schema) });
 	const [createProposal, { isError }] = useCreateProposalMutation({});
+	const [getProfile] = useGetFreelancerMutation({});
+
+	useEffect(() => {
+		const getFreelancer = async () => {
+			const profile = await getProfile();
+			console.log(profile);
+		};
+		getFreelancer();
+	}, []);
 
 	const goBack = () => {
-		navigate("/work-details");
+		navigate(WORK_DETAILS);
 	};
 
 	const onSubmit = async (values: IProposal) => {
-		console.log(values);
 		const data: any = new FormData();
 		data.append("file", values.file[0]);
 		data.append("coverLetter", values.coverLetter);
@@ -48,7 +59,7 @@ export function SendProposal() {
 			if (isError) {
 				alert(t("sendProposalFreelancer.alert"));
 			}
-			navigate("/search-work");
+			navigate(SEARCH_WORK);
 		} catch (error) {
 			alert(error);
 		}
@@ -61,6 +72,9 @@ export function SendProposal() {
 					<Title fontSize="lg" tag="h1" fontWeight={700}>
 						{t("sendProposalFreelancer.greeting")}
 					</Title>
+					<SubTitle fontSize="md" tag="h3" fontWeight={500}>
+						Name
+					</SubTitle>
 					<SubTitle fontSize="md" tag="h3" fontWeight={500}>
 						Marketing, Ukraine, 3 years of experience, English: Upper Int, full time work
 					</SubTitle>

@@ -33,7 +33,7 @@ export function App() {
 							<Route path="/recover-password" element={<RecoverPasswordRequest />} />
 							<Route path="/check-your-email" element={<RecoverPasswordCheck />} />
 							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
-							<Route path="/send-proposal-freelancer" element={<SendProposal />} />
+							<Route path="/freelancer/send-proposal" element={<SendProposal />} />
 							<Route path="/work-details" element={<h1>Work Details Page 4.1</h1>} />
 							<Route path="/search-work" element={<h1>Search Work Page 4</h1>} />
 							<Route path="/password-updated" element={<RecoverPasswordUpdate />} />

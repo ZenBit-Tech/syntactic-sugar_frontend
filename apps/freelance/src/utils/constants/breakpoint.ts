@@ -14,3 +14,8 @@ export const RECOVER_PASSWORD_2 = "recoverPass2";
 export const FIRST_PAGE = "firstPage";
 export const SECOND_PAGE = "secondPage";
 export const THIRD_PAGE = "thirdPage";
+
+// Send Proposal
+
+export const WORK_DETAILS = "jobs/details";
+export const SEARCH_WORK = "search-work";
