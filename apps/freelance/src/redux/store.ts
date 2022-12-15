@@ -9,6 +9,8 @@ import { createFreelancerApi } from "./createFreelancer/freelancer-pageApi";
 import { loginApi } from "./login.api";
 import { roleApi } from "./role.api";
 import { proposalFreelancerApi } from "./sendProposalFreelancer/proposalApi";
+import { getJobsApi } from "./jobs/jobs.api";
+import { createEmployerApi } from "./createEmployer/employerApi";
 
 const store = configureStore({
 	reducer: {
@@ -21,6 +23,8 @@ const store = configureStore({
 		[createFreelancerApi.reducerPath]: createFreelancerApi.reducer,
 		[roleApi.reducerPath]: roleApi.reducer,
 		[proposalFreelancerApi.reducerPath]: proposalFreelancerApi.reducer,
+		[getJobsApi.reducerPath]: getJobsApi.reducer,
+		[createEmployerApi.reducerPath]: createEmployerApi.reducer,
 	},
 	middleware: getDefaultMiddleware =>
 		getDefaultMiddleware({
@@ -34,6 +38,8 @@ const store = configureStore({
 			createFreelancerApi.middleware,
 			roleApi.middleware,
 			proposalFreelancerApi.middleware,
+			getJobsApi.middleware,
+			createEmployerApi.middleware,
 		),
 });
 
