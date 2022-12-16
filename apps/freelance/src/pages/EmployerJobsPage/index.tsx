@@ -1,21 +1,11 @@
-import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { Dashboard, StyledButton, StyledPage } from "@freelance/components";
-import { CREATE_NEW_JOB_FIRST_PAGE } from "utils/constants/links";
-import { JobsContainer, JobsParagraph } from "./style";
+import { Dashboard, EmployerJobsContainer, StyledPage } from "@freelance/components";
 
 export function EmployerJobsPage() {
-	const { t } = useTranslation();
-	const navigate = useNavigate();
-
-	const handleClick = (): void => {
-		navigate(CREATE_NEW_JOB_FIRST_PAGE);
-	};
-
 	return (
 		<StyledPage>
 			<Dashboard userRole="employer">
-				<JobsContainer>
+				<EmployerJobsContainer />
+				{/* <JobsContainer>
 					<JobsParagraph fontSize="lg">{t("employerJobsPage.noJobs")}</JobsParagraph>
 					<StyledButton
 						onClick={handleClick}
@@ -25,7 +15,7 @@ export function EmployerJobsPage() {
 					>
 						{t("employerJobsPage.createButton")}
 					</StyledButton>
-				</JobsContainer>
+				</JobsContainer> */}
 			</Dashboard>
 		</StyledPage>
 	);
