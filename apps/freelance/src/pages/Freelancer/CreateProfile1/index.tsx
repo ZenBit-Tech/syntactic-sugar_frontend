@@ -46,10 +46,7 @@ interface IFormInput {
 	availableAmountOfHour: SelectOptions;
 	workExperience: SelectOptions;
 	englishLevel: SelectOptions;
-	file: string;
-}
-interface IFile {
-	file: File | null;
+	image: string;
 }
 
 export function CreateProfile1(props: ProfilePageProps) {
@@ -64,7 +61,7 @@ export function CreateProfile1(props: ProfilePageProps) {
 		handleSubmit,
 		control,
 		formState: { errors },
-	} = useForm<IFormInput>({ resolver: yupResolver(imageSchema) });
+	} = useForm<IFormInput>();
 
 	const onSubmitFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
 		try {
@@ -96,7 +93,7 @@ export function CreateProfile1(props: ProfilePageProps) {
 			availableAmountOfHour: values.availableAmountOfHour.label,
 			workExperience: values.workExperience.label,
 			englishLevel: values.englishLevel.label,
-			file: imageData && imageUrl !== DEFAULT_IMAGE ? imageData.file : null,
+			image: imageData && imageUrl !== DEFAULT_IMAGE ? imageData.file : null,
 		};
 		try {
 			await dispatch(addFreelancerInfo(freelancerInfo));
@@ -123,7 +120,7 @@ export function CreateProfile1(props: ProfilePageProps) {
 										id="fileInput"
 										type="file"
 										accept=".png, .jpg, .jpeg"
-										{...register("file")}
+										{...register("image")}
 										onChange={onSubmitFile}
 									/>
 								</label>
