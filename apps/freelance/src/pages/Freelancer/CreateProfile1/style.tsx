@@ -39,6 +39,44 @@ export const SelectElement = styled(Select)`
 	}
 `;
 
+export const StyledFileField = styled.div`
+	display: flex;
+	flex-direction: column;
+  align-items: center;
+	justify-content: center;
+	width: 70%;
+  div {
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+  }
+	img {
+		border: 2px solid ${({ theme }) => theme.colors.grey};
+		background: ${({ theme }) => theme.colors.grey};
+		object-fit: cover;
+		border-radius: 10%;
+		height: 250px;
+		width: 250px;
+	}
+	label {
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		color: ${({ theme }) => theme.colors.white};
+		border-radius: 100px;
+		background-color: ${({ theme }) => theme.colors.darkRed};
+		cursor: pointer;
+		width: 100%;
+		height: 30px;
+		cursor: pointer;
+		margin: 5px;
+	}
+	input[type="file"],
+	input[type="button"] {
+		display: none;
+	}
+`;
+
 const StyledPage = styled.div`
 	margin: auto;
 	display: flex;
@@ -72,6 +110,7 @@ export const Form = styled.form`
 			color: ${({ theme }) => theme.colors.grey};
 		}
 	}
+
 
 	.selectContainer {
 		position: relative;

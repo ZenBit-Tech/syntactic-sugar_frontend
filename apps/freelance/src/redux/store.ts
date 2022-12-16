@@ -10,6 +10,7 @@ import { loginApi } from "./login.api";
 import { roleApi } from "./role.api";
 import { getJobsApi } from "./jobs/jobs.api";
 import { createEmployerApi } from "./createEmployer/employerApi";
+import { uploadImage } from "./uploadImage/upload-image.api";
 
 const store = configureStore({
 	reducer: {
@@ -23,6 +24,7 @@ const store = configureStore({
 		[roleApi.reducerPath]: roleApi.reducer,
 		[getJobsApi.reducerPath]: getJobsApi.reducer,
 		[createEmployerApi.reducerPath]: createEmployerApi.reducer,
+    [uploadImage.reducerPath]: uploadImage.reducer,
 	},
 	middleware: getDefaultMiddleware =>
 		getDefaultMiddleware({
@@ -37,6 +39,7 @@ const store = configureStore({
 			roleApi.middleware,
 			getJobsApi.middleware,
 			createEmployerApi.middleware,
+      uploadImage.middleware,
 		),
 });
 

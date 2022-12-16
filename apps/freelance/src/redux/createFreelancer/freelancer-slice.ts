@@ -27,6 +27,7 @@ type Freelancer = {
 	education: educationProps[];
 	workHistory: workHistoryProps[];
 	otherExperience: string;
+  file: string;
 };
 
 const initialState: Freelancer = {
@@ -43,6 +44,7 @@ const initialState: Freelancer = {
 	education: [],
 	workHistory: [],
 	otherExperience: "",
+  file: ""
 };
 
 const freelancer = createSlice({
