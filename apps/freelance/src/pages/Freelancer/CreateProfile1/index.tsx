@@ -1,10 +1,11 @@
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { ThemeProvider } from "styled-components";
-import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { useEffect, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useTranslation } from "react-i18next";
+import { addFreelancerInfo } from "redux/createFreelancer/freelancer-slice";
+import { useAppDispatch } from "redux/example-hooks";
 import {
 	ThemeColors,
 	ThemeBackground,
@@ -12,25 +13,13 @@ import {
 	StyledTitle,
 	StyledButton,
 } from "@freelance/components";
-import { CREATE_PROFILE_2 } from "src/utils/constants/breakpoint";
 import { imageSchema } from "utils/validations/imageUpload";
 import { useUploadImageMutation } from "redux/uploadImage/upload-image.api";
 import { baseUrl } from "utils/constants/redux-query";
-import { useAppDispatch } from "src/redux/example-hooks";
-import { addFreelancerInfo } from "redux/createFreelancer/freelancer-slice";
 import { DEFAULT_IMAGE } from "utils/constants/links";
-import {
-	countries,
-	categories,
-	skills,
-	employmentType,
-	hourRate,
-	hoursAmount,
-	workExperience,
-	englishLevel,
-	SelectOptions,
-} from "utils/select-options/options";
 import { StyledPage, Form, StyledFileField, SelectElement } from "./style";
+import { useOptions, SelectOptions } from "utils/select-options/options";
+import { CREATE_PROFILE_2 } from "src/utils/constants/breakpoint";
 
 /* eslint-disable-next-line */
 export interface ProfilePageProps {}
@@ -49,10 +38,11 @@ interface IFormInput {
 	image: string;
 }
 
-export function CreateProfile1(props: ProfilePageProps) {
+export function CreateProfile1() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
+
 	const [imageUrl, setImageUrl] = useState<string>(DEFAULT_IMAGE);
 	const [uploadImage, { data: imageData, isLoading, isError, isSuccess }] =
 		useUploadImageMutation();
@@ -81,6 +71,17 @@ export function CreateProfile1(props: ProfilePageProps) {
 		}
 	}, [imageData]);
 
+	const {
+		countries,
+		categories,
+		skills,
+		employmentType,
+		hourRate,
+		hoursAmount,
+		workExperience,
+		englishLevel,
+	} = useOptions();
+
 	const onSubmit: SubmitHandler<IFormInput> = async values => {
 		const freelancerInfo = {
 			fullName: values.fullName,
@@ -95,8 +96,9 @@ export function CreateProfile1(props: ProfilePageProps) {
 			englishLevel: values.englishLevel.label,
 			image: imageData && imageUrl !== DEFAULT_IMAGE ? imageData.file : null,
 		};
+
 		try {
-			await dispatch(addFreelancerInfo(freelancerInfo));
+			dispatch(addFreelancerInfo(freelancerInfo));
 			navigate(CREATE_PROFILE_2);
 		} catch (error) {
 			alert(error);

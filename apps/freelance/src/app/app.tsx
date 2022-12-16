@@ -1,4 +1,4 @@
-import { StyledApp } from "./app.styled";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import Login from "@pages/Login";
@@ -16,10 +16,11 @@ import {
 	JobPostingSecondPage,
 	JobPostingThirdPage,
 } from "@pages/NewJobPosting";
-import store from "redux/store";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import CreateProfile2 from "@pages/Freelancer/CreateProfile2";
+import { EmployerJobsPage } from "@pages/EmployerJobsPage";
+import store from "redux/store";
 import SearchWork from "@pages/Freelancer/SearchWork";
+import { StyledApp } from "./app.styled";
 
 export function App() {
 	return (
@@ -38,15 +39,15 @@ export function App() {
 							<Route path="/invitation" element={<Invitation />} />
 							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />
 							<Route path="/freelancer/create-profile2" element={<CreateProfile2 />} />
+							<Route path="/employer-jobs-page" element={<EmployerJobsPage />} />
 							<Route path="/freelancer/searchwork" element={<SearchWork />} />
 							<Route path="/employer/create-profile1" element={<CreateEmployerProfile />} />
-							<Route path="/employer/my-jobs" element={<h1>My jobs page 3.0</h1>} />
 							<Route path="/create-new-job-first-page" element={<JobPostingFirstPage />} />
 							<Route path="/create-new-job-second-page" element={<JobPostingSecondPage />} />
 							<Route path="/create-new-job-third-page" element={<JobPostingThirdPage />} />
 						</Routes>
 					</BrowserRouter>
-				</Provider>€
+				</Provider>
 			</GoogleOAuthProvider>
 		</StyledApp>
 	);
