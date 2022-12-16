@@ -60,7 +60,7 @@ export const SubTitle = styled(BaseTitle)`
 `;
 
 export const Label = styled.label`
-	font-size: 1.2rem;
+	font-size: 1rem;
 `;
 
 export const Span = styled.span`

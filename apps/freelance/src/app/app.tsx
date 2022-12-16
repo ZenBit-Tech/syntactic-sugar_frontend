@@ -25,7 +25,7 @@ import SearchWork from "@pages/Freelancer/SearchWork";
 export function App() {
 	return (
 		<StyledApp>
-			<GoogleOAuthProvider clientId={`${process.env["NX_APP_GOOGLE_KEY"]}`}>
+			<GoogleOAuthProvider clientId="253619542281-miag0ub2aorap933406d1vg3bbte7j8m.apps.googleusercontent.com">
 				<Provider store={store}>
 					<BrowserRouter>
 						<Routes>
@@ -37,7 +37,6 @@ export function App() {
 							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
 							<Route path="/freelancer/send-proposal" element={<SendProposal />} />
 							<Route path="/work-details" element={<h1>Work Details Page 4.1</h1>} />
-							<Route path="/search-work" element={<h1>Search Work Page 4</h1>} />
 							<Route path="/password-updated" element={<RecoverPasswordUpdate />} />
 							<Route path="/invitation" element={<Invitation />} />
 							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />
@@ -51,7 +50,6 @@ export function App() {
 						</Routes>
 					</BrowserRouter>
 				</Provider>
-				€
 			</GoogleOAuthProvider>
 		</StyledApp>
 	);

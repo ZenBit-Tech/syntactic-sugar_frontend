@@ -1,8 +1,17 @@
 import { useTranslation } from "react-i18next";
-import { useAppDispatch } from "src/redux/hooks";
+import { useEffect, useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { ThemeProvider } from "styled-components";
+import { useAppDispatch } from "redux/hooks";
+import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
+import { StyledButton, ThemeColors, StyledParagraph } from "@freelance/components";
+import { useCreateProposalMutation } from "redux/sendProposalFreelancer/proposalApi";
+import { IProposal } from "src/redux/interfaces/IProposal";
+import { schema } from "utils/validations/fileUpload";
+import { WORK_DETAILS, SEARCH_WORK } from "src/utils/constants/breakpoint";
+import { useGetFreelancerQuery } from "src/redux/createFreelancer/freelancer-pageApi";
 import {
 	Page,
 	Container,
@@ -15,16 +24,11 @@ import {
 	Textarea,
 	Span,
 } from "./styles";
-import { StyledButton, ThemeColors } from "@freelance/components";
-import { ThemeProvider } from "styled-components";
-import { useCreateProposalMutation } from "redux/sendProposalFreelancer/proposalApi";
-import { IProposal } from "src/redux/interfaces/IProposal";
-import { schema } from "utils/validations/fileUpload";
-import { WORK_DETAILS, SEARCH_WORK } from "src/utils/constants/breakpoint";
-import { useGetFreelancerMutation } from "src/redux/createFreelancer/freelancer-pageApi";
-import { useEffect } from "react";
 
 export function SendProposal() {
+	const [profile, setProfile] = useState();
+	const { data: any } = useGetFreelancerQuery();
+
 	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
@@ -35,15 +39,10 @@ export function SendProposal() {
 		formState: { errors },
 	} = useForm<IProposal>({ resolver: yupResolver(schema) });
 	const [createProposal, { isError }] = useCreateProposalMutation({});
-	const [getProfile] = useGetFreelancerMutation({});
 
 	useEffect(() => {
-		const getFreelancer = async () => {
-			const profile = await getProfile();
-			console.log(profile);
-		};
-		getFreelancer();
-	}, []);
+		setProfile(data);
+	}, [data]);
 
 	const goBack = () => {
 		navigate(WORK_DETAILS);
@@ -72,12 +71,11 @@ export function SendProposal() {
 					<Title fontSize="lg" tag="h1" fontWeight={700}>
 						{t("sendProposalFreelancer.greeting")}
 					</Title>
-					<SubTitle fontSize="md" tag="h3" fontWeight={500}>
-						Name
+					<SubTitle fontSize="md" tag="h3" fontWeight={700}>
+						{data?.fullName}
 					</SubTitle>
-					<SubTitle fontSize="md" tag="h3" fontWeight={500}>
-						Marketing, Ukraine, 3 years of experience, English: Upper Int, full time work
-					</SubTitle>
+					<StyledParagraph fontSize="md">{data?.category}</StyledParagraph>
+
 					<Form onSubmit={handleSubmit(onSubmit)}>
 						<Label>{t("sendProposalFreelancer.coverLetter")}</Label>
 						<Textarea

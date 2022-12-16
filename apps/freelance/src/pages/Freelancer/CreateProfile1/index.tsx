@@ -214,7 +214,7 @@ export function CreateProfile1(props: ProfilePageProps) {
 										id="amountHours"
 										isSearchable
 										isClearable
-										placeholder={t("freelancer.createProfile.selectOption.amountHours")}
+										placeholder={t("freelancer.createProfile.selectOption.availableAmountOfHour")}
 										classNamePrefix="react-select"
 									/>
 								)}

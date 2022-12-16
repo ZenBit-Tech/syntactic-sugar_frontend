@@ -1,5 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Dashboard, StyledTitle, StyledButton, ModalWindow } from "@freelance/components";
+import { useAppDispatch } from "redux/hooks";
+import { addFreelancerInfo } from "redux/createFreelancer/freelancer-slice";
+import { CREATE_PROFILE_1, VIEW_PROFILE } from "src/utils/constants/breakpoint";
+import { useEducationHandler } from "./useEducationHandler";
+import { useWorkHistoryHandler } from "./useWorkHistoryHandler";
+import { useChangeListHandler, listOption } from "./useChangeListHandler";
 import {
 	StyledPage,
 	Form,
@@ -11,17 +21,6 @@ import {
 	InputWrapper,
 	StyledToastContainer,
 } from "./style";
-import { Dashboard, StyledTitle, StyledButton, ModalWindow } from "@freelance/components";
-import { useEducationHandler } from "./useEducationHandler";
-import { useWorkHistoryHandler } from "./useWorkHistoryHandler";
-import { useChangeListHandler, listOption } from "./useChangeListHandler";
-import { it } from "node:test";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useAppDispatch } from "redux/hooks";
-import { addFreelancerInfo } from "redux/createFreelancer/freelancer-slice";
-import { useNavigate } from "react-router-dom";
-import { CREATE_PROFILE_1, VIEW_PROFILE } from "src/utils/constants/breakpoint";
 
 export function CreateProfile2() {
 	const { t } = useTranslation();
