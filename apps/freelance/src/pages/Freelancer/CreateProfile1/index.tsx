@@ -1,10 +1,24 @@
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { addFreelancerInfo } from "redux/createFreelancer/freelancer-slice";
+import { ThemeProvider } from "styled-components";
 import { useDispatch } from "react-redux";
-import { useAppDispatch } from "src/redux/example-hooks";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
+import {
+	ThemeColors,
+	ThemeBackground,
+	Dashboard,
+	StyledTitle,
+	StyledButton,
+} from "@freelance/components";
+import { CREATE_PROFILE_2 } from "src/utils/constants/breakpoint";
+import { imageSchema } from "utils/validations/imageUpload";
+import { useUploadImageMutation } from "redux/uploadImage/upload-image.api";
+import { baseUrl } from "utils/constants/redux-query";
+import { useAppDispatch } from "src/redux/example-hooks";
+import { addFreelancerInfo } from "redux/createFreelancer/freelancer-slice";
+import { DEFAULT_IMAGE } from "utils/constants/links";
 import {
 	countries,
 	categories,
@@ -16,22 +30,7 @@ import {
 	englishLevel,
 	SelectOptions,
 } from "utils/select-options/options";
-import { StyledPage, Form, StyledFileField } from "./style";
-import {
-	ThemeColors,
-	ThemeBackground,
-	Dashboard,
-	StyledTitle,
-	StyledButton,
-} from "@freelance/components";
-import { ThemeProvider } from "styled-components";
-import { SelectElement } from "./style";
-import { useTranslation } from "react-i18next";
-import { CREATE_PROFILE_2 } from "src/utils/constants/breakpoint";
-import { imageSchema } from "utils/validations/imageUpload";
-import { useUploadImageMutation } from "redux/uploadImage/upload-image.api";
-import { baseUrl } from "utils/constants/redux-query";
-import { DEFAULT_IMAGE } from "utils/constants/links";
+import { StyledPage, Form, StyledFileField, SelectElement } from "./style";
 
 /* eslint-disable-next-line */
 export interface ProfilePageProps {}
