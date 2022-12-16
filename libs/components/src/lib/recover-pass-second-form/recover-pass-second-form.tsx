@@ -2,9 +2,11 @@ import { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ToastContainer } from "react-toastify";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import "antd/dist/antd.css";
+import { StyledButton, StyledSpan, FormHeader } from "@freelance/components";
 import { useResetPasswordSchema } from "utils/validations";
 import { useResetPassword } from "./recover-pass-second-formHooks";
-import { useTranslation } from "react-i18next";
 import { IResetPasswordForm } from "./interfaces";
 import {
 	Form,
@@ -12,8 +14,6 @@ import {
 	StyledButtonModal,
 	StyledModal,
 } from "./recover-pass-second-form.styled";
-import { StyledButton, StyledSpan, FormHeader } from "@freelance/components";
-import "antd/dist/antd.css";
 
 export const RecoverPasswordSecondForm = () => {
 	const { t } = useTranslation();

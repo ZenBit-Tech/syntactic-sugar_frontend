@@ -1,19 +1,9 @@
+import { ThemeProvider } from "styled-components";
+import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { addFreelancerInfo } from "redux/createFreelancer/freelancer-slice";
 import { useAppDispatch } from "redux/example-hooks";
-import { useNavigate } from "react-router-dom";
-import {
-	countries,
-	categories,
-	skills,
-	employmentType,
-	hourRate,
-	hoursAmount,
-	workExperience,
-	englishLevel,
-	SelectOptions,
-} from "utils/select-options/options";
-import { StyledPage, Form } from "./style";
 import {
 	ThemeColors,
 	ThemeBackground,
@@ -21,13 +11,9 @@ import {
 	StyledTitle,
 	StyledButton,
 } from "@freelance/components";
-import { ThemeProvider } from "styled-components";
-import { SelectElement } from "./style";
-import { useTranslation } from "react-i18next";
+import { useOptions, SelectOptions } from "utils/select-options/options";
 import { CREATE_PROFILE_2 } from "src/utils/constants/breakpoint";
-
-/* eslint-disable-next-line */
-export interface ProfilePageProps {}
+import { StyledPage, Form, SelectElement } from "./style";
 
 interface IFormInput {
 	fullName: string;
@@ -42,10 +28,20 @@ interface IFormInput {
 	englishLevel: SelectOptions;
 }
 
-export function CreateProfile1(props: ProfilePageProps) {
+export function CreateProfile1() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
+	const {
+		countries,
+		categories,
+		skills,
+		employmentType,
+		hourRate,
+		hoursAmount,
+		workExperience,
+		englishLevel,
+	} = useOptions();
 	const { handleSubmit, control } = useForm<IFormInput>();
 
 	const onSubmit: SubmitHandler<IFormInput> = async values => {
@@ -61,8 +57,9 @@ export function CreateProfile1(props: ProfilePageProps) {
 			workExperience: values.workExperience.label,
 			englishLevel: values.englishLevel.label,
 		};
+
 		try {
-			await dispatch(addFreelancerInfo(freelancerInfo));
+			dispatch(addFreelancerInfo(freelancerInfo));
 			navigate(CREATE_PROFILE_2);
 		} catch (error) {
 			alert(error);

@@ -1,3 +1,4 @@
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "redux/store";
@@ -16,10 +17,9 @@ import {
 	JobPostingSecondPage,
 	JobPostingThirdPage,
 } from "@pages/NewJobPosting";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import CreateProfile2 from "@pages/Freelancer/CreateProfile2";
+import { EmployerJobsPage } from "@pages/EmployerJobsPage";
 import SearchWork from "@pages/Freelancer/SearchWork";
-import EmployerJobsPage from "@pages/EmployerJobsPage";
 import { StyledApp } from "./app.styled";
 
 export function App() {

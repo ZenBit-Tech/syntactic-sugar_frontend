@@ -5,17 +5,6 @@ export function EmployerJobsPage() {
 		<StyledPage>
 			<Dashboard userRole="employer">
 				<EmployerJobsContainer />
-				{/* <JobsContainer>
-					<JobsParagraph fontSize="lg">{t("employerJobsPage.noJobs")}</JobsParagraph>
-					<StyledButton
-						onClick={handleClick}
-						buttonSize="sm"
-						fontSize="lg"
-						buttonColor="redGradient"
-					>
-						{t("employerJobsPage.createButton")}
-					</StyledButton>
-				</JobsContainer> */}
 			</Dashboard>
 		</StyledPage>
 	);
