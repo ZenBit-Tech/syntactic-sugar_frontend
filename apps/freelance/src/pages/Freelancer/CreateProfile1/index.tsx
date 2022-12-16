@@ -1,6 +1,8 @@
 import { ThemeProvider } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useTranslation } from "react-i18next";
 import { addFreelancerInfo } from "redux/createFreelancer/freelancer-slice";
 import { useAppDispatch } from "redux/example-hooks";
@@ -11,9 +13,16 @@ import {
 	StyledTitle,
 	StyledButton,
 } from "@freelance/components";
+import { imageSchema } from "utils/validations/imageUpload";
+import { useUploadImageMutation } from "redux/uploadImage/upload-image.api";
+import { baseUrl } from "utils/constants/redux-query";
+import { DEFAULT_IMAGE } from "utils/constants/links";
+import { StyledPage, Form, StyledFileField, SelectElement } from "./style";
 import { useOptions, SelectOptions } from "utils/select-options/options";
 import { CREATE_PROFILE_2 } from "src/utils/constants/breakpoint";
-import { StyledPage, Form, SelectElement } from "./style";
+
+/* eslint-disable-next-line */
+export interface ProfilePageProps {}
 
 interface IFormInput {
 	fullName: string;
@@ -26,12 +35,42 @@ interface IFormInput {
 	availableAmountOfHour: SelectOptions;
 	workExperience: SelectOptions;
 	englishLevel: SelectOptions;
+	image: string;
 }
 
 export function CreateProfile1() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
+
+	const [imageUrl, setImageUrl] = useState<string>(DEFAULT_IMAGE);
+	const [uploadImage, { data: imageData, isLoading, isError, isSuccess }] =
+		useUploadImageMutation();
+	const {
+		register,
+		handleSubmit,
+		control,
+		formState: { errors },
+	} = useForm<IFormInput>();
+
+	const onSubmitFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
+		try {
+			const formData = new FormData();
+			if (event.currentTarget.files) {
+				formData.append("file", event.currentTarget.files[0]);
+			}
+			await uploadImage(formData);
+		} catch (error) {
+			alert(error);
+		}
+	};
+
+	useEffect(() => {
+		if (isSuccess) {
+			setImageUrl(baseUrl + "/" + imageData?.file);
+		}
+	}, [imageData]);
+
 	const {
 		countries,
 		categories,
@@ -42,7 +81,6 @@ export function CreateProfile1() {
 		workExperience,
 		englishLevel,
 	} = useOptions();
-	const { handleSubmit, control } = useForm<IFormInput>();
 
 	const onSubmit: SubmitHandler<IFormInput> = async values => {
 		const freelancerInfo = {
@@ -56,6 +94,7 @@ export function CreateProfile1() {
 			availableAmountOfHour: values.availableAmountOfHour.label,
 			workExperience: values.workExperience.label,
 			englishLevel: values.englishLevel.label,
+			image: imageData && imageUrl !== DEFAULT_IMAGE ? imageData.file : null,
 		};
 
 		try {
@@ -74,6 +113,30 @@ export function CreateProfile1() {
 						{t("dashboard.profilePage.title")}
 					</StyledTitle>
 					<Form onSubmit={handleSubmit(onSubmit)}>
+						<StyledFileField>
+							<img src={imageUrl} alt="User Avatar" />
+							<div>
+								<label>
+									{t("image.chooseImage")}
+									<input
+										id="fileInput"
+										type="file"
+										accept=".png, .jpg, .jpeg"
+										{...register("image")}
+										onChange={onSubmitFile}
+									/>
+								</label>
+								<label>
+									{t("image.resetImage")}
+									<input
+										type="button"
+										onClick={() => {
+											setImageUrl(DEFAULT_IMAGE);
+										}}
+									/>
+								</label>
+							</div>
+						</StyledFileField>
 						<Controller
 							name="fullName"
 							control={control}
@@ -107,7 +170,6 @@ export function CreateProfile1() {
 								)}
 							/>
 						</div>
-
 						<Controller
 							name="position"
 							control={control}
@@ -211,7 +273,7 @@ export function CreateProfile1() {
 										id="amountHours"
 										isSearchable
 										isClearable
-										placeholder={t("freelancer.createProfile.selectOption.amountHours")}
+										placeholder={t("freelancer.createProfile.selectOption.availableAmountOfHour")}
 										classNamePrefix="react-select"
 									/>
 								)}

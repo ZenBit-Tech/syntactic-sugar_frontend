@@ -16,6 +16,7 @@ interface IFormInput {
 	education: educationProps[];
 	workHistory: workHistoryProps[];
 	otherExperience: string;
+  image: string;
 }
 
 interface Published {
