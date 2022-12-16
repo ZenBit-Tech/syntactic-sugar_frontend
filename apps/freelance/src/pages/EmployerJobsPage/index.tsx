@@ -1,3 +1,13 @@
+import { Dashboard, EmployerJobsContainer, StyledPage } from "@freelance/components";
+
 export function EmployerJobsPage() {
-	return <h1>Employer Jobs Page</h1>;
+	return (
+		<StyledPage>
+			<Dashboard userRole="employer">
+				<EmployerJobsContainer />
+			</Dashboard>
+		</StyledPage>
+	);
 }
+
+export default EmployerJobsPage;
