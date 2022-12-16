@@ -1,3 +1,6 @@
+import { ToastContainer } from "react-toastify";
+import { ThemeProvider } from "styled-components";
+import { FIRST_PAGE, SECOND_PAGE, THIRD_PAGE } from "utils/constants/breakpoint";
 import {
 	Page,
 	StyledPage,
@@ -8,8 +11,6 @@ import {
 	JobPostingSecondForm,
 	JobPostingThirdForm,
 } from "@freelance/components";
-import { ThemeProvider } from "styled-components";
-import { FIRST_PAGE, SECOND_PAGE, THIRD_PAGE } from "utils/constants/breakpoint";
 import {
 	ButtonContainer,
 	Description,
@@ -35,7 +36,7 @@ export function JobPostingContainer({
 	subTitle,
 	createButton,
 }: INewJobPostingProps) {
-	const { description, goBackButton, createButtonText, continueButton, goBack } =
+	const { description, goBackButton, continueButton, toggleText, passLoaderOrString, goBack } =
 		useJobPostingContainerHook();
 
 	return (
@@ -58,11 +59,13 @@ export function JobPostingContainer({
 					<FormWrapper>
 						{page === FIRST_PAGE && <JobPostingFirstForm page={page} />}
 						{page === SECOND_PAGE && <JobPostingSecondForm page={page} />}
-						{page === THIRD_PAGE && <JobPostingThirdForm page={page} />}
+						{page === THIRD_PAGE && (
+							<JobPostingThirdForm page={page} textButtonHandler={passLoaderOrString} />
+						)}
 					</FormWrapper>
 					<ButtonContainer>
 						<FormButton
-							type="submit"
+							type="button"
 							form={page}
 							onClick={() => goBack(goBackLink)}
 							buttonSize="sm"
@@ -71,9 +74,10 @@ export function JobPostingContainer({
 							{goBackButton}
 						</FormButton>
 						<FormButton type="submit" form={page} buttonSize="sm" buttonColor="redGradient">
-							{createButton ? createButtonText : continueButton}
+							{createButton ? toggleText : continueButton}
 						</FormButton>
 					</ButtonContainer>
+					<ToastContainer />
 				</PageContainer>
 			</StyledPage>
 		</ThemeProvider>

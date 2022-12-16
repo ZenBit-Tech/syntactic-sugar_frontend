@@ -62,7 +62,7 @@
 		"resetSuccess": "Your password reset is successfully done! Go to Home Page.",
 		"homePageBtn": "HOME PAGE"
 	},
-  "jobCard": {
+	"jobCard": {
 		"sendProposal": "Send proposal",
 		"publishJob": "Publish Job"
 	},
@@ -140,6 +140,7 @@
 		"goBackButton": "Go back",
 		"continueButton": "Continue",
 		"createButton": "Create a job",
+		"buttonLoaderText": "...Creating",
 		"validation": {
 			"messageFieldRequired": "Field is requierd"
 		},
@@ -171,12 +172,14 @@
 			"hourRateLabel": "Hour rate (one price)",
 			"hourRatePlaceholder": "Choose hour rate (one price)"
 		},
-		"roleSelection": {
-			"roleTitle": "What do you want?",
-			"roleSubtitle": "Choose your goal and find the best solutions for your project or career.",
-			"roleJobOwner": "I am a Job Owner, hiring for a project.",
-			"roleFreelancer": "I am a Freelancer, looking for a job."
-    },
+		"searchWork": {
+			"filter": "Filter",
+			"unFilter": "Reset filter",
+			"jobsList": "Jobs list",
+			"buttonAll": "All",
+			"buttonProfile": "By my profile",
+			"buttonFilter": "Use filters"
+		},
 		"thirdForm": {
 			"skillsLabel": "Skills",
 			"skillsPlaceholder": "Choose required skills",
@@ -185,6 +188,113 @@
 			"otherRequirenmentsLabel": "Other requirenments",
 			"otherRequirenmentsPlaceholder": "Add Text"
 		}
+	},
+	"countries": {
+		"germany": "Germany",
+		"spain": "Spain",
+		"france": "France",
+		"uk": "United Kingdom",
+		"usa": "United States of America",
+		"italy": "Italy",
+		"lithuania": "Lithuania",
+		"latvia": "Latvia",
+		"moldova": "Moldova",
+		"romania": "Romania",
+		"poland": "Poland",
+		"ukraine": "Ukraine"
+	},
+	"categories": {
+		"serviceSector": "Service sector",
+		"skilledTradesManufac": "Skilled trades & manufactoring",
+		"salesProcur": "Sales & procurement",
+		"retail": "Retail",
+		"hotelRestTourism": "Hotels, restaurants & tourism",
+		"adminMiddleManag": "Administration & middle management",
+		"itCompInt": "IT, computers & Internet",
+		"logWarehIntComm": "Logistics, warehouse & international commerce",
+		"transportAutoInd": "Transportation & auto industry",
+		"medPharm": "Medicine & pharmaceuticals",
+		"marketAdvPr": "Marketing, advertising & PR",
+		"accAudit": "Account & auditing",
+		"secrClerAdmAssist": "Secretarial, clerical & administrative assistants",
+		"educationScience": "Education & science",
+		"telecom": "Telecommunications",
+		"finBank": "Finance & banking",
+		"constractArchitect": "Construction & architecture",
+		"desCreativity": "Design & creativity",
+		"beautyFitSport": "Beauty, fitness & sports",
+		"journPublishPrint": "Journalism, publishing & printing",
+		"hrPersonManag": "HR & personnel management",
+		"upperSenManag": "Upper & senior management",
+		"agribusiness": "Agriculture & agribusiness",
+		"securGuard": "Security & guarding",
+		"legal": "Legal",
+		"realEstate": "Real estate",
+		"cultMusicEnt": "Culture, music & entertainment",
+		"insurance": "Insurance"
+	},
+	"englishLevel": {
+		"noEnglish": "No English",
+		"beginner": "Beginner",
+		"elementary": "Elementary",
+		"preInterm": "Pre-Intermediate",
+		"intermediate": "Intermediate",
+		"upperInterm": "Upper-Intermediate",
+		"advanced": "Advanced",
+		"master": "Master"
+	},
+	"hoursAmount": {
+		"full": "Full time",
+		"part": "Part time"
+	},
+	"skills": {
+		"jsFe": "JavaScript/Front-End",
+		"java": "Java",
+		"cSharp": "C#",
+		"net": ".NET",
+		"python": "Python",
+		"php": "PHP",
+		"nodejs": "Node.js",
+		"ios": "iOS",
+		"android": "Android",
+		"c": "C",
+		"cPlus": "C++",
+		"embedded": "Embedded",
+		"flutter": "Flutter",
+		"golang": "Golang",
+		"ruby": "Ruby",
+		"scala": "Scala",
+		"salesforce": "Salesforce",
+		"rust": "Rust",
+		"other": "Other"
+	},
+	"hourRate": {
+		"lessThan500": "Less than 500$",
+		"from500To1000": "From 500$ to 1000$",
+		"from1000To1500": "From 1000$ to 1500$",
+		"from1500": "From 1500$",
+		"from15000": "From 15000$"
+	},
+	"employmentType": {
+		"remote": "Remote",
+		"office": "Office",
+		"forProject": "Freelancer for a project",
+		"moveToAnotherCity": "Move to another city",
+		"moveToAnotherCountry": "Move to another country"
+	},
+	"workExperience": {
+		"noExp": "No experience",
+		"lessThanYear": "Less than 1 year",
+		"oneYear": "1 year",
+		"twoYears": "2 years",
+		"threeYears": "3 years",
+		"fourYears": "4 years",
+		"fiveYears": "5 years",
+		"moreThanFiveYears": "More than 5 years",
+		"moreThanTenYears": "More than 10 years",
+		"moreThanFifteenYears": "More than 15 years",
+		"moreThanTwentyYears": "More than 20 years",
+		"moreThanTwentyFiveYears": "More than 25 years"
 	},
 	"employer": {
 		"create": {

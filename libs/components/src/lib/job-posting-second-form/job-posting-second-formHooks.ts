@@ -33,7 +33,7 @@ export const useJobPostingSecondFormHook = (): IUseJobPostingSecondForm => {
 			category: data.category.label,
 			position: data.position,
 			employmentType: data.employmentType.label,
-			availableAmountOfHour: data.availableAmountOfHour.label,
+			availableAmountOfHours: data.availableAmountOfHours.label,
 			hourRate: data.hourRate.label,
 			workExperience: data.workExperience.label,
 		};
