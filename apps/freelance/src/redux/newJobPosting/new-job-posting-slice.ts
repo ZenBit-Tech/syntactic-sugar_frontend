@@ -1,29 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "redux/store";
-
-interface INewJob {
-	jobTitle: string;
-	jobDescription: string;
-	countries: string[];
-	category: string;
-	position: string;
-	employmentType: string;
-	availableAmountOfHour: string;
-	workExperience: string;
-	hourRate: string;
-	skills: string[];
-	englishLevel: string;
-	otherRequirenments: string;
-}
+import { INewJob } from "redux/interfaces/";
 
 export const initialState: INewJob = {
-	jobTitle: "",
-	jobDescription: "",
+	title: "",
+	description: "",
 	countries: [],
 	category: "",
 	position: "",
 	employmentType: "",
-	availableAmountOfHour: "",
+	availableAmountOfHours: "",
 	workExperience: "",
 	hourRate: "",
 	skills: [],
@@ -36,19 +22,17 @@ const newJob = createSlice({
 	initialState,
 	reducers: {
 		addNewJobInfo(state, action: PayloadAction<Object>) {
-			const payload = JSON.parse(JSON.stringify(action.payload));
-			const currentState = JSON.parse(JSON.stringify(state));
+			const { payload } = action;
 
-			Object.keys(currentState).map(key => {
-				if (payload[key]) {
-					state[key as keyof typeof initialState] = payload[key];
-				}
-			});
+			return { ...state, ...payload };
+		},
+		resetState() {
+			return { ...initialState };
 		},
 	},
 });
 
-export const { addNewJobInfo } = newJob.actions;
+export const { addNewJobInfo, resetState } = newJob.actions;
 export const getStoredJobInfo = (state: RootState) => state.newJob;
 
 export default newJob.reducer;

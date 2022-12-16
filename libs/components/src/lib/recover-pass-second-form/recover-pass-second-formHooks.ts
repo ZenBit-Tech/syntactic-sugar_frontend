@@ -3,10 +3,10 @@ import { useResetPasswordMutation } from "redux/resetPassword/resetPasswordSlice
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { SubmitHandler } from "react-hook-form";
-import { IResetPasswordForm, IonSubmitResetPassword } from "./interfaces";
 import { toast } from "react-toastify";
-import { PASSWORD_UPDATED_PAGE, RECOVER_PASSWORD_PAGE } from "utils/constants/links";
 import "react-toastify/dist/ReactToastify.css";
+import { PASSWORD_UPDATED_PAGE, RECOVER_PASSWORD_PAGE } from "utils/constants/links";
+import { IResetPasswordForm, IonSubmitResetPassword } from "./interfaces";
 
 export function useResetPassword(): IonSubmitResetPassword {
 	const { t } = useTranslation();

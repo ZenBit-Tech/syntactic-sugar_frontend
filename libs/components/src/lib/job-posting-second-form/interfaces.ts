@@ -6,7 +6,7 @@ export interface IJobPostingSecondForm {
 	category: SelectOptions;
 	position: string;
 	employmentType: SelectOptions;
-	availableAmountOfHour: SelectOptions;
+	availableAmountOfHours: SelectOptions;
 	workExperience: SelectOptions;
 	hourRate: SelectOptions;
 }

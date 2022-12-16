@@ -1,19 +1,22 @@
 import { useTranslation } from "react-i18next";
-import { Form, InputWrapper } from "./login-form.styled";
-import { StyledButton, StyledSpan } from "@freelance/components";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { InferType } from "yup";
-import { signInSchema } from "utils/validations/loginForm";
-import { useLoginMutation } from "redux/login.api";
 import { useDispatch } from "react-redux";
-import { setUserData } from "redux/userState/userSlice";
 import { useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import { StyledButton, StyledSpan } from "@freelance/components";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { signInSchema } from "utils/validations/loginForm";
+import { useLoginMutation } from "redux/login.api";
+import { setUserData } from "redux/userState/userSlice";
+import { ROLE_SELECTION, MY_JOBS, SEARCH_WORK } from "src/utils/constants/breakpoint";
+import { Form, InputWrapper } from "./login-form.styled";
 
 export function LoginForm() {
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const [login, { data: userData, isSuccess, isError }] = useLoginMutation();
 
 	const {
@@ -42,6 +45,18 @@ export function LoginForm() {
 			toast.error(t("recoverPassForm.errorMessageServerError"));
 		}
 	}, [isSuccess, isError]);
+
+	useEffect(() => {
+		if (userData?.role === "GUEST") {
+			navigate(ROLE_SELECTION);
+		}
+		if (userData?.role === "FREELANCER") {
+			navigate(SEARCH_WORK);
+		}
+		if (userData?.role === "EMPLOYER") {
+			navigate(MY_JOBS);
+		}
+	}, [userData]);
 
 	return (
 		<Form onSubmit={handleSubmit(formSubmitHandler)}>

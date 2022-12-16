@@ -15,5 +15,6 @@ export interface IUseJobPostingThirdForm {
 	otherRequirenmentsLabel: string;
 	otherRequirenmentsPlaceholder: string;
 	fieldRequired: string;
+	isLoading: boolean;
 	onSubmit: SubmitHandler<IJobPostingThirdForm>;
 }

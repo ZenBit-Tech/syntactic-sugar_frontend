@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { StyledButton } from "@freelance/components";
 import { useAddRoleMutation, UserRoles } from "redux/role.api";
+import { EMPLOYER_PROFILE } from "utils/constants/breakpoint";
 import { Form, RadioGroup } from "./role-selection-form.styled";
 
 type RoleOptions = "employer" | "freelancer";
@@ -21,7 +22,7 @@ export function RoleSelectionForm() {
 		addRole(
 			radioOption === "employer" ? { role: UserRoles.EMPLOYER } : { role: UserRoles.FREELANCER },
 		);
-		navigate(`/${radioOption}/create-profile1`);
+		navigate(`/${radioOption}${EMPLOYER_PROFILE}`);
 	};
 
 	return (
