@@ -10,6 +10,12 @@ export const CHECK_YOUR_EMAIL_PAGE = "/check-your-email";
 export const PASSWORD_UPDATED_PAGE = "/password-updated";
 export const RECOVER_PASSWORD_PAGE = "/recover-password";
 
+
+// Image
+
+export const DEFAULT_IMAGE = "/assets/images/user_avatar.png";
+
 // Employer Jobs Page
 
 export const EMPLOYER_JOBS_PAGE = "/employer-jobs-page";
+
