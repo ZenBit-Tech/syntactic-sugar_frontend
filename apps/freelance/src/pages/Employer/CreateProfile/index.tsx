@@ -47,9 +47,8 @@ export function CreateEmployerProfile() {
 			aboutUs: values.aboutUs,
 		};
 		try {
-			console.log(employerInfo);
 			await createProfile(employerInfo);
-			// navigate(MY_JOBS);
+			navigate(MY_JOBS);
 		} catch (error) {
 			alert(error);
 		}
