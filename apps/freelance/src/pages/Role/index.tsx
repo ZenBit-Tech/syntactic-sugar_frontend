@@ -18,7 +18,7 @@ export function Role() {
 					<FormContainer
 						isSignForm={false}
 						isRightSide={false}
-						formType="roleSelection"
+						formType="role"
 						title={t("roleSelection.roleTitle")}
 						subTitle={t("roleSelection.roleSubtitle")}
 					/>

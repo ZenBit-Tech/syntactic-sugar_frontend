@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { baseUrl } from "utils/constants/redux-query";
+import { baseQuery } from "redux/base-query";
 import { RootState } from "./store";
 
 export enum UserRoles {
@@ -14,17 +15,7 @@ interface IRole {
 
 export const roleApi = createApi({
 	reducerPath: "auth/role",
-	baseQuery: fetchBaseQuery({
-		baseUrl: baseUrl,
-		prepareHeaders: (headers, { getState }) => {
-			const token = (getState() as RootState).user.token;
-			if (token) {
-				headers.set("Authorization", `Bearer ${token}`);
-			}
-
-			return headers;
-		},
-	}),
+	baseQuery: baseQuery,
 	refetchOnFocus: true,
 	endpoints: build => ({
 		addRole: build.mutation({
