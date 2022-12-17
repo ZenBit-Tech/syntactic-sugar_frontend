@@ -1,1 +1,1 @@
-export type Role = "FREELANCER" | "JOB_OWNER" | "GUEST";
+export type Role = "FREELANCER" | "EMPLOYER" | "GUEST";

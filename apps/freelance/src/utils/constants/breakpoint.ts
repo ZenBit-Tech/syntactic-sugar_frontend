@@ -2,7 +2,7 @@
 
 export const LOG_IN = "login";
 export const SIGN_UP = "signup";
-export const ROLE_SELECTION = "roleSelection";
+export const ROLE_SELECTION = "role";
 
 // Reset password
 
@@ -24,3 +24,4 @@ export const MY_JOBS = "/employer/my-jobs";
 export const VIEW_PROFILE = "/freelancer/viewprofile";
 export const CREATE_PROFILE_1 = "/freelancer/create-profile1";
 export const CREATE_PROFILE_2 = "/freelancer/create-profile2";
+export const SEARCH_WORK = "/freelancer/searchwork";

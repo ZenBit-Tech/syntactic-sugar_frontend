@@ -1,5 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { baseUrl } from "utils/constants/redux-query";
+import { baseQuery } from "redux/base-query";
+import { RootState } from "./store";
 
 export enum UserRoles {
 	EMPLOYER = "EMPLOYER",
@@ -13,9 +15,7 @@ interface IRole {
 
 export const roleApi = createApi({
 	reducerPath: "auth/role",
-	baseQuery: fetchBaseQuery({
-		baseUrl: baseUrl,
-	}),
+	baseQuery: baseQuery,
 	refetchOnFocus: true,
 	endpoints: build => ({
 		addRole: build.mutation({

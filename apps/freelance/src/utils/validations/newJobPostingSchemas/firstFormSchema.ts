@@ -19,9 +19,7 @@ export const useFirstFormSchema = (): SchemaOf<IJobPostingFirstForm> => {
 	);
 
 	return object({
-		jobTitle: string().max(50, messageJobTitleMaxChar).required(messageJobTitleRequired),
-		jobDescription: string()
-			.max(600, messageDescriptionMaxChar)
-			.required(messageDescriptionRequired),
+		title: string().max(50, messageJobTitleMaxChar).required(messageJobTitleRequired),
+		description: string().max(600, messageDescriptionMaxChar).required(messageDescriptionRequired),
 	});
 };
