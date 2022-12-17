@@ -1,12 +1,5 @@
 import styled from "styled-components";
-
-export const StyledPage = styled.div`
-	margin: auto;
-	display: flex;
-	height: 100vh;
-
-	background: ${({ theme }) => theme.signPages.image}, ${({ theme }) => theme.colors.lightGrey};
-`;
+import { Container } from "@freelance/components";
 
 export const ContainerBox = styled.div`
 	display: flex;
@@ -114,15 +107,10 @@ export const Subcontainer = styled.div`
 	}
 `;
 
-export const Container = styled.div`
-	display: flex;
+export const CardContainer = styled(Container)`
 	flex-direction: column;
 	justify-content: center;
 	margin: auto;
-	width: 90%;
-	height: 90%;
-	background-color: ${({ theme }) => theme.colors.white};
-	border-radius: 30px;
 `;
 
 export const ImageWrapper = styled.div`

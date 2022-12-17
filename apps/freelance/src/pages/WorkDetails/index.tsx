@@ -4,27 +4,23 @@ import { ThemeProvider } from "styled-components";
 import {
 	ThemeColors,
 	ThemeBackground,
-	Dashboard,
+	StyledPage,
 	StyledTitle,
 	StyledButton,
-	StyledParagraph,
 } from "@freelance/components";
 import { RootState } from "src/redux/store";
 
 import {
-	StyledPage,
 	ContainerBox,
-	Container,
+	CardContainer,
 	Item,
 	ButtonWrapper,
-	ImageWrapper,
 	Title,
 	Box,
 	ItemContainer,
 	LeftSide,
 	RightSide,
 	Bottom,
-	Subtitle,
 	Subcontainer,
 	Wrapper,
 } from "./styles";
@@ -35,7 +31,7 @@ export function WorkDetails() {
 	return (
 		<ThemeProvider theme={ThemeColors && ThemeBackground}>
 			<StyledPage>
-				<Container>
+				<CardContainer>
 					<Box>
 						<StyledTitle tag="h1" fontSize="lg" fontWeight={700}>
 							Job details
@@ -112,7 +108,7 @@ export function WorkDetails() {
 						<Bottom>
 							<ItemContainer id="workHistory">
 								<Title id="workHistory">
-									<strong>{t("newJobPosting.thirdForm.descriptionLabel")}</strong>
+									<strong>{t("newJobPosting.firstForm.descriptionLabel")}</strong>
 								</Title>
 								<Subcontainer>
 									<Item id="workHistory">
@@ -138,7 +134,7 @@ export function WorkDetails() {
 							</StyledButton>
 						</ButtonWrapper>
 					</ContainerBox>
-				</Container>
+				</CardContainer>
 			</StyledPage>
 		</ThemeProvider>
 	);
