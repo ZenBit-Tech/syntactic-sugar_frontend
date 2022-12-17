@@ -34,7 +34,7 @@ export function WorkDetails() {
 				<CardContainer>
 					<Box>
 						<StyledTitle tag="h1" fontSize="lg" fontWeight={700}>
-							Job details
+							{t("jobDetails.title")}
 						</StyledTitle>
 						<Wrapper>
 							<img src="/assets/images/user_avatar.png" alt="User Avatar" />

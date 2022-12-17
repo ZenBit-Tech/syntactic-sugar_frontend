@@ -88,10 +88,10 @@
 			"logout": "LOGOUT"
 		}
 	},
-  "image": {
-    "chooseImage": "Choose Image",
-    "resetImage": "Reset Image"
-  },
+	"image": {
+		"chooseImage": "Choose Image",
+		"resetImage": "Reset Image"
+	},
 	"freelancer": {
 		"createProfile": {
 			"fullNamePlaceholder": "Full Name",
