@@ -4,11 +4,7 @@ import { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "redux/example-hooks";
-import {
-	resetState,
-	getStoredJobInfo,
-	useCreateJobMutation,
-} from "redux/newJobPosting";
+import { resetState, getStoredJobInfo, useCreateJobMutation } from "redux/jobs";
 import { IJobPostingThirdForm, IUseJobPostingThirdForm } from "@freelance/components";
 import { EMPLOYER_JOBS_PAGE } from "utils/constants/links";
 

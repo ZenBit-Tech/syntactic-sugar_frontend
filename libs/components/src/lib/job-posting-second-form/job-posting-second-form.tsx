@@ -14,7 +14,7 @@ import {
 	selectDefaultObject,
 } from "@freelance/components";
 import { useAppSelector } from "redux/example-hooks";
-import { getStoredJobInfo } from "redux/newJobPosting";
+import { getStoredJobInfo } from "redux/jobs";
 import { useOptions } from "utils/select-options/options";
 import { useJobPostingSecondFormHook } from "./job-posting-second-formHooks";
 

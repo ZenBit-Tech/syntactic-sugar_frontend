@@ -8,30 +8,45 @@ export const Container = styled.div`
 `;
 
 export const StyledJobCard = styled.div`
-	display: flex;
-	height: 100px;
-	flex-direction: column;
-	justify-content: space-around;
+	display: grid;
+	width: 100%;
+	gap: 10px;
+	padding: 10px;
+	border: 2px solid ${({ theme }) => theme.colors.grey};
+	border-radius: 10px;
+	:hover {
+		transform: scale(1.03);
+	}
 `;
 
 export const StyledJobCardHeader = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-`;
 
-export const StyledJobCardHeaderLeft = styled.div`
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	width: 30%;
 	button {
-		height: 5%;
-		width: 60%;
+		width: 25%;
+		padding: 0.1rem;
 	}
 `;
 
+export const StyledJobCardHeaderLeft = styled.div`
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 10px;
+	align-items: center;
+`;
+
 export const StyledJobCardParagraph = styled.div`
-	display: flex;
-	justify-content: space-between;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	gap: 5px;
+
+	strong {
+		font-size: 0.85rem;
+	}
+`;
+
+export const CountriesContainer = styled.div`
+	display: grid;
 `;

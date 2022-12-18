@@ -1,13 +1,17 @@
-import { useGetJobsQuery } from "redux/jobs/jobs.api";
-import { EmployerJobsEmpty, EmployerJobsList } from "@freelance/components";
+import { EmployerJobsEmpty, EmployerJobsList, StyledButton } from "@freelance/components";
 import { JobsContainer } from "./employer-jobs-container.styled";
+import { useEmployerJobsContainerHook } from "./employer-jobs-containerHooks";
 
 export function EmployerJobsContainer() {
-	const { data, isLoading } = useGetJobsQuery();
-	console.log(data);
+	const { createButton, handleClick, data, isLoading } = useEmployerJobsContainerHook();
 
 	return (
-		<JobsContainer>{data?.length ? <EmployerJobsList /> : <EmployerJobsEmpty />}</JobsContainer>
+		<JobsContainer>
+			{data?.length ? <EmployerJobsList data={data} /> : <EmployerJobsEmpty />}
+			<StyledButton onClick={handleClick} buttonSize="sm" fontSize="lg" buttonColor="redGradient">
+				{createButton}
+			</StyledButton>
+		</JobsContainer>
 	);
 }
 

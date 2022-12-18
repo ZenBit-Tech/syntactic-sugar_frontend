@@ -1,43 +1,32 @@
 import { JobCard } from "@freelance/components";
-import { jobs } from "utils/jobs/jobs";
+import { JobsInterface } from "redux/jobs";
+import { Container } from "./pagination.styled";
 
-export interface JobsInterface {
-	position: string;
-	location: string;
-	employmentType: string;
-	availableAmountOfHours: string;
-	workExperience: string;
-	levelEnglish: string;
-	date: string;
-	isPublished: boolean;
-	isProposal: boolean;
-}
 export interface CurrentItems {
-	currentItems: JobsInterface[];
+	currentItems: JobsInterface[] | undefined;
 	user: string;
 }
 
 export function Items({ currentItems, user }: CurrentItems) {
 	return (
-		<>
+		<Container>
 			{currentItems &&
 				currentItems.map(job => {
 					return (
-						<div className="jobsCardContainer">
-							<JobCard
-								position={job.position}
-								location={job.location}
-								employmentType={job.employmentType}
-								availableAmountOfHours={job.availableAmountOfHours}
-								workExperience={job.workExperience}
-								levelEnglish={job.levelEnglish}
-								date={job.date}
-								userType={user}
-								jobActive={user === "freelancer" ? job.isProposal : job.isPublished}
-							/>
-						</div>
+						<JobCard
+							key={job.id}
+							position={job.position}
+							countries={job.countries}
+							employmentType={job.employmentType}
+							availableAmountOfHours={job.availableAmountOfHours}
+							workExperience={job.workExperience}
+							levelEnglish={job.englishLevel}
+							createdDate={job.createdDate}
+							updatedDate={job.updatedDate}
+							userType={user}
+						/>
 					);
 				})}
-		</>
+		</Container>
 	);
 }
