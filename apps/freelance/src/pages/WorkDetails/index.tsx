@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import {
@@ -24,9 +25,21 @@ import {
 	Subcontainer,
 	Wrapper,
 } from "./styles";
+import { SEARCH_WORK, SEND_PROPOSAL } from "src/utils/constants/breakpoint";
+import { JobsInterface } from "src/redux/jobs/jobs.api";
 
 export function WorkDetails() {
 	const { t } = useTranslation();
+	const navigate = useNavigate();
+	// const data = useSelector<RootState, JobsInterface>(state => state.jobs);
+
+	const handleClickProposal = () => {
+		navigate(SEND_PROPOSAL);
+	};
+
+	const handleClickBack = () => {
+		navigate(SEARCH_WORK);
+	};
 
 	return (
 		<ThemeProvider theme={ThemeColors && ThemeBackground}>
@@ -56,25 +69,25 @@ export function WorkDetails() {
 									<Title id="country">
 										<strong>{t("newJobPosting.secondForm.positionLabel")}</strong>
 									</Title>
-									<p>Full stack Developer</p>
+									<p></p>
 								</Item>
 								<Item>
 									<Title id="category">
 										<strong>{t("newJobPosting.secondForm.employmentTypeLabel")}</strong>
 									</Title>
-									<p>Remote</p>
+									<p></p>
 								</Item>
 								<Item>
 									<Title id="position">
 										<strong>{t("jobDetails.date")}</strong>
 									</Title>
-									<p>date</p>
+									<p></p>
 								</Item>
 								<Item>
 									<Title id="employment">
 										<strong>{t("jobDetails.duration")}</strong>
 									</Title>
-									<p>Part time</p>
+									<p></p>
 								</Item>
 							</LeftSide>
 							<RightSide>
@@ -82,20 +95,20 @@ export function WorkDetails() {
 									<Title id="workExperience">
 										<strong>{t("jobDetails.salary")}</strong>
 									</Title>
-									<p>3500$</p>
+									<p></p>
 								</Item>
 
 								<Item>
 									<Title id="rateHour">
 										<strong>{t("newJobPosting.thirdForm.englishLevelLabel")}</strong>
 									</Title>
-									<p>Upper interm</p>
+									<p></p>
 								</Item>
 								<Item>
 									<Title id="workingHour">
 										<strong>{t("jobDetails.exp")}</strong>
 									</Title>
-									<p>2 years</p>
+									<p></p>
 								</Item>
 								<Item>
 									<Title id="skills">
@@ -126,10 +139,22 @@ export function WorkDetails() {
 							</ItemContainer>
 						</Bottom>
 						<ButtonWrapper>
-							<StyledButton type="button" buttonColor="redGradient" buttonSize="sm" fontSize="md">
+							<StyledButton
+								type="button"
+								buttonColor="redGradient"
+								buttonSize="sm"
+								fontSize="md"
+								onClick={handleClickBack}
+							>
 								<strong>{t("freelancer.createProfile.backBtn")}</strong>
 							</StyledButton>
-							<StyledButton type="button" buttonColor="redGradient" buttonSize="sm" fontSize="md">
+							<StyledButton
+								type="button"
+								buttonColor="redGradient"
+								buttonSize="sm"
+								fontSize="md"
+								onClick={handleClickProposal}
+							>
 								<strong>{t("jobDetails.sendProposalBtn")}</strong>
 							</StyledButton>
 						</ButtonWrapper>

@@ -27,7 +27,7 @@ const store = configureStore({
 		[roleApi.reducerPath]: roleApi.reducer,
 		[getJobsApi.reducerPath]: getJobsApi.reducer,
 		[createEmployerApi.reducerPath]: createEmployerApi.reducer,
-    [uploadImage.reducerPath]: uploadImage.reducer,
+		[uploadImage.reducerPath]: uploadImage.reducer,
 	},
 	middleware: getDefaultMiddleware =>
 		getDefaultMiddleware({
@@ -43,7 +43,7 @@ const store = configureStore({
 			newJobPostingApi.middleware,
 			getJobsApi.middleware,
 			createEmployerApi.middleware,
-      uploadImage.middleware,
+			uploadImage.middleware,
 		),
 });
 

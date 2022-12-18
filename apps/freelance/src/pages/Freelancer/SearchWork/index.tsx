@@ -35,6 +35,7 @@ export function SearchWork() {
 	const { t } = useTranslation();
 	const { handleSubmit, control, getValues, reset } = useForm<IFormInput>();
 	const { isLoading, isError, data } = useGetJobsQuery();
+
 	const emptyValue = {
 		value: "",
 		label: "",
