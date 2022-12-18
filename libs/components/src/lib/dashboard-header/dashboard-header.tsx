@@ -1,8 +1,13 @@
 import { useTranslation } from "react-i18next";
-import { Container, UserInfoWrapper, ButtonsWrapper, UserDetails } from "./dashboard-header.styled";
 import { StyledButton, StyledParagraph } from "@freelance/components";
+import { ROLES } from "utils/constants/roles";
+import { Container, UserInfoWrapper, ButtonsWrapper, UserDetails } from "./dashboard-header.styled";
 
-export function DashboardHeader() {
+export interface DashboardHeaderProps {
+	userRole: "freelancer" | "employer";
+}
+
+export function DashboardHeader({ userRole }: DashboardHeaderProps) {
 	const { t } = useTranslation();
 
 	return (
@@ -16,16 +21,30 @@ export function DashboardHeader() {
 					<StyledParagraph fontSize="md">{t("dashboard.header.userEmail")}</StyledParagraph>
 				</UserDetails>
 			</UserInfoWrapper>
-			<ButtonsWrapper>
-				<StyledButton buttonSize="md" buttonColor="lightRed" fontSize="md">
-					{t("dashboard.header.chat")}
-					<img src="/assets/images/chat_btn_icon.png" alt="Chat Icon" />
-				</StyledButton>
-				<StyledButton buttonSize="md" buttonColor="darkRed" fontSize="md">
-					{t("dashboard.header.logout")}
-					<img src="/assets/images/logout_btn_icon.png" alt="Logout Icon" />
-				</StyledButton>
-			</ButtonsWrapper>
+			{userRole === ROLES.FREELANCER && (
+				<ButtonsWrapper>
+					<StyledButton buttonSize="md" buttonColor="lightRed" fontSize="md">
+						{t("dashboard.header.chat")}
+						<img src="/assets/images/chat_btn_icon.png" alt="Chat Icon" />
+					</StyledButton>
+					<StyledButton buttonSize="md" buttonColor="darkRed" fontSize="md">
+						{t("dashboard.header.logout")}
+						<img src="/assets/images/logout_btn_icon.png" alt="Logout Icon" />
+					</StyledButton>
+				</ButtonsWrapper>
+			)}
+			{userRole === ROLES.EMPLOYER && (
+				<ButtonsWrapper>
+					<StyledButton buttonSize="md" buttonColor="lightRed" fontSize="md">
+						{t("dashboard.header.chat")}
+						<img src="/assets/images/chat_btn_icon.png" alt="Chat Icon" />
+					</StyledButton>
+					<StyledButton buttonSize="md" buttonColor="darkRed" fontSize="md">
+						{t("dashboard.header.logout")}
+						<img src="/assets/images/logout_btn_icon.png" alt="Logout Icon" />
+					</StyledButton>
+				</ButtonsWrapper>
+			)}
 		</Container>
 	);
 }

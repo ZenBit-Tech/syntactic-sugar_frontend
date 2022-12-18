@@ -13,7 +13,7 @@ export interface workHistoryProps {
 	period: string;
 }
 
-type Freelancer = {
+export type Freelancer = {
 	fullName: string;
 	category: string;
 	position: string;

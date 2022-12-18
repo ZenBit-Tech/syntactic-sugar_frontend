@@ -11,15 +11,16 @@ import { CreateProfile1 } from "@pages/Freelancer/CreateProfile1";
 import { CreateEmployerProfile } from "@pages/Employer/CreateProfile";
 import { RecoverPasswordUpdate } from "@pages/RecoverPasswordUpdate";
 import { Invitation } from "@pages/Invitation";
+import { ViewProfile } from "@pages/Freelancer/ViewProfile";
 import { Role } from "@pages/Role";
 import {
 	JobPostingFirstPage,
 	JobPostingSecondPage,
 	JobPostingThirdPage,
 } from "@pages/NewJobPosting";
-import CreateProfile2 from "@pages/Freelancer/CreateProfile2";
+import { CreateProfile2 } from "@pages/Freelancer/CreateProfile2";
+import { SearchWork } from "@pages/Freelancer/SearchWork";
 import { EmployerJobsPage } from "@pages/EmployerJobsPage";
-import SearchWork from "@pages/Freelancer/SearchWork";
 import { StyledApp } from "./app.styled";
 
 export function App() {
@@ -34,13 +35,16 @@ export function App() {
 							<Route path="/role" element={<Role />} />
 							<Route path="/recover-password" element={<RecoverPasswordRequest />} />
 							<Route path="/check-your-email" element={<RecoverPasswordCheck />} />
-							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
 							<Route path="/password-updated" element={<RecoverPasswordUpdate />} />
+							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
+							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />
+							<Route path="/freelancer/create-profile2" element={<CreateProfile2 />} />
 							<Route path="/invitation" element={<Invitation />} />
+							<Route path="/freelancer/view-profile" element={<ViewProfile />} />
 							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />
 							<Route path="/freelancer/create-profile2" element={<CreateProfile2 />} />
 							<Route path="/freelancer/searchwork" element={<SearchWork />} />
-							<Route path="/employer/create-profile1" element={<CreateEmployerProfile />} />
+							<Route path="/employer/create-profile" element={<CreateEmployerProfile />} />
 							<Route path="/employer/my-jobs-page" element={<EmployerJobsPage />} />
 							<Route path="/employer/create-new-job-first-page" element={<JobPostingFirstPage />} />
 							<Route
