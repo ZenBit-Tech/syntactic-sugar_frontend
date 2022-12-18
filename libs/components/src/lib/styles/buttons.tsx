@@ -95,4 +95,8 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 		}
 		return;
 	}}
+  
+  &:hover {
+		filter: brightness(1.1);
+	}
 `;

@@ -9,6 +9,7 @@ import { StyledButton, StyledSpan } from "@freelance/components";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signInSchema } from "utils/validations/loginForm";
 import { useLoginMutation } from "redux/login.api";
+import { UserRoles } from "redux/role.api";
 import { setUserData } from "redux/userState/userSlice";
 import { ROLE_SELECTION, MY_JOBS, SEARCH_WORK } from "src/utils/constants/breakpoint";
 import { Form, InputWrapper } from "./login-form.styled";
@@ -47,13 +48,13 @@ export function LoginForm() {
 	}, [isSuccess, isError]);
 
 	useEffect(() => {
-		if (userData?.role === "GUEST") {
+		if (userData?.role === UserRoles.GUEST) {
 			navigate(ROLE_SELECTION);
 		}
-		if (userData?.role === "FREELANCER") {
+		if (userData?.role === UserRoles.FREELANCER) {
 			navigate(SEARCH_WORK);
 		}
-		if (userData?.role === "EMPLOYER") {
+		if (userData?.role === UserRoles.EMPLOYER) {
 			navigate(MY_JOBS);
 		}
 	}, [userData]);
