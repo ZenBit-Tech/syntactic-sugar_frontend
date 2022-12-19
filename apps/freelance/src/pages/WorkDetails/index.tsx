@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import {
 	ThemeColors,
@@ -9,8 +8,7 @@ import {
 	StyledTitle,
 	StyledButton,
 } from "@freelance/components";
-import { RootState } from "src/redux/store";
-
+import { SEARCH_WORK, SEND_PROPOSAL } from "src/utils/constants/breakpoint";
 import {
 	ContainerBox,
 	CardContainer,
@@ -25,13 +23,10 @@ import {
 	Subcontainer,
 	Wrapper,
 } from "./styles";
-import { SEARCH_WORK, SEND_PROPOSAL } from "src/utils/constants/breakpoint";
-import { JobsInterface } from "src/redux/jobs/jobs.api";
 
 export function WorkDetails() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
-	// const data = useSelector<RootState, JobsInterface>(state => state.jobs);
 
 	const handleClickProposal = () => {
 		navigate(SEND_PROPOSAL);
@@ -53,10 +48,10 @@ export function WorkDetails() {
 							<img src="/assets/images/user_avatar.png" alt="User Avatar" />
 							<div>
 								<StyledTitle tag="h3" fontSize="md" fontWeight={500}>
-									ZenBit
+									{t("employer.create.companyNameLabel")}
 								</StyledTitle>
 								<StyledTitle tag="h3" fontSize="md" fontWeight={500}>
-									Iryna Trus, HR
+									{`${t("employer.create.fullNameLabel")}, ${t("employer.create.positionLabel")}`}
 								</StyledTitle>
 							</div>
 						</Wrapper>
