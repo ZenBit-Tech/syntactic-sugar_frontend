@@ -24,6 +24,27 @@ interface Published {
 	isPublished: boolean;
 }
 
+
+export interface IResponse {
+	id: string;
+	fullName: string;
+	category: string;
+	position: string;
+	skills: string[];
+	employmentType: string;
+	country: { id: number; name: string };
+	hourRate: string;
+	availableAmountOfHours: string;
+	workExperience: string;
+	englishLevel: string;
+	education?: educationProps[];
+	workHistory?: workHistoryProps[];
+	otherExperience?: string;
+  isPublished: boolean;
+  image: string;
+  user: {id: number, email: string}
+}
+
 export const createFreelancerApi = createApi({
 	reducerPath: "createFreelancer",
 	baseQuery: baseQuery,
@@ -45,7 +66,11 @@ export const createFreelancerApi = createApi({
 			}),
 			invalidatesTags: ["published"],
 		}),
+		getFreelancer: builder.query<IResponse, void>({
+			query: () => `/freelancer/profile`,
+			providesTags: ["freelancer"],
+		}),
 	}),
 });
 
-export const { useCreateFreelancerMutation, useAddPublishedMutation } = createFreelancerApi;
+export const { useCreateFreelancerMutation, useAddPublishedMutation, useGetFreelancerQuery } = createFreelancerApi;
