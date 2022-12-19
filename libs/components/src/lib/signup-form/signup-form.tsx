@@ -1,14 +1,26 @@
-import { Form, InputWrapper } from "./signup-form.styled";
-import { useTranslation } from "react-i18next";
-import { StyledButton, StyledSpan } from "@freelance/components";
-import { InferType } from "yup";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { InferType } from "yup";
+import { useDispatch } from "react-redux";
+import { toast, ToastContainer } from "react-toastify";
+import { StyledButton, StyledSpan } from "@freelance/components";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signUpSchema } from "utils/validations/registerForm";
+import { useSignUpByEmailMutation } from "redux/signup-googleApi";
+import { setUserData } from "redux/userState/userSlice";
+import { UserRoles } from "redux/role.api";
+import { ROLE_SELECTION } from "src/utils/constants/breakpoint";
+import { baseUrl } from "utils/constants/redux-query";
+import { Form, InputWrapper } from "./signup-form.styled";
 
 export function SignupForm() {
 	const { t } = useTranslation();
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	type Props = InferType<typeof signUpSchema>;
+	const [registration, { data: userData, isSuccess, isError }] = useSignUpByEmailMutation();
 
 	const {
 		register,
@@ -18,10 +30,23 @@ export function SignupForm() {
 		resolver: yupResolver(signUpSchema),
 	});
 
-	const formSubmitHandler = (data: Props) => {
-		console.log(data);
-		//use rtk query in future of course
+	const formSubmitHandler = async (data: Props) => {
+		try {
+			await registration(data);
+		} catch (error) {
+			toast.error(t("recoverPassForm.errorMessageServerError"));
+		}
 	};
+
+	useEffect(() => {
+		if (isSuccess) {
+			dispatch(setUserData({ token: userData?.token, role: userData?.role }));
+			window.location.replace(window.location.origin + "/" + ROLE_SELECTION);
+		}
+		if (isError) {
+			toast.error(t("recoverPassForm.errorMessageServerError"));
+		}
+	}, [isSuccess, isError]);
 
 	return (
 		<Form onSubmit={handleSubmit(formSubmitHandler)}>
@@ -67,6 +92,7 @@ export function SignupForm() {
 			<StyledButton buttonSize="lg" buttonColor="redGradient">
 				{t("signForm.buttonSignUp")}
 			</StyledButton>
+			<ToastContainer />
 		</Form>
 	);
 }
