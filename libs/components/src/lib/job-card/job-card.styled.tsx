@@ -20,12 +20,12 @@ export const StyledJobCard = styled.div`
 `;
 
 export const StyledJobCardHeader = styled.div`
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 10px;
+	justify-items: center;
 
 	button {
-		width: 25%;
 		padding: 0.1rem;
 	}
 `;
