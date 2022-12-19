@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { StyledReactPagination } from "./pagination.styled";
 import { JobsInterface } from "redux/jobs";
+import { StyledReactPagination } from "./pagination.styled";
 import { Items } from "./items";
 
 export interface PaginationProps {
