@@ -15,6 +15,10 @@ export const FIRST_PAGE = "firstPage";
 export const SECOND_PAGE = "secondPage";
 export const THIRD_PAGE = "thirdPage";
 
+// Send Proposal
+
+export const WORK_DETAILS = "jobs/details";
+export const SEARCH_WORK = "/freelancer/searchwork";
 // Employer
 
 export const MY_JOBS = "/employer/my-jobs";
@@ -26,4 +30,3 @@ export const VIEW_PROFILE = "/freelancer/view-profile";
 export const CREATE_PROFILE_1 = "/freelancer/create-profile1";
 export const CREATE_PROFILE_2 = "/freelancer/create-profile2";
 export const ROLE_PAGE = "/role-page";
-export const SEARCH_WORK = "/freelancer/searchwork";

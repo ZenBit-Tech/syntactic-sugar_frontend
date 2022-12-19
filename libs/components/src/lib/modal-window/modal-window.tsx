@@ -3,12 +3,12 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { useAppSelector } from "redux/example-hooks";
+import { useAppSelector } from "redux/hooks";
 import {
 	useCreateFreelancerMutation,
 	useAddPublishedMutation,
 } from "redux/createFreelancer/freelancer-pageApi";
-import { SEARCH_WORK } from "src/utils/constants/breakpoint";
+import { SEARCH_WORK } from "utils/constants/breakpoint";
 import { setUserData } from "redux/userState/userSlice";
 import { StyledButton } from "@freelance/components";
 

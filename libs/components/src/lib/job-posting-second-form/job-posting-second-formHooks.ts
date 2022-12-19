@@ -1,7 +1,7 @@
 import { SubmitHandler } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "redux/example-hooks";
+import { useAppDispatch } from "redux/hooks";
 import { addNewJobInfo } from "redux/newJobPosting";
 import { CREATE_NEW_JOB_THIRD_PAGE } from "utils/constants/links";
 import { IJobPostingSecondForm, IUseJobPostingSecondForm } from "@freelance/components";

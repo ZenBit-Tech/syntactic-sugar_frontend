@@ -25,14 +25,14 @@ export const signupGoogleApi = createApi({
 			}),
 			invalidatesTags: ["user"],
 		}),
-    signUpByEmail: builder.mutation<IUserState, IForm>({
+		signUpByEmail: builder.mutation<IUserState, IForm>({
 			query: (body: IForm) => ({
 				url: "auth/register",
 				method: "POST",
 				body,
 			}),
-      invalidatesTags: ["registration"]
-    }),
+			invalidatesTags: ["registration"],
+		}),
 	}),
 });
 

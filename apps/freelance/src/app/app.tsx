@@ -1,7 +1,6 @@
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
-import store from "redux/store";
 import Login from "@pages/Login";
 import Signup from "@pages/Signup";
 import { RecoverPasswordRequest } from "@pages/RecoverPasswordRequest";
@@ -18,6 +17,8 @@ import {
 	JobPostingSecondPage,
 	JobPostingThirdPage,
 } from "@pages/NewJobPosting";
+import store from "redux/store";
+import { SendProposal } from "@pages/SendProposal";
 import { CreateProfile2 } from "@pages/Freelancer/CreateProfile2";
 import { SearchWork } from "@pages/Freelancer/SearchWork";
 import { EmployerJobsPage } from "@pages/EmployerJobsPage";
@@ -35,6 +36,9 @@ export function App() {
 							<Route path="/role" element={<Role />} />
 							<Route path="/recover-password" element={<RecoverPasswordRequest />} />
 							<Route path="/check-your-email" element={<RecoverPasswordCheck />} />
+							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
+							<Route path="/freelancer/send-proposal" element={<SendProposal />} />
+							<Route path="/work-details" element={<h1>Work Details Page 4.1</h1>} />
 							<Route path="/password-updated" element={<RecoverPasswordUpdate />} />
 							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
 							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />

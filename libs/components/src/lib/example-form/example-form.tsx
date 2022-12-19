@@ -1,7 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useAppDispatch } from "redux/example-hooks";
 import { useTranslation } from "react-i18next";
-import { addUser } from "redux/example-slice";
 import { StyledForm, StyledLabel, StyledInput, StyledButton } from "./example-form.styled";
 
 type FormData = {
@@ -10,7 +8,6 @@ type FormData = {
 };
 
 export function ExampleForm() {
-	const dispatch = useAppDispatch();
 	const { t } = useTranslation();
 
 	const {
@@ -23,7 +20,6 @@ export function ExampleForm() {
 	});
 	const onSubmit = handleSubmit(({ firstName, lastName }) => {
 		console.log(firstName, lastName);
-		dispatch(addUser({ firstName, lastName }));
 		reset();
 	});
 
