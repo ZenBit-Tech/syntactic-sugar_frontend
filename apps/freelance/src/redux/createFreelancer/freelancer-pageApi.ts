@@ -9,7 +9,7 @@ export interface IFormInput {
 	employmentType: string;
 	country: string;
 	hourRate: string;
-	availableAmountOfHour: string;
+	availableAmountOfHours: string;
 	workExperience: string;
 	englishLevel: string;
 	education: educationProps[];
@@ -37,6 +37,9 @@ export interface IResponse {
 	education?: educationProps[];
 	workHistory?: workHistoryProps[];
 	otherExperience?: string;
+	isPublished: boolean;
+	image: string;
+	user: { id: number; email: string };
 }
 
 export const createFreelancerApi = createApi({

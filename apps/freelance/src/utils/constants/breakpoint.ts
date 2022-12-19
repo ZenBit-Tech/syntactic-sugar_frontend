@@ -22,7 +22,7 @@ export const SEARCH_WORK = "/freelancer/searchwork";
 // Employer
 
 export const MY_JOBS = "/employer/my-jobs";
-export const EMPLOYER_PROFILE = "/create-profile";
+export const EMPLOYER_PROFILE = "/employer/create-profile";
 
 // Freelancer
 

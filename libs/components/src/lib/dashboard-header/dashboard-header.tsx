@@ -1,26 +1,37 @@
 import { useTranslation } from "react-i18next";
 import { StyledButton, StyledParagraph } from "@freelance/components";
 import { ROLES } from "utils/constants/roles";
+import { useGetFreelancerQuery } from "src/redux/createFreelancer/freelancer-pageApi";
+import { baseUrl } from "utils/constants/redux-query";
+import { DEFAULT_IMAGE } from "utils/constants/links";
 import { Container, UserInfoWrapper, ButtonsWrapper, UserDetails } from "./dashboard-header.styled";
 
 export interface DashboardHeaderProps {
 	userRole: "freelancer" | "employer";
+	typePage?: "createProfile" | "main";
 }
 
-export function DashboardHeader({ userRole }: DashboardHeaderProps) {
+export function DashboardHeader({ userRole, typePage }: DashboardHeaderProps) {
 	const { t } = useTranslation();
+  const { data } = useGetFreelancerQuery();
 
 	return (
 		<Container>
-			<UserInfoWrapper>
-				<img src="/assets/images/user_avatar.png" alt="User Avatar" />
-				<UserDetails>
-					<StyledParagraph fontSize="lg">
-						<strong>{t("dashboard.header.userName")}</strong>
-					</StyledParagraph>
-					<StyledParagraph fontSize="md">{t("dashboard.header.userEmail")}</StyledParagraph>
-				</UserDetails>
-			</UserInfoWrapper>
+			{typePage === "createProfile" && <UserInfoWrapper />}
+			{typePage !== "createProfile" && (
+				<UserInfoWrapper>
+					<img
+						src={data && data?.image.length > 0 ? baseUrl + "/" + data?.image : DEFAULT_IMAGE}
+						alt="User Avatar"
+					/>
+					<UserDetails>
+						<StyledParagraph fontSize="lg">
+							<strong>{data?.fullName}</strong>
+						</StyledParagraph>
+						<StyledParagraph fontSize="md">{data?.user?.email}</StyledParagraph>
+					</UserDetails>
+				</UserInfoWrapper>
+			)}
 			{userRole === ROLES.FREELANCER && (
 				<ButtonsWrapper>
 					<StyledButton buttonSize="md" buttonColor="lightRed" fontSize="md">
