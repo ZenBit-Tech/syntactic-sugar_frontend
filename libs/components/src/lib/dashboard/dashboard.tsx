@@ -4,16 +4,17 @@ import { Container, Page, Area } from "./dashboard.styled";
 export interface DashboardProps {
 	children: React.ReactNode;
 	userRole: "freelancer" | "employer";
+  typePage?: "createProfile" | "main";
 }
 
-export function Dashboard({ children, userRole }: DashboardProps) {
+export function Dashboard({ children, userRole, typePage }: DashboardProps) {
 	return (
 		<Container>
 			{userRole === "freelancer" && (
 				<>
-					<DashboardMenu userRole="freelancer" />
+					<DashboardMenu userRole={userRole} />
 					<Area>
-						<DashboardHeader userRole="freelancer" />
+						<DashboardHeader userRole={userRole} typePage={typePage}/>
 						<Page>{children}</Page>
 					</Area>
 				</>
