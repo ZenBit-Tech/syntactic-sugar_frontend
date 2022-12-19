@@ -44,7 +44,7 @@ export function RoleSelectionForm() {
 			navigate(CREATE_PROFILE_1);
 		}
 		if (userData?.role === UserRoles.EMPLOYER) {
-			navigate(MY_JOBS);
+			navigate(EMPLOYER_PROFILE);
 		}
 	}, [userData]);
 
@@ -53,7 +53,6 @@ export function RoleSelectionForm() {
 		addRole(
 			radioOption === "employer" ? { role: UserRoles.EMPLOYER } : { role: UserRoles.FREELANCER },
 		);
-		navigate(`/${radioOption}${EMPLOYER_PROFILE}`);
 	};
 
 	return (

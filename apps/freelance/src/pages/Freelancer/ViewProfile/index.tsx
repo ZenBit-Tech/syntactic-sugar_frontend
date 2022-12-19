@@ -32,7 +32,7 @@ export function ViewProfile() {
 		employmentType,
 		country,
 		hourRate,
-		availableAmountOfHour,
+		availableAmountOfHours,
 		workExperience,
 		englishLevel,
 		education,
@@ -99,7 +99,7 @@ export function ViewProfile() {
 									<Title id="workingHour">
 										<strong>{t("freelancer.viewProfile.workingHours")}</strong>
 									</Title>
-									<p>{availableAmountOfHour}</p>
+									<p>{availableAmountOfHours}</p>
 								</Item>
 								<Item>
 									<Title id="skills">

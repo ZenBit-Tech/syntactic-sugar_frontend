@@ -18,7 +18,7 @@ export const THIRD_PAGE = "thirdPage";
 // Employer
 
 export const MY_JOBS = "/employer/my-jobs";
-export const EMPLOYER_PROFILE = "/create-profile";
+export const EMPLOYER_PROFILE = "/employer/create-profile";
 
 // Freelancer
 
