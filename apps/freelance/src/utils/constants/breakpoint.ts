@@ -18,7 +18,7 @@ export const THIRD_PAGE = "thirdPage";
 // Send Proposal
 
 export const WORK_DETAILS = "jobs/details";
-export const SEARCH_WORK = "freelancer/searchwork";
+export const SEARCH_WORK = "searchwork";
 // Employer
 
 export const MY_JOBS = "/employer/my-jobs";

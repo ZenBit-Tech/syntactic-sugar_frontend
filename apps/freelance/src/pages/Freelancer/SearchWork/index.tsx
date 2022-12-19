@@ -49,6 +49,7 @@ export function SearchWork() {
 		value: "",
 		label: "",
 	};
+	console.log(data);
 
 	// hardcoded  - get freelanceer profile not provided yet
 	const freelancerFilter = {

@@ -29,9 +29,9 @@ export interface IResponse {
 	position: string;
 	skills: string[];
 	employmentType: string;
-	country: string;
+	country: { id: number; name: string };
 	hourRate: string;
-	availableAmountOfHour: string;
+	availableAmountOfHours: string;
 	workExperience: string;
 	englishLevel: string;
 	education?: educationProps[];
@@ -72,7 +72,6 @@ export const createFreelancerApi = createApi({
 		}),
 		getFreelancer: builder.query<IResponse, void>({
 			query: () => `/freelancer/profile`,
-			// invalidatesTags: ["freelancer"],
 		}),
 	}),
 });
