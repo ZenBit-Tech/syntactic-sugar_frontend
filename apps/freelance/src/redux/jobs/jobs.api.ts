@@ -29,9 +29,9 @@ export const getJobsApi = createApi({
 	}),
 	refetchOnFocus: true,
 	endpoints: build => ({
-		getJobs: build.query<JobsInterface, void>({
+		getJobs: build.query<JobsInterface[], void>({
 			query: () => ({
-				url: "/jobs/get-all-jobs",
+				url: "jobs/get-all-jobs",
 			}),
 		}),
 	}),

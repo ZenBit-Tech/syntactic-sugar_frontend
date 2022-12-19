@@ -1,17 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useForm, SubmitHandler, Controller, ChangeHandler } from "react-hook-form";
-import {
-	countries,
-	categories,
-	skills,
-	employmentType,
-	hourRate,
-	hoursAmount,
-	workExperience,
-	englishLevel,
-	SelectOptions,
-} from "utils/select-options/options";
+import { useOptions, SelectOptions } from "utils/select-options/options";
 // hardcoded  - get jobs from server not provided yet
 import { jobs } from "utils/jobs/jobs";
 import { Dashboard, StyledTitle, StyledButton, JobCard, Pagination } from "@freelance/components";
@@ -49,7 +39,16 @@ export function SearchWork() {
 		value: "",
 		label: "",
 	};
-	console.log(data);
+	const {
+		countries,
+		categories,
+		skills,
+		employmentType,
+		hourRate,
+		hoursAmount,
+		workExperience,
+		englishLevel,
+	} = useOptions();
 
 	// hardcoded  - get freelanceer profile not provided yet
 	const freelancerFilter = {

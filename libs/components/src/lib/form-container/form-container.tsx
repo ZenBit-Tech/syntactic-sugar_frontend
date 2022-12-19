@@ -29,7 +29,7 @@ export interface FormContainerProps {
 	forgotPassLink?: React.ReactNode;
 	isRightSide: boolean;
 	isSignForm: boolean;
-	formType: "login" | "signup" | "roleSelection" | "recoverPass1" | "recoverPass2";
+	formType: "login" | "signup" | "role" | "recoverPass1" | "recoverPass2";
 }
 
 export function FormContainer({

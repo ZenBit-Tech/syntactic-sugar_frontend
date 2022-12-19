@@ -1,4 +1,4 @@
-import { StyledApp } from "./app.styled";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import Login from "@pages/Login";
@@ -10,6 +10,7 @@ import { CreateProfile1 } from "@pages/Freelancer/CreateProfile1";
 import { CreateEmployerProfile } from "@pages/Employer/CreateProfile";
 import { RecoverPasswordUpdate } from "@pages/RecoverPasswordUpdate";
 import { Invitation } from "@pages/Invitation";
+import { ViewProfile } from "@pages/Freelancer/ViewProfile";
 import { Role } from "@pages/Role";
 import {
 	JobPostingFirstPage,
@@ -17,15 +18,16 @@ import {
 	JobPostingThirdPage,
 } from "@pages/NewJobPosting";
 import store from "redux/store";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import SendProposal from "@pages/SendProposal";
-import CreateProfile2 from "@pages/Freelancer/CreateProfile2";
-import SearchWork from "@pages/Freelancer/SearchWork";
+import { SendProposal } from "@pages/SendProposal";
+import { CreateProfile2 } from "@pages/Freelancer/CreateProfile2";
+import { SearchWork } from "@pages/Freelancer/SearchWork";
+import { EmployerJobsPage } from "@pages/EmployerJobsPage";
+import { StyledApp } from "./app.styled";
 
 export function App() {
 	return (
 		<StyledApp>
-			<GoogleOAuthProvider clientId="253619542281-miag0ub2aorap933406d1vg3bbte7j8m.apps.googleusercontent.com">
+			<GoogleOAuthProvider clientId={`${process.env["NX_APP_GOOGLE_KEY"]}`}>
 				<Provider store={store}>
 					<BrowserRouter>
 						<Routes>
@@ -38,15 +40,22 @@ export function App() {
 							<Route path="/freelancer/send-proposal" element={<SendProposal />} />
 							<Route path="/work-details" element={<h1>Work Details Page 4.1</h1>} />
 							<Route path="/password-updated" element={<RecoverPasswordUpdate />} />
+							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
+							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />
+							<Route path="/freelancer/create-profile2" element={<CreateProfile2 />} />
 							<Route path="/invitation" element={<Invitation />} />
+							<Route path="/freelancer/view-profile" element={<ViewProfile />} />
 							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />
 							<Route path="/freelancer/create-profile2" element={<CreateProfile2 />} />
 							<Route path="/freelancer/searchwork" element={<SearchWork />} />
-							<Route path="/employer/create-profile1" element={<CreateEmployerProfile />} />
-							<Route path="/employer/my-jobs" element={<h1>My jobs page 3.0</h1>} />
-							<Route path="/create-new-job-first-page" element={<JobPostingFirstPage />} />
-							<Route path="/create-new-job-second-page" element={<JobPostingSecondPage />} />
-							<Route path="/create-new-job-third-page" element={<JobPostingThirdPage />} />
+							<Route path="/employer/create-profile" element={<CreateEmployerProfile />} />
+							<Route path="/employer/my-jobs-page" element={<EmployerJobsPage />} />
+							<Route path="/employer/create-new-job-first-page" element={<JobPostingFirstPage />} />
+							<Route
+								path="/employer/create-new-job-second-page"
+								element={<JobPostingSecondPage />}
+							/>
+							<Route path="/employer/create-new-job-third-page" element={<JobPostingThirdPage />} />
 						</Routes>
 					</BrowserRouter>
 				</Provider>

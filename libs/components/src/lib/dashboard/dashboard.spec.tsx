@@ -4,7 +4,7 @@ import Dashboard from "./dashboard";
 
 describe("Dashboard", () => {
 	it("should render successfully", () => {
-		const { baseElement } = render(<Dashboard children={undefined} userRole={"freelancer"} />);
+		const { baseElement } = render(<Dashboard />);
 		expect(baseElement).toBeTruthy();
 	});
 });

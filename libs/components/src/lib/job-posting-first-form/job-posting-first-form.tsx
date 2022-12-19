@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useJobPostingFirstFormHook } from "./job-posting-first-formHooks";
 import {
 	IJobPostingFormProps,
 	IJobPostingFirstForm,
@@ -11,13 +10,14 @@ import {
 	JobPostingLabel,
 } from "@freelance/components";
 import { useFirstFormSchema } from "utils/validations/newJobPostingSchemas";
-import { FirstFormInputWrapper } from "./job-posting-first-form.styled";
 import { useAppSelector } from "redux/hooks";
 import { getStoredJobInfo } from "redux/newJobPosting/new-job-posting-slice";
+import { useJobPostingFirstFormHook } from "./job-posting-first-formHooks";
+import { FirstFormInputWrapper } from "./job-posting-first-form.styled";
 
 export function JobPostingFirstForm({ page }: IJobPostingFormProps) {
 	const schema = useFirstFormSchema();
-	const { jobTitle, jobDescription } = useAppSelector(getStoredJobInfo);
+	const { title, description } = useAppSelector(getStoredJobInfo);
 	const { jobTitlePlaceholder, jobDescriptionPlaceholder, inputLabel, descriptionLabel, onSubmit } =
 		useJobPostingFirstFormHook();
 	const {
@@ -33,30 +33,30 @@ export function JobPostingFirstForm({ page }: IJobPostingFormProps) {
 			<JobPostingLabel>{inputLabel}</JobPostingLabel>
 			<FirstFormInputWrapper positionRight={0} width={10}>
 				<Input
-					defaultValue={jobTitle}
-					{...register("jobTitle")}
+					defaultValue={title}
+					{...register("title")}
 					type="text"
 					placeholder={jobTitlePlaceholder}
 					autoComplete="off"
 				/>
-				{errors?.jobTitle && (
+				{errors?.title && (
 					<StyledSpan fontSize="sm" type="validation">
-						<strong>{errors?.jobTitle?.message}</strong>
+						<strong>{errors?.title?.message}</strong>
 					</StyledSpan>
 				)}
 			</FirstFormInputWrapper>
 			<JobPostingLabel>{descriptionLabel}</JobPostingLabel>
 			<FirstFormInputWrapper positionRight={0} width={10}>
 				<JobPostingTextArea
-					defaultValue={jobDescription}
-					{...register("jobDescription")}
+					defaultValue={description}
+					{...register("description")}
 					rows={10}
 					maxLength={600}
 					placeholder={jobDescriptionPlaceholder}
 				/>
-				{errors?.jobDescription && (
+				{errors?.description && (
 					<StyledSpan fontSize="sm" type="validation">
-						<strong>{errors?.jobDescription?.message}</strong>
+						<strong>{errors?.description?.message}</strong>
 					</StyledSpan>
 				)}
 			</FirstFormInputWrapper>

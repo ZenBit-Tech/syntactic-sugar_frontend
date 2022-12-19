@@ -1,7 +1,6 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { baseUrl } from "utils/constants/redux-query";
+import { createApi } from "@reduxjs/toolkit/query/react";
 import { workHistoryProps, educationProps } from "redux/createFreelancer/freelancer-slice";
-import { RootState } from "redux/store";
+import { baseQuery } from "redux/base-query";
 export interface IFormInput {
 	fullName: string;
 	category: string;
@@ -16,6 +15,7 @@ export interface IFormInput {
 	education: educationProps[];
 	workHistory: workHistoryProps[];
 	otherExperience: string;
+	image: string;
 }
 
 export interface Published {
@@ -41,17 +41,7 @@ export interface IResponse {
 
 export const createFreelancerApi = createApi({
 	reducerPath: "createFreelancer",
-	baseQuery: fetchBaseQuery({
-		baseUrl: baseUrl,
-		prepareHeaders: (headers, { getState }) => {
-			const token = (getState() as RootState).user.token;
-			if (token) {
-				headers.set("authorization", `Bearer ${token}`);
-			}
-
-			return headers;
-		},
-	}),
+	baseQuery: baseQuery,
 	tagTypes: ["freelancer", "published"],
 	endpoints: builder => ({
 		createFreelancer: builder.mutation({

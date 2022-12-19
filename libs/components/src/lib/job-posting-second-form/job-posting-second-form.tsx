@@ -1,13 +1,5 @@
 import { useForm, Controller } from "react-hook-form";
 import {
-	countries,
-	categories,
-	employmentType,
-	hoursAmount,
-	hourRate,
-	workExperience,
-} from "utils/select-options/options";
-import {
 	IJobPostingFormProps,
 	IJobPostingSecondForm,
 	ErrorsHandlerWrapper,
@@ -21,9 +13,10 @@ import {
 	selectDefaultArray,
 	selectDefaultObject,
 } from "@freelance/components";
-import { useJobPostingSecondFormHook } from "./job-posting-second-formHooks";
 import { useAppSelector } from "redux/hooks";
 import { getStoredJobInfo } from "redux/newJobPosting";
+import { useOptions } from "utils/select-options/options";
+import { useJobPostingSecondFormHook } from "./job-posting-second-formHooks";
 
 export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 	const {
@@ -31,7 +24,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 		category,
 		position,
 		employmentType: storedEmploymentType,
-		availableAmountOfHour,
+		availableAmountOfHours,
 		hourRate: storedHourRate,
 		workExperience: storedWorkExperience,
 	} = useAppSelector(getStoredJobInfo);
@@ -59,8 +52,8 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 		register,
 		formState: { errors },
 	} = useForm<IJobPostingSecondForm>();
-
-	const array = selectDefaultArray(storedCountries, countries);
+	const { countries, categories, hoursAmount, hourRate, employmentType, workExperience } =
+		useOptions();
 
 	return (
 		<JobPostingGridForm id={page} onSubmit={handleSubmit(onSubmit)} justifyItems="center">
@@ -69,7 +62,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="countries"
-						defaultValue={JSON.parse(JSON.stringify(array))}
+						defaultValue={selectDefaultArray(storedCountries, countries)}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (
@@ -95,7 +88,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="category"
-						defaultValue={selectDefaultObject(category, categories) || undefined}
+						defaultValue={selectDefaultObject(category, categories)}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (
@@ -103,6 +96,8 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 								options={categories}
 								{...field}
 								placeholder={categoryPlaceholder}
+								isSearchable
+								isClearable
 								classNamePrefix="react-select"
 							/>
 						)}
@@ -135,7 +130,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="employmentType"
-						defaultValue={selectDefaultObject(storedEmploymentType, employmentType) || undefined}
+						defaultValue={selectDefaultObject(storedEmploymentType, employmentType)}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (
@@ -143,6 +138,8 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 								options={employmentType}
 								{...field}
 								placeholder={employmentTypePlaceholder}
+								isSearchable
+								isClearable
 								classNamePrefix="react-select"
 							/>
 						)}
@@ -158,8 +155,8 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 				<JobPostingLabel>{hoursAmountLabel}</JobPostingLabel>
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
-						name="availableAmountOfHour"
-						defaultValue={selectDefaultObject(availableAmountOfHour, hoursAmount) || undefined}
+						name="availableAmountOfHours"
+						defaultValue={selectDefaultObject(availableAmountOfHours, hoursAmount)}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (
@@ -167,13 +164,15 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 								options={hoursAmount}
 								{...field}
 								placeholder={hoursAmountPlaceholder}
+								isSearchable
+								isClearable
 								classNamePrefix="react-select"
 							/>
 						)}
 					/>
-					{errors?.availableAmountOfHour && (
+					{errors?.availableAmountOfHours && (
 						<StyledSpan fontSize="sm" type="validation">
-							<strong>{errors?.availableAmountOfHour?.message}</strong>
+							<strong>{errors?.availableAmountOfHours?.message}</strong>
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>
@@ -183,7 +182,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="workExperience"
-						defaultValue={selectDefaultObject(storedWorkExperience, workExperience) || undefined}
+						defaultValue={selectDefaultObject(storedWorkExperience, workExperience)}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (
@@ -191,6 +190,8 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 								options={workExperience}
 								{...field}
 								placeholder={workExperiencePlaceholder}
+								isSearchable
+								isClearable
 								classNamePrefix="react-select"
 							/>
 						)}
@@ -207,7 +208,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="hourRate"
-						defaultValue={selectDefaultObject(storedHourRate, hourRate) || undefined}
+						defaultValue={selectDefaultObject(storedHourRate, hourRate)}
 						control={control}
 						rules={{ required: fieldRequired }}
 						render={({ field }) => (
@@ -215,6 +216,8 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 								options={hourRate}
 								{...field}
 								placeholder={hourRatePlaceholder}
+								isSearchable
+								isClearable
 								classNamePrefix="react-select"
 							/>
 						)}

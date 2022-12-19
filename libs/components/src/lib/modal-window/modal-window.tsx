@@ -1,4 +1,3 @@
-import { StyledButton } from "@freelance/components";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "redux/hooks";
@@ -6,6 +5,8 @@ import {
 	useCreateFreelancerMutation,
 	useAddPublishedMutation,
 } from "redux/createFreelancer/freelancer-pageApi";
+import { SEARCH_WORK } from "utils/constants/breakpoint";
+import { StyledButton } from "@freelance/components";
 
 /* eslint-disable-next-line */
 
@@ -18,11 +19,11 @@ export function ModalWindow() {
 	const handlePublishedButton = () => {
 		createFreelancer(freelancerState);
 		addPublished({ isPublished: true });
-		navigate("/searchworkpage");
+		navigate(SEARCH_WORK);
 	};
 
 	const handleWithoutPublishButton = () => {
-		navigate("/searchworkpage");
+		navigate(SEARCH_WORK);
 	};
 
 	return (

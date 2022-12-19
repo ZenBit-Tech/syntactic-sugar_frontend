@@ -9,8 +9,10 @@ import { createFreelancerApi } from "./createFreelancer/freelancer-pageApi";
 import { loginApi } from "./login.api";
 import { roleApi } from "./role.api";
 import { proposalFreelancerApi } from "./sendProposalFreelancer/proposalApi";
+import { newJobPostingApi } from "./newJobPosting/new-job-posting-api";
 import { getJobsApi } from "./jobs/jobs.api";
 import { createEmployerApi } from "./createEmployer/employerApi";
+import { uploadImage } from "./uploadImage/upload-image.api";
 
 const store = configureStore({
 	reducer: {
@@ -19,12 +21,15 @@ const store = configureStore({
 		newJob: newJobReducer,
 		[signupGoogleApi.reducerPath]: signupGoogleApi.reducer,
 		[loginApi.reducerPath]: loginApi.reducer,
+		[roleApi.reducerPath]: roleApi.reducer,
 		[resetPasswordApi.reducerPath]: resetPasswordApi.reducer,
 		[createFreelancerApi.reducerPath]: createFreelancerApi.reducer,
+		[newJobPostingApi.reducerPath]: newJobPostingApi.reducer,
 		[roleApi.reducerPath]: roleApi.reducer,
 		[proposalFreelancerApi.reducerPath]: proposalFreelancerApi.reducer,
 		[getJobsApi.reducerPath]: getJobsApi.reducer,
 		[createEmployerApi.reducerPath]: createEmployerApi.reducer,
+		[uploadImage.reducerPath]: uploadImage.reducer,
 	},
 	middleware: getDefaultMiddleware =>
 		getDefaultMiddleware({
@@ -38,8 +43,10 @@ const store = configureStore({
 			createFreelancerApi.middleware,
 			roleApi.middleware,
 			proposalFreelancerApi.middleware,
+			newJobPostingApi.middleware,
 			getJobsApi.middleware,
 			createEmployerApi.middleware,
+			uploadImage.middleware,
 		),
 });
 

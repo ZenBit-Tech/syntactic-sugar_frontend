@@ -13,7 +13,7 @@ export interface workHistoryProps {
 	period: string;
 }
 
-type Freelancer = {
+export type Freelancer = {
 	fullName: string;
 	category: string;
 	position: string;
@@ -27,6 +27,7 @@ type Freelancer = {
 	education: educationProps[];
 	workHistory: workHistoryProps[];
 	otherExperience: string;
+  image: string;
 };
 
 const initialState: Freelancer = {
@@ -43,6 +44,7 @@ const initialState: Freelancer = {
 	education: [],
 	workHistory: [],
 	otherExperience: "",
+  image: ""
 };
 
 const freelancer = createSlice({

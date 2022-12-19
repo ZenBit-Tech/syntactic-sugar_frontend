@@ -1,8 +1,8 @@
 import { SubmitHandler } from "react-hook-form";
 
 export interface IJobPostingFirstForm {
-	jobTitle: string;
-	jobDescription: string;
+	title: string;
+	description: string;
 }
 
 export interface IUseJobPostingFirstForm {

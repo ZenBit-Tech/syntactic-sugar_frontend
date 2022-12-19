@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import { Container, StyledPage } from "./style";
 import { ThemeProvider } from "styled-components";
 import {
 	ThemeColors,
@@ -7,6 +6,7 @@ import {
 	MessageContainer,
 	ThemeBackground,
 } from "@freelance/components";
+import { Container, StyledPage } from "./style";
 
 export function Role() {
 	const { t } = useTranslation();
@@ -18,7 +18,7 @@ export function Role() {
 					<FormContainer
 						isSignForm={false}
 						isRightSide={false}
-						formType="roleSelection"
+						formType="role"
 						title={t("roleSelection.roleTitle")}
 						subTitle={t("roleSelection.roleSubtitle")}
 					/>
