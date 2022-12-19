@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useForm, SubmitHandler, Controller, ChangeHandler } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useOptions, SelectOptions } from "utils/select-options/options";
 // hardcoded  - get jobs from server not provided yet
 import { jobs } from "utils/jobs/jobs";
@@ -17,6 +17,7 @@ import {
 	InputWrapper,
 	SelectElement,
 } from "./style";
+import { NavLink, useLocation } from "react-router-dom";
 
 type user = "freelancer" | "employer";
 
@@ -33,6 +34,7 @@ export interface IFormInput {
 export function SearchWork() {
 	const user: user = "freelancer";
 	const { t } = useTranslation();
+	const location = useLocation();
 	const { handleSubmit, control, getValues, reset } = useForm<IFormInput>();
 	const { isLoading, isError, data } = useGetJobsQuery();
 
@@ -114,7 +116,31 @@ export function SearchWork() {
 				<Form onSubmit={handleSubmit(onSubmit)}>
 					<Wrapper>
 						<InputContainer>
-							<InputHeader>
+							{data &&
+								data.map(
+									({
+										id,
+
+										position,
+										location,
+										employmentType,
+										availableAmountOfHours,
+										workExperience,
+										date,
+									}) => {
+										return (
+											<ul>
+												<li key={id}>
+													<NavLink
+														to={`/jobs/details/:${id}`}
+													>{`${position}, ${workExperience}`}</NavLink>
+												</li>
+											</ul>
+										);
+									},
+								)}
+							{/* <InputHeader>
+						
 								<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
 									{t("freelancer.searchWork.jobsList")}
 								</StyledTitle>
@@ -241,7 +267,7 @@ export function SearchWork() {
 										<strong>{t("freelancer.searchWork.unFilter")}</strong>
 									</StyledButton>
 								</div>
-							</InputWrapper>
+							</InputWrapper> */}
 						</InputContainer>
 					</Wrapper>
 				</Form>

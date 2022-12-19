@@ -27,7 +27,7 @@ import { StyledApp } from "./app.styled";
 export function App() {
 	return (
 		<StyledApp>
-			<GoogleOAuthProvider clientId={`${process.env["NX_APP_GOOGLE_KEY"]}`}>
+			<GoogleOAuthProvider clientId="253619542281-miag0ub2aorap933406d1vg3bbte7j8m.apps.googleusercontent.com">
 				<Provider store={store}>
 					<BrowserRouter>
 						<Routes>
@@ -46,7 +46,7 @@ export function App() {
 							<Route path="/freelancer/create-profile2" element={<CreateProfile2 />} />
 							<Route path="/freelancer/searchwork" element={<SearchWork />} />
 							<Route path="/employer/create-profile1" element={<CreateEmployerProfile />} />
-							<Route path="/jobs/details" element={<WorkDetails />} />
+							<Route path="/jobs/details/:id" element={<WorkDetails />} />
 							<Route path="/employer/create-profile" element={<CreateEmployerProfile />} />
 							<Route path="/employer/my-jobs-page" element={<EmployerJobsPage />} />
 							<Route path="/employer/create-new-job-first-page" element={<JobPostingFirstPage />} />

@@ -1,5 +1,6 @@
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import {
 	ThemeColors,
@@ -8,6 +9,7 @@ import {
 	StyledTitle,
 	StyledButton,
 } from "@freelance/components";
+import { useGetJobIdQuery } from "src/redux/jobs/jobs.api";
 import { SEARCH_WORK, SEND_PROPOSAL } from "src/utils/constants/breakpoint";
 import {
 	ContainerBox,
@@ -24,9 +26,30 @@ import {
 	Wrapper,
 } from "./styles";
 
+type QueryId = {
+	id: string;
+};
+
 export function WorkDetails() {
+	// const [job, setJob] = useState(null);
 	const { t } = useTranslation();
 	const navigate = useNavigate();
+	const { id } = useParams<QueryId>();
+	const { job } = useGetJobIdQuery(id);
+
+	// useEffect(() => {
+	// 	const getJob = async () => {
+	// 		try {
+	// 			const { jobInfo } = useGetJobIdQuery(id);
+	// 			setJob(jobInfo);
+	// 		} catch (error) {
+	// 			alert(error);
+	// 		}
+	// 	};
+	// 	getJob();
+	// }, [id]);
+
+	console.log(id);
 
 	const handleClickProposal = () => {
 		navigate(SEND_PROPOSAL);
