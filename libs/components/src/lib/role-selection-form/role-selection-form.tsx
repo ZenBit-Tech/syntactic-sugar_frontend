@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { setUserData } from "redux/userState/userSlice";
 import { StyledButton } from "@freelance/components";
-import { Form, RadioGroup } from "./role-selection-form.styled";
 import { useAddRoleMutation, UserRoles } from "redux/role.api";
-import { CREATE_PROFILE_1, MY_JOBS, ROLE_SELECTION } from "src/utils/constants/breakpoint";
+import { Form, RadioGroup } from "./role-selection-form.styled";
+import {
+	CREATE_PROFILE_1,
+	MY_JOBS,
+	ROLE_SELECTION,
+	EMPLOYER_PROFILE,
+} from "utils/constants/breakpoint";
 
 type RoleOptions = "employer" | "freelancer";
 
@@ -32,7 +37,6 @@ export function RoleSelectionForm() {
 	}, [isSuccess, isError]);
 
 	useEffect(() => {
-		// console.log(userData)
 		if (userData?.role === UserRoles.GUEST) {
 			navigate(ROLE_SELECTION);
 		}
@@ -49,6 +53,7 @@ export function RoleSelectionForm() {
 		addRole(
 			radioOption === "employer" ? { role: UserRoles.EMPLOYER } : { role: UserRoles.FREELANCER },
 		);
+		navigate(`/${radioOption}${EMPLOYER_PROFILE}`);
 	};
 
 	return (

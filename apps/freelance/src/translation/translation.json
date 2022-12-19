@@ -122,6 +122,12 @@
 				"englishLevel": "English Level"
 			}
 		},
+		"viewProfile": {
+			"employmentType": "Employment",
+			"hourRate": "Rate hour",
+			"workingHours": "Working hours",
+			"workHistory": "Work history"
+		},
 		"searchWork": {
 			"filter": "Filter",
 			"unFilter": "Reset filter",

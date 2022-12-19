@@ -5,7 +5,7 @@ import {
 	useCreateFreelancerMutation,
 	useAddPublishedMutation,
 } from "redux/createFreelancer/freelancer-pageApi";
-import { SEARCH_WORK } from "src/utils/constants/breakpoint";
+import { SEARCH_WORK } from "utils/constants/breakpoint";
 import { StyledButton } from "@freelance/components";
 
 /* eslint-disable-next-line */
