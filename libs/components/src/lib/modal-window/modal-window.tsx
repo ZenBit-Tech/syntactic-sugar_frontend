@@ -16,10 +16,14 @@ export function ModalWindow() {
 	const freelancerState = useAppSelector(state => state.freelancer);
 	const [createFreelancer] = useCreateFreelancerMutation();
 	const [addPublished] = useAddPublishedMutation();
-	const handlePublishedButton = () => {
-		createFreelancer(freelancerState);
-		addPublished({ isPublished: true });
-		navigate(SEARCH_WORK);
+	const handlePublishedButton = async () => {
+    try {
+      await createFreelancer(freelancerState);
+			await addPublished({ isPublished: true });
+			navigate(SEARCH_WORK);
+    } catch (error) {
+      alert(error)
+    }
 	};
 
 	const handleWithoutPublishButton = () => {

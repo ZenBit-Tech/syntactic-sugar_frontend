@@ -32,7 +32,7 @@ interface IFormInput {
 	employmentType: SelectOptions;
 	country: SelectOptions;
 	hourRate: SelectOptions;
-	availableAmountOfHour: SelectOptions;
+	availableAmountOfHours: SelectOptions;
 	workExperience: SelectOptions;
 	englishLevel: SelectOptions;
 	image: string;
@@ -91,7 +91,7 @@ export function CreateProfile1() {
 			employmentType: values.employmentType.label,
 			country: values.country.label,
 			hourRate: values.hourRate.label,
-			availableAmountOfHour: values.availableAmountOfHour.label,
+			availableAmountOfHours: values.availableAmountOfHours.label,
 			workExperience: values.workExperience.label,
 			englishLevel: values.englishLevel.label,
 			image: imageData && imageUrl !== DEFAULT_IMAGE ? imageData.file : null,
@@ -262,7 +262,7 @@ export function CreateProfile1() {
 						</div>
 						<div className="selectContainer">
 							<Controller
-								name="availableAmountOfHour"
+								name="availableAmountOfHours"
 								control={control}
 								rules={{ required: true }}
 								render={({ field }) => (

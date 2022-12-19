@@ -11,7 +11,7 @@ interface IFormInput {
 	employmentType: string;
 	country: string;
 	hourRate: string;
-	availableAmountOfHour: string;
+	availableAmountOfHours: string;
 	workExperience: string;
 	englishLevel: string;
 	education: educationProps[];
