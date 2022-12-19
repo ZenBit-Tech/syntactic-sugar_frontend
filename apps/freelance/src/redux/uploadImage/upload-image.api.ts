@@ -1,6 +1,7 @@
 import { RootState } from "redux/store";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { baseUrl } from "utils/constants/redux-query";
+import { baseQuery } from "redux/base-query";
 
 interface IFileUpload {
 	file: string;
@@ -12,9 +13,7 @@ interface IFile {
 
 export const uploadImage = createApi({
 	reducerPath: "uploadImage",
-	baseQuery: fetchBaseQuery({
-		baseUrl: baseUrl,
-	}),
+	baseQuery: baseQuery,
 	tagTypes: ["image"],
 	endpoints: builder => ({
 		uploadImage: builder.mutation<IFileUpload, IFile | any>({
