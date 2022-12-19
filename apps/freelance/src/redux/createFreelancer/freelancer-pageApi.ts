@@ -62,6 +62,7 @@ export const createFreelancerApi = createApi({
 		}),
 		getFreelancer: builder.query<IResponse, void>({
 			query: () => `/freelancer/profile`,
+			providesTags: ["freelancer"],
 		}),
 	}),
 });
