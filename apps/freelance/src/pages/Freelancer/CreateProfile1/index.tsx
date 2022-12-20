@@ -5,7 +5,9 @@ import { useEffect, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useTranslation } from "react-i18next";
 import { addFreelancerInfo } from "redux/createFreelancer/freelancer-slice";
-import { useAppDispatch } from "redux/example-hooks";
+import { useAppDispatch } from "redux/hooks";
+
+import { SelectOptions, useOptions } from "utils/select-options/options";
 import {
 	ThemeColors,
 	ThemeBackground,
@@ -17,9 +19,8 @@ import { imageSchema } from "utils/validations/imageUpload";
 import { useUploadImageMutation } from "redux/uploadImage/upload-image.api";
 import { baseUrl } from "utils/constants/redux-query";
 import { DEFAULT_IMAGE } from "utils/constants/links";
-import { StyledPage, Form, StyledFileField, SelectElement } from "./style";
-import { useOptions, SelectOptions } from "utils/select-options/options";
 import { CREATE_PROFILE_2 } from "src/utils/constants/breakpoint";
+import { StyledPage, Form, StyledFileField, SelectElement } from "./style";
 
 /* eslint-disable-next-line */
 export interface ProfilePageProps {}
@@ -32,7 +33,7 @@ interface IFormInput {
 	employmentType: SelectOptions;
 	country: SelectOptions;
 	hourRate: SelectOptions;
-	availableAmountOfHour: SelectOptions;
+	availableAmountOfHours: SelectOptions;
 	workExperience: SelectOptions;
 	englishLevel: SelectOptions;
 	image: string;
@@ -91,7 +92,7 @@ export function CreateProfile1() {
 			employmentType: values.employmentType.label,
 			country: values.country.label,
 			hourRate: values.hourRate.label,
-			availableAmountOfHour: values.availableAmountOfHour.label,
+			availableAmountOfHours: values.availableAmountOfHours.label,
 			workExperience: values.workExperience.label,
 			englishLevel: values.englishLevel.label,
 			image: imageData && imageUrl !== DEFAULT_IMAGE ? imageData.file : null,
@@ -108,7 +109,7 @@ export function CreateProfile1() {
 	return (
 		<ThemeProvider theme={ThemeColors && ThemeBackground}>
 			<StyledPage>
-				<Dashboard userRole="freelancer">
+				<Dashboard userRole="freelancer" typePage="createProfile">
 					<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
 						{t("dashboard.profilePage.title")}
 					</StyledTitle>
@@ -262,7 +263,7 @@ export function CreateProfile1() {
 						</div>
 						<div className="selectContainer">
 							<Controller
-								name="availableAmountOfHour"
+								name="availableAmountOfHours"
 								control={control}
 								rules={{ required: true }}
 								render={({ field }) => (

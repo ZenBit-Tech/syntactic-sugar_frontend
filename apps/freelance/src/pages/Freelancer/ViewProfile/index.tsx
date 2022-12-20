@@ -32,7 +32,7 @@ export function ViewProfile() {
 		employmentType,
 		country,
 		hourRate,
-		availableAmountOfHour,
+		availableAmountOfHours,
 		workExperience,
 		englishLevel,
 		education,
@@ -43,7 +43,7 @@ export function ViewProfile() {
 	return (
 		<ThemeProvider theme={ThemeColors && ThemeBackground}>
 			<StyledPage>
-				<Dashboard userRole="freelancer">
+				<Dashboard userRole="freelancer" typePage="createProfile">
 					<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
 						{t("dashboard.profilePage.title")}
 					</StyledTitle>
@@ -99,7 +99,7 @@ export function ViewProfile() {
 									<Title id="workingHour">
 										<strong>{t("freelancer.viewProfile.workingHours")}</strong>
 									</Title>
-									<p>{availableAmountOfHour}</p>
+									<p>{availableAmountOfHours}</p>
 								</Item>
 								<Item>
 									<Title id="skills">

@@ -42,7 +42,7 @@ export const useGoogleAuthentication = (formType: boolean) => {
 		onSuccess: tokenResponse => {
 			if (formType) {
 				signupUser({ token: tokenResponse.access_token });
-				navigate(ROLE_SELECTION);
+				navigate("/" + ROLE_SELECTION);
 			} else {
 				loginWithGoogle({ token: tokenResponse.access_token });
 			}

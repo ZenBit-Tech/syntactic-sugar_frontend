@@ -137,6 +137,24 @@
 			"buttonFilter": "Use filters"
 		}
 	},
+<<<<<<< HEAD
+=======
+	"roleSelection": {
+		"roleTitle": "What do you want?",
+		"roleSubtitle": "Choose your goal and find the best solutions for your project or career.",
+		"roleJobOwner": "I am a Job Owner, hiring for a project.",
+		"roleFreelancer": "I am a Freelancer, looking for a job."
+	},
+	"sendProposalFreelancer": {
+		"greeting": "Create your proposal!",
+		"send": "Send proposal",
+		"back": "Go back",
+		"cv": "Add your CV:",
+		"placeholderCoverLetter": "cover letter",
+		"coverLetter": "Add your cover letter:",
+		"alert": "Something went wrong, try again"
+	},
+>>>>>>> develop
 	"newJobPosting": {
 		"mainTitle": "New job posting",
 		"subTitle": "Define search criterias",

@@ -13,7 +13,7 @@ import {
 	selectDefaultArray,
 	selectDefaultObject,
 } from "@freelance/components";
-import { useAppSelector } from "redux/example-hooks";
+import { useAppSelector } from "redux/hooks";
 import { getStoredJobInfo } from "redux/newJobPosting";
 import { useOptions } from "utils/select-options/options";
 import { useJobPostingSecondFormHook } from "./job-posting-second-formHooks";
