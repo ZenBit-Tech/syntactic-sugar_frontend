@@ -137,8 +137,6 @@
 			"buttonFilter": "Use filters"
 		}
 	},
-<<<<<<< HEAD
-=======
 	"roleSelection": {
 		"roleTitle": "What do you want?",
 		"roleSubtitle": "Choose your goal and find the best solutions for your project or career.",
@@ -154,7 +152,6 @@
 		"coverLetter": "Add your cover letter:",
 		"alert": "Something went wrong, try again"
 	},
->>>>>>> develop
 	"newJobPosting": {
 		"mainTitle": "New job posting",
 		"subTitle": "Define search criterias",
