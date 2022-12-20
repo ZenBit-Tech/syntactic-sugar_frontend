@@ -34,7 +34,12 @@ export const getJobsApi = createApi({
 				url: "jobs/get-all-jobs",
 			}),
 		}),
+		getJobById: build.query<JobsInterface, void>({
+			query: job => ({
+				url: `jobs/${job}`,
+			}),
+		}),
 	}),
 });
 
-export const { useGetJobsQuery } = getJobsApi;
+export const { useGetJobsQuery, useGetJobByIdQuery } = getJobsApi;

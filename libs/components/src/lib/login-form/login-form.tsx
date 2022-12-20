@@ -11,7 +11,7 @@ import { signInSchema } from "utils/validations/loginForm";
 import { useLoginMutation } from "redux/login.api";
 import { UserRoles } from "redux/role.api";
 import { setUserData } from "redux/userState/userSlice";
-import { ROLE_SELECTION, MY_JOBS, SEARCH_WORK } from "src/utils/constants/breakpoint";
+import { ROLE_SELECTION, MY_JOBS, SEARCH_WORK } from "utils/constants/breakpoint";
 import { Form, InputWrapper } from "./login-form.styled";
 
 export function LoginForm() {

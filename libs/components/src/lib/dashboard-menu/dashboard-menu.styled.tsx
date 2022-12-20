@@ -22,3 +22,8 @@ export const Container = styled.div`
 		border-radius: 12px;
 	}
 `;
+
+export const FilterButtonWrap = styled(Container)`
+	gap: 1.5rem;
+	border-top: double 5px ${({ theme }) => theme.colors.brightRed};
+`;

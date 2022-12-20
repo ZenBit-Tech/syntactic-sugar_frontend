@@ -20,7 +20,9 @@ import {
 import CreateProfile2 from "@pages/Freelancer/CreateProfile2";
 import { EmployerJobsPage } from "@pages/EmployerJobsPage";
 import SearchWork from "@pages/Freelancer/SearchWork";
+import { ProposalsPage } from "@pages/Freelancer/ProposalsPage";
 import { StyledApp } from "./app.styled";
+
 
 export function App() {
 	return (
@@ -40,6 +42,7 @@ export function App() {
 							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />
 							<Route path="/freelancer/create-profile2" element={<CreateProfile2 />} />
 							<Route path="/freelancer/searchwork" element={<SearchWork />} />
+							<Route path="/freelancer/proposals" element={<ProposalsPage />} />
 							<Route path="/employer/create-profile1" element={<CreateEmployerProfile />} />
 							<Route path="/employer/my-jobs-page" element={<EmployerJobsPage />} />
 							<Route path="/employer/create-new-job-first-page" element={<JobPostingFirstPage />} />

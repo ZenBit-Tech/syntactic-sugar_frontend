@@ -21,7 +21,7 @@ type Freelancer = {
 	employmentType: string;
 	country: string;
 	hourRate: string;
-	availableAmountOfHour: string;
+	availableAmountOfHours: string;
 	workExperience: string;
 	englishLevel: string;
 	education: educationProps[];
@@ -38,7 +38,7 @@ const initialState: Freelancer = {
 	employmentType: "",
 	country: "",
 	hourRate: "",
-	availableAmountOfHour: "",
+	availableAmountOfHours: "",
 	workExperience: "",
 	englishLevel: "",
 	education: [],

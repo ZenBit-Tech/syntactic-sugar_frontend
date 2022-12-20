@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 interface iStyledButtonProps {
-	buttonSize: "lg" | "md" | "sm" | "modal" | "card";
+	buttonSize: "lg" | "md" | "sm" | "modal" | "card" | "filter";
 	buttonColor: "redGradient" | "blue" | "lightRed" | "darkRed";
 	fontSize?: "lg" | "md" | "sm";
 }
@@ -45,6 +45,10 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 			case "card":
 				return css`
 					width: 20%;
+				`;
+			case "filter":
+				return css`
+					width: 45%;
 				`;
 		}
 	}}
@@ -95,4 +99,8 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 		}
 		return;
 	}}
+`;
+
+export const FilterButton = styled(StyledButton)`
+    padding: 0.3rem 0;
 `;
