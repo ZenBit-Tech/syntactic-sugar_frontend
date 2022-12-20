@@ -6,6 +6,7 @@ import {
 	StyledJobCardHeader,
 	StyledJobCardParagraph,
 	CountriesContainer,
+	LocationBlock,
 } from "./job-card.styled";
 
 export interface JobCardProps {
@@ -18,6 +19,8 @@ export interface JobCardProps {
 	createdDate: string;
 	updatedDate?: string;
 	userType: string;
+	skills?: string[];
+	category?: string;
 }
 
 export function JobCard({
@@ -56,14 +59,16 @@ export function JobCard({
 				)}
 			</StyledJobCardHeader>
 			<StyledJobCardParagraph>
-				<StyledParagraph fontSize="sm" opacity={0.7}>
-					{t("jobCard.location")}:
+				<LocationBlock>
+					<StyledParagraph fontSize="sm" opacity={0.7}>
+						{t("jobCard.location")}:
+					</StyledParagraph>
 					<CountriesContainer>
 						{countries.map(country => (
 							<strong key={country.id}>{country.name}</strong>
 						))}
 					</CountriesContainer>
-				</StyledParagraph>
+				</LocationBlock>
 				<StyledParagraph fontSize="sm" opacity={0.7}>
 					{t("jobCard.employmentType")}: <strong>{employmentType}</strong>
 				</StyledParagraph>

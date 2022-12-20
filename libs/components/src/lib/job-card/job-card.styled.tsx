@@ -47,6 +47,11 @@ export const StyledJobCardParagraph = styled.div`
 	}
 `;
 
+export const LocationBlock = styled.div`
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+`;
+
 export const CountriesContainer = styled.div`
 	display: grid;
 `;

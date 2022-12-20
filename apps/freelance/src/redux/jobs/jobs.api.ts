@@ -7,6 +7,8 @@ export interface Country {
 	name: string;
 }
 
+export interface Skills extends Country {}
+
 export interface JobsInterface {
 	id: string;
 	position: string;
