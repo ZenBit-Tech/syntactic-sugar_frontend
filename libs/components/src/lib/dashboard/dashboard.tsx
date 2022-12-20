@@ -15,7 +15,7 @@ export function Dashboard({ children, userRole, typePage }: DashboardProps) {
 				<>
 					<DashboardMenu userRole={userRole} />
 					<Area>
-						<DashboardHeader userRole={userRole} typePage={typePage}/>
+						<DashboardHeader userRole={userRole} typePage={typePage} />
 						<Page>{children}</Page>
 					</Area>
 				</>
@@ -24,7 +24,7 @@ export function Dashboard({ children, userRole, typePage }: DashboardProps) {
 				<>
 					<DashboardMenu userRole="employer" />
 					<Area>
-						<DashboardHeader userRole="employer" />
+						<DashboardHeader userRole="employer" typePage={typePage} />
 						<Page>{children}</Page>
 					</Area>
 				</>
