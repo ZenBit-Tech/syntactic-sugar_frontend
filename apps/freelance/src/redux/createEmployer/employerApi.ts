@@ -41,7 +41,7 @@ export const createEmployerApi = createApi({
 			return headers;
 		},
 	}),
-	tagTypes: ["employer", "employerProfile"],
+	tagTypes: ["employer"],
 	endpoints: builder => ({
 		createEmployer: builder.mutation({
 			query: (body: IFormInput) => ({
@@ -53,7 +53,7 @@ export const createEmployerApi = createApi({
 		}),
 		getEmployer: builder.query<IResponseEmployer, void>({
 			query: () => `/employer/profile`,
-			providesTags: ["employerProfile"],
+			providesTags: ["employer"],
 		}),
 	}),
 });
