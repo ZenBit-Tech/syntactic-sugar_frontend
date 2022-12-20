@@ -41,7 +41,7 @@ export function SignupForm() {
 	useEffect(() => {
 		if (isSuccess) {
 			dispatch(setUserData({ token: userData?.token, role: userData?.role }));
-			window.location.replace(window.location.origin + "/" + ROLE_SELECTION);
+			navigate("/" + ROLE_SELECTION);
 		}
 		if (isError) {
 			toast.error(t("recoverPassForm.errorMessageServerError"));
