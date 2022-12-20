@@ -33,8 +33,8 @@ export const getJobsApi = createApi({
 			}),
 			providesTags: ["jobs"],
 		}),
-		getJobId: build.query<JobsInterface, string>({
-			query: (id: string) => ({
+		getJobId: build.query<JobsInterface, number>({
+			query: (id: number) => ({
 				url: `/jobs/get-job-by-id/?id=${id}`,
 			}),
 			providesTags: ["job"],

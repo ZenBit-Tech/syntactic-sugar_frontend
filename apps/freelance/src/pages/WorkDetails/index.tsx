@@ -28,8 +28,9 @@ import {
 export function WorkDetails() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
-	const { id } = useParams();
-	const { data } = useGetJobIdQuery(`${id}`);
+	const params = useParams();
+	const id = Number(params["id"]);
+	const { data } = useGetJobIdQuery(id);
 
 	useEffect(() => {
 		if (id === null && data === undefined) {
