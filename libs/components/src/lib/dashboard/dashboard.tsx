@@ -1,4 +1,5 @@
 import { DashboardHeader, DashboardMenu } from "@freelance/components";
+import { ROLES } from "utils/constants/roles";
 import { Container, Page, Area } from "./dashboard.styled";
 
 export interface DashboardProps {
@@ -10,7 +11,7 @@ export interface DashboardProps {
 export function Dashboard({ children, userRole, typePage }: DashboardProps) {
 	return (
 		<Container>
-			{userRole === "freelancer" && (
+			{userRole === ROLES.FREELANCER && (
 				<>
 					<DashboardMenu userRole={userRole} />
 					<Area>
@@ -19,11 +20,11 @@ export function Dashboard({ children, userRole, typePage }: DashboardProps) {
 					</Area>
 				</>
 			)}
-			{userRole === "employer" && (
+			{userRole === ROLES.EMPLOYER && (
 				<>
 					<DashboardMenu userRole="employer" />
 					<Area>
-						<DashboardHeader userRole="employer" />
+						<DashboardHeader userRole="employer" typePage={typePage} />
 						<Page>{children}</Page>
 					</Area>
 				</>

@@ -20,7 +20,7 @@ export const THIRD_PAGE = "thirdPage";
 export const WORK_DETAILS = "jobs/details";
 // Employer
 
-export const MY_JOBS = "/employer/my-jobs";
+export const MY_JOBS = "/employer/my-jobs-page";
 export const EMPLOYER_PROFILE = "/employer/create-profile";
 
 // Freelancer

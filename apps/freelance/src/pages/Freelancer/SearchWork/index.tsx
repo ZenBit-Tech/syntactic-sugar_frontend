@@ -102,7 +102,7 @@ export function SearchWork() {
 					job.position.toLowerCase().includes(filter.position.toLowerCase()) &&
 					job.category.includes(filter.category) &&
 					job.employmentType.includes(filter.employmentType) &&
-					job.levelEnglish.includes(filter.englishLevel) &&
+					job.englishLevel.includes(filter.englishLevel) &&
 					job.hourRate.includes(filter.hourRate) &&
 					skillsFilter[index],
 			);
@@ -116,7 +116,7 @@ export function SearchWork() {
 				<Form onSubmit={handleSubmit(onSubmit)}>
 					<Wrapper>
 						<InputContainer>
-							{data &&
+							{/* {data &&
 								data.map(
 									({
 										id,
@@ -138,7 +138,7 @@ export function SearchWork() {
 											</ul>
 										);
 									}, // here must be cards with NavLinks
-								)}
+								)} */}
 
 							<InputHeader>
 								<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
