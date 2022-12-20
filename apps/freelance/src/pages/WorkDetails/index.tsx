@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
@@ -10,7 +10,7 @@ import {
 	StyledButton,
 } from "@freelance/components";
 import { useGetJobIdQuery } from "src/redux/jobs/jobs.api";
-import { SEARCH_WORK, SEND_PROPOSAL } from "src/utils/constants/breakpoint";
+import { SEARCH_WORK, SEND_PROPOSAL } from "utils/constants/breakpoint";
 import {
 	ContainerBox,
 	CardContainer,
@@ -22,34 +22,20 @@ import {
 	LeftSide,
 	RightSide,
 	Bottom,
-	Subcontainer,
 	Wrapper,
 } from "./styles";
 
-type QueryId = {
-	id: string;
-};
-
 export function WorkDetails() {
-	// const [job, setJob] = useState(null);
 	const { t } = useTranslation();
 	const navigate = useNavigate();
-	const { id } = useParams<QueryId>();
-	const { job } = useGetJobIdQuery(id);
+	const { id } = useParams();
+	const { data } = useGetJobIdQuery(`${id}`);
 
-	// useEffect(() => {
-	// 	const getJob = async () => {
-	// 		try {
-	// 			const { jobInfo } = useGetJobIdQuery(id);
-	// 			setJob(jobInfo);
-	// 		} catch (error) {
-	// 			alert(error);
-	// 		}
-	// 	};
-	// 	getJob();
-	// }, [id]);
-
-	console.log(id);
+	useEffect(() => {
+		if (id === null && data === undefined) {
+			return;
+		}
+	}, [id, data]);
 
 	const handleClickProposal = () => {
 		navigate(SEND_PROPOSAL);
@@ -87,13 +73,13 @@ export function WorkDetails() {
 									<Title id="country">
 										<strong>{t("newJobPosting.secondForm.positionLabel")}</strong>
 									</Title>
-									<p></p>
+									<p>{data?.position}</p>
 								</Item>
 								<Item>
 									<Title id="category">
 										<strong>{t("newJobPosting.secondForm.employmentTypeLabel")}</strong>
 									</Title>
-									<p></p>
+									<p>{data?.employmentType}</p>
 								</Item>
 								<Item>
 									<Title id="position">
@@ -105,7 +91,7 @@ export function WorkDetails() {
 									<Title id="employment">
 										<strong>{t("jobDetails.duration")}</strong>
 									</Title>
-									<p></p>
+									<p>{data?.availableAmountOfHours}</p>
 								</Item>
 							</LeftSide>
 							<RightSide>
@@ -113,20 +99,20 @@ export function WorkDetails() {
 									<Title id="workExperience">
 										<strong>{t("jobDetails.salary")}</strong>
 									</Title>
-									<p></p>
+									<p>{data?.hourRate}</p>
 								</Item>
 
 								<Item>
 									<Title id="rateHour">
 										<strong>{t("newJobPosting.thirdForm.englishLevelLabel")}</strong>
 									</Title>
-									<p></p>
+									<p>{data?.englishLevel}</p>
 								</Item>
 								<Item>
 									<Title id="workingHour">
 										<strong>{t("jobDetails.exp")}</strong>
 									</Title>
-									<p></p>
+									<p>{data?.workExperience}</p>
 								</Item>
 								<Item>
 									<Title id="skills">
@@ -141,18 +127,17 @@ export function WorkDetails() {
 								<Title id="workHistory">
 									<strong>{t("newJobPosting.firstForm.descriptionLabel")}</strong>
 								</Title>
-								<Subcontainer>
-									<Item id="workHistory">
-										<p></p>
-									</Item>
-								</Subcontainer>
+
+								<Item id="workHistory">
+									<p>{data?.description}</p>
+								</Item>
 							</ItemContainer>
 							<ItemContainer id="workHistory">
 								<Title id="workHistory">
 									<strong>{t("newJobPosting.thirdForm.otherRequirenmentsLabel")}</strong>
 								</Title>
 								<Item id="workHistory">
-									<p></p>
+									<p>{data?.otherRequirenments}</p>
 								</Item>
 							</ItemContainer>
 						</Bottom>

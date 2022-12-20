@@ -1,7 +1,6 @@
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
-import store from "redux/store";
 import Login from "@pages/Login";
 import Signup from "@pages/Signup";
 import { RecoverPasswordRequest } from "@pages/RecoverPasswordRequest";
@@ -18,16 +17,17 @@ import {
 	JobPostingSecondPage,
 	JobPostingThirdPage,
 } from "@pages/NewJobPosting";
+import store from "redux/store";
 import { CreateProfile2 } from "@pages/Freelancer/CreateProfile2";
 import { SearchWork } from "@pages/Freelancer/SearchWork";
-import { WorkDetails } from "@pages/WorkDetails";
 import { EmployerJobsPage } from "@pages/EmployerJobsPage";
+import { WorkDetails } from "@pages/WorkDetails";
 import { StyledApp } from "./app.styled";
 
 export function App() {
 	return (
 		<StyledApp>
-			<GoogleOAuthProvider clientId="253619542281-miag0ub2aorap933406d1vg3bbte7j8m.apps.googleusercontent.com">
+			<GoogleOAuthProvider clientId={`${process.env["NX_APP_GOOGLE_KEY"]}`}>
 				<Provider store={store}>
 					<BrowserRouter>
 						<Routes>
@@ -36,6 +36,8 @@ export function App() {
 							<Route path="/role" element={<Role />} />
 							<Route path="/recover-password" element={<RecoverPasswordRequest />} />
 							<Route path="/check-your-email" element={<RecoverPasswordCheck />} />
+							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
+							<Route path="/work-details" element={<h1>Work Details Page 4.1</h1>} />
 							<Route path="/password-updated" element={<RecoverPasswordUpdate />} />
 							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
 							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />
@@ -45,8 +47,6 @@ export function App() {
 							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />
 							<Route path="/freelancer/create-profile2" element={<CreateProfile2 />} />
 							<Route path="/freelancer/searchwork" element={<SearchWork />} />
-							<Route path="/employer/create-profile1" element={<CreateEmployerProfile />} />
-							<Route path="/jobs/details/:id" element={<WorkDetails />} />
 							<Route path="/employer/create-profile" element={<CreateEmployerProfile />} />
 							<Route path="/employer/my-jobs-page" element={<EmployerJobsPage />} />
 							<Route path="/employer/create-new-job-first-page" element={<JobPostingFirstPage />} />
@@ -55,6 +55,7 @@ export function App() {
 								element={<JobPostingSecondPage />}
 							/>
 							<Route path="/employer/create-new-job-third-page" element={<JobPostingThirdPage />} />
+							<Route path="/jobs/details/:id" element={<WorkDetails />} />
 						</Routes>
 					</BrowserRouter>
 				</Provider>

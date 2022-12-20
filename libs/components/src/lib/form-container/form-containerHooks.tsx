@@ -6,7 +6,7 @@ import { useLoginWithGoogleMutation } from "redux/login.api";
 import { toast, ToastContainer } from "react-toastify";
 import { UserRoles } from "redux/role.api";
 import { setUserData } from "redux/userState/userSlice";
-import { ROLE_SELECTION, MY_JOBS, SEARCH_WORK } from "src/utils/constants/breakpoint";
+import { ROLE_SELECTION, MY_JOBS, SEARCH_WORK } from "utils/constants/breakpoint";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useSignUpMutation } from "redux/signup-googleApi";
 

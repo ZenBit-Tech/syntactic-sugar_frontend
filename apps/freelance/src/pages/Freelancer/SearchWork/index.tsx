@@ -116,7 +116,7 @@ export function SearchWork() {
 				<Form onSubmit={handleSubmit(onSubmit)}>
 					<Wrapper>
 						<InputContainer>
-							{data &&
+							{/* {data &&
 								data.map(
 									({
 										id,
@@ -132,15 +132,15 @@ export function SearchWork() {
 											<ul>
 												<li key={id}>
 													<NavLink
-														to={`/jobs/details/:${id}`}
+														to={`/jobs/details/${id}`}
 													>{`${position}, ${workExperience}`}</NavLink>
 												</li>
 											</ul>
 										);
-									},
-								)}
-							{/* <InputHeader>
-						
+									}, // here must be cards with NavLinks
+								)} */}
+
+							<InputHeader>
 								<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
 									{t("freelancer.searchWork.jobsList")}
 								</StyledTitle>
@@ -267,7 +267,7 @@ export function SearchWork() {
 										<strong>{t("freelancer.searchWork.unFilter")}</strong>
 									</StyledButton>
 								</div>
-							</InputWrapper> */}
+							</InputWrapper>
 						</InputContainer>
 					</Wrapper>
 				</Form>
