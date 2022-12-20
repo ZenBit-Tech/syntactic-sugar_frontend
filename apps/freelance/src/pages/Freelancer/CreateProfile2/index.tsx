@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useAppDispatch } from "redux/example-hooks";
-import { addFreelancerInfo } from "redux/createFreelancer/freelancer-slice";
 import { Dashboard, StyledTitle, StyledButton, ModalWindow } from "@freelance/components";
+import { useAppDispatch } from "redux/hooks";
+import { addFreelancerInfo } from "redux/createFreelancer/freelancer-slice";
 import { CREATE_PROFILE_1, VIEW_PROFILE } from "src/utils/constants/breakpoint";
 import { useEducationHandler } from "./useEducationHandler";
 import { useWorkHistoryHandler } from "./useWorkHistoryHandler";
@@ -77,7 +77,7 @@ export function CreateProfile2() {
 
 	return (
 		<StyledPage>
-			<Dashboard userRole="freelancer">
+			<Dashboard userRole="freelancer" typePage="createProfile">
 				<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
 					{t("dashboard.profilePage.title")}
 				</StyledTitle>
