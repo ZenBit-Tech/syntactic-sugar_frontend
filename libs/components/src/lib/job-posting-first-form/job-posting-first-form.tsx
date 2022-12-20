@@ -10,8 +10,8 @@ import {
 	JobPostingLabel,
 } from "@freelance/components";
 import { useFirstFormSchema } from "utils/validations/newJobPostingSchemas";
+import { getStoredJobInfo } from "redux/jobs";
 import { useAppSelector } from "redux/hooks";
-import { getStoredJobInfo } from "redux/newJobPosting/new-job-posting-slice";
 import { useJobPostingFirstFormHook } from "./job-posting-first-formHooks";
 import { FirstFormInputWrapper } from "./job-posting-first-form.styled";
 

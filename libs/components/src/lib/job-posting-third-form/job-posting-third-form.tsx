@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
+import { getStoredJobInfo } from "redux/jobs";
 import { useAppSelector } from "redux/hooks";
-import { getStoredJobInfo } from "redux/newJobPosting";
 import {
 	IJobPostingThirdFormProps,
 	IJobPostingThirdForm,

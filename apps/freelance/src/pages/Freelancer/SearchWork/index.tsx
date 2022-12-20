@@ -99,7 +99,7 @@ export function SearchWork() {
 					job.position.toLowerCase().includes(filter.position.toLowerCase()) &&
 					job.category.includes(filter.category) &&
 					job.employmentType.includes(filter.employmentType) &&
-					job.levelEnglish.includes(filter.englishLevel) &&
+					job.englishLevel.includes(filter.englishLevel) &&
 					job.hourRate.includes(filter.hourRate) &&
 					skillsFilter[index],
 			);

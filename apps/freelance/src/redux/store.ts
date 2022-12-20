@@ -2,14 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
 import { persistedReducer } from "./userState/userPersist";
 import freelancerReducer from "./createFreelancer/freelancer-slice";
-import newJobReducer from "./newJobPosting/new-job-posting-slice";
+import newJobReducer from "./jobs/new-job-posting-slice";
 import { signupGoogleApi } from "./signup-googleApi";
 import { resetPasswordApi } from "./resetPassword/resetPasswordSlice";
 import { createFreelancerApi } from "./createFreelancer/freelancer-pageApi";
 import { loginApi } from "./login.api";
 import { roleApi } from "./role.api";
 import { proposalFreelancerApi } from "./sendProposalFreelancer/proposalApi";
-import { newJobPostingApi } from "./newJobPosting/new-job-posting-api";
 import { getJobsApi } from "./jobs/jobs.api";
 import { createEmployerApi } from "./createEmployer/employerApi";
 import { uploadImage } from "./uploadImage/upload-image.api";
@@ -24,7 +23,6 @@ const store = configureStore({
 		[roleApi.reducerPath]: roleApi.reducer,
 		[resetPasswordApi.reducerPath]: resetPasswordApi.reducer,
 		[createFreelancerApi.reducerPath]: createFreelancerApi.reducer,
-		[newJobPostingApi.reducerPath]: newJobPostingApi.reducer,
 		[roleApi.reducerPath]: roleApi.reducer,
 		[proposalFreelancerApi.reducerPath]: proposalFreelancerApi.reducer,
 		[getJobsApi.reducerPath]: getJobsApi.reducer,
@@ -43,7 +41,6 @@ const store = configureStore({
 			createFreelancerApi.middleware,
 			roleApi.middleware,
 			proposalFreelancerApi.middleware,
-			newJobPostingApi.middleware,
 			getJobsApi.middleware,
 			createEmployerApi.middleware,
 			uploadImage.middleware,

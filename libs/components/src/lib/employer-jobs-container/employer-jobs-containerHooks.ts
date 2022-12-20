@@ -1,18 +1,21 @@
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { useGetJobsByEmployerQuery } from "redux/jobs";
 import { CREATE_NEW_JOB_FIRST_PAGE } from "utils/constants/links";
+import { JobsInterface } from "redux/jobs";
 
-interface IUseEmployerEmptyHooks {
-	noJobs: string;
+interface IUseEmployerJobsContainerHooks {
 	createButton: string;
+	isLoading: boolean;
+	data: JobsInterface[] | undefined;
 	handleClick: () => void;
 }
 
-export const useEmployerEmptyHook = (): IUseEmployerEmptyHooks => {
+export const useEmployerJobsContainerHook = (): IUseEmployerJobsContainerHooks => {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
+	const { data, isLoading } = useGetJobsByEmployerQuery();
 
-	const noJobs = t("employerJobsPage.noJobs");
 	const createButton = t("employerJobsPage.createButton");
 
 	const handleClick = (): void => {
@@ -20,8 +23,9 @@ export const useEmployerEmptyHook = (): IUseEmployerEmptyHooks => {
 	};
 
 	return {
-		noJobs,
 		createButton,
+		isLoading,
+		data,
 		handleClick,
 	};
 };

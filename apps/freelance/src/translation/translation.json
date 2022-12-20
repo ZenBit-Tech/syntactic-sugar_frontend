@@ -64,7 +64,13 @@
 	},
 	"jobCard": {
 		"sendProposal": "Send proposal",
-		"publishJob": "Publish Job"
+		"removeJob": "Remove job",
+		"editJob": "Edit Job",
+		"location": "Location",
+		"employmentType": "Type",
+		"option": "Option",
+		"exp": "Expereance",
+		"englishLevel": "English"
 	},
 	"invitationPage": {
 		"title": "You have successfully registered!",
@@ -202,7 +208,7 @@
 	},
 	"employerJobsPage": {
 		"noJobs": "You haven't posted a job yet! Create your job!",
-		"createButton": "Create the first job"
+		"createButton": "Create a new job"
 	},
 	"countries": {
 		"germany": "Germany",
