@@ -1,6 +1,6 @@
+import { RootState } from "redux/store";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { baseUrl } from "utils/constants/redux-query";
-import { RootState } from "redux/store";
 
 interface IFormInput {
 	fullName: string;
@@ -10,6 +10,22 @@ interface IFormInput {
 	linkedIn: string;
 	website: string;
 	aboutUs: string;
+	image: string;
+}
+
+interface IResponseEmployer {
+	fullName: string;
+	companyName: string;
+	position: string;
+	phone: string;
+	linkedIn: string;
+	website: string;
+	aboutUs: string;
+	image: string;
+	user: {
+		id: string;
+		email: string;
+	};
 }
 
 export const createEmployerApi = createApi({
@@ -25,7 +41,7 @@ export const createEmployerApi = createApi({
 			return headers;
 		},
 	}),
-	tagTypes: ["employer"],
+	tagTypes: ["employer", "employerProfile"],
 	endpoints: builder => ({
 		createEmployer: builder.mutation({
 			query: (body: IFormInput) => ({
@@ -35,7 +51,11 @@ export const createEmployerApi = createApi({
 			}),
 			invalidatesTags: ["employer"],
 		}),
+		getEmployer: builder.query<IResponseEmployer, void>({
+			query: () => `/employer/profile`,
+			providesTags: ["employerProfile"],
+		}),
 	}),
 });
 
-export const { useCreateEmployerMutation } = createEmployerApi;
+export const { useCreateEmployerMutation, useGetEmployerQuery } = createEmployerApi;
