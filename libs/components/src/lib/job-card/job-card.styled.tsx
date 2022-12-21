@@ -9,11 +9,6 @@ export const Container = styled.div`
 
 `;
 
-// export const StyledParagraphCard = styled(StyledParagraph)`
-//   display: flex;
-//   flex-direction: column;
-// `;
-
 export const StyledJobCard = styled.div`
 	display: grid;
 	width: 100%;
