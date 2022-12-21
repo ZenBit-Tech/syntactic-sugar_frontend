@@ -1,18 +1,12 @@
-import styled from "styled-components";
+import { JobsInterface } from "redux/jobs";
+import { Pagination } from "@freelance/components";
 
-/* eslint-disable-next-line */
-export interface EmployerJobsListProps {}
+export interface EmployerJobsListProps {
+	data: JobsInterface[] | undefined;
+}
 
-const StyledEmployerJobsList = styled.div`
-	color: pink;
-`;
-
-export function EmployerJobsList(props: EmployerJobsListProps) {
-	return (
-		<StyledEmployerJobsList>
-			<h1>Welcome to EmployerJobsList!</h1>
-		</StyledEmployerJobsList>
-	);
+export function EmployerJobsList({ data }: EmployerJobsListProps) {
+	return <Pagination itemsPerPage={5} user="employer" jobs={data} />;
 }
 
 export default EmployerJobsList;

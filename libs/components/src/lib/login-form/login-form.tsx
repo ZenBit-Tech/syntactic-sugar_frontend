@@ -11,7 +11,8 @@ import { signInSchema } from "utils/validations/loginForm";
 import { useLoginMutation } from "redux/login.api";
 import { UserRoles } from "redux/role.api";
 import { setUserData } from "redux/userState/userSlice";
-import { ROLE_SELECTION, MY_JOBS, SEARCH_WORK } from "utils/constants/breakpoint";
+import { ROLE_SELECTION, SEARCH_WORK } from "utils/constants/breakpoint";
+import { EMPLOYER_JOBS_PAGE } from "utils/constants/links";
 import { Form, InputWrapper } from "./login-form.styled";
 
 export function LoginForm() {
@@ -55,7 +56,7 @@ export function LoginForm() {
 			navigate(SEARCH_WORK);
 		}
 		if (userData?.role === UserRoles.EMPLOYER) {
-			navigate(MY_JOBS);
+			navigate(EMPLOYER_JOBS_PAGE);
 		}
 	}, [userData]);
 

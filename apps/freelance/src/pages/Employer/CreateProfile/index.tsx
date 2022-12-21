@@ -1,6 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { toast, ToastContainer } from "react-toastify";
 import { Controller, useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { ThemeProvider } from "styled-components";
 import { ErrorMessage } from "@hookform/error-message";
 import {
 	ThemeColors,
@@ -10,11 +14,13 @@ import {
 	StyledButton,
 } from "@freelance/components";
 import { StyledPage } from "@pages/Freelancer/CreateProfile1/style";
-
-import { ThemeProvider } from "styled-components";
-import { FormBox, InputContainer } from "./styles";
+import { DEFAULT_IMAGE } from "utils/constants/links";
+import { baseUrl } from "utils/constants/redux-query";
+import { useUploadImageMutation } from "redux/uploadImage/upload-image.api";
+import { setUserData } from "redux/userState/userSlice";
 import { useCreateEmployerMutation } from "redux/createEmployer/employerApi";
 import { MY_JOBS } from "src/utils/constants/breakpoint";
+import { FormBox, InputContainer, StyledFileField } from "./styles";
 
 interface IFormInput {
 	fullName: string;
@@ -24,17 +30,56 @@ interface IFormInput {
 	linkedIn: string;
 	website: string;
 	aboutUs: string;
+	image: string;
 }
 
 export function CreateEmployerProfile() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
-	const [createProfile] = useCreateEmployerMutation();
+	const dispatch = useDispatch();
+	const [
+		createProfile,
+		{ data: userData, isLoading: isLoadingData, isSuccess: isSuccessData, isError: isErrorData },
+	] = useCreateEmployerMutation();
 	const {
 		handleSubmit,
+		register,
 		control,
 		formState: { errors },
 	} = useForm<IFormInput>({ criteriaMode: "all" });
+	const [imageUrl, setImageUrl] = useState<string>(DEFAULT_IMAGE);
+	const [uploadImage, { data: imageData, isLoading, isError, isSuccess }] =
+		useUploadImageMutation();
+
+	const onSubmitFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
+		try {
+			const formData = new FormData();
+			if (event.currentTarget.files) {
+				formData.append("file", event.currentTarget.files[0]);
+			}
+			await uploadImage(formData);
+		} catch (error) {
+			alert(error);
+		}
+	};
+
+	useEffect(() => {
+		if (isSuccess) {
+			setImageUrl(baseUrl + "/" + imageData?.file);
+		}
+		if (isError) {
+			toast.error(t("recoverPassForm.errorMessageServerError"));
+		}
+	}, [isSuccess, isError]);
+
+	useEffect(() => {
+		if (isSuccessData) {
+			dispatch(setUserData({ token: userData?.token, role: userData?.role }));
+		}
+		if (isErrorData) {
+			toast.error(t("recoverPassForm.errorMessageServerError"));
+		}
+	}, [isSuccessData, isErrorData]);
 
 	const onSubmit = async (values: IFormInput) => {
 		const employerInfo = {
@@ -45,6 +90,7 @@ export function CreateEmployerProfile() {
 			linkedIn: values.linkedIn,
 			website: values.website,
 			aboutUs: values.aboutUs,
+			image: imageData && imageUrl !== DEFAULT_IMAGE ? imageData.file : "",
 		};
 		try {
 			await createProfile(employerInfo);
@@ -57,7 +103,7 @@ export function CreateEmployerProfile() {
 	return (
 		<ThemeProvider theme={ThemeColors && ThemeBackground}>
 			<StyledPage>
-				<Dashboard userRole="employer">
+				<Dashboard userRole="employer" typePage="createProfile">
 					<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
 						{t("dashboard.profilePage.title")}
 					</StyledTitle>
@@ -65,6 +111,30 @@ export function CreateEmployerProfile() {
 						{t("employer.create.title")}
 					</StyledTitle>
 					<FormBox onSubmit={handleSubmit(onSubmit)}>
+						<StyledFileField>
+							<img src={imageUrl} alt="User Avatar" />
+							<div>
+								<label>
+									{t("image.chooseImage")}
+									<input
+										id="fileInput"
+										type="file"
+										accept=".png, .jpg, .jpeg"
+										{...register("image")}
+										onChange={onSubmitFile}
+									/>
+								</label>
+								<label>
+									{t("image.resetImage")}
+									<input
+										type="button"
+										onClick={() => {
+											setImageUrl(DEFAULT_IMAGE);
+										}}
+									/>
+								</label>
+							</div>
+						</StyledFileField>
 						<InputContainer>
 							<Controller
 								name="fullName"
@@ -213,6 +283,7 @@ export function CreateEmployerProfile() {
 							<strong>{t("employer.create.btn1")}</strong>
 						</StyledButton>
 					</FormBox>
+					<ToastContainer />
 				</Dashboard>
 			</StyledPage>
 		</ThemeProvider>

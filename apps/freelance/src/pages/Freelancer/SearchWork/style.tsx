@@ -64,7 +64,6 @@ export const Form = styled.form`
 		}
 		.selectContainer__select {
 			margin: 5%;
-
 		}
 		.selectContainer__select_map {
 			margin: 5%;
@@ -145,7 +144,7 @@ export const InputWrapper = styled.div`
 		width: 95%;
 		height: 100px;
 		margin: 2px;
-		border: 1px solid ${({ theme }) => theme.colors.darkGrey};
+		border: 2px solid ${({ theme }) => theme.colors.grey};
 		border-radius: 10px;
 		:hover {
 			box-shadow: 10px 5px 5px ${({ theme }) => theme.colors.lightRed};

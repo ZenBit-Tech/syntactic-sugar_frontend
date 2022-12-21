@@ -1,20 +1,17 @@
 import { Dashboard, Pagination, StyledPage } from "@freelance/components";
-import { useGetJobByIdQuery } from "src/redux/jobs/jobs.api";
-import { Items } from "../../../../../../libs/components/src/lib/pagination/items";
+import { useGetJobByIdQuery, useGetJobsWithProposalsQuery } from "src/redux/jobs/jobs.api";
 
 export function ProposalsPage() {
-    const user = 'freelancer';
-    // const [job, {isLoading}] = useGetJobByIdQuery();
+    
+    const {data} = useGetJobsWithProposalsQuery();
+    console.log(data)
 
     return (
         <StyledPage>
-            <Dashboard
-                userRole="freelancer" page="proposals" >
-                <p>Proposals Page</p>
-                {/* <Pagination itemsPerPage={5} user={user} jobs={[]}>
-                    <Items currentItems={[]} user={""} />
-                </Pagination> */}
-            </Dashboard >
+            <Dashboard userRole="freelancer" typePage="proposals">
+                <Pagination itemsPerPage={5} user="freelancer" jobs={data} />
+            </Dashboard>
+            
         </StyledPage>
     )
 

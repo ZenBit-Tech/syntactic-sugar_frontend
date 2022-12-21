@@ -64,7 +64,13 @@
 	},
 	"jobCard": {
 		"sendProposal": "Send proposal",
-		"publishJob": "Publish Job"
+		"removeJob": "Remove job",
+		"editJob": "Edit Job",
+		"location": "Location",
+		"employmentType": "Type",
+		"option": "Option",
+		"exp": "Expereance",
+		"englishLevel": "English"
 	},
 	"invitationPage": {
 		"title": "You have successfully registered!",
@@ -90,10 +96,10 @@
 			"logout": "LOGOUT"
 		}
 	},
-  "image": {
-    "chooseImage": "Choose Image",
-    "resetImage": "Reset Image"
-  },
+	"image": {
+		"chooseImage": "Choose Image",
+		"resetImage": "Reset Image"
+	},
 	"freelancer": {
 		"createProfile": {
 			"fullNamePlaceholder": "Full Name",
@@ -124,6 +130,12 @@
 				"englishLevel": "English Level"
 			}
 		},
+		"viewProfile": {
+			"employmentType": "Employment",
+			"hourRate": "Rate hour",
+			"workingHours": "Working hours",
+			"workHistory": "Work history"
+		},
 		"searchWork": {
 			"filter": "Filter",
 			"unFilter": "Reset filter",
@@ -138,6 +150,15 @@
 		"roleSubtitle": "Choose your goal and find the best solutions for your project or career.",
 		"roleJobOwner": "I am a Job Owner, hiring for a project.",
 		"roleFreelancer": "I am a Freelancer, looking for a job."
+	},
+	"sendProposalFreelancer": {
+		"greeting": "Create your proposal!",
+		"send": "Send proposal",
+		"back": "Go back",
+		"cv": "Add your CV:",
+		"placeholderCoverLetter": "cover letter",
+		"coverLetter": "Add your cover letter:",
+		"alert": "Something went wrong, try again"
 	},
 	"newJobPosting": {
 		"mainTitle": "New job posting",
@@ -189,7 +210,7 @@
 	},
 	"employerJobsPage": {
 		"noJobs": "You haven't posted a job yet! Create your job!",
-		"createButton": "Create the first job"
+		"createButton": "Create a new job"
 	},
 	"countries": {
 		"germany": "Germany",

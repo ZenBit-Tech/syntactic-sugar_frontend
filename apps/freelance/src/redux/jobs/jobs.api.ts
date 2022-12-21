@@ -1,45 +1,71 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { baseUrl } from "utils/constants/redux-query";
-import { RootState } from "redux/store";
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { baseQuery } from "redux/base-query";
+import { ICreatedJob, INewJob } from "redux/interfaces";
 
-interface JobsInterface {
+export interface Country {
+	id: string;
+	name: string;
+}
+
+export interface Skills extends Country {}
+
+export interface JobsInterface {
+	id: string;
 	position: string;
-	location: string;
+	countries: Country[];
 	employmentType: string;
 	availableAmountOfHours: string;
 	workExperience: string;
-	levelEnglish: string;
-	date: string;
+	englishLevel: string;
+	category: string;
+	skills: string[];
+	hourRate: string;
+	createdDate: string;
+	updatedDate: string;
 	isPublished: boolean;
 	isProposal: boolean;
 }
 
 export const getJobsApi = createApi({
 	reducerPath: "jobs",
-	baseQuery: fetchBaseQuery({
-		baseUrl: baseUrl,
-		prepareHeaders: (headers, { getState }) => {
-			const token = (getState() as RootState).user.token;
-			if (token) {
-				headers.set("Authorization", `Bearer ${token}`);
-			}
-
-			return headers;
-		},
-	}),
+	baseQuery: baseQuery,
+	tagTypes: ["Job"],
 	refetchOnFocus: true,
 	endpoints: build => ({
 		getJobs: build.query<JobsInterface[], void>({
 			query: () => ({
 				url: "jobs/get-all-jobs",
 			}),
+			providesTags: ["Job"],
+		}),
+		getJobsByEmployer: build.query<JobsInterface[], void>({
+			query: () => ({
+				url: "jobs/get-jobs-by-employer",
+			}),
+			providesTags: ["Job"],
+		}),
+		createJob: build.mutation<ICreatedJob, INewJob>({
+			query: body => ({
+				url: "jobs/create-new-job",
+				method: "POST",
+				body,
+			}),
+			invalidatesTags: ["Job"],
 		}),
 		getJobById: build.query<JobsInterface, void>({
-			query: job => ({
-				url: `jobs/${job}`,
+			query: id => ({
+				url: `jobs/${id}`,
 			}),
+			providesTags: ["Job"],
+		}),
+		getJobsWithProposals: build.query<JobsInterface[], void>({
+			query: () => ({
+				url: `jobs/get-job-by-proposals`,
+			}),
+			providesTags: ["Job"],
 		}),
 	}),
 });
 
-export const { useGetJobsQuery, useGetJobByIdQuery } = getJobsApi;
+export const { useGetJobsQuery, useGetJobsByEmployerQuery, useGetJobByIdQuery, useCreateJobMutation, useGetJobsWithProposalsQuery } = getJobsApi;
+

@@ -4,7 +4,7 @@ import { IUserState } from "./interfaces/IUserData";
 import { Token } from "./interfaces/Token";
 import { RootState } from "./store";
 
-interface IForm {
+export interface IForm {
 	email: string;
 	password: string;
 }

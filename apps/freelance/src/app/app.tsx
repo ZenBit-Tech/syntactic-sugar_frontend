@@ -1,7 +1,6 @@
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
-import store from "redux/store";
 import Login from "@pages/Login";
 import Signup from "@pages/Signup";
 import { RecoverPasswordRequest } from "@pages/RecoverPasswordRequest";
@@ -11,18 +10,20 @@ import { CreateProfile1 } from "@pages/Freelancer/CreateProfile1";
 import { CreateEmployerProfile } from "@pages/Employer/CreateProfile";
 import { RecoverPasswordUpdate } from "@pages/RecoverPasswordUpdate";
 import { Invitation } from "@pages/Invitation";
+import { ViewProfile } from "@pages/Freelancer/ViewProfile";
 import { Role } from "@pages/Role";
 import {
 	JobPostingFirstPage,
 	JobPostingSecondPage,
 	JobPostingThirdPage,
 } from "@pages/NewJobPosting";
-import CreateProfile2 from "@pages/Freelancer/CreateProfile2";
+import store from "redux/store";
+import { SendProposal } from "@pages/SendProposal";
+import { CreateProfile2 } from "@pages/Freelancer/CreateProfile2";
+import { SearchWork } from "@pages/Freelancer/SearchWork";
 import { EmployerJobsPage } from "@pages/EmployerJobsPage";
-import SearchWork from "@pages/Freelancer/SearchWork";
 import { ProposalsPage } from "@pages/Freelancer/ProposalsPage";
 import { StyledApp } from "./app.styled";
-
 
 export function App() {
 	return (
@@ -37,13 +38,19 @@ export function App() {
 							<Route path="/recover-password" element={<RecoverPasswordRequest />} />
 							<Route path="/check-your-email" element={<RecoverPasswordCheck />} />
 							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
+							<Route path="/freelancer/send-proposal" element={<SendProposal />} />
+							<Route path="/work-details" element={<h1>Work Details Page 4.1</h1>} />
 							<Route path="/password-updated" element={<RecoverPasswordUpdate />} />
+							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
+							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />
+							<Route path="/freelancer/create-profile2" element={<CreateProfile2 />} />
 							<Route path="/invitation" element={<Invitation />} />
+							<Route path="/freelancer/view-profile" element={<ViewProfile />} />
 							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />
 							<Route path="/freelancer/create-profile2" element={<CreateProfile2 />} />
 							<Route path="/freelancer/searchwork" element={<SearchWork />} />
 							<Route path="/freelancer/proposals" element={<ProposalsPage />} />
-							<Route path="/employer/create-profile1" element={<CreateEmployerProfile />} />
+							<Route path="/employer/create-profile" element={<CreateEmployerProfile />} />
 							<Route path="/employer/my-jobs-page" element={<EmployerJobsPage />} />
 							<Route path="/employer/create-new-job-first-page" element={<JobPostingFirstPage />} />
 							<Route

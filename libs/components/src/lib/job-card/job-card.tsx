@@ -1,72 +1,88 @@
 import { useTranslation } from "react-i18next";
-import { StyledTitle, StyledParagraph, StyledButton } from "@freelance/components";
-import styled from "styled-components";
+import { StyledTitle, StyledButton, StyledParagraph } from "@freelance/components";
+import { Country } from "redux/jobs";
 import {
-	Container,
 	StyledJobCard,
 	StyledJobCardHeader,
 	StyledJobCardParagraph,
-	StyledJobCardHeaderLeft,
+	CountriesContainer,
+	LocationBlock,
 } from "./job-card.styled";
 
-/* eslint-disable-next-line */
 export interface JobCardProps {
 	position: string;
-	location: string;
+	countries: Country[];
 	employmentType: string;
 	availableAmountOfHours: string;
 	workExperience: string;
 	levelEnglish: string;
-	date: string;
+	createdDate: string;
+	updatedDate?: string;
 	userType: string;
-	jobActive: boolean;
+	skills?: string[];
+	category?: string;
 }
 
 export function JobCard({
 	position,
-	location,
+	countries,
 	employmentType,
 	availableAmountOfHours,
 	workExperience,
 	levelEnglish,
-	date,
+	createdDate,
 	userType,
-	jobActive,
 }: JobCardProps) {
 	const { t } = useTranslation();
 
 	return (
-		<Container>
-			<StyledJobCard>
+		<StyledJobCard>
+			<StyledJobCardHeader>
 				<StyledTitle tag="h2" fontWeight={800} fontSize="md">
-					<StyledJobCardHeader>
-						<strong>{position}</strong>
-						<StyledJobCardHeaderLeft>
-							<strong>{date}</strong>
-							{userType === "freelancer" && jobActive && (
-								<StyledButton buttonColor="redGradient" buttonSize="sm" fontSize="md">
-									<strong>{t("jobCard.sendProposal")}</strong>
-								</StyledButton>
-							)}
-							{userType === "employer" && jobActive && (
-								<StyledButton buttonColor="redGradient" buttonSize="sm" fontSize="md">
-									<strong>{t("jobCard.publishJob")}</strong>
-								</StyledButton>
-							)}
-						</StyledJobCardHeaderLeft>
-					</StyledJobCardHeader>
+					<strong>{position}</strong>
 				</StyledTitle>
-				<StyledParagraph fontSize="md">
-					<StyledJobCardParagraph>
-						<strong>{location}</strong>
-						<strong>{employmentType}</strong>
-						<strong>{availableAmountOfHours}</strong>
-						<strong>{workExperience}</strong>
-						<strong>{levelEnglish}</strong>
-					</StyledJobCardParagraph>
+				<strong>{createdDate}</strong>
+				{userType === "freelancer" && (
+					<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
+						<strong>{t("jobCard.sendProposal")}</strong>
+					</StyledButton>
+				)}
+				{userType === "employer" && (
+					<>
+						<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
+							<strong>{t("jobCard.editJob")}</strong>
+						</StyledButton>
+						<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
+							<strong>{t("jobCard.removeJob")}</strong>
+						</StyledButton>
+					</>
+				)}
+			</StyledJobCardHeader>
+			<StyledJobCardParagraph>
+				<LocationBlock>
+					<StyledParagraph fontSize="sm" opacity={0.7}>
+						{t("jobCard.location")}:
+					</StyledParagraph>
+					<CountriesContainer>
+						{countries.map(country => (
+							<strong key={country.id}>{country.name}</strong>
+						))}
+					</CountriesContainer>
+				</LocationBlock>
+				<StyledParagraph fontSize="sm" opacity={0.7}>
+					{t("jobCard.employmentType")}: <strong>{employmentType}</strong>
 				</StyledParagraph>
-			</StyledJobCard>
-		</Container>
+				<StyledParagraph fontSize="sm" opacity={0.7}>
+					{t("jobCard.option")}: <strong>{availableAmountOfHours}</strong>
+				</StyledParagraph>
+				<StyledParagraph fontSize="sm" opacity={0.7}>
+					{t("jobCard.exp")}: <strong>{workExperience}</strong>
+				</StyledParagraph>
+				<StyledParagraph fontSize="sm" opacity={0.7}>
+					{t("jobCard.englishLevel")}: <strong>{levelEnglish}</strong>
+				</StyledParagraph>
+			</StyledJobCardParagraph>
+		</StyledJobCard>
 	);
 }
 

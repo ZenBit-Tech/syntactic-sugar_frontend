@@ -1,14 +1,12 @@
-import styled from "styled-components";
-import React, { useEffect, useState } from "react";
-import ReactPaginate, { ReactPaginateProps } from "react-paginate";
-import { Container, StyledReactPagination } from "./pagination.styled";
-import { Items, JobsInterface } from "./items";
+import { useState } from "react";
+import { JobsInterface } from "redux/jobs";
+import { StyledReactPagination } from "./pagination.styled";
+import { Items } from "./items";
 
-/* eslint-disable-next-line */
 export interface PaginationProps {
 	itemsPerPage: number;
 	user: string;
-	jobs: JobsInterface[];
+	jobs: JobsInterface[] | undefined;
 }
 
 export interface ReactPaginateEvent {
@@ -16,12 +14,13 @@ export interface ReactPaginateEvent {
 }
 
 export function Pagination({ itemsPerPage, user, jobs }: PaginationProps) {
+	const jobsLength = jobs?.length ? jobs?.length : 0;
 	const [itemOffset, setItemOffset] = useState<number>(0);
 	const endOffset = itemOffset + itemsPerPage;
-	const currentItems = jobs.slice(itemOffset, endOffset);
-	const pageCount = Math.ceil(jobs.length / itemsPerPage);
+	const currentItems = jobs?.slice(itemOffset, endOffset);
+	const pageCount = Math.ceil(jobsLength / itemsPerPage);
 	const handlePageClick = (event: ReactPaginateEvent) => {
-		const newOffset = (event.selected * itemsPerPage) % jobs.length;
+		const newOffset = (event.selected * itemsPerPage) % jobsLength;
 		setItemOffset(newOffset);
 	};
 

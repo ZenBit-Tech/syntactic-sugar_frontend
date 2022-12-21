@@ -47,6 +47,7 @@ interface iStyledParagraph {
 
 export const StyledParagraph = styled.p<iStyledParagraph>`
 	font-weight: 400;
+	opacity: ${({ opacity }) => (opacity ? opacity : 1)};
 
 	strong,
 	b {

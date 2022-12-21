@@ -1,19 +1,21 @@
 import { useTranslation } from "react-i18next";
 import { Container, FilterButtonWrap } from "./dashboard-menu.styled";
 import { FilterButton, StyledButton } from "@freelance/components";
+import { ROLES } from "utils/constants/roles";
 
 export interface DashboardMenuProps {
 	userRole: "freelancer" | "employer";
-	page?: "proposals" | "searchWork";
+	typePage?: "createProfile" | "main" | "proposals";
+
 }
 
-export function DashboardMenu({ userRole, page }: DashboardMenuProps) {
+export function DashboardMenu({ userRole, typePage }: DashboardMenuProps) {
 	const { t } = useTranslation();
 
 	return (
 		<Container>
 			<img id="logo" src="/assets/images/white_logo.png" alt="logo" />
-			{userRole === "freelancer" && (
+			{userRole === ROLES.FREELANCER && (
 				<>
 					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
 						{t("dashboard.menu.myContracts")}
@@ -21,10 +23,10 @@ export function DashboardMenu({ userRole, page }: DashboardMenuProps) {
 					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
 						{t("dashboard.menu.searchWorks")}
 					</StyledButton>
-					<StyledButton disabled={page === "proposals"} buttonSize="md" fontSize="md" buttonColor="lightRed">
+					<StyledButton disabled={typePage === "proposals"} buttonSize="md" fontSize="md" buttonColor="lightRed">
 						{t("dashboard.menu.proposals")}
 					</StyledButton>
-					{page === "proposals" &&
+					{typePage === "proposals" &&
 						(<FilterButtonWrap>
 							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
 								{t("dashboard.menu.myProposals")}
@@ -36,7 +38,7 @@ export function DashboardMenu({ userRole, page }: DashboardMenuProps) {
 					)}	
 				</>
 			)}
-			{userRole === "employer" && (
+			{userRole === ROLES.EMPLOYER && (
 				<>
 					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
 						{t("dashboard.menu.talents")}
