@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useForm, SubmitHandler, Controller, ChangeHandler } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useOptions, SelectOptions } from "utils/select-options/options";
 // hardcoded  - get jobs from server not provided yet
 import { jobs } from "utils/jobs/jobs";
@@ -16,7 +16,7 @@ import {
 	InputHeader,
 	InputWrapper,
 	SelectElement,
-  InputContainerCards
+	InputContainerCards,
 } from "./style";
 
 type user = "freelancer" | "employer";
@@ -36,6 +36,7 @@ export function SearchWork() {
 	const { t } = useTranslation();
 	const { handleSubmit, control, getValues, reset } = useForm<IFormInput>();
 	const { isLoading, isError, data } = useGetJobsQuery();
+
 	const emptyValue = {
 		value: "",
 		label: "",
@@ -162,7 +163,7 @@ export function SearchWork() {
 					<Wrapper>
 						<InputContainerCards>
 							<InputWrapper>
-								<Pagination itemsPerPage={5} user={user} jobs={filterJobs} />
+								<Pagination itemsPerPage={6} user={user} jobs={data} />
 							</InputWrapper>
 						</InputContainerCards>
 						<InputContainer>

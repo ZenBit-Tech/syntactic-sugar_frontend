@@ -22,6 +22,7 @@ import { SendProposal } from "@pages/SendProposal";
 import { CreateProfile2 } from "@pages/Freelancer/CreateProfile2";
 import { SearchWork } from "@pages/Freelancer/SearchWork";
 import { EmployerJobsPage } from "@pages/EmployerJobsPage";
+import { WorkDetails } from "@pages/WorkDetails";
 import { ProposalsPage } from "@pages/Freelancer/ProposalsPage";
 import { StyledApp } from "./app.styled";
 
@@ -58,6 +59,7 @@ export function App() {
 								element={<JobPostingSecondPage />}
 							/>
 							<Route path="/employer/create-new-job-third-page" element={<JobPostingThirdPage />} />
+							<Route path="/jobs/details/:id" element={<WorkDetails />} />
 						</Routes>
 					</BrowserRouter>
 				</Provider>

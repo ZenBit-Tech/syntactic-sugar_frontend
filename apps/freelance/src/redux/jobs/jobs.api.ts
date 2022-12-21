@@ -8,33 +8,53 @@ export interface Country {
 }
 
 export interface Skills extends Country {}
+export interface IEmployerResponse {
+	id: string;
+	fullName: string;
+	companyName: string;
+	position: string;
+	phone: string;
+	linkedIn: string;
+	website: string;
+	aboutUs: string;
+	image: string;
+}
 
 export interface JobsInterface {
 	id: string;
+	description: string;
 	position: string;
 	countries: Country[];
 	employmentType: string;
+	hourRate: string;
 	availableAmountOfHours: string;
 	workExperience: string;
 	englishLevel: string;
 	category: string;
 	skills: string[];
-	hourRate: string;
 	createdDate: string;
 	updatedDate: string;
 	isPublished: boolean;
 	isProposal: boolean;
+	otherRequirenments: string;
+	employer: IEmployerResponse;
 }
 
 export const getJobsApi = createApi({
 	reducerPath: "jobs",
 	baseQuery: baseQuery,
-	tagTypes: ["Job"],
 	refetchOnFocus: true,
+	tagTypes: ["Jobs", "Job"],
 	endpoints: build => ({
 		getJobs: build.query<JobsInterface[], void>({
 			query: () => ({
 				url: "jobs/get-all-jobs",
+			}),
+			providesTags: ["Jobs"],
+		}),
+		getJobId: build.query<JobsInterface, string>({
+			query: (id: string) => ({
+				url: `/jobs/get-job-by-id/${id}`,
 			}),
 			providesTags: ["Job"],
 		}),
@@ -61,5 +81,10 @@ export const getJobsApi = createApi({
 	}),
 });
 
-export const { useGetJobsQuery, useGetJobsByEmployerQuery, useCreateJobMutation, useGetJobsWithProposalsQuery } = getJobsApi;
-
+export const {
+	useGetJobsQuery,
+	useGetJobIdQuery,
+	useGetJobsByEmployerQuery,
+	useGetJobsWithProposalsQuery,
+	useCreateJobMutation,
+} = getJobsApi;
