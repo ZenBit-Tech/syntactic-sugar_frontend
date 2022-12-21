@@ -56,8 +56,6 @@ export const useGoogleAuthentication = (formType: boolean) => {
 		}
 		if (isErrorGoogle) {
 			alert(t("signupGoogle.error"));
-			console.log(isErrorGoogle);
-			// toast.error(t("recoverPassForm.errorMessageServerError"));
 			navigate("/");
 		}
 	}, [isSuccessGoogle, isErrorGoogle]);
