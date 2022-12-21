@@ -29,14 +29,8 @@ export function WorkDetails() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 	const params = useParams();
-	const id = Number(params["id"]);
+	const id = String(params["id"]);
 	const { data } = useGetJobIdQuery(id);
-
-	useEffect(() => {
-		if (id === null && data === undefined) {
-			return;
-		}
-	}, [id, data]);
 
 	const handleClickProposal = () => {
 		navigate(SEND_PROPOSAL);
@@ -55,13 +49,13 @@ export function WorkDetails() {
 							{t("jobDetails.title")}
 						</StyledTitle>
 						<Wrapper>
-							<img src="/assets/images/user_avatar.png" alt="User Avatar" />
+							<img src={data?.employer.image} alt="User Avatar" />
 							<div>
 								<StyledTitle tag="h3" fontSize="md" fontWeight={500}>
-									{t("employer.create.companyNameLabel")}
+									{data?.employer.companyName}
 								</StyledTitle>
 								<StyledTitle tag="h3" fontSize="md" fontWeight={500}>
-									{`${t("employer.create.fullNameLabel")}, ${t("employer.create.positionLabel")}`}
+									{`${data?.employer.fullName}, ${data?.employer.position}`}
 								</StyledTitle>
 							</div>
 						</Wrapper>
@@ -86,7 +80,7 @@ export function WorkDetails() {
 									<Title id="position">
 										<strong>{t("jobDetails.date")}</strong>
 									</Title>
-									<p></p>
+									<p>{data?.createdDate}</p>
 								</Item>
 								<Item>
 									<Title id="employment">

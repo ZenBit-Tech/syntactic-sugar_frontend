@@ -116,30 +116,6 @@ export function SearchWork() {
 				<Form onSubmit={handleSubmit(onSubmit)}>
 					<Wrapper>
 						<InputContainer>
-							{/* {data &&
-								data.map(
-									({
-										id,
-
-										position,
-										location,
-										employmentType,
-										availableAmountOfHours,
-										workExperience,
-										date,
-									}) => {
-										return (
-											<ul>
-												<li key={id}>
-													<NavLink
-														to={`/jobs/details/${id}`}
-													>{`${position}, ${workExperience}`}</NavLink>
-												</li>
-											</ul>
-										);
-									}, // here must be cards with NavLinks
-								)} */}
-
 							<InputHeader>
 								<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
 									{t("freelancer.searchWork.jobsList")}
@@ -188,7 +164,7 @@ export function SearchWork() {
 								</StyledButton>
 							</InputHeader>
 							<InputWrapper>
-								<Pagination itemsPerPage={6} user={user} jobs={filterJobs} />
+								<Pagination itemsPerPage={6} user={user} jobs={data} />
 							</InputWrapper>
 						</InputContainer>
 						<InputContainer>

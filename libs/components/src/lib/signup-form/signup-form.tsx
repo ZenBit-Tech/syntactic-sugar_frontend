@@ -12,7 +12,6 @@ import { useSignUpByEmailMutation } from "redux/signup-googleApi";
 import { setUserData } from "redux/userState/userSlice";
 import { UserRoles } from "redux/role.api";
 import { ROLE_SELECTION } from "utils/constants/breakpoint";
-import { baseUrl } from "utils/constants/redux-query";
 import { Form, InputWrapper } from "./signup-form.styled";
 
 export function SignupForm() {

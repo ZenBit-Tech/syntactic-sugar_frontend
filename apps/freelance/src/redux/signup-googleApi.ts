@@ -3,11 +3,6 @@ import { baseUrl } from "utils/constants/redux-query";
 import { IForm } from "./login.api";
 import { IUserState } from "./interfaces/IUserData";
 
-interface IServerResponse {
-	id: string;
-	email: string;
-}
-
 interface IToken {
 	token: string;
 }
@@ -17,7 +12,7 @@ export const signupGoogleApi = createApi({
 	baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
 	tagTypes: ["user", "registration"],
 	endpoints: builder => ({
-		signUp: builder.mutation<IServerResponse, IToken>({
+		signUp: builder.mutation<IUserState, IToken>({
 			query: (body: IToken) => ({
 				url: `auth/google/signup`,
 				method: "POST",

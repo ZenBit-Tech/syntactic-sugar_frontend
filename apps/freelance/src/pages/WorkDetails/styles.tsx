@@ -129,8 +129,6 @@ export const Wrapper = styled.div`
 	gap: 2rem;
 
 	img {
-		border: 2px solid ${({ theme }) => theme.colors.grey};
-		background: ${({ theme }) => theme.colors.grey};
 		object-fit: cover;
 		border-radius: 50%;
 		height: 10%;

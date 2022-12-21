@@ -8,8 +8,10 @@ import {
 	CountriesContainer,
 	LocationBlock,
 } from "./job-card.styled";
+import { NavLink } from "react-router-dom";
 
 export interface JobCardProps {
+	id: string;
 	position: string;
 	countries: Country[];
 	employmentType: string;
@@ -24,6 +26,7 @@ export interface JobCardProps {
 }
 
 export function JobCard({
+	id,
 	position,
 	countries,
 	employmentType,
@@ -38,9 +41,12 @@ export function JobCard({
 	return (
 		<StyledJobCard>
 			<StyledJobCardHeader>
-				<StyledTitle tag="h2" fontWeight={800} fontSize="md">
-					<strong>{position}</strong>
-				</StyledTitle>
+				<NavLink to={`/jobs/details/${id}`}>
+					<StyledTitle tag="h2" fontWeight={800} fontSize="md">
+						<strong>{position}</strong>
+					</StyledTitle>
+				</NavLink>
+
 				<strong>{createdDate}</strong>
 				{userType === "freelancer" && (
 					<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">

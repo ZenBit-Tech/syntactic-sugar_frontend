@@ -11,7 +11,6 @@ import {
 	StyledButton,
 	RoleSelectionForm,
 } from "@freelance/components";
-import { useGoogleAuthentication } from "./form-containerHooks";
 import {
 	LOG_IN,
 	RECOVER_PASSWORD_1,
@@ -19,6 +18,7 @@ import {
 	ROLE_SELECTION,
 	SIGN_UP,
 } from "utils/constants/breakpoint";
+import { useGoogleAuthentication } from "./form-containerHooks";
 
 export interface FormContainerProps {
 	title: React.ReactNode;

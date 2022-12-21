@@ -8,9 +8,21 @@ export interface Country {
 }
 
 export interface Skills extends Country {}
+export interface IEmployerResponse {
+	id: string;
+	fullName: string;
+	companyName: string;
+	position: string;
+	phone: string;
+	linkedIn: string;
+	website: string;
+	aboutUs: string;
+	image: string;
+}
 
 export interface JobsInterface {
 	id: string;
+	description: string;
 	position: string;
 	countries: Country[];
 	employmentType: string;
@@ -24,6 +36,8 @@ export interface JobsInterface {
 	updatedDate: string;
 	isPublished: boolean;
 	isProposal: boolean;
+	otherRequirenments: string;
+	employer: IEmployerResponse;
 }
 
 export const getJobsApi = createApi({
@@ -38,9 +52,9 @@ export const getJobsApi = createApi({
 			}),
 			providesTags: ["Jobs"],
 		}),
-		getJobId: build.query<JobsInterface, number>({
-			query: (id: number) => ({
-				url: `/jobs/get-job-by-id/?id=${id}`,
+		getJobId: build.query<JobsInterface, string>({
+			query: (id: string) => ({
+				url: `/jobs/get-job-by-id?id=${id}`,
 			}),
 			providesTags: ["Job"],
 		}),
