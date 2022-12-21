@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { InferType } from "yup";
 import { useDispatch } from "react-redux";
@@ -9,6 +9,7 @@ import { StyledButton, StyledSpan } from "@freelance/components";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signInSchema } from "utils/validations/loginForm";
 import { useLoginMutation } from "redux/login.api";
+import { useConfirmEmailMutation } from "redux/signup-googleApi";
 import { UserRoles } from "redux/role.api";
 import { setUserData } from "redux/userState/userSlice";
 import { ROLE_SELECTION, SEARCH_WORK } from "utils/constants/breakpoint";
@@ -19,7 +20,11 @@ export function LoginForm() {
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const [searchParams] = useSearchParams();
+	const id = searchParams.get("id");
 	const [login, { data: userData, isSuccess, isError }] = useLoginMutation();
+	const [confirmEmail, { isSuccess: isSuccessConfirm, isError: isErrorConfirm }] =
+		useConfirmEmailMutation();
 
 	const {
 		register,
@@ -38,6 +43,24 @@ export function LoginForm() {
 			toast.error(t("recoverPassForm.errorMessageServerError"));
 		}
 	};
+
+	useEffect(() => {
+		if (id) {
+			confirmEmail({ id: id });
+		}
+	}, []);
+
+	useEffect(() => {
+		if (isSuccessConfirm) {
+			toast(t("signForm.confirmation"), { position: toast.POSITION.TOP_LEFT, toastId: "1" });
+		}
+		if (isErrorConfirm) {
+			toast.error(t("recoverPassForm.errorMessageServerError"), {
+				position: toast.POSITION.TOP_LEFT,
+				toastId: "1",
+			});
+		}
+	}, [isErrorConfirm, isSuccessConfirm]);
 
 	useEffect(() => {
 		if (isSuccess) {
@@ -91,7 +114,7 @@ export function LoginForm() {
 			<StyledButton buttonSize="lg" buttonColor="redGradient">
 				{t("signForm.buttonSignIn")}
 			</StyledButton>
-			<ToastContainer />
+			<ToastContainer autoClose={false} />
 		</Form>
 	);
 }

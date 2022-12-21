@@ -31,3 +31,7 @@ export const CREATE_PROFILE_2 = "/freelancer/create-profile2";
 export const SEARCH_WORK = "/freelancer/searchwork";
 export const SEND_PROPOSAL = "/send-proposal-freelancer";
 export const ROLE_PAGE = "/role-page";
+
+// Dashboard-menu
+
+export const PROPOSALS_PAGE = "proposals";

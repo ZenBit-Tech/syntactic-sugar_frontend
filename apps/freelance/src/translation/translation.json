@@ -31,7 +31,9 @@
 		"placeholderConfirmPassword": "Confirm Password",
 		"buttonSignUp": "SIGN UP",
 		"haveAcc": "Already have an account?",
-		"signInNow": " Sign In Now"
+		"signInNow": " Sign In Now",
+		"confirmMessage": "We sended you email with confirmation link. Please confirm your email by following it.",
+		"confirmation": "Your email has been confirmed"
 	},
 	"recoverPassForm": {
 		"forgotPass": "Forgot your password?",
@@ -83,7 +85,9 @@
 			"searchWorks": "SEARCH WORKS",
 			"proposals": "PROPOSALS",
 			"talents": "TALENTS",
-			"jobs": "MY JOBS"
+			"jobs": "MY JOBS",
+			"myProposals": "My Invitations",
+			"myOffers": "My Offers"
 		},
 		"profilePage": {
 			"title": "My Profile"

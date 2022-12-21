@@ -24,6 +24,7 @@ export function SignupForm() {
 	const {
 		register,
 		handleSubmit,
+		reset,
 		formState: { errors },
 	} = useForm<Props>({
 		resolver: yupResolver(signUpSchema),
@@ -32,6 +33,7 @@ export function SignupForm() {
 	const formSubmitHandler = async (data: Props) => {
 		try {
 			await registration(data);
+			reset();
 		} catch (error) {
 			toast.error(t("recoverPassForm.errorMessageServerError"));
 		}
@@ -40,7 +42,7 @@ export function SignupForm() {
 	useEffect(() => {
 		if (isSuccess) {
 			dispatch(setUserData({ token: userData?.token, role: userData?.role }));
-			navigate("/" + ROLE_SELECTION);
+			toast(t("signForm.confirmMessage"), { position: toast.POSITION.TOP_LEFT, toastId: "1" });
 		}
 		if (isError) {
 			toast.error(t("recoverPassForm.errorMessageServerError"));
@@ -91,7 +93,7 @@ export function SignupForm() {
 			<StyledButton buttonSize="lg" buttonColor="redGradient">
 				{t("signForm.buttonSignUp")}
 			</StyledButton>
-			<ToastContainer />
+			<ToastContainer autoClose={false} />
 		</Form>
 	);
 }

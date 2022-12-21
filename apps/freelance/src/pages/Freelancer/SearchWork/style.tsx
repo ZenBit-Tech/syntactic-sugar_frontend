@@ -42,7 +42,7 @@ export const Form = styled.form`
 	select {
 		border: 2px solid ${({ theme }) => theme.colors.grey};
 		border-radius: 100px;
-		height: 50px;
+		height: 40px;
 		padding-left: 4rem;
 		width: 80%;
 
@@ -74,8 +74,10 @@ export const Form = styled.form`
 	.selectContainer__left {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		grid-auto-rows: 150px;
+		grid-auto-rows: 80px;
 		position: relative;
+    justify-items: center;
+    align-items: center;
 		width: 80%;
 	}
 	.selectContainer__right {
@@ -87,30 +89,36 @@ export const Form = styled.form`
 		display: flex;
 		justify-content: center;
 		button {
-			margin: 5px;
+			margin: 20px 10px;
 		}
 	}
 `;
 
 export const Wrapper = styled.div`
 	display: flex;
-	height: 75%;
+	height: 100%;
 `;
 
 export const InputContainer = styled.div`
 	width: 100%;
+	height: 100%;
+`;
+
+export const InputContainerCards = styled.div`
+	width: 100%;
 	overflow-y: auto;
 
-	height: 150%;
+	height: 100%;
 `;
+
 
 export const InputHeader = styled.div`
 	position: sticky;
 	top: 0;
 	background: ${({ theme }) => theme.colors.white};
 	padding: 0 0.5rem;
-	height: 50px;
-
+	height: 30px;
+  margin-bottom: 10px;
 	display: flex;
 	width: 100%;
 	justify-content: flex-start;
@@ -136,7 +144,8 @@ export const InputWrapper = styled.div`
 	}
 
 	button {
-		max-width: 100px;
+		max-width: 80px;
+		height: 20px;
 	}
 
 	.jobsCardContainer {
@@ -175,7 +184,7 @@ export const SelectElement = styled(Select)`
 	.react-select__control {
 		border: 2px solid ${({ theme }) => theme.colors.grey};
 		border-radius: 100px;
-		height: 50px;
+		height: 30px;
 		padding-left: 1rem;
 		width: 100%;
 		color: ${({ theme }) => theme.colors.grey};

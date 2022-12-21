@@ -1,13 +1,15 @@
 import { useTranslation } from "react-i18next";
-import { StyledButton } from "@freelance/components";
+import { FilterButton, StyledButton } from "@freelance/components";
 import { ROLES } from "utils/constants/roles";
-import { Container } from "./dashboard-menu.styled";
+import { PROPOSALS_PAGE } from "utils/constants/breakpoint";
+import { Container, FilterButtonWrap } from "./dashboard-menu.styled";
 
 export interface DashboardMenuProps {
 	userRole: "freelancer" | "employer";
+	typePage?: "createProfile" | "main" | "proposals";
 }
 
-export function DashboardMenu({ userRole }: DashboardMenuProps) {
+export function DashboardMenu({ userRole, typePage }: DashboardMenuProps) {
 	const { t } = useTranslation();
 
 	return (
@@ -21,9 +23,19 @@ export function DashboardMenu({ userRole }: DashboardMenuProps) {
 					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
 						{t("dashboard.menu.searchWorks")}
 					</StyledButton>
-					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
+					<StyledButton disabled={typePage === PROPOSALS_PAGE} buttonSize="md" fontSize="md" buttonColor="lightRed">
 						{t("dashboard.menu.proposals")}
 					</StyledButton>
+					{typePage === PROPOSALS_PAGE &&
+						(<FilterButtonWrap>
+							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
+								{t("dashboard.menu.myProposals")}
+							</FilterButton>
+							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
+								{t("dashboard.menu.myOffers")}
+							</FilterButton>
+						</FilterButtonWrap>
+					)}	
 				</>
 			)}
 			{userRole === ROLES.EMPLOYER && (

@@ -4,6 +4,7 @@ export const ThemeColors = {
 	colors: {
 		darkRed: "#C91A16",
 		lightRed: "#EC3B37",
+		brightRed: "#ff4d4f",
 		blue: "#5184EC",
 		darkGrey: "#A0A0A0",
 		grey: "#D9D9D9",

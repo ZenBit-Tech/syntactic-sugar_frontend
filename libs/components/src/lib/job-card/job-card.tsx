@@ -46,19 +46,18 @@ export function JobCard({
 						<strong>{position}</strong>
 					</StyledTitle>
 				</NavLink>
-
 				<strong>{createdDate}</strong>
 				{userType === "freelancer" && (
-					<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
+					<StyledButton buttonColor="redGradient" buttonSize="md" fontSize="sm">
 						<strong>{t("jobCard.sendProposal")}</strong>
 					</StyledButton>
 				)}
 				{userType === "employer" && (
 					<>
-						<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
+						<StyledButton buttonColor="redGradient" buttonSize="md" fontSize="sm">
 							<strong>{t("jobCard.editJob")}</strong>
 						</StyledButton>
-						<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
+						<StyledButton buttonColor="redGradient" buttonSize="md" fontSize="sm">
 							<strong>{t("jobCard.removeJob")}</strong>
 						</StyledButton>
 					</>
@@ -70,9 +69,11 @@ export function JobCard({
 						{t("jobCard.location")}:
 					</StyledParagraph>
 					<CountriesContainer>
-						{countries.map(country => (
-							<strong key={country.id}>{country.name}</strong>
-						))}
+						<div>
+							{countries.map(country => (
+								<strong key={country.id}>{country.name} </strong>
+							))}
+						</div>
 					</CountriesContainer>
 				</LocationBlock>
 				<StyledParagraph fontSize="sm" opacity={0.7}>

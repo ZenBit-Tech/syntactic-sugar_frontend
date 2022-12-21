@@ -3,7 +3,7 @@ import Select from "react-select";
 
 export const SelectElement = styled(Select)`
 	.react-select__value-container {
-		width: 80%;
+		width: 70%;
 		height: inherit;
 		padding-left: 3rem;
 	}
@@ -44,7 +44,7 @@ export const StyledFileField = styled.div`
 	flex-direction: column;
   align-items: center;
 	justify-content: center;
-	width: 70%;
+	width: 80%;
   div {
     display: flex;
     justify-content: space-between;
@@ -55,8 +55,8 @@ export const StyledFileField = styled.div`
 		background: ${({ theme }) => theme.colors.grey};
 		object-fit: cover;
 		border-radius: 10%;
-		height: 250px;
-		width: 250px;
+		height: 120px;
+		width: 120px;
 	}
 	label {
 		display: inline-flex;
@@ -64,10 +64,11 @@ export const StyledFileField = styled.div`
 		align-items: center;
 		color: ${({ theme }) => theme.colors.white};
 		border-radius: 100px;
+    font-size: 10px;
 		background-color: ${({ theme }) => theme.colors.darkRed};
 		cursor: pointer;
 		width: 100%;
-		height: 30px;
+		height: 20px;
 		cursor: pointer;
 		margin: 5px;
 	}
@@ -88,6 +89,7 @@ const StyledPage = styled.div`
 export const Form = styled.form`
 	display: grid;
 	grid-template-columns: 1fr 1fr;
+  gap: 5px;
 	height: 95%;
 	align-items: center;
 	justify-items: center;
