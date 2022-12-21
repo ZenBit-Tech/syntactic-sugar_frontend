@@ -1,5 +1,8 @@
 import { Dashboard, Pagination, StyledPage } from "@freelance/components";
-import { useGetJobByIdQuery, useGetJobsWithProposalsQuery } from "src/redux/jobs/jobs.api";
+import {  useGetJobsWithProposalsQuery } from "src/redux/jobs/jobs.api";
+import { Wrapper } from './style';
+import { PROPOSALS_PAGE } from "utils/constants/breakpoint";
+
 
 export function ProposalsPage() {
     
@@ -8,11 +11,11 @@ export function ProposalsPage() {
 
     return (
         <StyledPage>
-            <Dashboard userRole="freelancer" typePage="proposals">
-                <Pagination itemsPerPage={5} user="freelancer" jobs={data} />
+            <Dashboard userRole="freelancer" typePage={PROPOSALS_PAGE}>
+                <Wrapper>
+                    <Pagination itemsPerPage={5} user="freelancer" jobs={data} />
+                </Wrapper>
             </Dashboard>
-            
         </StyledPage>
     )
-
 }

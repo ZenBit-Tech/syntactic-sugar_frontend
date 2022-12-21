@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { StyledButton, StyledParagraph } from "@freelance/components";
 import { ROLES } from "utils/constants/roles";
-import { useGetFreelancerQuery } from "src/redux/createFreelancer/freelancer-pageApi";
+import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import { useGetEmployerQuery } from "redux/createEmployer/employerApi";
 import { baseUrl } from "utils/constants/redux-query";
 import { DEFAULT_IMAGE } from "utils/constants/links";

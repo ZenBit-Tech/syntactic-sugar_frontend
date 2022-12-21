@@ -23,6 +23,9 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 	border-radius: 100px;
 	padding: 0.6rem 0;
 	transition: all ease-in-out 0.4s;
+	:disabled {
+		color: ${({ theme }) => theme.colors.darkGrey};
+	}
 
 	${({ buttonSize }) => {
 		switch (buttonSize) {
@@ -78,7 +81,7 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 		}
 	}}
 
-	  &:hover {
+	  &:not([disabled]):hover {
 		filter: brightness(1.1);
 	}
 
@@ -99,10 +102,6 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 		}
 		return;
 	}}
-  
-  &:hover {
-		filter: brightness(1.1);
-	}
 `;
 
 export const FilterButton = styled(StyledButton)`
