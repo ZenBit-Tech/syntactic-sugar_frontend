@@ -84,7 +84,9 @@
 			"searchWorks": "SEARCH WORKS",
 			"proposals": "PROPOSALS",
 			"talents": "TALENTS",
-			"jobs": "MY JOBS"
+			"jobs": "MY JOBS",
+			"myProposals": "My Invitations",
+			"myOffers": "My Offers"
 		},
 		"profilePage": {
 			"title": "My Profile"

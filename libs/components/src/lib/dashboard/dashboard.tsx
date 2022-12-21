@@ -5,7 +5,7 @@ import { Container, Page, Area } from "./dashboard.styled";
 export interface DashboardProps {
 	children: React.ReactNode;
 	userRole: "freelancer" | "employer";
-  typePage?: "createProfile" | "main";
+  	typePage?: "createProfile" | "main" | "proposals";
 }
 
 export function Dashboard({ children, userRole, typePage }: DashboardProps) {
@@ -13,7 +13,7 @@ export function Dashboard({ children, userRole, typePage }: DashboardProps) {
 		<Container>
 			{userRole === ROLES.FREELANCER && (
 				<>
-					<DashboardMenu userRole={userRole} />
+					<DashboardMenu userRole={userRole} typePage={typePage}/>
 					<Area>
 						<DashboardHeader userRole={userRole} typePage={typePage} />
 						<Page>{children}</Page>
@@ -22,9 +22,9 @@ export function Dashboard({ children, userRole, typePage }: DashboardProps) {
 			)}
 			{userRole === ROLES.EMPLOYER && (
 				<>
-					<DashboardMenu userRole="employer" />
+					<DashboardMenu userRole={userRole} />
 					<Area>
-						<DashboardHeader userRole="employer" typePage={typePage} />
+						<DashboardHeader userRole={userRole} typePage={typePage} />
 						<Page>{children}</Page>
 					</Area>
 				</>

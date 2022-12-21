@@ -52,7 +52,14 @@ export const getJobsApi = createApi({
 			}),
 			invalidatesTags: ["Job"],
 		}),
+		getJobsWithProposals: build.query<JobsInterface[], void>({
+			query: () => ({
+				url: `jobs/get-job-by-proposals`,
+			}),
+			providesTags: ["Job"],
+		}),
 	}),
 });
 
-export const { useGetJobsQuery, useGetJobsByEmployerQuery, useCreateJobMutation } = getJobsApi;
+export const { useGetJobsQuery, useGetJobsByEmployerQuery, useCreateJobMutation, useGetJobsWithProposalsQuery } = getJobsApi;
+

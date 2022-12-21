@@ -178,6 +178,7 @@ export function CreateProfile1() {
 							render={({ field }) => (
 								<input
 									{...field}
+									type="text"
 									id="position"
 									placeholder={t("freelancer.createProfile.positionPlaceholder")}
 									required
