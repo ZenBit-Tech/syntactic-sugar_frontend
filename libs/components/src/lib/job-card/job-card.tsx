@@ -38,21 +38,21 @@ export function JobCard({
 	return (
 		<StyledJobCard>
 			<StyledJobCardHeader>
-				<StyledTitle tag="h2" fontWeight={800} fontSize="md">
+				<StyledTitle tag="h2" fontWeight={800} fontSize="sm">
 					<strong>{position}</strong>
 				</StyledTitle>
 				<strong>{createdDate}</strong>
 				{userType === "freelancer" && (
-					<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
-						<strong>{t("jobCard.sendProposal")}</strong>
+					<StyledButton buttonColor="redGradient" buttonSize="md" fontSize="sm">
+					<strong>{t("jobCard.sendProposal")}</strong>
 					</StyledButton>
 				)}
 				{userType === "employer" && (
 					<>
-						<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
+						<StyledButton buttonColor="redGradient" buttonSize="md" fontSize="sm">
 							<strong>{t("jobCard.editJob")}</strong>
 						</StyledButton>
-						<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
+						<StyledButton buttonColor="redGradient" buttonSize="md" fontSize="sm">
 							<strong>{t("jobCard.removeJob")}</strong>
 						</StyledButton>
 					</>

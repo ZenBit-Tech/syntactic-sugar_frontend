@@ -16,7 +16,7 @@ export interface DashboardHeaderProps {
 export function DashboardHeader({ userRole, typePage }: DashboardHeaderProps) {
 	const { t } = useTranslation();
   const { data } = userRole === ROLES.FREELANCER ? useGetFreelancerQuery() : useGetEmployerQuery();
-  
+
 	return (
 		<Container>
 			{typePage === "createProfile" && <UserInfoWrapper />}
