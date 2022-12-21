@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { StyledParagraph } from "@freelance/components";
 
 export const Container = styled.div`
 	display: flex;
@@ -8,6 +9,11 @@ export const Container = styled.div`
 
 `;
 
+// export const StyledParagraphCard = styled(StyledParagraph)`
+//   display: flex;
+//   flex-direction: column;
+// `;
+
 export const StyledJobCard = styled.div`
 	display: grid;
 	width: 100%;
@@ -15,7 +21,7 @@ export const StyledJobCard = styled.div`
 	padding: 10px;
 	border: 2px solid ${({ theme }) => theme.colors.grey};
 	border-radius: 10px;
-	max-height: 120px;
+	max-height: 200px;
 	overflow: hidden;
 	:hover {
 		transform: scale(1.03);
@@ -54,10 +60,9 @@ export const StyledJobCardParagraph = styled.div`
 
 export const LocationBlock = styled.div`
 	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 5px;
+	grid-template-columns: repeat(1, 1fr);
 `;
 
 export const CountriesContainer = styled.div`
-	display: grid;
+	display: flex;
 `;
