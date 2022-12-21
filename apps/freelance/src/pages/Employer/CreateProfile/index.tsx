@@ -104,10 +104,10 @@ export function CreateEmployerProfile() {
 		<ThemeProvider theme={ThemeColors && ThemeBackground}>
 			<StyledPage>
 				<Dashboard userRole="employer" typePage="createProfile">
-					<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
+					<StyledTitle tag="h2" fontSize="sm" fontWeight={700}>
 						{t("dashboard.profilePage.title")}
 					</StyledTitle>
-					<StyledTitle tag="h2" fontSize="md" fontWeight={500}>
+					<StyledTitle tag="h2" fontSize="sm" fontWeight={500}>
 						{t("employer.create.title")}
 					</StyledTitle>
 					<FormBox onSubmit={handleSubmit(onSubmit)}>

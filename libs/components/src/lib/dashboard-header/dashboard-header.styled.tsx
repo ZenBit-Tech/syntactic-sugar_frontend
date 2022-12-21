@@ -24,7 +24,7 @@ export const UserInfoWrapper = styled.div`
 		object-fit: cover;
 		border-radius: 50%;
 		height: 90%;
-		width: 35%;
+		width: 25%;
 	}
 
 	p {

@@ -3,6 +3,7 @@ import { Form } from "@pages/Freelancer/CreateProfile1/style";
 import { TextAreaContainer } from "@pages/Freelancer/CreateProfile2/style";
 
 export const FormBox = styled(Form)`
+  height: 90%;
 	input {
 		padding-left: 3rem;
 	}
@@ -33,7 +34,6 @@ export const FormBox = styled(Form)`
 
 export const InputContainer = styled.div`
 	color: ${({ theme }) => theme.colors.black};
-
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -46,7 +46,7 @@ export const StyledFileField = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	width: 70%;
+	width: 80%;
 	div {
 		display: flex;
 		justify-content: space-between;
@@ -57,8 +57,8 @@ export const StyledFileField = styled.div`
 		background: ${({ theme }) => theme.colors.grey};
 		object-fit: cover;
 		border-radius: 10%;
-		height: 250px;
-		width: 250px;
+		height: 120px;
+		width: 120px;
 	}
 	label {
 		display: inline-flex;
@@ -66,10 +66,11 @@ export const StyledFileField = styled.div`
 		align-items: center;
 		color: ${({ theme }) => theme.colors.white};
 		border-radius: 100px;
+		font-size: 10px;
 		background-color: ${({ theme }) => theme.colors.darkRed};
 		cursor: pointer;
 		width: 100%;
-		height: 30px;
+		height: 20px;
 		cursor: pointer;
 		margin: 5px;
 	}
