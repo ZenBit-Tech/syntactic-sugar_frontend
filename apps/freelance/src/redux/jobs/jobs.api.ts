@@ -85,5 +85,6 @@ export const {
 	useGetJobsQuery,
 	useGetJobIdQuery,
 	useGetJobsByEmployerQuery,
+	useGetJobsWithProposalsQuery,
 	useCreateJobMutation,
 } = getJobsApi;
