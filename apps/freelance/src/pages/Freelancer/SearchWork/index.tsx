@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useForm, Controller } from "react-hook-form";
 import { useOptions, SelectOptions } from "utils/select-options/options";
@@ -17,7 +17,6 @@ import {
 	InputWrapper,
 	SelectElement,
 } from "./style";
-import { NavLink, useLocation } from "react-router-dom";
 
 type user = "freelancer" | "employer";
 
@@ -34,7 +33,6 @@ export interface IFormInput {
 export function SearchWork() {
 	const user: user = "freelancer";
 	const { t } = useTranslation();
-	const location = useLocation();
 	const { handleSubmit, control, getValues, reset } = useForm<IFormInput>();
 	const { isLoading, isError, data } = useGetJobsQuery();
 
