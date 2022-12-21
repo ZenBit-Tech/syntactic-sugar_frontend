@@ -7,7 +7,6 @@ import { PROPOSALS_PAGE } from "utils/constants/breakpoint";
 export interface DashboardMenuProps {
 	userRole: "freelancer" | "employer";
 	typePage?: "createProfile" | "main" | "proposals";
-
 }
 
 export function DashboardMenu({ userRole, typePage }: DashboardMenuProps) {
