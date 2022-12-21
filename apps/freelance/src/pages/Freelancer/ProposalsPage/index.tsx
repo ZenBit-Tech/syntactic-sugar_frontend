@@ -4,9 +4,7 @@ import { PROPOSALS_PAGE } from "utils/constants/breakpoint";
 import { Wrapper } from './style';
 
 export function ProposalsPage() {
-    
     const {data} = useGetJobsWithProposalsQuery();
-    console.log(data)
 
     return (
         <StyledPage>

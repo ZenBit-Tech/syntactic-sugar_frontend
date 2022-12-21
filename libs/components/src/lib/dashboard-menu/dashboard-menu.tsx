@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
-import { Container, FilterButtonWrap } from "./dashboard-menu.styled";
 import { FilterButton, StyledButton } from "@freelance/components";
 import { ROLES } from "utils/constants/roles";
 import { PROPOSALS_PAGE } from "utils/constants/breakpoint";
+import { Container, FilterButtonWrap } from "./dashboard-menu.styled";
 
 export interface DashboardMenuProps {
 	userRole: "freelancer" | "employer";
