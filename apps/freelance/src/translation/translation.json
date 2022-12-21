@@ -195,7 +195,10 @@
 			"workExperienceLabel": "Work experience",
 			"workExperiencePlaceholder": "Choose work experience",
 			"hourRateLabel": "Hour rate (one price)",
-			"hourRatePlaceholder": "Choose hour rate (one price)"
+			"hourRatePlaceholder": "Choose hour rate (one price)",
+			"validation": {
+				"maxCountries": "Not more then 5 countries"
+			}
 		},
 		"thirdForm": {
 			"skillsLabel": "Skills",
@@ -203,7 +206,10 @@
 			"englishLevelLabel": "English Level",
 			"englishLevelPlaceholder": "Choose required english level",
 			"otherRequirenmentsLabel": "Other requirenments",
-			"otherRequirenmentsPlaceholder": "Add Text"
+			"otherRequirenmentsPlaceholder": "Add Text",
+			"validation": {
+				"maxSkills": "Not more then 3 countries"
+			}
 		}
 	},
 	"employerJobsPage": {

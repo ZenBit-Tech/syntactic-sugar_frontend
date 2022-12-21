@@ -16,9 +16,12 @@ import {
 import { getStoredJobInfo } from "redux/jobs";
 import { useAppSelector } from "redux/hooks";
 import { useOptions } from "utils/select-options/options";
+import { useSecondFormSchema } from "utils/validations/newJobPostingSchemas";
 import { useJobPostingSecondFormHook } from "./job-posting-second-formHooks";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
+	const schema = useSecondFormSchema();
 	const {
 		countries: storedCountries,
 		category,
@@ -51,7 +54,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 		control,
 		register,
 		formState: { errors },
-	} = useForm<IJobPostingSecondForm>();
+	} = useForm<IJobPostingSecondForm>({ resolver: yupResolver(schema) });
 	const { countries, categories, hoursAmount, hourRate, employmentType, workExperience } =
 		useOptions();
 
