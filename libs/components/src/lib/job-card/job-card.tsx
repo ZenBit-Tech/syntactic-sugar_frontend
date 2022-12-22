@@ -66,7 +66,7 @@ export function JobCard({
 		<StyledJobCard>
 			<StyledJobCardHeader>
 				<NavLink to={`/jobs/details/${id}`}>
-					<StyledTitle tag="h2" fontWeight={800} fontSize="md">
+					<StyledTitle tag="h2" fontWeight={500} fontSize="md">
 						<strong>{position}</strong>
 					</StyledTitle>
 				</NavLink>
@@ -79,14 +79,14 @@ export function JobCard({
 					</NavLink>
 				)}
 				{userType === "employer" && (
-					<>
+					<div className="employerButtonContainer">
 						<StyledButton buttonColor="redGradient" buttonSize="md" fontSize="sm">
 							<strong>{t("jobCard.editJob")}</strong>
 						</StyledButton>
 						<StyledButton buttonColor="redGradient" buttonSize="md" fontSize="sm">
 							<strong>{t("jobCard.removeJob")}</strong>
 						</StyledButton>
-					</>
+					</div>
 				)}
 			</StyledJobCardHeader>
 			<StyledJobCardParagraph>
