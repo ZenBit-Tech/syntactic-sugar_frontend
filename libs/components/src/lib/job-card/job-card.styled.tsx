@@ -21,9 +21,12 @@ export const StyledJobCard = styled.div`
 
 export const StyledJobCardHeader = styled.div`
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: 3fr 2fr 1fr 1fr;
 	gap: 10px;
 	justify-items: center;
+	align-items: center;
+	padding-bottom: 10px;
+	border-bottom: 1px solid ${({ theme }) => theme.colors.grey};
 
 	button {
 		padding: 0.1rem;

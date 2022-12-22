@@ -11,12 +11,27 @@ export const useSecondFormSchema = (): SchemaOf<IJobPostingSecondForm> => {
 	return object({
 		countries: array(object({ value: string(), label: string() }))
 			.max(5, maxCountries)
-			.required(fieldRequired),
-		category: object({ value: string(), label: string() }).required(fieldRequired),
+			.min(1, fieldRequired),
+		category: object({
+			value: string().required(fieldRequired),
+			label: string().required(fieldRequired),
+		}),
 		position: string().required(fieldRequired),
-		employmentType: object({ value: string(), label: string() }).required(fieldRequired),
-		availableAmountOfHours: object({ value: string(), label: string() }).required(fieldRequired),
-		workExperience: object({ value: string(), label: string() }).required(fieldRequired),
-		hourRate: object({ value: string(), label: string() }).required(fieldRequired),
+		employmentType: object({
+			value: string().required(fieldRequired),
+			label: string().required(fieldRequired),
+		}),
+		availableAmountOfHours: object({
+			value: string().required(fieldRequired),
+			label: string().required(fieldRequired),
+		}),
+		workExperience: object({
+			value: string().required(fieldRequired),
+			label: string().required(fieldRequired),
+		}),
+		hourRate: object({
+			value: string().required(fieldRequired),
+			label: string().required(fieldRequired),
+		}),
 	});
 };

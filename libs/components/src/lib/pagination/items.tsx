@@ -5,9 +5,10 @@ import { Container } from "./pagination.styled";
 export interface CurrentItems {
 	currentItems: JobsInterface[] | undefined;
 	user: string;
+	handleRemoveJob?: (id: string) => void;
 }
 
-export function Items({ currentItems, user }: CurrentItems) {
+export function Items({ currentItems, user, handleRemoveJob }: CurrentItems) {
 	return (
 		<Container>
 			{currentItems &&
@@ -15,6 +16,7 @@ export function Items({ currentItems, user }: CurrentItems) {
 					return (
 						<JobCard
 							key={job.id}
+							jobId={job.id}
 							position={job.position}
 							countries={job.countries}
 							employmentType={job.employmentType}
@@ -24,6 +26,7 @@ export function Items({ currentItems, user }: CurrentItems) {
 							createdDate={job.createdDate}
 							updatedDate={job.updatedDate}
 							userType={user}
+							handleRemoveJob={handleRemoveJob}
 						/>
 					);
 				})}

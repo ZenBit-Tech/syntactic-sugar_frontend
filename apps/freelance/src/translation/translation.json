@@ -208,7 +208,7 @@
 			"otherRequirenmentsLabel": "Other requirenments",
 			"otherRequirenmentsPlaceholder": "Add Text",
 			"validation": {
-				"maxSkills": "Not more then 3 countries"
+				"maxSkills": "Only 3 skills"
 			}
 		}
 	},

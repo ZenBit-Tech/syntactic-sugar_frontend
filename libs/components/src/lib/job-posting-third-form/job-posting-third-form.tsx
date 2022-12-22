@@ -100,7 +100,9 @@ export function JobPostingThirdForm({ page, textButtonHandler }: IJobPostingThir
 					/>
 					{errors?.englishLevel && (
 						<StyledSpan fontSize="sm" type="validation">
-							<strong>{errors?.englishLevel?.message}</strong>
+							<strong>
+								{errors?.englishLevel?.label ? errors?.englishLevel?.label.message : fieldRequired}
+							</strong>
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>

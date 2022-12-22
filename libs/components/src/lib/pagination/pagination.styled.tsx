@@ -3,6 +3,7 @@ import ReactPaginate from "react-paginate";
 
 export const Container = styled.div`
 	display: grid;
+	padding-top: 0.5%;
 	padding-left: 2.5%;
 	padding-right: 2.5%;
 	gap: 10px;

@@ -18,5 +18,4 @@ export const Area = styled.div`
 export const Page = styled.div`
 	height: 88%;
 	padding: 1rem;
-	overflow-y: scroll;
 `;

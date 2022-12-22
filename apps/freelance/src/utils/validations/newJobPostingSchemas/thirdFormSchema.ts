@@ -9,10 +9,19 @@ export const useThirdFormSchema = (): SchemaOf<IJobPostingThirdForm> => {
 	const fieldRequired = t("newJobPosting.validation.messageFieldRequired");
 
 	return object({
-		skills: array(object({ value: string(), label: string() }))
+		skills: array(
+			object({
+				value: string(),
+				label: string(),
+			}),
+		)
 			.max(3, maxSkills)
+			.min(1, fieldRequired)
 			.required(fieldRequired),
-		englishLevel: object({ value: string(), label: string() }).required(fieldRequired),
+		englishLevel: object({
+			value: string().required(fieldRequired),
+			label: string().required(fieldRequired),
+		}),
 		otherRequirenments: string().required(fieldRequired),
 	});
 };

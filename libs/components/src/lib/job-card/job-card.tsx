@@ -10,6 +10,7 @@ import {
 } from "./job-card.styled";
 
 export interface JobCardProps {
+	jobId: string;
 	position: string;
 	countries: Country[];
 	employmentType: string;
@@ -21,9 +22,11 @@ export interface JobCardProps {
 	userType: string;
 	skills?: string[];
 	category?: string;
+	handleRemoveJob?: (id: string) => void;
 }
 
 export function JobCard({
+	jobId,
 	position,
 	countries,
 	employmentType,
@@ -32,6 +35,7 @@ export function JobCard({
 	levelEnglish,
 	createdDate,
 	userType,
+	handleRemoveJob,
 }: JobCardProps) {
 	const { t } = useTranslation();
 
@@ -52,7 +56,12 @@ export function JobCard({
 						<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
 							<strong>{t("jobCard.editJob")}</strong>
 						</StyledButton>
-						<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
+						<StyledButton
+							onClick={() => handleRemoveJob && handleRemoveJob(jobId)}
+							buttonColor="redGradient"
+							buttonSize="lg"
+							fontSize="md"
+						>
 							<strong>{t("jobCard.removeJob")}</strong>
 						</StyledButton>
 					</>

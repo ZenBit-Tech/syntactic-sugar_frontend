@@ -52,7 +52,19 @@ export const getJobsApi = createApi({
 			}),
 			invalidatesTags: ["Job"],
 		}),
+		removeJob: build.mutation<ICreatedJob, string>({
+			query: (id: string) => ({
+				url: `jobs/remove-job/${id}`,
+				method: "DELETE",
+			}),
+			invalidatesTags: ["Job"],
+		}),
 	}),
 });
 
-export const { useGetJobsQuery, useGetJobsByEmployerQuery, useCreateJobMutation } = getJobsApi;
+export const {
+	useGetJobsQuery,
+	useGetJobsByEmployerQuery,
+	useCreateJobMutation,
+	useRemoveJobMutation,
+} = getJobsApi;
