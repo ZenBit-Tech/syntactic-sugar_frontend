@@ -8,6 +8,7 @@ import {
 	CountriesContainer,
 	LocationBlock,
 } from "./job-card.styled";
+import { ROLES } from "utils/constants/roles";
 
 export interface JobCardProps {
 	jobId: string;
@@ -46,12 +47,12 @@ export function JobCard({
 					<strong>{position}</strong>
 				</StyledTitle>
 				<strong>{createdDate}</strong>
-				{userType === "freelancer" && (
+				{userType === ROLES.FREELANCER && (
 					<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
 						<strong>{t("jobCard.sendProposal")}</strong>
 					</StyledButton>
 				)}
-				{userType === "employer" && (
+				{userType === ROLES.EMPLOYER && (
 					<>
 						<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
 							<strong>{t("jobCard.editJob")}</strong>
@@ -62,7 +63,7 @@ export function JobCard({
 							buttonSize="lg"
 							fontSize="md"
 						>
-							<strong>{t("jobCard.removeJob")}</strong>
+							<strong>{t("jobCard.closeJob")}</strong>
 						</StyledButton>
 					</>
 				)}
