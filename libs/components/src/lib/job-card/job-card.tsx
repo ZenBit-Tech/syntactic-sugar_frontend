@@ -1,6 +1,8 @@
 import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router-dom";
 import { StyledTitle, StyledButton, StyledParagraph } from "@freelance/components";
 import { Country } from "redux/jobs";
+import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import {
 	StyledJobCard,
 	StyledJobCardHeader,
@@ -8,21 +10,35 @@ import {
 	CountriesContainer,
 	LocationBlock,
 } from "./job-card.styled";
-import { NavLink } from "react-router-dom";
 
 export interface JobCardProps {
 	id: string;
 	position: string;
 	countries: Country[];
 	employmentType: string;
+	proposals: {
+		id: string;
+		coverLetter: string;
+	}[];
 	availableAmountOfHours: string;
 	workExperience: string;
 	levelEnglish: string;
 	createdDate: string;
 	updatedDate?: string;
 	userType: string;
-	skills?: string[];
-	category?: string;
+	skills?: {
+		id: string;
+		name: string;
+	}[];
+	category?: {
+		id: string;
+		name: string;
+	};
+}
+
+interface Proposal {
+	id: string;
+	coverLetter: string;
 }
 
 export function JobCard({
@@ -30,6 +46,7 @@ export function JobCard({
 	position,
 	countries,
 	employmentType,
+	proposals,
 	availableAmountOfHours,
 	workExperience,
 	levelEnglish,
@@ -37,6 +54,13 @@ export function JobCard({
 	userType,
 }: JobCardProps) {
 	const { t } = useTranslation();
+	const { data } = useGetFreelancerQuery();
+
+	const isProposal = data?.proposals
+		.map(proposal => {
+			return proposals.find(item => item.id === proposal.id);
+		})
+		.some(item => item !== undefined);
 
 	return (
 		<StyledJobCard>
@@ -47,10 +71,12 @@ export function JobCard({
 					</StyledTitle>
 				</NavLink>
 				<strong>{createdDate}</strong>
-				{userType === "freelancer" && (
-					<StyledButton buttonColor="redGradient" buttonSize="md" fontSize="sm">
-						<strong>{t("jobCard.sendProposal")}</strong>
-					</StyledButton>
+				{userType === "freelancer" && !isProposal && (
+					<NavLink to={`/freelancer/send-proposal/${id}`}>
+						<StyledButton buttonColor="redGradient" buttonSize="md" fontSize="sm">
+							<strong>{t("jobCard.sendProposal")}</strong>
+						</StyledButton>
+					</NavLink>
 				)}
 				{userType === "employer" && (
 					<>
