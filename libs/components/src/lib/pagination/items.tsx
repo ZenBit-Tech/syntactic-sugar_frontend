@@ -15,7 +15,6 @@ export function Items({ currentItems, user, handleRemoveJob }: CurrentItems) {
 				currentItems.map(job => {
 					return (
 						<JobCard
-							id={job.id}
 							key={job.id}
 							jobId={job.id}
 							position={job.position}

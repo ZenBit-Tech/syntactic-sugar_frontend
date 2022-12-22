@@ -5,8 +5,8 @@ import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi
 import { useGetEmployerQuery } from "redux/createEmployer/employerApi";
 import { baseUrl } from "utils/constants/redux-query";
 import { DEFAULT_IMAGE } from "utils/constants/links";
-import { Container, UserInfoWrapper, ButtonsWrapper, UserDetails } from "./dashboard-header.styled";
 import { CREATE_PROFILE } from "utils/constants/breakpoint";
+import { Container, UserInfoWrapper, ButtonsWrapper, UserDetails } from "./dashboard-header.styled";
 
 export interface DashboardHeaderProps {
 	userRole: "freelancer" | "employer";

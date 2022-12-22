@@ -1,6 +1,6 @@
 import { array, object, SchemaOf, string } from "yup";
-import { IJobPostingSecondForm } from "@freelance/components";
 import { useTranslation } from "react-i18next";
+import { IJobPostingSecondForm } from "@freelance/components";
 
 export const useSecondFormSchema = (): SchemaOf<IJobPostingSecondForm> => {
 	const { t } = useTranslation();

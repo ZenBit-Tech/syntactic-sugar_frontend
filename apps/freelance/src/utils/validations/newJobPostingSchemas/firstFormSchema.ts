@@ -1,8 +1,8 @@
 import { object, SchemaOf, string } from "yup";
-import { IJobPostingFirstForm } from "@freelance/components";
 import { useTranslation } from "react-i18next";
-// : SchemaOf<IJobPostingFirstForm>
-export const useFirstFormSchema = () => {
+import { IJobPostingFirstForm } from "@freelance/components";
+
+export const useFirstFormSchema = (): SchemaOf<IJobPostingFirstForm> => {
 	const { t } = useTranslation();
 
 	const messageJobTitleMaxChar: string = t(
