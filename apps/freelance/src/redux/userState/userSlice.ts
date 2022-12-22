@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "redux/store";
 import { IUserState } from "redux/interfaces/IUserData";
 import { Role } from "redux/interfaces/Role";
-import { Token } from "../interfaces/Token";
+import { Token } from "redux/interfaces/Token";
 
 const initialState: IUserState = {
 	token: null,

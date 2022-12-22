@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { StyledButton, StyledParagraph } from "@freelance/components";
 import { ROLES } from "utils/constants/roles";
@@ -7,10 +6,11 @@ import { useGetEmployerQuery } from "redux/createEmployer/employerApi";
 import { baseUrl } from "utils/constants/redux-query";
 import { DEFAULT_IMAGE } from "utils/constants/links";
 import { Container, UserInfoWrapper, ButtonsWrapper, UserDetails } from "./dashboard-header.styled";
+import { CREATE_PROFILE } from "utils/constants/breakpoint";
 
 export interface DashboardHeaderProps {
 	userRole: "freelancer" | "employer";
-	typePage?: "createProfile" | "main";
+	typePage?: "createProfile" | "main" | "proposals";
 }
 
 export function DashboardHeader({ userRole, typePage }: DashboardHeaderProps) {
@@ -19,8 +19,8 @@ export function DashboardHeader({ userRole, typePage }: DashboardHeaderProps) {
 
 	return (
 		<Container>
-			{typePage === "createProfile" && <UserInfoWrapper />}
-			{typePage !== "createProfile" && (
+			{typePage === CREATE_PROFILE && <UserInfoWrapper />}
+			{typePage !== CREATE_PROFILE && (
 				<UserInfoWrapper>
 					<img
 						src={data && data?.image?.length > 0 ? baseUrl + "/" + data?.image : DEFAULT_IMAGE}

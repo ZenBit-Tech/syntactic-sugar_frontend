@@ -3,21 +3,20 @@ import { baseUrl } from "utils/constants/redux-query";
 import { IForm } from "./login.api";
 import { IUserState } from "./interfaces/IUserData";
 
-interface IServerResponse {
-	id: string;
-	email: string;
-}
-
 interface IToken {
 	token: string;
+}
+
+interface IConfirm {
+	id: string;
 }
 
 export const signupGoogleApi = createApi({
 	reducerPath: "signupGoogleApi",
 	baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
-	tagTypes: ["user", "registration"],
+	tagTypes: ["user", "registration", "confirmation"],
 	endpoints: builder => ({
-		signUp: builder.mutation<IServerResponse, IToken>({
+		signUp: builder.mutation<IUserState, IToken>({
 			query: (body: IToken) => ({
 				url: `auth/google/signup`,
 				method: "POST",
@@ -33,7 +32,16 @@ export const signupGoogleApi = createApi({
 			}),
 			invalidatesTags: ["registration"],
 		}),
+		confirmEmail: builder.mutation<void, IConfirm>({
+			query: (body: IConfirm) => ({
+				url: "auth/confirm",
+				method: "POST",
+				body,
+			}),
+			invalidatesTags: ["confirmation"],
+		}),
 	}),
 });
 
-export const { useSignUpMutation, useSignUpByEmailMutation } = signupGoogleApi;
+export const { useSignUpMutation, useSignUpByEmailMutation, useConfirmEmailMutation } =
+	signupGoogleApi;

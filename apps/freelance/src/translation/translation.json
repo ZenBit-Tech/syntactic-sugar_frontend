@@ -1,6 +1,7 @@
 {
 	"signupGoogle": {
-		"buttonText": "Sign up with Google"
+		"buttonText": "Sign up with Google",
+		"error": "This email already registered. Sign in, please."
 	},
 	"Hello, Syntactic sugar!": "Hello, Syntactic sugar!",
 	"First name": "First name",
@@ -30,7 +31,9 @@
 		"placeholderConfirmPassword": "Confirm Password",
 		"buttonSignUp": "SIGN UP",
 		"haveAcc": "Already have an account?",
-		"signInNow": " Sign In Now"
+		"signInNow": " Sign In Now",
+		"confirmMessage": "We sended you email with confirmation link. Please confirm your email by following it.",
+		"confirmation": "Your email has been confirmed"
 	},
 	"recoverPassForm": {
 		"forgotPass": "Forgot your password?",
@@ -83,7 +86,9 @@
 			"searchWorks": "SEARCH WORKS",
 			"proposals": "PROPOSALS",
 			"talents": "TALENTS",
-			"jobs": "MY JOBS"
+			"jobs": "MY JOBS",
+			"myProposals": "My Invitations",
+			"myOffers": "My Offers"
 		},
 		"profilePage": {
 			"title": "My Profile"
@@ -337,5 +342,14 @@
 			"aboutusLabel": "About us",
 			"btn1": " Create profile"
 		}
+	},
+	"jobDetails": {
+		"title": "Job details",
+		"sendProposalBtn": "SEND PROPOSAL",
+		"skills": "Required skills",
+		"exp": "Experience",
+		"salary": "Salary",
+		"duration": "Duration",
+		"date": "Posting date"
 	}
 }

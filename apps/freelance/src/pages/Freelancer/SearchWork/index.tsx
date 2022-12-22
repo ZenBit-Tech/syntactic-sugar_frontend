@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useForm, SubmitHandler, Controller, ChangeHandler } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useOptions, SelectOptions } from "utils/select-options/options";
 // hardcoded  - get jobs from server not provided yet
 import { jobs } from "utils/jobs/jobs";
@@ -16,6 +16,7 @@ import {
 	InputHeader,
 	InputWrapper,
 	SelectElement,
+	InputContainerCards,
 } from "./style";
 
 type user = "freelancer" | "employer";
@@ -35,6 +36,7 @@ export function SearchWork() {
 	const { t } = useTranslation();
 	const { handleSubmit, control, getValues, reset } = useForm<IFormInput>();
 	const { isLoading, isError, data } = useGetJobsQuery();
+
 	const emptyValue = {
 		value: "",
 		label: "",
@@ -111,59 +113,59 @@ export function SearchWork() {
 		<StyledPage>
 			<Dashboard userRole="freelancer">
 				<Form onSubmit={handleSubmit(onSubmit)}>
+					<InputHeader>
+						<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
+							{t("freelancer.searchWork.jobsList")}
+						</StyledTitle>
+						<StyledButton
+							type="reset"
+							buttonColor="redGradient"
+							buttonSize="sm"
+							fontSize="md"
+							onClick={() => {
+								setToggleFilter("reset");
+								setFilterJobs(jobs);
+								setUseFilters(false);
+								reset();
+							}}
+						>
+							{t("freelancer.searchWork.buttonAll")}
+						</StyledButton>
+						<StyledButton
+							type="reset"
+							buttonColor="redGradient"
+							buttonSize="sm"
+							fontSize="md"
+							onClick={() => {
+								setToggleFilter("filter");
+								setFilter(freelancerFilter);
+								setUseFilters(false);
+								reset();
+							}}
+						>
+							{t("freelancer.searchWork.buttonProfile")}
+						</StyledButton>
+						<StyledButton
+							type="button"
+							disabled={useFilters ? true : false}
+							buttonColor="redGradient"
+							buttonSize="sm"
+							fontSize="md"
+							onClick={() => {
+								setToggleFilter("reset");
+								setFilterJobs(jobs);
+								setUseFilters(true);
+							}}
+						>
+							{t("freelancer.searchWork.buttonFilter")}
+						</StyledButton>
+					</InputHeader>
 					<Wrapper>
-						<InputContainer>
-							<InputHeader>
-								<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
-									{t("freelancer.searchWork.jobsList")}
-								</StyledTitle>
-								<StyledButton
-									type="reset"
-									buttonColor="redGradient"
-									buttonSize="sm"
-									fontSize="md"
-									onClick={() => {
-										setToggleFilter("reset");
-										setFilterJobs(jobs);
-										setUseFilters(false);
-										reset();
-									}}
-								>
-									{t("freelancer.searchWork.buttonAll")}
-								</StyledButton>
-								<StyledButton
-									type="reset"
-									buttonColor="redGradient"
-									buttonSize="sm"
-									fontSize="md"
-									onClick={() => {
-										setToggleFilter("filter");
-										setFilter(freelancerFilter);
-										setUseFilters(false);
-										reset();
-									}}
-								>
-									{t("freelancer.searchWork.buttonProfile")}
-								</StyledButton>
-								<StyledButton
-									type="button"
-									disabled={useFilters ? true : false}
-									buttonColor="redGradient"
-									buttonSize="sm"
-									fontSize="md"
-									onClick={() => {
-										setToggleFilter("reset");
-										setFilterJobs(jobs);
-										setUseFilters(true);
-									}}
-								>
-									{t("freelancer.searchWork.buttonFilter")}
-								</StyledButton>
-							</InputHeader>
+						<InputContainerCards>
 							<InputWrapper>
-								<Pagination itemsPerPage={6} user={user} jobs={filterJobs} />
+								<Pagination itemsPerPage={6} user={user} jobs={data} />
 							</InputWrapper>
-						</InputContainer>
+						</InputContainerCards>
 						<InputContainer>
 							<InputHeader>
 								<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
@@ -223,7 +225,7 @@ export function SearchWork() {
 										buttonSize="sm"
 										fontSize="md"
 									>
-										<strong>{t("freelancer.searchWork.filter")}</strong>
+										{t("freelancer.searchWork.filter")}
 									</StyledButton>
 									<StyledButton
 										type="reset"
@@ -237,7 +239,7 @@ export function SearchWork() {
 										buttonSize="sm"
 										fontSize="md"
 									>
-										<strong>{t("freelancer.searchWork.unFilter")}</strong>
+										{t("freelancer.searchWork.unFilter")}
 									</StyledButton>
 								</div>
 							</InputWrapper>

@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 interface iStyledButtonProps {
-	buttonSize: "lg" | "md" | "sm" | "modal" | "card";
+	buttonSize: "lg" | "md" | "sm" | "modal" | "card" | "filter";
 	buttonColor: "redGradient" | "blue" | "lightRed" | "darkRed";
 	fontSize?: "lg" | "md" | "sm";
 }
@@ -23,6 +23,9 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 	border-radius: 100px;
 	padding: 0.6rem 0;
 	transition: all ease-in-out 0.4s;
+	:disabled {
+		color: ${({ theme }) => theme.colors.darkGrey};
+	}
 
 	${({ buttonSize }) => {
 		switch (buttonSize) {
@@ -45,6 +48,10 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 			case "card":
 				return css`
 					width: 20%;
+				`;
+			case "filter":
+				return css`
+					width: 45%;
 				`;
 		}
 	}}
@@ -74,7 +81,7 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 		}
 	}}
 
-	  &:hover {
+	  &:not([disabled]):hover {
 		filter: brightness(1.1);
 	}
 
@@ -95,8 +102,8 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 		}
 		return;
 	}}
-  
-  &:hover {
-		filter: brightness(1.1);
-	}
+`;
+
+export const FilterButton = styled(StyledButton)`
+    padding: 0.3rem 0;
 `;

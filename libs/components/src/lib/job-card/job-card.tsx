@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router-dom";
 import { StyledTitle, StyledButton, StyledParagraph } from "@freelance/components";
 import { Country } from "redux/jobs";
 import {
@@ -43,9 +44,11 @@ export function JobCard({
 	return (
 		<StyledJobCard>
 			<StyledJobCardHeader>
-				<StyledTitle tag="h2" fontWeight={800} fontSize="md">
-					<strong>{position}</strong>
-				</StyledTitle>
+				<NavLink to={`/jobs/details/${jobId}`}>
+					<StyledTitle tag="h2" fontWeight={800} fontSize="md">
+						<strong>{position}</strong>
+					</StyledTitle>
+				</NavLink>
 				<strong>{createdDate}</strong>
 				{userType === ROLES.FREELANCER && (
 					<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
@@ -54,7 +57,7 @@ export function JobCard({
 				)}
 				{userType === ROLES.EMPLOYER && (
 					<>
-						<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
+						<StyledButton buttonColor="redGradient" buttonSize="md" fontSize="sm">
 							<strong>{t("jobCard.editJob")}</strong>
 						</StyledButton>
 						<StyledButton
@@ -74,9 +77,11 @@ export function JobCard({
 						{t("jobCard.location")}:
 					</StyledParagraph>
 					<CountriesContainer>
-						{countries.map(country => (
-							<strong key={country.id}>{country.name}</strong>
-						))}
+						<div>
+							{countries.map(country => (
+								<strong key={country.id}>{country.name} </strong>
+							))}
+						</div>
 					</CountriesContainer>
 				</LocationBlock>
 				<StyledParagraph fontSize="sm" opacity={0.7}>

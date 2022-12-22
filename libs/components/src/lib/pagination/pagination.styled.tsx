@@ -12,9 +12,10 @@ export const Container = styled.div`
 export const StyledReactPagination = styled(ReactPaginate)`
 	padding: 2%;
 	display: flex;
-	width: 30%;
+	width: 40%;
 	justify-content: space-between;
 	a {
+    font-size: 10px;
 		color: ${({ theme }) => theme.colors.black};
 	}
 `;
