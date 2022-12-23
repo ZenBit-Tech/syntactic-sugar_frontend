@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useForm, Controller } from "react-hook-form";
 import { useOptions, SelectOptions } from "utils/select-options/options";
-// hardcoded  - get jobs from server not provided yet
-import { jobs } from "utils/jobs/jobs";
 import { Dashboard, StyledTitle, StyledButton, JobCard, Pagination } from "@freelance/components";
-import { useGetJobsQuery } from "redux/jobs/jobs.api";
+import { JobsInterface, Skills, useGetJobsQuery } from "redux/jobs/jobs.api";
+import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import { useSearchWorkFormHook } from "./searchWorkFormHook";
 import {
 	StyledPage,
@@ -31,11 +30,17 @@ export interface IFormInput {
 	availableAmountOfHour: SelectOptions;
 }
 
+interface JobSkills {
+	id: string;
+	name: string;
+}
+
 export function SearchWork() {
 	const user: user = "freelancer";
 	const { t } = useTranslation();
 	const { handleSubmit, control, getValues, reset } = useForm<IFormInput>();
-	const { isLoading, isError, data } = useGetJobsQuery();
+	const { isLoading, isError, data, isSuccess } = useGetJobsQuery();
+	const { data: freelancerData } = useGetFreelancerQuery();
 
 	const emptyValue = {
 		value: "",
@@ -52,15 +57,14 @@ export function SearchWork() {
 		englishLevel,
 	} = useOptions();
 
-	// hardcoded  - get freelanceer profile not provided yet
 	const freelancerFilter = {
-		position: "",
-		category: "Category",
-		skills: ["JavaScript/Front-End"],
-		employmentType: "",
-		englishLevel: "",
-		hourRate: "",
-		availableAmountOfHour: "",
+		position: freelancerData?.position,
+		category: freelancerData?.category.name,
+		skills: freelancerData?.skills.map(skill => skill.name),
+		employmentType: freelancerData?.employmentType,
+		englishLevel: freelancerData?.englishLevel,
+		hourRate: freelancerData?.hourRate,
+		availableAmountOfHour: freelancerData?.availableAmountOfHours,
 	};
 
 	const filtersObj = {
@@ -72,7 +76,7 @@ export function SearchWork() {
 		availableAmountOfHour: hoursAmount,
 	};
 
-	const [filterJobs, setFilterJobs] = useState(jobs);
+	const [filterJobs, setFilterJobs] = useState(data);
 	const [useFilters, setUseFilters] = useState<boolean>(false);
 	const { onSubmit, setFilter, setToggleFilter, filter, toggleFilter } = useSearchWorkFormHook();
 
@@ -92,17 +96,25 @@ export function SearchWork() {
 	};
 
 	useEffect(() => {
+		setFilterJobs(data);
+	}, [isSuccess]);
+
+	useEffect(() => {
 		if (toggleFilter === "filter") {
-			const jobSkills = jobs.map(job => job.skills);
+			const jobSkills: JobSkills[][] | undefined = data?.map((job: JobsInterface) => job.skills);
+			const filterJobsSkills: string[][] | undefined = jobSkills?.map((skill: JobSkills[]) => {
+				return skill.map((item: JobSkills) => item.name);
+			});
 			const filterSkills = filter.skills;
-			const skillsFilter = skillIncludesFunc(jobSkills, filterSkills);
-			const newFilterJobs = jobs.filter(
-				(job, index) =>
+			const skillsFilter = skillIncludesFunc(filterJobsSkills as string[][], filterSkills);
+			const newFilterJobs = data?.filter(
+				(job: JobsInterface, index) =>
 					job.position.toLowerCase().includes(filter.position.toLowerCase()) &&
-					job.category.includes(filter.category) &&
+					job.category.name.includes(filter.category) &&
 					job.employmentType.includes(filter.employmentType) &&
 					job.englishLevel.includes(filter.englishLevel) &&
 					job.hourRate.includes(filter.hourRate) &&
+					job.availableAmountOfHours.includes(filter.availableAmountOfHour) &&
 					skillsFilter[index],
 			);
 			setFilterJobs(newFilterJobs);
@@ -124,7 +136,7 @@ export function SearchWork() {
 							fontSize="md"
 							onClick={() => {
 								setToggleFilter("reset");
-								setFilterJobs(jobs);
+								setFilterJobs(data);
 								setUseFilters(false);
 								reset();
 							}}
@@ -153,7 +165,7 @@ export function SearchWork() {
 							fontSize="md"
 							onClick={() => {
 								setToggleFilter("reset");
-								setFilterJobs(jobs);
+								setFilterJobs(data);
 								setUseFilters(true);
 							}}
 						>
@@ -163,7 +175,7 @@ export function SearchWork() {
 					<Wrapper>
 						<InputContainerCards>
 							<InputWrapper>
-								<Pagination itemsPerPage={6} user={user} jobs={data} />
+								<Pagination itemsPerPage={5} user={user} jobs={filterJobs} />
 							</InputWrapper>
 						</InputContainerCards>
 						<InputContainer>
@@ -231,7 +243,7 @@ export function SearchWork() {
 										type="reset"
 										disabled={useFilters ? false : true}
 										onClick={() => {
-											setFilterJobs(jobs);
+											setFilterJobs(data);
 											setToggleFilter("reset");
 											reset();
 										}}

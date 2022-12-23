@@ -342,6 +342,7 @@
 		"exp": "Experience",
 		"salary": "Salary",
 		"duration": "Duration",
-		"date": "Posting date"
+		"date": "Posting date",
+    "alreadySended": "Proposal already sended"
 	}
 }

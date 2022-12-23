@@ -39,8 +39,7 @@ export function App() {
 							<Route path="/recover-password" element={<RecoverPasswordRequest />} />
 							<Route path="/check-your-email" element={<RecoverPasswordCheck />} />
 							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
-							<Route path="/freelancer/send-proposal" element={<SendProposal />} />
-							<Route path="/work-details" element={<h1>Work Details Page 4.1</h1>} />
+							<Route path="/freelancer/send-proposal/:id" element={<SendProposal />} />
 							<Route path="/password-updated" element={<RecoverPasswordUpdate />} />
 							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
 							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />

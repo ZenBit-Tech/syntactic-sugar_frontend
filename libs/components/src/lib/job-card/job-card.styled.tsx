@@ -6,7 +6,6 @@ export const Container = styled.div`
 	width: 100%;
 	flex-direction: column;
 	padding: 5px;
-
 `;
 
 export const StyledJobCard = styled.div`
@@ -25,15 +24,24 @@ export const StyledJobCard = styled.div`
 
 export const StyledJobCardHeader = styled.div`
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(3, 1fr);
 	gap: 10px;
 	justify-items: center;
 	align-items: center;
-  padding: 0.2rem;
+	padding: 0.2rem;
 	border-bottom: 2px solid ${({ theme }) => theme.colors.grey};
 	button {
-		padding: 0.1rem;
+		width: 100%;
+		padding: 0.4rem;
 	}
+  .employerButtonContainer {
+    width: 100%;
+    display: flex;
+    button {
+      font-size: 10px;
+      margin-left: 5px;
+    }
+  }
 `;
 
 export const StyledJobCardHeaderLeft = styled.div`

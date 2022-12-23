@@ -21,10 +21,8 @@ export const ButtonWrapper = styled.div`
 
 export const Box = styled.div`
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 	height: 15%;
-	justify-content: space-evenly;
-	align-items: center;
 `;
 
 export const Item = styled.div`
@@ -47,6 +45,13 @@ export const Item = styled.div`
 
 	:last-child {
 		border-bottom: none;
+	}
+
+	.skillsContainer {
+		width: 50%;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
 	}
 `;
 
@@ -131,7 +136,7 @@ export const Wrapper = styled.div`
 	img {
 		object-fit: cover;
 		border-radius: 50%;
-		height: 10%;
-		width: 10%;
+		height: 100%;
+		width: 35%;
 	}
 `;

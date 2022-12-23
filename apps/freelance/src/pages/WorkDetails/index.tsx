@@ -9,7 +9,9 @@ import {
 	StyledButton,
 } from "@freelance/components";
 import { useGetJobIdQuery } from "src/redux/jobs/jobs.api";
+import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import { SEARCH_WORK, SEND_PROPOSAL } from "utils/constants/breakpoint";
+import { baseUrl } from "utils/constants/redux-query";
 import {
 	ContainerBox,
 	CardContainer,
@@ -30,9 +32,16 @@ export function WorkDetails() {
 	const params = useParams();
 	const id = String(params["id"]);
 	const { data } = useGetJobIdQuery(id);
+  const { data: freelancerData } = useGetFreelancerQuery();
+
+  const isProposal = freelancerData?.proposals
+		.map(proposal => {
+			return data?.proposals.find(item => item.id === proposal.id);
+		})
+		.some(item => item !== undefined);
 
 	const handleClickProposal = () => {
-		navigate(SEND_PROPOSAL);
+		navigate(SEND_PROPOSAL + "/" + id);
 	};
 
 	const handleClickBack = () => {
@@ -48,7 +57,7 @@ export function WorkDetails() {
 							{t("jobDetails.title")}
 						</StyledTitle>
 						<Wrapper>
-							<img src={data?.employer.image} alt="User Avatar" />
+							<img src={baseUrl + "/" + data?.employer.image} alt="User Avatar" />
 							<div>
 								<StyledTitle tag="h3" fontSize="md" fontWeight={500}>
 									{data?.employer.companyName}
@@ -112,7 +121,12 @@ export function WorkDetails() {
 									<Title id="skills">
 										<strong>{t("jobDetails.skills")}</strong>
 									</Title>
-									<p></p>
+									<div className="skillsContainer">
+										{data &&
+											data?.skills.map(skill => {
+												return <p key={skill.id}>{skill.name}</p>;
+											})}
+									</div>
 								</Item>
 							</RightSide>
 						</ItemContainer>
@@ -147,12 +161,15 @@ export function WorkDetails() {
 							</StyledButton>
 							<StyledButton
 								type="button"
+								disabled={isProposal ? true : false}
 								buttonColor="redGradient"
 								buttonSize="sm"
 								fontSize="md"
 								onClick={handleClickProposal}
 							>
-								<strong>{t("jobDetails.sendProposalBtn")}</strong>
+								<strong>
+									{t(isProposal ? "jobDetails.alreadySended" : "jobDetails.sendProposalBtn")}
+								</strong>
 							</StyledButton>
 						</ButtonWrapper>
 					</ContainerBox>

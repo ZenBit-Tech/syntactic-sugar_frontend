@@ -30,8 +30,18 @@ export interface JobsInterface {
 	availableAmountOfHours: string;
 	workExperience: string;
 	englishLevel: string;
-	category: string;
-	skills: string[];
+	proposals: {
+		id: string;
+		coverLetter: string;
+	}[];
+	category: {
+		id: string;
+		name: string;
+	};
+	skills: {
+		id: string;
+		name: string;
+	}[];
 	createdDate: string;
 	updatedDate: string;
 	isPublished: boolean;

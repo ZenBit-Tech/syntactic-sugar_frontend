@@ -1,6 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { workHistoryProps, educationProps } from "redux/createFreelancer/freelancer-slice";
 import { baseQuery } from "redux/base-query";
+
 export interface IFormInput {
 	fullName: string;
 	category: string;
@@ -25,9 +26,9 @@ export interface Published {
 export interface IResponse {
 	id: string;
 	fullName: string;
-	category: string;
+	category: { id: number; name: string };
 	position: string;
-	skills: string[];
+	skills: { id: number; name: string }[];
 	employmentType: string;
 	country: { id: number; name: string };
 	hourRate: string;
@@ -39,13 +40,15 @@ export interface IResponse {
 	otherExperience?: string;
 	isPublished: boolean;
 	image: string;
+	proposals: { id: string; coverLetter: string }[];
 	user: { id: number; email: string };
 }
 
 export const createFreelancerApi = createApi({
 	reducerPath: "createFreelancer",
 	baseQuery: baseQuery,
-	tagTypes: ["freelancer", "published"],
+	refetchOnFocus: true,
+	tagTypes: ["freelancer", "published", "proposal"],
 	endpoints: builder => ({
 		createFreelancer: builder.mutation({
 			query: (body: IFormInput) => ({
