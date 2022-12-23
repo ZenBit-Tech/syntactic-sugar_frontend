@@ -29,7 +29,7 @@ export const VIEW_PROFILE = "/freelancer/view-profile";
 export const CREATE_PROFILE_1 = "/freelancer/create-profile1";
 export const CREATE_PROFILE_2 = "/freelancer/create-profile2";
 export const SEARCH_WORK = "/freelancer/searchwork";
-export const SEND_PROPOSAL = "/send-proposal-freelancer";
+export const SEND_PROPOSAL = "/freelancer/send-proposal";
 export const ROLE_PAGE = "/role-page";
 
 // Dashboard-menu

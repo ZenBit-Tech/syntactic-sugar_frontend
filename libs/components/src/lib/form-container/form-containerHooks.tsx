@@ -2,13 +2,13 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useLoginWithGoogleMutation } from "redux/login.api";
 import { toast } from "react-toastify";
+import { useGoogleLogin } from "@react-oauth/google";
 import { UserRoles } from "redux/role.api";
 import { setUserData } from "redux/userState/userSlice";
 import { ROLE_SELECTION, MY_JOBS, SEARCH_WORK } from "utils/constants/breakpoint";
-import { useGoogleLogin } from "@react-oauth/google";
 import { useSignUpMutation } from "redux/signup-googleApi";
+import { useLoginWithGoogleMutation } from "redux/login.api";
 
 export const useGoogleAuthentication = (formType: boolean) => {
 	const { t } = useTranslation();
@@ -55,8 +55,7 @@ export const useGoogleAuthentication = (formType: boolean) => {
 			navigate("/" + ROLE_SELECTION);
 		}
 		if (isErrorGoogle) {
-			alert(t("signupGoogle.error"));
-			navigate("/");
+			toast.error(t("signupGoogle.error"));
 		}
 	}, [isSuccessGoogle, isErrorGoogle]);
 

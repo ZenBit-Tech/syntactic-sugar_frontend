@@ -1,7 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import { StyledTitle, StyledButton, StyledParagraph } from "@freelance/components";
-import { Country } from "redux/jobs";
+import { InstObject, Proposal } from "redux/jobs";
+import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
+import { ROLES } from "utils/constants/roles";
 import {
 	StyledJobCard,
 	StyledJobCardHeader,
@@ -9,21 +11,21 @@ import {
 	CountriesContainer,
 	LocationBlock,
 } from "./job-card.styled";
-import { ROLES } from "utils/constants/roles";
 
 export interface JobCardProps {
 	jobId: string;
 	position: string;
-	countries: Country[];
+	countries: InstObject[];
 	employmentType: string;
+	proposals: Proposal[];
 	availableAmountOfHours: string;
 	workExperience: string;
 	levelEnglish: string;
 	createdDate: string;
 	updatedDate?: string;
 	userType: string;
-	skills?: string[];
-	category?: string;
+	skills?: InstObject[];
+	category?: InstObject;
 	handleRemoveJob?: (id: string) => void;
 }
 
@@ -32,6 +34,7 @@ export function JobCard({
 	position,
 	countries,
 	employmentType,
+	proposals,
 	availableAmountOfHours,
 	workExperience,
 	levelEnglish,
@@ -40,6 +43,13 @@ export function JobCard({
 	handleRemoveJob,
 }: JobCardProps) {
 	const { t } = useTranslation();
+	const { data } = useGetFreelancerQuery();
+
+	const isProposal = data?.proposals
+		.map(proposal => {
+			return proposals.find(item => item.id === proposal.id);
+		})
+		.some(item => item !== undefined);
 
 	return (
 		<StyledJobCard>
@@ -50,7 +60,7 @@ export function JobCard({
 					</StyledTitle>
 				</NavLink>
 				<strong>{createdDate}</strong>
-				{userType === ROLES.FREELANCER && (
+				{userType === ROLES.FREELANCER && !isProposal && (
 					<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
 						<strong>{t("jobCard.sendProposal")}</strong>
 					</StyledButton>

@@ -19,6 +19,7 @@ export function Items({ currentItems, user, handleRemoveJob }: CurrentItems) {
 							jobId={job.id}
 							position={job.position}
 							countries={job.countries}
+							proposals={job.proposals}
 							employmentType={job.employmentType}
 							availableAmountOfHours={job.availableAmountOfHours}
 							workExperience={job.workExperience}

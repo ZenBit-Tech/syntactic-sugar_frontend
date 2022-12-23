@@ -2,12 +2,16 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from "redux/base-query";
 import { ICreatedJob, INewJob } from "redux/interfaces";
 
-export interface Country {
+export interface InstObject {
 	id: string;
 	name: string;
 }
 
-export interface Skills extends Country {}
+export interface Proposal {
+	id: string;
+	coverLetter: string;
+}
+
 export interface IEmployerResponse {
 	id: string;
 	fullName: string;
@@ -24,14 +28,15 @@ export interface JobsInterface {
 	id: string;
 	description: string;
 	position: string;
-	countries: Country[];
+	countries: InstObject[];
 	employmentType: string;
 	hourRate: string;
 	availableAmountOfHours: string;
 	workExperience: string;
 	englishLevel: string;
-	category: string;
-	skills: string[];
+	proposals: Proposal[];
+	category: InstObject;
+	skills: InstObject[];
 	createdDate: string;
 	updatedDate: string;
 	isPublished: boolean;

@@ -1,12 +1,13 @@
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ThemeProvider } from "styled-components";
 import { StyledButton, ThemeColors } from "@freelance/components";
 import { useCreateProposalMutation } from "redux/sendProposalFreelancer/proposalApi";
 import { IProposal } from "src/redux/interfaces/IProposal";
 import { schema } from "utils/validations/fileUpload";
+import { useGetJobIdQuery } from "src/redux/jobs/jobs.api";
 import { WORK_DETAILS, SEARCH_WORK } from "src/utils/constants/breakpoint";
 import { useGetFreelancerQuery } from "src/redux/createFreelancer/freelancer-pageApi";
 import {
@@ -24,6 +25,9 @@ import {
 
 export function SendProposal() {
 	const { data } = useGetFreelancerQuery();
+	const params = useParams();
+	const id = String(params["id"]);
+	const { data: jobData } = useGetJobIdQuery(id);
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 	const {
@@ -34,13 +38,14 @@ export function SendProposal() {
 	const [createProposal, { isError }] = useCreateProposalMutation({});
 
 	const goBack = () => {
-		navigate(WORK_DETAILS);
+		navigate(-1);
 	};
 
 	const onSubmit = async (values: IProposal) => {
 		const data: any = new FormData();
 		data.append("file", values.file[0]);
 		data.append("coverLetter", values.coverLetter);
+		data.append("id", id);
 
 		try {
 			await createProposal(data);

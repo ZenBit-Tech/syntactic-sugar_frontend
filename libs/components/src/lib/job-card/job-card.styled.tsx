@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { StyledParagraph } from "@freelance/components";
 
 export const Container = styled.div`
 	display: flex;
@@ -33,7 +32,8 @@ export const StyledJobCardHeader = styled.div`
 	border-bottom: 1px solid ${({ theme }) => theme.colors.grey};
 
 	button {
-		padding: 0.1rem;
+		width: 100%;
+		padding: 0.4rem;
 	}
 `;
 
