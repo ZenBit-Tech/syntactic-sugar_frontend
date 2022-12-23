@@ -23,6 +23,7 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 	border-radius: 100px;
 	padding: 0.6rem 0;
 	transition: all ease-in-out 0.4s;
+	cursor: auto;
 	:disabled {
 		color: ${({ theme }) => theme.colors.darkGrey};
 	}
@@ -83,6 +84,8 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 
 	  &:not([disabled]):hover {
 		filter: brightness(1.1);
+		cursor: pointer;
+		
 	}
 
 	${({ fontSize }) => {

@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { StyledTitle, StyledButton, StyledParagraph } from "@freelance/components";
-import { Country } from "redux/jobs";
+import { Country, useRemoveProposalByIdMutation } from "redux/jobs";
 import {
 	StyledJobCard,
 	StyledJobCardHeader,
@@ -8,6 +8,8 @@ import {
 	CountriesContainer,
 	LocationBlock
 } from "./job-card.styled";
+import { PROPOSALS_PAGE, JOBS_PAGE } from "utils/constants/breakpoint";
+import { ROLES } from "utils/constants/roles";
 
 export interface JobCardProps {
 	position: string;
@@ -21,6 +23,8 @@ export interface JobCardProps {
 	userType: string;
 	skills?: string[];
 	category?: string;
+	typePage?: 'proposals' | 'jobs';
+	proposalId?: string;
 }
 
 export function JobCard({
@@ -32,8 +36,16 @@ export function JobCard({
 	levelEnglish,
 	createdDate,
 	userType,
+	typePage,
+	proposalId,
 }: JobCardProps) {
 	const { t } = useTranslation();
+
+	const [remove] = useRemoveProposalByIdMutation();
+
+	const handleClick = async(proposalId: string) => {
+		await remove(proposalId);
+	}
 
 	return (
 		<StyledJobCard>
@@ -42,12 +54,25 @@ export function JobCard({
 					<strong>{position}</strong>
 				</StyledTitle>
 				<strong>{createdDate}</strong>
-				{userType === "freelancer" && (
-					<StyledButton buttonColor="redGradient" buttonSize="md" fontSize="sm">
-						<strong>{t("jobCard.sendProposal")}</strong>
-					</StyledButton>
+				{userType === ROLES.FREELANCER && (
+					<>
+						{typePage === JOBS_PAGE && (
+							<StyledButton buttonColor="redGradient" buttonSize="md" fontSize="sm">
+								<strong>{t("jobCard.sendProposal")}</strong>
+							</StyledButton>)}
+						{typePage === PROPOSALS_PAGE && (
+							<>
+								<StyledButton disabled buttonColor="redGradient" buttonSize="lg" fontSize="md">
+									<strong>{t("jobCard.startChatting")}</strong>
+								</StyledButton>
+								{/* <StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md" onClick={() => proposalId && handleClick(proposalId)}>
+									<strong>{t("jobCard.removeProposal")}</strong>
+								</StyledButton> */}
+							</>
+						)}
+					</>
 				)}
-				{userType === "employer" && (
+				{userType === ROLES.EMPLOYER && (
 					<>
 						<StyledButton buttonColor="redGradient" buttonSize="md" fontSize="sm">
 							<strong>{t("jobCard.editJob")}</strong>
@@ -60,7 +85,7 @@ export function JobCard({
 			</StyledJobCardHeader>
 			<StyledJobCardParagraph>
 				<LocationBlock>
-					<StyledParagraph fontSize="sm" opacity={0.7}>
+					<StyledParagraph fontSize="md" opacity={0.7}>
 						{t("jobCard.location")}:
 					</StyledParagraph>
 					<CountriesContainer>
@@ -71,16 +96,16 @@ export function JobCard({
 						</div>
 					</CountriesContainer>
 				</LocationBlock>
-				<StyledParagraph fontSize="sm" opacity={0.7}>
+				<StyledParagraph fontSize="md" opacity={0.7}>
 					{t("jobCard.employmentType")}: <strong>{employmentType}</strong>
 				</StyledParagraph>
-				<StyledParagraph fontSize="sm" opacity={0.7}>
+				<StyledParagraph fontSize="md" opacity={0.7}>
 					{t("jobCard.option")}: <strong>{availableAmountOfHours}</strong>
 				</StyledParagraph>
-				<StyledParagraph fontSize="sm" opacity={0.7}>
+				<StyledParagraph fontSize="md" opacity={0.7}>
 					{t("jobCard.exp")}: <strong>{workExperience}</strong>
 				</StyledParagraph>
-				<StyledParagraph fontSize="sm" opacity={0.7}>
+				<StyledParagraph fontSize="md" opacity={0.7}>
 					{t("jobCard.englishLevel")}: <strong>{levelEnglish}</strong>
 				</StyledParagraph>
 			</StyledJobCardParagraph>

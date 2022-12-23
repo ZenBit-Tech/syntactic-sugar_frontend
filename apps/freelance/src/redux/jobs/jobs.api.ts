@@ -7,7 +7,8 @@ export interface Country {
 	name: string;
 }
 
-export interface Skills extends Country {}
+export interface Skills extends Country { }
+export interface Proposals extends Country { }
 
 export interface JobsInterface {
 	id: string;
@@ -24,6 +25,7 @@ export interface JobsInterface {
 	updatedDate: string;
 	isPublished: boolean;
 	isProposal: boolean;
+	proposals: Proposals[];
 }
 
 export const getJobsApi = createApi({
@@ -58,8 +60,15 @@ export const getJobsApi = createApi({
 			}),
 			providesTags: ["Job"],
 		}),
+		removeProposalById: build.mutation({
+			query: (id: string) => ({
+				url: `proposal/remove-proposal/${id}`,
+				method: "DELETE",
+			}),
+			invalidatesTags: ["Job"],
+		})
 	}),
 });
 
-export const { useGetJobsQuery, useGetJobsByEmployerQuery, useCreateJobMutation, useGetJobsWithProposalsQuery } = getJobsApi;
+export const { useGetJobsQuery, useGetJobsByEmployerQuery, useCreateJobMutation, useGetJobsWithProposalsQuery, useRemoveProposalByIdMutation } = getJobsApi;
 

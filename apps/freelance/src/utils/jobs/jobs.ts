@@ -22,6 +22,7 @@ export const jobs: JobsInterface[] = [
 		skills: ["Java"],
 		hourRate: "Hour Rate",
 		updatedDate: "updatedDate",
+		proposals: [{id: "id", name: ""}],
 	},
 	{
 		id: "b",
@@ -38,6 +39,7 @@ export const jobs: JobsInterface[] = [
 		skills: ["Android", "Embedded"],
 		hourRate: "Hour Rate",
 		updatedDate: "updatedDate",
+		proposals: [{id: "id", name: ""}],
 	},
 	{
 		id: "c",
@@ -54,6 +56,7 @@ export const jobs: JobsInterface[] = [
 		skills: ["Golang", "Rust"],
 		hourRate: "Hour Rate",
 		updatedDate: "updatedDate",
+		proposals: [{id: "id", name: ""}],
 	},
 	{
 		id: "d",
@@ -70,6 +73,7 @@ export const jobs: JobsInterface[] = [
 		skills: ["JavaScript/Front-End", "Java"],
 		hourRate: "Hour Rate",
 		updatedDate: "updatedDate",
+		proposals: [{id: "id", name: ""}],
 	},
 	{
 		id: "e",
@@ -86,6 +90,7 @@ export const jobs: JobsInterface[] = [
 		skills: ["JavaScript/Front-End"],
 		hourRate: "Hour Rate",
 		updatedDate: "updatedDate",
+		proposals: [{id: "id", name: ""}],
 	},
 	{
 		id: "f",
@@ -102,6 +107,7 @@ export const jobs: JobsInterface[] = [
 		skills: ["JavaScript/Front-End"],
 		hourRate: "Hour Rate",
 		updatedDate: "updatedDate",
+		proposals: [{id: "id", name: ""}],
 	},
 	{
 		id: "g",
@@ -118,6 +124,7 @@ export const jobs: JobsInterface[] = [
 		skills: ["C#"],
 		hourRate: "Hour Rate",
 		updatedDate: "updatedDate",
+		proposals: [{id: "id", name: ""}],
 	},
 	{
 		id: "h",
@@ -134,6 +141,7 @@ export const jobs: JobsInterface[] = [
 		skills: ["Python"],
 		hourRate: "Hour Rate",
 		updatedDate: "updatedDate",
+		proposals: [{id: "id", name: ""}],
 	},
 	{
 		id: "i",
@@ -150,6 +158,7 @@ export const jobs: JobsInterface[] = [
 		skills: ["Node.js", "JavaScript/Front-End"],
 		hourRate: "Hour Rate",
 		updatedDate: "updatedDate",
+		proposals: [{id: "id", name: ""}],
 	},
 	{
 		id: "j",
@@ -166,5 +175,6 @@ export const jobs: JobsInterface[] = [
 		skills: ["Node.js", "JavaScript/Front-End"],
 		hourRate: "Hour Rate",
 		updatedDate: "updatedDate",
+		proposals: [{id: "id", name: ""}],
 	},
 ];

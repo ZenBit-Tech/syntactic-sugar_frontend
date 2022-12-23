@@ -34,3 +34,4 @@ export const ROLE_PAGE = "/role-page";
 // Dashboard-menu
 
 export const PROPOSALS_PAGE = "proposals";
+export const JOBS_PAGE = "jobs";

@@ -32,6 +32,9 @@ export function DashboardMenu({ userRole, typePage }: DashboardMenuProps) {
 								{t("dashboard.menu.myProposals")}
 							</FilterButton>
 							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
+								{t("dashboard.menu.myInvitations")}
+							</FilterButton>
+							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
 								{t("dashboard.menu.myOffers")}
 							</FilterButton>
 						</FilterButtonWrap>

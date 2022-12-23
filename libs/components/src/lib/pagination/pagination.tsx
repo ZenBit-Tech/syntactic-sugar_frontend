@@ -7,13 +7,14 @@ export interface PaginationProps {
 	itemsPerPage: number;
 	user: string;
 	jobs: JobsInterface[] | undefined;
+	typePage: 'proposals' | 'jobs';
 }
 
 export interface ReactPaginateEvent {
 	selected: number;
 }
 
-export function Pagination({ itemsPerPage, user, jobs }: PaginationProps) {
+export function Pagination({ itemsPerPage, user, jobs, typePage }: PaginationProps) {
 	const jobsLength = jobs?.length ? jobs?.length : 0;
 	const [itemOffset, setItemOffset] = useState<number>(0);
 	const endOffset = itemOffset + itemsPerPage;
@@ -26,7 +27,7 @@ export function Pagination({ itemsPerPage, user, jobs }: PaginationProps) {
 
 	return (
 		<>
-			<Items currentItems={currentItems} user={user} />
+			<Items currentItems={currentItems} user={user} typePage={typePage}/>
 			<StyledReactPagination
 				breakLabel="..."
 				nextLabel="next >"

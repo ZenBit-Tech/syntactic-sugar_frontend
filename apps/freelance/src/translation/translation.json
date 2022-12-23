@@ -67,6 +67,8 @@
 	"jobCard": {
 		"sendProposal": "Send proposal",
 		"removeJob": "Remove job",
+		"removeProposal": "Remove",
+		"startChatting": "Continue chatting...",
 		"editJob": "Edit Job",
 		"location": "Location",
 		"employmentType": "Type",
@@ -85,7 +87,8 @@
 			"proposals": "PROPOSALS",
 			"talents": "TALENTS",
 			"jobs": "MY JOBS",
-			"myProposals": "My Invitations",
+			"myProposals": "My Proposals",
+			"myInvitations": "My Invitations",
 			"myOffers": "My Offers"
 		},
 		"profilePage": {
