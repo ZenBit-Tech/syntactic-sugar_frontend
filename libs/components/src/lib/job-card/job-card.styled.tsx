@@ -39,7 +39,7 @@ export const StyledJobCardHeader = styled.div`
     display: flex;
     button {
       font-size: 10px;
-      margin-left: 2px;
+      margin-left: 5px;
     }
   }
 `;
