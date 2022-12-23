@@ -9,6 +9,7 @@ import {
 	StyledButton,
 } from "@freelance/components";
 import { useGetJobIdQuery } from "src/redux/jobs/jobs.api";
+import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import { SEARCH_WORK, SEND_PROPOSAL } from "utils/constants/breakpoint";
 import { baseUrl } from "utils/constants/redux-query";
 import {
@@ -31,6 +32,13 @@ export function WorkDetails() {
 	const params = useParams();
 	const id = String(params["id"]);
 	const { data } = useGetJobIdQuery(id);
+  const { data: freelancerData } = useGetFreelancerQuery();
+
+  const isProposal = freelancerData?.proposals
+		.map(proposal => {
+			return data?.proposals.find(item => item.id === proposal.id);
+		})
+		.some(item => item !== undefined);
 
 	const handleClickProposal = () => {
 		navigate(SEND_PROPOSAL + "/" + id);
@@ -153,12 +161,15 @@ export function WorkDetails() {
 							</StyledButton>
 							<StyledButton
 								type="button"
+								disabled={isProposal ? true : false}
 								buttonColor="redGradient"
 								buttonSize="sm"
 								fontSize="md"
 								onClick={handleClickProposal}
 							>
-								<strong>{t("jobDetails.sendProposalBtn")}</strong>
+								<strong>
+									{t(isProposal ? "jobDetails.alreadySended" : "jobDetails.sendProposalBtn")}
+								</strong>
 							</StyledButton>
 						</ButtonWrapper>
 					</ContainerBox>

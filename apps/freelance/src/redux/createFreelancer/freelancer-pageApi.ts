@@ -47,7 +47,8 @@ export interface IResponse {
 export const createFreelancerApi = createApi({
 	reducerPath: "createFreelancer",
 	baseQuery: baseQuery,
-	tagTypes: ["freelancer", "published"],
+	refetchOnFocus: true,
+	tagTypes: ["freelancer", "published", "proposal"],
 	endpoints: builder => ({
 		createFreelancer: builder.mutation({
 			query: (body: IFormInput) => ({
