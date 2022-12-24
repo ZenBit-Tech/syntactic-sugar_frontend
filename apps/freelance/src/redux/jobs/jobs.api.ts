@@ -77,6 +77,13 @@ export const getJobsApi = createApi({
 			}),
 			invalidatesTags: ["Job"],
 		}),
+		toggleIsPublishJob: build.mutation<void, string>({
+			query: (id: string) => ({
+				url: `jobs/publish-job/${id}`,
+				method: "PATCH",
+			}),
+			invalidatesTags: ["Job"],
+		}),
 		removeJob: build.mutation<void, string>({
 			query: (id: string) => ({
 				url: `jobs/remove-job/${id}`,
@@ -100,4 +107,5 @@ export const {
 	useGetJobsByEmployerQuery,
 	useGetJobsWithProposalsQuery,
 	useCreateJobMutation,
+	useToggleIsPublishJobMutation,
 } = getJobsApi;

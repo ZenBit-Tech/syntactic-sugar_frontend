@@ -69,6 +69,7 @@
 		"sendProposal": "Send proposal",
 		"removeJob": "Remove job",
 		"closeJob": "Close Job",
+		"publishJob": "Publish Job",
 		"editJob": "Edit Job",
 		"location": "Location",
 		"employmentType": "Type",
@@ -351,6 +352,6 @@
 		"salary": "Salary",
 		"duration": "Duration",
 		"date": "Posting date",
-    "alreadySended": "Proposal already sended"
+		"alreadySended": "Proposal already sended"
 	}
 }

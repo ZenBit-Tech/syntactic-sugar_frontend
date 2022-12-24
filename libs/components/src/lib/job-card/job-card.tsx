@@ -14,6 +14,7 @@ import {
 	EmployerButtonWrapper,
 	FreelancerButtonWrapper,
 } from "./job-card.styled";
+import { useJobCard } from "./job-cardHooks";
 
 export interface JobCardProps {
 	jobId: string;
@@ -29,7 +30,7 @@ export interface JobCardProps {
 	userType: string;
 	skills?: InstObject[];
 	category?: InstObject;
-	handleRemoveJob?: (id: string) => void;
+	isPublished: boolean;
 }
 
 export function JobCard({
@@ -43,10 +44,11 @@ export function JobCard({
 	levelEnglish,
 	createdDate,
 	userType,
-	handleRemoveJob,
+	isPublished,
 }: JobCardProps) {
 	const { t } = useTranslation();
 	const { data } = useGetFreelancerQuery();
+	const { handleSendProrposalClick, handleToggleIsPublishedButton, isTogglingJob } = useJobCard();
 
 	const isProposal = data?.proposals
 		.map(proposal => {
@@ -65,7 +67,12 @@ export function JobCard({
 				<strong>{createdDate}</strong>
 				{userType === ROLES.FREELANCER && !isProposal && (
 					<FreelancerButtonWrapper>
-						<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
+						<StyledButton
+							onClick={() => handleSendProrposalClick(jobId)}
+							buttonColor="redGradient"
+							buttonSize="lg"
+							fontSize="md"
+						>
 							<strong>{t("jobCard.sendProposal")}</strong>
 						</StyledButton>
 					</FreelancerButtonWrapper>
@@ -79,12 +86,13 @@ export function JobCard({
 						</EmployerButtonWrapper>
 						<EmployerButtonWrapper>
 							<StyledButton
-								onClick={() => handleRemoveJob && handleRemoveJob(jobId)}
+								onClick={() => handleToggleIsPublishedButton(jobId)}
 								buttonColor="redGradient"
 								buttonSize="lg"
 								fontSize="md"
+								disabled={isTogglingJob}
 							>
-								<strong>{t("jobCard.closeJob")}</strong>
+								<strong>{isPublished ? t("jobCard.closeJob") : t("jobCard.publishJob")}</strong>
 							</StyledButton>
 						</EmployerButtonWrapper>
 					</JobButtonContainer>

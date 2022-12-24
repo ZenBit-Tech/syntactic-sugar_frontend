@@ -71,6 +71,7 @@ export const FreelancerButtonWrapper = styled.div`
 export const EmployerButtonWrapper = styled.div`
 	display: inline-block;
 	text-align: right;
+	width: 50%;
 	flex-grow: 1;
 `;
 
