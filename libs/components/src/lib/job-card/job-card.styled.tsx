@@ -15,6 +15,7 @@ export const StyledJobCard = styled.div`
 	border: 2px solid ${({ theme }) => theme.colors.grey};
 	border-radius: 10px;
 	max-height: 200px;
+	min-height: 130px;
 	overflow: hidden;
 	:hover {
 		transform: scale(1.03);
@@ -23,7 +24,7 @@ export const StyledJobCard = styled.div`
 
 export const StyledJobCardHeader = styled.div`
 	display: grid;
-	grid-template-columns: 3fr 2fr 1fr 1fr;
+	grid-template-columns: 3fr 1fr 2fr;
 	gap: 10px;
 	justify-items: center;
 	align-items: center;
@@ -32,7 +33,6 @@ export const StyledJobCardHeader = styled.div`
 	border-bottom: 1px solid ${({ theme }) => theme.colors.grey};
 
 	button {
-		width: 100%;
 		padding: 0.4rem;
 	}
 `;
@@ -52,6 +52,26 @@ export const StyledJobCardParagraph = styled.div`
 	strong {
 		font-size: 0.7rem;
 	}
+`;
+
+export const JobButtonContainer = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+`;
+
+export const FreelancerButtonWrapper = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: end;
+	width: 100%;
+`;
+
+export const EmployerButtonWrapper = styled.div`
+	display: inline-block;
+	text-align: right;
+	flex-grow: 1;
 `;
 
 export const LocationBlock = styled.div`

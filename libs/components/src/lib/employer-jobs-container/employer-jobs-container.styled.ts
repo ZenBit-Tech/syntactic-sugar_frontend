@@ -6,7 +6,7 @@ export const JobsContainer = styled.div`
 	align-items: center;
 	justify-items: center;
 	height: 100%;
-	overflow-y: scroll;
+	/* overflow-y: scroll; */
 
 	::-webkit-scrollbar {
 		width: 15px;

@@ -10,6 +10,9 @@ import {
 	StyledJobCardParagraph,
 	CountriesContainer,
 	LocationBlock,
+	JobButtonContainer,
+	EmployerButtonWrapper,
+	FreelancerButtonWrapper,
 } from "./job-card.styled";
 
 export interface JobCardProps {
@@ -61,24 +64,30 @@ export function JobCard({
 				</NavLink>
 				<strong>{createdDate}</strong>
 				{userType === ROLES.FREELANCER && !isProposal && (
-					<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
-						<strong>{t("jobCard.sendProposal")}</strong>
-					</StyledButton>
+					<FreelancerButtonWrapper>
+						<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
+							<strong>{t("jobCard.sendProposal")}</strong>
+						</StyledButton>
+					</FreelancerButtonWrapper>
 				)}
 				{userType === ROLES.EMPLOYER && (
-					<>
-						<StyledButton buttonColor="redGradient" buttonSize="md" fontSize="sm">
-							<strong>{t("jobCard.editJob")}</strong>
-						</StyledButton>
-						<StyledButton
-							onClick={() => handleRemoveJob && handleRemoveJob(jobId)}
-							buttonColor="redGradient"
-							buttonSize="lg"
-							fontSize="md"
-						>
-							<strong>{t("jobCard.closeJob")}</strong>
-						</StyledButton>
-					</>
+					<JobButtonContainer>
+						<EmployerButtonWrapper>
+							<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
+								<strong>{t("jobCard.editJob")}</strong>
+							</StyledButton>
+						</EmployerButtonWrapper>
+						<EmployerButtonWrapper>
+							<StyledButton
+								onClick={() => handleRemoveJob && handleRemoveJob(jobId)}
+								buttonColor="redGradient"
+								buttonSize="lg"
+								fontSize="md"
+							>
+								<strong>{t("jobCard.closeJob")}</strong>
+							</StyledButton>
+						</EmployerButtonWrapper>
+					</JobButtonContainer>
 				)}
 			</StyledJobCardHeader>
 			<StyledJobCardParagraph>
