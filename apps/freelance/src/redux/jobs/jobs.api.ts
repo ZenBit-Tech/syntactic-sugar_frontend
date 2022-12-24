@@ -77,7 +77,7 @@ export const getJobsApi = createApi({
 			}),
 			invalidatesTags: ["Job"],
 		}),
-		removeJob: build.mutation<ICreatedJob, string>({
+		removeJob: build.mutation<void, string>({
 			query: (id: string) => ({
 				url: `jobs/remove-job/${id}`,
 				method: "DELETE",
