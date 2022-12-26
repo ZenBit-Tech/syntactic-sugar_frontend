@@ -5,15 +5,23 @@ import { Container, Page, Area } from "./dashboard.styled";
 export interface DashboardProps {
 	children: React.ReactNode;
 	userRole: "freelancer" | "employer";
-  	typePage?: "createProfile" | "main" | "proposals";
+	typePage?: "createProfile" | "main" | "proposals" | "employerJobs";
+	filterState?: boolean;
+	handleToggleFilter?: () => void;
 }
 
-export function Dashboard({ children, userRole, typePage }: DashboardProps) {
+export function Dashboard({
+	children,
+	userRole,
+	typePage,
+	handleToggleFilter,
+	filterState,
+}: DashboardProps) {
 	return (
 		<Container>
 			{userRole === ROLES.FREELANCER && (
 				<>
-					<DashboardMenu userRole={userRole} typePage={typePage}/>
+					<DashboardMenu userRole={userRole} typePage={typePage} />
 					<Area>
 						<DashboardHeader userRole={userRole} typePage={typePage} />
 						<Page>{children}</Page>
@@ -22,7 +30,12 @@ export function Dashboard({ children, userRole, typePage }: DashboardProps) {
 			)}
 			{userRole === ROLES.EMPLOYER && (
 				<>
-					<DashboardMenu userRole={userRole} />
+					<DashboardMenu
+						userRole={userRole}
+						typePage={typePage}
+						filterState={filterState}
+						handleToggleFilter={handleToggleFilter}
+					/>
 					<Area>
 						<DashboardHeader userRole={userRole} typePage={typePage} />
 						<Page>{children}</Page>

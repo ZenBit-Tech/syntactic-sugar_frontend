@@ -89,7 +89,9 @@
 			"talents": "TALENTS",
 			"jobs": "MY JOBS",
 			"myProposals": "My Invitations",
-			"myOffers": "My Offers"
+			"myOffers": "My Offers",
+			"publishedJobs": "Published Jobs",
+			"closedJobs": "Closed Jobs"
 		},
 		"profilePage": {
 			"title": "My Profile"

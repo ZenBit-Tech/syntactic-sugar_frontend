@@ -1,17 +1,22 @@
 import { EmployerJobsEmpty, EmployerJobsList, StyledButton } from "@freelance/components";
-import { Skeleton } from "antd";
+import { SkeletonEmployerJobs } from "@freelance/components";
 import { JobsContainer } from "./employer-jobs-container.styled";
 import { useEmployerJobsContainerHook } from "./employer-jobs-containerHooks";
 
-export function EmployerJobsContainer() {
-	const { createButton, handleClick, data, isLoading } = useEmployerJobsContainerHook();
+interface IEmployerJobsContainer {
+	isPublished: boolean;
+}
+
+export function EmployerJobsContainer({ isPublished }: IEmployerJobsContainer) {
+	const { createButton, handleClick, arrayJobs, isLoading } = useEmployerJobsContainerHook({
+		isPublished,
+	});
 
 	return (
 		<JobsContainer>
-			<Skeleton loading={isLoading} active={isLoading} paragraph={{ rows: 8 }} />
-			{isLoading && <Skeleton.Button active={isLoading} size="small" block={isLoading} />}
-			{!isLoading && data?.length ? (
-				<EmployerJobsList data={data} />
+			{isLoading && <SkeletonEmployerJobs isLoading={isLoading} />}
+			{!isLoading && arrayJobs?.length ? (
+				<EmployerJobsList data={arrayJobs} />
 			) : (
 				!isLoading && <EmployerJobsEmpty />
 			)}
