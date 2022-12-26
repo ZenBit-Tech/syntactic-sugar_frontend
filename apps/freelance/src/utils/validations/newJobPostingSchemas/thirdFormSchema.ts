@@ -16,8 +16,7 @@ export const useThirdFormSchema = (): SchemaOf<IJobPostingThirdForm> => {
 			}),
 		)
 			.max(3, maxSkills)
-			.min(1, fieldRequired)
-			.required(fieldRequired),
+			.min(1, fieldRequired),
 		englishLevel: object({
 			value: string().required(fieldRequired),
 			label: string().required(fieldRequired),
