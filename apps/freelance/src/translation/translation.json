@@ -1,4 +1,5 @@
 {
+	"serverErrorMessage": "Something went wrong",
 	"signupGoogle": {
 		"buttonText": "Sign up with Google",
 		"error": "This email already registered. Sign in, please."
@@ -57,7 +58,7 @@
 		"updatingPassword": "Updating password",
 		"loader": "SENDING EMAIL",
 		"errorMessageWrongEmail": "User with this email does not exist",
-		"errorMessageServerError": "Somethig went wrong",
+		"errorMessageServerError": "Something went wrong",
 		"errorMessageExpiredLinkTitle": "Your link has broken or has expired",
 		"errorMessageExpiredLinkSubTitle": "Please, try again",
 		"tryAgainButton": "Try again",
@@ -75,7 +76,9 @@
 		"employmentType": "Type",
 		"option": "Option",
 		"exp": "Expereance",
-		"englishLevel": "English"
+		"englishLevel": "English",
+		"closedNotification": "Job has been closed",
+		"publishedNotification": "Job has been published"
 	},
 	"invitationPage": {
 		"title": "You have successfully registered!",

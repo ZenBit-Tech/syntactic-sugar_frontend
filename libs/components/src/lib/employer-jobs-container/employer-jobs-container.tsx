@@ -1,4 +1,5 @@
 import { EmployerJobsEmpty, EmployerJobsList, StyledButton } from "@freelance/components";
+import { ToastContainer } from "react-toastify";
 import { SkeletonEmployerJobs } from "@freelance/components";
 import { JobsContainer } from "./employer-jobs-container.styled";
 import { useEmployerJobsContainerHook } from "./employer-jobs-containerHooks";
@@ -25,6 +26,7 @@ export function EmployerJobsContainer({ isPublished }: IEmployerJobsContainer) {
 					{createButton}
 				</StyledButton>
 			)}
+			<ToastContainer />
 		</JobsContainer>
 	);
 }
