@@ -8,7 +8,7 @@ export interface INewJob {
 	availableAmountOfHours: string;
 	workExperience: string;
 	hourRate: string;
-	skills: (string | undefined)[];
-	englishLevel: string | undefined;
+	skills: string[];
+	englishLevel: string;
 	otherRequirenments: string;
 }

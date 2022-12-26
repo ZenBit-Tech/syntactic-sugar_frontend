@@ -27,14 +27,20 @@ export const useJobPostingThirdFormHook = (): IUseJobPostingThirdForm => {
 
 	const onSubmit: SubmitHandler<IJobPostingThirdForm> = async data => {
 		try {
-			const resultData = {
-				...storedJobInfo,
-				skills: data.skills.map(skill => skill.label),
-				englishLevel: data.englishLevel.label,
-				otherRequirenments: data.otherRequirenments,
-			};
+			const skills = data.skills.map(skill => skill.label);
+			const skillsCheck = skills.some(skill => skill === undefined);
+			const englishLevel = data.englishLevel.label;
 
-			await createJob(resultData);
+			if (!skillsCheck && englishLevel) {
+				const resultData = {
+					...storedJobInfo,
+					skills: skills as string[],
+					englishLevel,
+					otherRequirenments: data.otherRequirenments,
+				};
+
+				await createJob(resultData);
+			}
 		} catch {
 			toast.error("Something went wrong");
 		}
