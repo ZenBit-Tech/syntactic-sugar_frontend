@@ -1,4 +1,5 @@
 {
+	"serverErrorMessage": "Something went wrong",
 	"signupGoogle": {
 		"buttonText": "Sign up with Google",
 		"error": "This email already registered. Sign in, please."
