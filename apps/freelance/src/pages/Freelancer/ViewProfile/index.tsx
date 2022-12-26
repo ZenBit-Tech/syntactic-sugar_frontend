@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import {
@@ -10,6 +11,7 @@ import {
 } from "@freelance/components";
 import { RootState } from "src/redux/store";
 import { Freelancer } from "src/redux/createFreelancer/freelancer-slice";
+import { CREATE_PROFILE_2 } from "utils/constants/breakpoint";
 import {
 	StyledPage,
 	Container,
@@ -25,6 +27,7 @@ import {
 
 export function ViewProfile() {
 	const { t } = useTranslation();
+	const navigate = useNavigate();
 	const {
 		category,
 		position,
@@ -39,6 +42,10 @@ export function ViewProfile() {
 		workHistory,
 		otherExperience,
 	} = useSelector<RootState, Freelancer>(state => state.freelancer);
+
+	const handleClick = () => {
+		navigate(CREATE_PROFILE_2);
+	};
 
 	return (
 		<ThemeProvider theme={ThemeColors && ThemeBackground}>
@@ -169,7 +176,13 @@ export function ViewProfile() {
 								</Subcontainer>
 							</ItemContainer>
 						</Bottom>
-						<StyledButton type="button" buttonColor="redGradient" buttonSize="sm" fontSize="md">
+						<StyledButton
+							type="button"
+							buttonColor="redGradient"
+							buttonSize="sm"
+							fontSize="md"
+							onClick={handleClick}
+						>
 							<strong>{t("freelancer.createProfile.backBtn")}</strong>
 						</StyledButton>
 					</Container>

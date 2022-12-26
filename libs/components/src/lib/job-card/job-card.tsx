@@ -1,65 +1,104 @@
 import { useTranslation } from "react-i18next";
-import { StyledTitle, StyledButton, StyledParagraph } from "@freelance/components";
-import { Country, useRemoveProposalByIdMutation } from "redux/jobs";
+import { NavLink } from "react-router-dom";
+import { StyledTitle, StyledButton, StyledParagraph} from "@freelance/components";
+import { Country } from "redux/jobs";
+import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
+import { useState } from 'react';
+import moment from "moment";
+import { PROPOSALS_PAGE, JOBS_PAGE } from "utils/constants/breakpoint";
+import { ROLES } from "utils/constants/roles";
 import {
 	StyledJobCard,
 	StyledJobCardHeader,
 	StyledJobCardParagraph,
 	CountriesContainer,
-	LocationBlock
+	LocationBlock,
+	CardTitleButton,
+	SendProposalButton,
 } from "./job-card.styled";
-import { PROPOSALS_PAGE, JOBS_PAGE } from "utils/constants/breakpoint";
-import { ROLES } from "utils/constants/roles";
+import CardModal from "../card-modal/card-modal";
+import JobDetailsCard from "../job-details-card/job-details-card";
+import SendProposal from "../send-proposal/send-proposal";
 
 export interface JobCardProps {
+	id: string;
 	position: string;
 	countries: Country[];
 	employmentType: string;
+	proposals: {
+		id: string;
+		coverLetter: string;
+	}[];
 	availableAmountOfHours: string;
 	workExperience: string;
 	levelEnglish: string;
 	createdDate: string;
 	updatedDate?: string;
 	userType: string;
-	skills?: string[];
-	category?: string;
 	typePage?: 'proposals' | 'jobs';
 	proposalId?: string;
+	skills?: {
+		id: string;
+		name: string;
+	}[];
+	category?: {
+		id: string;
+		name: string;
+	};
 }
 
 export function JobCard({
+	id,
 	position,
 	countries,
 	employmentType,
+	proposals,
 	availableAmountOfHours,
 	workExperience,
 	levelEnglish,
 	createdDate,
 	userType,
 	typePage,
-	proposalId,
+	// proposalId,
 }: JobCardProps) {
 	const { t } = useTranslation();
+	const { data } = useGetFreelancerQuery();
+	const [modalOpen, setModalOpen] = useState<boolean>(false);
+	const prettyDate = moment(createdDate).format('LL');
 
-	const [remove] = useRemoveProposalByIdMutation();
+	const isProposal = data?.proposals
+		.map(proposal => {
+			return proposals.find(item => item.id === proposal.id);
+		})
+		.some(item => item !== undefined);
 
-	const handleClick = async(proposalId: string) => {
-		await remove(proposalId);
-	}
+	// const [remove] = useRemoveProposalByIdMutation();
+
+	// const handleClick = async(proposalId: string) => {
+	// 	await remove(proposalId);
+	// }
+
 
 	return (
 		<StyledJobCard>
 			<StyledJobCardHeader>
-				<StyledTitle tag="h2" fontWeight={800} fontSize="sm">
-					<strong>{position}</strong>
-				</StyledTitle>
-				<strong>{createdDate}</strong>
+				<CardTitleButton onClick={() => setModalOpen(true)}>{position}</CardTitleButton>
+				<CardModal open={modalOpen} onCancel={() => setModalOpen(false)}>
+					<JobDetailsCard id={id} typePage={typePage} />
+				</CardModal>
+				<strong>{prettyDate}</strong>
 				{userType === ROLES.FREELANCER && (
 					<>
-						{typePage === JOBS_PAGE && (
-							<StyledButton buttonColor="redGradient" buttonSize="md" fontSize="sm">
+						{typePage === JOBS_PAGE && !isProposal && (
+							<>
+							<SendProposalButton buttonColor="redGradient" buttonSize="md" fontSize="sm" onClick={() => setModalOpen(true)}>
 								<strong>{t("jobCard.sendProposal")}</strong>
-							</StyledButton>)}
+							</SendProposalButton>
+							<CardModal open={modalOpen} onCancel={() => setModalOpen(false)}>
+								<SendProposal id={id} />
+							</CardModal>
+								</>
+						)}
 						{typePage === PROPOSALS_PAGE && (
 							<>
 								<StyledButton disabled buttonColor="redGradient" buttonSize="lg" fontSize="md">
@@ -89,11 +128,9 @@ export function JobCard({
 						{t("jobCard.location")}:
 					</StyledParagraph>
 					<CountriesContainer>
-						<div>
-							{countries.map(country => (
-								<strong key={country.id}>{country.name} </strong>
-							))}
-						</div>
+						{countries.map(country => (
+							<strong key={country.id}>{country.name} </strong>
+						))}
 					</CountriesContainer>
 				</LocationBlock>
 				<StyledParagraph fontSize="md" opacity={0.7}>

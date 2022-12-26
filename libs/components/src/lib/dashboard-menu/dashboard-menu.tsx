@@ -6,7 +6,7 @@ import { Container, FilterButtonWrap } from "./dashboard-menu.styled";
 
 export interface DashboardMenuProps {
 	userRole: "freelancer" | "employer";
-	typePage?: "createProfile" | "main" | "proposals";
+	typePage?: "createProfile" | "main" | "proposals" | "jobs";
 }
 
 export function DashboardMenu({ userRole, typePage }: DashboardMenuProps) {

@@ -6,6 +6,7 @@ export const Container = styled.div`
 	padding-left: 2.5%;
 	padding-right: 2.5%;
 	gap: 10px;
+	width: 100%;
 `;
 
 export const StyledReactPagination = styled(ReactPaginate)`

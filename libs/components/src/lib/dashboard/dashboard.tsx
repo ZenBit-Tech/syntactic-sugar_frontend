@@ -5,7 +5,7 @@ import { Container, Page, Area } from "./dashboard.styled";
 export interface DashboardProps {
 	children: React.ReactNode;
 	userRole: "freelancer" | "employer";
-  	typePage?: "createProfile" | "main" | "proposals";
+  	typePage?: "createProfile" | "main" | "proposals" | "jobs";
 }
 
 export function Dashboard({ children, userRole, typePage }: DashboardProps) {

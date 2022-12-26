@@ -15,10 +15,12 @@ export function Items({ currentItems, user, typePage }: CurrentItems) {
 				currentItems.map(job => {
 					return (
 						<JobCard
-							proposalId={job.proposals[0].id}
+							proposalId={job.proposals[0]?.id}
+							id={job.id}
 							key={job.id}
 							position={job.position}
 							countries={job.countries}
+							proposals={job.proposals}
 							employmentType={job.employmentType}
 							availableAmountOfHours={job.availableAmountOfHours}
 							workExperience={job.workExperience}

@@ -5,3 +5,5 @@ export interface IUserState {
 	token: Token;
 	role: Role | undefined;
 }
+
+export { Token };

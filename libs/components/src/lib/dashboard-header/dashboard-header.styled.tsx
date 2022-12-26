@@ -23,8 +23,8 @@ export const UserInfoWrapper = styled.div`
 		background: ${({ theme }) => theme.colors.grey};
 		object-fit: cover;
 		border-radius: 50%;
-		height: 90%;
-		width: 25%;
+		height: 77px;
+		width: 77px;
 	}
 
 	p {

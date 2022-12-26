@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { StyledParagraph } from "@freelance/components";
+import { StyledButton } from "../styles/buttons";
+// import { StyledButton } from "@freelance/components";
 
 export const Container = styled.div`
 	display: flex;
 	width: 100%;
 	flex-direction: column;
 	padding: 5px;
-
 `;
 
 export const StyledJobCard = styled.div`
@@ -25,14 +25,15 @@ export const StyledJobCard = styled.div`
 
 export const StyledJobCardHeader = styled.div`
 	display: grid;
-	grid-template-columns: 2fr repeat(2, 1fr);
+	grid-template-columns: repeat(3, 1fr);
 	gap: 10px;
 	justify-items: center;
 	align-items: center;
-  padding: 0.2rem;
+	padding: 0.2rem;
 	border-bottom: 2px solid ${({ theme }) => theme.colors.grey};
 	button {
-		padding: 0.1rem;
+		width: 100%;
+		padding: 0.4rem;
 	}
 `;
 
@@ -60,4 +61,14 @@ export const LocationBlock = styled.div`
 
 export const CountriesContainer = styled.div`
 	display: flex;
+`;
+
+export const CardTitleButton = styled.button`
+    font-size: 1.3rem;
+    font-weight: 500;
+	outline-style: none;
+`;
+
+export const SendProposalButton = styled(StyledButton)`
+	outline-style: none;
 `;

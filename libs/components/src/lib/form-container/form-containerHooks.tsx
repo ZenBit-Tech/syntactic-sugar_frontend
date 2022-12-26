@@ -2,19 +2,20 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useLoginWithGoogleMutation } from "redux/login.api";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
+import { useGoogleLogin } from "@react-oauth/google";
 import { UserRoles } from "redux/role.api";
 import { setUserData } from "redux/userState/userSlice";
-import { ROLE_SELECTION, MY_JOBS, SEARCH_WORK } from "src/utils/constants/breakpoint";
-import { useGoogleLogin } from "@react-oauth/google";
+import { ROLE_SELECTION, MY_JOBS, SEARCH_WORK } from "utils/constants/breakpoint";
 import { useSignUpMutation } from "redux/signup-googleApi";
+import { useLoginWithGoogleMutation } from "redux/login.api";
 
 export const useGoogleAuthentication = (formType: boolean) => {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const [signupUser] = useSignUpMutation();
+	const [signupUser, { data: userDataGoogle, isSuccess: isSuccessGoogle, isError: isErrorGoogle }] =
+		useSignUpMutation();
 	const [loginWithGoogle, { data: userData, isSuccess, isError }] = useLoginWithGoogleMutation();
 
 	useEffect(() => {
@@ -31,18 +32,37 @@ export const useGoogleAuthentication = (formType: boolean) => {
 
 	useEffect(() => {
 		if (isSuccess) {
-			dispatch(setUserData({ token: userData?.token, role: userData?.role }));
+			dispatch(
+				setUserData({
+					token: userData?.token,
+					role: userData?.role,
+				}),
+			);
 		}
 		if (isError) {
 			toast.error(t("recoverPassForm.errorMessageServerError"));
 		}
 	}, [isSuccess, isError]);
 
+	useEffect(() => {
+		if (isSuccessGoogle) {
+			dispatch(
+				setUserData({
+					token: userDataGoogle?.token,
+					role: userDataGoogle?.role,
+				}),
+			);
+			navigate("/" + ROLE_SELECTION);
+		}
+		if (isErrorGoogle) {
+			toast.error(t("signupGoogle.error"));
+		}
+	}, [isSuccessGoogle, isErrorGoogle]);
+
 	const handleSuccess = useGoogleLogin({
 		onSuccess: tokenResponse => {
 			if (formType) {
 				signupUser({ token: tokenResponse.access_token });
-				navigate("/" + ROLE_SELECTION);
 			} else {
 				loginWithGoogle({ token: tokenResponse.access_token });
 			}
