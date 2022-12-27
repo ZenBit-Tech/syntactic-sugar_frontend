@@ -5,7 +5,7 @@ import {
 	StyledButton,
 } from "@freelance/components";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
-import { JOBS_PAGE, SEARCH_WORK, SEND_PROPOSAL } from "utils/constants/breakpoint";
+import { JOBS_PAGE} from "utils/constants/breakpoint";
 import { baseUrl } from "utils/constants/redux-query";
 import {
 	ContainerBox,
@@ -24,26 +24,23 @@ import { useGetJobIdQuery } from "redux/jobs";
 export interface JobDetailsCardProps {
 	typePage?: 'proposals' | 'jobs';
 	id: string;
+	openSendProposalModal: () => void;
 }
 
-export function JobDetailsCard({typePage, id}: JobDetailsCardProps) {
+export function JobDetailsCard({typePage, id, openSendProposalModal}: JobDetailsCardProps) {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 	const { data } = useGetJobIdQuery(id);
-  const { data: freelancerData } = useGetFreelancerQuery();
+	const { data: freelancerData } = useGetFreelancerQuery();
 
-  const isProposal = freelancerData?.proposals
+  	const isProposal = freelancerData?.proposals
 		.map(proposal => {
 			return data?.proposals.find(item => item.id === proposal.id);
 		})
 		.some(item => item !== undefined);
 
-	const handleClickProposal = () => {
-		navigate(SEND_PROPOSAL + "/" + id);
-	};
-
 	const handleClickBack = () => {
-		navigate(SEARCH_WORK);
+		// navigate(SEARCH_WORK);
 	};
 
 	return (
@@ -158,7 +155,7 @@ export function JobDetailsCard({typePage, id}: JobDetailsCardProps) {
 							buttonColor="redGradient"
 							buttonSize="sm"
 							fontSize="md"
-							onClick={handleClickProposal}
+							onClick={openSendProposalModal}
 						>
 							<strong>
 								{t(isProposal ? "jobDetails.alreadySended" : "jobDetails.sendProposalBtn")}

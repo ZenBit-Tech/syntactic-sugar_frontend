@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { StyledButton } from "../styles/buttons";
-// import { StyledButton } from "@freelance/components";
 
 export const Container = styled.div`
 	display: flex;
@@ -66,9 +64,5 @@ export const CountriesContainer = styled.div`
 export const CardTitleButton = styled.button`
     font-size: 1.3rem;
     font-weight: 500;
-	outline-style: none;
-`;
-
-export const SendProposalButton = styled(StyledButton)`
 	outline-style: none;
 `;

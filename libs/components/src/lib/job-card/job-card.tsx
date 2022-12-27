@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
-import { StyledTitle, StyledButton, StyledParagraph} from "@freelance/components";
+import { StyledButton, StyledParagraph } from "@freelance/components";
 import { Country } from "redux/jobs";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import { useState } from 'react';
@@ -14,7 +13,6 @@ import {
 	CountriesContainer,
 	LocationBlock,
 	CardTitleButton,
-	SendProposalButton,
 } from "./job-card.styled";
 import CardModal from "../card-modal/card-modal";
 import JobDetailsCard from "../job-details-card/job-details-card";
@@ -63,7 +61,8 @@ export function JobCard({
 }: JobCardProps) {
 	const { t } = useTranslation();
 	const { data } = useGetFreelancerQuery();
-	const [modalOpen, setModalOpen] = useState<boolean>(false);
+	const [detailsModalOpen, setDetailsModalOpen] = useState<boolean>(false);
+	const [proposalModalOpen, setProposalModalOpen] = useState<boolean>(false);
 	const prettyDate = moment(createdDate).format('LL');
 
 	const isProposal = data?.proposals
@@ -78,26 +77,25 @@ export function JobCard({
 	// 	await remove(proposalId);
 	// }
 
+	const closeSendProposal = () => {
+		setProposalModalOpen(false);
+	}
+
+	const openSendPropodal = () => {
+		setProposalModalOpen(true);
+	}
 
 	return (
 		<StyledJobCard>
 			<StyledJobCardHeader>
-				<CardTitleButton onClick={() => setModalOpen(true)}>{position}</CardTitleButton>
-				<CardModal open={modalOpen} onCancel={() => setModalOpen(false)}>
-					<JobDetailsCard id={id} typePage={typePage} />
-				</CardModal>
+				<CardTitleButton onClick={() => setDetailsModalOpen(true)}>{position}</CardTitleButton>
 				<strong>{prettyDate}</strong>
 				{userType === ROLES.FREELANCER && (
 					<>
 						{typePage === JOBS_PAGE && !isProposal && (
-							<>
-							<SendProposalButton buttonColor="redGradient" buttonSize="md" fontSize="sm" onClick={() => setModalOpen(true)}>
+							<StyledButton buttonColor="redGradient" buttonSize="md" fontSize="sm" onClick={() => setProposalModalOpen(true)}>
 								<strong>{t("jobCard.sendProposal")}</strong>
-							</SendProposalButton>
-							<CardModal open={modalOpen} onCancel={() => setModalOpen(false)}>
-								<SendProposal id={id} />
-							</CardModal>
-								</>
+							</StyledButton>
 						)}
 						{typePage === PROPOSALS_PAGE && (
 							<>
@@ -146,7 +144,14 @@ export function JobCard({
 					{t("jobCard.englishLevel")}: <strong>{levelEnglish}</strong>
 				</StyledParagraph>
 			</StyledJobCardParagraph>
+			<CardModal open={detailsModalOpen} onCancel={() => setDetailsModalOpen(false)}>
+				<JobDetailsCard id={id} typePage={typePage} openSendProposalModal={openSendPropodal} />
+			</CardModal>
+			<CardModal open={proposalModalOpen} onCancel={() => setProposalModalOpen(false)}>
+				<SendProposal id={id} onCancel={closeSendProposal}/>
+			</CardModal>
 		</StyledJobCard>
+
 	);
 }
 

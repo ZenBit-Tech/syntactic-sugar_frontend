@@ -55,4 +55,3 @@ export * from "./lib/styles/newJobPostingCommonStyles";
 export * from "./lib/employer-jobs-container/employer-jobs-container";
 export * from "./lib/employer-jobs-empty/employer-jobs-empty";
 export * from "./lib/employer-jobs-list/employer-jobs-list";
-

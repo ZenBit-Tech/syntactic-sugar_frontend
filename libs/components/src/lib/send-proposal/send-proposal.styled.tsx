@@ -1,10 +1,10 @@
 import styled from "styled-components";
-// import { TextArea } from "@freelance/components";
-// import { StyledPage } from "@freelance/components";
-// import { BaseTitle } from "@freelance/components";
-import { StyledPage } from "../styles/layouts";
-import { TextArea } from "../styles/inputComponents";
-import { BaseTitle } from "../base-title/base-title";
+import { TextArea } from "@freelance/components";
+import { StyledPage } from "@freelance/components";
+import { BaseTitle } from "@freelance/components";
+// import { StyledPage } from "../styles/layouts";
+// import { TextArea } from "../styles/inputComponents";
+// import { BaseTitle } from "../base-title/base-title";
 
 export const Page = styled(StyledPage)`
 	background: url("/assets/images/top_elipse.png") no-repeat top left,

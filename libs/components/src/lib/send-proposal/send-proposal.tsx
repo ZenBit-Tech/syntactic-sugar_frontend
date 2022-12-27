@@ -22,14 +22,15 @@ import {
 } from "./send-proposal.styled";
 
 export interface SendProposalProps {
-	id: string;
+    id: string;
+    onCancel: () => void;
 }
 
-export function SendProposal({id}: SendProposalProps) {
+export function SendProposal({id, onCancel}: SendProposalProps) {
 	const { data } = useGetFreelancerQuery();
 	// const params = useParams();
 	// const id = String(params["id"]);
-	const { data: jobData } = useGetJobIdQuery(id);
+	// const { data: jobData } = useGetJobIdQuery(id);
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 	const {
@@ -38,10 +39,6 @@ export function SendProposal({id}: SendProposalProps) {
 		formState: { errors },
 	} = useForm<IProposal>({ resolver: yupResolver(schema) });
 	const [createProposal, { isError }] = useCreateProposalMutation({});
-
-	const goBack = () => {
-		navigate(-1);
-	};
 
 	const onSubmit = async (values: IProposal) => {
 		const data: any = new FormData();
@@ -53,8 +50,8 @@ export function SendProposal({id}: SendProposalProps) {
 			await createProposal(data);
 			if (isError) {
 				alert(t("sendProposalFreelancer.alert"));
-			}
-			navigate(SEARCH_WORK);
+            }
+            onCancel();
 		} catch (error) {
 			alert(error);
 		}
@@ -105,7 +102,6 @@ export function SendProposal({id}: SendProposalProps) {
                         buttonSize="sm"
                         buttonColor="redGradient"
                         type="button"
-                        onClick={goBack}
                     >
                         {t("sendProposalFreelancer.back")}
                     </StyledButton>
