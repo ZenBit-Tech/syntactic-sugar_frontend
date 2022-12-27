@@ -1,4 +1,5 @@
 {
+	"serverErrorMessage": "Something went wrong",
 	"signupGoogle": {
 		"buttonText": "Sign up with Google",
 		"error": "This email already registered. Sign in, please."
@@ -68,6 +69,8 @@
 	"jobCard": {
 		"sendProposal": "Send proposal",
 		"removeJob": "Remove job",
+		"closeJob": "Close Job",
+		"publishJob": "Publish Job",
 		"editJob": "Edit Job",
 		"location": "Location",
 		"employmentType": "Type",
@@ -200,7 +203,10 @@
 			"workExperienceLabel": "Work experience",
 			"workExperiencePlaceholder": "Choose work experience",
 			"hourRateLabel": "Hour rate (one price)",
-			"hourRatePlaceholder": "Choose hour rate (one price)"
+			"hourRatePlaceholder": "Choose hour rate (one price)",
+			"validation": {
+				"maxCountries": "Not more then 5 countries"
+			}
 		},
 		"thirdForm": {
 			"skillsLabel": "Skills",
@@ -208,7 +214,11 @@
 			"englishLevelLabel": "English Level",
 			"englishLevelPlaceholder": "Choose required english level",
 			"otherRequirenmentsLabel": "Other requirenments",
-			"otherRequirenmentsPlaceholder": "Add Text"
+			"otherRequirenmentsPlaceholder": "Add Text",
+			"publishButton": "Publish job",
+			"validation": {
+				"maxSkills": "Only 3 skills"
+			}
 		}
 	},
 	"employerJobsPage": {
@@ -343,6 +353,6 @@
 		"salary": "Salary",
 		"duration": "Duration",
 		"date": "Posting date",
-    "alreadySended": "Proposal already sended"
+		"alreadySended": "Proposal already sended"
 	}
 }

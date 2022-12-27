@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useForm, Controller } from "react-hook-form";
 import { useOptions, SelectOptions } from "utils/select-options/options";
 import { Dashboard, StyledTitle, StyledButton, JobCard, Pagination } from "@freelance/components";
-import { JobsInterface, Skills, useGetJobsQuery } from "redux/jobs/jobs.api";
+import { JobsInterface, useGetJobsQuery } from "redux/jobs/jobs.api";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import { useSearchWorkFormHook } from "./searchWorkFormHook";
 import {

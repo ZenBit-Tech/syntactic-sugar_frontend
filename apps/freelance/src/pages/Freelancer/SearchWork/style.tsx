@@ -76,8 +76,8 @@ export const Form = styled.form`
 		grid-template-columns: 1fr 1fr;
 		grid-auto-rows: 80px;
 		position: relative;
-    justify-items: center;
-    align-items: center;
+		justify-items: center;
+		align-items: center;
 		width: 80%;
 	}
 	.selectContainer__right {
@@ -106,11 +106,9 @@ export const InputContainer = styled.div`
 
 export const InputContainerCards = styled.div`
 	width: 100%;
-	overflow-y: auto;
 
 	height: 100%;
 `;
-
 
 export const InputHeader = styled.div`
 	position: sticky;
@@ -118,7 +116,7 @@ export const InputHeader = styled.div`
 	background: ${({ theme }) => theme.colors.white};
 	padding: 0 0.5rem;
 	height: 30px;
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 	display: flex;
 	width: 100%;
 	justify-content: flex-start;
@@ -136,6 +134,8 @@ export const InputWrapper = styled.div`
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
+	height: 100%;
+
 	hr {
 		margin-bottom: 2rem;
 		width: 90%;
@@ -144,7 +144,7 @@ export const InputWrapper = styled.div`
 	}
 
 	button {
-		max-width: 80px;
+		max-width: 110px;
 		height: 20px;
 	}
 
