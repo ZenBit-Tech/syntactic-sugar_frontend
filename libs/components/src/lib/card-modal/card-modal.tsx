@@ -1,7 +1,7 @@
 import { ModalProps } from 'antd';
 import { StyledCardModal } from './card-modal.styled';
 
-const CardModal: React.FC<ModalProps> = ({children, title, open, onCancel }) => {
+const CardModal: React.FC<ModalProps> = ({children, title, width, open, onCancel }) => {
 
     return (
         <>
@@ -10,7 +10,7 @@ const CardModal: React.FC<ModalProps> = ({children, title, open, onCancel }) => 
                 centered
                 open={open}
                 onCancel={onCancel}
-                width={1000}
+                width={width}
                 footer={null}
             >
                 {children}

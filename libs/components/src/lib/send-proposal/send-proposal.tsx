@@ -1,13 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { StyledButton } from "@freelance/components";
 import { useCreateProposalMutation } from "redux/sendProposalFreelancer/proposalApi";
 import { IProposal } from "redux/interfaces/IProposal";
 import { schema } from "utils/validations/fileUpload";
-import { useGetJobIdQuery } from "redux/jobs";
-import { SEARCH_WORK } from "utils/constants/breakpoint";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import {
 	Container,
@@ -23,16 +20,13 @@ import {
 
 export interface SendProposalProps {
     id: string;
-    onCancel: () => void;
+    onCancel?: () => void;
+    goBack?: () => void;
 }
 
-export function SendProposal({id, onCancel}: SendProposalProps) {
+export function SendProposal({id, onCancel, goBack}: SendProposalProps) {
 	const { data } = useGetFreelancerQuery();
-	// const params = useParams();
-	// const id = String(params["id"]);
-	// const { data: jobData } = useGetJobIdQuery(id);
 	const { t } = useTranslation();
-	const navigate = useNavigate();
 	const {
 		register,
 		handleSubmit,
@@ -51,7 +45,10 @@ export function SendProposal({id, onCancel}: SendProposalProps) {
 			if (isError) {
 				alert(t("sendProposalFreelancer.alert"));
             }
-            onCancel();
+            if (onCancel) {
+                onCancel();
+            }
+            
 		} catch (error) {
 			alert(error);
 		}
@@ -102,6 +99,7 @@ export function SendProposal({id, onCancel}: SendProposalProps) {
                         buttonSize="sm"
                         buttonColor="redGradient"
                         type="button"
+                        onClick={goBack || onCancel}
                     >
                         {t("sendProposalFreelancer.back")}
                     </StyledButton>

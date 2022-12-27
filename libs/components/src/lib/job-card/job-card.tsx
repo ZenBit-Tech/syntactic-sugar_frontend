@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { StyledButton, StyledParagraph } from "@freelance/components";
+import { StyledButton, StyledParagraph} from "@freelance/components";
 import { Country } from "redux/jobs";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import { useState } from 'react';
@@ -57,32 +57,30 @@ export function JobCard({
 	createdDate,
 	userType,
 	typePage,
-	// proposalId,
 }: JobCardProps) {
 	const { t } = useTranslation();
 	const { data } = useGetFreelancerQuery();
 	const [detailsModalOpen, setDetailsModalOpen] = useState<boolean>(false);
 	const [proposalModalOpen, setProposalModalOpen] = useState<boolean>(false);
+	const [isCreateProposalActive, setIsCreateProposalActive] = useState(false);
 	const prettyDate = moment(createdDate).format('LL');
-
+	
 	const isProposal = data?.proposals
 		.map(proposal => {
 			return proposals.find(item => item.id === proposal.id);
 		})
 		.some(item => item !== undefined);
 
-	// const [remove] = useRemoveProposalByIdMutation();
-
-	// const handleClick = async(proposalId: string) => {
-	// 	await remove(proposalId);
-	// }
-
 	const closeSendProposal = () => {
 		setProposalModalOpen(false);
 	}
 
-	const openSendPropodal = () => {
-		setProposalModalOpen(true);
+	const openCreateProposal = () => {
+		setIsCreateProposalActive(true);
+	}
+
+	const goBackToDetails = () => {
+		setIsCreateProposalActive(false);
 	}
 
 	return (
@@ -98,14 +96,9 @@ export function JobCard({
 							</StyledButton>
 						)}
 						{typePage === PROPOSALS_PAGE && (
-							<>
-								<StyledButton disabled buttonColor="redGradient" buttonSize="lg" fontSize="md">
-									<strong>{t("jobCard.startChatting")}</strong>
-								</StyledButton>
-								{/* <StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md" onClick={() => proposalId && handleClick(proposalId)}>
-									<strong>{t("jobCard.removeProposal")}</strong>
-								</StyledButton> */}
-							</>
+							<StyledButton disabled buttonColor="redGradient" buttonSize="lg" fontSize="md">
+								<strong>{t("jobCard.startChatting")}</strong>
+							</StyledButton>
 						)}
 					</>
 				)}
@@ -144,11 +137,29 @@ export function JobCard({
 					{t("jobCard.englishLevel")}: <strong>{levelEnglish}</strong>
 				</StyledParagraph>
 			</StyledJobCardParagraph>
-			<CardModal open={detailsModalOpen} onCancel={() => setDetailsModalOpen(false)}>
-				<JobDetailsCard id={id} typePage={typePage} openSendProposalModal={openSendPropodal} />
+			<CardModal
+				open={detailsModalOpen}
+				onCancel={() => setDetailsModalOpen(false)}
+				width={1000}>
+				{!isCreateProposalActive && (
+					<JobDetailsCard
+						id={id} typePage={typePage}
+						openCreateProposal={openCreateProposal}
+						onBack={() => setDetailsModalOpen(false)} />
+				)}
+				{isCreateProposalActive && (
+					<SendProposal
+						id={id}
+						goBack={goBackToDetails} />
+				)}
 			</CardModal>
-			<CardModal open={proposalModalOpen} onCancel={() => setProposalModalOpen(false)}>
-				<SendProposal id={id} onCancel={closeSendProposal}/>
+			<CardModal
+				open={proposalModalOpen}
+				onCancel={() => setProposalModalOpen(false)}
+				width={1000}>
+				<SendProposal
+					id={id}
+					onCancel={closeSendProposal} />
 			</CardModal>
 		</StyledJobCard>
 

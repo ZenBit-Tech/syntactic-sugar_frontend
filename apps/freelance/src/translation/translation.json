@@ -340,7 +340,7 @@
 	},
 	"jobDetails": {
 		"title": "Job details",
-		"sendProposalBtn": "SEND PROPOSAL",
+		"createProposalBtn": "CREATE PROPOSAL",
 		"skills": "Required skills",
 		"exp": "Experience",
 		"salary": "Salary",
