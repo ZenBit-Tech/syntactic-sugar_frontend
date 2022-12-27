@@ -1,11 +1,11 @@
 import { SelectOptions } from "utils/select-options/options";
 
 export type DefaultObject = (
-	storedString: string | undefined,
-	options: SelectOptions[],
+	storedString?: string,
+	options?: SelectOptions[],
 ) => SelectOptions | undefined;
 
 export const selectDefaultObject: DefaultObject = (
-	storedString: string | undefined,
-	options: SelectOptions[],
-) => options.find(option => option.label === storedString);
+	storedString?: string,
+	options?: SelectOptions[],
+) => options?.find(option => option.label === storedString);

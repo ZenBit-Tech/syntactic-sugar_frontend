@@ -24,6 +24,7 @@ export const useJobPostingThirdFormHook = (): IUseJobPostingThirdForm => {
 		"newJobPosting.thirdForm.otherRequirenmentsLabel",
 	);
 	const fieldRequired: string = t("newJobPosting.validation.messageFieldRequired");
+	const serverErrorMessage = t("serverErrorMessage");
 
 	const onSubmit: SubmitHandler<IJobPostingThirdForm> = async data => {
 		try {
@@ -42,7 +43,7 @@ export const useJobPostingThirdFormHook = (): IUseJobPostingThirdForm => {
 				await createJob(resultData);
 			}
 		} catch {
-			toast.error("Something went wrong");
+			toast.error(serverErrorMessage);
 		}
 	};
 
@@ -53,7 +54,7 @@ export const useJobPostingThirdFormHook = (): IUseJobPostingThirdForm => {
 		}
 
 		if (isError) {
-			toast.error("Something went wrong");
+			toast.error(serverErrorMessage);
 		}
 	}, [isSuccess, isError]);
 
