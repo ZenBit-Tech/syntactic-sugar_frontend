@@ -20,7 +20,7 @@ export const useJobPostingContainerHook = (): INewJobPostingHook => {
 	const description: string = t("newJobPosting.description");
 	const buttonLoaderText = t("newJobPosting.buttonLoaderText");
 	const goBackButton: string = t("newJobPosting.goBackButton");
-	const createButtonText: string = t("newJobPosting.createButton");
+	const createButtonText: string = t("newJobPosting.thirdForm.publishButton");
 	const continueButton: string = t("newJobPosting.continueButton");
 
 	const goBack = (goBackLink: string): void => {

@@ -2,12 +2,15 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from "redux/base-query";
 import { ICreatedJob, INewJob } from "redux/interfaces";
 
-export interface Country {
+export interface InstObject {
 	id: string;
 	name: string;
 }
 
-export interface Skills extends Country { }
+export interface Proposal {
+	id: string;
+	coverLetter: string;
+}
 
 export interface IEmployerResponse {
 	id: string;
@@ -25,24 +28,15 @@ export interface JobsInterface {
 	id: string;
 	description: string;
 	position: string;
-	countries: Country[];
+	countries: InstObject[];
 	employmentType: string;
 	hourRate: string;
 	availableAmountOfHours: string;
 	workExperience: string;
 	englishLevel: string;
-	proposals: {
-		id: string;
-		coverLetter: string;
-	}[];
-	category: {
-		id: string;
-		name: string;
-	};
-	skills: {
-		id: string;
-		name: string;
-	}[];
+	proposals: Proposal[];
+	category: InstObject;
+	skills: InstObject[];
 	createdDate: string;
 	updatedDate: string;
 	isPublished: boolean;
@@ -83,6 +77,20 @@ export const getJobsApi = createApi({
 			}),
 			invalidatesTags: ["Job"],
 		}),
+		toggleIsPublishJob: build.mutation<void, string>({
+			query: (id: string) => ({
+				url: `jobs/publish-job/${id}`,
+				method: "PATCH",
+			}),
+			invalidatesTags: ["Job"],
+		}),
+		removeJob: build.mutation<void, string>({
+			query: (id: string) => ({
+				url: `jobs/remove-job/${id}`,
+				method: "DELETE",
+			}),
+			invalidatesTags: ["Job"],
+		}),
 		getJobsWithProposals: build.query<JobsInterface[], void>({
 			query: () => ({
 				url: `jobs/get-job-by-proposals`,
@@ -101,10 +109,12 @@ export const getJobsApi = createApi({
 
 export const {
 	useGetJobsQuery,
+	useRemoveJobMutation,
 	useGetJobIdQuery,
 	useGetJobsByEmployerQuery,
 	useGetJobsWithProposalsQuery,
 	useCreateJobMutation,
-	useRemoveProposalByIdMutation 
+	useRemoveProposalByIdMutation,
+	useToggleIsPublishJobMutation,
 } = getJobsApi;
 

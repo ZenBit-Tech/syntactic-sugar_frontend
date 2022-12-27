@@ -36,3 +36,7 @@ export const ROLE_PAGE = "/role-page";
 
 export const PROPOSALS_PAGE = "proposals";
 export const JOBS_PAGE = "jobs";
+
+// Dashboard-header
+
+export const CREATE_PROFILE = "createProfile";

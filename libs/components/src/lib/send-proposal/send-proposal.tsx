@@ -5,17 +5,15 @@ import { StyledButton } from "@freelance/components";
 import { useCreateProposalMutation } from "redux/sendProposalFreelancer/proposalApi";
 import { IProposal } from "redux/interfaces/IProposal";
 import { schema } from "utils/validations/fileUpload";
-import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import {
-	Container,
-	Buttons,
 	FileUpload,
 	Form,
 	Title,
-	SubTitle,
 	Label,
 	Textarea,
 	Span,
+    ButtonWrapper,
+    ContainerBox,
 } from "./send-proposal.styled";
 
 export interface SendProposalProps {
@@ -25,7 +23,6 @@ export interface SendProposalProps {
 }
 
 export function SendProposal({id, onCancel, goBack}: SendProposalProps) {
-	const { data } = useGetFreelancerQuery();
 	const { t } = useTranslation();
 	const {
 		register,
@@ -55,23 +52,10 @@ export function SendProposal({id, onCancel, goBack}: SendProposalProps) {
 	};
 
 	return (
-        <Container>
+        <ContainerBox>
             <Title fontSize="lg" tag="h1" fontWeight={700}>
                 {t("sendProposalFreelancer.greeting")}
             </Title>
-            {data && (
-                <>
-                    <SubTitle fontSize="lg" tag="h3" fontWeight={700}>
-                        {data?.fullName}
-                    </SubTitle>
-                    <SubTitle
-                        fontSize="sm"
-                        tag="h3"
-                        fontWeight={500}
-                    >{`${data?.position}, ${data?.country.name}, ${data?.availableAmountOfHours} work, Experience: ${data?.workExperience}, English: ${data?.englishLevel}`}</SubTitle>
-                </>
-            )}
-
             <Form onSubmit={handleSubmit(onSubmit)}>
                 <Label>{t("sendProposalFreelancer.coverLetter")}</Label>
                 <Textarea
@@ -94,21 +78,26 @@ export function SendProposal({id, onCancel, goBack}: SendProposalProps) {
                         </Span>
                     )}
                 </FileUpload>
-                <Buttons>
+                <ButtonWrapper>
                     <StyledButton
                         buttonSize="sm"
+                        fontSize="md"
                         buttonColor="redGradient"
                         type="button"
                         onClick={goBack || onCancel}
                     >
                         {t("sendProposalFreelancer.back")}
                     </StyledButton>
-                    <StyledButton buttonSize="sm" buttonColor="redGradient" type="submit">
+                    <StyledButton
+                        buttonSize="sm" fontSize="md"
+                        buttonColor="redGradient"
+                        type="submit"
+                        >
                         {t("sendProposalFreelancer.send")}
                     </StyledButton>
-                </Buttons>
+                </ButtonWrapper>
             </Form>
-        </Container>
+        </ContainerBox>
 	);
 }
 

@@ -1,4 +1,5 @@
 import { EmployerJobsEmpty, EmployerJobsList, StyledButton } from "@freelance/components";
+import { Skeleton } from "antd";
 import { JOBS_PAGE } from "utils/constants/breakpoint";
 import { JobsContainer } from "./employer-jobs-container.styled";
 import { useEmployerJobsContainerHook } from "./employer-jobs-containerHooks";
@@ -8,10 +9,18 @@ export function EmployerJobsContainer() {
 
 	return (
 		<JobsContainer>
-			{data?.length ? <EmployerJobsList data={data} typePage={JOBS_PAGE} /> : <EmployerJobsEmpty />}
-			<StyledButton onClick={handleClick} buttonSize="sm" fontSize="lg" buttonColor="redGradient">
-				{createButton}
-			</StyledButton>
+			<Skeleton loading={isLoading} active={isLoading} paragraph={{ rows: 8 }} />
+			{isLoading && <Skeleton.Button active={isLoading} size="small" block={isLoading} />}
+			{!isLoading && data?.length ? (
+				<EmployerJobsList data={data} typePage={JOBS_PAGE} />
+			) : (
+				!isLoading && <EmployerJobsEmpty />
+			)}
+			{!isLoading && (
+				<StyledButton onClick={handleClick} buttonSize="sm" fontSize="lg" buttonColor="redGradient">
+					{createButton}
+				</StyledButton>
+			)}
 		</JobsContainer>
 	);
 }

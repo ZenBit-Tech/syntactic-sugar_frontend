@@ -12,24 +12,23 @@ export const Page = styled(StyledPage)`
 		${({ theme }) => theme.colors.lightGrey};
 `;
 
-export const Container = styled.div`
-	margin: auto;
-	height: 80%;
-	padding: 40px;
+export const ContainerBox = styled.div`
 	display: flex;
 	flex-direction: column;
-	justify-content: space-evenly;
-	align-items: flex-start;
-	border-radius: 30px;
-	width: 100%;
-	min-width: 50%;
-	background-color: ${({ theme }) => theme.colors.white};
+	gap: 1rem;
+	padding-top: 1rem;
+	align-items: center;
+
+	button {
+		max-width: 200px;
+	}
 `;
 
-export const Buttons = styled.div`
-	margin-top: 15px;
+export const ButtonWrapper = styled.div`
 	display: flex;
-	justify-content: space-between;
+    margin-top: 1rem;
+	justify-content: center;
+	gap: 2rem;
 `;
 
 export const FileUpload = styled.div`
@@ -39,16 +38,19 @@ export const FileUpload = styled.div`
 `;
 
 export const Form = styled.form`
+    padding-left: 24px;
+    padding-right: 24px;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 `;
 
 export const Textarea = styled(TextArea)`
-	height: auto;
+    box-shadow: 0px 0px 10px 1px rgb(0 0 0 / 10%);
+	height: 279px;
 	display: block;
 	padding: 15px;
-	border-radius: 30px;
+	border-radius: 5px;
 	resize: none;
     width: 100%;
 `;
@@ -58,13 +60,10 @@ export const Title = styled(BaseTitle)`
 	font-weight: 700;
 `;
 
-export const SubTitle = styled(BaseTitle)`
-	font-size: 1.5rem;
-	font-weight: 500;
-`;
-
 export const Label = styled.label`
 	font-size: 1rem;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
 `;
 
 export const Span = styled.span`

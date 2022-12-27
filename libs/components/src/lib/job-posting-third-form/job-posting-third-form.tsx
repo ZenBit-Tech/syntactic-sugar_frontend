@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { getStoredJobInfo } from "redux/jobs";
 import { useAppSelector } from "redux/hooks";
 import {
@@ -17,9 +18,11 @@ import {
 	selectDefaultObject,
 } from "@freelance/components";
 import { useOptions } from "utils/select-options/options";
+import { useThirdFormSchema } from "utils/validations/newJobPostingSchemas";
 import { useJobPostingThirdFormHook } from "./job-posting-third-formHooks";
 
 export function JobPostingThirdForm({ page, textButtonHandler }: IJobPostingThirdFormProps) {
+	const schema = useThirdFormSchema();
 	const {
 		skills: storedSkills,
 		englishLevel: storedEnglishLevel,
@@ -30,7 +33,7 @@ export function JobPostingThirdForm({ page, textButtonHandler }: IJobPostingThir
 		handleSubmit,
 		control,
 		formState: { errors },
-	} = useForm<IJobPostingThirdForm>();
+	} = useForm<IJobPostingThirdForm>({ resolver: yupResolver(schema) });
 	const {
 		skillsLabel,
 		skillsPlaceholder,
@@ -97,7 +100,9 @@ export function JobPostingThirdForm({ page, textButtonHandler }: IJobPostingThir
 					/>
 					{errors?.englishLevel && (
 						<StyledSpan fontSize="sm" type="validation">
-							<strong>{errors?.englishLevel?.message}</strong>
+							<strong>
+								{errors?.englishLevel?.label ? errors?.englishLevel?.label.message : fieldRequired}
+							</strong>
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>

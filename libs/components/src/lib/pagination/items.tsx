@@ -15,9 +15,8 @@ export function Items({ currentItems, user, typePage }: CurrentItems) {
 				currentItems.map(job => {
 					return (
 						<JobCard
-							proposalId={job.proposals[0]?.id}
-							id={job.id}
 							key={job.id}
+							jobId={job.id}
 							position={job.position}
 							countries={job.countries}
 							proposals={job.proposals}
@@ -29,6 +28,7 @@ export function Items({ currentItems, user, typePage }: CurrentItems) {
 							updatedDate={job.updatedDate}
 							userType={user}
 							typePage={typePage}
+							isPublished={job.isPublished}
 						/>
 					);
 				})}

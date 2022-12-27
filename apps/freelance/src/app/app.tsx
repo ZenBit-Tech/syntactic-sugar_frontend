@@ -18,7 +18,6 @@ import {
 	JobPostingThirdPage,
 } from "@pages/NewJobPosting";
 import store from "redux/store";
-import { SendProposal } from "@pages/SendProposal";
 import { CreateProfile2 } from "@pages/Freelancer/CreateProfile2";
 import { SearchWork } from "@pages/Freelancer/SearchWork";
 import { EmployerJobsPage } from "@pages/EmployerJobsPage";
@@ -38,7 +37,6 @@ export function App() {
 							<Route path="/recover-password" element={<RecoverPasswordRequest />} />
 							<Route path="/check-your-email" element={<RecoverPasswordCheck />} />
 							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
-							<Route path="/freelancer/send-proposal/:id" element={<SendProposal />} />
 							<Route path="/password-updated" element={<RecoverPasswordUpdate />} />
 							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
 							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />
