@@ -77,8 +77,8 @@
 		"option": "Option",
 		"exp": "Expereance",
 		"englishLevel": "English",
-		"closedNotification": "Job has been closed",
-		"publishedNotification": "Job has been published"
+		"closedNotification": "Your job is not visible to freelancer now",
+		"publishedNotification": "Your job is visible to freelancer now"
 	},
 	"invitationPage": {
 		"title": "You have successfully registered!",

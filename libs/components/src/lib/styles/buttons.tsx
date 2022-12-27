@@ -26,7 +26,6 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 	transition: all ease-in-out 0.4s;
 	:disabled {
 		color: ${({ theme }) => theme.colors.darkGrey};
-		border: 6px double ${({ theme }) => theme.colors.darkRed};
 	}
 
 	${({ buttonSize }) => {
