@@ -7,7 +7,7 @@ import { JobsInterface } from "redux/jobs";
 interface IUseEmployerJobsContainerHooks {
 	createButton: string;
 	isLoading: boolean;
-	arrayJobs: JobsInterface[] | undefined;
+	arrayJobs?: JobsInterface[];
 	handleClick: () => void;
 }
 
