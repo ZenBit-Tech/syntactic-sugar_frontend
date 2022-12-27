@@ -6,6 +6,6 @@ export type DefaultObject = (
 ) => SelectOptions | undefined;
 
 export const selectDefaultObject: DefaultObject = (
-	storedString?: string | undefined,
+	storedString?: string,
 	options?: SelectOptions[],
 ) => options?.find(option => option.label === storedString);
