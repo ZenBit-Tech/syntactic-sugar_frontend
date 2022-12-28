@@ -69,5 +69,7 @@ export * from "./lib/card-modal/card-modal";
 
 export * from "./lib/send-proposal/send-proposal";
 
+// Skeletons
 
+export * from "./lib/skeletons";
 

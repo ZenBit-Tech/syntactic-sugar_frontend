@@ -14,12 +14,11 @@ import {
 	StyledButton,
 } from "@freelance/components";
 import { StyledPage } from "@pages/Freelancer/CreateProfile1/style";
-import { DEFAULT_IMAGE } from "utils/constants/links";
+import { DEFAULT_IMAGE, EMPLOYER_JOBS_PAGE } from "utils/constants/links";
 import { baseUrl } from "utils/constants/redux-query";
 import { useUploadImageMutation } from "redux/uploadImage/upload-image.api";
 import { setUserData } from "redux/userState/userSlice";
 import { useCreateEmployerMutation } from "redux/createEmployer/employerApi";
-import { MY_JOBS } from "src/utils/constants/breakpoint";
 import { FormBox, InputContainer, StyledFileField } from "./styles";
 
 interface IFormInput {
@@ -94,7 +93,7 @@ export function CreateEmployerProfile() {
 		};
 		try {
 			await createProfile(employerInfo);
-			navigate(MY_JOBS);
+			navigate(EMPLOYER_JOBS_PAGE);
 		} catch (error) {
 			alert(error);
 		}

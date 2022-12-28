@@ -4,7 +4,6 @@ import { JOBS_PAGE } from "utils/constants/breakpoint";
 
 export interface EmployerJobsListProps {
 	data: JobsInterface[] | undefined;
-	typePage: "proposals" | "jobs";
 }
 
 export function EmployerJobsList({ data }: EmployerJobsListProps) {

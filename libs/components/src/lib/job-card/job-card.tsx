@@ -1,10 +1,10 @@
 import { useTranslation } from "react-i18next";
+import { StyledButton, StyledParagraph, CardModal, JobDetailsCard, SendProposal } from "@freelance/components";
+import { InstObject, Proposal } from "redux/jobs";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import { useState } from 'react';
 import moment from "moment";
 import { JOBS_PAGE } from "utils/constants/breakpoint";
-import { StyledButton, StyledParagraph, CardModal, JobDetailsCard, SendProposal } from "@freelance/components";
-import { InstObject, Proposal } from "redux/jobs";
 import { ROLES } from "utils/constants/roles";
 import {
 	StyledJobCard,
@@ -55,11 +55,12 @@ export function JobCard({
 }: JobCardProps) {
 	const { t } = useTranslation();
 	const { data } = useGetFreelancerQuery();
-	const { handleSendProrposalClick, handleToggleIsPublishedButton, isTogglingJob } = useJobCard();
 	const [detailsModalOpen, setDetailsModalOpen] = useState<boolean>(false);
 	const [proposalModalOpen, setProposalModalOpen] = useState<boolean>(false);
 	const [isCreateProposalActive, setIsCreateProposalActive] = useState(false);
 	const prettyDate = moment(createdDate).format('LL');
+	const { handleSendProrposalClick, handleToggleIsPublishedButton, isTogglingJob } =
+		useJobCard(isPublished);
 
 	const isProposal = data?.proposals
 		.map(proposal => {

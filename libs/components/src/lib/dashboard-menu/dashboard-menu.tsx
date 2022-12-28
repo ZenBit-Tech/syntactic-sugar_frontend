@@ -1,15 +1,22 @@
 import { useTranslation } from "react-i18next";
 import { FilterButton, StyledButton } from "@freelance/components";
 import { ROLES } from "utils/constants/roles";
-import { PROPOSALS_PAGE } from "utils/constants/breakpoint";
+import { EMPLOYER_JOBS, PROPOSALS_PAGE } from "utils/constants/breakpoint";
 import { Container, FilterButtonWrap } from "./dashboard-menu.styled";
 
 export interface DashboardMenuProps {
 	userRole: "freelancer" | "employer";
-	typePage?: "createProfile" | "main" | "proposals" | "jobs";
+	typePage?: "createProfile" | "main" | "proposals" | "employerJobs" | "jobs";
+	filterState?: boolean;
+	handleToggleFilter?: () => void;
 }
 
-export function DashboardMenu({ userRole, typePage }: DashboardMenuProps) {
+export function DashboardMenu({
+	userRole,
+	typePage,
+	handleToggleFilter,
+	filterState,
+}: DashboardMenuProps) {
 	const { t } = useTranslation();
 
 	return (
@@ -23,11 +30,16 @@ export function DashboardMenu({ userRole, typePage }: DashboardMenuProps) {
 					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
 						{t("dashboard.menu.searchWorks")}
 					</StyledButton>
-					<StyledButton disabled={typePage === PROPOSALS_PAGE} buttonSize="md" fontSize="md" buttonColor="lightRed">
+					<StyledButton
+						disabled={typePage === PROPOSALS_PAGE}
+						buttonSize="md"
+						fontSize="md"
+						buttonColor="lightRed"
+					>
 						{t("dashboard.menu.proposals")}
 					</StyledButton>
-					{typePage === PROPOSALS_PAGE &&
-						(<FilterButtonWrap>
+					{typePage === PROPOSALS_PAGE && (
+						<FilterButtonWrap>
 							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
 								{t("dashboard.menu.myProposals")}
 							</FilterButton>
@@ -38,7 +50,7 @@ export function DashboardMenu({ userRole, typePage }: DashboardMenuProps) {
 								{t("dashboard.menu.myOffers")}
 							</FilterButton>
 						</FilterButtonWrap>
-					)}	
+					)}
 				</>
 			)}
 			{userRole === ROLES.EMPLOYER && (
@@ -49,6 +61,28 @@ export function DashboardMenu({ userRole, typePage }: DashboardMenuProps) {
 					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
 						{t("dashboard.menu.jobs")}
 					</StyledButton>
+					{typePage === EMPLOYER_JOBS && (
+						<FilterButtonWrap>
+							<FilterButton
+								onClick={handleToggleFilter}
+								buttonSize="filter"
+								fontSize="md"
+								buttonColor="lightRed"
+								disabled={filterState}
+							>
+								{t("dashboard.menu.publishedJobs")}
+							</FilterButton>
+							<FilterButton
+								onClick={handleToggleFilter}
+								buttonSize="filter"
+								fontSize="md"
+								buttonColor="lightRed"
+								disabled={!filterState}
+							>
+								{t("dashboard.menu.closedJobs")}
+							</FilterButton>
+						</FilterButtonWrap>
+					)}
 				</>
 			)}
 		</Container>

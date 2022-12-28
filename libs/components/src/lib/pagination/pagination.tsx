@@ -11,7 +11,7 @@ export interface PaginationProps {
 	itemsPerPage: number;
 	user: string;
 	jobs?: JobsInterface[] | undefined;
-	typePage: 'proposals' | 'jobs';
+	typePage?: 'proposals' | 'jobs';
 }
 
 export interface ReactPaginateEvent {

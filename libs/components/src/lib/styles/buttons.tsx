@@ -21,6 +21,7 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 	justify-content: center;
 	gap: 0.6rem;
 	border-radius: 100px;
+	border: 0px double ${({ theme }) => theme.colors.darkRed};
 	padding: 0.6rem 0;
 	transition: all ease-in-out 0.4s;
 	cursor: auto;
@@ -108,5 +109,10 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 `;
 
 export const FilterButton = styled(StyledButton)`
-    padding: 0.3rem 0;
+	padding: 0.3rem 0.5rem;
+	box-sizing: content-box;
+
+	:disabled {
+		border: 6px double ${({ theme }) => theme.colors.darkRed};
+	}
 `;
