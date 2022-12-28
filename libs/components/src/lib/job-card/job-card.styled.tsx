@@ -84,3 +84,9 @@ export const LocationBlock = styled.div`
 export const CountriesContainer = styled.div`
 	display: flex;
 `;
+
+export const CardTitleButton = styled.button`
+    font-size: 1.3rem;
+    font-weight: 500;
+	outline-style: none;
+`;

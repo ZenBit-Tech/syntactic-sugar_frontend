@@ -29,6 +29,8 @@ export * from "./lib/pagination/pagination";
 export * from "./lib/styles/layouts";
 export * from "./lib/styles/inputComponents";
 
+export * from "./lib/send-proposal/send-proposal";
+
 // Reset password forms
 
 export * from "./lib/recover-pass-first-form/recover-pass-first-form";
@@ -55,6 +57,19 @@ export * from "./lib/employer-jobs-container/employer-jobs-container";
 export * from "./lib/employer-jobs-empty/employer-jobs-empty";
 export * from "./lib/employer-jobs-list/employer-jobs-list";
 
+// Job Details
+
+export * from "./lib/job-details-card/job-details-card";
+
+// Modal Card
+
+export * from "./lib/card-modal/card-modal";
+
+// Create Proposal
+
+export * from "./lib/send-proposal/send-proposal";
+
 // Skeletons
 
 export * from "./lib/skeletons";
+

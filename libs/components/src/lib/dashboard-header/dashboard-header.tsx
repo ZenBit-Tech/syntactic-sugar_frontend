@@ -10,7 +10,7 @@ import { Container, UserInfoWrapper, ButtonsWrapper, UserDetails } from "./dashb
 
 export interface DashboardHeaderProps {
 	userRole: "freelancer" | "employer";
-	typePage?: "createProfile" | "main" | "proposals" | "employerJobs";
+	typePage?: "createProfile" | "main" | "proposals" | "employerJobs" | "jobs";
 }
 
 export function DashboardHeader({ userRole, typePage }: DashboardHeaderProps) {

@@ -23,7 +23,7 @@ export const ContainerBox = styled.div`
 
 export const ButtonWrapper = styled.div`
 	display: flex;
-    margin-top: 1rem;
+	margin-top: 1rem;
 	justify-content: center;
 	gap: 2rem;
 `;
@@ -35,21 +35,21 @@ export const FileUpload = styled.div`
 `;
 
 export const Form = styled.form`
-    padding-left: 24px;
-    padding-right: 24px;
+	padding-left: 24px;
+	padding-right: 24px;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 `;
 
 export const Textarea = styled(TextArea)`
-    box-shadow: 0px 0px 10px 1px rgb(0 0 0 / 10%);
+	box-shadow: 0px 0px 10px 1px rgb(0 0 0 / 10%);
 	height: 279px;
 	display: block;
 	padding: 15px;
 	border-radius: 5px;
 	resize: none;
-    width: 100%;
+	width: 100%;
 `;
 
 export const Title = styled(BaseTitle)`
@@ -59,8 +59,8 @@ export const Title = styled(BaseTitle)`
 
 export const Label = styled.label`
 	font-size: 1rem;
-    padding-left: 1.5rem;
-    margin-bottom: 0.5rem;
+	padding-left: 1.5rem;
+	margin-bottom: 0.5rem;
 `;
 
 export const Span = styled.span`

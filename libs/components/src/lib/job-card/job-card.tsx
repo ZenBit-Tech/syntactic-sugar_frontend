@@ -1,8 +1,16 @@
 import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
-import { StyledTitle, StyledButton, StyledParagraph } from "@freelance/components";
+import {
+	StyledButton,
+	StyledParagraph,
+	CardModal,
+	JobDetailsCard,
+	SendProposal,
+} from "@freelance/components";
 import { InstObject, Proposal } from "redux/jobs";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
+import { useState } from "react";
+import moment from "moment";
+import { JOBS_PAGE } from "utils/constants/breakpoint";
 import { ROLES } from "utils/constants/roles";
 import {
 	StyledJobCard,
@@ -10,6 +18,9 @@ import {
 	StyledJobCardParagraph,
 	CountriesContainer,
 	LocationBlock,
+	CardTitleButton,
+} from "./job-card.styled";
+import {
 	JobButtonContainer,
 	EmployerButtonWrapper,
 	FreelancerButtonWrapper,
@@ -31,6 +42,7 @@ export interface JobCardProps {
 	skills?: InstObject[];
 	category?: InstObject;
 	isPublished: boolean;
+	typePage?: "proposals" | "jobs";
 }
 
 export function JobCard({
@@ -44,14 +56,17 @@ export function JobCard({
 	levelEnglish,
 	createdDate,
 	userType,
+	typePage,
 	isPublished,
 }: JobCardProps) {
 	const { t } = useTranslation();
 	const { data } = useGetFreelancerQuery();
+	const [detailsModalOpen, setDetailsModalOpen] = useState<boolean>(false);
+	const [proposalModalOpen, setProposalModalOpen] = useState<boolean>(false);
+	const [isCreateProposalActive, setIsCreateProposalActive] = useState(false);
+	const prettyDate = moment(createdDate).format("LL");
 	const { handleSendProrposalClick, handleToggleIsPublishedButton, handleEditJob, isTogglingJob } =
-		useJobCard({
-			isPublished,
-		});
+		useJobCard({ isPublished });
 
 	const isProposal = data?.proposals
 		.map(proposal => {
@@ -59,26 +74,42 @@ export function JobCard({
 		})
 		.some(item => item !== undefined);
 
+	const closeSendProposal = () => {
+		setProposalModalOpen(false);
+	};
+
+	const openCreateProposal = () => {
+		setIsCreateProposalActive(true);
+	};
+
+	const closeCreateProposal = () => {
+		setDetailsModalOpen(false);
+	};
+
+	const goBackToDetails = () => {
+		setIsCreateProposalActive(false);
+	};
+
 	return (
 		<StyledJobCard>
 			<StyledJobCardHeader>
-				<NavLink to={`/jobs/details/${jobId}`}>
-					<StyledTitle tag="h2" fontWeight={800} fontSize="md">
-						<strong>{position}</strong>
-					</StyledTitle>
-				</NavLink>
-				<strong>{createdDate}</strong>
-				{userType === ROLES.FREELANCER && !isProposal && (
-					<FreelancerButtonWrapper>
-						<StyledButton
-							onClick={() => handleSendProrposalClick(jobId)}
-							buttonColor="redGradient"
-							buttonSize="lg"
-							fontSize="md"
-						>
-							<strong>{t("jobCard.sendProposal")}</strong>
-						</StyledButton>
-					</FreelancerButtonWrapper>
+				<CardTitleButton onClick={() => setDetailsModalOpen(true)}>{position}</CardTitleButton>
+				<strong>{prettyDate}</strong>
+				{userType === ROLES.FREELANCER && (
+					<>
+						{typePage === JOBS_PAGE && !isProposal && (
+							<FreelancerButtonWrapper>
+								<StyledButton
+									buttonColor="redGradient"
+									buttonSize="md"
+									fontSize="sm"
+									onClick={() => setProposalModalOpen(true)}
+								>
+									<strong>{t("jobCard.sendProposal")}</strong>
+								</StyledButton>
+							</FreelancerButtonWrapper>
+						)}
+					</>
 				)}
 				{userType === ROLES.EMPLOYER && (
 					<JobButtonContainer>
@@ -108,30 +139,44 @@ export function JobCard({
 			</StyledJobCardHeader>
 			<StyledJobCardParagraph>
 				<LocationBlock>
-					<StyledParagraph fontSize="sm" opacity={0.7}>
+					<StyledParagraph fontSize="md" opacity={0.7}>
 						{t("jobCard.location")}:
 					</StyledParagraph>
 					<CountriesContainer>
-						<div>
-							{countries.map(country => (
-								<strong key={country.id}>{country.name} </strong>
-							))}
-						</div>
+						{countries.map(country => (
+							<strong key={country.id}>{country.name} </strong>
+						))}
 					</CountriesContainer>
 				</LocationBlock>
-				<StyledParagraph fontSize="sm" opacity={0.7}>
+				<StyledParagraph fontSize="md" opacity={0.7}>
 					{t("jobCard.employmentType")}: <strong>{employmentType}</strong>
 				</StyledParagraph>
-				<StyledParagraph fontSize="sm" opacity={0.7}>
+				<StyledParagraph fontSize="md" opacity={0.7}>
 					{t("jobCard.option")}: <strong>{availableAmountOfHours}</strong>
 				</StyledParagraph>
-				<StyledParagraph fontSize="sm" opacity={0.7}>
+				<StyledParagraph fontSize="md" opacity={0.7}>
 					{t("jobCard.exp")}: <strong>{workExperience}</strong>
 				</StyledParagraph>
-				<StyledParagraph fontSize="sm" opacity={0.7}>
+				<StyledParagraph fontSize="md" opacity={0.7}>
 					{t("jobCard.englishLevel")}: <strong>{levelEnglish}</strong>
 				</StyledParagraph>
 			</StyledJobCardParagraph>
+			<CardModal open={detailsModalOpen} onCancel={() => setDetailsModalOpen(false)} width={1000}>
+				{!isCreateProposalActive && (
+					<JobDetailsCard
+						id={jobId}
+						typePage={typePage}
+						openCreateProposal={openCreateProposal}
+						onBack={closeCreateProposal}
+					/>
+				)}
+				{isCreateProposalActive && (
+					<SendProposal id={jobId} goBack={goBackToDetails} onCancel={closeCreateProposal} />
+				)}
+			</CardModal>
+			<CardModal open={proposalModalOpen} onCancel={() => setProposalModalOpen(false)} width={1000}>
+				<SendProposal id={jobId} onCancel={closeSendProposal} />
+			</CardModal>
 		</StyledJobCard>
 	);
 }

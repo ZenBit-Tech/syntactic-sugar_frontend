@@ -6,7 +6,7 @@ import { Container, FilterButtonWrap } from "./dashboard-menu.styled";
 
 export interface DashboardMenuProps {
 	userRole: "freelancer" | "employer";
-	typePage?: "createProfile" | "main" | "proposals" | "employerJobs";
+	typePage?: "createProfile" | "main" | "proposals" | "employerJobs" | "jobs";
 	filterState?: boolean;
 	handleToggleFilter?: () => void;
 }
@@ -42,6 +42,9 @@ export function DashboardMenu({
 						<FilterButtonWrap>
 							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
 								{t("dashboard.menu.myProposals")}
+							</FilterButton>
+							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
+								{t("dashboard.menu.myInvitations")}
 							</FilterButton>
 							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
 								{t("dashboard.menu.myOffers")}

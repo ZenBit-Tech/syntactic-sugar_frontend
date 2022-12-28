@@ -1,4 +1,6 @@
 import { EmployerJobsEmpty, EmployerJobsList, StyledButton } from "@freelance/components";
+import { Skeleton } from "antd";
+import { JOBS_PAGE } from "utils/constants/breakpoint";
 import { ToastContainer } from "react-toastify";
 import { SkeletonEmployerJobs } from "@freelance/components";
 import { JobsContainer } from "./employer-jobs-container.styled";

@@ -17,6 +17,7 @@ import {
 	SelectElement,
 	InputContainerCards,
 } from "./style";
+import { JOBS_PAGE, PROPOSALS_PAGE } from "src/utils/constants/breakpoint";
 
 type user = "freelancer" | "employer";
 
@@ -28,6 +29,7 @@ export interface IFormInput {
 	englishLevel: SelectOptions;
 	hourRate: SelectOptions;
 	availableAmountOfHour: SelectOptions;
+	typePage?: 'proposals' | 'job';
 }
 
 interface JobSkills {
@@ -123,7 +125,7 @@ export function SearchWork() {
 
 	return (
 		<StyledPage>
-			<Dashboard userRole="freelancer">
+			<Dashboard userRole="freelancer" typePage={JOBS_PAGE}>
 				<Form onSubmit={handleSubmit(onSubmit)}>
 					<InputHeader>
 						<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
@@ -175,7 +177,7 @@ export function SearchWork() {
 					<Wrapper>
 						<InputContainerCards>
 							<InputWrapper>
-								<Pagination itemsPerPage={5} user={user} jobs={filterJobs} />
+								<Pagination itemsPerPage={5} user={user} jobs={filterJobs} typePage={JOBS_PAGE}/>
 							</InputWrapper>
 						</InputContainerCards>
 						<InputContainer>

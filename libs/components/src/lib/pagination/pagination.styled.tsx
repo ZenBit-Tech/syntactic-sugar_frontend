@@ -40,6 +40,7 @@ export const PaginationContainer = styled.div`
 `;
 
 export const StyledReactPagination = styled(ReactPaginate)`
+	width: 100%;
 	padding: 2%;
 	display: flex;
 	width: 40%;

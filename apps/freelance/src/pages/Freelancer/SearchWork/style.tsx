@@ -143,11 +143,6 @@ export const InputWrapper = styled.div`
 		border-radius: 20px;
 	}
 
-	button {
-		max-width: 110px;
-		height: 20px;
-	}
-
 	.jobsCardContainer {
 		display: flex;
 		width: 95%;
