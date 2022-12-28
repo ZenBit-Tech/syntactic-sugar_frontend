@@ -76,6 +76,10 @@ export function JobCard({
 		setIsCreateProposalActive(true);
 	}
 
+	const closeCreateProposal = () => {
+		setDetailsModalOpen(false);
+	}
+
 	const goBackToDetails = () => {
 		setIsCreateProposalActive(false);
 	}
@@ -149,13 +153,13 @@ export function JobCard({
 					<JobDetailsCard
 						id={jobId} typePage={typePage}
 						openCreateProposal={openCreateProposal}
-						onBack={() => setDetailsModalOpen(false)} />
+						onBack={closeCreateProposal} />
 				)}
 				{isCreateProposalActive && (
 					<SendProposal
 						id={jobId}
 						goBack={goBackToDetails}
-						onCancel={()=>setDetailsModalOpen(false)}
+						onCancel={closeCreateProposal}
 					/>
 				)}
 			</CardModal>
