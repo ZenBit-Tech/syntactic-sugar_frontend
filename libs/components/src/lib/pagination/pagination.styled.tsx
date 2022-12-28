@@ -30,6 +30,7 @@ export const PaginationItemsWrapper = styled.div`
 
 export const PaginationContainer = styled.div`
 	display: grid;
+	width: 100%;
 	height: 100%;
 	min-height: 0px;
 
@@ -46,7 +47,7 @@ export const StyledReactPagination = styled(ReactPaginate)`
 	margin-right: auto;
 	justify-content: space-between;
 	a {
-		font-size: 10px;
+		font-size: 14px;
 		color: ${({ theme }) => theme.colors.black};
 	}
 `;

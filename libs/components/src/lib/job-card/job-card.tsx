@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { StyledTitle, StyledButton, StyledParagraph } from "@freelance/components";
 import { InstObject, Proposal } from "redux/jobs";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
@@ -48,7 +49,8 @@ export function JobCard({
 }: JobCardProps) {
 	const { t } = useTranslation();
 	const { data } = useGetFreelancerQuery();
-	const { handleSendProrposalClick, handleToggleIsPublishedButton, isTogglingJob } = useJobCard();
+	const { handleSendProrposalClick, handleToggleIsPublishedButton, isTogglingJob } =
+		useJobCard(isPublished);
 
 	const isProposal = data?.proposals
 		.map(proposal => {

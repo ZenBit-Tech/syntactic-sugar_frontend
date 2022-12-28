@@ -17,6 +17,7 @@ export const StyledJobCard = styled.div`
 	max-height: 200px;
 	min-height: 130px;
 	overflow: hidden;
+	transition: all ease-in-out 0.4s;
 	:hover {
 		transform: scale(1.03);
 	}

@@ -58,7 +58,7 @@
 		"updatingPassword": "Updating password",
 		"loader": "SENDING EMAIL",
 		"errorMessageWrongEmail": "User with this email does not exist",
-		"errorMessageServerError": "Somethig went wrong",
+		"errorMessageServerError": "Something went wrong",
 		"errorMessageExpiredLinkTitle": "Your link has broken or has expired",
 		"errorMessageExpiredLinkSubTitle": "Please, try again",
 		"tryAgainButton": "Try again",
@@ -76,7 +76,9 @@
 		"employmentType": "Type",
 		"option": "Option",
 		"exp": "Expereance",
-		"englishLevel": "English"
+		"englishLevel": "English",
+		"closedNotification": "Your job is not visible to freelancer now",
+		"publishedNotification": "Your job is visible to freelancer now"
 	},
 	"invitationPage": {
 		"title": "You have successfully registered!",
@@ -90,7 +92,9 @@
 			"talents": "TALENTS",
 			"jobs": "MY JOBS",
 			"myProposals": "My Invitations",
-			"myOffers": "My Offers"
+			"myOffers": "My Offers",
+			"publishedJobs": "Published Jobs",
+			"closedJobs": "Closed Jobs"
 		},
 		"profilePage": {
 			"title": "My Profile"

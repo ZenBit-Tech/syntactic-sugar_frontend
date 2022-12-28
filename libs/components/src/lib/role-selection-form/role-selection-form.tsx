@@ -7,12 +7,7 @@ import { setUserData } from "redux/userState/userSlice";
 import { StyledButton } from "@freelance/components";
 import { useAddRoleMutation, UserRoles } from "redux/role.api";
 import { Form, RadioGroup } from "./role-selection-form.styled";
-import {
-	CREATE_PROFILE_1,
-	MY_JOBS,
-	ROLE_SELECTION,
-	EMPLOYER_PROFILE,
-} from "utils/constants/breakpoint";
+import { CREATE_PROFILE_1, ROLE_SELECTION, EMPLOYER_PROFILE } from "utils/constants/breakpoint";
 
 type RoleOptions = "employer" | "freelancer";
 
