@@ -25,6 +25,7 @@ export const loginApi = createApi({
 		baseUrl: baseUrl,
 		prepareHeaders: (headers, { getState }) => {
 			const token = (getState() as RootState).user.token;
+
 			if (token) {
 				headers.set("Authorization", `Bearer ${token}`);
 			}

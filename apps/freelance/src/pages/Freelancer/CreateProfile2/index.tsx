@@ -59,6 +59,7 @@ export function CreateProfile2() {
 			workHistory: workHistoryList,
 			otherExperience: otherExperience,
 		};
+
 		if (type === "create") {
 			toast(t("freelancer.createProfile.modal"), {
 				position: toast.POSITION.BOTTOM_CENTER,

@@ -43,6 +43,7 @@ export function SendProposal() {
 
 	const onSubmit = async (values: IProposal) => {
 		const data: any = new FormData();
+
 		data.append("file", values.file[0]);
 		data.append("coverLetter", values.coverLetter);
 		data.append("id", id);

@@ -21,6 +21,7 @@ const newJob = createSlice({
 	name: "newJob",
 	initialState,
 	reducers: {
+		// eslint-disable-next-line @typescript-eslint/ban-types
 		addNewJobInfo(state, action: PayloadAction<Object>) {
 			const { payload } = action;
 

@@ -12,6 +12,7 @@ import { useGetJobIdQuery } from "src/redux/jobs/jobs.api";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import { SEARCH_WORK, SEND_PROPOSAL } from "utils/constants/breakpoint";
 import { baseUrl } from "utils/constants/redux-query";
+import { jobIds, buttonsIds } from "utils/tests/testsIds/jobDetailsIds";
 import {
 	ContainerBox,
 	CardContainer,
@@ -32,9 +33,9 @@ export function WorkDetails() {
 	const params = useParams();
 	const id = String(params["id"]);
 	const { data } = useGetJobIdQuery(id);
-  const { data: freelancerData } = useGetFreelancerQuery();
+	const { data: freelancerData } = useGetFreelancerQuery();
 
-  const isProposal = freelancerData?.proposals
+	const isProposal = freelancerData?.proposals
 		.map(proposal => {
 			return data?.proposals.find(item => item.id === proposal.id);
 		})
@@ -57,7 +58,11 @@ export function WorkDetails() {
 							{t("jobDetails.title")}
 						</StyledTitle>
 						<Wrapper>
-							<img src={baseUrl + "/" + data?.employer.image} alt="User Avatar" />
+							<img
+								data-testid={jobIds.img}
+								src={baseUrl + "/" + data?.employer.image}
+								alt="User Avatar"
+							/>
 							<div>
 								<StyledTitle tag="h3" fontSize="md" fontWeight={500}>
 									{data?.employer.companyName}
@@ -76,25 +81,25 @@ export function WorkDetails() {
 									<Title id="country">
 										<strong>{t("newJobPosting.secondForm.positionLabel")}</strong>
 									</Title>
-									<p>{data?.position}</p>
+									<p data-testid={jobIds.position}>{data?.position}</p>
 								</Item>
 								<Item>
 									<Title id="category">
 										<strong>{t("newJobPosting.secondForm.employmentTypeLabel")}</strong>
 									</Title>
-									<p>{data?.employmentType}</p>
+									<p data-testid={jobIds.employmentType}>{data?.employmentType}</p>
 								</Item>
 								<Item>
 									<Title id="position">
 										<strong>{t("jobDetails.date")}</strong>
 									</Title>
-									<p>{data?.createdDate}</p>
+									<p data-testid={jobIds.createdDate}>{data?.createdDate}</p>
 								</Item>
 								<Item>
 									<Title id="employment">
 										<strong>{t("jobDetails.duration")}</strong>
 									</Title>
-									<p>{data?.availableAmountOfHours}</p>
+									<p data-testid={jobIds.availableAmountOfHours}>{data?.availableAmountOfHours}</p>
 								</Item>
 							</LeftSide>
 							<RightSide>
@@ -102,20 +107,20 @@ export function WorkDetails() {
 									<Title id="workExperience">
 										<strong>{t("jobDetails.salary")}</strong>
 									</Title>
-									<p>{data?.hourRate}</p>
+									<p data-testid={jobIds.hourRate}>{data?.hourRate}</p>
 								</Item>
 
 								<Item>
 									<Title id="rateHour">
 										<strong>{t("newJobPosting.thirdForm.englishLevelLabel")}</strong>
 									</Title>
-									<p>{data?.englishLevel}</p>
+									<p data-testid={jobIds.englishLevel}>{data?.englishLevel}</p>
 								</Item>
 								<Item>
 									<Title id="workingHour">
 										<strong>{t("jobDetails.exp")}</strong>
 									</Title>
-									<p>{data?.workExperience}</p>
+									<p data-testid={jobIds.workExperience}>{data?.workExperience}</p>
 								</Item>
 								<Item>
 									<Title id="skills">
@@ -124,7 +129,11 @@ export function WorkDetails() {
 									<div className="skillsContainer">
 										{data &&
 											data?.skills.map(skill => {
-												return <p key={skill.id}>{skill.name}</p>;
+												return (
+													<p data-testid={jobIds.skills} key={skill.id}>
+														{skill.name}
+													</p>
+												);
 											})}
 									</div>
 								</Item>
@@ -137,7 +146,7 @@ export function WorkDetails() {
 								</Title>
 
 								<Item id="workHistory">
-									<p>{data?.description}</p>
+									<p data-testid={jobIds.description}>{data?.description}</p>
 								</Item>
 							</ItemContainer>
 							<ItemContainer id="workHistory">
@@ -145,7 +154,7 @@ export function WorkDetails() {
 									<strong>{t("newJobPosting.thirdForm.otherRequirenmentsLabel")}</strong>
 								</Title>
 								<Item id="workHistory">
-									<p>{data?.otherRequirenments}</p>
+									<p data-testid={jobIds.otherRequirenments}>{data?.otherRequirenments}</p>
 								</Item>
 							</ItemContainer>
 						</Bottom>

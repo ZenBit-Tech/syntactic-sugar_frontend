@@ -76,8 +76,8 @@ export const Form = styled.form`
 		grid-template-columns: 1fr 1fr;
 		grid-auto-rows: 80px;
 		position: relative;
-    justify-items: center;
-    align-items: center;
+		justify-items: center;
+		align-items: center;
 		width: 80%;
 	}
 	.selectContainer__right {
@@ -111,14 +111,13 @@ export const InputContainerCards = styled.div`
 	height: 100%;
 `;
 
-
 export const InputHeader = styled.div`
 	position: sticky;
 	top: 0;
 	background: ${({ theme }) => theme.colors.white};
 	padding: 0 0.5rem;
 	height: 30px;
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 	display: flex;
 	width: 100%;
 	justify-content: flex-start;

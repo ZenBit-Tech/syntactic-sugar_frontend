@@ -21,14 +21,17 @@ export const useChangeListHandler = (
 	): void => {
 		const name = (event.target as HTMLInputElement).name;
 		const value = (event.target as HTMLInputElement).value;
+
 		if (option === listOption.EDUCATION) {
 			const list = [...educationList];
 			const newEducationList = list.map((it, position) => {
 				if (position === index) {
 					return { ...it, [name]: value };
 				}
+
 				return it;
 			});
+
 			setEducationList(newEducationList);
 		} else {
 			const list = [...workHistoryList];
@@ -36,8 +39,10 @@ export const useChangeListHandler = (
 				if (position === index) {
 					return { ...it, [name]: value };
 				}
+
 				return it;
 			});
+
 			setWorkHistoryList(newWorkHistoryList);
 		}
 	};

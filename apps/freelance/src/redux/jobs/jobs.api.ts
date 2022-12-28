@@ -7,7 +7,7 @@ export interface Country {
 	name: string;
 }
 
-export interface Skills extends Country {}
+export type Skills = Country;
 export interface IEmployerResponse {
 	id: string;
 	fullName: string;

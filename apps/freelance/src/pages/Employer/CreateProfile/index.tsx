@@ -54,6 +54,7 @@ export function CreateEmployerProfile() {
 	const onSubmitFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
 		try {
 			const formData = new FormData();
+
 			if (event.currentTarget.files) {
 				formData.append("file", event.currentTarget.files[0]);
 			}
@@ -92,6 +93,7 @@ export function CreateEmployerProfile() {
 			aboutUs: values.aboutUs,
 			image: imageData && imageUrl !== DEFAULT_IMAGE ? imageData.file : "",
 		};
+
 		try {
 			await createProfile(employerInfo);
 			navigate(MY_JOBS);
@@ -139,7 +141,7 @@ export function CreateEmployerProfile() {
 							<Controller
 								name="fullName"
 								control={control}
-								rules={{ required: "This field is required." }}
+								rules={{ required: `${t("employer.create.req")}` }}
 								render={({ field }) => (
 									<input
 										id="fullName"
@@ -159,7 +161,7 @@ export function CreateEmployerProfile() {
 							<Controller
 								name="position"
 								control={control}
-								rules={{ required: "This field is required." }}
+								rules={{ required: `${t("employer.create.req")}` }}
 								render={({ field }) => (
 									<input
 										type="text"
@@ -179,7 +181,7 @@ export function CreateEmployerProfile() {
 							<Controller
 								name="companyName"
 								control={control}
-								rules={{ required: "This field is required." }}
+								rules={{ required: `${t("employer.create.req")}` }}
 								render={({ field }) => (
 									<input
 										type="text"
@@ -200,10 +202,10 @@ export function CreateEmployerProfile() {
 								name="phone"
 								control={control}
 								rules={{
-									required: "This field is required.",
+									required: `${t("employer.create.req")}`,
 									pattern: {
-										value: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
-										message: "Add correct number, example: +919367788755",
+										value: new RegExp("^[]?[(]?[0-9]{3}[)]?[-s]?[0-9]{3}[-s]?[0-9]{4,6}"),
+										message: `${t("employer.create.tel")}`,
 									},
 								}}
 								render={({ field }) => (
@@ -230,7 +232,7 @@ export function CreateEmployerProfile() {
 							<Controller
 								name="linkedIn"
 								control={control}
-								rules={{ required: "This field is required." }}
+								rules={{ required: `${t("employer.create.req")}` }}
 								render={({ field }) => (
 									<input
 										type="text"
@@ -250,7 +252,7 @@ export function CreateEmployerProfile() {
 							<Controller
 								name="website"
 								control={control}
-								rules={{ required: "This field is required." }}
+								rules={{ required: `${t("employer.create.req")}` }}
 								render={({ field }) => (
 									<input
 										type="text"
@@ -269,7 +271,7 @@ export function CreateEmployerProfile() {
 						<Controller
 							name="aboutUs"
 							control={control}
-							rules={{ required: "This field is required." }}
+							rules={{ required: `${t("employer.create.req")}` }}
 							render={({ field }) => (
 								<textarea {...field} placeholder={t("employer.create.aboutusLabel")} />
 							)}

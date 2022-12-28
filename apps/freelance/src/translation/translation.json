@@ -332,7 +332,9 @@
 			"linkedinLabel": "LinkedIn",
 			"websiteLabel": "Website",
 			"aboutusLabel": "About us",
-			"btn1": " Create profile"
+			"btn1": " Create profile",
+			"req": "This field is required",
+			"tel": "Add correct number, example: +919367788755"
 		}
 	},
 	"jobDetails": {
@@ -343,6 +345,6 @@
 		"salary": "Salary",
 		"duration": "Duration",
 		"date": "Posting date",
-    "alreadySended": "Proposal already sended"
+		"alreadySended": "Proposal already sended"
 	}
 }
