@@ -7,16 +7,23 @@ import { JobsInterface } from "redux/jobs";
 interface IUseEmployerJobsContainerHooks {
 	createButton: string;
 	isLoading: boolean;
-	data: JobsInterface[] | undefined;
+	arrayJobs?: JobsInterface[];
 	handleClick: () => void;
 }
 
-export const useEmployerJobsContainerHook = (): IUseEmployerJobsContainerHooks => {
+interface IUseEmployerJobsContainerProps {
+	isPublished: boolean;
+}
+
+export const useEmployerJobsContainerHook = ({
+	isPublished,
+}: IUseEmployerJobsContainerProps): IUseEmployerJobsContainerHooks => {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 	const { data, isLoading } = useGetJobsByEmployerQuery();
 
 	const createButton = t("employerJobsPage.createButton");
+	const arrayJobs = data?.filter(job => job.isPublished === isPublished);
 
 	const handleClick = (): void => {
 		navigate(CREATE_NEW_JOB_FIRST_PAGE);
@@ -25,7 +32,7 @@ export const useEmployerJobsContainerHook = (): IUseEmployerJobsContainerHooks =
 	return {
 		createButton,
 		isLoading,
-		data,
+		arrayJobs,
 		handleClick,
 	};
 };

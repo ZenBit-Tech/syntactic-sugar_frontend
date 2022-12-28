@@ -1,4 +1,5 @@
 {
+	"serverErrorMessage": "Something went wrong",
 	"signupGoogle": {
 		"buttonText": "Sign up with Google",
 		"error": "This email already registered. Sign in, please."
@@ -57,7 +58,7 @@
 		"updatingPassword": "Updating password",
 		"loader": "SENDING EMAIL",
 		"errorMessageWrongEmail": "User with this email does not exist",
-		"errorMessageServerError": "Somethig went wrong",
+		"errorMessageServerError": "Something went wrong",
 		"errorMessageExpiredLinkTitle": "Your link has broken or has expired",
 		"errorMessageExpiredLinkSubTitle": "Please, try again",
 		"tryAgainButton": "Try again",
@@ -68,12 +69,16 @@
 	"jobCard": {
 		"sendProposal": "Send proposal",
 		"removeJob": "Remove job",
+		"closeJob": "Close Job",
+		"publishJob": "Publish Job",
 		"editJob": "Edit Job",
 		"location": "Location",
 		"employmentType": "Type",
 		"option": "Option",
 		"exp": "Expereance",
-		"englishLevel": "English"
+		"englishLevel": "English",
+		"closedNotification": "Your job is not visible to freelancer now",
+		"publishedNotification": "Your job is visible to freelancer now"
 	},
 	"invitationPage": {
 		"title": "You have successfully registered!",
@@ -87,7 +92,9 @@
 			"talents": "TALENTS",
 			"jobs": "MY JOBS",
 			"myProposals": "My Invitations",
-			"myOffers": "My Offers"
+			"myOffers": "My Offers",
+			"publishedJobs": "Published Jobs",
+			"closedJobs": "Closed Jobs"
 		},
 		"profilePage": {
 			"title": "My Profile"
@@ -200,7 +207,10 @@
 			"workExperienceLabel": "Work experience",
 			"workExperiencePlaceholder": "Choose work experience",
 			"hourRateLabel": "Hour rate (one price)",
-			"hourRatePlaceholder": "Choose hour rate (one price)"
+			"hourRatePlaceholder": "Choose hour rate (one price)",
+			"validation": {
+				"maxCountries": "Not more then 5 countries"
+			}
 		},
 		"thirdForm": {
 			"skillsLabel": "Skills",
@@ -208,7 +218,11 @@
 			"englishLevelLabel": "English Level",
 			"englishLevelPlaceholder": "Choose required english level",
 			"otherRequirenmentsLabel": "Other requirenments",
-			"otherRequirenmentsPlaceholder": "Add Text"
+			"otherRequirenmentsPlaceholder": "Add Text",
+			"publishButton": "Publish job",
+			"validation": {
+				"maxSkills": "Only 3 skills"
+			}
 		}
 	},
 	"employerJobsPage": {

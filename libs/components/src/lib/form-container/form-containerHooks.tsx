@@ -6,9 +6,10 @@ import { toast } from "react-toastify";
 import { useGoogleLogin } from "@react-oauth/google";
 import { UserRoles } from "redux/role.api";
 import { setUserData } from "redux/userState/userSlice";
-import { ROLE_SELECTION, MY_JOBS, SEARCH_WORK } from "utils/constants/breakpoint";
+import { ROLE_SELECTION, SEARCH_WORK } from "utils/constants/breakpoint";
 import { useSignUpMutation } from "redux/signup-googleApi";
 import { useLoginWithGoogleMutation } from "redux/login.api";
+import { EMPLOYER_JOBS_PAGE } from "utils/constants/links";
 
 export const useGoogleAuthentication = (formType: boolean) => {
 	const { t } = useTranslation();
@@ -26,7 +27,7 @@ export const useGoogleAuthentication = (formType: boolean) => {
 			navigate(SEARCH_WORK);
 		}
 		if (userData?.role === UserRoles.EMPLOYER) {
-			navigate(MY_JOBS);
+			navigate(EMPLOYER_JOBS_PAGE);
 		}
 	}, [userData]);
 

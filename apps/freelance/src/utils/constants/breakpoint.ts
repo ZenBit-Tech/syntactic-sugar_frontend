@@ -18,9 +18,10 @@ export const THIRD_PAGE = "thirdPage";
 // Send Proposal
 
 export const WORK_DETAILS = "jobs/details";
+
 // Employer
 
-export const MY_JOBS = "/employer/my-jobs-page";
+export const EMPLOYER_JOBS = "employerJobs";
 export const EMPLOYER_PROFILE = "/employer/create-profile";
 
 // Freelancer
@@ -35,3 +36,7 @@ export const ROLE_PAGE = "/role-page";
 // Dashboard-menu
 
 export const PROPOSALS_PAGE = "proposals";
+
+// Dashboard-header
+
+export const CREATE_PROFILE = "createProfile";

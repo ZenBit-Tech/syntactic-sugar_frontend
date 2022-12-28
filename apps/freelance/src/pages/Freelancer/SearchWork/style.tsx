@@ -106,7 +106,6 @@ export const InputContainer = styled.div`
 
 export const InputContainerCards = styled.div`
 	width: 100%;
-	overflow-y: auto;
 
 	height: 100%;
 `;
@@ -135,6 +134,8 @@ export const InputWrapper = styled.div`
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
+	height: 100%;
+
 	hr {
 		margin-bottom: 2rem;
 		width: 90%;
@@ -143,7 +144,7 @@ export const InputWrapper = styled.div`
 	}
 
 	button {
-		max-width: 80px;
+		max-width: 110px;
 		height: 20px;
 	}
 

@@ -16,9 +16,12 @@ import {
 import { getStoredJobInfo } from "redux/jobs";
 import { useAppSelector } from "redux/hooks";
 import { useOptions } from "utils/select-options/options";
+import { useSecondFormSchema } from "utils/validations/newJobPostingSchemas";
 import { useJobPostingSecondFormHook } from "./job-posting-second-formHooks";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
+	const schema = useSecondFormSchema();
 	const {
 		countries: storedCountries,
 		category,
@@ -51,7 +54,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 		control,
 		register,
 		formState: { errors },
-	} = useForm<IJobPostingSecondForm>();
+	} = useForm<IJobPostingSecondForm>({ resolver: yupResolver(schema) });
 	const { countries, categories, hoursAmount, hourRate, employmentType, workExperience } =
 		useOptions();
 
@@ -104,7 +107,9 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 					/>
 					{errors?.category && (
 						<StyledSpan fontSize="sm" type="validation">
-							<strong>{errors?.category?.message}</strong>
+							<strong>
+								{errors?.category?.label ? errors?.category?.label.message : fieldRequired}
+							</strong>
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>
@@ -146,7 +151,11 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 					/>
 					{errors?.employmentType && (
 						<StyledSpan fontSize="sm" type="validation">
-							<strong>{errors?.employmentType?.message}</strong>
+							<strong>
+								{errors?.employmentType?.label
+									? errors?.employmentType?.label.message
+									: fieldRequired}
+							</strong>
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>
@@ -172,7 +181,11 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 					/>
 					{errors?.availableAmountOfHours && (
 						<StyledSpan fontSize="sm" type="validation">
-							<strong>{errors?.availableAmountOfHours?.message}</strong>
+							<strong>
+								{errors?.availableAmountOfHours?.label
+									? errors?.availableAmountOfHours?.label.message
+									: fieldRequired}
+							</strong>
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>
@@ -198,7 +211,11 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 					/>
 					{errors?.workExperience && (
 						<StyledSpan fontSize="sm" type="validation">
-							<strong>{errors?.workExperience?.message}</strong>
+							<strong>
+								{errors?.workExperience?.label
+									? errors?.workExperience?.label.message
+									: fieldRequired}
+							</strong>
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>
@@ -224,7 +241,9 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 					/>
 					{errors?.hourRate && (
 						<StyledSpan fontSize="sm" type="validation">
-							<strong>{errors?.hourRate?.message}</strong>
+							<strong>
+								{errors?.hourRate?.label ? errors?.hourRate?.label.message : fieldRequired}
+							</strong>
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>

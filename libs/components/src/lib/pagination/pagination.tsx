@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { JobsInterface } from "redux/jobs";
-import { StyledReactPagination } from "./pagination.styled";
+import {
+	PaginationContainer,
+	PaginationItemsWrapper,
+	StyledReactPagination,
+} from "./pagination.styled";
 import { Items } from "./items";
 
 export interface PaginationProps {
@@ -25,8 +29,10 @@ export function Pagination({ itemsPerPage, user, jobs }: PaginationProps) {
 	};
 
 	return (
-		<>
-			<Items currentItems={currentItems} user={user} />
+		<PaginationContainer>
+			<PaginationItemsWrapper>
+				<Items currentItems={currentItems} user={user} />
+			</PaginationItemsWrapper>
 			<StyledReactPagination
 				breakLabel="..."
 				nextLabel="next >"
@@ -35,7 +41,7 @@ export function Pagination({ itemsPerPage, user, jobs }: PaginationProps) {
 				pageCount={pageCount}
 				previousLabel="< previous"
 			/>
-		</>
+		</PaginationContainer>
 	);
 }
 

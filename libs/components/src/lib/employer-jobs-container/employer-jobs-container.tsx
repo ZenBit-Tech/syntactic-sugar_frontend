@@ -1,16 +1,32 @@
 import { EmployerJobsEmpty, EmployerJobsList, StyledButton } from "@freelance/components";
+import { ToastContainer } from "react-toastify";
+import { SkeletonEmployerJobs } from "@freelance/components";
 import { JobsContainer } from "./employer-jobs-container.styled";
 import { useEmployerJobsContainerHook } from "./employer-jobs-containerHooks";
 
-export function EmployerJobsContainer() {
-	const { createButton, handleClick, data, isLoading } = useEmployerJobsContainerHook();
+interface IEmployerJobsContainer {
+	isPublished: boolean;
+}
+
+export function EmployerJobsContainer({ isPublished }: IEmployerJobsContainer) {
+	const { createButton, handleClick, arrayJobs, isLoading } = useEmployerJobsContainerHook({
+		isPublished,
+	});
 
 	return (
 		<JobsContainer>
-			{data?.length ? <EmployerJobsList data={data} /> : <EmployerJobsEmpty />}
-			<StyledButton onClick={handleClick} buttonSize="sm" fontSize="lg" buttonColor="redGradient">
-				{createButton}
-			</StyledButton>
+			{isLoading && <SkeletonEmployerJobs isLoading={isLoading} />}
+			{!isLoading && arrayJobs?.length ? (
+				<EmployerJobsList data={arrayJobs} />
+			) : (
+				!isLoading && <EmployerJobsEmpty />
+			)}
+			{!isLoading && (
+				<StyledButton onClick={handleClick} buttonSize="sm" fontSize="lg" buttonColor="redGradient">
+					{createButton}
+				</StyledButton>
+			)}
+			<ToastContainer />
 		</JobsContainer>
 	);
 }

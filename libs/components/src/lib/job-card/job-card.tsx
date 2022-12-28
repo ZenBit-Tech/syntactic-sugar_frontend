@@ -1,48 +1,41 @@
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { StyledTitle, StyledButton, StyledParagraph } from "@freelance/components";
-import { Country } from "redux/jobs";
+import { InstObject, Proposal } from "redux/jobs";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
+import { ROLES } from "utils/constants/roles";
 import {
 	StyledJobCard,
 	StyledJobCardHeader,
 	StyledJobCardParagraph,
 	CountriesContainer,
 	LocationBlock,
+	JobButtonContainer,
+	EmployerButtonWrapper,
+	FreelancerButtonWrapper,
 } from "./job-card.styled";
+import { useJobCard } from "./job-cardHooks";
 
 export interface JobCardProps {
-	id: string;
+	jobId: string;
 	position: string;
-	countries: Country[];
+	countries: InstObject[];
 	employmentType: string;
-	proposals: {
-		id: string;
-		coverLetter: string;
-	}[];
+	proposals: Proposal[];
 	availableAmountOfHours: string;
 	workExperience: string;
 	levelEnglish: string;
 	createdDate: string;
 	updatedDate?: string;
 	userType: string;
-	skills?: {
-		id: string;
-		name: string;
-	}[];
-	category?: {
-		id: string;
-		name: string;
-	};
-}
-
-interface Proposal {
-	id: string;
-	coverLetter: string;
+	skills?: InstObject[];
+	category?: InstObject;
+	isPublished: boolean;
 }
 
 export function JobCard({
-	id,
+	jobId,
 	position,
 	countries,
 	employmentType,
@@ -52,9 +45,12 @@ export function JobCard({
 	levelEnglish,
 	createdDate,
 	userType,
+	isPublished,
 }: JobCardProps) {
 	const { t } = useTranslation();
 	const { data } = useGetFreelancerQuery();
+	const { handleSendProrposalClick, handleToggleIsPublishedButton, isTogglingJob } =
+		useJobCard(isPublished);
 
 	const isProposal = data?.proposals
 		.map(proposal => {
@@ -65,28 +61,43 @@ export function JobCard({
 	return (
 		<StyledJobCard>
 			<StyledJobCardHeader>
-				<NavLink to={`/jobs/details/${id}`}>
-					<StyledTitle tag="h2" fontWeight={500} fontSize="md">
+				<NavLink to={`/jobs/details/${jobId}`}>
+					<StyledTitle tag="h2" fontWeight={800} fontSize="md">
 						<strong>{position}</strong>
 					</StyledTitle>
 				</NavLink>
 				<strong>{createdDate}</strong>
-				{userType === "freelancer" && !isProposal && (
-					<NavLink to={`/freelancer/send-proposal/${id}`}>
-						<StyledButton buttonColor="redGradient" buttonSize="md" fontSize="sm">
+				{userType === ROLES.FREELANCER && !isProposal && (
+					<FreelancerButtonWrapper>
+						<StyledButton
+							onClick={() => handleSendProrposalClick(jobId)}
+							buttonColor="redGradient"
+							buttonSize="lg"
+							fontSize="md"
+						>
 							<strong>{t("jobCard.sendProposal")}</strong>
 						</StyledButton>
-					</NavLink>
+					</FreelancerButtonWrapper>
 				)}
-				{userType === "employer" && (
-					<div className="employerButtonContainer">
-						<StyledButton buttonColor="redGradient" buttonSize="md" fontSize="sm">
-							<strong>{t("jobCard.editJob")}</strong>
-						</StyledButton>
-						<StyledButton buttonColor="redGradient" buttonSize="md" fontSize="sm">
-							<strong>{t("jobCard.removeJob")}</strong>
-						</StyledButton>
-					</div>
+				{userType === ROLES.EMPLOYER && (
+					<JobButtonContainer>
+						<EmployerButtonWrapper>
+							<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
+								<strong>{t("jobCard.editJob")}</strong>
+							</StyledButton>
+						</EmployerButtonWrapper>
+						<EmployerButtonWrapper>
+							<StyledButton
+								onClick={() => handleToggleIsPublishedButton(jobId)}
+								buttonColor="redGradient"
+								buttonSize="lg"
+								fontSize="md"
+								disabled={isTogglingJob}
+							>
+								<strong>{isPublished ? t("jobCard.closeJob") : t("jobCard.publishJob")}</strong>
+							</StyledButton>
+						</EmployerButtonWrapper>
+					</JobButtonContainer>
 				)}
 			</StyledJobCardHeader>
 			<StyledJobCardParagraph>

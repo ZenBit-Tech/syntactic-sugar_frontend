@@ -17,3 +17,7 @@ export const DEFAULT_IMAGE = "/assets/images/user_avatar.png";
 // Employer Jobs Page
 
 export const EMPLOYER_JOBS_PAGE = "/employer/my-jobs-page";
+
+// Send proposals
+
+export const SEND_PROPOSAL_ID = "/freelancer/send-proposal";

@@ -21,7 +21,7 @@ import store from "redux/store";
 import { SendProposal } from "@pages/SendProposal";
 import { CreateProfile2 } from "@pages/Freelancer/CreateProfile2";
 import { SearchWork } from "@pages/Freelancer/SearchWork";
-import { EmployerJobsPage } from "@pages/EmployerJobsPage";
+import { EmployerJobsPage } from "@pages/Employer/EmployerJobsPage";
 import { WorkDetails } from "@pages/WorkDetails";
 import { ProposalsPage } from "@pages/Freelancer/ProposalsPage";
 import { StyledApp } from "./app.styled";

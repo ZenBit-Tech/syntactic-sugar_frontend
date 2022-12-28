@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
 
 export type SelectOptions = {
-	value: string;
-	label: string;
+	value?: string;
+	label?: string;
 };
 
 export type SkillsType = Array<SelectOptions>;
