@@ -13,7 +13,7 @@ jest.mock("redux/jobs/jobs.api", () => ({
 }));
 
 jest.mock("redux/createFreelancer/freelancer-pageApi", () => ({
-	useGetFreelancerQuery: () => ({ data: mockJobData, isLoading: false }),
+	useGetFreelancerQuery: () => ({ data: mockFreelancerData, isLoading: false }),
 }));
 
 describe("Component WorkDetails renders all data from server", () => {
