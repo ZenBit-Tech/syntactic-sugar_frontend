@@ -3,17 +3,13 @@ import { unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 import { render, screen } from "utils/tests/customRender";
 import { mockJobData } from "utils/tests/mocks/jobMockData";
-import { mockFreelancerData } from "utils/tests/mocks/freelancerMockData";
 import { jobIds } from "utils/tests/testsIds/jobDetailsIds";
+import { string } from "yup";
 
 import WorkDetails from "./index";
 
 jest.mock("redux/jobs/jobs.api", () => ({
-	useGetJobIdQuery: () => ({ data: mockJobData, isLoading: false }),
-}));
-
-jest.mock("redux/createFreelancer/freelancer-pageApi", () => ({
-	useGetFreelancerQuery: () => ({ data: mockFreelancerData, isLoading: false }),
+	useGetJobIdQuery: (id: string) => ({ data: mockJobData, isLoading: false }),
 }));
 
 describe("Component WorkDetails renders all data from server", () => {
@@ -51,14 +47,6 @@ describe("Component WorkDetails renders all data from server", () => {
 		});
 
 		expect(page).toBeTruthy();
-	});
-
-	test("Get freelancer`s data from server", () => {
-		act(() => {
-			render(<WorkDetails />);
-		});
-
-		expect(mockFreelancerData).toBeTruthy();
 	});
 
 	test("Job data renders correctly", async () => {
