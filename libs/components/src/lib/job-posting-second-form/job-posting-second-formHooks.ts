@@ -28,18 +28,23 @@ export const useJobPostingSecondFormHook = (): IUseJobPostingSecondForm => {
 	const fieldRequired: string = t("newJobPosting.validation.messageFieldRequired");
 
 	const onSubmit: SubmitHandler<IJobPostingSecondForm> = data => {
-		const resultData = {
-			countries: data.countries.map(country => country.label),
-			category: data.category.label,
-			position: data.position,
-			employmentType: data.employmentType.label,
-			availableAmountOfHours: data.availableAmountOfHours.label,
-			hourRate: data.hourRate.label,
-			workExperience: data.workExperience.label,
-		};
+		const countries = data.countries.map(country => country.label);
+		const countriesCheck = countries.some(country => country === undefined);
 
-		dispatch(addNewJobInfo(resultData));
-		navigate(CREATE_NEW_JOB_THIRD_PAGE);
+		if (!countriesCheck) {
+			const resultData = {
+				countries: countries as string[],
+				category: data.category.label,
+				position: data.position,
+				employmentType: data.employmentType.label,
+				availableAmountOfHours: data.availableAmountOfHours.label,
+				hourRate: data.hourRate.label,
+				workExperience: data.workExperience.label,
+			};
+
+			dispatch(addNewJobInfo(resultData));
+			navigate(CREATE_NEW_JOB_THIRD_PAGE);
+		}
 	};
 
 	return {

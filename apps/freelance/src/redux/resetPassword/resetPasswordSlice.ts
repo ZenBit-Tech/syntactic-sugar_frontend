@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
-const BASE_URL: string = process.env["NX_HOST"] || "";
+import { baseQuery } from "redux/base-query";
 
 export interface SendEmail {
 	email?: string;
@@ -13,18 +12,18 @@ export interface SendPassAndToken {
 
 export const resetPasswordApi = createApi({
 	reducerPath: "resetPasswordApi",
-	baseQuery: fetchBaseQuery({ baseUrl: `${BASE_URL}auth/` }),
+	baseQuery: baseQuery,
 	endpoints: builder => ({
 		sendLinkEmail: builder.mutation<boolean, SendEmail>({
 			query: values => ({
-				url: "/forgotpassword",
+				url: "auth/forgotpassword",
 				method: "POST",
 				body: values,
 			}),
 		}),
 		resetPassword: builder.mutation<boolean, SendPassAndToken>({
 			query: values => ({
-				url: `/resetpassword`,
+				url: "auth/resetpassword",
 				method: "POST",
 				body: values,
 			}),
