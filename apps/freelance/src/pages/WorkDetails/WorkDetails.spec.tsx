@@ -1,10 +1,11 @@
 import { unmountComponentAtNode } from "react-dom";
 import { render, screen } from "utils/tests/test";
+import { act } from "react-dom/test-utils";
+import "@testing-library/jest-dom";
 import { mockJobData } from "utils/tests/mocks/jobMockData";
 import { jobIds } from "utils/tests/testsIds/jobDetailsIds";
-import "@testing-library/jest-dom";
+
 import WorkDetails from "./index";
-import { act } from "react-dom/test-utils";
 
 jest.mock("redux/jobs/jobs.api", () => ({
 	useGetJobIdQuery: () => ({ data: mockJobData, isLoading: false }),
