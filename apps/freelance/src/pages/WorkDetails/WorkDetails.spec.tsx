@@ -4,7 +4,6 @@ import { act } from "react-dom/test-utils";
 import { render, screen } from "utils/tests/customRender";
 import { mockJobData } from "utils/tests/mocks/jobMockData";
 import { jobIds } from "utils/tests/testsIds/jobDetailsIds";
-import { string } from "yup";
 
 import WorkDetails from "./index";
 
