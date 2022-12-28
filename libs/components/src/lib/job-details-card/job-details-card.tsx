@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import moment from "moment";
 import {
 	StyledTitle,
 	StyledButton,
@@ -6,6 +7,7 @@ import {
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import { JOBS_PAGE} from "utils/constants/breakpoint";
 import { baseUrl } from "utils/constants/redux-query";
+import { useGetJobIdQuery } from "redux/jobs";
 import {
 	ContainerBox,
 	Item,
@@ -18,7 +20,6 @@ import {
 	Bottom,
 	Wrapper,
 } from "./job-details-card.styled";
-import { useGetJobIdQuery } from "redux/jobs";
 
 export interface JobDetailsCardProps {
 	typePage?: 'proposals' | 'jobs';
@@ -73,7 +74,7 @@ export function JobDetailsCard({typePage, id, openCreateProposal, onBack}: JobDe
 							<Title id="position">
 								<strong>{t("jobDetails.date")}</strong>
 							</Title>
-							<p>{data?.createdDate}</p>
+							<p>{moment(data?.createdDate).format('ll')}</p>
 						</Item>
 						<Item>
 							<Title id="employment">

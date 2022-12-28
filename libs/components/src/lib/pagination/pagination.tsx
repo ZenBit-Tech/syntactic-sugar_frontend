@@ -10,7 +10,7 @@ import { Items } from "./items";
 export interface PaginationProps {
 	itemsPerPage: number;
 	user: string;
-	jobs: JobsInterface[] | undefined;
+	jobs?: JobsInterface[] | undefined;
 	typePage: 'proposals' | 'jobs';
 }
 

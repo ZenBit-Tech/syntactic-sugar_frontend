@@ -1,13 +1,6 @@
 import styled from "styled-components";
 import { TextArea } from "@freelance/components";
-import { StyledPage } from "@freelance/components";
 import { BaseTitle } from "@freelance/components";
-
-export const Page = styled(StyledPage)`
-	background: url("/assets/images/top_elipse.png") no-repeat top left,
-		url("/assets/images/bottom_elipse.png") no-repeat bottom right,
-		${({ theme }) => theme.colors.lightGrey};
-`;
 
 export const ContainerBox = styled.div`
 	display: flex;

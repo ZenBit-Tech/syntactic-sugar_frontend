@@ -17,9 +17,6 @@ export * from "./lib/form-container/form-container";
 export * from "./lib/login-form/login-form";
 export * from "./lib/base-title/base-title";
 export * from "./lib/helpers";
-export * from "./lib/job-details-card/job-details-card";
-export * from "./lib/card-modal/card-modal";
-export * from "./lib/send-proposal/send-proposal";
 
 // Styled Components
 
@@ -31,6 +28,8 @@ export * from "./lib/job-card/job-card";
 export * from "./lib/pagination/pagination";
 export * from "./lib/styles/layouts";
 export * from "./lib/styles/inputComponents";
+
+export * from "./lib/send-proposal/send-proposal";
 
 // Reset password forms
 
@@ -57,3 +56,18 @@ export * from "./lib/styles/newJobPostingCommonStyles";
 export * from "./lib/employer-jobs-container/employer-jobs-container";
 export * from "./lib/employer-jobs-empty/employer-jobs-empty";
 export * from "./lib/employer-jobs-list/employer-jobs-list";
+
+// Job Details
+
+export * from "./lib/job-details-card/job-details-card";
+
+// Modal Card
+
+export * from "./lib/card-modal/card-modal";
+
+// Create Proposal
+
+export * from "./lib/send-proposal/send-proposal";
+
+
+
