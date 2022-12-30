@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 export const imageSchema = yup.object().shape({
-	file: yup
+	image: yup
 		.mixed()
 		.required("You need to upload your avatar")
 		.test("type", "Only the following formats are accepted: .jpg, .jpeg, .png", file => {

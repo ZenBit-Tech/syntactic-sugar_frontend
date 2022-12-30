@@ -1,13 +1,23 @@
 import { IProposal } from "redux/interfaces/IProposal";
 import { useTranslation } from "react-i18next";
-import * as yup from "yup";
+import { object, string, mixed } from "yup";
 
-export const schema = yup.object().shape({
-	file: yup
-		.mixed()
-		.required("You need to upload your CV")
-		.test("type", "Only the following formats are accepted: .doc, .docx, .pdf", file => {
-			return file && (file[0].type === "application/pdf" || file[0].type === "application/msword");
+export const schema = object({
+	file: mixed()
+		.required("This field is required")
+		.test("type", "Only the following formats are accepted: .pdf, .doc, .docx", file => {
+			if (file.length > 0) {
+				return (
+					file &&
+					(file[0]?.type === "application/pdf" ||
+						file[0]?.type === "application/msword" ||
+						file[0]?.type ===
+							"application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+				);
+			}
+
+			return true;
 		}),
-	coverLetter: yup.string().min(100, "Min 100 symbols").required("This field is required"),
+	coverLetter: string().required("This field is required").min(100, "Min 100 symbols"),
+	hourRate: object().nullable(),
 });

@@ -1,15 +1,10 @@
 import { useTranslation } from "react-i18next";
-import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm, Controller } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
+import { useNavigate } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import { StyledButton, ThemeColors } from "@freelance/components";
-import { useCreateProposalMutation } from "redux/sendProposalFreelancer/proposalApi";
-import { IProposal } from "src/redux/interfaces/IProposal";
-import { schema } from "utils/validations/fileUpload";
-import { useGetJobIdQuery } from "src/redux/jobs/jobs.api";
-import { WORK_DETAILS, SEARCH_WORK } from "src/utils/constants/breakpoint";
-import { useGetFreelancerQuery } from "src/redux/createFreelancer/freelancer-pageApi";
+import { StyledButton, ThemeColors, ThemeBackground } from "@freelance/components";
+import { useOptions } from "utils/select-options/options";
 import {
 	Page,
 	Container,
@@ -17,88 +12,111 @@ import {
 	FileUpload,
 	Form,
 	Title,
-	SubTitle,
 	Label,
 	Textarea,
+	SelectElement,
 	Span,
 } from "./styles";
+import { IFormValues } from "./IFormValues";
+import { useSendProposal } from "./sendProposalHook";
+import { formats } from "./formats";
 
 export function SendProposal() {
-	const { data } = useGetFreelancerQuery();
-	const params = useParams();
-	const id = String(params["id"]);
-	const { data: jobData } = useGetJobIdQuery(id);
 	const { t } = useTranslation();
 	const navigate = useNavigate();
+	const { hourRate } = useOptions();
 	const {
 		register,
 		handleSubmit,
+		control,
 		formState: { errors },
-	} = useForm<IProposal>({ resolver: yupResolver(schema) });
-	const [createProposal, { isError }] = useCreateProposalMutation({});
+	} = useForm<IFormValues>({ criteriaMode: "all" });
+	const { onSubmit } = useSendProposal();
 
 	const goBack = () => {
 		navigate(-1);
 	};
 
-	const onSubmit = async (values: IProposal) => {
-		const data: any = new FormData();
-		data.append("file", values.file[0]);
-		data.append("coverLetter", values.coverLetter);
-		data.append("id", id);
-
-		try {
-			await createProposal(data);
-			if (isError) {
-				alert(t("sendProposalFreelancer.alert"));
-			}
-			navigate(SEARCH_WORK);
-		} catch (error) {
-			alert(error);
-		}
-	};
-
 	return (
-		<ThemeProvider theme={ThemeColors}>
+		<ThemeProvider theme={ThemeColors && ThemeBackground}>
 			<Page>
 				<Container>
 					<Title fontSize="lg" tag="h1" fontWeight={700}>
 						{t("sendProposalFreelancer.greeting")}
 					</Title>
-					{data && (
-						<>
-							<SubTitle fontSize="lg" tag="h3" fontWeight={700}>
-								{data?.fullName}
-							</SubTitle>
-							<SubTitle
-								fontSize="sm"
-								tag="h3"
-								fontWeight={500}
-							>{`${data?.position}, ${data?.country.name}, ${data?.availableAmountOfHours} work, Experience: ${data?.workExperience}, English: ${data?.englishLevel}`}</SubTitle>
-						</>
-					)}
-
 					<Form onSubmit={handleSubmit(onSubmit)}>
+						<Controller
+							name="hourRate"
+							control={control}
+							render={({ field }) => (
+								<SelectElement
+									options={hourRate}
+									{...field}
+									isSearchable
+									isClearable
+									classNamePrefix="react-select"
+									placeholder={t("freelancer.createProfile.selectOption.hourRate")}
+								/>
+							)}
+						/>
 						<Label>{t("sendProposalFreelancer.coverLetter")}</Label>
 						<Textarea
-							{...register("coverLetter")}
+							{...register("coverLetter", {
+								required: `${t("sendProposalFreelancer.required")}`,
+								minLength: {
+									value: 100,
+									message: `${t("sendProposalFreelancer.min")}`,
+								},
+								maxLength: {
+									value: 1000,
+									message: `${t("sendProposalFreelancer.max")}`,
+								},
+							})}
 							rows={10}
 							maxLength={1000}
 							placeholder={t("sendProposalFreelancer.placeholderCoverLetter")}
 						/>
-						{errors?.coverLetter && (
-							<Span>
-								<strong>{errors?.coverLetter?.message}</strong>
-							</Span>
-						)}
+						<ErrorMessage
+							errors={errors}
+							name="coverLetter"
+							render={({ messages }) =>
+								messages &&
+								Object.entries(messages).map(([type, message]) => <Span key={type}>{message}</Span>)
+							}
+						/>
 						<FileUpload>
 							<Label>{t("sendProposalFreelancer.cv")}</Label>
-							<input type="file" id="file" accept=".doc, .docs, .pdf" {...register("file")} />
-							{errors?.file && (
-								<Span>
-									<strong>{errors?.file?.message}</strong>
-								</Span>
-							)}
+							<input
+								type="file"
+								id="file"
+								accept=".doc, .docx, .pdf"
+								{...register("file", {
+									required: `${t("sendProposalFreelancer.required")}`,
+									validate: file => {
+										if (file.length > 0) {
+											return (
+												(file &&
+													(file[0]?.type === formats.pdf ||
+														file[0]?.type === formats.doc ||
+														file[0]?.type === formats.docx)) ||
+												`${t("sendProposalFreelancer.format")}`
+											);
+										}
+
+										return true;
+									},
+								})}
+							/>
+							<ErrorMessage
+								errors={errors}
+								name="file"
+								render={({ messages }) =>
+									messages &&
+									Object.entries(messages).map(([type, message]) => (
+										<Span key={type}>{message}</Span>
+									))
+								}
+							/>
 						</FileUpload>
 						<Buttons>
 							<StyledButton

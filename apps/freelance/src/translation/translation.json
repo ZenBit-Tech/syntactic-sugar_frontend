@@ -132,7 +132,7 @@
 			"selectOption": {
 				"country": "Country",
 				"category": "Category",
-				"hourRate": "Hour rate (one price)",
+				"hourRate": "Hour rate",
 				"availableAmountOfHour": "Available amount of hours",
 				"skills": "Skills",
 				"workExperience": "Work Experience",
@@ -162,13 +162,18 @@
 		"roleFreelancer": "I am a Freelancer, looking for a job."
 	},
 	"sendProposalFreelancer": {
-		"greeting": "Create your proposal!",
+		"greeting": "Send proposal",
 		"send": "Send proposal",
 		"back": "Go back",
 		"cv": "Add your CV:",
-		"placeholderCoverLetter": "cover letter",
+		"placeholderCoverLetter": "Cover letter",
 		"coverLetter": "Add your cover letter:",
-		"alert": "Something went wrong, try again"
+		"alert": "Something went wrong, try again",
+		"cvAlert": "You have to upload your CV",
+		"required": "This field is required",
+		"min": "Min 100 symbols",
+		"max": "Max 1000 symbols",
+		"format": "Only .pdf, .doc, .docx"
 	},
 	"newJobPosting": {
 		"mainTitle": "New job posting",

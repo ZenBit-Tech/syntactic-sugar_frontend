@@ -52,7 +52,7 @@ export function CreateProfile1() {
 		handleSubmit,
 		control,
 		formState: { errors },
-	} = useForm<IFormInput>();
+	} = useForm<IFormInput>({ resolver: yupResolver(imageSchema) });
 
 	const onSubmitFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
 		try {
