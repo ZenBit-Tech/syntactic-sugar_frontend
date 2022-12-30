@@ -1,4 +1,5 @@
 import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import {
 	IJobPostingFormProps,
 	IJobPostingSecondForm,
@@ -18,7 +19,6 @@ import { useAppSelector } from "redux/hooks";
 import { useOptions } from "utils/select-options/options";
 import { useSecondFormSchema } from "utils/validations/newJobPostingSchemas";
 import { useJobPostingSecondFormHook } from "./job-posting-second-formHooks";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 	const schema = useSecondFormSchema();
