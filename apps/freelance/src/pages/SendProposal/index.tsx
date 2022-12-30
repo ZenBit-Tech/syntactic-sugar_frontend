@@ -15,7 +15,7 @@ import {
 	Label,
 	Textarea,
 	SelectElement,
-	Span,
+	SpanError,
 } from "./styles";
 import { IFormValues } from "./IFormValues";
 import { useSendProposal } from "./sendProposalHook";
@@ -81,7 +81,9 @@ export function SendProposal() {
 							name="coverLetter"
 							render={({ messages }) =>
 								messages &&
-								Object.entries(messages).map(([type, message]) => <Span key={type}>{message}</Span>)
+								Object.entries(messages).map(([type, message]) => (
+									<SpanError key={type}>{message}</SpanError>
+								))
 							}
 						/>
 						<FileUpload>
@@ -113,7 +115,7 @@ export function SendProposal() {
 								render={({ messages }) =>
 									messages &&
 									Object.entries(messages).map(([type, message]) => (
-										<Span key={type}>{message}</Span>
+										<SpanError key={type}>{message}</SpanError>
 									))
 								}
 							/>

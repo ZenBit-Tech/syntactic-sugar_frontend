@@ -3,7 +3,6 @@ import Select from "react-select";
 import { TextArea } from "@freelance/components";
 import { StyledPage } from "@freelance/components";
 import { BaseTitle } from "@freelance/components";
-import { StyledSpan } from "@freelance/components";
 
 export const Page = styled(StyledPage)`
 	background: url("/assets/images/top_elipse.png") no-repeat top left,
@@ -90,6 +89,6 @@ export const Label = styled.label`
 	font-size: 1rem;
 `;
 
-export const Span = styled(StyledSpan)`
+export const SpanError = styled.span`
 	color: ${({ theme }) => theme.colors.brightRed};
 `;
