@@ -19,7 +19,9 @@ import {
 	RightSide,
 	Bottom,
 	Wrapper,
+	BottomText,
 } from "./job-details-card.styled";
+import { DEFAULT_IMAGE } from "utils/constants/links";
 
 export interface JobDetailsCardProps {
 	typePage?: 'proposals' | 'jobs';
@@ -46,7 +48,7 @@ export function JobDetailsCard({typePage, id, openCreateProposal, onBack}: JobDe
 					{t("jobDetails.title")}
 				</StyledTitle>
 				<Wrapper>
-					<img src={baseUrl + "/" + data?.employer.image} alt="User Avatar" />
+					<img src={data?.employer.image ? baseUrl + data?.employer.image : DEFAULT_IMAGE} alt="User Avatar" />
 					<StyledTitle tag="h3" fontSize="md" fontWeight={500}>
 						{data?.employer.companyName}
 					</StyledTitle>
@@ -122,7 +124,7 @@ export function JobDetailsCard({typePage, id, openCreateProposal, onBack}: JobDe
 							<strong>{t("newJobPosting.firstForm.descriptionLabel")}</strong>
 						</Title>
 						<Item id="workHistory">
-							<p>{data?.description}</p>
+							<BottomText>{data?.description}</BottomText>
 						</Item>
 					</ItemContainer>
 					<ItemContainer id="workHistory">
@@ -130,7 +132,7 @@ export function JobDetailsCard({typePage, id, openCreateProposal, onBack}: JobDe
 							<strong>{t("newJobPosting.thirdForm.otherRequirenmentsLabel")}</strong>
 						</Title>
 						<Item id="workHistory">
-							<p>{data?.otherRequirenments}</p>
+							<BottomText>{data?.otherRequirenments}</BottomText>
 						</Item>
 					</ItemContainer>
 				</Bottom>
@@ -147,7 +149,7 @@ export function JobDetailsCard({typePage, id, openCreateProposal, onBack}: JobDe
 						</StyledButton>
 						<StyledButton
 							type="button"
-							disabled={isProposal ? true : false}
+							disabled={isProposal}
 							buttonColor="redGradient"
 							buttonSize="sm"
 							fontSize="md"

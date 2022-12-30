@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ContainerBox = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 2rem;
+	gap: 1rem;
 	padding-top: 1rem;
 	align-items: center;
 
@@ -51,6 +51,10 @@ export const Item = styled.div`
 		flex-direction: column;
 		align-items: flex-end;
 	}
+`;
+
+export const BottomText = styled(Item)`
+		text-align: left;
 `;
 
 export const Title = styled.div`
@@ -128,7 +132,7 @@ export const Wrapper = styled.div`
 	img {
 		object-fit: cover;
 		border-radius: 50%;
-		height: 100%;
-		width: 35%;
+		height: 75px;
+    	width: 75px;
 	}
 `;

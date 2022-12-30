@@ -15,14 +15,17 @@ import {
     ButtonWrapper,
     ContainerBox,
 } from "./send-proposal.styled";
+import { useState } from "react";
 
 export interface SendProposalProps {
     id: string;
     onCancel?: () => void;
     goBack?: () => void;
+    saveCoverLetter?: () => void;
+    inputText?: string;
 }
 
-export function SendProposal({id, onCancel, goBack}: SendProposalProps) {
+export function SendProposal({id, onCancel, goBack, saveCoverLetter, inputText}: SendProposalProps) {
 	const { t } = useTranslation();
 	const {
 		register,
@@ -31,7 +34,7 @@ export function SendProposal({id, onCancel, goBack}: SendProposalProps) {
 	} = useForm<IProposal>({ resolver: yupResolver(schema) });
 	const [createProposal, { isError }] = useCreateProposalMutation({});
 
-	const onSubmit = async (values: IProposal) => {
+    const onSubmit = async (values: IProposal) => {
 		const data: any = new FormData();
 		data.append("file", values.file[0]);
 		data.append("coverLetter", values.coverLetter);
@@ -49,7 +52,16 @@ export function SendProposal({id, onCancel, goBack}: SendProposalProps) {
 		} catch (error) {
 			alert(error);
 		}
-	};
+    };
+
+    // const [inputText, setInputText] = useState();
+    
+    // const saveCoverLetter = (evt: any) => {
+    //     // evt.preventDefault();
+    //     const coverLetter = evt.target.value;
+    //     setInputText(coverLetter);
+    //     console.log(coverLetter)
+    // };
 
 	return (
         <ContainerBox>
@@ -63,6 +75,8 @@ export function SendProposal({id, onCancel, goBack}: SendProposalProps) {
                     rows={10}
                     maxLength={1000}
                     placeholder={t("sendProposalFreelancer.placeholderCoverLetter")}
+                    value={inputText}
+                    onChange={saveCoverLetter}
                 />
                 {errors?.coverLetter && (
                     <Span>

@@ -11,7 +11,6 @@ export const CardModal: React.FC<ModalProps> = ({children, title, width, open, o
             onCancel={onCancel}
             width={width}
             footer={null}
-            
         >
             {children}
         </StyledCardModal>  
