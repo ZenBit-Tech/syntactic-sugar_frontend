@@ -43,10 +43,16 @@ export const TextArea = styled.textarea`
 interface IErrorsHandlerWrapper {
 	positionRight: number;
 	width: number;
+	wrapperWidth?: number;
 }
 
 export const ErrorsHandlerWrapper = styled.div<IErrorsHandlerWrapper>`
 	position: relative;
+	${({ wrapperWidth }) =>
+		wrapperWidth &&
+		css`
+			width: ${wrapperWidth}%;
+		`}
 
 	span {
 		opacity: 0.8;

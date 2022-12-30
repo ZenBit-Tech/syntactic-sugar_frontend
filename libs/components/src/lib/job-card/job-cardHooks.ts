@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -13,7 +13,9 @@ interface IUseJobCard {
 	handleSendProrposalClick: (id: string) => void;
 	handleToggleIsPublishedButton: (id: string) => Promise<void>;
 	handleEditJob: (proposal: Proposal[]) => void;
+	closeModalEditJob: () => void;
 	isTogglingJob: boolean;
+	isModalEditJob: boolean;
 }
 
 export const useJobCard = ({ isPublished }: IUseJobCardParams): IUseJobCard => {
@@ -21,6 +23,7 @@ export const useJobCard = ({ isPublished }: IUseJobCardParams): IUseJobCard => {
 	const navigate = useNavigate();
 	const [toggleIsPublishJob, { isLoading: isTogglingJob, isSuccess, isError }] =
 		useToggleIsPublishJobMutation();
+	const [isModalEditJob, setIsModalEditJob] = useState<boolean>(false);
 
 	const notification = !isPublished
 		? t("jobCard.publishedNotification")
@@ -43,6 +46,12 @@ export const useJobCard = ({ isPublished }: IUseJobCardParams): IUseJobCard => {
 			toast.error(t("jobCard.canNotEdit"));
 			return;
 		}
+
+		setIsModalEditJob(true);
+	};
+
+	const closeModalEditJob = () => {
+		setIsModalEditJob(false);
 	};
 
 	useEffect(() => {
@@ -51,9 +60,11 @@ export const useJobCard = ({ isPublished }: IUseJobCardParams): IUseJobCard => {
 	}, [isSuccess, isError]);
 
 	return {
-		isTogglingJob,
 		handleSendProrposalClick,
 		handleToggleIsPublishedButton,
 		handleEditJob,
+		closeModalEditJob,
+		isTogglingJob,
+		isModalEditJob,
 	};
 };

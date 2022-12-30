@@ -5,6 +5,7 @@ import {
 	CardModal,
 	JobDetailsCard,
 	SendProposal,
+	EditJobForm,
 } from "@freelance/components";
 import { InstObject, Proposal } from "redux/jobs";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
@@ -65,8 +66,14 @@ export function JobCard({
 	const [proposalModalOpen, setProposalModalOpen] = useState<boolean>(false);
 	const [isCreateProposalActive, setIsCreateProposalActive] = useState(false);
 	const prettyDate = moment(createdDate).format("LL");
-	const { handleSendProrposalClick, handleToggleIsPublishedButton, handleEditJob, isTogglingJob } =
-		useJobCard({ isPublished });
+	const {
+		handleSendProrposalClick,
+		handleToggleIsPublishedButton,
+		handleEditJob,
+		closeModalEditJob,
+		isTogglingJob,
+		isModalEditJob,
+	} = useJobCard({ isPublished });
 
 	const isProposal = data?.proposals
 		.map(proposal => {
@@ -176,6 +183,9 @@ export function JobCard({
 			</CardModal>
 			<CardModal open={proposalModalOpen} onCancel={() => setProposalModalOpen(false)} width={1000}>
 				<SendProposal id={jobId} onCancel={closeSendProposal} />
+			</CardModal>
+			<CardModal open={isModalEditJob} onCancel={closeModalEditJob} width={1000}>
+				<EditJobForm jobId={jobId} />
 			</CardModal>
 		</StyledJobCard>
 	);

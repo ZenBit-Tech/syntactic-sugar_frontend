@@ -4,6 +4,7 @@ import { StyledTitle, StyledButton } from "@freelance/components";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import { JOBS_PAGE } from "utils/constants/breakpoint";
 import { baseUrl } from "utils/constants/redux-query";
+import { DEFAULT_IMAGE } from "utils/constants/links";
 import { useGetJobIdQuery } from "redux/jobs";
 import {
 	ContainerBox,
@@ -43,7 +44,10 @@ export function JobDetailsCard({ typePage, id, openCreateProposal, onBack }: Job
 					{t("jobDetails.title")}
 				</StyledTitle>
 				<Wrapper>
-					<img src={baseUrl + "/" + data?.employer.image} alt="User Avatar" />
+					<img
+						src={data?.employer.image ? baseUrl + "/" + data?.employer.image : DEFAULT_IMAGE}
+						alt="User Avatar"
+					/>
 					<StyledTitle tag="h3" fontSize="md" fontWeight={500}>
 						{data?.employer.companyName}
 					</StyledTitle>
@@ -144,7 +148,7 @@ export function JobDetailsCard({ typePage, id, openCreateProposal, onBack }: Job
 						</StyledButton>
 						<StyledButton
 							type="button"
-							disabled={isProposal ? true : false}
+							disabled={isProposal}
 							buttonColor="redGradient"
 							buttonSize="sm"
 							fontSize="md"

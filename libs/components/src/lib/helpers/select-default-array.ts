@@ -1,3 +1,4 @@
+import { InstObject } from "redux/jobs";
 import { SelectOptions } from "utils/select-options/options";
 
 export type DefaultArray = (
@@ -10,5 +11,5 @@ export const selectDefaultArray: DefaultArray = (
 	options?: SelectOptions[],
 ) =>
 	options?.filter(option => {
-		return storedArray ? storedArray.filter(item => item === option?.label).length > 0 : false;
+		return storedArray && storedArray.filter(item => item === option?.label).length > 0;
 	});

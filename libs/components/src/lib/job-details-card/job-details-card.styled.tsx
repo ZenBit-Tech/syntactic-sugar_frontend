@@ -38,7 +38,7 @@ export const Item = styled.div`
 		width: 70%;
 		word-break: keep-all;
 		word-wrap: break-word;
-		text-align: right;
+		text-align: left;
 	}
 
 	:last-child {
@@ -128,7 +128,7 @@ export const Wrapper = styled.div`
 	img {
 		object-fit: cover;
 		border-radius: 50%;
-		height: 100%;
-		width: 35%;
+		height: 77px;
+		width: 77px;
 	}
 `;

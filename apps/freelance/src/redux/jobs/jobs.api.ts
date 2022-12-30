@@ -26,6 +26,7 @@ export interface IEmployerResponse {
 
 export interface JobsInterface {
 	id: string;
+	title: string;
 	description: string;
 	position: string;
 	countries: InstObject[];
@@ -103,7 +104,7 @@ export const getJobsApi = createApi({
 				method: "DELETE",
 			}),
 			invalidatesTags: ["Job"],
-		})
+		}),
 	}),
 });
 
@@ -117,4 +118,3 @@ export const {
 	useRemoveProposalByIdMutation,
 	useToggleIsPublishJobMutation,
 } = getJobsApi;
-
