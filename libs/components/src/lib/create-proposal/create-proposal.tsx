@@ -9,17 +9,17 @@ export interface CreateProposalonJobProps {
     goBack?: () => void;
     onBack: () => void;
     typePage?: 'proposals' | 'jobs';
+    isProposal?: boolean;
 }
 
-export const CreateProposalonJob = ({id, onBack, onCancel, typePage}: CreateProposalonJobProps) => {
+export const CreateProposalonJob = ({id, onBack, onCancel, typePage, isProposal}: CreateProposalonJobProps) => {
     const { openCreateProposal, goBackToDetails, isCreateProposalActive } = useCreateProposal();
-    // const [inputText, setInputText] = useState();
+    const [inputText, setInputText] = useState<string>();
     
-    // const saveCoverLetter = (evt: any) => {
-    //     // evt.preventDefault();
-    //     const coverLetter = evt.target.value;
-    //     setInputText(coverLetter);
-    //     console.log(coverLetter)
+    const saveCoverLetter = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
+        const coverLetter = evt.target.value;
+        setInputText(coverLetter);
+    }
 
     return (
         <>
@@ -29,6 +29,7 @@ export const CreateProposalonJob = ({id, onBack, onCancel, typePage}: CreateProp
                     typePage={typePage}
                     openCreateProposal={openCreateProposal}
                     onBack={onBack}
+                    isProposal={isProposal}
                 />
             )}
             {isCreateProposalActive && (
@@ -36,9 +37,10 @@ export const CreateProposalonJob = ({id, onBack, onCancel, typePage}: CreateProp
                     id={id}
                     goBack={goBackToDetails}
                     onCancel={onCancel}
+                    saveCoverLetter={saveCoverLetter}
+                    inputText={inputText}
                 />
             )}
         </>
-    )
-    
+    )  
 }

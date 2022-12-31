@@ -143,7 +143,9 @@ export function JobCard({
 					id={jobId}
 					typePage={typePage}
 					onBack={closeCreateProposal}
-					onCancel={closeCreateProposal} />
+					onCancel={closeCreateProposal}
+					isProposal={isProposal}
+				/>
 			</CardModal>
 			<CardModal
 				open={proposalModalOpen}

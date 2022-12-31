@@ -86,7 +86,7 @@ export const CountriesContainer = styled.div`
 `;
 
 export const CardTitleButton = styled.button`
-    font-size: 1.3rem;
-    font-weight: 500;
+	font-size: 1.3rem;
+	font-weight: 500;
 	outline-style: none;
 `;

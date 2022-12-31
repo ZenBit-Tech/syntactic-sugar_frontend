@@ -4,7 +4,6 @@ import {
 	StyledTitle,
 	StyledButton,
 } from "@freelance/components";
-import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import { JOBS_PAGE} from "utils/constants/breakpoint";
 import { baseUrl } from "utils/constants/redux-query";
 import { useGetJobIdQuery } from "redux/jobs";
@@ -28,18 +27,12 @@ export interface JobDetailsCardProps {
 	id: string;
 	openCreateProposal: () => void;
 	onBack: () => void;
+	isProposal?: boolean;
 }
 
-export function JobDetailsCard({typePage, id, openCreateProposal, onBack}: JobDetailsCardProps) {
+export function JobDetailsCard({typePage, id, openCreateProposal, onBack, isProposal}: JobDetailsCardProps) {
 	const { t } = useTranslation();
 	const { data } = useGetJobIdQuery(id);
-	const { data: freelancerData } = useGetFreelancerQuery();
-
-  	const isProposal = freelancerData?.proposals
-		.map(proposal => {
-			return data?.proposals.find(item => item.id === proposal.id);
-		})
-		.some(item => item !== undefined);
 
 	return (
 		<>

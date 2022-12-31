@@ -7,7 +7,7 @@ interface IuseCreateProposal {
 }
 
 export const useCreateProposal = (): IuseCreateProposal => {
-    const [isCreateProposalActive, setIsCreateProposalActive] = useState(false);
+    const [isCreateProposalActive, setIsCreateProposalActive] = useState<boolean>(false);
 
     const openCreateProposal = (): void => {
 		setIsCreateProposalActive(true);

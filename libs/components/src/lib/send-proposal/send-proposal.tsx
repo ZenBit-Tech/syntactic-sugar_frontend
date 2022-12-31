@@ -15,13 +15,12 @@ import {
     ButtonWrapper,
     ContainerBox,
 } from "./send-proposal.styled";
-import { useState } from "react";
 
 export interface SendProposalProps {
     id: string;
     onCancel?: () => void;
     goBack?: () => void;
-    saveCoverLetter?: () => void;
+    saveCoverLetter?: (evt: React.ChangeEvent<HTMLTextAreaElement>) => void;
     inputText?: string;
 }
 
@@ -54,15 +53,6 @@ export function SendProposal({id, onCancel, goBack, saveCoverLetter, inputText}:
 		}
     };
 
-    // const [inputText, setInputText] = useState();
-    
-    // const saveCoverLetter = (evt: any) => {
-    //     // evt.preventDefault();
-    //     const coverLetter = evt.target.value;
-    //     setInputText(coverLetter);
-    //     console.log(coverLetter)
-    // };
-
 	return (
         <ContainerBox>
             <Title fontSize="lg" tag="h1" fontWeight={700}>
@@ -72,10 +62,10 @@ export function SendProposal({id, onCancel, goBack, saveCoverLetter, inputText}:
                 <Label>{t("sendProposalFreelancer.coverLetter")}</Label>
                 <Textarea
                     {...register("coverLetter")}
+                    defaultValue={inputText}
                     rows={10}
                     maxLength={1000}
                     placeholder={t("sendProposalFreelancer.placeholderCoverLetter")}
-                    value={inputText}
                     onChange={saveCoverLetter}
                 />
                 {errors?.coverLetter && (
