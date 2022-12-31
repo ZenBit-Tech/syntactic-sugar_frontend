@@ -2,7 +2,6 @@ import { useTranslation } from "react-i18next";
 import { StyledButton, StyledParagraph, CardModal, SendProposal, CreateProposalonJob } from "@freelance/components";
 import { InstObject, Proposal } from "redux/jobs";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
-import { useState } from 'react';
 import moment from "moment";
 import { JOBS_PAGE } from "utils/constants/breakpoint";
 import { ROLES } from "utils/constants/roles";

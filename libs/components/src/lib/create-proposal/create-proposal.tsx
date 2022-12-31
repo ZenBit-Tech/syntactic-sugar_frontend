@@ -1,5 +1,4 @@
-import JobDetailsCard from "../job-details-card/job-details-card";
-import SendProposal from "../send-proposal/send-proposal";
+import { JobDetailsCard, SendProposal } from "@freelance/components";
 import { useCreateProposal } from "./create-proposalHooks";
 import { useState } from "react";
 
