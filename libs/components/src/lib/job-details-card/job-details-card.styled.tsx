@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { Container } from "@freelance/components";
 
 export const ContainerBox = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 2rem;
+	gap: 1rem;
 	padding-top: 1rem;
 	align-items: center;
+
 	button {
 		min-width: 200px;
 	}
@@ -29,19 +29,22 @@ export const Item = styled.div`
 	justify-content: space-between;
 	border-bottom: 1px solid ${({ theme }) => theme.colors.grey};
 	padding: 1rem 0;
-	gap: 1rem;
+
 	&#workHistory {
 		padding: 0.5rem;
 	}
+
 	p {
 		width: 70%;
 		word-break: keep-all;
 		word-wrap: break-word;
 		text-align: right;
 	}
+
 	:last-child {
 		border-bottom: none;
 	}
+
 	.skillsContainer {
 		width: 50%;
 		display: flex;
@@ -50,9 +53,14 @@ export const Item = styled.div`
 	}
 `;
 
+export const BottomText = styled(Item)`
+		text-align: left;
+`;
+
 export const Title = styled.div`
 	color: ${({ theme }) => theme.colors.darkGrey};
 	background-color: white;
+
 	&#workHistory {
 		position: sticky;
 		top: 0;
@@ -67,6 +75,7 @@ export const ItemContainer = styled.div`
 	width: 95%;
 	display: flex;
 	gap: 2rem;
+
 	&#workHistory {
 		width: 50%;
 		gap: 0;
@@ -99,15 +108,10 @@ export const Subtitle = styled.div`
 export const Subcontainer = styled.div`
 	border-bottom: 2px solid red;
 	padding: 1rem 0;
+
 	:last-child {
 		border-bottom: none;
 	}
-`;
-
-export const CardContainer = styled(Container)`
-	flex-direction: column;
-	justify-content: center;
-	margin: auto;
 `;
 
 export const ImageWrapper = styled.div`
@@ -124,10 +128,11 @@ export const Wrapper = styled.div`
 	align-items: center;
 	justify-content: flex-end;
 	gap: 2rem;
+
 	img {
 		object-fit: cover;
 		border-radius: 50%;
-		height: 100%;
-		width: 35%;
+		height: 75px;
+		width: 75px;
 	}
 `;

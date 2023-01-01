@@ -4,15 +4,16 @@ import { PROPOSALS_PAGE } from "utils/constants/breakpoint";
 import { Wrapper } from "./style";
 
 export function ProposalsPage() {
-	const { data } = useGetJobsWithProposalsQuery();
+    const { data } = useGetJobsWithProposalsQuery();
 
-	return (
-		<StyledPage>
-			<Dashboard userRole="freelancer" typePage={PROPOSALS_PAGE}>
-				<Wrapper>
-					<Pagination itemsPerPage={5} user="freelancer" jobs={data} />
-				</Wrapper>
-			</Dashboard>
-		</StyledPage>
-	);
+    return (
+        <StyledPage>
+            <Dashboard userRole="freelancer" typePage={PROPOSALS_PAGE}>
+                <Wrapper>
+                    <Pagination itemsPerPage={5} user="freelancer" jobs={data} typePage={PROPOSALS_PAGE}/>
+                </Wrapper>
+            </Dashboard>
+        </StyledPage>
+    )
 }
+

@@ -97,6 +97,13 @@ export const getJobsApi = createApi({
 			}),
 			providesTags: ["Job"],
 		}),
+		removeProposalById: build.mutation({
+			query: (id: string) => ({
+				url: `proposal/remove-proposal/${id}`,
+				method: "DELETE",
+			}),
+			invalidatesTags: ["Job"],
+		})
 	}),
 });
 
@@ -107,5 +114,7 @@ export const {
 	useGetJobsByEmployerQuery,
 	useGetJobsWithProposalsQuery,
 	useCreateJobMutation,
+	useRemoveProposalByIdMutation,
 	useToggleIsPublishJobMutation,
 } = getJobsApi;
+

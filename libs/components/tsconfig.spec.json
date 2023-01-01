@@ -16,5 +16,5 @@
     "**/*.test.jsx",
     "**/*.spec.jsx",
     "**/*.d.ts"
-  ]
+, "../../apps/freelance/src/pages/WorkDetails/WorkDetails.spec.tsx"  ]
 }

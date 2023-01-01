@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import { StyledTitle, StyledButton, StyledParagraph } from "@freelance/components";
+import { StyledButton, StyledParagraph, CardModal, SendProposal, CreateProposalonJob } from "@freelance/components";
 import { InstObject, Proposal } from "redux/jobs";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
+import moment from "moment";
+import { JOBS_PAGE } from "utils/constants/breakpoint";
 import { ROLES } from "utils/constants/roles";
 import {
 	StyledJobCard,
@@ -11,6 +11,9 @@ import {
 	StyledJobCardParagraph,
 	CountriesContainer,
 	LocationBlock,
+	CardTitleButton,
+} from "./job-card.styled";
+import {
 	JobButtonContainer,
 	EmployerButtonWrapper,
 	FreelancerButtonWrapper,
@@ -32,6 +35,7 @@ export interface JobCardProps {
 	skills?: InstObject[];
 	category?: InstObject;
 	isPublished: boolean;
+	typePage?: 'proposals' | 'jobs';
 }
 
 export function JobCard({
@@ -45,12 +49,23 @@ export function JobCard({
 	levelEnglish,
 	createdDate,
 	userType,
+	typePage,
 	isPublished,
 }: JobCardProps) {
 	const { t } = useTranslation();
 	const { data } = useGetFreelancerQuery();
-	const { handleSendProrposalClick, handleToggleIsPublishedButton, isTogglingJob } =
-		useJobCard(isPublished);
+	const prettyDate = moment(createdDate).format('LL');
+	const {
+		handleSendProrposalClick,
+		handleToggleIsPublishedButton,
+		openSendProposal,
+		closeCreateProposal,
+		openCreateProposal,
+		closeSendProposal,
+		isTogglingJob,
+		proposalModalOpen,
+		detailsModalOpen
+	} = useJobCard(isPublished);
 
 	const isProposal = data?.proposals
 		.map(proposal => {
@@ -61,23 +76,18 @@ export function JobCard({
 	return (
 		<StyledJobCard>
 			<StyledJobCardHeader>
-				<NavLink to={`/jobs/details/${jobId}`}>
-					<StyledTitle tag="h2" fontWeight={800} fontSize="md">
-						<strong>{position}</strong>
-					</StyledTitle>
-				</NavLink>
-				<strong>{createdDate}</strong>
-				{userType === ROLES.FREELANCER && !isProposal && (
-					<FreelancerButtonWrapper>
-						<StyledButton
-							onClick={() => handleSendProrposalClick(jobId)}
-							buttonColor="redGradient"
-							buttonSize="lg"
-							fontSize="md"
-						>
-							<strong>{t("jobCard.sendProposal")}</strong>
-						</StyledButton>
-					</FreelancerButtonWrapper>
+				<CardTitleButton onClick={openCreateProposal}>{position}</CardTitleButton>
+				<strong>{prettyDate}</strong>
+				{userType === ROLES.FREELANCER && (
+					<>
+						{typePage === JOBS_PAGE && !isProposal && (
+							<FreelancerButtonWrapper>
+								<StyledButton buttonColor="redGradient" buttonSize="md" fontSize="sm" onClick={openSendProposal}>
+									<strong>{t("jobCard.sendProposal")}</strong>
+								</StyledButton>
+							</FreelancerButtonWrapper>
+						)}
+					</>
 				)}
 				{userType === ROLES.EMPLOYER && (
 					<JobButtonContainer>
@@ -102,30 +112,48 @@ export function JobCard({
 			</StyledJobCardHeader>
 			<StyledJobCardParagraph>
 				<LocationBlock>
-					<StyledParagraph fontSize="sm" opacity={0.7}>
+					<StyledParagraph fontSize="md" opacity={0.7}>
 						{t("jobCard.location")}:
 					</StyledParagraph>
 					<CountriesContainer>
-						<div>
-							{countries.map(country => (
-								<strong key={country.id}>{country.name} </strong>
-							))}
-						</div>
+						{countries.map(country => (
+							<strong key={country.id}>{country.name} </strong>
+						))}
 					</CountriesContainer>
 				</LocationBlock>
-				<StyledParagraph fontSize="sm" opacity={0.7}>
+				<StyledParagraph fontSize="md" opacity={0.7}>
 					{t("jobCard.employmentType")}: <strong>{employmentType}</strong>
 				</StyledParagraph>
-				<StyledParagraph fontSize="sm" opacity={0.7}>
+				<StyledParagraph fontSize="md" opacity={0.7}>
 					{t("jobCard.option")}: <strong>{availableAmountOfHours}</strong>
 				</StyledParagraph>
-				<StyledParagraph fontSize="sm" opacity={0.7}>
+				<StyledParagraph fontSize="md" opacity={0.7}>
 					{t("jobCard.exp")}: <strong>{workExperience}</strong>
 				</StyledParagraph>
-				<StyledParagraph fontSize="sm" opacity={0.7}>
+				<StyledParagraph fontSize="md" opacity={0.7}>
 					{t("jobCard.englishLevel")}: <strong>{levelEnglish}</strong>
 				</StyledParagraph>
 			</StyledJobCardParagraph>
+			<CardModal
+				open={detailsModalOpen}
+				onCancel={closeCreateProposal}
+				width={1000}>
+				<CreateProposalonJob
+					id={jobId}
+					typePage={typePage}
+					onBack={closeCreateProposal}
+					onCancel={closeCreateProposal}
+					isProposal={isProposal}
+				/>
+			</CardModal>
+			<CardModal
+				open={proposalModalOpen}
+				onCancel={closeSendProposal}
+				width={1000}>
+				<SendProposal
+					id={jobId}
+					onCancel={closeSendProposal} />
+			</CardModal>
 		</StyledJobCard>
 	);
 }

@@ -5,9 +5,10 @@ import { Container } from "./pagination.styled";
 export interface CurrentItems {
 	currentItems: JobsInterface[] | undefined;
 	user: string;
+	typePage?: 'proposals' | 'jobs';
 }
 
-export function Items({ currentItems, user }: CurrentItems) {
+export function Items({ currentItems, user, typePage }: CurrentItems) {
 	return (
 		<Container>
 			{currentItems &&
@@ -26,6 +27,7 @@ export function Items({ currentItems, user }: CurrentItems) {
 							createdDate={job.createdDate}
 							updatedDate={job.updatedDate}
 							userType={user}
+							typePage={typePage}
 							isPublished={job.isPublished}
 						/>
 					);

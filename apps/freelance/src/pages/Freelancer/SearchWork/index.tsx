@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useForm, Controller } from "react-hook-form";
 import { useOptions, SelectOptions } from "utils/select-options/options";
-import { Dashboard, StyledTitle, StyledButton, JobCard, Pagination } from "@freelance/components";
+import { Dashboard, StyledTitle, StyledButton, Pagination } from "@freelance/components";
 import { JobsInterface, useGetJobsQuery } from "redux/jobs/jobs.api";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import { useSearchWorkFormHook } from "./searchWorkFormHook";
+import { JOBS_PAGE } from "src/utils/constants/breakpoint";
 import {
 	StyledPage,
 	Form,
 	InputContainer,
 	Wrapper,
-	ButtonsContainer,
 	InputHeader,
 	InputWrapper,
 	SelectElement,
@@ -28,6 +28,7 @@ export interface IFormInput {
 	englishLevel: SelectOptions;
 	hourRate: SelectOptions;
 	availableAmountOfHour: SelectOptions;
+	typePage?: 'proposals' | 'job';
 }
 
 interface JobSkills {
@@ -123,7 +124,7 @@ export function SearchWork() {
 
 	return (
 		<StyledPage>
-			<Dashboard userRole="freelancer">
+			<Dashboard userRole="freelancer" typePage={JOBS_PAGE}>
 				<Form onSubmit={handleSubmit(onSubmit)}>
 					<InputHeader>
 						<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
@@ -175,7 +176,7 @@ export function SearchWork() {
 					<Wrapper>
 						<InputContainerCards>
 							<InputWrapper>
-								<Pagination itemsPerPage={5} user={user} jobs={filterJobs} />
+								<Pagination itemsPerPage={5} user={user} jobs={filterJobs} typePage={JOBS_PAGE}/>
 							</InputWrapper>
 						</InputContainerCards>
 						<InputContainer>
