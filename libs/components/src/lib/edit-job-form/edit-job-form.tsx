@@ -1,18 +1,23 @@
 import { Controller, useForm } from "react-hook-form";
 import {
 	Container,
+	GridContainer,
+	GridItem,
 	Form,
 	ErrorsHandlerWrapper,
 	Input,
 	JobPostingTextArea,
 	SelectElement,
 	StyledSpan,
+	StyledButton,
+	ButtonContainer,
 	JobPostingLabel,
-	selectDefaultArray,
+	selectDefaultObject,
 	setRemoteObject,
 	setRemoteArray,
 	useJobPostingFirstFormHook,
 	useJobPostingSecondFormHook,
+	useJobPostingThirdFormHook,
 } from "@freelance/components";
 import { SelectOptions, useOptions } from "utils/select-options/options";
 import { useEditJobHook } from "./edit-job-formHooks";
@@ -31,14 +36,36 @@ export interface IEditJobForm {
 	availableAmountOfHours: SelectOptions;
 	workExperience: SelectOptions;
 	hourRate: SelectOptions;
+	skills: SelectOptions[];
+	englishLevel: SelectOptions;
+	otherRequirenments: string;
 }
 
 export function EditJobForm({ jobId }: IEditJobProps) {
 	const { inputLabel, descriptionLabel } = useJobPostingFirstFormHook();
-	const { countreisLabel, categoryLabel, fieldRequired } = useJobPostingSecondFormHook();
-	const { countries, categories, hoursAmount, hourRate, employmentType, workExperience } =
-		useOptions();
-	const { jobById, isLoading } = useEditJobHook(jobId);
+	const {
+		countreisLabel,
+		categoryLabel,
+		positionLabel,
+		employmentTypeLabel,
+		hoursAmountLabel,
+		workExperienceLabel,
+		hourRateLabel,
+		fieldRequired,
+	} = useJobPostingSecondFormHook();
+	const { skillsLabel, englishLevelLabel, otherRequirenmentsLabel } = useJobPostingThirdFormHook();
+	const {
+		countries,
+		categories,
+		hoursAmount,
+		hourRate,
+		employmentType,
+		workExperience,
+		skills,
+		englishLevel,
+	} = useOptions();
+	const { jobById, onSubmit, saveChanges, pendingText, isLoading, isPendingSaving } =
+		useEditJobHook(jobId);
 	const {
 		control,
 		register,
@@ -46,14 +73,12 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 		formState: { errors },
 	} = useForm<IEditJobForm>();
 
-	console.log(setRemoteArray(jobById?.countries, countries));
-
 	return (
 		<Container modalEditJob>
 			{!isLoading && (
 				<>
 					<h1>Welcome to EditJob!</h1>
-					<Form id="editForm">
+					<Form id="editForm" onSubmit={handleSubmit(onSubmit)}>
 						<JobPostingLabel>{inputLabel}</JobPostingLabel>
 						<ErrorsHandlerWrapper positionRight={0} width={10}>
 							<Input
@@ -105,16 +130,197 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 								</StyledSpan>
 							)}
 						</ErrorsHandlerWrapper>
-						<JobPostingLabel>{categoryLabel}</JobPostingLabel>
+						<GridContainer columns={2}>
+							<GridItem>
+								<JobPostingLabel>{categoryLabel}</JobPostingLabel>
+								<ErrorsHandlerWrapper positionRight={-20} width={15} wrapperWidth={80}>
+									<Controller
+										name="category"
+										defaultValue={setRemoteObject(jobById?.category, categories)}
+										control={control}
+										rules={{ required: fieldRequired }}
+										render={({ field }) => (
+											<SelectElement
+												options={categories}
+												{...field}
+												isSearchable
+												isClearable
+												classNamePrefix="react-select"
+											/>
+										)}
+									/>
+									{errors?.category && (
+										<StyledSpan fontSize="sm" type="validation">
+											<strong>
+												{errors?.category?.label ? errors?.category?.label.message : fieldRequired}
+											</strong>
+										</StyledSpan>
+									)}
+								</ErrorsHandlerWrapper>
+							</GridItem>
+							<GridItem>
+								<JobPostingLabel>{positionLabel}</JobPostingLabel>
+								<ErrorsHandlerWrapper positionRight={-20} width={15}>
+									<Input
+										defaultValue={jobById?.position}
+										{...register("position", { required: fieldRequired })}
+										type="text"
+									/>
+									{errors?.position && (
+										<StyledSpan fontSize="sm" type="validation">
+											<strong>{errors?.position?.message}</strong>
+										</StyledSpan>
+									)}
+								</ErrorsHandlerWrapper>
+							</GridItem>
+							<GridItem>
+								<JobPostingLabel>{employmentTypeLabel}</JobPostingLabel>
+								<ErrorsHandlerWrapper positionRight={-20} width={15} wrapperWidth={80}>
+									<Controller
+										name="employmentType"
+										defaultValue={selectDefaultObject(jobById?.employmentType, employmentType)}
+										control={control}
+										rules={{ required: fieldRequired }}
+										render={({ field }) => (
+											<SelectElement
+												options={employmentType}
+												{...field}
+												isSearchable
+												isClearable
+												classNamePrefix="react-select"
+											/>
+										)}
+									/>
+									{errors?.employmentType && (
+										<StyledSpan fontSize="sm" type="validation">
+											<strong>
+												{errors?.employmentType?.label
+													? errors?.employmentType?.label.message
+													: fieldRequired}
+											</strong>
+										</StyledSpan>
+									)}
+								</ErrorsHandlerWrapper>
+							</GridItem>
+							<GridItem>
+								<JobPostingLabel>{hoursAmountLabel}</JobPostingLabel>
+								<ErrorsHandlerWrapper positionRight={-20} width={15} wrapperWidth={80}>
+									<Controller
+										name="availableAmountOfHours"
+										defaultValue={selectDefaultObject(jobById?.availableAmountOfHours, hoursAmount)}
+										control={control}
+										rules={{ required: fieldRequired }}
+										render={({ field }) => (
+											<SelectElement
+												options={hoursAmount}
+												{...field}
+												isSearchable
+												isClearable
+												classNamePrefix="react-select"
+											/>
+										)}
+									/>
+									{errors?.availableAmountOfHours && (
+										<StyledSpan fontSize="sm" type="validation">
+											<strong>
+												{errors?.availableAmountOfHours?.label
+													? errors?.availableAmountOfHours?.label.message
+													: fieldRequired}
+											</strong>
+										</StyledSpan>
+									)}
+								</ErrorsHandlerWrapper>
+							</GridItem>
+							<GridItem>
+								<JobPostingLabel>{workExperienceLabel}</JobPostingLabel>
+								<ErrorsHandlerWrapper positionRight={-20} width={15} wrapperWidth={80}>
+									<Controller
+										name="workExperience"
+										defaultValue={selectDefaultObject(jobById?.workExperience, workExperience)}
+										control={control}
+										rules={{ required: fieldRequired }}
+										render={({ field }) => (
+											<SelectElement
+												options={workExperience}
+												{...field}
+												isSearchable
+												isClearable
+												classNamePrefix="react-select"
+											/>
+										)}
+									/>
+									{errors?.workExperience && (
+										<StyledSpan fontSize="sm" type="validation">
+											<strong>
+												{errors?.workExperience?.label
+													? errors?.workExperience?.label.message
+													: fieldRequired}
+											</strong>
+										</StyledSpan>
+									)}
+								</ErrorsHandlerWrapper>
+							</GridItem>
+							<GridItem>
+								<JobPostingLabel>{hourRateLabel}</JobPostingLabel>
+								<ErrorsHandlerWrapper positionRight={-20} width={15} wrapperWidth={80}>
+									<Controller
+										name="hourRate"
+										defaultValue={selectDefaultObject(jobById?.hourRate, hourRate)}
+										control={control}
+										rules={{ required: fieldRequired }}
+										render={({ field }) => (
+											<SelectElement
+												options={hourRate}
+												{...field}
+												isSearchable
+												isClearable
+												classNamePrefix="react-select"
+											/>
+										)}
+									/>
+									{errors?.hourRate && (
+										<StyledSpan fontSize="sm" type="validation">
+											<strong>
+												{errors?.hourRate?.label ? errors?.hourRate?.label.message : fieldRequired}
+											</strong>
+										</StyledSpan>
+									)}
+								</ErrorsHandlerWrapper>
+							</GridItem>
+						</GridContainer>
+						<JobPostingLabel>{skillsLabel}</JobPostingLabel>
 						<ErrorsHandlerWrapper positionRight={-20} width={15} wrapperWidth={80}>
 							<Controller
-								name="category"
-								defaultValue={setRemoteObject(jobById?.category, categories)}
+								name="skills"
+								defaultValue={setRemoteArray(jobById?.skills, skills)}
 								control={control}
 								rules={{ required: fieldRequired }}
 								render={({ field }) => (
 									<SelectElement
-										options={categories}
+										options={skills}
+										{...field}
+										isSearchable
+										isMulti
+										classNamePrefix="react-select"
+									/>
+								)}
+							/>
+							{errors?.skills && (
+								<StyledSpan fontSize="sm" type="validation">
+									<strong>{errors?.skills?.message}</strong>
+								</StyledSpan>
+							)}
+						</ErrorsHandlerWrapper>
+						<JobPostingLabel>{englishLevelLabel}</JobPostingLabel>
+						<ErrorsHandlerWrapper positionRight={-20} width={15} wrapperWidth={80}>
+							<Controller
+								name="englishLevel"
+								defaultValue={selectDefaultObject(jobById?.englishLevel, englishLevel)}
+								control={control}
+								rules={{ required: fieldRequired }}
+								render={({ field }) => (
+									<SelectElement
+										options={englishLevel}
 										{...field}
 										isSearchable
 										isClearable
@@ -122,14 +328,41 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 									/>
 								)}
 							/>
-							{errors?.category && (
+							{errors?.englishLevel && (
 								<StyledSpan fontSize="sm" type="validation">
 									<strong>
-										{errors?.category?.label ? errors?.category?.label.message : fieldRequired}
+										{errors?.englishLevel?.label
+											? errors?.englishLevel?.label.message
+											: fieldRequired}
 									</strong>
 								</StyledSpan>
 							)}
 						</ErrorsHandlerWrapper>
+						<JobPostingLabel>{otherRequirenmentsLabel}</JobPostingLabel>
+						<ErrorsHandlerWrapper positionRight={0} width={15}>
+							<JobPostingTextArea
+								defaultValue={jobById?.otherRequirenments}
+								{...register("otherRequirenments", { required: fieldRequired })}
+								rows={5}
+								maxLength={600}
+							/>
+							{errors?.otherRequirenments && (
+								<StyledSpan fontSize="sm" type="validation">
+									<strong>{errors?.otherRequirenments?.message}</strong>
+								</StyledSpan>
+							)}
+						</ErrorsHandlerWrapper>
+						<ButtonContainer align="center">
+							<StyledButton
+								type="submit"
+								buttonSize="sm"
+								fontSize="lg"
+								buttonColor={"redGradient"}
+								disabled={isPendingSaving}
+							>
+								{isPendingSaving ? pendingText : saveChanges}
+							</StyledButton>
+						</ButtonContainer>
 					</Form>
 				</>
 			)}

@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import Select from "react-select";
-import { Form, Input, TextArea } from "@freelance/components";
+import { Form, Input, TextArea, styledScroll } from "@freelance/components";
 
 interface IJobPostingGridForm {
 	justifyItems: "center" | "start";
@@ -86,6 +86,10 @@ export const SelectElement = styled(Select)`
 	.react-select__placeholder {
 		color: ${({ theme }) => theme.colors.grey};
 		margin: 0;
+	}
+
+	.react-select__menu-list {
+		${styledScroll};
 	}
 `;
 

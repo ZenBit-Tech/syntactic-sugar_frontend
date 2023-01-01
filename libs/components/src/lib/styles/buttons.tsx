@@ -86,7 +86,6 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 	  &:not([disabled]):hover {
 		filter: brightness(1.1);
 		cursor: pointer;
-		
 	}
 
 	${({ fontSize }) => {
@@ -115,4 +114,28 @@ export const FilterButton = styled(StyledButton)`
 	:disabled {
 		border: 6px double ${({ theme }) => theme.colors.darkRed};
 	}
+`;
+
+interface IButtonContainer {
+	align?: "left" | "center" | "right";
+}
+
+export const ButtonContainer = styled.div<IButtonContainer>`
+	${({ align }) => {
+		switch (align) {
+			case "left":
+				return css`
+					text-align: left;
+				`;
+			case "center":
+				return css`
+					text-align: center; ;
+				`;
+			case "right":
+				return css`
+					text-align: right;
+				`;
+		}
+		return;
+	}}
 `;

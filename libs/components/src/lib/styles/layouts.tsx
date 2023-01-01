@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const scrollStyle = css`
+export const styledScroll = css`
 	::-webkit-scrollbar {
 		width: 15px;
 	}
@@ -39,10 +39,31 @@ export const Container = styled.div<IContainer>`
 		modalEditJob &&
 		css`
 			width: 100%;
-			height: 100%;
+			height: 85vh;
 			flex-direction: column;
 			overflow-y: scroll;
 			border-radius: unset;
-			${scrollStyle}
+			${styledScroll}
 		`}
 `;
+
+interface IGridContainer {
+	columns?: number;
+	rows?: number;
+}
+
+export const GridContainer = styled.div<IGridContainer>`
+	display: grid;
+	${({ columns }) =>
+		columns &&
+		css`
+			grid-template-columns: repeat(${columns}, 1fr);
+		`}
+	${({ rows }) =>
+		rows &&
+		css`
+			grid-template-rows: repeat(${rows}, 1fr);
+		`}
+`;
+
+export const GridItem = styled.div``;

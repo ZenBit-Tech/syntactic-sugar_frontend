@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ReactPaginate from "react-paginate";
-import { scrollStyle } from "@freelance/components";
+import { styledScroll } from "@freelance/components";
 
 export const Container = styled.div`
 	display: grid;
@@ -13,7 +13,7 @@ export const Container = styled.div`
 
 export const PaginationItemsWrapper = styled.div`
 	overflow-y: scroll;
-	${scrollStyle}
+	${styledScroll}
 `;
 
 export const PaginationContainer = styled.div`
