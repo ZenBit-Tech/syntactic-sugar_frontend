@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { useNavigate } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
@@ -10,7 +10,6 @@ import {
 	StyledSpan,
 	ErrorsHandlerWrapper,
 } from "@freelance/components";
-import { useOptions } from "utils/select-options/options";
 import {
 	Page,
 	Container,
@@ -20,7 +19,7 @@ import {
 	Title,
 	Label,
 	Textarea,
-	SelectElement,
+	InputRate,
 } from "./styles";
 import { IFormValues } from "./IFormValues";
 import { useSendProposal } from "./sendProposalHook";
@@ -29,11 +28,9 @@ import { formats } from "./formats";
 export function SendProposal() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
-	const { hourRate } = useOptions();
 	const {
 		register,
 		handleSubmit,
-		control,
 		formState: { errors },
 	} = useForm<IFormValues>({ criteriaMode: "all" });
 	const { onSubmit } = useSendProposal();
@@ -50,21 +47,27 @@ export function SendProposal() {
 						{t("sendProposalFreelancer.greeting")}
 					</Title>
 					<Form onSubmit={handleSubmit(onSubmit)}>
-						<Controller
-							name="hourRate"
-							control={control}
-							render={({ field }) => (
-								<SelectElement
-									options={hourRate}
-									{...field}
-									isSearchable
-									isClearable
-									classNamePrefix="react-select"
-									placeholder={t("freelancer.createProfile.selectOption.hourRate")}
-								/>
-							)}
-						/>
-
+						<ErrorsHandlerWrapper positionRight={-20} width={15}>
+							<InputRate
+								type="number"
+								{...register("hourRate", {
+									pattern: {
+										value: /100/,
+										message: "Min rate 100$",
+									},
+								})}
+								placeholder={t("freelancer.createProfile.selectOption.hourRate")}
+							/>
+							<ErrorMessage
+								errors={errors}
+								name="hourRate"
+								render={({ message }) => (
+									<StyledSpan fontSize="sm" type="validation">
+										<strong>{message}</strong>
+									</StyledSpan>
+								)}
+							/>
+						</ErrorsHandlerWrapper>
 						<ErrorsHandlerWrapper positionRight={-20} width={15}>
 							<Label>{t("sendProposalFreelancer.coverLetter")}</Label>
 							<Textarea

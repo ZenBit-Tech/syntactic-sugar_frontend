@@ -16,7 +16,7 @@ export const useSendProposal = () => {
 		data.append("file", values.file[0]);
 		data.append("coverLetter", values.coverLetter);
 		data.append("id", id);
-		data.append("hourRate", values.hourRate?.label);
+		data.append("hourRate", values.hourRate);
 
 		try {
 			await createProposal(data);

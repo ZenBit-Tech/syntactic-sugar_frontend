@@ -1,36 +1,11 @@
 import styled from "styled-components";
-import Select from "react-select";
 import { TextArea } from "@freelance/components";
-import { StyledPage } from "@freelance/components";
-import { BaseTitle } from "@freelance/components";
+import { StyledPage, BaseTitle, Input } from "@freelance/components";
 
 export const Page = styled(StyledPage)`
 	background: url("/assets/images/top_elipse.png") no-repeat top left,
 		url("/assets/images/bottom_elipse.png") no-repeat bottom right,
 		${({ theme }) => theme.colors.lightGrey};
-`;
-
-export const SelectElement = styled(Select)`
-	margin-bottom: 15px;
-
-	.react-select__control {
-		border: 2px solid ${({ theme }) => theme.colors.grey};
-		border-radius: 100px;
-		height: 50px;
-
-		width: 25%;
-		color: ${({ theme }) => theme.colors.grey};
-		outline: none;
-	}
-
-	.react-select__placeholder {
-		margin-left: 5px;
-		color: ${({ theme }) => theme.colors.grey};
-	}
-
-	.react-select__indicator-separator {
-		display: none;
-	}
 `;
 
 export const Container = styled.div`
@@ -89,6 +64,6 @@ export const Label = styled.label`
 	font-size: 1rem;
 `;
 
-export const SpanError = styled.span`
-	color: ${({ theme }) => theme.colors.brightRed};
+export const InputRate = styled(Input)`
+	width: 20%;
 `;

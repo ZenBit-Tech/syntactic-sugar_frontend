@@ -132,7 +132,7 @@
 			"selectOption": {
 				"country": "Country",
 				"category": "Category",
-				"hourRate": "Hour rate",
+				"hourRate": "Hour rate(one price)",
 				"availableAmountOfHour": "Available amount of hours",
 				"skills": "Skills",
 				"workExperience": "Work Experience",
