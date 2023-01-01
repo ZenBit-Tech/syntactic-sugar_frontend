@@ -1,6 +1,6 @@
+import { useState } from "react";
 import { JobDetailsCard, SendProposal } from "@freelance/components";
 import { useCreateProposal } from "./create-proposalHooks";
-import { useState } from "react";
 
 export interface CreateProposalonJobProps {
     id: string;

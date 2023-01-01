@@ -7,6 +7,7 @@ import {
 import { JOBS_PAGE} from "utils/constants/breakpoint";
 import { baseUrl } from "utils/constants/redux-query";
 import { useGetJobIdQuery } from "redux/jobs";
+import { DEFAULT_IMAGE } from "utils/constants/links";
 import {
 	ContainerBox,
 	Item,
@@ -20,7 +21,6 @@ import {
 	Wrapper,
 	BottomText,
 } from "./job-details-card.styled";
-import { DEFAULT_IMAGE } from "utils/constants/links";
 
 export interface JobDetailsCardProps {
 	typePage?: 'proposals' | 'jobs';

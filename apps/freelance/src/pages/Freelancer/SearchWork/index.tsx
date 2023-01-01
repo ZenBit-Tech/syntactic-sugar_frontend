@@ -2,22 +2,21 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useForm, Controller } from "react-hook-form";
 import { useOptions, SelectOptions } from "utils/select-options/options";
-import { Dashboard, StyledTitle, StyledButton, JobCard, Pagination } from "@freelance/components";
+import { Dashboard, StyledTitle, StyledButton, Pagination } from "@freelance/components";
 import { JobsInterface, useGetJobsQuery } from "redux/jobs/jobs.api";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import { useSearchWorkFormHook } from "./searchWorkFormHook";
+import { JOBS_PAGE } from "src/utils/constants/breakpoint";
 import {
 	StyledPage,
 	Form,
 	InputContainer,
 	Wrapper,
-	ButtonsContainer,
 	InputHeader,
 	InputWrapper,
 	SelectElement,
 	InputContainerCards,
 } from "./style";
-import { JOBS_PAGE, PROPOSALS_PAGE } from "src/utils/constants/breakpoint";
 
 type user = "freelancer" | "employer";
 

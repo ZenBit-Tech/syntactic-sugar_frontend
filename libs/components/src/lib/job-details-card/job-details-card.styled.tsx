@@ -133,6 +133,6 @@ export const Wrapper = styled.div`
 		object-fit: cover;
 		border-radius: 50%;
 		height: 75px;
-    	width: 75px;
+		width: 75px;
 	}
 `;
