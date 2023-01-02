@@ -1,4 +1,5 @@
 import { Controller, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import {
 	Container,
 	GridContainer,
@@ -20,6 +21,7 @@ import {
 	useJobPostingThirdFormHook,
 } from "@freelance/components";
 import { SelectOptions, useOptions } from "utils/select-options/options";
+import { useEditJobFormSchema } from "utils/validations";
 import { useEditJobHook } from "./edit-job-formHooks";
 
 export interface IEditJobProps {
@@ -66,12 +68,13 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 	} = useOptions();
 	const { jobById, onSubmit, saveChanges, pendingText, isLoading, isPendingSaving } =
 		useEditJobHook(jobId);
+	const schema = useEditJobFormSchema();
 	const {
 		control,
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<IEditJobForm>();
+	} = useForm<IEditJobForm>({ resolver: yupResolver(schema) });
 
 	return (
 		<Container modalEditJob>
