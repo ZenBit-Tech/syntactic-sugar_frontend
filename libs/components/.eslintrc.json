@@ -1,9 +1,18 @@
 {
-	"extends": ["plugin:@nrwl/nx/react", "../../.eslintrc.json"],
+	"plugins": ["@nrwl/nx", "@typescript-eslint/eslint-plugin"],
+	"extends": [
+		"plugin:@nrwl/nx/react",
+		"../../.eslintrc.json",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:prettier/recommended"
+	],
 	"ignorePatterns": ["!**/*"],
 	"overrides": [
 		{
 			"files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+			"parserOptions": {
+				"project": ["libs/components/**/*.{ts,tsx,js,jsx}"]
+			},
 			"rules": {
 				"padding-line-between-statements": [
 					"error",

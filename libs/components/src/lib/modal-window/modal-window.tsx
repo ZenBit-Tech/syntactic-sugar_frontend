@@ -21,6 +21,7 @@ export function ModalWindow() {
 	const freelancerState = useAppSelector(state => state.freelancer);
 	const [createFreelancer, { data: userData, isSuccess, isError }] = useCreateFreelancerMutation();
 	const [addPublished] = useAddPublishedMutation();
+
 	const handlePublishedButton = async () => {
 		try {
 			await createFreelancer(freelancerState);
