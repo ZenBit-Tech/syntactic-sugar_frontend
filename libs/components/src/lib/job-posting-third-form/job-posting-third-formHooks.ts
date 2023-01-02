@@ -2,29 +2,18 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { resetState, getStoredJobInfo, useCreateJobMutation } from "redux/jobs";
 import { useAppDispatch, useAppSelector } from "redux/hooks";
 import { IJobPostingThirdForm, IUseJobPostingThirdForm } from "@freelance/components";
 import { EMPLOYER_JOBS_PAGE } from "utils/constants/links";
+import { useJobsValidationErrorMessages } from "utils/constants/jobs-validation-error-messages";
 
 export const useJobPostingThirdFormHook = (): IUseJobPostingThirdForm => {
-	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 	const storedJobInfo = useAppSelector(getStoredJobInfo);
-	const navigate = useNavigate();
+  const navigate = useNavigate();
+  const { SERVER_ERROR_MESSAGE } = useJobsValidationErrorMessages();
 	const [createJob, { isLoading, isSuccess, isError }] = useCreateJobMutation();
-
-	const skillsLabel: string = t("newJobPosting.thirdForm.skillsLabel");
-	const skillsPlaceholder: string = t("newJobPosting.thirdForm.skillsPlaceholder");
-	const englishLevelLabel: string = t("newJobPosting.thirdForm.englishLevelLabel");
-	const englishLevelPlaceholder: string = t("newJobPosting.thirdForm.englishLevelPlaceholder");
-	const otherRequirenmentsLabel: string = t("newJobPosting.thirdForm.otherRequirenmentsLabel");
-	const otherRequirenmentsPlaceholder: string = t(
-		"newJobPosting.thirdForm.otherRequirenmentsLabel",
-	);
-	const fieldRequired: string = t("newJobPosting.validation.messageFieldRequired");
-	const serverErrorMessage = t("serverErrorMessage");
 
 	const onSubmit: SubmitHandler<IJobPostingThirdForm> = async data => {
 		try {
@@ -43,7 +32,7 @@ export const useJobPostingThirdFormHook = (): IUseJobPostingThirdForm => {
 				await createJob(resultData);
 			}
 		} catch {
-			toast.error(serverErrorMessage);
+			toast.error(SERVER_ERROR_MESSAGE);
 		}
 	};
 
@@ -54,18 +43,11 @@ export const useJobPostingThirdFormHook = (): IUseJobPostingThirdForm => {
 		}
 
 		if (isError) {
-			toast.error(serverErrorMessage);
+			toast.error(SERVER_ERROR_MESSAGE);
 		}
 	}, [isSuccess, isError]);
 
 	return {
-		skillsLabel,
-		skillsPlaceholder,
-		englishLevelLabel,
-		englishLevelPlaceholder,
-		otherRequirenmentsLabel,
-		otherRequirenmentsPlaceholder,
-		fieldRequired,
 		isLoading,
 		onSubmit,
 	};

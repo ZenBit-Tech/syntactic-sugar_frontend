@@ -16,12 +16,11 @@ import {
 	selectDefaultObject,
 	setRemoteObject,
 	setRemoteArray,
-	useJobPostingFirstFormHook,
-	useJobPostingSecondFormHook,
-	useJobPostingThirdFormHook,
 } from "@freelance/components";
 import { SelectOptions, useOptions } from "utils/select-options/options";
 import { useEditJobFormSchema } from "utils/validations";
+import { useJobLabelAndPlaceholder } from "utils/constants/jobs-labels-and-placeholders";
+import { useJobsValidationErrorMessages } from "utils/constants/jobs-validation-error-messages";
 import { useEditJobHook } from "./edit-job-formHooks";
 
 export interface IEditJobProps {
@@ -44,18 +43,21 @@ export interface IEditJobForm {
 }
 
 export function EditJobForm({ jobId }: IEditJobProps) {
-	const { inputLabel, descriptionLabel } = useJobPostingFirstFormHook();
 	const {
-		countreisLabel,
-		categoryLabel,
-		positionLabel,
-		employmentTypeLabel,
-		hoursAmountLabel,
-		workExperienceLabel,
-		hourRateLabel,
-		fieldRequired,
-	} = useJobPostingSecondFormHook();
-	const { skillsLabel, englishLevelLabel, otherRequirenmentsLabel } = useJobPostingThirdFormHook();
+		JOB_TITLE_LABEL,
+		JOB_DESCRIPTION_LABEL,
+		JOB_COUNTRIES_LABEL,
+		JOB_CATEGORY_LABEL,
+		JOB_POSITION_LABEL,
+		JOB_EMPLOYMENT_TYPE_LABEL,
+		JOB_AMOUNT_HOURS_LABEL,
+		JOB_WORK_EXPERIANCE_LABEL,
+		JOB_HOUR_RATE_LABEL,
+		JOB_SKILLS_LABEL,
+		JOB_ENGLISH_LEVEL_LABEL,
+		JOB_OTHER_REQUIRENMENTS_LABEL,
+	} = useJobLabelAndPlaceholder();
+	const { FIELD_REQUIRED } = useJobsValidationErrorMessages();
 	const {
 		countries,
 		categories,
@@ -82,7 +84,7 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 				<>
 					<h1>Welcome to EditJob!</h1>
 					<Form id="editForm" onSubmit={handleSubmit(onSubmit)}>
-						<JobPostingLabel>{inputLabel}</JobPostingLabel>
+						<JobPostingLabel>{JOB_TITLE_LABEL}</JobPostingLabel>
 						<ErrorsHandlerWrapper positionRight={0} width={10}>
 							<Input
 								defaultValue={jobById?.title}
@@ -96,7 +98,7 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 								</StyledSpan>
 							)}
 						</ErrorsHandlerWrapper>
-						<JobPostingLabel>{descriptionLabel}</JobPostingLabel>
+						<JobPostingLabel>{JOB_DESCRIPTION_LABEL}</JobPostingLabel>
 						<ErrorsHandlerWrapper positionRight={0} width={10}>
 							<JobPostingTextArea
 								defaultValue={jobById?.description}
@@ -110,13 +112,12 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 								</StyledSpan>
 							)}
 						</ErrorsHandlerWrapper>
-						<JobPostingLabel>{countreisLabel}</JobPostingLabel>
+						<JobPostingLabel>{JOB_COUNTRIES_LABEL}</JobPostingLabel>
 						<ErrorsHandlerWrapper positionRight={-20} width={15} wrapperWidth={80}>
 							<Controller
 								name="countries"
 								defaultValue={setRemoteArray(jobById?.countries, countries)}
 								control={control}
-								rules={{ required: fieldRequired }}
 								render={({ field }) => (
 									<SelectElement
 										options={countries}
@@ -135,13 +136,12 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 						</ErrorsHandlerWrapper>
 						<GridContainer columns={2}>
 							<GridItem>
-								<JobPostingLabel>{categoryLabel}</JobPostingLabel>
+								<JobPostingLabel>{JOB_CATEGORY_LABEL}</JobPostingLabel>
 								<ErrorsHandlerWrapper positionRight={-20} width={15} wrapperWidth={80}>
 									<Controller
 										name="category"
 										defaultValue={setRemoteObject(jobById?.category, categories)}
 										control={control}
-										rules={{ required: fieldRequired }}
 										render={({ field }) => (
 											<SelectElement
 												options={categories}
@@ -155,20 +155,16 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 									{errors?.category && (
 										<StyledSpan fontSize="sm" type="validation">
 											<strong>
-												{errors?.category?.label ? errors?.category?.label.message : fieldRequired}
+												{errors?.category?.label ? errors?.category?.label.message : FIELD_REQUIRED}
 											</strong>
 										</StyledSpan>
 									)}
 								</ErrorsHandlerWrapper>
 							</GridItem>
 							<GridItem>
-								<JobPostingLabel>{positionLabel}</JobPostingLabel>
+								<JobPostingLabel>{JOB_POSITION_LABEL}</JobPostingLabel>
 								<ErrorsHandlerWrapper positionRight={-20} width={15}>
-									<Input
-										defaultValue={jobById?.position}
-										{...register("position", { required: fieldRequired })}
-										type="text"
-									/>
+									<Input defaultValue={jobById?.position} {...register("position")} type="text" />
 									{errors?.position && (
 										<StyledSpan fontSize="sm" type="validation">
 											<strong>{errors?.position?.message}</strong>
@@ -177,13 +173,12 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 								</ErrorsHandlerWrapper>
 							</GridItem>
 							<GridItem>
-								<JobPostingLabel>{employmentTypeLabel}</JobPostingLabel>
+								<JobPostingLabel>{JOB_EMPLOYMENT_TYPE_LABEL}</JobPostingLabel>
 								<ErrorsHandlerWrapper positionRight={-20} width={15} wrapperWidth={80}>
 									<Controller
 										name="employmentType"
 										defaultValue={selectDefaultObject(jobById?.employmentType, employmentType)}
 										control={control}
-										rules={{ required: fieldRequired }}
 										render={({ field }) => (
 											<SelectElement
 												options={employmentType}
@@ -199,20 +194,19 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 											<strong>
 												{errors?.employmentType?.label
 													? errors?.employmentType?.label.message
-													: fieldRequired}
+													: FIELD_REQUIRED}
 											</strong>
 										</StyledSpan>
 									)}
 								</ErrorsHandlerWrapper>
 							</GridItem>
 							<GridItem>
-								<JobPostingLabel>{hoursAmountLabel}</JobPostingLabel>
+								<JobPostingLabel>{JOB_AMOUNT_HOURS_LABEL}</JobPostingLabel>
 								<ErrorsHandlerWrapper positionRight={-20} width={15} wrapperWidth={80}>
 									<Controller
 										name="availableAmountOfHours"
 										defaultValue={selectDefaultObject(jobById?.availableAmountOfHours, hoursAmount)}
 										control={control}
-										rules={{ required: fieldRequired }}
 										render={({ field }) => (
 											<SelectElement
 												options={hoursAmount}
@@ -228,20 +222,20 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 											<strong>
 												{errors?.availableAmountOfHours?.label
 													? errors?.availableAmountOfHours?.label.message
-													: fieldRequired}
+													: FIELD_REQUIRED}
 											</strong>
 										</StyledSpan>
 									)}
 								</ErrorsHandlerWrapper>
 							</GridItem>
 							<GridItem>
-								<JobPostingLabel>{workExperienceLabel}</JobPostingLabel>
+								<JobPostingLabel>{JOB_WORK_EXPERIANCE_LABEL}</JobPostingLabel>
 								<ErrorsHandlerWrapper positionRight={-20} width={15} wrapperWidth={80}>
 									<Controller
 										name="workExperience"
 										defaultValue={selectDefaultObject(jobById?.workExperience, workExperience)}
 										control={control}
-										rules={{ required: fieldRequired }}
+										rules={{ required: FIELD_REQUIRED }}
 										render={({ field }) => (
 											<SelectElement
 												options={workExperience}
@@ -257,20 +251,19 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 											<strong>
 												{errors?.workExperience?.label
 													? errors?.workExperience?.label.message
-													: fieldRequired}
+													: FIELD_REQUIRED}
 											</strong>
 										</StyledSpan>
 									)}
 								</ErrorsHandlerWrapper>
 							</GridItem>
 							<GridItem>
-								<JobPostingLabel>{hourRateLabel}</JobPostingLabel>
+								<JobPostingLabel>{JOB_HOUR_RATE_LABEL}</JobPostingLabel>
 								<ErrorsHandlerWrapper positionRight={-20} width={15} wrapperWidth={80}>
 									<Controller
 										name="hourRate"
 										defaultValue={selectDefaultObject(jobById?.hourRate, hourRate)}
 										control={control}
-										rules={{ required: fieldRequired }}
 										render={({ field }) => (
 											<SelectElement
 												options={hourRate}
@@ -284,20 +277,19 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 									{errors?.hourRate && (
 										<StyledSpan fontSize="sm" type="validation">
 											<strong>
-												{errors?.hourRate?.label ? errors?.hourRate?.label.message : fieldRequired}
+												{errors?.hourRate?.label ? errors?.hourRate?.label.message : FIELD_REQUIRED}
 											</strong>
 										</StyledSpan>
 									)}
 								</ErrorsHandlerWrapper>
 							</GridItem>
 						</GridContainer>
-						<JobPostingLabel>{skillsLabel}</JobPostingLabel>
+						<JobPostingLabel>{JOB_SKILLS_LABEL}</JobPostingLabel>
 						<ErrorsHandlerWrapper positionRight={-20} width={15} wrapperWidth={80}>
 							<Controller
 								name="skills"
 								defaultValue={setRemoteArray(jobById?.skills, skills)}
 								control={control}
-								rules={{ required: fieldRequired }}
 								render={({ field }) => (
 									<SelectElement
 										options={skills}
@@ -314,13 +306,12 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 								</StyledSpan>
 							)}
 						</ErrorsHandlerWrapper>
-						<JobPostingLabel>{englishLevelLabel}</JobPostingLabel>
+						<JobPostingLabel>{JOB_ENGLISH_LEVEL_LABEL}</JobPostingLabel>
 						<ErrorsHandlerWrapper positionRight={-20} width={15} wrapperWidth={80}>
 							<Controller
 								name="englishLevel"
 								defaultValue={selectDefaultObject(jobById?.englishLevel, englishLevel)}
 								control={control}
-								rules={{ required: fieldRequired }}
 								render={({ field }) => (
 									<SelectElement
 										options={englishLevel}
@@ -336,16 +327,16 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 									<strong>
 										{errors?.englishLevel?.label
 											? errors?.englishLevel?.label.message
-											: fieldRequired}
+											: FIELD_REQUIRED}
 									</strong>
 								</StyledSpan>
 							)}
 						</ErrorsHandlerWrapper>
-						<JobPostingLabel>{otherRequirenmentsLabel}</JobPostingLabel>
+						<JobPostingLabel>{JOB_OTHER_REQUIRENMENTS_LABEL}</JobPostingLabel>
 						<ErrorsHandlerWrapper positionRight={0} width={15}>
 							<JobPostingTextArea
 								defaultValue={jobById?.otherRequirenments}
-								{...register("otherRequirenments", { required: fieldRequired })}
+								{...register("otherRequirenments")}
 								rows={5}
 								maxLength={600}
 							/>

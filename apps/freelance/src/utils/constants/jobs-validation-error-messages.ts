@@ -6,6 +6,7 @@ interface IUseJobValidationErrorMessages {
 	MESSAGE_DESCRIPTION_MAX_CHAR: string;
 	MAX_COUNTRIES: string;
 	MAX_SKILLS: string;
+	SERVER_ERROR_MESSAGE: string;
 }
 
 export const useJobsValidationErrorMessages = (): IUseJobValidationErrorMessages => {
@@ -21,11 +22,14 @@ export const useJobsValidationErrorMessages = (): IUseJobValidationErrorMessages
 	const MAX_COUNTRIES: string = t("newJobPosting.secondForm.validation.maxCountries");
 	const MAX_SKILLS: string = t("newJobPosting.thirdForm.validation.maxSkills");
 
+	const SERVER_ERROR_MESSAGE: string = t("serverErrorMessage");
+
 	return {
 		FIELD_REQUIRED,
 		MESSAGE_JOB_TITLE_MAX_CHAR,
 		MESSAGE_DESCRIPTION_MAX_CHAR,
 		MAX_COUNTRIES,
 		MAX_SKILLS,
+		SERVER_ERROR_MESSAGE,
 	};
 };

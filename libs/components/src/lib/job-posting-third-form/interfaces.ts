@@ -8,13 +8,6 @@ export interface IJobPostingThirdForm {
 }
 
 export interface IUseJobPostingThirdForm {
-	skillsLabel: string;
-	skillsPlaceholder: string;
-	englishLevelLabel: string;
-	englishLevelPlaceholder: string;
-	otherRequirenmentsLabel: string;
-	otherRequirenmentsPlaceholder: string;
-	fieldRequired: string;
 	isLoading: boolean;
 	onSubmit: SubmitHandler<IJobPostingThirdForm>;
 }

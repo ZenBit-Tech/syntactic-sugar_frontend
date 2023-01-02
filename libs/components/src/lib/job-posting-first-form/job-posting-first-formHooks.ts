@@ -1,5 +1,4 @@
 import { SubmitHandler } from "react-hook-form";
-import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { addNewJobInfo } from "redux/jobs";
 import { useAppDispatch } from "redux/hooks";
@@ -8,13 +7,7 @@ import { IJobPostingFirstForm, IUseJobPostingFirstForm } from "@freelance/compon
 
 export const useJobPostingFirstFormHook = (): IUseJobPostingFirstForm => {
 	const navigate = useNavigate();
-	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
-
-	const jobTitlePlaceholder: string = t("newJobPosting.firstForm.jobTitlePlaceholder");
-	const jobDescriptionPlaceholder: string = t("newJobPosting.firstForm.jobDescription");
-	const inputLabel: string = t("newJobPosting.firstForm.inputLabel");
-	const descriptionLabel: string = t("newJobPosting.firstForm.descriptionLabel");
 
 	const onSubmit: SubmitHandler<IJobPostingFirstForm> = data => {
 		dispatch(addNewJobInfo(data));
@@ -22,10 +15,6 @@ export const useJobPostingFirstFormHook = (): IUseJobPostingFirstForm => {
 	};
 
 	return {
-		jobTitlePlaceholder,
-		jobDescriptionPlaceholder,
-		inputLabel,
-		descriptionLabel,
 		onSubmit,
 	};
 };

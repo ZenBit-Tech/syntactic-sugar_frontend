@@ -3,6 +3,7 @@ import { SubmitHandler } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { JobsInterface, useGetJobIdQuery, useUpdateJobByIdMutation } from "redux/jobs";
+import { useJobsValidationErrorMessages } from "utils/constants/jobs-validation-error-messages";
 import { IEditJobForm } from "./edit-job-form";
 
 interface IUseEditJobHook {
@@ -16,6 +17,7 @@ interface IUseEditJobHook {
 
 export const useEditJobHook = (jobId: string): IUseEditJobHook => {
 	const { t } = useTranslation();
+	const { SERVER_ERROR_MESSAGE } = useJobsValidationErrorMessages();
 	const { data: jobById, isLoading } = useGetJobIdQuery(jobId);
 	const [updateJobById, { isLoading: isPendingSaving, isSuccess, isError }] =
 		useUpdateJobByIdMutation();
@@ -52,13 +54,13 @@ export const useEditJobHook = (jobId: string): IUseEditJobHook => {
 				await updateJobById(resultData);
 			}
 		} catch {
-			toast.error(serverErrorMessage);
+			toast.error(SERVER_ERROR_MESSAGE);
 		}
 	};
 
 	useEffect(() => {
 		isSuccess && toast.success(t("editJob.savingSucceed"));
-		isError && toast.error(t("serverErrorMessage"));
+		isError && toast.error(SERVER_ERROR_MESSAGE);
 	}, [isSuccess, isError]);
 
 	return {

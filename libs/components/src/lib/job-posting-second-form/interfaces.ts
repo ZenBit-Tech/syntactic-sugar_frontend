@@ -12,20 +12,5 @@ export interface IJobPostingSecondForm {
 }
 
 export interface IUseJobPostingSecondForm {
-	countreisLabel: string;
-	countriesPlaceholder: string;
-	categoryLabel: string;
-	categoryPlaceholder: string;
-	positionLabel: string;
-	postitonPlaceholder: string;
-	employmentTypeLabel: string;
-	employmentTypePlaceholder: string;
-	hoursAmountLabel: string;
-	hoursAmountPlaceholder: string;
-	workExperienceLabel: string;
-	workExperiencePlaceholder: string;
-	hourRateLabel: string;
-	hourRatePlaceholder: string;
-	fieldRequired: string;
 	onSubmit: SubmitHandler<IJobPostingSecondForm>;
 }
