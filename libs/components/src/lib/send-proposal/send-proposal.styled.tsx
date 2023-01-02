@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { TextArea } from "@freelance/components";
-import { BaseTitle } from "@freelance/components";
+import { BaseTitle, Input, TextArea } from "@freelance/components";
 
 export const ContainerBox = styled.div`
 	display: flex;
@@ -16,7 +15,7 @@ export const ContainerBox = styled.div`
 
 export const ButtonWrapper = styled.div`
 	display: flex;
-    margin-top: 1.5rem;
+	margin-top: 1.5rem;
 	justify-content: center;
 	gap: 2rem;
 `;
@@ -28,8 +27,8 @@ export const FileUpload = styled.div`
 `;
 
 export const Form = styled.form`
-    padding-left: 24px;
-    padding-right: 24px;
+	padding-left: 24px;
+	padding-right: 24px;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -52,14 +51,13 @@ export const Title = styled(BaseTitle)`
 
 export const Label = styled.label`
 	font-size: 1rem;
-	padding-left: 1.5rem;
-	margin-bottom: 0.5rem;
 `;
 
-export const Span = styled.span`
-	background-color: ${({ theme }) => theme.colors.darkRed};
-	color: ${({ theme }) => theme.colors.black};
-	width: fit-content;
-	height: auto;
-	border-radius: 2px;
+export const InputRate = styled(Input)`
+	display: block;
+	border-radius: 5px;
+
+	width: 18%;
+
+	margin-bottom: 15px;
 `;

@@ -124,9 +124,9 @@
 			"addBtn": "+",
 			"companyPlaceholder": "Company",
 			"otherExperienceLabel": "Other Experience",
-			"viewProfileBtn": "VIEW PROFILE",
-			"backBtn": "BACK",
-			"createProfileBtn": "CREATE PROFILE",
+			"viewProfileBtn": "View profile",
+			"backBtn": "Back",
+			"createProfileBtn": "Create profile",
 			"modal": "Do you want to publish profile",
 			"modalBtnNo": "No",
 			"modalBtnYes": "Yes",
@@ -163,13 +163,20 @@
 		"roleFreelancer": "I am a Freelancer, looking for a job."
 	},
 	"sendProposalFreelancer": {
-		"greeting": "Create your proposal!",
-		"send": "SEND PROPOSAL",
-		"back": "GO BACK",
+		"greeting": "Send proposal",
+		"send": "Send proposal",
+		"back": "Go back",
 		"cv": "Add your CV:",
-		"placeholderCoverLetter": "cover letter",
+		"placeholderCoverLetter": "Cover letter",
 		"coverLetter": "Add your cover letter:",
-		"alert": "Something went wrong, try again"
+		"alert": "Something went wrong, try again",
+		"cvAlert": "You have to upload your CV",
+		"required": "This field is required",
+		"min": "Min 100 symbols",
+		"max": "Max 1000 symbols",
+		"format": "Only .pdf, .doc, .docx",
+		"minRate": "Min rate 100$",
+		"rateLabel": "Add your rate:"
 	},
 	"newJobPosting": {
 		"mainTitle": "New job posting",
@@ -352,7 +359,7 @@
 	},
 	"jobDetails": {
 		"title": "Job details",
-		"createProposalBtn": "CREATE PROPOSAL",
+		"createProposalBtn": "Create proposal",
 		"skills": "Required skills",
 		"exp": "Experience",
 		"salary": "Salary",
