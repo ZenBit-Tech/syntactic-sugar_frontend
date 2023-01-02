@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { ErrorsHandlerWrapper, StyledButton, StyledSpan } from "@freelance/components";
 import { useCreateProposalMutation } from "redux/sendProposalFreelancer/proposalApi";
+import { IProposal } from "redux/interfaces/IProposal";
 import { formats } from "./formats";
-import { IFormValues } from "./IFormValues";
 import {
 	FileUpload,
 	Form,
@@ -36,10 +36,10 @@ export function SendProposal({
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<IFormValues>({ criteriaMode: "all", mode: "onChange" });
+	} = useForm<IProposal>({ criteriaMode: "all", mode: "onChange", shouldFocusError: true });
 	const [createProposal, { isError }] = useCreateProposalMutation();
 
-	const onSubmit = async (values: IFormValues) => {
+	const onSubmit = async (values: IProposal) => {
 		const data: any = new FormData();
 		data.append("file", values.file[0]);
 		data.append("coverLetter", values.coverLetter);
@@ -65,7 +65,7 @@ export function SendProposal({
 				{t("sendProposalFreelancer.greeting")}
 			</Title>
 			<Form onSubmit={handleSubmit(onSubmit)}>
-				<ErrorsHandlerWrapper positionRight={-5} width={20}>
+				<ErrorsHandlerWrapper positionRight={60} width={15}>
 					<Label>{t("sendProposalFreelancer.rateLabel")}</Label>
 					<InputRate
 						type="number"
@@ -87,10 +87,11 @@ export function SendProposal({
 						)}
 					/>
 				</ErrorsHandlerWrapper>
-				<ErrorsHandlerWrapper positionRight={-5} width={20}>
+				<ErrorsHandlerWrapper positionRight={-5} width={15}>
 					<Label>{t("sendProposalFreelancer.coverLetter")}</Label>
 					<Textarea
 						{...register("coverLetter", {
+							onChange: saveCoverLetter,
 							required: `${t("sendProposalFreelancer.required")}`,
 							minLength: {
 								value: 100,
@@ -105,7 +106,6 @@ export function SendProposal({
 						rows={10}
 						maxLength={1000}
 						placeholder={t("sendProposalFreelancer.placeholderCoverLetter")}
-						onChange={saveCoverLetter}
 					/>
 					<ErrorMessage
 						errors={errors}
@@ -120,7 +120,7 @@ export function SendProposal({
 						}
 					/>
 				</ErrorsHandlerWrapper>
-				<ErrorsHandlerWrapper positionRight={-5} width={20}>
+				<ErrorsHandlerWrapper positionRight={60} width={15}>
 					<FileUpload>
 						<Label>{t("sendProposalFreelancer.cv")}</Label>
 						<input

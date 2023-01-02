@@ -37,11 +37,11 @@ export const Form = styled.form`
 export const Textarea = styled(TextArea)`
 	box-shadow: 0px 0px 10px 1px rgb(0 0 0 / 10%);
 	height: 283px;
+	width: 88%;
 	display: block;
 	padding: 15px;
-	border-radius: 5px;
+	border-radius: 30px;
 	resize: none;
-	width: 100%;
 `;
 
 export const Title = styled(BaseTitle)`
@@ -55,9 +55,7 @@ export const Label = styled.label`
 
 export const InputRate = styled(Input)`
 	display: block;
-	border-radius: 5px;
-
-	width: 18%;
-
+	border-radius: 20px;
+	width: 20%;
 	margin-bottom: 15px;
 `;

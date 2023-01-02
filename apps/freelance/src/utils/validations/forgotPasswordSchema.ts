@@ -1,4 +1,4 @@
-import { object, string, ref, SchemaOf } from "yup";
+import { object, string, SchemaOf } from "yup";
 import { useTranslation } from "react-i18next";
 import { IForgotPasswordForm } from "@freelance/components";
 
