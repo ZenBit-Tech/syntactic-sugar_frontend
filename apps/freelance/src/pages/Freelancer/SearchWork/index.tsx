@@ -28,7 +28,7 @@ export interface IFormInput {
 	englishLevel: SelectOptions;
 	hourRate: SelectOptions;
 	availableAmountOfHour: SelectOptions;
-	typePage?: 'proposals' | 'job';
+	typePage?: "proposals" | "job";
 }
 
 interface JobSkills {
@@ -89,6 +89,7 @@ export function SearchWork() {
 
 	const skillIncludesFunc = (arr1: string[][], arr2: string[]) => {
 		const skillsIncludesArr: boolean[] = [];
+
 		arr1.map(job => {
 			skillsIncludesArr.push(filterSkillsCheck(job, arr2));
 		});
@@ -118,6 +119,7 @@ export function SearchWork() {
 					job.availableAmountOfHours.includes(filter.availableAmountOfHour) &&
 					skillsFilter[index],
 			);
+
 			setFilterJobs(newFilterJobs);
 		}
 	}, [toggleFilter, filter]);
@@ -176,7 +178,7 @@ export function SearchWork() {
 					<Wrapper>
 						<InputContainerCards>
 							<InputWrapper>
-								<Pagination itemsPerPage={5} user={user} jobs={filterJobs} typePage={JOBS_PAGE}/>
+								<Pagination itemsPerPage={5} user={user} jobs={filterJobs} typePage={JOBS_PAGE} />
 							</InputWrapper>
 						</InputContainerCards>
 						<InputContainer>

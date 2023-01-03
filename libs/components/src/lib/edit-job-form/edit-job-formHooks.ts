@@ -62,7 +62,7 @@ export const useEditJobHook = (jobId: string): IUseEditJobHook => {
 	useEffect(() => {
 		isSuccess && toast.success(t("editJob.savingSucceed"));
 		isError && toast.error(SERVER_ERROR_MESSAGE);
-	}, [isSuccess, isError]);
+	}, [isSuccess, isError, SERVER_ERROR_MESSAGE, t]);
 
 	return {
 		jobById,

@@ -42,14 +42,14 @@ export const SelectElement = styled(Select)`
 export const StyledFileField = styled.div`
 	display: flex;
 	flex-direction: column;
-  align-items: center;
+	align-items: center;
 	justify-content: center;
 	width: 80%;
-  div {
-    display: flex;
-    justify-content: space-between;
-    width: 40%;
-  }
+	div {
+		display: flex;
+		justify-content: space-between;
+		width: 40%;
+	}
 	img {
 		border: 2px solid ${({ theme }) => theme.colors.grey};
 		background: ${({ theme }) => theme.colors.grey};
@@ -64,7 +64,7 @@ export const StyledFileField = styled.div`
 		align-items: center;
 		color: ${({ theme }) => theme.colors.white};
 		border-radius: 100px;
-    font-size: 10px;
+		font-size: 10px;
 		background-color: ${({ theme }) => theme.colors.darkRed};
 		cursor: pointer;
 		width: 100%;
@@ -89,7 +89,7 @@ const StyledPage = styled.div`
 export const Form = styled.form`
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-  gap: 5px;
+	gap: 5px;
 	height: 95%;
 	align-items: center;
 	justify-items: center;
@@ -112,7 +112,6 @@ export const Form = styled.form`
 			color: ${({ theme }) => theme.colors.grey};
 		}
 	}
-
 
 	.selectContainer {
 		position: relative;

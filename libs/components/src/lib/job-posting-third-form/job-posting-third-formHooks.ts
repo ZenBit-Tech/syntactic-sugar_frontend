@@ -11,8 +11,8 @@ import { useJobsValidationErrorMessages } from "utils/constants/jobs-validation-
 export const useJobPostingThirdFormHook = (): IUseJobPostingThirdForm => {
 	const dispatch = useAppDispatch();
 	const storedJobInfo = useAppSelector(getStoredJobInfo);
-  const navigate = useNavigate();
-  const { SERVER_ERROR_MESSAGE } = useJobsValidationErrorMessages();
+	const navigate = useNavigate();
+	const { SERVER_ERROR_MESSAGE } = useJobsValidationErrorMessages();
 	const [createJob, { isLoading, isSuccess, isError }] = useCreateJobMutation();
 
 	const onSubmit: SubmitHandler<IJobPostingThirdForm> = async data => {
@@ -45,7 +45,7 @@ export const useJobPostingThirdFormHook = (): IUseJobPostingThirdForm => {
 		if (isError) {
 			toast.error(SERVER_ERROR_MESSAGE);
 		}
-	}, [isSuccess, isError]);
+	}, [isSuccess, isError, SERVER_ERROR_MESSAGE, dispatch, navigate]);
 
 	return {
 		isLoading,

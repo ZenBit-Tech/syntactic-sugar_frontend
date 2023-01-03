@@ -50,7 +50,7 @@ export function JobPostingThirdForm({ page, textButtonHandler }: IJobPostingThir
 
 	useEffect(() => {
 		textButtonHandler(isLoading);
-	}, [isLoading]);
+	}, [isLoading, textButtonHandler]);
 
 	return (
 		<JobPostingGridForm id={page} onSubmit={handleSubmit(onSubmit)} justifyItems="start">

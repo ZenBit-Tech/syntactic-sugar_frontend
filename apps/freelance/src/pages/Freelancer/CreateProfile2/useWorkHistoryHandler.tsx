@@ -16,6 +16,7 @@ export const useWorkHistoryHandler = () => {
 
 	const handleRemoveWorkHistory = (index: number) => {
 		const list = [...workHistoryList];
+
 		list.splice(index, 1);
 		setWorkHistoryList(list);
 	};

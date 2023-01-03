@@ -16,6 +16,7 @@ export const useEducationHandler = () => {
 
 	const handleRemoveEducation = (index: number) => {
 		const list = [...educationList];
+
 		list.splice(index, 1);
 		setEducationList(list);
 	};

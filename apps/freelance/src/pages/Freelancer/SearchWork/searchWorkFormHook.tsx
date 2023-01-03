@@ -23,6 +23,7 @@ export const useSearchWorkFormHook = () => {
 			hourRate: values.hourRate.label,
 			availableAmountOfHour: values.availableAmountOfHour.label,
 		};
+
 		setFilter(freelancerInfo);
 		setToggleFilter("filter");
 	};
