@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import { TextArea } from "@freelance/components";
-import { StyledPage } from "@freelance/components";
-import { BaseTitle } from "@freelance/components";
+import { BaseTitle, Input, TextArea, StyledPage } from "@freelance/components";
 
 export const Page = styled(StyledPage)`
 	background: url("/assets/images/top_elipse.png") no-repeat top left,
@@ -23,7 +21,7 @@ export const ContainerBox = styled.div`
 
 export const ButtonWrapper = styled.div`
 	display: flex;
-	margin-top: 1rem;
+	margin-top: 1.5rem;
 	justify-content: center;
 	gap: 2rem;
 `;
@@ -44,12 +42,12 @@ export const Form = styled.form`
 
 export const Textarea = styled(TextArea)`
 	box-shadow: 0px 0px 10px 1px rgb(0 0 0 / 10%);
-	height: 279px;
+	height: 283px;
+	width: 88%;
 	display: block;
 	padding: 15px;
-	border-radius: 5px;
+	border-radius: 30px;
 	resize: none;
-	width: 100%;
 `;
 
 export const Title = styled(BaseTitle)`
@@ -63,10 +61,9 @@ export const Label = styled.label`
 	margin-bottom: 0.5rem;
 `;
 
-export const Span = styled.span`
-	background-color: ${({ theme }) => theme.colors.darkRed};
-	color: ${({ theme }) => theme.colors.black};
-	width: fit-content;
-	height: auto;
-	border-radius: 2px;
+export const InputRate = styled(Input)`
+	display: block;
+	border-radius: 20px;
+	width: 20%;
+	margin-bottom: 15px;
 `;

@@ -1,6 +1,4 @@
-import { RootState } from "redux/store";
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { baseUrl } from "utils/constants/redux-query";
+import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from "redux/base-query";
 
 interface IFileUpload {

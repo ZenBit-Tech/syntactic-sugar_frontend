@@ -1,21 +1,10 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { baseUrl } from "utils/constants/redux-query";
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { baseQuery } from "redux/base-query";
 import { IProposal } from "redux/interfaces/IProposal";
-import { RootState } from "redux/store";
 
 export const proposalFreelancerApi = createApi({
 	reducerPath: "createFreelancerProposal",
-	baseQuery: fetchBaseQuery({
-		baseUrl: baseUrl,
-		prepareHeaders: (headers, { getState }) => {
-			const token = (getState() as RootState).user.token;
-			if (token) {
-				headers.set("authorization", `Bearer ${token}`);
-			}
-
-			return headers;
-		},
-	}),
+	baseQuery: baseQuery,
 	tagTypes: ["proposal"],
 	endpoints: builder => ({
 		createProposal: builder.mutation({

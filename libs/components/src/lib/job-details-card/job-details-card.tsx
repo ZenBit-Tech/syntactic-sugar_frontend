@@ -1,11 +1,10 @@
 import { useTranslation } from "react-i18next";
 import moment from "moment";
 import { StyledTitle, StyledButton } from "@freelance/components";
-import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import { JOBS_PAGE } from "utils/constants/breakpoint";
 import { baseUrl } from "utils/constants/redux-query";
-import { DEFAULT_IMAGE } from "utils/constants/links";
 import { useGetJobIdQuery } from "redux/jobs";
+import { DEFAULT_IMAGE } from "utils/constants/links";
 import {
 	ContainerBox,
 	Item,
@@ -17,6 +16,7 @@ import {
 	RightSide,
 	Bottom,
 	Wrapper,
+	BottomText,
 } from "./job-details-card.styled";
 
 export interface JobDetailsCardProps {
@@ -24,18 +24,18 @@ export interface JobDetailsCardProps {
 	id: string;
 	openCreateProposal: () => void;
 	onBack: () => void;
+	isProposal?: boolean;
 }
 
-export function JobDetailsCard({ typePage, id, openCreateProposal, onBack }: JobDetailsCardProps) {
+export function JobDetailsCard({
+	typePage,
+	id,
+	openCreateProposal,
+	onBack,
+	isProposal,
+}: JobDetailsCardProps) {
 	const { t } = useTranslation();
 	const { data } = useGetJobIdQuery(id);
-	const { data: freelancerData } = useGetFreelancerQuery();
-
-	const isProposal = freelancerData?.proposals
-		.map(proposal => {
-			return data?.proposals.find(item => item.id === proposal.id);
-		})
-		.some(item => item !== undefined);
 
 	return (
 		<>
@@ -45,7 +45,7 @@ export function JobDetailsCard({ typePage, id, openCreateProposal, onBack }: Job
 				</StyledTitle>
 				<Wrapper>
 					<img
-						src={data?.employer.image ? baseUrl + "/" + data?.employer.image : DEFAULT_IMAGE}
+						src={data?.employer.image ? baseUrl + data?.employer.image : DEFAULT_IMAGE}
 						alt="User Avatar"
 					/>
 					<StyledTitle tag="h3" fontSize="md" fontWeight={500}>
@@ -91,7 +91,6 @@ export function JobDetailsCard({ typePage, id, openCreateProposal, onBack }: Job
 							</Title>
 							<p>{data?.hourRate}</p>
 						</Item>
-
 						<Item>
 							<Title id="rateHour">
 								<strong>{t("newJobPosting.thirdForm.englishLevelLabel")}</strong>
@@ -123,7 +122,7 @@ export function JobDetailsCard({ typePage, id, openCreateProposal, onBack }: Job
 							<strong>{t("newJobPosting.firstForm.descriptionLabel")}</strong>
 						</Title>
 						<Item id="workHistory">
-							<p>{data?.description}</p>
+							<BottomText>{data?.description}</BottomText>
 						</Item>
 					</ItemContainer>
 					<ItemContainer id="workHistory">
@@ -131,7 +130,7 @@ export function JobDetailsCard({ typePage, id, openCreateProposal, onBack }: Job
 							<strong>{t("newJobPosting.thirdForm.otherRequirenmentsLabel")}</strong>
 						</Title>
 						<Item id="workHistory">
-							<p>{data?.otherRequirenments}</p>
+							<BottomText>{data?.otherRequirenments}</BottomText>
 						</Item>
 					</ItemContainer>
 				</Bottom>

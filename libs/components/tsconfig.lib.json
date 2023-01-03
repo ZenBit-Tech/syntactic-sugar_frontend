@@ -25,5 +25,5 @@
 		"**/*.spec.jsx",
 		"**/*.test.jsx"
 	],
-	"include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "src/lib/styles/inputComponentsts"]
+	"include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "src/lib/styles/inputComponentsts", "../../apps/freelance/src/pages/WorkDetails/WorkDetails.spec.tsx"]
 }

@@ -3,13 +3,12 @@ import {
 	StyledButton,
 	StyledParagraph,
 	CardModal,
-	JobDetailsCard,
 	SendProposal,
+	CreateProposalonJob,
 	EditJobForm,
 } from "@freelance/components";
 import { InstObject, Proposal } from "redux/jobs";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
-import { useState } from "react";
 import moment from "moment";
 import { JOBS_PAGE } from "utils/constants/breakpoint";
 import { ROLES } from "utils/constants/roles";
@@ -20,8 +19,6 @@ import {
 	CountriesContainer,
 	LocationBlock,
 	CardTitleButton,
-} from "./job-card.styled";
-import {
 	JobButtonContainer,
 	EmployerButtonWrapper,
 	FreelancerButtonWrapper,
@@ -62,13 +59,15 @@ export function JobCard({
 }: JobCardProps) {
 	const { t } = useTranslation();
 	const { data } = useGetFreelancerQuery();
-	const [detailsModalOpen, setDetailsModalOpen] = useState<boolean>(false);
-	const [proposalModalOpen, setProposalModalOpen] = useState<boolean>(false);
-	const [isCreateProposalActive, setIsCreateProposalActive] = useState(false);
 	const prettyDate = moment(createdDate).format("LL");
 	const {
-		handleSendProrposalClick,
 		handleToggleIsPublishedButton,
+		openSendProposal,
+		closeCreateProposal,
+		openCreateProposal,
+		closeSendProposal,
+		proposalModalOpen,
+		detailsModalOpen,
 		handleEditJob,
 		closeModalEditJob,
 		isTogglingJob,
@@ -81,26 +80,10 @@ export function JobCard({
 		})
 		.some(item => item !== undefined);
 
-	const closeSendProposal = () => {
-		setProposalModalOpen(false);
-	};
-
-	const openCreateProposal = () => {
-		setIsCreateProposalActive(true);
-	};
-
-	const closeCreateProposal = () => {
-		setDetailsModalOpen(false);
-	};
-
-	const goBackToDetails = () => {
-		setIsCreateProposalActive(false);
-	};
-
 	return (
 		<StyledJobCard>
 			<StyledJobCardHeader>
-				<CardTitleButton onClick={() => setDetailsModalOpen(true)}>{position}</CardTitleButton>
+				<CardTitleButton onClick={openCreateProposal}>{position}</CardTitleButton>
 				<strong>{prettyDate}</strong>
 				{userType === ROLES.FREELANCER && (
 					<>
@@ -110,7 +93,7 @@ export function JobCard({
 									buttonColor="redGradient"
 									buttonSize="md"
 									fontSize="sm"
-									onClick={() => setProposalModalOpen(true)}
+									onClick={openSendProposal}
 								>
 									<strong>{t("jobCard.sendProposal")}</strong>
 								</StyledButton>
@@ -168,20 +151,16 @@ export function JobCard({
 					{t("jobCard.englishLevel")}: <strong>{levelEnglish}</strong>
 				</StyledParagraph>
 			</StyledJobCardParagraph>
-			<CardModal open={detailsModalOpen} onCancel={() => setDetailsModalOpen(false)} width={1000}>
-				{!isCreateProposalActive && (
-					<JobDetailsCard
-						id={jobId}
-						typePage={typePage}
-						openCreateProposal={openCreateProposal}
-						onBack={closeCreateProposal}
-					/>
-				)}
-				{isCreateProposalActive && (
-					<SendProposal id={jobId} goBack={goBackToDetails} onCancel={closeCreateProposal} />
-				)}
+			<CardModal open={detailsModalOpen} onCancel={closeCreateProposal} width={1000}>
+				<CreateProposalonJob
+					id={jobId}
+					typePage={typePage}
+					onBack={closeCreateProposal}
+					onCancel={closeCreateProposal}
+					isProposal={isProposal}
+				/>
 			</CardModal>
-			<CardModal open={proposalModalOpen} onCancel={() => setProposalModalOpen(false)} width={1000}>
+			<CardModal open={proposalModalOpen} onCancel={closeSendProposal} width={1000}>
 				<SendProposal id={jobId} onCancel={closeSendProposal} />
 			</CardModal>
 			<CardModal open={isModalEditJob} onCancel={closeModalEditJob} width={1000}>

@@ -1,18 +1,11 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { baseUrl } from "utils/constants/redux-query";
+import { createApi } from "@reduxjs/toolkit/query/react";
+import { baseQuery } from "./base-query";
 import { IUserState } from "./interfaces/IUserData";
 import { Token } from "./interfaces/Token";
-import { RootState } from "./store";
 
 export interface IForm {
 	email: string;
 	password: string;
-}
-
-interface IServerResponse {
-	id: string;
-	email: string;
-	isActivated: boolean;
 }
 
 interface IToken {
@@ -21,17 +14,7 @@ interface IToken {
 
 export const loginApi = createApi({
 	reducerPath: "auth/api",
-	baseQuery: fetchBaseQuery({
-		baseUrl: baseUrl,
-		prepareHeaders: (headers, { getState }) => {
-			const token = (getState() as RootState).user.token;
-			if (token) {
-				headers.set("Authorization", `Bearer ${token}`);
-			}
-
-			return headers;
-		},
-	}),
+	baseQuery: baseQuery,
 	refetchOnFocus: true,
 	endpoints: build => ({
 		login: build.mutation<IUserState, IForm>({
