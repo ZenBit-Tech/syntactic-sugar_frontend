@@ -76,7 +76,7 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 		control,
 		register,
 		handleSubmit,
-		formState: { errors },
+		formState: { errors, isDirty },
 	} = useForm<IEditJobForm>({ resolver: yupResolver(schema) });
 
 	return (
@@ -238,7 +238,6 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 										name="workExperience"
 										defaultValue={selectDefaultObject(jobById?.workExperience, workExperience)}
 										control={control}
-										rules={{ required: FIELD_REQUIRED }}
 										render={({ field }) => (
 											<SelectElement
 												options={workExperience}
@@ -355,7 +354,7 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 								buttonSize="sm"
 								fontSize="lg"
 								buttonColor={"redGradient"}
-								disabled={isPendingSaving}
+								disabled={isPendingSaving || !isDirty}
 							>
 								{isPendingSaving ? pendingText : saveChanges}
 							</StyledButton>
