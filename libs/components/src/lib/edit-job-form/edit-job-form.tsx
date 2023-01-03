@@ -88,7 +88,7 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 					</StyledTitle>
 					<Form id="editForm" onSubmit={handleSubmit(onSubmit)}>
 						<JobPostingLabel>{JOB_TITLE_LABEL}</JobPostingLabel>
-						<ErrorsHandlerWrapper positionRight={0} width={10}>
+						<ErrorsHandlerWrapper positionRight={4} width={12}>
 							<Input
 								defaultValue={jobById?.title}
 								{...register("title")}
@@ -102,7 +102,7 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 							)}
 						</ErrorsHandlerWrapper>
 						<JobPostingLabel>{JOB_DESCRIPTION_LABEL}</JobPostingLabel>
-						<ErrorsHandlerWrapper positionRight={0} width={10}>
+						<ErrorsHandlerWrapper positionRight={4} width={12}>
 							<JobPostingTextArea
 								defaultValue={jobById?.description}
 								{...register("description")}
@@ -137,10 +137,10 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 								</StyledSpan>
 							)}
 						</ErrorsHandlerWrapper>
-						<GridContainer columns={2}>
+						<GridContainer columns={2} width={89}>
 							<GridItem>
 								<JobPostingLabel>{JOB_CATEGORY_LABEL}</JobPostingLabel>
-								<ErrorsHandlerWrapper positionRight={-20} width={15} wrapperWidth={80}>
+								<ErrorsHandlerWrapper positionRight={-24} width={20} wrapperWidth={80}>
 									<Controller
 										name="category"
 										defaultValue={setRemoteObject(jobById?.category, categories)}
@@ -166,7 +166,7 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 							</GridItem>
 							<GridItem>
 								<JobPostingLabel>{JOB_POSITION_LABEL}</JobPostingLabel>
-								<ErrorsHandlerWrapper positionRight={-20} width={15}>
+								<ErrorsHandlerWrapper positionRight={1} width={16}>
 									<Input defaultValue={jobById?.position} {...register("position")} type="text" />
 									{errors?.position && (
 										<StyledSpan fontSize="sm" type="validation">
@@ -177,7 +177,7 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 							</GridItem>
 							<GridItem>
 								<JobPostingLabel>{JOB_EMPLOYMENT_TYPE_LABEL}</JobPostingLabel>
-								<ErrorsHandlerWrapper positionRight={-20} width={15} wrapperWidth={80}>
+								<ErrorsHandlerWrapper positionRight={-24} width={20} wrapperWidth={80}>
 									<Controller
 										name="employmentType"
 										defaultValue={selectDefaultObject(jobById?.employmentType, employmentType)}
@@ -205,7 +205,7 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 							</GridItem>
 							<GridItem>
 								<JobPostingLabel>{JOB_AMOUNT_HOURS_LABEL}</JobPostingLabel>
-								<ErrorsHandlerWrapper positionRight={-20} width={15} wrapperWidth={80}>
+								<ErrorsHandlerWrapper positionRight={-24} width={20} wrapperWidth={80}>
 									<Controller
 										name="availableAmountOfHours"
 										defaultValue={selectDefaultObject(jobById?.availableAmountOfHours, hoursAmount)}
@@ -233,7 +233,7 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 							</GridItem>
 							<GridItem>
 								<JobPostingLabel>{JOB_WORK_EXPERIANCE_LABEL}</JobPostingLabel>
-								<ErrorsHandlerWrapper positionRight={-20} width={15} wrapperWidth={80}>
+								<ErrorsHandlerWrapper positionRight={-24} width={20} wrapperWidth={80}>
 									<Controller
 										name="workExperience"
 										defaultValue={selectDefaultObject(jobById?.workExperience, workExperience)}
@@ -261,7 +261,7 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 							</GridItem>
 							<GridItem>
 								<JobPostingLabel>{JOB_HOUR_RATE_LABEL}</JobPostingLabel>
-								<ErrorsHandlerWrapper positionRight={-20} width={15} wrapperWidth={80}>
+								<ErrorsHandlerWrapper positionRight={-24} width={20} wrapperWidth={80}>
 									<Controller
 										name="hourRate"
 										defaultValue={selectDefaultObject(jobById?.hourRate, hourRate)}
@@ -335,7 +335,7 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 							)}
 						</ErrorsHandlerWrapper>
 						<JobPostingLabel>{JOB_OTHER_REQUIRENMENTS_LABEL}</JobPostingLabel>
-						<ErrorsHandlerWrapper positionRight={0} width={15}>
+						<ErrorsHandlerWrapper positionRight={4} width={12}>
 							<JobPostingTextArea
 								defaultValue={jobById?.otherRequirenments}
 								{...register("otherRequirenments")}

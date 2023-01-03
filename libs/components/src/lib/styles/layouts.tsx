@@ -50,6 +50,7 @@ export const Container = styled.div<IContainer>`
 interface IGridContainer {
 	columns?: number;
 	rows?: number;
+	width?: number;
 }
 
 export const GridContainer = styled.div<IGridContainer>`
@@ -63,6 +64,11 @@ export const GridContainer = styled.div<IGridContainer>`
 		rows &&
 		css`
 			grid-template-rows: repeat(${rows}, 1fr);
+		`}
+  ${({ width }) =>
+		width &&
+		css`
+			width: ${width}%;
 		`}
 `;
 
