@@ -11,6 +11,7 @@ interface IUseEditJobHook {
 	onSubmit: SubmitHandler<IEditJobForm>;
 	saveChanges: string;
 	pendingText: string;
+	editJobTitle: string;
 	isLoading: boolean;
 	isPendingSaving: boolean;
 }
@@ -24,7 +25,7 @@ export const useEditJobHook = (jobId: string): IUseEditJobHook => {
 
 	const saveChanges: string = t("editJob.saveChanges");
 	const pendingText: string = t("editJob.isPendingSaving");
-	const serverErrorMessage: string = t("serverErrorMessage");
+	const editJobTitle: string = t("editJob.title");
 
 	const onSubmit: SubmitHandler<IEditJobForm> = async data => {
 		console.log(data);
@@ -68,6 +69,7 @@ export const useEditJobHook = (jobId: string): IUseEditJobHook => {
 		onSubmit,
 		saveChanges,
 		pendingText,
+		editJobTitle,
 		isLoading,
 		isPendingSaving,
 	};

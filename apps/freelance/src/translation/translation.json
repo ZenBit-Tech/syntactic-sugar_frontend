@@ -84,7 +84,8 @@
 	"editJob": {
 		"saveChanges": "Save changes",
 		"isPendingSaving": "...Saving",
-		"savingSucceed": "Your changes successfully saved"
+		"savingSucceed": "Your changes successfully saved",
+		"title": "Edit job"
 	},
 	"invitationPage": {
 		"title": "You have successfully registered!",

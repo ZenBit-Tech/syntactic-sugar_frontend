@@ -11,6 +11,7 @@ import {
 	SelectElement,
 	StyledSpan,
 	StyledButton,
+	StyledTitle,
 	ButtonContainer,
 	JobPostingLabel,
 	selectDefaultObject,
@@ -68,7 +69,7 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 		skills,
 		englishLevel,
 	} = useOptions();
-	const { jobById, onSubmit, saveChanges, pendingText, isLoading, isPendingSaving } =
+	const { jobById, onSubmit, saveChanges, pendingText, editJobTitle, isLoading, isPendingSaving } =
 		useEditJobHook(jobId);
 	const schema = useEditJobFormSchema();
 	const {
@@ -82,7 +83,9 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 		<Container modalEditJob>
 			{!isLoading && (
 				<>
-					<h1>Welcome to EditJob!</h1>
+					<StyledTitle tag="h1" fontWeight={700} fontSize="lg">
+						{editJobTitle}
+					</StyledTitle>
 					<Form id="editForm" onSubmit={handleSubmit(onSubmit)}>
 						<JobPostingLabel>{JOB_TITLE_LABEL}</JobPostingLabel>
 						<ErrorsHandlerWrapper positionRight={0} width={10}>
