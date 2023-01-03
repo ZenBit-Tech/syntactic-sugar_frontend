@@ -48,7 +48,7 @@
 		"enterPassword": "Enter your new password and confirm, please.",
 		"validationEmailMessage": "Email must be such view email@domain.com",
 		"validationRequiredMessage": "Email is required",
-		"validationMinChar": "Has to be at least 6 characters",
+		"validationMinChar": "Has to be at least 8 characters",
 		"validationMaxChar": "Not more then 15 characters",
 		"validationRequiredPassword": "Password  is required",
 		"validationConfirmPassword": "Please, confirm your password",

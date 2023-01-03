@@ -1,7 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from "redux/base-query";
-import { ICreatedJob, INewJob } from "redux/interfaces";
-import { IUpdateJob } from "../interfaces/new-job-posting/IUpdateJob";
+import { ICreatedJob, INewJob, IUpdateJob } from "redux/interfaces";
 
 export interface InstObject {
 	id: string;
