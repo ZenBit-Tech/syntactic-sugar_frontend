@@ -1,5 +1,11 @@
 import styled from "styled-components";
-import { BaseTitle, Input, TextArea } from "@freelance/components";
+import { BaseTitle, Input, TextArea, StyledPage } from "@freelance/components";
+
+export const Page = styled(StyledPage)`
+	background: url("/assets/images/top_elipse.png") no-repeat top left,
+		url("/assets/images/bottom_elipse.png") no-repeat bottom right,
+		${({ theme }) => theme.colors.lightGrey};
+`;
 
 export const ContainerBox = styled.div`
 	display: flex;
@@ -51,6 +57,8 @@ export const Title = styled(BaseTitle)`
 
 export const Label = styled.label`
 	font-size: 1rem;
+	padding-left: 1.5rem;
+	margin-bottom: 0.5rem;
 `;
 
 export const InputRate = styled(Input)`

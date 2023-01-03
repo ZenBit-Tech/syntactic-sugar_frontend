@@ -38,7 +38,7 @@ export const Item = styled.div`
 		width: 70%;
 		word-break: keep-all;
 		word-wrap: break-word;
-		text-align: right;
+		text-align: left;
 	}
 
 	:last-child {
@@ -54,7 +54,7 @@ export const Item = styled.div`
 `;
 
 export const BottomText = styled(Item)`
-		text-align: left;
+	text-align: left;
 `;
 
 export const Title = styled.div`

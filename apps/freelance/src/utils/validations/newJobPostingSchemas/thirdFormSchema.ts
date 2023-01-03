@@ -1,12 +1,10 @@
 import { array, object, SchemaOf, string } from "yup";
-import { useTranslation } from "react-i18next";
 import { IJobPostingThirdForm } from "@freelance/components";
+import { useJobsValidationErrorMessages } from "src/utils/constants/jobs-validation-error-messages";
 
 export const useThirdFormSchema = (): SchemaOf<IJobPostingThirdForm> => {
-	const { t } = useTranslation();
-
-	const maxSkills = t("newJobPosting.thirdForm.validation.maxSkills");
-	const fieldRequired = t("newJobPosting.validation.messageFieldRequired");
+	const { FIELD_REQUIRED, MAX_SKILLS, MESSAGE_DESCRIPTION_MAX_CHAR } =
+		useJobsValidationErrorMessages();
 
 	return object({
 		skills: array(
@@ -15,12 +13,12 @@ export const useThirdFormSchema = (): SchemaOf<IJobPostingThirdForm> => {
 				label: string(),
 			}),
 		)
-			.max(3, maxSkills)
-			.min(1, fieldRequired),
+			.max(3, MAX_SKILLS)
+			.min(1, FIELD_REQUIRED),
 		englishLevel: object({
-			value: string().required(fieldRequired),
-			label: string().required(fieldRequired),
+			value: string().required(FIELD_REQUIRED),
+			label: string().required(FIELD_REQUIRED),
 		}),
-		otherRequirenments: string().required(fieldRequired),
+		otherRequirenments: string().max(600, MESSAGE_DESCRIPTION_MAX_CHAR).required(FIELD_REQUIRED),
 	});
 };

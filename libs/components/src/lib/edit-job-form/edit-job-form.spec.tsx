@@ -1,11 +1,10 @@
 import { render } from "@testing-library/react";
 
-import App from "./app";
+import EditJob from "./edit-job";
 
-describe("App", () => {
+describe("EditJob", () => {
 	it("should render successfully", () => {
-		const { baseElement } = render(<App />);
-
+		const { baseElement } = render(<EditJob />);
 		expect(baseElement).toBeTruthy();
 	});
 });

@@ -1,5 +1,12 @@
 import { useTranslation } from "react-i18next";
-import { StyledButton, StyledParagraph, CardModal, SendProposal, CreateProposalonJob } from "@freelance/components";
+import {
+	StyledButton,
+	StyledParagraph,
+	CardModal,
+	SendProposal,
+	CreateProposalonJob,
+	EditJobForm,
+} from "@freelance/components";
 import { InstObject, Proposal } from "redux/jobs";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import moment from "moment";
@@ -12,8 +19,6 @@ import {
 	CountriesContainer,
 	LocationBlock,
 	CardTitleButton,
-} from "./job-card.styled";
-import {
 	JobButtonContainer,
 	EmployerButtonWrapper,
 	FreelancerButtonWrapper,
@@ -35,7 +40,7 @@ export interface JobCardProps {
 	skills?: InstObject[];
 	category?: InstObject;
 	isPublished: boolean;
-	typePage?: 'proposals' | 'jobs';
+	typePage?: "proposals" | "jobs";
 }
 
 export function JobCard({
@@ -54,18 +59,20 @@ export function JobCard({
 }: JobCardProps) {
 	const { t } = useTranslation();
 	const { data } = useGetFreelancerQuery();
-	const prettyDate = moment(createdDate).format('LL');
+	const prettyDate = moment(createdDate).format("LL");
 	const {
-		handleSendProrposalClick,
 		handleToggleIsPublishedButton,
 		openSendProposal,
 		closeCreateProposal,
 		openCreateProposal,
 		closeSendProposal,
-		isTogglingJob,
 		proposalModalOpen,
-		detailsModalOpen
-	} = useJobCard(isPublished);
+		detailsModalOpen,
+		handleEditJob,
+		closeModalEditJob,
+		isTogglingJob,
+		isModalEditJob,
+	} = useJobCard({ isPublished });
 
 	const isProposal = data?.proposals
 		.map(proposal => {
@@ -82,7 +89,12 @@ export function JobCard({
 					<>
 						{typePage === JOBS_PAGE && !isProposal && (
 							<FreelancerButtonWrapper>
-								<StyledButton buttonColor="redGradient" buttonSize="md" fontSize="sm" onClick={openSendProposal}>
+								<StyledButton
+									buttonColor="redGradient"
+									buttonSize="md"
+									fontSize="sm"
+									onClick={openSendProposal}
+								>
 									<strong>{t("jobCard.sendProposal")}</strong>
 								</StyledButton>
 							</FreelancerButtonWrapper>
@@ -92,7 +104,12 @@ export function JobCard({
 				{userType === ROLES.EMPLOYER && (
 					<JobButtonContainer>
 						<EmployerButtonWrapper>
-							<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
+							<StyledButton
+								onClick={() => handleEditJob(proposals)}
+								buttonColor="redGradient"
+								buttonSize="lg"
+								fontSize="md"
+							>
 								<strong>{t("jobCard.editJob")}</strong>
 							</StyledButton>
 						</EmployerButtonWrapper>
@@ -134,10 +151,7 @@ export function JobCard({
 					{t("jobCard.englishLevel")}: <strong>{levelEnglish}</strong>
 				</StyledParagraph>
 			</StyledJobCardParagraph>
-			<CardModal
-				open={detailsModalOpen}
-				onCancel={closeCreateProposal}
-				width={1000}>
+			<CardModal open={detailsModalOpen} onCancel={closeCreateProposal} width={1000}>
 				<CreateProposalonJob
 					id={jobId}
 					typePage={typePage}
@@ -146,13 +160,11 @@ export function JobCard({
 					isProposal={isProposal}
 				/>
 			</CardModal>
-			<CardModal
-				open={proposalModalOpen}
-				onCancel={closeSendProposal}
-				width={1000}>
-				<SendProposal
-					id={jobId}
-					onCancel={closeSendProposal} />
+			<CardModal open={proposalModalOpen} onCancel={closeSendProposal} width={1000}>
+				<SendProposal id={jobId} onCancel={closeSendProposal} />
+			</CardModal>
+			<CardModal open={isModalEditJob} onCancel={closeModalEditJob} width={1000}>
+				<EditJobForm jobId={jobId} />
 			</CardModal>
 		</StyledJobCard>
 	);

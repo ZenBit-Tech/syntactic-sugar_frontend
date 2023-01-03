@@ -57,6 +57,7 @@ export function CreateProfile1() {
 	const onSubmitFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
 		try {
 			const formData = new FormData();
+
 			if (event.currentTarget.files) {
 				formData.append("file", event.currentTarget.files[0]);
 			}
