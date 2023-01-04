@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import moment from "moment";
 import {
 	StyledButton,
 	StyledParagraph,
@@ -9,7 +10,6 @@ import {
 } from "@freelance/components";
 import { InstObject, Proposal } from "redux/jobs";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
-import moment from "moment";
 import { JOBS_PAGE } from "utils/constants/breakpoint";
 import { ROLES } from "utils/constants/roles";
 import {
@@ -85,21 +85,17 @@ export function JobCard({
 			<StyledJobCardHeader>
 				<CardTitleButton onClick={openCreateProposal}>{position}</CardTitleButton>
 				<strong>{prettyDate}</strong>
-				{userType === ROLES.FREELANCER && (
-					<>
-						{typePage === JOBS_PAGE && !isProposal && (
-							<FreelancerButtonWrapper>
-								<StyledButton
-									buttonColor="redGradient"
-									buttonSize="md"
-									fontSize="sm"
-									onClick={openSendProposal}
-								>
-									<strong>{t("jobCard.sendProposal")}</strong>
-								</StyledButton>
-							</FreelancerButtonWrapper>
-						)}
-					</>
+				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && !isProposal && (
+					<FreelancerButtonWrapper>
+						<StyledButton
+							buttonColor="redGradient"
+							buttonSize="md"
+							fontSize="sm"
+							onClick={openSendProposal}
+						>
+							<strong>{t("jobCard.sendProposal")}</strong>
+						</StyledButton>
+					</FreelancerButtonWrapper>
 				)}
 				{userType === ROLES.EMPLOYER && (
 					<JobButtonContainer>
