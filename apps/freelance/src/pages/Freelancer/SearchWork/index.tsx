@@ -5,8 +5,8 @@ import { useOptions, SelectOptions } from "utils/select-options/options";
 import { Dashboard, StyledTitle, StyledButton, Pagination } from "@freelance/components";
 import { JobsInterface, useGetJobsQuery } from "redux/jobs/jobs.api";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
-import { useSearchWorkFormHook } from "./searchWorkFormHook";
 import { JOBS_PAGE } from "src/utils/constants/breakpoint";
+import { useSearchWorkFormHook } from "./searchWorkFormHook";
 import {
 	StyledPage,
 	Form,

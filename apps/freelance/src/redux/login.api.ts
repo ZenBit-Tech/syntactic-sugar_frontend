@@ -33,6 +33,7 @@ export const loginApi = createApi({
 		},
 	}),
 	refetchOnFocus: true,
+	tagTypes: ["Auth"],
 	endpoints: build => ({
 		login: build.mutation<IUserState, IForm>({
 			query: (body: IForm) => ({
