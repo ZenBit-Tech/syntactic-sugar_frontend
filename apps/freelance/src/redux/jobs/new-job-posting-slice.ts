@@ -21,7 +21,7 @@ const newJob = createSlice({
 	name: "newJob",
 	initialState,
 	reducers: {
-		addNewJobInfo(state, action: PayloadAction<Object>) {
+		addNewJobInfo(state, action: PayloadAction<INewJob>) {
 			const { payload } = action;
 
 			return { ...state, ...payload };

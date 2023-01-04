@@ -4,8 +4,8 @@ import {
 	StyledJobCardHeader,
 	CardTitleButton,
 	StyledJobCardParagraph,
-} from "../job-card/job-card.styled";
-import { FreelancerButtonWrapper } from "../job-card/job-card.styled";
+	FreelancerButtonWrapper,
+} from "../styles/cardsCommonStyles";
 
 export const StyledFreelancersCard = styled(StyledJobCard)`
 	width: 100%;

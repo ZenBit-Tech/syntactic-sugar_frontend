@@ -10,6 +10,7 @@ import {
 	JobPostingLabel,
 } from "@freelance/components";
 import { useFirstFormSchema } from "utils/validations/newJobPostingSchemas";
+import { useJobLabelAndPlaceholder } from "utils/constants/jobs-labels-and-placeholders";
 import { getStoredJobInfo } from "redux/jobs";
 import { useAppSelector } from "redux/hooks";
 import { useJobPostingFirstFormHook } from "./job-posting-first-formHooks";
@@ -17,9 +18,14 @@ import { FirstFormInputWrapper } from "./job-posting-first-form.styled";
 
 export function JobPostingFirstForm({ page }: IJobPostingFormProps) {
 	const schema = useFirstFormSchema();
+	const {
+		JOB_TITLE_LABEL,
+		JOB_TITLE_PLACEHOLDER,
+		JOB_DESCRIPTION_LABEL,
+		JOB_DESCRIPTION_PLACEHOLDER,
+	} = useJobLabelAndPlaceholder();
 	const { title, description } = useAppSelector(getStoredJobInfo);
-	const { jobTitlePlaceholder, jobDescriptionPlaceholder, inputLabel, descriptionLabel, onSubmit } =
-		useJobPostingFirstFormHook();
+	const { onSubmit } = useJobPostingFirstFormHook();
 	const {
 		register,
 		handleSubmit,
@@ -30,13 +36,13 @@ export function JobPostingFirstForm({ page }: IJobPostingFormProps) {
 
 	return (
 		<Form id={page} onSubmit={handleSubmit(onSubmit)}>
-			<JobPostingLabel>{inputLabel}</JobPostingLabel>
+			<JobPostingLabel>{JOB_TITLE_LABEL}</JobPostingLabel>
 			<FirstFormInputWrapper positionRight={0} width={10}>
 				<Input
 					defaultValue={title}
 					{...register("title")}
 					type="text"
-					placeholder={jobTitlePlaceholder}
+					placeholder={JOB_TITLE_PLACEHOLDER}
 					autoComplete="off"
 				/>
 				{errors?.title && (
@@ -45,14 +51,14 @@ export function JobPostingFirstForm({ page }: IJobPostingFormProps) {
 					</StyledSpan>
 				)}
 			</FirstFormInputWrapper>
-			<JobPostingLabel>{descriptionLabel}</JobPostingLabel>
+			<JobPostingLabel>{JOB_DESCRIPTION_LABEL}</JobPostingLabel>
 			<FirstFormInputWrapper positionRight={0} width={10}>
 				<JobPostingTextArea
 					defaultValue={description}
 					{...register("description")}
 					rows={10}
 					maxLength={600}
-					placeholder={jobDescriptionPlaceholder}
+					placeholder={JOB_DESCRIPTION_PLACEHOLDER}
 				/>
 				{errors?.description && (
 					<StyledSpan fontSize="sm" type="validation">

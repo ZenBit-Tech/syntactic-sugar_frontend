@@ -3,7 +3,7 @@ import { Form } from "@pages/Freelancer/CreateProfile1/style";
 import { TextAreaContainer } from "@pages/Freelancer/CreateProfile2/style";
 
 export const FormBox = styled(Form)`
-  height: 90%;
+	height: 90%;
 	input {
 		padding-left: 3rem;
 	}

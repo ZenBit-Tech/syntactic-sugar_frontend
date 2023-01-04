@@ -53,6 +53,7 @@ export function CreateEmployerProfile() {
 	const onSubmitFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
 		try {
 			const formData = new FormData();
+
 			if (event.currentTarget.files) {
 				formData.append("file", event.currentTarget.files[0]);
 			}
@@ -91,6 +92,7 @@ export function CreateEmployerProfile() {
 			aboutUs: values.aboutUs,
 			image: imageData && imageUrl !== DEFAULT_IMAGE ? imageData.file : "",
 		};
+
 		try {
 			await createProfile(employerInfo);
 			navigate(EMPLOYER_JOBS_PAGE);

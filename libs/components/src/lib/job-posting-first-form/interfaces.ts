@@ -6,9 +6,5 @@ export interface IJobPostingFirstForm {
 }
 
 export interface IUseJobPostingFirstForm {
-	jobTitlePlaceholder: string;
-	jobDescriptionPlaceholder: string;
-	inputLabel: string;
-	descriptionLabel: string;
 	onSubmit: SubmitHandler<IJobPostingFirstForm>;
 }

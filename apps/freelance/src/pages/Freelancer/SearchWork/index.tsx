@@ -89,6 +89,7 @@ export function SearchWork() {
 
 	const skillIncludesFunc = (arr1: string[][], arr2: string[]) => {
 		const skillsIncludesArr: boolean[] = [];
+
 		arr1.map(job => {
 			skillsIncludesArr.push(filterSkillsCheck(job, arr2));
 		});
@@ -118,6 +119,7 @@ export function SearchWork() {
 					job.availableAmountOfHours.includes(filter.availableAmountOfHour) &&
 					skillsFilter[index],
 			);
+
 			setFilterJobs(newFilterJobs);
 		}
 	}, [toggleFilter, filter]);

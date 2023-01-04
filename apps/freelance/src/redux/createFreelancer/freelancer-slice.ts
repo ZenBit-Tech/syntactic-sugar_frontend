@@ -27,7 +27,7 @@ export type Freelancer = {
 	education: educationProps[];
 	workHistory: workHistoryProps[];
 	otherExperience: string;
-  image: string;
+	image: string;
 };
 
 const initialState: Freelancer = {
@@ -44,7 +44,7 @@ const initialState: Freelancer = {
 	education: [],
 	workHistory: [],
 	otherExperience: "",
-  image: ""
+	image: "",
 };
 
 const freelancer = createSlice({
@@ -54,6 +54,7 @@ const freelancer = createSlice({
 		addFreelancerInfo(state, action) {
 			const payload = action.payload;
 			const currentState = JSON.parse(JSON.stringify(state));
+
 			Object.keys(currentState).map(key => {
 				if (payload[key]) {
 					state[key as keyof typeof initialState] = payload[key];

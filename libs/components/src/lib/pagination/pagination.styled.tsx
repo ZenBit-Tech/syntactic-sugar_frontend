@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import ReactPaginate from "react-paginate";
+import { styledScroll } from "@freelance/components";
 
 export const Container = styled.div`
 	display: grid;
@@ -12,20 +13,7 @@ export const Container = styled.div`
 
 export const PaginationItemsWrapper = styled.div`
 	overflow-y: scroll;
-
-	::-webkit-scrollbar {
-		width: 15px;
-	}
-
-	::-webkit-scrollbar-track {
-		background: ${({ theme }) => theme.colors.white};
-	}
-
-	::-webkit-scrollbar-thumb {
-		background-color: ${({ theme }) => theme.colors.lightRed};
-		border-radius: 10px;
-		border: 3px solid ${({ theme }) => theme.colors.white};
-	}
+	${styledScroll}
 `;
 
 export const PaginationContainer = styled.div`

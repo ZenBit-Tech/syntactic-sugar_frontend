@@ -13,7 +13,6 @@ import {
 	WrapperContainer,
 	StyledContainer,
 } from "./freelancer-card.styled";
-
 import { useFreelancerCard } from "./freelancer-cardHook";
 
 export interface FreelancerCardProps {
@@ -77,7 +76,6 @@ export function FreelancerCard({
 							<img src={DEFAULT_IMAGE} alt={t("talents.avatar")} />
 						)}
 						<Title onClick={openFreelancerProfile}>{`${fullName}`}</Title>
-						{/* <StyledParagraph fontSize="lg">{`${fullName}`}</StyledParagraph> */}
 						<StyledParagraph fontSize="md" opacity={0.7}>
 							<strong>{hourRate}</strong>
 						</StyledParagraph>

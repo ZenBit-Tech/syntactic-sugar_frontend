@@ -1,10 +1,7 @@
 import { useTranslation } from "react-i18next";
 import moment from "moment";
-import {
-	StyledTitle,
-	StyledButton,
-} from "@freelance/components";
-import { JOBS_PAGE} from "utils/constants/breakpoint";
+import { StyledTitle, StyledButton } from "@freelance/components";
+import { JOBS_PAGE } from "utils/constants/breakpoint";
 import { baseUrl } from "utils/constants/redux-query";
 import { useGetJobIdQuery } from "redux/jobs";
 import { DEFAULT_IMAGE } from "utils/constants/links";
@@ -23,14 +20,20 @@ import {
 } from "./job-details-card.styled";
 
 export interface JobDetailsCardProps {
-	typePage?: 'proposals' | 'jobs';
+	typePage?: "proposals" | "jobs";
 	id: string;
 	openCreateProposal: () => void;
 	onBack: () => void;
 	isProposal?: boolean;
 }
 
-export function JobDetailsCard({typePage, id, openCreateProposal, onBack, isProposal}: JobDetailsCardProps) {
+export function JobDetailsCard({
+	typePage,
+	id,
+	openCreateProposal,
+	onBack,
+	isProposal,
+}: JobDetailsCardProps) {
 	const { t } = useTranslation();
 	const { data } = useGetJobIdQuery(id);
 
@@ -41,7 +44,10 @@ export function JobDetailsCard({typePage, id, openCreateProposal, onBack, isProp
 					{t("jobDetails.title")}
 				</StyledTitle>
 				<Wrapper>
-					<img src={data?.employer.image ? baseUrl + data?.employer.image : DEFAULT_IMAGE} alt="User Avatar" />
+					<img
+						src={data?.employer.image ? baseUrl + data?.employer.image : DEFAULT_IMAGE}
+						alt="User Avatar"
+					/>
 					<StyledTitle tag="h3" fontSize="md" fontWeight={500}>
 						{data?.employer.companyName}
 					</StyledTitle>
@@ -69,7 +75,7 @@ export function JobDetailsCard({typePage, id, openCreateProposal, onBack, isProp
 							<Title id="position">
 								<strong>{t("jobDetails.date")}</strong>
 							</Title>
-							<p>{moment(data?.createdDate).format('ll')}</p>
+							<p>{moment(data?.createdDate).format("ll")}</p>
 						</Item>
 						<Item>
 							<Title id="employment">
@@ -85,7 +91,6 @@ export function JobDetailsCard({typePage, id, openCreateProposal, onBack, isProp
 							</Title>
 							<p>{data?.hourRate}</p>
 						</Item>
-
 						<Item>
 							<Title id="rateHour">
 								<strong>{t("newJobPosting.thirdForm.englishLevelLabel")}</strong>
@@ -153,9 +158,9 @@ export function JobDetailsCard({typePage, id, openCreateProposal, onBack, isProp
 							</strong>
 						</StyledButton>
 					</ButtonWrapper>
-				)}	
+				)}
 			</ContainerBox>
-		</>			
+		</>
 	);
 }
 

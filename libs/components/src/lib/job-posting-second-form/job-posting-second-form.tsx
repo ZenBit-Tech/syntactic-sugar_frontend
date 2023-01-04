@@ -1,4 +1,5 @@
 import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import {
 	IJobPostingFormProps,
 	IJobPostingSecondForm,
@@ -17,11 +18,29 @@ import { getStoredJobInfo } from "redux/jobs";
 import { useAppSelector } from "redux/hooks";
 import { useOptions } from "utils/select-options/options";
 import { useSecondFormSchema } from "utils/validations/newJobPostingSchemas";
+import { useJobLabelAndPlaceholder } from "utils/constants/jobs-labels-and-placeholders";
+import { useJobsValidationErrorMessages } from "utils/constants/jobs-validation-error-messages";
 import { useJobPostingSecondFormHook } from "./job-posting-second-formHooks";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 	const schema = useSecondFormSchema();
+	const {
+		JOB_COUNTRIES_PLACEHOLDER,
+		JOB_CATEGORY_PLACEHOLDER,
+		JOB_POSITION_PLACEHOLDER,
+		JOB_EMPLOYMENT_TYPE_PLACEHOLDER,
+		JOB_AMOUNT_HOURS_PLACEHOLDER,
+		JOB_WORK_EXPERIANCE_PLACEHOLDER,
+		JOB_HOUR_RATE_PLACEHOLDER,
+		JOB_COUNTRIES_LABEL,
+		JOB_CATEGORY_LABEL,
+		JOB_POSITION_LABEL,
+		JOB_EMPLOYMENT_TYPE_LABEL,
+		JOB_AMOUNT_HOURS_LABEL,
+		JOB_WORK_EXPERIANCE_LABEL,
+		JOB_HOUR_RATE_LABEL,
+	} = useJobLabelAndPlaceholder();
+	const { FIELD_REQUIRED } = useJobsValidationErrorMessages();
 	const {
 		countries: storedCountries,
 		category,
@@ -31,24 +50,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 		hourRate: storedHourRate,
 		workExperience: storedWorkExperience,
 	} = useAppSelector(getStoredJobInfo);
-	const {
-		countreisLabel,
-		countriesPlaceholder,
-		categoryLabel,
-		categoryPlaceholder,
-		positionLabel,
-		postitonPlaceholder,
-		employmentTypeLabel,
-		employmentTypePlaceholder,
-		hoursAmountLabel,
-		hoursAmountPlaceholder,
-		workExperienceLabel,
-		workExperiencePlaceholder,
-		hourRateLabel,
-		hourRatePlaceholder,
-		fieldRequired,
-		onSubmit,
-	} = useJobPostingSecondFormHook();
+	const { onSubmit } = useJobPostingSecondFormHook();
 	const {
 		handleSubmit,
 		control,
@@ -61,18 +63,17 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 	return (
 		<JobPostingGridForm id={page} onSubmit={handleSubmit(onSubmit)} justifyItems="center">
 			<IncreasedFieldWrapper gridRow={1} typeOfLength="full">
-				<JobPostingLabel>{countreisLabel}</JobPostingLabel>
-				<ErrorsHandlerWrapper positionRight={-20} width={15}>
+				<JobPostingLabel>{JOB_COUNTRIES_LABEL}</JobPostingLabel>
+				<ErrorsHandlerWrapper positionRight={-12} width={10}>
 					<Controller
 						name="countries"
 						defaultValue={selectDefaultArray(storedCountries, countries)}
 						control={control}
-						rules={{ required: fieldRequired }}
 						render={({ field }) => (
 							<SelectElement
 								options={countries}
 								{...field}
-								placeholder={countriesPlaceholder}
+								placeholder={JOB_COUNTRIES_PLACEHOLDER}
 								isSearchable
 								isMulti
 								classNamePrefix="react-select"
@@ -87,18 +88,17 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 				</ErrorsHandlerWrapper>
 			</IncreasedFieldWrapper>
 			<FieldWrapper>
-				<JobPostingLabel>{categoryLabel}</JobPostingLabel>
+				<JobPostingLabel>{JOB_CATEGORY_LABEL}</JobPostingLabel>
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="category"
 						defaultValue={selectDefaultObject(category, categories)}
 						control={control}
-						rules={{ required: fieldRequired }}
 						render={({ field }) => (
 							<SelectElement
 								options={categories}
 								{...field}
-								placeholder={categoryPlaceholder}
+								placeholder={JOB_CATEGORY_PLACEHOLDER}
 								isSearchable
 								isClearable
 								classNamePrefix="react-select"
@@ -108,20 +108,20 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 					{errors?.category && (
 						<StyledSpan fontSize="sm" type="validation">
 							<strong>
-								{errors?.category?.label ? errors?.category?.label.message : fieldRequired}
+								{errors?.category?.label ? errors?.category?.label.message : FIELD_REQUIRED}
 							</strong>
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>
 			</FieldWrapper>
 			<FieldWrapper>
-				<JobPostingLabel>{positionLabel}</JobPostingLabel>
+				<JobPostingLabel>{JOB_POSITION_LABEL}</JobPostingLabel>
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<JobPostingInput
 						defaultValue={position}
-						{...register("position", { required: fieldRequired })}
+						{...register("position")}
 						type="text"
-						placeholder={postitonPlaceholder}
+						placeholder={JOB_POSITION_PLACEHOLDER}
 					/>
 					{errors?.position && (
 						<StyledSpan fontSize="sm" type="validation">
@@ -131,18 +131,17 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 				</ErrorsHandlerWrapper>
 			</FieldWrapper>
 			<FieldWrapper>
-				<JobPostingLabel>{employmentTypeLabel}</JobPostingLabel>
+				<JobPostingLabel>{JOB_EMPLOYMENT_TYPE_LABEL}</JobPostingLabel>
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="employmentType"
 						defaultValue={selectDefaultObject(storedEmploymentType, employmentType)}
 						control={control}
-						rules={{ required: fieldRequired }}
 						render={({ field }) => (
 							<SelectElement
 								options={employmentType}
 								{...field}
-								placeholder={employmentTypePlaceholder}
+								placeholder={JOB_EMPLOYMENT_TYPE_PLACEHOLDER}
 								isSearchable
 								isClearable
 								classNamePrefix="react-select"
@@ -154,25 +153,24 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 							<strong>
 								{errors?.employmentType?.label
 									? errors?.employmentType?.label.message
-									: fieldRequired}
+									: FIELD_REQUIRED}
 							</strong>
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>
 			</FieldWrapper>
 			<FieldWrapper>
-				<JobPostingLabel>{hoursAmountLabel}</JobPostingLabel>
+				<JobPostingLabel>{JOB_AMOUNT_HOURS_LABEL}</JobPostingLabel>
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="availableAmountOfHours"
 						defaultValue={selectDefaultObject(availableAmountOfHours, hoursAmount)}
 						control={control}
-						rules={{ required: fieldRequired }}
 						render={({ field }) => (
 							<SelectElement
 								options={hoursAmount}
 								{...field}
-								placeholder={hoursAmountPlaceholder}
+								placeholder={JOB_AMOUNT_HOURS_PLACEHOLDER}
 								isSearchable
 								isClearable
 								classNamePrefix="react-select"
@@ -184,25 +182,24 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 							<strong>
 								{errors?.availableAmountOfHours?.label
 									? errors?.availableAmountOfHours?.label.message
-									: fieldRequired}
+									: FIELD_REQUIRED}
 							</strong>
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>
 			</FieldWrapper>
 			<FieldWrapper>
-				<JobPostingLabel>{workExperienceLabel}</JobPostingLabel>
+				<JobPostingLabel>{JOB_WORK_EXPERIANCE_LABEL}</JobPostingLabel>
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="workExperience"
 						defaultValue={selectDefaultObject(storedWorkExperience, workExperience)}
 						control={control}
-						rules={{ required: fieldRequired }}
 						render={({ field }) => (
 							<SelectElement
 								options={workExperience}
 								{...field}
-								placeholder={workExperiencePlaceholder}
+								placeholder={JOB_WORK_EXPERIANCE_PLACEHOLDER}
 								isSearchable
 								isClearable
 								classNamePrefix="react-select"
@@ -214,25 +211,24 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 							<strong>
 								{errors?.workExperience?.label
 									? errors?.workExperience?.label.message
-									: fieldRequired}
+									: FIELD_REQUIRED}
 							</strong>
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>
 			</FieldWrapper>
 			<FieldWrapper>
-				<JobPostingLabel>{hourRateLabel}</JobPostingLabel>
+				<JobPostingLabel>{JOB_HOUR_RATE_LABEL}</JobPostingLabel>
 				<ErrorsHandlerWrapper positionRight={-20} width={15}>
 					<Controller
 						name="hourRate"
 						defaultValue={selectDefaultObject(storedHourRate, hourRate)}
 						control={control}
-						rules={{ required: fieldRequired }}
 						render={({ field }) => (
 							<SelectElement
 								options={hourRate}
 								{...field}
-								placeholder={hourRatePlaceholder}
+								placeholder={JOB_HOUR_RATE_PLACEHOLDER}
 								isSearchable
 								isClearable
 								classNamePrefix="react-select"
@@ -242,7 +238,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 					{errors?.hourRate && (
 						<StyledSpan fontSize="sm" type="validation">
 							<strong>
-								{errors?.hourRate?.label ? errors?.hourRate?.label.message : fieldRequired}
+								{errors?.hourRate?.label ? errors?.hourRate?.label.message : FIELD_REQUIRED}
 							</strong>
 						</StyledSpan>
 					)}

@@ -1,37 +1,34 @@
 import { array, object, SchemaOf, string } from "yup";
-import { useTranslation } from "react-i18next";
 import { IJobPostingSecondForm } from "@freelance/components";
+import { useJobsValidationErrorMessages } from "src/utils/constants/jobs-validation-error-messages";
 
 export const useSecondFormSchema = (): SchemaOf<IJobPostingSecondForm> => {
-	const { t } = useTranslation();
-
-	const maxCountries: string = t("newJobPosting.secondForm.validation.maxCountries");
-	const fieldRequired: string = t("newJobPosting.validation.messageFieldRequired");
+	const { FIELD_REQUIRED, MAX_COUNTRIES } = useJobsValidationErrorMessages();
 
 	return object({
 		countries: array(object({ value: string(), label: string() }))
-			.max(5, maxCountries)
-			.min(1, fieldRequired),
+			.max(5, MAX_COUNTRIES)
+			.min(1, FIELD_REQUIRED),
 		category: object({
-			value: string().required(fieldRequired),
-			label: string().required(fieldRequired),
+			value: string().required(FIELD_REQUIRED),
+			label: string().required(FIELD_REQUIRED),
 		}),
-		position: string().required(fieldRequired),
+		position: string().required(FIELD_REQUIRED),
 		employmentType: object({
-			value: string().required(fieldRequired),
-			label: string().required(fieldRequired),
+			value: string().required(FIELD_REQUIRED),
+			label: string().required(FIELD_REQUIRED),
 		}),
 		availableAmountOfHours: object({
-			value: string().required(fieldRequired),
-			label: string().required(fieldRequired),
+			value: string().required(FIELD_REQUIRED),
+			label: string().required(FIELD_REQUIRED),
 		}),
 		workExperience: object({
-			value: string().required(fieldRequired),
-			label: string().required(fieldRequired),
+			value: string().required(FIELD_REQUIRED),
+			label: string().required(FIELD_REQUIRED),
 		}),
 		hourRate: object({
-			value: string().required(fieldRequired),
-			label: string().required(fieldRequired),
+			value: string().required(FIELD_REQUIRED),
+			label: string().required(FIELD_REQUIRED),
 		}),
 	});
 };
