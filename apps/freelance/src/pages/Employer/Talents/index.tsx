@@ -1,4 +1,5 @@
 import { Dashboard, FreelancerCardsList, StyledPage } from "@freelance/components";
+import { Wrapper } from "@pages/WorkDetails/styles";
 import { useGetAllFreelancersQuery } from "src/redux/createFreelancer/freelancer-pageApi";
 
 export function TalentsPage() {

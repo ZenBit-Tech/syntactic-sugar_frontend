@@ -1,5 +1,3 @@
-export * from "./lib/freelancer-cards-list/freelancer-cards-list";
-export * from "./lib/freelancer-card/freelancer-card";
 export * from "./lib/employer-jobs-list/employer-jobs-list";
 export * from "./lib/employer-jobs-empty/employer-jobs-empty";
 export * from "./lib/employer-jobs-container/employer-jobs-container";
@@ -31,11 +29,13 @@ export * from "./lib/styles/inputComponents";
 
 // Cards Common Styles
 
-export * from "./lib/styles/cardsCommonStyles/index";
+export * from "./lib/styles/cardsCommonStyles";
 
 // Cards
 
 export * from "./lib/job-card/job-card";
+export * from "./lib/freelancer-cards-list/freelancer-cards-list";
+export * from "./lib/freelancer-card/freelancer-card";
 
 // Reset password forms
 

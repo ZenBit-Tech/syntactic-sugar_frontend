@@ -5,7 +5,7 @@ import {
 	CardTitleButton,
 	StyledJobCardParagraph,
 	FreelancerButtonWrapper,
-} from "../styles/cardsCommonStyles";
+} from "@freelance/components";
 
 export const StyledFreelancersCard = styled(StyledJobCard)`
 	width: 100%;
