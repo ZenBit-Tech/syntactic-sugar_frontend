@@ -6,7 +6,7 @@ export interface IuseLogout {
     handleLogout: () => void;
 }
 
-const useLogout = (): IuseLogout => {
+export const useLogout = (): IuseLogout => {
     const dispatch: AppDispatch = useDispatch();
 
     const handleLogout = (): void => {
@@ -17,5 +17,3 @@ const useLogout = (): IuseLogout => {
         handleLogout,
     }
 }
-
-export default useLogout;

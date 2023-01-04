@@ -79,3 +79,7 @@ export * from "./lib/pagination/pagination";
 // Create and Send Proposal
 
 export * from "./lib/create-proposal/create-proposal";
+
+//Logout
+
+export * from "./lib/logout/logoutHooks";

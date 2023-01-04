@@ -7,7 +7,7 @@ import { baseUrl } from "utils/constants/redux-query";
 import { DEFAULT_IMAGE } from "utils/constants/links";
 import { CREATE_PROFILE } from "utils/constants/breakpoint";
 import { Container, UserInfoWrapper, ButtonsWrapper, UserDetails } from "./dashboard-header.styled";
-import useLogout from "../logout/logoutHooks";
+import { useLogout } from "@freelance/components";
 
 export interface DashboardHeaderProps {
 	userRole: "freelancer" | "employer";
