@@ -5,7 +5,7 @@ import { Container } from "./pagination.styled";
 export interface CurrentItems {
 	currentItems: JobsInterface[] | undefined;
 	user: string;
-	typePage?: 'proposals' | 'jobs';
+	typePage?: "proposals" | "jobs";
 }
 
 export function Items({ currentItems, user, typePage }: CurrentItems) {

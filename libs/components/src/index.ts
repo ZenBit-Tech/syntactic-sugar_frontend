@@ -19,12 +19,15 @@ export * from "./lib/styles/global.styled";
 export * from "./lib/styles/typograghy";
 export * from "./lib/styles/buttons";
 export * from "./lib/modal-window/modal-window";
-export * from "./lib/job-card/job-card";
 export * from "./lib/styles/layouts";
-export * from "./lib/pagination/pagination";
 export * from "./lib/styles/inputComponents";
 
-export * from "./lib/send-proposal/send-proposal";
+// Cards Common Styles
+
+export * from "./lib/styles/cardsCommonStyles";
+
+// Cards
+
 export * from "./lib/job-card/job-card";
 
 // Reset password forms

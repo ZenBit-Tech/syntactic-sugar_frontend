@@ -7,12 +7,6 @@ import {
 	SendProposal,
 	CreateProposalonJob,
 	EditJobForm,
-} from "@freelance/components";
-import { InstObject, Proposal } from "redux/jobs";
-import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
-import { JOBS_PAGE } from "utils/constants/breakpoint";
-import { ROLES } from "utils/constants/roles";
-import {
 	StyledJobCard,
 	StyledJobCardHeader,
 	StyledJobCardParagraph,
@@ -22,7 +16,11 @@ import {
 	JobButtonContainer,
 	EmployerButtonWrapper,
 	FreelancerButtonWrapper,
-} from "./job-card.styled";
+} from "@freelance/components";
+import { InstObject, Proposal } from "redux/jobs";
+import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
+import { JOBS_PAGE } from "utils/constants/breakpoint";
+import { ROLES } from "utils/constants/roles";
 import { useJobCard } from "./job-cardHooks";
 
 export interface JobCardProps {
