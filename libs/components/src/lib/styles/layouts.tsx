@@ -73,3 +73,13 @@ export const GridContainer = styled.div<IGridContainer>`
 `;
 
 export const GridItem = styled.div``;
+
+interface IFlexContainer {
+	alignItems?: "start" | "end" | "center";
+	joustifyContent?: "between" | "arround" | "center";
+	culomn?: boolean;
+}
+
+export const FlexContainer = styled.div<IFlexContainer>`
+	display: flex;
+`;
