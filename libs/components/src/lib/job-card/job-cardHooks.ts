@@ -37,25 +37,25 @@ export const useJobCard = (isPublished: boolean): IUseJobCard => {
 		try {
 			await toggleIsPublishJob(id);
 		} catch {
-			toast.error("Something went wrong");
+			toast.error(t("serverErrorMessage"));
 		}
 	};
 
 	const openSendProposal = (): void => {
 		setProposalModalOpen(true);
-	}
+	};
 
 	const closeSendProposal = (): void => {
 		setProposalModalOpen(false);
-	}
+	};
 
 	const openCreateProposal = (): void => {
 		setDetailsModalOpen(true);
-	}
+	};
 
 	const closeCreateProposal = (): void => {
 		setDetailsModalOpen(false);
-	}
+	};
 
 	useEffect(() => {
 		if (isSuccess) toast.success(notification);
@@ -71,6 +71,6 @@ export const useJobCard = (isPublished: boolean): IUseJobCard => {
 		openCreateProposal,
 		closeCreateProposal,
 		proposalModalOpen,
-		detailsModalOpen
+		detailsModalOpen,
 	};
 };

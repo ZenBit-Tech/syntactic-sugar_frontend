@@ -28,7 +28,7 @@ export interface IFormInput {
 	englishLevel: SelectOptions;
 	hourRate: SelectOptions;
 	availableAmountOfHour: SelectOptions;
-	typePage?: 'proposals' | 'job';
+	typePage?: "proposals" | "job";
 }
 
 interface JobSkills {
@@ -176,7 +176,7 @@ export function SearchWork() {
 					<Wrapper>
 						<InputContainerCards>
 							<InputWrapper>
-								<Pagination itemsPerPage={5} user={user} jobs={filterJobs} typePage={JOBS_PAGE}/>
+								<Pagination itemsPerPage={5} user={user} data={filterJobs} typePage={JOBS_PAGE} />
 							</InputWrapper>
 						</InputContainerCards>
 						<InputContainer>

@@ -95,7 +95,11 @@
 			"myInvitations": "My Invitations",
 			"myOffers": "My Offers",
 			"publishedJobs": "Published Jobs",
-			"closedJobs": "Closed Jobs"
+			"closedJobs": "Closed Jobs",
+			"all": "All",
+			"contracts": "My contracts",
+			"invitation": "Invitations",
+			"filters": "Use filters"
 		},
 		"profilePage": {
 			"title": "My Profile"
@@ -366,5 +370,9 @@
 		"duration": "Duration",
 		"date": "Posting date",
 		"alreadySended": "Proposal already sended"
+	},
+	"talents": {
+		"inv": "Invite to interview",
+		"avatar": "User avatar"
 	}
 }

@@ -1,3 +1,5 @@
+export * from "./lib/freelancer-cards-list/freelancer-cards-list";
+export * from "./lib/freelancer-card/freelancer-card";
 export * from "./lib/employer-jobs-list/employer-jobs-list";
 export * from "./lib/employer-jobs-empty/employer-jobs-empty";
 export * from "./lib/employer-jobs-container/employer-jobs-container";
@@ -76,4 +78,3 @@ export * from "./lib/skeletons";
 // Create and Send Proposal
 
 export * from "./lib/create-proposal/create-proposal";
-

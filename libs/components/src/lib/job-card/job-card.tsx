@@ -1,8 +1,14 @@
 import { useTranslation } from "react-i18next";
-import { StyledButton, StyledParagraph, CardModal, SendProposal, CreateProposalonJob } from "@freelance/components";
+import moment from "moment";
+import {
+	StyledButton,
+	StyledParagraph,
+	CardModal,
+	SendProposal,
+	CreateProposalonJob,
+} from "@freelance/components";
 import { InstObject, Proposal } from "redux/jobs";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
-import moment from "moment";
 import { JOBS_PAGE } from "utils/constants/breakpoint";
 import { ROLES } from "utils/constants/roles";
 import {
@@ -35,7 +41,7 @@ export interface JobCardProps {
 	skills?: InstObject[];
 	category?: InstObject;
 	isPublished: boolean;
-	typePage?: 'proposals' | 'jobs';
+	typePage?: "proposals" | "jobs";
 }
 
 export function JobCard({
@@ -54,7 +60,7 @@ export function JobCard({
 }: JobCardProps) {
 	const { t } = useTranslation();
 	const { data } = useGetFreelancerQuery();
-	const prettyDate = moment(createdDate).format('LL');
+	const prettyDate = moment(createdDate).format("LL");
 	const {
 		handleSendProrposalClick,
 		handleToggleIsPublishedButton,
@@ -64,7 +70,7 @@ export function JobCard({
 		closeSendProposal,
 		isTogglingJob,
 		proposalModalOpen,
-		detailsModalOpen
+		detailsModalOpen,
 	} = useJobCard(isPublished);
 
 	const isProposal = data?.proposals
@@ -82,7 +88,12 @@ export function JobCard({
 					<>
 						{typePage === JOBS_PAGE && !isProposal && (
 							<FreelancerButtonWrapper>
-								<StyledButton buttonColor="redGradient" buttonSize="md" fontSize="sm" onClick={openSendProposal}>
+								<StyledButton
+									buttonColor="redGradient"
+									buttonSize="md"
+									fontSize="sm"
+									onClick={openSendProposal}
+								>
 									<strong>{t("jobCard.sendProposal")}</strong>
 								</StyledButton>
 							</FreelancerButtonWrapper>
@@ -134,10 +145,7 @@ export function JobCard({
 					{t("jobCard.englishLevel")}: <strong>{levelEnglish}</strong>
 				</StyledParagraph>
 			</StyledJobCardParagraph>
-			<CardModal
-				open={detailsModalOpen}
-				onCancel={closeCreateProposal}
-				width={1000}>
+			<CardModal open={detailsModalOpen} onCancel={closeCreateProposal} width={1000}>
 				<CreateProposalonJob
 					id={jobId}
 					typePage={typePage}
@@ -146,13 +154,8 @@ export function JobCard({
 					isProposal={isProposal}
 				/>
 			</CardModal>
-			<CardModal
-				open={proposalModalOpen}
-				onCancel={closeSendProposal}
-				width={1000}>
-				<SendProposal
-					id={jobId}
-					onCancel={closeSendProposal} />
+			<CardModal open={proposalModalOpen} onCancel={closeSendProposal} width={1000}>
+				<SendProposal id={jobId} onCancel={closeSendProposal} />
 			</CardModal>
 		</StyledJobCard>
 	);

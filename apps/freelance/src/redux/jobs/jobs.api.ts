@@ -103,7 +103,7 @@ export const getJobsApi = createApi({
 				method: "DELETE",
 			}),
 			invalidatesTags: ["Job"],
-		})
+		}),
 	}),
 });
 
@@ -117,4 +117,3 @@ export const {
 	useRemoveProposalByIdMutation,
 	useToggleIsPublishJobMutation,
 } = getJobsApi;
-
