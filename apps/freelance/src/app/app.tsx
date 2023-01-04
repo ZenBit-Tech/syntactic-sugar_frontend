@@ -23,6 +23,7 @@ import { SearchWork } from "@pages/Freelancer/SearchWork";
 import { EmployerJobsPage } from "@pages/Employer/EmployerJobsPage";
 import { ProposalsPage } from "@pages/Freelancer/ProposalsPage";
 import { StyledApp } from "./app.styled";
+import { PrivateRoute, PublicRoute } from "src/protectedRoutes/protectedRoutes";
 
 export function App() {
 	return (
@@ -31,7 +32,6 @@ export function App() {
 				<Provider store={store}>
 					<BrowserRouter>
 						<Routes>
-							<Route path="/" element={<Login />} />
 							<Route path="/signup" element={<Signup />} />
 							<Route path="/role" element={<Role />} />
 							<Route path="/recover-password" element={<RecoverPasswordRequest />} />
@@ -45,7 +45,6 @@ export function App() {
 							<Route path="/freelancer/view-profile" element={<ViewProfile />} />
 							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />
 							<Route path="/freelancer/create-profile2" element={<CreateProfile2 />} />
-							<Route path="/freelancer/searchwork" element={<SearchWork />} />
 							<Route path="/freelancer/proposals" element={<ProposalsPage />} />
 							<Route path="/employer/create-profile" element={<CreateEmployerProfile />} />
 							<Route path="/employer/my-jobs-page" element={<EmployerJobsPage />} />
@@ -55,6 +54,22 @@ export function App() {
 								element={<JobPostingSecondPage />}
 							/>
 							<Route path="/employer/create-new-job-third-page" element={<JobPostingThirdPage />} />
+							<Route
+								path="/freelancer/searchwork"
+								element={
+									<PrivateRoute path="/">
+										<SearchWork />
+									</PrivateRoute>
+								}
+							/>
+							<Route
+								path="/"
+								element={
+									<PublicRoute path="/freelancer/searchwork">
+										<Login />
+									</PublicRoute>
+								}
+							/>
 						</Routes>
 					</BrowserRouter>
 				</Provider>
