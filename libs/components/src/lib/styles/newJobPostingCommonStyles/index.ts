@@ -27,7 +27,7 @@ export const IncreasedFieldWrapper = styled.div<IIncreasedFieldWrapper>`
 		switch (typeOfLength) {
 			case "full":
 				return css`
-					width: 80%;
+					width: 90%;
 				`;
 			case "half":
 				return css`

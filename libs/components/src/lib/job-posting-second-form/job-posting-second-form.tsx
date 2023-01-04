@@ -64,7 +64,7 @@ export function JobPostingSecondForm({ page }: IJobPostingFormProps) {
 		<JobPostingGridForm id={page} onSubmit={handleSubmit(onSubmit)} justifyItems="center">
 			<IncreasedFieldWrapper gridRow={1} typeOfLength="full">
 				<JobPostingLabel>{JOB_COUNTRIES_LABEL}</JobPostingLabel>
-				<ErrorsHandlerWrapper positionRight={-20} width={15}>
+				<ErrorsHandlerWrapper positionRight={-12} width={10}>
 					<Controller
 						name="countries"
 						defaultValue={selectDefaultArray(storedCountries, countries)}
