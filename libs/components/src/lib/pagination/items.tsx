@@ -29,6 +29,7 @@ export function Items({ currentItems, user, typePage }: CurrentItems) {
 							userType={user}
 							typePage={typePage}
 							isPublished={job.isPublished}
+              employer={job.employer}
 						/>
 					);
 				})}

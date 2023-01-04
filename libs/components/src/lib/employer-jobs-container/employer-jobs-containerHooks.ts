@@ -23,7 +23,8 @@ export const useEmployerJobsContainerHook = ({
 	const { data, isLoading } = useGetJobsByEmployerQuery();
 
 	const createButton = t("employerJobsPage.createButton");
-	const arrayJobs = data?.filter(job => job.isPublished === isPublished);
+	// const arrayJobs = data?.filter(job => job.isPublished === isPublished);
+  const arrayJobs = data;
 
 	const handleClick = (): void => {
 		navigate(CREATE_NEW_JOB_FIRST_PAGE);

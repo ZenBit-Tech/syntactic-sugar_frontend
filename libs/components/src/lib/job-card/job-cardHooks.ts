@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useToggleIsPublishJobMutation } from "redux/jobs";
+import { useCreateChatMutation } from "redux/chat/chatApi"
 import { SEND_PROPOSAL_ID } from "utils/constants/links";
 
 interface IUseJobCard {
@@ -12,16 +13,21 @@ interface IUseJobCard {
 	closeSendProposal: () => void;
 	openCreateProposal: () => void;
 	closeCreateProposal: () => void;
+  openChat: () => void;
+  closeChat: () => void;
 	isTogglingJob: boolean;
 	proposalModalOpen: boolean;
 	detailsModalOpen: boolean;
+  chatModalOpen: boolean;
 }
 
-export const useJobCard = (isPublished: boolean): IUseJobCard => {
+export const useJobCard = (isPublished: boolean, jobId: string, employerId: string, freelancerId: any): IUseJobCard => {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 	const [proposalModalOpen, setProposalModalOpen] = useState<boolean>(false);
 	const [detailsModalOpen, setDetailsModalOpen] = useState<boolean>(false);
+  const [chatModalOpen, setChatModalOpen] = useState<boolean>(false);
+  const [createChat] = useCreateChatMutation();
 	const [toggleIsPublishJob, { isLoading: isTogglingJob, isSuccess, isError }] =
 		useToggleIsPublishJobMutation();
 
@@ -57,6 +63,20 @@ export const useJobCard = (isPublished: boolean): IUseJobCard => {
 		setDetailsModalOpen(false);
 	}
 
+  const openChat = async (): Promise<void> => {
+    try {
+      createChat({freelancerId, employerId, jobId})
+      setChatModalOpen(true);
+    } catch (error) {
+      toast.error("Something went wrong");
+    }
+
+	};
+
+	const closeChat = (): void => {
+		setChatModalOpen(false);
+	};
+
 	useEffect(() => {
 		if (isSuccess) toast.success(notification);
 		if (isError) toast.error(t("serverErrorMessage"));
@@ -71,6 +91,9 @@ export const useJobCard = (isPublished: boolean): IUseJobCard => {
 		openCreateProposal,
 		closeCreateProposal,
 		proposalModalOpen,
-		detailsModalOpen
+		detailsModalOpen,
+		chatModalOpen,
+		openChat,
+		closeChat,
 	};
 };
