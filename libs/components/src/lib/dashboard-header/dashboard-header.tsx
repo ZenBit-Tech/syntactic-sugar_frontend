@@ -7,16 +7,18 @@ import { baseUrl } from "utils/constants/redux-query";
 import { DEFAULT_IMAGE } from "utils/constants/links";
 import { CREATE_PROFILE } from "utils/constants/breakpoint";
 import { Container, UserInfoWrapper, ButtonsWrapper, UserDetails } from "./dashboard-header.styled";
+import { useLogout } from "@freelance/components";
 
 export interface DashboardHeaderProps {
 	userRole: "freelancer" | "employer";
-	typePage?: "createProfile" | "main" | "proposals" | "employerJobs" | "jobs";
+	typePage?: "createProfile" | "main" | "proposals" | "employerJobs" | "jobs" | "talents";
 }
 
 export function DashboardHeader({ userRole, typePage }: DashboardHeaderProps) {
 	const { t } = useTranslation();
 	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const { data } = userRole === ROLES.FREELANCER ? useGetFreelancerQuery() : useGetEmployerQuery();
+	const { handleLogout } = useLogout();
 
 	return (
 		<Container>
@@ -41,7 +43,7 @@ export function DashboardHeader({ userRole, typePage }: DashboardHeaderProps) {
 						{t("dashboard.header.chat")}
 						<img src="/assets/images/chat_btn_icon.png" alt="Chat Icon" />
 					</StyledButton>
-					<StyledButton buttonSize="md" buttonColor="darkRed" fontSize="md">
+					<StyledButton buttonSize="md" buttonColor="darkRed" fontSize="md" onClick={handleLogout}>
 						{t("dashboard.header.logout")}
 						<img src="/assets/images/logout_btn_icon.png" alt="Logout Icon" />
 					</StyledButton>
@@ -53,7 +55,7 @@ export function DashboardHeader({ userRole, typePage }: DashboardHeaderProps) {
 						{t("dashboard.header.chat")}
 						<img src="/assets/images/chat_btn_icon.png" alt="Chat Icon" />
 					</StyledButton>
-					<StyledButton buttonSize="md" buttonColor="darkRed" fontSize="md">
+					<StyledButton buttonSize="md" buttonColor="darkRed" fontSize="md" onClick={handleLogout}>
 						{t("dashboard.header.logout")}
 						<img src="/assets/images/logout_btn_icon.png" alt="Logout Icon" />
 					</StyledButton>

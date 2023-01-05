@@ -11,7 +11,9 @@
 		{
 			"files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
 			"parserOptions": {
-				"project": ["libs/components/**/*.{ts,tsx,js,jsx}"]
+				"project": ["libs/components/**/*.{ts,tsx,js,jsx}"],
+				"eslintConfig": ".eslintrc.json",
+				"fix": true
 			},
 			"rules": {
 				"padding-line-between-statements": [

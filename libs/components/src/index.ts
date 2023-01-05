@@ -29,6 +29,8 @@ export * from "./lib/styles/cardsCommonStyles";
 // Cards
 
 export * from "./lib/job-card/job-card";
+export * from "./lib/freelancer-cards-list/freelancer-cards-list";
+export * from "./lib/freelancer-card/freelancer-card";
 
 // Reset password forms
 
@@ -82,3 +84,7 @@ export * from "./lib/pagination/pagination";
 // Create and Send Proposal
 
 export * from "./lib/create-proposal/create-proposal";
+
+//Logout
+
+export * from "./lib/logout/logoutHooks";

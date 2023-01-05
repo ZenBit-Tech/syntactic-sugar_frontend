@@ -1,6 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { workHistoryProps, educationProps } from "redux/createFreelancer/freelancer-slice";
 import { baseQuery } from "redux/base-query";
+import { InstObject, Proposal } from "redux/jobs/jobs.api";
 
 export interface IFormInput {
 	fullName: string;
@@ -26,11 +27,11 @@ export interface Published {
 export interface IResponse {
 	id: string;
 	fullName: string;
-	category: { id: number; name: string };
+	category: InstObject;
 	position: string;
-	skills: { id: number; name: string }[];
+	skills: InstObject[];
 	employmentType: string;
-	country: { id: number; name: string };
+	country: InstObject;
 	hourRate: string;
 	availableAmountOfHours: string;
 	workExperience: string;
@@ -39,8 +40,10 @@ export interface IResponse {
 	workHistory?: workHistoryProps[];
 	otherExperience?: string;
 	isPublished: boolean;
+	createdDate: string;
+	updatedDate: string;
 	image: string;
-	proposals: { id: string; coverLetter: string }[];
+	proposals: Proposal[];
 	user: { id: number; email: string };
 }
 
@@ -48,7 +51,7 @@ export const createFreelancerApi = createApi({
 	reducerPath: "createFreelancer",
 	baseQuery: baseQuery,
 	refetchOnFocus: true,
-	tagTypes: ["freelancer", "published", "proposal"],
+	tagTypes: ["freelancer", "published", "proposal", "freelancers"],
 	endpoints: builder => ({
 		createFreelancer: builder.mutation({
 			query: (body: IFormInput) => ({
@@ -67,11 +70,19 @@ export const createFreelancerApi = createApi({
 			invalidatesTags: ["published"],
 		}),
 		getFreelancer: builder.query<IResponse, void>({
-			query: () => `/freelancer/profile`,
+			query: () => "/freelancer/profile",
 			providesTags: ["freelancer"],
+		}),
+		getAllFreelancers: builder.query<IResponse[], void>({
+			query: () => "/freelancer/get-all-profiles",
+			providesTags: ["freelancers"],
 		}),
 	}),
 });
 
-export const { useCreateFreelancerMutation, useAddPublishedMutation, useGetFreelancerQuery } =
-	createFreelancerApi;
+export const {
+	useCreateFreelancerMutation,
+	useAddPublishedMutation,
+	useGetFreelancerQuery,
+	useGetAllFreelancersQuery,
+} = createFreelancerApi;

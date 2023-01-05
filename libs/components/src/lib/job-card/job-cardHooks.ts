@@ -37,7 +37,7 @@ export const useJobCard = ({ isPublished }: IUseJobCardParams): IUseJobCard => {
 		try {
 			await toggleIsPublishJob(id);
 		} catch {
-			toast.error("Something went wrong");
+			toast.error(t("serverErrorMessage"));
 		}
 	};
 

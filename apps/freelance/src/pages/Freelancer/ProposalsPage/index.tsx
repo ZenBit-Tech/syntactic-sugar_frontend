@@ -10,7 +10,7 @@ export function ProposalsPage() {
 		<StyledPage>
 			<Dashboard userRole="freelancer" typePage={PROPOSALS_PAGE}>
 				<Wrapper>
-					<Pagination itemsPerPage={5} user="freelancer" jobs={data} typePage={PROPOSALS_PAGE} />
+					<Pagination itemsPerPage={5} user="freelancer" data={data} typePage={PROPOSALS_PAGE} />
 				</Wrapper>
 			</Dashboard>
 		</StyledPage>

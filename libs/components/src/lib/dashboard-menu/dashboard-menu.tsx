@@ -1,12 +1,12 @@
 import { useTranslation } from "react-i18next";
 import { FilterButton, StyledButton } from "@freelance/components";
 import { ROLES } from "utils/constants/roles";
-import { EMPLOYER_JOBS, PROPOSALS_PAGE } from "utils/constants/breakpoint";
+import { EMPLOYER_JOBS, PROPOSALS_PAGE, TALENTS_PAGE } from "utils/constants/breakpoint";
 import { Container, FilterButtonWrap } from "./dashboard-menu.styled";
 
 export interface DashboardMenuProps {
 	userRole: "freelancer" | "employer";
-	typePage?: "createProfile" | "main" | "proposals" | "employerJobs" | "jobs";
+	typePage?: "createProfile" | "main" | "proposals" | "employerJobs" | "jobs" | "talents";
 	filterState?: boolean;
 	handleToggleFilter?: () => void;
 }
@@ -80,6 +80,22 @@ export function DashboardMenu({
 								disabled={!filterState}
 							>
 								{t("dashboard.menu.closedJobs")}
+							</FilterButton>
+						</FilterButtonWrap>
+					)}
+					{typePage === TALENTS_PAGE && (
+						<FilterButtonWrap>
+							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
+								{t("dashboard.menu.all")}
+							</FilterButton>
+							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
+								{t("dashboard.menu.contracts")}
+							</FilterButton>
+							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
+								{t("dashboard.menu.invitation")}
+							</FilterButton>
+							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
+								{t("dashboard.menu.filters")}
 							</FilterButton>
 						</FilterButtonWrap>
 					)}
