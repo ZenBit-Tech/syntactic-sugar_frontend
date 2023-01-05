@@ -178,7 +178,7 @@ export function SearchWork() {
 					<Wrapper>
 						<InputContainerCards>
 							<InputWrapper>
-								<Pagination itemsPerPage={5} user={user} jobs={filterJobs} typePage={JOBS_PAGE} />
+								<Pagination itemsPerPage={5} user={user} data={filterJobs} typePage={JOBS_PAGE} />
 							</InputWrapper>
 						</InputContainerCards>
 						<InputContainer>

@@ -11,7 +11,7 @@ import { useLogout } from "@freelance/components";
 
 export interface DashboardHeaderProps {
 	userRole: "freelancer" | "employer";
-	typePage?: "createProfile" | "main" | "proposals" | "employerJobs" | "jobs";
+	typePage?: "createProfile" | "main" | "proposals" | "employerJobs" | "jobs" | "talents";
 }
 
 export function DashboardHeader({ userRole, typePage }: DashboardHeaderProps) {

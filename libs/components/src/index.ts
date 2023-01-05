@@ -29,6 +29,8 @@ export * from "./lib/styles/cardsCommonStyles";
 // Cards
 
 export * from "./lib/job-card/job-card";
+export * from "./lib/freelancer-cards-list/freelancer-cards-list";
+export * from "./lib/freelancer-card/freelancer-card";
 
 // Reset password forms
 

@@ -37,6 +37,7 @@ export const ROLE_PAGE = "/role-page";
 
 export const PROPOSALS_PAGE = "proposals";
 export const JOBS_PAGE = "jobs";
+export const TALENTS_PAGE = "talents";
 
 // Dashboard-header
 
