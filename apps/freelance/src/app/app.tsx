@@ -22,8 +22,8 @@ import { CreateProfile2 } from "@pages/Freelancer/CreateProfile2";
 import { SearchWork } from "@pages/Freelancer/SearchWork";
 import { EmployerJobsPage } from "@pages/Employer/EmployerJobsPage";
 import { ProposalsPage } from "@pages/Freelancer/ProposalsPage";
-import { StyledApp } from "./app.styled";
 import { TalentsPage } from "@pages/Employer/Talents";
+import { StyledApp } from "./app.styled";
 
 export function App() {
 	return (

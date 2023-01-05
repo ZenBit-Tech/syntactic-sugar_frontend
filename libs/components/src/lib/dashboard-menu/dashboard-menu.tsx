@@ -85,20 +85,10 @@ export function DashboardMenu({
 					)}
 					{typePage === TALENTS_PAGE && (
 						<FilterButtonWrap>
-							<FilterButton
-								onClick={handleToggleFilter}
-								buttonSize="filter"
-								fontSize="md"
-								buttonColor="lightRed"
-							>
+							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
 								{t("dashboard.menu.all")}
 							</FilterButton>
-							<FilterButton
-								onClick={handleToggleFilter}
-								buttonSize="filter"
-								fontSize="md"
-								buttonColor="lightRed"
-							>
+							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
 								{t("dashboard.menu.contracts")}
 							</FilterButton>
 							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
