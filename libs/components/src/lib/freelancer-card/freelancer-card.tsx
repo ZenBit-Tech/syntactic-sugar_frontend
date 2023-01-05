@@ -12,8 +12,10 @@ import {
 	Wrapper,
 	WrapperContainer,
 	StyledContainer,
+	ParagraphWrapper,
 } from "./freelancer-card.styled";
 import { useFreelancerCard } from "./freelancer-cardHook";
+import { baseUrl } from "utils/constants/redux-query";
 
 export interface FreelancerCardProps {
 	id: string;
@@ -69,47 +71,58 @@ export function FreelancerCard({
 		<StyledFreelancersCard>
 			<Header>
 				<WrapperContainer>
+					<img src={image ? baseUrl + "/" + image : DEFAULT_IMAGE} alt="User Avatar" />
 					<Wrapper>
-						{image ? (
-							<img src={image} alt={t("talents.avatar")} />
-						) : (
-							<img src={DEFAULT_IMAGE} alt={t("talents.avatar")} />
-						)}
-						<Title onClick={openFreelancerProfile}>{`${fullName}`}</Title>
-						<StyledParagraph fontSize="md" opacity={0.7}>
+						<div>
+							<Title onClick={openFreelancerProfile}>{`${fullName}`}</Title>
 							<strong>{hourRate}</strong>
+						</div>
+						<StyledParagraph fontSize="md" opacity={0.7}>
+							<strong>{position}</strong>
 						</StyledParagraph>
 					</Wrapper>
-					<StyledParagraph fontSize="md" opacity={0.7}>
-						<strong>{position}</strong>
-					</StyledParagraph>
 				</WrapperContainer>
 
 				<StyledContainer>
 					<StyledButton
-						buttonColor="redGradient"
-						buttonSize="sm"
+						buttonSize="md"
+						buttonColor="lightRed"
 						fontSize="md"
 						// onClick={}
 					>
-						<strong>{t("talents.inv")}</strong>
+						{t("talents.inv")}
 					</StyledButton>
 					<strong>{prettyDate}</strong>
 				</StyledContainer>
 			</Header>
 			<FreelancerStyledParagraph>
-				<StyledParagraph fontSize="md" opacity={0.7}>
-					<strong>{country.name}</strong>
-				</StyledParagraph>
-				<StyledParagraph fontSize="md" opacity={0.7}>
-					<strong>{employmentType}</strong>
-				</StyledParagraph>
-				<StyledParagraph fontSize="md" opacity={0.7}>
-					<strong>{workExperience}</strong>
-				</StyledParagraph>
-				<StyledParagraph fontSize="md" opacity={0.7}>
-					<strong>{englishLevel}</strong>
-				</StyledParagraph>
+				<ParagraphWrapper>
+					<StyledParagraph fontSize="md" opacity={0.7}>
+						{country.name}
+					</StyledParagraph>
+				</ParagraphWrapper>
+				<ParagraphWrapper>
+					<StyledParagraph fontSize="md" opacity={0.7}>
+						{employmentType}
+					</StyledParagraph>
+				</ParagraphWrapper>
+				<ParagraphWrapper>
+					<StyledParagraph fontSize="md" opacity={0.7}>
+						{workExperience}
+					</StyledParagraph>
+				</ParagraphWrapper>
+				{skills.map(skill => (
+					<ParagraphWrapper>
+						<StyledParagraph fontSize="md" opacity={0.7}>
+							{skill.name}
+						</StyledParagraph>
+					</ParagraphWrapper>
+				))}
+				<ParagraphWrapper>
+					<StyledParagraph fontSize="md" opacity={0.7}>
+						{englishLevel}
+					</StyledParagraph>
+				</ParagraphWrapper>
 			</FreelancerStyledParagraph>
 		</StyledFreelancersCard>
 	);

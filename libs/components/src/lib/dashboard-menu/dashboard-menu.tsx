@@ -101,20 +101,10 @@ export function DashboardMenu({
 							>
 								{t("dashboard.menu.contracts")}
 							</FilterButton>
-							<FilterButton
-								onClick={handleToggleFilter}
-								buttonSize="filter"
-								fontSize="md"
-								buttonColor="lightRed"
-							>
+							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
 								{t("dashboard.menu.invitation")}
 							</FilterButton>
-							<FilterButton
-								onClick={handleToggleFilter}
-								buttonSize="filter"
-								fontSize="md"
-								buttonColor="lightRed"
-							>
+							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
 								{t("dashboard.menu.filters")}
 							</FilterButton>
 						</FilterButtonWrap>
