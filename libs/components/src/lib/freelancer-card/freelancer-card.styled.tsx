@@ -4,7 +4,6 @@ import {
 	StyledJobCardHeader,
 	CardTitleButton,
 	StyledJobCardParagraph,
-	FreelancerButtonWrapper,
 } from "@freelance/components";
 
 export const StyledFreelancersCard = styled(StyledJobCard)`
@@ -13,7 +12,7 @@ export const StyledFreelancersCard = styled(StyledJobCard)`
 
 export const Header = styled(StyledJobCardHeader)`
 	grid-template-columns: repeat(2, 1fr);
-	justify-items: flex-start;
+	justify-items: end;
 	align-items: center;
 	border-bottom: none;
 
@@ -24,16 +23,10 @@ export const Header = styled(StyledJobCardHeader)`
 	}
 `;
 
-export const Title = styled(CardTitleButton)``;
+export const TitleBox = styled.div``;
 
 export const FreelancerStyledParagraph = styled(StyledJobCardParagraph)`
 	display: flex;
-`;
-
-export const TitleWrapper = styled.div`
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
 `;
 
 export const Wrapper = styled.div`
@@ -53,7 +46,7 @@ export const WrapperContainer = styled.div`
 
 export const StyledContainer = styled.div`
 	display: flex;
-	width: 80%;
+	width: 70%;
 	align-items: baseline;
 	justify-content: space-around;
 `;

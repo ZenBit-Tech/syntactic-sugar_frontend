@@ -1,21 +1,21 @@
 import { useTranslation } from "react-i18next";
 import moment from "moment";
-import { StyledButton, StyledParagraph } from "@freelance/components";
+import { CardTitleButton, StyledButton, StyledParagraph } from "@freelance/components";
 import { educationProps, workHistoryProps } from "redux/createFreelancer/freelancer-slice";
 import { InstObject, Proposal } from "redux/jobs";
+import { baseUrl } from "utils/constants/redux-query";
 import { DEFAULT_IMAGE } from "utils/constants/links";
 import {
 	Header,
 	StyledFreelancersCard,
-	Title,
 	FreelancerStyledParagraph,
 	Wrapper,
 	WrapperContainer,
 	StyledContainer,
 	ParagraphWrapper,
+	TitleBox,
 } from "./freelancer-card.styled";
 import { useFreelancerCard } from "./freelancer-cardHook";
-import { baseUrl } from "utils/constants/redux-query";
 
 export interface FreelancerCardProps {
 	id: string;
@@ -73,23 +73,17 @@ export function FreelancerCard({
 				<WrapperContainer>
 					<img src={image ? baseUrl + "/" + image : DEFAULT_IMAGE} alt="User Avatar" />
 					<Wrapper>
-						<div>
-							<Title onClick={openFreelancerProfile}>{`${fullName}`}</Title>
+						<TitleBox>
+							<CardTitleButton onClick={openFreelancerProfile}>{`${fullName}`}</CardTitleButton>
 							<strong>{hourRate}</strong>
-						</div>
+						</TitleBox>
 						<StyledParagraph fontSize="md" opacity={0.7}>
 							<strong>{position}</strong>
 						</StyledParagraph>
 					</Wrapper>
 				</WrapperContainer>
-
 				<StyledContainer>
-					<StyledButton
-						buttonSize="md"
-						buttonColor="lightRed"
-						fontSize="md"
-						// onClick={}
-					>
+					<StyledButton buttonSize="md" buttonColor="lightRed" fontSize="md">
 						{t("talents.inv")}
 					</StyledButton>
 					<strong>{prettyDate}</strong>
