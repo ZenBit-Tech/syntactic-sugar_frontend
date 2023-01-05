@@ -30,6 +30,7 @@ export function Items({ currentItems, user, typePage }: CurrentItems) {
 							availableAmountOfHours={job.availableAmountOfHours}
 							workExperience={job.workExperience}
 							levelEnglish={job.englishLevel}
+							skills={job.skills}
 							createdDate={job.createdDate}
 							updatedDate={job.updatedDate}
 							userType={user}

@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import moment from "moment";
 import {
 	GridContainer,
-	// ParagraphWrapper,
+	ParagraphWrapper,
 	// GridItem,
 	ImageContainer,
 	FlexContainer,
@@ -19,7 +19,7 @@ import {
 	LocationBlock,
 	CardTitleButton,
 	JobCardHeader,
-	JobButtonContainer,
+	// JobButtonContainer,
 	EmployerButtonWrapper,
 	FreelancerButtonWrapper,
 } from "@freelance/components";
@@ -49,7 +49,7 @@ export interface JobCardProps {
 	createdDate: string;
 	updatedDate?: string;
 	userType: string;
-	skills?: InstObject[];
+	skills: InstObject[];
 	category?: InstObject;
 	isPublished: boolean;
 	typePage?: "proposals" | "jobs";
@@ -69,15 +69,17 @@ export function JobCard({
 	proposals,
 	availableAmountOfHours,
 	workExperience,
+	skills,
 	levelEnglish,
 	createdDate,
+	updatedDate,
 	userType,
 	typePage,
 	isPublished,
 }: JobCardProps) {
 	const { t } = useTranslation();
 	const { data } = useGetFreelancerQuery();
-	const prettyDate = moment(createdDate).format("LL");
+	const prettyDate = moment(updatedDate).format("LL");
 	const {
 		handleToggleIsPublishedButton,
 		openSendProposal,
@@ -102,24 +104,25 @@ export function JobCard({
 		<StyledJobCard>
 			<JobCardHeader>
 				<GridContainer>
-					<FlexContainer>
+					<FlexContainer alignItems="baseline" gap={10}>
 						<CardTitleButton onClick={openCreateProposal}>{position}</CardTitleButton>
 						<StyledParagraph fontSize="md">{hourRate}</StyledParagraph>
 					</FlexContainer>
-					<FlexContainer>
-						<ImageContainer>
-							<img
-								src={employerImg ? baseUrl + "/" + employerImg : DEFAULT_IMAGE}
-								alt="User Avatar"
-							/>
-						</ImageContainer>
-						<StyledParagraph fontSize="md">
-							<strong>{employerCompany}</strong>, {employerName}, {employerPosition}
-						</StyledParagraph>
-					</FlexContainer>
+					{userType === ROLES.FREELANCER && (
+						<FlexContainer>
+							<ImageContainer>
+								<img
+									src={employerImg ? baseUrl + "/" + employerImg : DEFAULT_IMAGE}
+									alt="User Avatar"
+								/>
+							</ImageContainer>
+							<StyledParagraph fontSize="md">
+								<strong>{employerCompany}</strong>, {employerName}, {employerPosition}
+							</StyledParagraph>
+						</FlexContainer>
+					)}
 					<StyledParagraph fontSize="lg">{title}</StyledParagraph>
 				</GridContainer>
-				<strong>{prettyDate}</strong>
 				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && !isProposal && (
 					<FreelancerButtonWrapper>
 						<StyledButton
@@ -133,7 +136,7 @@ export function JobCard({
 					</FreelancerButtonWrapper>
 				)}
 				{userType === ROLES.EMPLOYER && (
-					<JobButtonContainer>
+					<GridContainer alignItems="center" justifyItems="center" gap={10}>
 						<EmployerButtonWrapper>
 							<StyledButton
 								onClick={() => handleEditJob(proposals)}
@@ -155,33 +158,36 @@ export function JobCard({
 								<strong>{isPublished ? t("jobCard.closeJob") : t("jobCard.publishJob")}</strong>
 							</StyledButton>
 						</EmployerButtonWrapper>
-					</JobButtonContainer>
+					</GridContainer>
 				)}
+				<GridContainer alignItems="center" justifyItems="center">
+					<strong>{prettyDate}</strong>
+				</GridContainer>
 			</JobCardHeader>
-			<StyledJobCardParagraph>
-				<LocationBlock>
-					<StyledParagraph fontSize="md" opacity={0.7}>
-						{t("jobCard.location")}:
-					</StyledParagraph>
-					<CountriesContainer>
-						{countries.map(country => (
-							<strong key={country.id}>{country.name} </strong>
-						))}
-					</CountriesContainer>
-				</LocationBlock>
-				<StyledParagraph fontSize="md" opacity={0.7}>
-					{t("jobCard.employmentType")}: <strong>{employmentType}</strong>
-				</StyledParagraph>
-				<StyledParagraph fontSize="md" opacity={0.7}>
-					{t("jobCard.option")}: <strong>{availableAmountOfHours}</strong>
-				</StyledParagraph>
-				<StyledParagraph fontSize="md" opacity={0.7}>
-					{t("jobCard.exp")}: <strong>{workExperience}</strong>
-				</StyledParagraph>
-				<StyledParagraph fontSize="md" opacity={0.7}>
-					{t("jobCard.englishLevel")}: <strong>{levelEnglish}</strong>
-				</StyledParagraph>
-			</StyledJobCardParagraph>
+			<FlexContainer gap={10}>
+				{countries.map(country => (
+					<ParagraphWrapper fontSize="md" opacity={0.8} key={country.id}>
+						{country.name}{" "}
+					</ParagraphWrapper>
+				))}
+				<ParagraphWrapper fontSize="md" opacity={0.8}>
+					{employmentType}
+				</ParagraphWrapper>
+				<ParagraphWrapper fontSize="md" opacity={0.8}>
+					{availableAmountOfHours}
+				</ParagraphWrapper>
+				<ParagraphWrapper fontSize="md" opacity={0.8}>
+					{workExperience}
+				</ParagraphWrapper>
+				<ParagraphWrapper fontSize="md" opacity={0.8}>
+					{levelEnglish}
+				</ParagraphWrapper>
+				{skills.map(skill => (
+					<ParagraphWrapper fontSize="md" opacity={0.8} key={skill.id}>
+						{skill.name}
+					</ParagraphWrapper>
+				))}
+			</FlexContainer>
 			<CardModal open={detailsModalOpen} onCancel={closeCreateProposal} width={1000}>
 				<CreateProposalonJob
 					id={jobId}

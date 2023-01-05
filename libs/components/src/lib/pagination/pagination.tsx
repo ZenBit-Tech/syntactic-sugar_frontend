@@ -11,7 +11,7 @@ export interface PaginationProps {
 	itemsPerPage: number;
 	user: string;
 	jobs?: JobsInterface[];
-	typePage?: 'proposals' | 'jobs';
+	typePage?: "proposals" | "jobs";
 }
 
 export interface ReactPaginateEvent {
@@ -26,6 +26,7 @@ export function Pagination({ itemsPerPage, user, jobs, typePage }: PaginationPro
 	const pageCount = Math.ceil(jobsLength / itemsPerPage);
 	const handlePageClick = (event: ReactPaginateEvent) => {
 		const newOffset = (event.selected * itemsPerPage) % jobsLength;
+
 		setItemOffset(newOffset);
 	};
 

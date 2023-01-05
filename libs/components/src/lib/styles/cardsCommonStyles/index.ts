@@ -9,7 +9,6 @@ export const StyledJobCard = styled.div`
 	padding: 10px;
 	border: 2px solid ${({ theme }) => theme.colors.grey};
 	border-radius: 10px;
-	max-height: 200px;
 	min-height: 130px;
 	overflow: hidden;
 	transition: all ease-in-out 0.4s;
@@ -72,13 +71,21 @@ export const FreelancerButtonWrapper = styled.div`
 	align-items: center;
 	justify-content: end;
 	width: 100%;
+
+	button {
+		border-radius: 12px;
+	}
 `;
 
 export const EmployerButtonWrapper = styled.div`
 	display: inline-block;
-	text-align: right;
-	width: 50%;
+	text-align: center;
+	width: 100%;
 	flex-grow: 1;
+
+	button {
+		border-radius: 12px;
+	}
 `;
 
 export const LocationBlock = styled.div`
