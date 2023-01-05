@@ -15,6 +15,7 @@ export interface DashboardHeaderProps {
 
 export function DashboardHeader({ userRole, typePage }: DashboardHeaderProps) {
 	const { t } = useTranslation();
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const { data } = userRole === ROLES.FREELANCER ? useGetFreelancerQuery() : useGetEmployerQuery();
 
 	return (

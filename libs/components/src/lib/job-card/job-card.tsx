@@ -1,6 +1,11 @@
 import { useTranslation } from "react-i18next";
 import moment from "moment";
 import {
+	GridContainer,
+	// ParagraphWrapper,
+	// GridItem,
+	ImageContainer,
+	FlexContainer,
 	StyledButton,
 	StyledParagraph,
 	CardModal,
@@ -8,11 +13,12 @@ import {
 	CreateProposalonJob,
 	EditJobForm,
 	StyledJobCard,
-	StyledJobCardHeader,
+	// StyledJobCardHeader,
 	StyledJobCardParagraph,
 	CountriesContainer,
 	LocationBlock,
 	CardTitleButton,
+	JobCardHeader,
 	JobButtonContainer,
 	EmployerButtonWrapper,
 	FreelancerButtonWrapper,
@@ -21,11 +27,19 @@ import { InstObject, Proposal } from "redux/jobs";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import { JOBS_PAGE } from "utils/constants/breakpoint";
 import { ROLES } from "utils/constants/roles";
+import { DEFAULT_IMAGE } from "utils/constants/links";
+import { baseUrl } from "utils/constants/redux-query";
 import { useJobCard } from "./job-cardHooks";
 
 export interface JobCardProps {
 	jobId: string;
 	position: string;
+	hourRate: string;
+	employerImg: string;
+	employerName: string;
+	employerCompany: string;
+	employerPosition: string;
+	title: string;
 	countries: InstObject[];
 	employmentType: string;
 	proposals: Proposal[];
@@ -44,6 +58,12 @@ export interface JobCardProps {
 export function JobCard({
 	jobId,
 	position,
+	hourRate,
+	employerImg,
+	employerName,
+	employerCompany,
+	employerPosition,
+	title,
 	countries,
 	employmentType,
 	proposals,
@@ -80,8 +100,25 @@ export function JobCard({
 
 	return (
 		<StyledJobCard>
-			<StyledJobCardHeader>
-				<CardTitleButton onClick={openCreateProposal}>{position}</CardTitleButton>
+			<JobCardHeader>
+				<GridContainer>
+					<FlexContainer>
+						<CardTitleButton onClick={openCreateProposal}>{position}</CardTitleButton>
+						<StyledParagraph fontSize="md">{hourRate}</StyledParagraph>
+					</FlexContainer>
+					<FlexContainer>
+						<ImageContainer>
+							<img
+								src={employerImg ? baseUrl + "/" + employerImg : DEFAULT_IMAGE}
+								alt="User Avatar"
+							/>
+						</ImageContainer>
+						<StyledParagraph fontSize="md">
+							<strong>{employerCompany}</strong>, {employerName}, {employerPosition}
+						</StyledParagraph>
+					</FlexContainer>
+					<StyledParagraph fontSize="lg">{title}</StyledParagraph>
+				</GridContainer>
 				<strong>{prettyDate}</strong>
 				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && !isProposal && (
 					<FreelancerButtonWrapper>
@@ -120,7 +157,7 @@ export function JobCard({
 						</EmployerButtonWrapper>
 					</JobButtonContainer>
 				)}
-			</StyledJobCardHeader>
+			</JobCardHeader>
 			<StyledJobCardParagraph>
 				<LocationBlock>
 					<StyledParagraph fontSize="md" opacity={0.7}>

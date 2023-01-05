@@ -3,7 +3,7 @@ import { JobsInterface } from "redux/jobs";
 import { Container } from "./pagination.styled";
 
 export interface CurrentItems {
-	currentItems: JobsInterface[] | undefined;
+	currentItems?: JobsInterface[];
 	user: string;
 	typePage?: "proposals" | "jobs";
 }
@@ -17,6 +17,12 @@ export function Items({ currentItems, user, typePage }: CurrentItems) {
 						<JobCard
 							key={job.id}
 							jobId={job.id}
+							hourRate={job.hourRate}
+							employerImg={job.employer.image}
+							employerName={job.employer.fullName}
+							employerCompany={job.employer.companyName}
+							employerPosition={job.employer.position}
+							title={job.title}
 							position={job.position}
 							countries={job.countries}
 							proposals={job.proposals}

@@ -1,11 +1,6 @@
 import styled from "styled-components";
-
-// export const Container = styled.div`
-// 	display: flex;
-// 	width: 100%;
-// 	flex-direction: column;
-// 	padding: 5px;
-// `;
+import { GridContainer } from "../layouts";
+import { StyledParagraph } from "../typograghy";
 
 export const StyledJobCard = styled.div`
 	display: grid;
@@ -21,6 +16,10 @@ export const StyledJobCard = styled.div`
 	:hover {
 		transform: scale(1.03);
 	}
+`;
+
+export const JobCardHeader = styled(GridContainer)`
+	grid-template-columns: 5fr 1fr 1fr;
 `;
 
 export const StyledJobCardHeader = styled.div`
@@ -53,6 +52,12 @@ export const StyledJobCardParagraph = styled.div`
 	strong {
 		font-size: 0.7rem;
 	}
+`;
+
+export const ParagraphWrapper = styled(StyledParagraph)`
+	border: 2px solid ${({ theme }) => theme.colors.grey};
+	border-radius: 10px;
+	width: auto;
 `;
 
 export const JobButtonContainer = styled.div`
@@ -89,4 +94,13 @@ export const CardTitleButton = styled.button`
 	font-size: 1.3rem;
 	font-weight: 500;
 	outline-style: none;
+`;
+
+export const ImageContainer = styled.div`
+	img {
+		display: block;
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+	}
 `;

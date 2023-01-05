@@ -72,14 +72,34 @@ export const GridContainer = styled.div<IGridContainer>`
 		`}
 `;
 
-export const GridItem = styled.div``;
+interface IGridItem {
+	gridColumn?: number;
+}
+
+export const GridItem = styled.div<IGridItem>``;
 
 interface IFlexContainer {
 	alignItems?: "start" | "end" | "center";
-	joustifyContent?: "between" | "arround" | "center";
+	justifyContent?: "space-between" | "space-arround" | "center";
 	culomn?: boolean;
 }
 
 export const FlexContainer = styled.div<IFlexContainer>`
 	display: flex;
+	${({ alignItems }) =>
+		alignItems &&
+		css`
+			align-items: ${alignItems};
+		`}
+
+	${({ justifyContent }) =>
+		justifyContent &&
+		css`
+			justify-content: ${justifyContent};
+		`}
+  ${({ culomn }) =>
+		culomn &&
+		css`
+			flex-direction: column;
+		`}
 `;
