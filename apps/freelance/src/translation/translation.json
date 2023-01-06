@@ -382,6 +382,9 @@
 	},
 	"talents": {
 		"inv": "Invite to interview",
-		"avatar": "User avatar"
+		"avatar": "User avatar",
+		"invitation": "Send invitation",
+		"send": "Send",
+		"select": "Select the job"
 	}
 }

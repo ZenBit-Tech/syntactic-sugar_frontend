@@ -6,8 +6,9 @@ import {
 	StyledButton,
 	StyledParagraph,
 	ViewProfile,
+	InvitationCard,
 } from "@freelance/components";
-import { educationProps, workHistoryProps } from "redux/createFreelancer/freelancer-slice";
+import { IEduResponse, IWorkHistoryResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { InstObject, Proposal } from "redux/jobs";
 import { baseUrl } from "utils/constants/redux-query";
 import { DEFAULT_IMAGE } from "utils/constants/links";
@@ -35,8 +36,8 @@ export interface FreelancerCardProps {
 	availableAmountOfHours: string;
 	workExperience: string;
 	englishLevel: string;
-	education?: educationProps[];
-	workHistory?: workHistoryProps[];
+	education?: IEduResponse[];
+	workHistory?: IWorkHistoryResponse[];
 	otherExperience?: string;
 	isPublished?: boolean;
 	createdDate: string;
@@ -70,8 +71,14 @@ export function FreelancerCard({
 }: FreelancerCardProps) {
 	const { t } = useTranslation();
 	const prettyDate = moment(createdDate).format("LL");
-	const { openFreelancerProfile, closeFreelancerProfile, freelancerProfileModalOpen } =
-		useFreelancerCard();
+	const {
+		openFreelancerProfile,
+		closeFreelancerProfile,
+		freelancerProfileModalOpen,
+		openInvitationModal,
+		closeInvitationModal,
+		invitationModalOpen,
+	} = useFreelancerCard();
 
 	return (
 		<StyledFreelancersCard key={id}>
@@ -89,7 +96,12 @@ export function FreelancerCard({
 					</Wrapper>
 				</WrapperContainer>
 				<StyledContainer>
-					<StyledButton buttonSize="md" buttonColor="lightRed" fontSize="md">
+					<StyledButton
+						onClick={openInvitationModal}
+						buttonSize="md"
+						buttonColor="lightRed"
+						fontSize="md"
+					>
 						<strong>{t("talents.inv")}</strong>
 					</StyledButton>
 					<strong>{prettyDate}</strong>
@@ -113,7 +125,7 @@ export function FreelancerCard({
 				</ParagraphWrapper>
 				{skills.map(skill => (
 					<ParagraphWrapper>
-						<StyledParagraph fontSize="md" opacity={0.7}>
+						<StyledParagraph key={skill.id} fontSize="md" opacity={0.7}>
 							{skill.name}
 						</StyledParagraph>
 					</ParagraphWrapper>
@@ -142,6 +154,9 @@ export function FreelancerCard({
 					otherExp={otherExperience}
 					workHistory={workHistory}
 				></ViewProfile>
+			</CardModal>
+			<CardModal open={invitationModalOpen} onCancel={closeInvitationModal} width={700}>
+				<InvitationCard></InvitationCard>
 			</CardModal>
 		</StyledFreelancersCard>
 	);

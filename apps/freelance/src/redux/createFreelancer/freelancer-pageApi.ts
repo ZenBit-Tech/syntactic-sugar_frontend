@@ -24,6 +24,20 @@ export interface Published {
 	isPublished: boolean;
 }
 
+export interface IEduResponse {
+	id: string;
+	institute: string;
+	occupation: string;
+	period: string;
+}
+
+export interface IWorkHistoryResponse {
+	id: string;
+	company: string;
+	workPosition: string;
+	period: string;
+}
+
 export interface IResponse {
 	id: string;
 	fullName: string;
@@ -36,8 +50,8 @@ export interface IResponse {
 	availableAmountOfHours: string;
 	workExperience: string;
 	englishLevel: string;
-	education?: educationProps[];
-	workHistory?: workHistoryProps[];
+	education?: IEduResponse[];
+	workHistory?: IWorkHistoryResponse[];
 	otherExperience?: string;
 	isPublished: boolean;
 	createdDate: string;

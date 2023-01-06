@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { StyledButton, StyledTitle } from "@freelance/components";
 import { InstObject } from "redux/jobs";
-import { workHistoryProps, educationProps } from "redux/createFreelancer/freelancer-slice";
+import { IWorkHistoryResponse, IEduResponse } from "redux/createFreelancer/freelancer-pageApi";
 import {
 	Container,
 	ItemContainer,
@@ -24,8 +24,8 @@ export interface ViewProfileProps {
 	salary: string;
 	workingHours: string;
 	skills: InstObject[];
-	workHistory?: workHistoryProps[];
-	education?: educationProps[];
+	workHistory?: IWorkHistoryResponse[];
+	education?: IEduResponse[];
 	otherExp?: string;
 	onCancel?: () => void;
 	goBack: () => void;
@@ -49,7 +49,7 @@ export function ViewProfile({
 	fullName,
 }: ViewProfileProps) {
 	const { t } = useTranslation();
-	console.log(education);
+
 	return (
 		<Container>
 			<StyledTitle tag="h1" fontSize="lg" fontWeight={500}>
@@ -86,7 +86,7 @@ export function ViewProfile({
 					</Title>
 					<SkillsWrapper>
 						{skills.map(skill => (
-							<p>{skill.name}</p>
+							<p key={skill.id}>{skill.name}</p>
 						))}
 					</SkillsWrapper>
 				</Item>
@@ -115,37 +115,37 @@ export function ViewProfile({
 					</Title>
 					<p>{english}</p>
 				</Item>
-				{otherExp && (
+				{/* {otherExp && (
 					<Item id="other">
 						<Title id="skills">
 							<strong>{t("freelancer.createProfile.otherExperienceLabel")}</strong>
 						</Title>
 						<p>{otherExp}</p>
 					</Item>
-				)}
+				)} */}
 
-				{workHistory && (
+				{/* {workHistory?.length && (
 					<Item>
 						<Title id="skills">
 							<strong>{t("freelancer.viewProfile.workHistory")}</strong>
 						</Title>
 						<>
-							{workHistory.map(item => {
-								<p>{`${item.company}, ${item.period}, ${item.workPosition}`}</p>;
+							{workHistory?.map(item => {
+								<p key={item.id}>{`${item.company}, ${item.period}, ${item.workPosition}`}</p>;
 							})}
 						</>
 					</Item>
 				)}
-				{education && (
+				{education?.length && (
 					<Item>
 						<Title id="skills">
 							<strong>{t("freelancer.createProfile.educationLabel")}</strong>
 						</Title>
-						{education.map(item => (
-							<p>{`${item.institute}, ${item.occupation}, ${item.period}`}</p>
+						{education?.map(item => (
+							<p key={item.id}>{`${item.institute}, ${item.occupation}, ${item.period}`}</p>
 						))}
-					</Item>
-				)}
+					</Item> */}
+				{/* )} */}
 			</ItemContainer>
 			<StyledButton
 				type="button"

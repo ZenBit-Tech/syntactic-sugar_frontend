@@ -32,6 +32,7 @@ export * from "./lib/job-card/job-card";
 export * from "./lib/freelancer-cards-list/freelancer-cards-list";
 export * from "./lib/freelancer-card/freelancer-card";
 export * from "./lib/view-profile/view-profile";
+export * from "./lib/invitation-card/invitation-card";
 
 // Reset password forms
 
