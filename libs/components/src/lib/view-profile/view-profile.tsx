@@ -2,28 +2,19 @@ import { useTranslation } from "react-i18next";
 import { StyledButton, StyledTitle } from "@freelance/components";
 import { InstObject } from "redux/jobs";
 import { IWorkHistoryResponse, IEduResponse } from "redux/createFreelancer/freelancer-pageApi";
-import {
-	Container,
-	ItemContainer,
-	Item,
-	Title,
-	Bottom,
-	Subcontainer,
-	Subtitle,
-	SkillsWrapper,
-} from "./view-profile.styled";
+import { Container, ItemContainer, Item, Title, SkillsWrapper } from "./view-profile.styled";
 
 export interface ViewProfileProps {
-	fullName: string;
-	category: InstObject;
-	country: InstObject;
-	position: string;
-	employment: string;
-	english: string;
-	experience: string;
-	salary: string;
-	workingHours: string;
-	skills: InstObject[];
+	fullName?: string;
+	category?: InstObject;
+	country?: InstObject;
+	position?: string;
+	employment?: string;
+	english?: string;
+	experience?: string;
+	salary?: string;
+	workingHours?: string;
+	skills?: InstObject[];
 	workHistory?: IWorkHistoryResponse[];
 	education?: IEduResponse[];
 	otherExp?: string;
@@ -60,13 +51,13 @@ export function ViewProfile({
 					<Title id="country">
 						<strong>{t("freelancer.createProfile.selectOption.country")}</strong>
 					</Title>
-					<p>{country.name}</p>
+					<p>{country?.name}</p>
 				</Item>
 				<Item>
 					<Title id="category">
 						<strong>{t("freelancer.createProfile.selectOption.category")}</strong>
 					</Title>
-					<p>{category.name}</p>
+					<p>{category?.name}</p>
 				</Item>
 				<Item>
 					<Title id="position">
@@ -85,7 +76,7 @@ export function ViewProfile({
 						<strong>{t("freelancer.createProfile.selectOption.skills")}</strong>
 					</Title>
 					<SkillsWrapper>
-						{skills.map(skill => (
+						{skills?.map(skill => (
 							<p key={skill.id}>{skill.name}</p>
 						))}
 					</SkillsWrapper>

@@ -45,14 +45,14 @@ export function JobDetailsCard({
 				</StyledTitle>
 				<Wrapper>
 					<img
-						src={data?.employer.image ? baseUrl + data?.employer.image : DEFAULT_IMAGE}
+						src={data?.employer?.image ? baseUrl + data?.employer.image : DEFAULT_IMAGE}
 						alt="User Avatar"
 					/>
 					<StyledTitle tag="h3" fontSize="md" fontWeight={500}>
-						{data?.employer.companyName}
+						{data?.employer?.companyName}
 					</StyledTitle>
 					<StyledTitle tag="h3" fontSize="md" fontWeight={500}>
-						{`${data?.employer.fullName}, ${data?.employer.position}`}
+						{`${data?.employer?.fullName}, ${data?.employer?.position}`}
 					</StyledTitle>
 				</Wrapper>
 			</Box>
@@ -108,7 +108,7 @@ export function JobDetailsCard({
 								<strong>{t("jobDetails.skills")}</strong>
 							</Title>
 							<div className="skillsContainer">
-								{data &&
+								{data?.skills &&
 									data?.skills.map(skill => {
 										return <p key={skill.id}>{skill.name}</p>;
 									})}

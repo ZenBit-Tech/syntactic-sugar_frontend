@@ -25,26 +25,26 @@ import {
 import { useFreelancerCard } from "./freelancer-cardHook";
 
 export interface FreelancerCardProps {
-	id: string;
-	fullName: string;
-	category: InstObject;
-	position: string;
-	skills: InstObject[];
-	employmentType: string;
-	country: InstObject;
-	hourRate: string;
-	availableAmountOfHours: string;
-	workExperience: string;
-	englishLevel: string;
+	id?: string;
+	fullName?: string;
+	category?: InstObject;
+	position?: string;
+	skills?: InstObject[];
+	employmentType?: string;
+	country?: InstObject;
+	hourRate?: string;
+	availableAmountOfHours?: string;
+	workExperience?: string;
+	englishLevel?: string;
 	education?: IEduResponse[];
 	workHistory?: IWorkHistoryResponse[];
 	otherExperience?: string;
 	isPublished?: boolean;
-	createdDate: string;
+	createdDate?: string;
 	updatedDate?: string;
 	image?: string;
 	proposals?: Proposal[];
-	user: { id: number; email: string };
+	user?: { id: number; email: string };
 }
 
 export function FreelancerCard({
@@ -110,7 +110,7 @@ export function FreelancerCard({
 			<FreelancerStyledParagraph>
 				<ParagraphWrapper>
 					<StyledParagraph fontSize="md" opacity={0.7}>
-						{country.name}
+						{country?.name}
 					</StyledParagraph>
 				</ParagraphWrapper>
 				<ParagraphWrapper>
@@ -123,7 +123,7 @@ export function FreelancerCard({
 						{workExperience}
 					</StyledParagraph>
 				</ParagraphWrapper>
-				{skills.map(skill => (
+				{skills?.map(skill => (
 					<ParagraphWrapper>
 						<StyledParagraph key={skill.id} fontSize="md" opacity={0.7}>
 							{skill.name}
