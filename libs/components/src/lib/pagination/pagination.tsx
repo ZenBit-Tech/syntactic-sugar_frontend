@@ -1,23 +1,47 @@
 import { useState } from "react";
-import { JobsInterface } from "redux/jobs";
+import { IEmployerResponse, InstObject, Proposal } from "redux/jobs";
 import {
 	PaginationContainer,
 	PaginationItemsWrapper,
 	StyledReactPagination,
 } from "./pagination.styled";
 import { Items } from "./items";
-import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
+import { educationProps, workHistoryProps } from "redux/createFreelancer/freelancer-slice";
+
+export interface CommonObject {
+	id: string;
+	title?: string;
+	description?: string;
+	position?: string;
+	countries?: InstObject[];
+	country?: InstObject;
+	employmentType?: string;
+	hourRate?: string;
+	availableAmountOfHours?: string;
+	workExperience?: string;
+	englishLevel?: string;
+	proposals?: Proposal[];
+	category?: InstObject;
+	skills?: InstObject[];
+	createdDate?: string;
+	updatedDate?: string;
+	isPublished?: boolean;
+	isProposal?: boolean;
+	otherRequirenments?: string;
+	employer?: IEmployerResponse;
+	fullName?: string;
+	education?: educationProps[];
+	workHistory?: workHistoryProps[];
+	otherExperience?: string;
+	image?: string;
+	user?: { id: number; email: string };
+}
 
 export interface PaginationProps {
 	itemsPerPage: number;
 	user: string;
-	// <<<<<<< HEAD
-	// 	jobs?: JobsInterface[];
-	// 	typePage?: "proposals" | "jobs";
-	// =======
-	data: Array<any> | undefined;
+	data?: CommonObject[];
 	typePage?: "proposals" | "jobs" | "talents";
-	// >>>>>>> develop
 }
 
 export interface ReactPaginateEvent {
@@ -44,7 +68,7 @@ export function Pagination({ itemsPerPage, user, data, typePage }: PaginationPro
 	return (
 		<PaginationContainer>
 			<PaginationItemsWrapper>
-				<Items jobs={currentItems} freelancers={currentItems} user={user} typePage={typePage} />
+				<Items data={currentItems} user={user} typePage={typePage} />
 			</PaginationItemsWrapper>
 			<StyledReactPagination
 				breakLabel="..."

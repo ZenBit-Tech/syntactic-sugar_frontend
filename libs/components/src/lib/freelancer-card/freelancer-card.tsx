@@ -18,26 +18,26 @@ import {
 import { useFreelancerCard } from "./freelancer-cardHook";
 
 export interface FreelancerCardProps {
-	id: string;
-	fullName: string;
-	category: InstObject;
-	position: string;
-	skills: InstObject[];
-	employmentType: string;
-	country: InstObject;
-	hourRate: string;
-	availableAmountOfHours: string;
-	workExperience: string;
-	englishLevel: string;
+	id?: string;
+	fullName?: string;
+	category?: InstObject;
+	position?: string;
+	skills?: InstObject[];
+	employmentType?: string;
+	country?: InstObject;
+	hourRate?: string;
+	availableAmountOfHours?: string;
+	workExperience?: string;
+	englishLevel?: string;
 	education?: educationProps[];
 	workHistory?: workHistoryProps[];
 	otherExperience?: string;
 	isPublished?: boolean;
-	createdDate: string;
+	createdDate?: string;
 	updatedDate?: string;
 	image?: string;
 	proposals?: Proposal[];
-	user: { id: number; email: string };
+	user?: { id: number; email: string };
 }
 
 export function FreelancerCard({
@@ -92,7 +92,7 @@ export function FreelancerCard({
 			<FreelancerStyledParagraph>
 				<ParagraphWrapper>
 					<StyledParagraph fontSize="md" opacity={0.7}>
-						{country.name}
+						{country?.name}
 					</StyledParagraph>
 				</ParagraphWrapper>
 				<ParagraphWrapper>
@@ -105,13 +105,14 @@ export function FreelancerCard({
 						{workExperience}
 					</StyledParagraph>
 				</ParagraphWrapper>
-				{skills.map(skill => (
-					<ParagraphWrapper>
-						<StyledParagraph fontSize="md" opacity={0.7}>
-							{skill.name}
-						</StyledParagraph>
-					</ParagraphWrapper>
-				))}
+				{skills &&
+					skills.map(skill => (
+						<ParagraphWrapper>
+							<StyledParagraph fontSize="md" opacity={0.7}>
+								{skill.name}
+							</StyledParagraph>
+						</ParagraphWrapper>
+					))}
 				<ParagraphWrapper>
 					<StyledParagraph fontSize="md" opacity={0.7}>
 						{englishLevel}

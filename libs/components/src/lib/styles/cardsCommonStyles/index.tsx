@@ -18,7 +18,7 @@ export const StyledJobCard = styled.div`
 `;
 
 export const JobCardHeader = styled(GridContainer)`
-	grid-template-columns: 5fr 1fr 1fr;
+	grid-template-columns: 4fr 1fr 1fr;
 `;
 
 export const StyledJobCardHeader = styled.div`
@@ -56,7 +56,17 @@ export const StyledJobCardParagraph = styled.div`
 export const ParagraphWrapper = styled(StyledParagraph)`
 	border: 2px solid ${({ theme }) => theme.colors.grey};
 	border-radius: 10px;
+	padding: 5px;
 	width: auto;
+`;
+
+export const CardNotification = styled(ParagraphWrapper)`
+	border: 6px double ${({ theme }) => theme.colors.grey};
+	font-size: 0.8rem;
+`;
+
+export const DateWrapper = styled(StyledParagraph)`
+	padding: 0.7rem 0;
 `;
 
 export const JobButtonContainer = styled.div`

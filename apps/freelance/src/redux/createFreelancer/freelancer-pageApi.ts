@@ -42,7 +42,7 @@ export interface IResponse {
 	isPublished: boolean;
 	createdDate: string;
 	updatedDate: string;
-	image: string;
+	image?: string;
 	proposals: Proposal[];
 	user: { id: number; email: string };
 }

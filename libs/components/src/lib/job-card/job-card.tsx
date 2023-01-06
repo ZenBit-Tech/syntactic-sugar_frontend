@@ -3,7 +3,6 @@ import moment from "moment";
 import {
 	GridContainer,
 	ParagraphWrapper,
-	// GridItem,
 	ImageContainer,
 	FlexContainer,
 	StyledButton,
@@ -13,6 +12,8 @@ import {
 	CreateProposalonJob,
 	EditJobForm,
 	StyledJobCard,
+	CardNotification,
+	DateWrapper,
 	// StyledJobCardHeader,
 	StyledJobCardParagraph,
 	CountriesContainer,
@@ -33,25 +34,25 @@ import { useJobCard } from "./job-cardHooks";
 
 export interface JobCardProps {
 	jobId: string;
-	position: string;
-	hourRate: string;
-	employerImg: string;
-	employerName: string;
-	employerCompany: string;
-	employerPosition: string;
-	title: string;
-	countries: InstObject[];
-	employmentType: string;
-	proposals: Proposal[];
-	availableAmountOfHours: string;
-	workExperience: string;
-	levelEnglish: string;
-	createdDate: string;
+	position?: string;
+	hourRate?: string;
+	employerImg?: string;
+	employerName?: string;
+	employerCompany?: string;
+	employerPosition?: string;
+	title?: string;
+	countries?: InstObject[];
+	employmentType?: string;
+	proposals?: Proposal[];
+	availableAmountOfHours?: string;
+	workExperience?: string;
+	levelEnglish?: string;
+	createdDate?: string;
 	updatedDate?: string;
-	userType: string;
-	skills: InstObject[];
+	userType?: string;
+	skills?: InstObject[];
 	category?: InstObject;
-	isPublished: boolean;
+	isPublished?: boolean;
 	typePage?: "proposals" | "jobs";
 }
 
@@ -71,7 +72,6 @@ export function JobCard({
 	workExperience,
 	skills,
 	levelEnglish,
-	createdDate,
 	updatedDate,
 	userType,
 	typePage,
@@ -94,11 +94,13 @@ export function JobCard({
 		isModalEditJob,
 	} = useJobCard({ isPublished });
 
-	const isProposal = data?.proposals
-		.map(proposal => {
-			return proposals.find(item => item.id === proposal.id);
-		})
-		.some(item => item !== undefined);
+	const isProposal =
+		data?.proposals &&
+		data?.proposals
+			.map(proposal => {
+				return proposals?.find(item => item.id === proposal.id);
+			})
+			.some(item => item !== undefined);
 
 	return (
 		<StyledJobCard>
@@ -161,15 +163,21 @@ export function JobCard({
 					</GridContainer>
 				)}
 				<GridContainer alignItems="center" justifyItems="center">
-					<strong>{prettyDate}</strong>
+					<DateWrapper fontSize="md">
+						<strong>{prettyDate}</strong>
+					</DateWrapper>
+					{proposals && proposals.length > 0 && (
+						<CardNotification fontSize="md">{t("jobCard.proposalRecived")}</CardNotification>
+					)}
 				</GridContainer>
 			</JobCardHeader>
 			<FlexContainer gap={10}>
-				{countries.map(country => (
-					<ParagraphWrapper fontSize="md" opacity={0.8} key={country.id}>
-						{country.name}{" "}
-					</ParagraphWrapper>
-				))}
+				{countries &&
+					countries.map(country => (
+						<ParagraphWrapper fontSize="md" opacity={0.8} key={country.id}>
+							{country.name}{" "}
+						</ParagraphWrapper>
+					))}
 				<ParagraphWrapper fontSize="md" opacity={0.8}>
 					{employmentType}
 				</ParagraphWrapper>
@@ -182,12 +190,16 @@ export function JobCard({
 				<ParagraphWrapper fontSize="md" opacity={0.8}>
 					{levelEnglish}
 				</ParagraphWrapper>
-				{skills.map(skill => (
-					<ParagraphWrapper fontSize="md" opacity={0.8} key={skill.id}>
-						{skill.name}
-					</ParagraphWrapper>
-				))}
+				{skills &&
+					skills.map(skill => (
+						<ParagraphWrapper fontSize="md" opacity={0.8} key={skill.id}>
+							{skill.name}
+						</ParagraphWrapper>
+					))}
 			</FlexContainer>
+
+			{/* Modals */}
+
 			<CardModal open={detailsModalOpen} onCancel={closeCreateProposal} width={1000}>
 				<CreateProposalonJob
 					id={jobId}
