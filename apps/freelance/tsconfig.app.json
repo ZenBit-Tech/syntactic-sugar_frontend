@@ -26,5 +26,12 @@
 		"**/*.spec.jsx",
 		"**/*.test.jsx"
 	],
-	"include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "src/app/app.styled.tsx"]
+	"include": [
+		"**/*.js",
+		"**/*.jsx",
+		"**/*.ts",
+		"**/*.tsx",
+		"src/app/app.styled.tsx",
+		"../../app.tsx"
+	]
 }
