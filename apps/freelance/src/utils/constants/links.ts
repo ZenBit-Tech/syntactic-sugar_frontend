@@ -21,3 +21,7 @@ export const EMPLOYER_JOBS_PAGE = "/employer/my-jobs-page";
 // Send proposals
 
 export const SEND_PROPOSAL_ID = "/freelancer/send-proposal";
+
+// Talents
+
+export const TALENTS = "/employer/talents";

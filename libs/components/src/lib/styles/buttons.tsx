@@ -103,6 +103,7 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 					font-size: 0.4rem;
 				`;
 		}
+
 		return;
 	}}
 `;
@@ -136,6 +137,7 @@ export const ButtonContainer = styled.div<IButtonContainer>`
 					text-align: right;
 				`;
 		}
+
 		return;
 	}}
 `;

@@ -51,6 +51,9 @@ interface IGridContainer {
 	columns?: number;
 	rows?: number;
 	width?: number;
+	alignItems?: "end" | "center" | "start";
+	justifyItems?: "end" | "center" | "start";
+	gap?: number;
 }
 
 export const GridContainer = styled.div<IGridContainer>`
@@ -70,16 +73,59 @@ export const GridContainer = styled.div<IGridContainer>`
 		css`
 			width: ${width}%;
 		`}
+  ${({ alignItems }) =>
+		alignItems &&
+		css`
+			align-items: ${alignItems};
+		`}
+
+	${({ justifyItems }) =>
+		justifyItems &&
+		css`
+			justify-items: ${justifyItems};
+		`}
+  ${({ gap }) =>
+		gap &&
+		css`
+			gap: ${gap}px;
+		`}
 `;
 
-export const GridItem = styled.div``;
+interface IGridItem {
+	gridColumn?: number;
+}
+
+export const GridItem = styled.div<IGridItem>``;
 
 interface IFlexContainer {
-	alignItems?: "start" | "end" | "center";
-	joustifyContent?: "between" | "arround" | "center";
+	alignItems?: "start" | "end" | "center" | "baseline";
+	justifyContent?: "space-between" | "space-arround" | "center";
+	gap?: number;
 	culomn?: boolean;
 }
 
 export const FlexContainer = styled.div<IFlexContainer>`
 	display: flex;
+	flex-wrap: wrap;
+	${({ gap }) =>
+		gap &&
+		css`
+			gap: ${gap}px;
+		`}
+	${({ alignItems }) =>
+		alignItems &&
+		css`
+			align-items: ${alignItems};
+		`}
+
+	${({ justifyContent }) =>
+		justifyContent &&
+		css`
+			justify-content: ${justifyContent};
+		`}
+  ${({ culomn }) =>
+		culomn &&
+		css`
+			flex-direction: column;
+		`}
 `;

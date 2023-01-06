@@ -4,12 +4,12 @@ import { toast } from "react-toastify";
 import { Proposal, useToggleIsPublishJobMutation } from "redux/jobs";
 
 interface IUseJobCardParams {
-	isPublished: boolean;
+	isPublished?: boolean;
 }
 
 interface IUseJobCard {
-	handleToggleIsPublishedButton: (id: string) => Promise<void>;
-	handleEditJob: (proposal: Proposal[]) => void;
+	handleToggleIsPublishedButton: (id?: string) => Promise<void>;
+	handleEditJob: (proposal?: Proposal[]) => void;
 	closeModalEditJob: () => void;
 	openSendProposal: () => void;
 	closeSendProposal: () => void;
@@ -33,17 +33,18 @@ export const useJobCard = ({ isPublished }: IUseJobCardParams): IUseJobCard => {
 		? t("jobCard.publishedNotification")
 		: t("jobCard.closedNotification");
 
-	const handleToggleIsPublishedButton = async (id: string): Promise<void> => {
+	const handleToggleIsPublishedButton = async (id?: string): Promise<void> => {
 		try {
-			await toggleIsPublishJob(id);
+			id && (await toggleIsPublishJob(id));
 		} catch {
 			toast.error(t("serverErrorMessage"));
 		}
 	};
 
-	const handleEditJob = (proposals: Proposal[]): void => {
-		if (proposals.length > 0) {
+	const handleEditJob = (proposals?: Proposal[]): void => {
+		if (proposals && proposals?.length > 0) {
 			toast.error(t("jobCard.canNotEdit"));
+
 			return;
 		}
 

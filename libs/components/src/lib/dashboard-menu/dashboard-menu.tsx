@@ -1,7 +1,9 @@
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { FilterButton, StyledButton } from "@freelance/components";
 import { ROLES } from "utils/constants/roles";
 import { EMPLOYER_JOBS, PROPOSALS_PAGE, TALENTS_PAGE } from "utils/constants/breakpoint";
+import { EMPLOYER_JOBS_PAGE, TALENTS } from "utils/constants/links";
 import { Container, FilterButtonWrap } from "./dashboard-menu.styled";
 
 export interface DashboardMenuProps {
@@ -18,6 +20,7 @@ export function DashboardMenu({
 	filterState,
 }: DashboardMenuProps) {
 	const { t } = useTranslation();
+	const navigate = useNavigate();
 
 	return (
 		<Container>
@@ -55,10 +58,22 @@ export function DashboardMenu({
 			)}
 			{userRole === ROLES.EMPLOYER && (
 				<>
-					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
+					<StyledButton
+						buttonSize="md"
+						fontSize="md"
+						buttonColor="lightRed"
+						onClick={() => navigate(TALENTS)}
+						disabled={typePage === TALENTS_PAGE}
+					>
 						{t("dashboard.menu.talents")}
 					</StyledButton>
-					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
+					<StyledButton
+						buttonSize="md"
+						fontSize="md"
+						buttonColor="lightRed"
+						onClick={() => navigate(EMPLOYER_JOBS_PAGE)}
+						disabled={typePage === EMPLOYER_JOBS}
+					>
 						{t("dashboard.menu.jobs")}
 					</StyledButton>
 					{typePage === EMPLOYER_JOBS && (

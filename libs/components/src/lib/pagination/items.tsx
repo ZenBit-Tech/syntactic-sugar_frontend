@@ -1,20 +1,17 @@
-import { FreelancerCard, JobCard } from "@freelance/components";
-import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
-import { JobsInterface } from "redux/jobs";
+import { FreelancerCard, JobCard, CommonObject } from "@freelance/components";
 import { Container } from "./pagination.styled";
 
 export interface CurrentItems {
-	jobs?: JobsInterface[];
-	freelancers?: IResponse[];
+	data?: CommonObject[];
 	user: string;
 	typePage?: "proposals" | "jobs" | "talents";
 }
 
-export function Items({ jobs, freelancers, user, typePage }: CurrentItems) {
+export function Items({ data, user, typePage }: CurrentItems) {
 	return (
 		<Container>
 			{typePage === "talents"
-				? freelancers?.map(freelancer => {
+				? data?.map(freelancer => {
 						return (
 							<FreelancerCard
 								key={freelancer.id}
@@ -38,11 +35,17 @@ export function Items({ jobs, freelancers, user, typePage }: CurrentItems) {
 							/>
 						);
 				  })
-				: jobs?.map(job => {
+				: data?.map(job => {
 						return (
 							<JobCard
 								key={job.id}
 								jobId={job.id}
+								hourRate={job.hourRate}
+								employerImg={job.employer?.image}
+								employerName={job.employer?.fullName}
+								employerCompany={job.employer?.companyName}
+								employerPosition={job.employer?.position}
+								title={job.title}
 								position={job.position}
 								countries={job.countries}
 								proposals={job.proposals}
@@ -50,6 +53,7 @@ export function Items({ jobs, freelancers, user, typePage }: CurrentItems) {
 								availableAmountOfHours={job.availableAmountOfHours}
 								workExperience={job.workExperience}
 								levelEnglish={job.englishLevel}
+								skills={job.skills}
 								createdDate={job.createdDate}
 								updatedDate={job.updatedDate}
 								userType={user}
