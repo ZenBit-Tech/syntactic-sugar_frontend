@@ -1,5 +1,4 @@
-import { FreelancerCard, JobCard } from "@freelance/components";
-import { CommonObject } from "@freelance/components";
+import { FreelancerCard, JobCard, CommonObject } from "@freelance/components";
 import { Container } from "./pagination.styled";
 
 export interface CurrentItems {
