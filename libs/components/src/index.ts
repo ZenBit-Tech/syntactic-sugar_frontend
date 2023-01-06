@@ -31,6 +31,7 @@ export * from "./lib/styles/cardsCommonStyles";
 export * from "./lib/job-card/job-card";
 export * from "./lib/freelancer-cards-list/freelancer-cards-list";
 export * from "./lib/freelancer-card/freelancer-card";
+export * from "./lib/view-profile/view-profile";
 
 // Reset password forms
 

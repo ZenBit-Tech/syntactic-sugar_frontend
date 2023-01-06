@@ -27,6 +27,7 @@ export const TitleBox = styled.div``;
 
 export const FreelancerStyledParagraph = styled(StyledJobCardParagraph)`
 	display: flex;
+	flex-wrap: wrap;
 `;
 
 export const Wrapper = styled.div`

@@ -1,6 +1,12 @@
 import { useTranslation } from "react-i18next";
 import moment from "moment";
-import { CardTitleButton, StyledButton, StyledParagraph } from "@freelance/components";
+import {
+	CardModal,
+	CardTitleButton,
+	StyledButton,
+	StyledParagraph,
+	ViewProfile,
+} from "@freelance/components";
 import { educationProps, workHistoryProps } from "redux/createFreelancer/freelancer-slice";
 import { InstObject, Proposal } from "redux/jobs";
 import { baseUrl } from "utils/constants/redux-query";
@@ -68,7 +74,7 @@ export function FreelancerCard({
 		useFreelancerCard();
 
 	return (
-		<StyledFreelancersCard>
+		<StyledFreelancersCard key={id}>
 			<Header>
 				<WrapperContainer>
 					<img src={image ? baseUrl + "/" + image : DEFAULT_IMAGE} alt="User Avatar" />
@@ -84,7 +90,7 @@ export function FreelancerCard({
 				</WrapperContainer>
 				<StyledContainer>
 					<StyledButton buttonSize="md" buttonColor="lightRed" fontSize="md">
-						{t("talents.inv")}
+						<strong>{t("talents.inv")}</strong>
 					</StyledButton>
 					<strong>{prettyDate}</strong>
 				</StyledContainer>
@@ -118,6 +124,25 @@ export function FreelancerCard({
 					</StyledParagraph>
 				</ParagraphWrapper>
 			</FreelancerStyledParagraph>
+			<CardModal open={freelancerProfileModalOpen} onCancel={closeFreelancerProfile} width={1000}>
+				<ViewProfile
+					fullName={fullName}
+					onCancel={closeFreelancerProfile}
+					goBack={closeFreelancerProfile}
+					category={category}
+					country={country}
+					position={position}
+					employment={employmentType}
+					english={englishLevel}
+					experience={workExperience}
+					salary={hourRate}
+					workingHours={availableAmountOfHours}
+					skills={skills}
+					education={education}
+					otherExp={otherExperience}
+					workHistory={workHistory}
+				></ViewProfile>
+			</CardModal>
 		</StyledFreelancersCard>
 	);
 }

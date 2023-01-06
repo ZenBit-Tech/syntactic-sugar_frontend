@@ -1,5 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { stat } from "node:fs";
+import { createSlice } from "@reduxjs/toolkit";
 
 export interface educationProps {
 	institute: string;

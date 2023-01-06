@@ -156,7 +156,9 @@
 			"employmentType": "Employment",
 			"hourRate": "Rate hour",
 			"workingHours": "Working hours",
-			"workHistory": "Work history"
+			"workHistory": "Work history",
+			"exp": "Experience",
+			"profile": "profile"
 		},
 		"searchWork": {
 			"filter": "Filter",
