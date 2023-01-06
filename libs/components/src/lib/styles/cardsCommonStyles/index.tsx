@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { GridContainer } from "../layouts";
-import { StyledParagraph } from "../typograghy";
+import { GridContainer, StyledParagraph } from "@freelance/components";
 
 export const StyledJobCard = styled.div`
 	display: grid;

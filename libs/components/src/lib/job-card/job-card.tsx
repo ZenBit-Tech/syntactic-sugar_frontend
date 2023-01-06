@@ -14,13 +14,8 @@ import {
 	StyledJobCard,
 	CardNotification,
 	DateWrapper,
-	// StyledJobCardHeader,
-	StyledJobCardParagraph,
-	CountriesContainer,
-	LocationBlock,
 	CardTitleButton,
 	JobCardHeader,
-	// JobButtonContainer,
 	EmployerButtonWrapper,
 	FreelancerButtonWrapper,
 } from "@freelance/components";

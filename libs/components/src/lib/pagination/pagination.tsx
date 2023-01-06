@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { IEmployerResponse, InstObject, Proposal } from "redux/jobs";
+import { educationProps, workHistoryProps } from "redux/createFreelancer/freelancer-slice";
 import {
 	PaginationContainer,
 	PaginationItemsWrapper,
 	StyledReactPagination,
 } from "./pagination.styled";
 import { Items } from "./items";
-import { educationProps, workHistoryProps } from "redux/createFreelancer/freelancer-slice";
 
 export interface CommonObject {
 	id: string;
@@ -55,13 +55,8 @@ export function Pagination({ itemsPerPage, user, data, typePage }: PaginationPro
 	const currentItems = data?.slice(itemOffset, endOffset);
 	const pageCount = Math.ceil(dataLength / itemsPerPage);
 	const handlePageClick = (event: ReactPaginateEvent) => {
-		// <<<<<<< HEAD
-		// 		const newOffset = (event.selected * itemsPerPage) % jobsLength;
-
-		// =======
 		const newOffset = (event.selected * itemsPerPage) % dataLength;
 
-		// >>>>>>> develop
 		setItemOffset(newOffset);
 	};
 
