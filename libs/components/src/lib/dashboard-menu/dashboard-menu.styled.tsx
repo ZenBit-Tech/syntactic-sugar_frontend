@@ -20,6 +20,10 @@ export const Container = styled.div`
 
 	button {
 		border-radius: 12px;
+
+		:disabled {
+			border: 6px double ${({ theme }) => theme.colors.darkRed};
+		}
 	}
 `;
 

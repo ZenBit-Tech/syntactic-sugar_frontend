@@ -17,7 +17,7 @@ import {
 	JobPostingSecondPage,
 	JobPostingThirdPage,
 } from "@pages/NewJobPosting";
-import store, { RootState } from "redux/store";
+import store from "redux/store";
 import { CreateProfile2 } from "@pages/Freelancer/CreateProfile2";
 import { SearchWork } from "@pages/Freelancer/SearchWork";
 import { EmployerJobsPage } from "@pages/Employer/EmployerJobsPage";
@@ -25,6 +25,7 @@ import { StyledApp } from "./app.styled";
 import { PrivateRoute, PublicRoute } from "src/protectedRoutes/protectedRoutes";
 import { ROLES } from "src/utils/constants/roles";
 import { getRole } from "src/redux/userState/userSlice";
+import TalentsPage from "@pages/Employer/Talents";
 
 export function App() {
 	const role = useSelector(getRole);
@@ -92,7 +93,6 @@ export function App() {
 							<Route path="/freelancer/create-profile2" element={<CreateProfile2 />} />
 							<Route path="/freelancer/view-profile" element={<ViewProfile />} />
 							
-
 							<Route path="/employer/create-profile" element={<CreateEmployerProfile />} />
 
 							<Route path="/employer/create-new-job-first-page" element={<JobPostingFirstPage />} />
@@ -101,10 +101,7 @@ export function App() {
 								element={<JobPostingSecondPage />}
 							/>
 							<Route path="/employer/create-new-job-third-page" element={<JobPostingThirdPage />} />
-
-							{/* <Route path="/" element={<Login />} /> */}
-							{/* <Route path="/invitation" element={<Invitation />} /> */}
-							{/* <Route path="/employer/my-jobs-page" element={<EmployerJobsPage />} /> */}
+							<Route path="/employer/talents" element={<TalentsPage />} />
 
 						</Routes>
 					</BrowserRouter>

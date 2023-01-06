@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { JobsInterface } from "redux/jobs";
+import { IEmployerResponse, InstObject, Proposal } from "redux/jobs";
+import { educationProps, workHistoryProps } from "redux/createFreelancer/freelancer-slice";
 import {
 	PaginationContainer,
 	PaginationItemsWrapper,
@@ -7,32 +8,62 @@ import {
 } from "./pagination.styled";
 import { Items } from "./items";
 
+export interface CommonObject {
+	id: string;
+	title?: string;
+	description?: string;
+	position?: string;
+	countries?: InstObject[];
+	country?: InstObject;
+	employmentType?: string;
+	hourRate?: string;
+	availableAmountOfHours?: string;
+	workExperience?: string;
+	englishLevel?: string;
+	proposals?: Proposal[];
+	category?: InstObject;
+	skills?: InstObject[];
+	createdDate?: string;
+	updatedDate?: string;
+	isPublished?: boolean;
+	isProposal?: boolean;
+	otherRequirenments?: string;
+	employer?: IEmployerResponse;
+	fullName?: string;
+	education?: educationProps[];
+	workHistory?: workHistoryProps[];
+	otherExperience?: string;
+	image?: string;
+	user?: { id: number; email: string };
+}
+
 export interface PaginationProps {
 	itemsPerPage: number;
 	user: string;
-	jobs?: JobsInterface[];
-	typePage?: 'proposals' | 'jobs';
+	data?: CommonObject[];
+	typePage?: "proposals" | "jobs" | "talents";
 }
 
 export interface ReactPaginateEvent {
 	selected: number;
 }
 
-export function Pagination({ itemsPerPage, user, jobs, typePage }: PaginationProps) {
-	const jobsLength = jobs?.length ? jobs?.length : 0;
+export function Pagination({ itemsPerPage, user, data, typePage }: PaginationProps) {
+	const dataLength = data?.length ? data?.length : 0;
 	const [itemOffset, setItemOffset] = useState<number>(0);
 	const endOffset = itemOffset + itemsPerPage;
-	const currentItems = jobs?.slice(itemOffset, endOffset);
-	const pageCount = Math.ceil(jobsLength / itemsPerPage);
+	const currentItems = data?.slice(itemOffset, endOffset);
+	const pageCount = Math.ceil(dataLength / itemsPerPage);
 	const handlePageClick = (event: ReactPaginateEvent) => {
-		const newOffset = (event.selected * itemsPerPage) % jobsLength;
+		const newOffset = (event.selected * itemsPerPage) % dataLength;
+
 		setItemOffset(newOffset);
 	};
 
 	return (
 		<PaginationContainer>
 			<PaginationItemsWrapper>
-				<Items currentItems={currentItems} user={user} typePage={typePage} />
+				<Items data={currentItems} user={user} typePage={typePage} />
 			</PaginationItemsWrapper>
 			<StyledReactPagination
 				breakLabel="..."
