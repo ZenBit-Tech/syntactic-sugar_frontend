@@ -108,10 +108,7 @@ export function JobCard({
 					{userType === ROLES.FREELANCER && (
 						<FlexContainer>
 							<ImageContainer>
-								<img
-									src={employerImg ? baseUrl + "/" + employerImg : DEFAULT_IMAGE}
-									alt="User Avatar"
-								/>
+								<img src={employerImg ? baseUrl + employerImg : DEFAULT_IMAGE} alt="User Avatar" />
 							</ImageContainer>
 							<StyledParagraph fontSize="md">
 								<strong>{employerCompany}</strong>, {employerName}, {employerPosition}
