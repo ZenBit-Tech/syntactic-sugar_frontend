@@ -42,3 +42,9 @@ export const TALENTS_PAGE = "talents";
 // Dashboard-header
 
 export const CREATE_PROFILE = "createProfile";
+
+//Roles
+
+export const FREELANCER = "FREELANCER";
+export const GUEST = "GUEST";
+export const EMPLOYER = "EMPLOYER";
