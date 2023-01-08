@@ -20,6 +20,7 @@ export function Items({ currentItems, user, typePage }: CurrentItems) {
 							position={job.position}
 							countries={job.countries}
 							proposals={job.proposals}
+              // chats={job.chats}
 							employmentType={job.employmentType}
 							availableAmountOfHours={job.availableAmountOfHours}
 							workExperience={job.workExperience}

@@ -26,15 +26,24 @@ export interface ChatProps {
 let socket: Socket;
 
 export function Chat({ userType, userId }: ChatProps) {
-	const { data: userChats } = useGetChatsByUserQuery();
+	const { data: userChats, isSuccess, isLoading } = useGetChatsByUserQuery();
 	const [currentChat, setCurrentChat] = useState<IChat>();
-	const [messages, setMessages] = useState<IMessage[]>();
+	const [messages, setMessages] = useState<IMessage[]>([]);
   const [message, setMessage] = useState<string>("");
   const [toggleButton, setToggleButton] = useState<boolean>(false)
   const userImage = userType === ROLES.FREELANCER ? currentChat?.employer.image : currentChat?.freelancer.image;
 
   const ENDPOINT = "http://localhost:8000";
   const chatId = currentChat?.id
+
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     setCurrentChat(userChats[0])
+  //     if (userChats && userChats[0].messages?.length > 0) {
+  //       setMessages(userChats[0].messages)
+  //     }
+  //   }
+  // },[isSuccess])
 
   useEffect(() => {
     socket = io(ENDPOINT)
@@ -72,36 +81,55 @@ export function Chat({ userType, userId }: ChatProps) {
   }
 
 	return (
-		<ChatContainer>
-			<UserChatsList>
-				{userChats?.map(chat => {
-					return (
-						<ChatUserCard
-							chat={chat}
-							userType={userType}
-							setCurrentChat={setCurrentChat}
-							setMessages={setMessages}
-						/>
-					);
-				})}
-			</UserChatsList>
-			<ChatArea>
-				<ChatHeader>{currentChat?.job?.position}</ChatHeader>
-				<ChatMessagesArea>
-					{messages?.map((message: IMessage) => {
-						return <ChatMessage isOwnMessage={message.sender === userId} message={message} userImage={userImage}/>;
-					})}
-				</ChatMessagesArea>
-				<ChatTextArea>
-					<ChatInput value={message} onChange={handleChange}/>
-					<ChatButtonArea>
-						<StyledButton buttonColor="redGradient" buttonSize="sm" fontSize="md" onClick={handleSendMessage}>
-							Send
-						</StyledButton>
-					</ChatButtonArea>
-				</ChatTextArea>
-			</ChatArea>
-		</ChatContainer>
+		<>
+			{isSuccess && (
+				<ChatContainer>
+					<UserChatsList>
+						{userChats?.map(chat => {
+							return (
+								<ChatUserCard
+									chat={chat}
+									userType={userType}
+									setCurrentChat={setCurrentChat}
+									setMessages={setMessages}
+									messages={messages}
+									isActive={chat.id === currentChat?.id}
+								/>
+							);
+						})}
+					</UserChatsList>
+					<ChatArea>
+						<ChatHeader>{currentChat?.job?.position}</ChatHeader>
+						<ChatMessagesArea>
+							{messages &&
+								messages?.map((message: IMessage) => {
+									return (
+										<ChatMessage
+											isOwnMessage={message.sender === userId}
+											message={message}
+											userImage={userImage}
+										/>
+									);
+								})}
+                {!messages && <div>No messages...</div>}
+						</ChatMessagesArea>
+						<ChatTextArea>
+							<ChatInput value={message} onChange={handleChange} />
+							<ChatButtonArea>
+								<StyledButton
+									buttonColor="redGradient"
+									buttonSize="sm"
+									fontSize="md"
+									onClick={handleSendMessage}
+								>
+									Send
+								</StyledButton>
+							</ChatButtonArea>
+						</ChatTextArea>
+					</ChatArea>
+				</ChatContainer>
+			)}
+		</>
 	);
 }
 

@@ -1,6 +1,6 @@
 import { JobsInterface } from "redux/jobs/jobs.api";
 
-export const mockJobData: JobsInterface = {
+export const mockJobData: any = {
 	id: "id",
 	description: "We are looking for senior front-end developer",
 	position: "Front-end developer",

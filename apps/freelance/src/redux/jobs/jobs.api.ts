@@ -1,6 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from "redux/base-query";
 import { ICreatedJob, INewJob } from "redux/interfaces";
+import { IChat } from "../chat/chatApi";
 
 export interface InstObject {
 	id: string;
@@ -35,6 +36,7 @@ export interface JobsInterface {
 	workExperience: string;
 	englishLevel: string;
 	proposals: Proposal[];
+  // chats: IChat[];
 	category: InstObject;
 	skills: InstObject[];
 	createdDate: string;

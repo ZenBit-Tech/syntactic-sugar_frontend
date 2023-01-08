@@ -1,5 +1,12 @@
 import { useTranslation } from "react-i18next";
-import { StyledButton, StyledParagraph, CardModal, SendProposal, CreateProposalonJob, Chat } from "@freelance/components";
+import {
+	StyledButton,
+	StyledParagraph,
+	CardModal,
+	SendProposal,
+	CreateProposalonJob,
+	Chat,
+} from "@freelance/components";
 import { IEmployerResponse, InstObject, Proposal } from "redux/jobs";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import moment from "moment";
@@ -19,6 +26,7 @@ import {
 	FreelancerButtonWrapper,
 } from "./job-card.styled";
 import { useJobCard } from "./job-cardHooks";
+import { IChat } from "redux/chat/chatApi";
 
 export interface JobCardProps {
 	jobId: string;
@@ -26,6 +34,7 @@ export interface JobCardProps {
 	countries: InstObject[];
 	employmentType: string;
 	proposals: Proposal[];
+	// chats: IChat[];
 	availableAmountOfHours: string;
 	workExperience: string;
 	levelEnglish: string;
@@ -35,8 +44,8 @@ export interface JobCardProps {
 	skills?: InstObject[];
 	category?: InstObject;
 	isPublished: boolean;
-  employer: IEmployerResponse;
-	typePage?: 'proposals' | 'jobs';
+	employer: IEmployerResponse;
+	typePage?: "proposals" | "jobs";
 }
 
 export function JobCard({
@@ -45,6 +54,7 @@ export function JobCard({
 	countries,
 	employmentType,
 	proposals,
+	// chats,
 	availableAmountOfHours,
 	workExperience,
 	levelEnglish,
@@ -52,11 +62,11 @@ export function JobCard({
 	userType,
 	typePage,
 	isPublished,
-  employer
+	employer,
 }: JobCardProps) {
 	const { t } = useTranslation();
 	const { data } = useGetFreelancerQuery();
-	const prettyDate = moment(createdDate).format('LL');
+	const prettyDate = moment(createdDate).format("LL");
 	const {
 		handleSendProrposalClick,
 		handleToggleIsPublishedButton,
@@ -77,6 +87,12 @@ export function JobCard({
 			return proposals.find(item => item.id === proposal.id);
 		})
 		.some(item => item !== undefined);
+
+	// const isChat = data?.chats
+	// 	.map(chat => {
+	// 		return chats.find(item => item.id === chat.id);
+	// 	})
+	// 	.some(item => item !== undefined);
 
 	return (
 		<StyledJobCard>
@@ -124,7 +140,7 @@ export function JobCard({
 							>
 								<strong>{isPublished ? t("jobCard.closeJob") : t("jobCard.publishJob")}</strong>
 							</StyledButton>
-							<StyledButton
+						<StyledButton
 								buttonColor="redGradient"
 								buttonSize="md"
 								fontSize="sm"

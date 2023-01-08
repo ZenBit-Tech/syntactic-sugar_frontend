@@ -41,6 +41,7 @@ export interface IResponse {
 	isPublished: boolean;
 	image: string;
 	proposals: { id: string; coverLetter: string }[];
+  chats: {id: string; createdAt: string; updatedAt: string;}[];
 	user: { id: number; email: string };
 }
 

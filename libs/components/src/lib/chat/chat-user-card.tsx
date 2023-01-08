@@ -9,7 +9,7 @@ import {
 	ChatUserCardWork,
 } from "./chat.styled";
 import { DEFAULT_IMAGE } from "utils/constants/links";
-import { IChat } from "redux/chat/chatApi";
+import { IChat, IMessage } from "redux/chat/chatApi";
 import { ROLES } from "utils/constants/roles";
 import { baseUrl } from "utils/constants/redux-query";
 import { useLazyGetChatMessagesQuery } from "redux/chat/chatApi";
@@ -20,15 +20,19 @@ export interface ChatUserCardProps {
 	userType: string;
 	setCurrentChat: any;
 	setMessages: any;
+  messages: IMessage[];
+  isActive?: boolean;
 }
 
-export function ChatUserCard({ chat, userType, setCurrentChat, setMessages }: ChatUserCardProps) {
+export function ChatUserCard({ chat, userType, setCurrentChat, setMessages, messages, isActive }: ChatUserCardProps) {
 	const userImage = userType === ROLES.FREELANCER ? chat.employer.image : chat.freelancer.image;
 	const [getChatMessages, { data: chatMessages, isSuccess }] = useLazyGetChatMessagesQuery();
   const [toggleChatCard, setToggleChatCard] = useState<boolean>(false)
 
   useEffect(() => {
-    setMessages(chatMessages)
+    if (isSuccess) {
+       setMessages(chatMessages);
+    }
   },[toggleChatCard])
 
 	const handleChatUserClick = async () => {
@@ -37,12 +41,12 @@ export function ChatUserCard({ chat, userType, setCurrentChat, setMessages }: Ch
       setToggleChatCard(!toggleChatCard)
 	};
 	return (
-		<ChatUserCardContainer onClick={handleChatUserClick}>
+		<ChatUserCardContainer isActive={isActive} onClick={handleChatUserClick}>
 			<ChatUserCardImage src={userImage.length > 0 ? baseUrl + "/" + userImage : DEFAULT_IMAGE} />
 			<ChatUserCardContent>
 				<ChatUserCardWork>{chat.job.position}</ChatUserCardWork>
 				<ChatUserCardLastMessage>
-					{chat.messages ? chat.messages[chat.messages.length - 1]?.text : ""}
+					{chat.messages ? chat.messages[0]?.text : ""}
 				</ChatUserCardLastMessage>
 			</ChatUserCardContent>
 			<ChatUserCardInfo>

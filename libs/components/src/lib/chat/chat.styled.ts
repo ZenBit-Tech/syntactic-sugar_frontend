@@ -4,6 +4,10 @@ interface MessageContainerProps {
 	isOwnMessage?: boolean;
 }
 
+interface ChatUserCardProps {
+  isActive?: boolean;
+}
+
 export const ChatContainer = styled.div`
 	display: flex;
 	height: 600px;
@@ -159,12 +163,12 @@ export const ChatMessageText = styled.div<MessageContainerProps>`
 	color: white;
 `;
 
-export const ChatUserCardContainer = styled.div`
+export const ChatUserCardContainer = styled.div<ChatUserCardProps>`
 	border: 1px solid ${({ theme }) => theme.colors.lightGrey};
 	display: flex;
 	height: 10%;
 	justify-content: space-between;
-
+	background: ${props => (props.isActive ? ({ theme }) => theme.colors.lightGrey : "inherit")};
 	:hover {
 		cursor: pointer;
 		background: ${({ theme }) => theme.colors.lightGrey};
