@@ -23,6 +23,7 @@ export const WORK_DETAILS = "jobs/details";
 
 export const EMPLOYER_JOBS = "employerJobs";
 export const EMPLOYER_PROFILE = "/employer/create-profile";
+export const PROPOSALS_LIST = "proposalsList";
 
 // Freelancer
 
@@ -38,6 +39,7 @@ export const ROLE_PAGE = "/role-page";
 export const PROPOSALS_PAGE = "proposals";
 export const JOBS_PAGE = "jobs";
 export const TALENTS_PAGE = "talents";
+export const SEARCH_WORK_PAGE = "searchWork";
 
 // Dashboard-header
 

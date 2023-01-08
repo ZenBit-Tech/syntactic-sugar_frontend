@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { JobDetailsCard, SendProposal } from "@freelance/components";
+import { JobDetailsCard, SendProposal, TypePage } from "@freelance/components";
 import { useCreateProposal } from "./create-proposalHooks";
 
 export interface CreateProposalonJobProps {
@@ -7,7 +7,7 @@ export interface CreateProposalonJobProps {
 	onCancel?: () => void;
 	goBack?: () => void;
 	onBack: () => void;
-	typePage?: "proposals" | "jobs";
+	typePage?: TypePage;
 	isProposal?: boolean;
 }
 
@@ -23,6 +23,7 @@ export const CreateProposalonJob = ({
 
 	const saveCoverLetter = (evt: React.ChangeEvent<HTMLTextAreaElement>) => {
 		const coverLetter = evt.target.value;
+
 		setInputText(coverLetter);
 	};
 

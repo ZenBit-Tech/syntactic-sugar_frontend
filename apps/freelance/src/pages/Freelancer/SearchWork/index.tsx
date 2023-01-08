@@ -6,7 +6,7 @@ import { Dashboard, StyledTitle, StyledButton, Pagination } from "@freelance/com
 import { JobsInterface, useGetJobsQuery } from "redux/jobs/jobs.api";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import { useSearchWorkFormHook } from "./searchWorkFormHook";
-import { JOBS_PAGE } from "src/utils/constants/breakpoint";
+import { JOBS_PAGE, SEARCH_WORK_PAGE } from "src/utils/constants/breakpoint";
 import {
 	StyledPage,
 	Form,
@@ -178,7 +178,12 @@ export function SearchWork() {
 					<Wrapper>
 						<InputContainerCards>
 							<InputWrapper>
-								<Pagination itemsPerPage={5} user={user} data={filterJobs} typePage={JOBS_PAGE} />
+								<Pagination
+									itemsPerPage={5}
+									user={user}
+									data={filterJobs}
+									typePage={SEARCH_WORK_PAGE}
+								/>
 							</InputWrapper>
 						</InputContainerCards>
 						<InputContainer>
