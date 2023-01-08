@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { SelectOptions } from "utils/select-options/options";
-import { Dashboard, StyledTitle, Pagination, SearchWorkFilter, FilterBox } from "@freelance/components";
+import { Dashboard, Pagination, SearchWorkFilter, FilterBox } from "@freelance/components";
 import { JOBS_PAGE } from "src/utils/constants/breakpoint";
 import { useSearchWorkFormHook } from "./searchWorkFormHook";
 import {
@@ -24,7 +24,6 @@ export interface IFormInput {
 
 export function SearchWork() {
 	const user: user = "freelancer";
-	const { t } = useTranslation();
 	const {
 		onSubmit,
 		setFilter,
