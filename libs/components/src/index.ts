@@ -97,3 +97,8 @@ export * from "./lib/proposals-list/proposals-list";
 //Proposal Card
 
 export * from "./lib/proposal-card/proposal-card";
+
+//Filter
+
+export * from "./lib/filter-container/filter-container";
+export * from "./lib/searchwork-filter/searchwork-filter";

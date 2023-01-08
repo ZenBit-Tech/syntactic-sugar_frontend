@@ -1,8 +1,28 @@
 import { SubmitHandler } from "react-hook-form";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
+import { JobsInterface, useGetJobsQuery } from "src/redux/jobs";
+import { useGetFreelancerQuery } from "src/redux/createFreelancer/freelancer-pageApi";
 import { IFormInput } from "./index";
 
-export const useSearchWorkFormHook = () => {
+interface IUseSearchWorkFormHook {
+	onSubmit: SubmitHandler<IFormInput>;
+	setFilter: ({ }) => void;
+	setToggleFilter: React.Dispatch<React.SetStateAction<string>>;
+	filterJobs?: JobsInterface[];
+	setFilterJobs: React.Dispatch<React.SetStateAction<JobsInterface[] | undefined>>;
+	data?: JobsInterface[];
+	freelancerFilter: IFormInput | {};
+}
+
+interface JobSkills {
+	id: string;
+	name: string;
+}
+
+export const useSearchWorkFormHook = (): IUseSearchWorkFormHook => {
+	const { data, isSuccess } = useGetJobsQuery();
+	const { data: freelancerData } = useGetFreelancerQuery();
+	const [filterJobs, setFilterJobs] = useState(data);
 	const [toggleFilter, setToggleFilter] = useState<string>("reset");
 	const [filter, setFilter] = useState<IFormInput | any>({
 		category: "",
@@ -13,7 +33,9 @@ export const useSearchWorkFormHook = () => {
 		hourRate: "",
 		availableAmountOfHour: "",
 	});
+
 	const onSubmit: SubmitHandler<IFormInput> = values => {
+		console.log(values);
 		const freelancerInfo = {
 			category: values.category.label,
 			position: values.position || "",
@@ -28,5 +50,58 @@ export const useSearchWorkFormHook = () => {
 		setToggleFilter("filter");
 	};
 
-	return { onSubmit, setFilter, setToggleFilter, filter, toggleFilter };
+	useEffect(() => {
+        setFilterJobs(data);
+	}, [isSuccess]);
+	
+	useEffect(() => {
+		if (toggleFilter === "filter") {
+			const jobSkills: JobSkills[][] | undefined = data?.map((job: JobsInterface) => job.skills);
+			const filterJobsSkills: string[][] | undefined = jobSkills?.map((skill: JobSkills[]) => {
+				return skill.map((item: JobSkills) => item.name);
+			});
+			const filterSkills = filter.skills;
+			const skillsFilter = skillIncludesFunc(filterJobsSkills as string[][], filterSkills);
+			const newFilterJobs = data && data.filter(
+				(job: JobsInterface, index: number) =>
+					job.position.toLowerCase().includes(filter.position.toLowerCase()) &&
+					job.category.name.includes(filter.category) &&
+					job.employmentType.includes(filter.employmentType) &&
+					job.englishLevel.includes(filter.englishLevel) &&
+					job.hourRate.includes(filter.hourRate) &&
+					job.availableAmountOfHours.includes(filter.availableAmountOfHour) &&
+					skillsFilter[index],
+			);
+			
+			setFilterJobs(newFilterJobs);
+		}
+    }, [toggleFilter, filter]);
+
+	const filterSkillsCheck = (arr1: string[], arr2: string[]) => {
+		const skillsIncluded = arr2.every(skill => arr1.includes(skill));
+
+		return skillsIncluded;
+	};
+
+	const skillIncludesFunc = (arr1: string[][], arr2: string[]) => {
+		const skillsIncludesArr: boolean[] = [];
+
+		arr1.map(job => {
+			skillsIncludesArr.push(filterSkillsCheck(job, arr2));
+		});
+
+		return skillsIncludesArr;
+	};
+	
+	const freelancerFilter = {
+		position: freelancerData?.position,
+		category: freelancerData?.category.name,
+		skills: freelancerData?.skills.map(skill => skill.name),
+		employmentType: freelancerData?.employmentType,
+		englishLevel: freelancerData?.englishLevel,
+		hourRate: freelancerData?.hourRate,
+		availableAmountOfHour: freelancerData?.availableAmountOfHours,
+    };
+
+	return { onSubmit, setFilter, setToggleFilter, filterJobs, setFilterJobs, data, freelancerFilter };
 };

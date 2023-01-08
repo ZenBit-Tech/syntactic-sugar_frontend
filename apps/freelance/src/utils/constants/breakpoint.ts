@@ -44,3 +44,9 @@ export const SEARCH_WORK_PAGE = "searchWork";
 // Dashboard-header
 
 export const CREATE_PROFILE = "createProfile";
+
+//Roles
+
+export const FREELANCER = "FREELANCER";
+export const GUEST = "GUEST";
+export const EMPLOYER = "EMPLOYER";
