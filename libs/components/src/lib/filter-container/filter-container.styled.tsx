@@ -10,7 +10,7 @@ export const FilterContainer = styled.div<IFilterContainer>`
     border-radius: 15px;
     border:  1px solid ${({ theme }) => theme.colors.lightRed};
     position: absolute;
-    top: 20%;
+    top: 18%;
     right: 6%;
     width: 30%;
     background-color: ${({ theme }) => theme.colors.lightGrey};

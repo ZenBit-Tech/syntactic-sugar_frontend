@@ -38,6 +38,7 @@ export const SelectElement = styled(Select)`
 	.react-select__placeholder {
 		color: ${({ theme }) => theme.colors.grey};
 		margin: 0;
+        display: none;
 	}
 `;
 
@@ -81,4 +82,10 @@ export const BtnText = styled.p`
     text-orientation: upright; 
     transform: rotate(0deg);
     letter-spacing: -4px;
+`;
+
+export const ButtonWrapper = styled.div`
+	display: flex;
+	justify-content: space-around;
+	gap: 2rem;
 `;

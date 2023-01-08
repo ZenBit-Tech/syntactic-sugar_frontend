@@ -1,14 +1,21 @@
 import { Controller } from "react-hook-form";
-import { useOptions, SelectOptions } from "utils/select-options/options";
-import { useEffect, useState } from "react";
-import { BtnText, Form, HeaderButton, HeaderButtonWrapp, Input, Label, OpenFilterBtn, SelectElement } from "./searchwork-filter.styled";
-import { useSearchWorkFormHook } from "../../../../../apps/freelance/src/pages/Freelancer/SearchWork/searchWorkFormHook";
-import { JobsInterface, useGetJobsQuery } from "redux/jobs";
-import { StyledButton } from "../styles/buttons";
+import { JobsInterface } from "redux/jobs";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { ButtonWrapper } from "../job-details-card/job-details-card.styled";
-import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
+import { SubmitHandler } from "react-hook-form/dist/types";
+import { StyledButton } from "@freelance/components";
+import { useOptions, SelectOptions } from "utils/select-options/options";
+import {
+    BtnText,
+    Form,
+    HeaderButton,
+    HeaderButtonWrapp,
+    Input,
+    Label,
+    OpenFilterBtn,
+    SelectElement,
+    ButtonWrapper
+} from "./searchwork-filter.styled";
 
 export interface IFormInput {
 	category: SelectOptions;
@@ -19,28 +26,30 @@ export interface IFormInput {
 	hourRate: SelectOptions;
 	availableAmountOfHour: SelectOptions;
     typePage?: "proposals" | "job";
-    
-}
-
-interface JobSkills {
-	id: string;
-	name: string;
 }
 
 interface IFilterProps {
     openFilter: () => void;
-    closeFilter: () => void;
+    onSubmit: SubmitHandler<IFormInput>;
+    setFilter: ({}) => void;
+    setToggleFilter:  React.Dispatch<React.SetStateAction<string>>;
+    filterJobs?: JobsInterface[];
+    setFilterJobs: React.Dispatch<React.SetStateAction<JobsInterface[] | undefined>>;
+    data?: JobsInterface[];
+    freelancerFilter: IFormInput | {};
 }
 
-export const SearchWorkFilter = ({openFilter, closeFilter}: IFilterProps) => {
+export const SearchWorkFilter = ({
+    openFilter,
+    onSubmit,
+    setFilter,
+    setToggleFilter,
+    setFilterJobs,
+    data,
+    freelancerFilter
+}: IFilterProps) => {
     const { t } = useTranslation();
-    // const { isLoading, isError, data, isSuccess } = useGetJobsQuery();
-    const { handleSubmit, control, getValues, reset } = useForm<IFormInput>();
-    const { data: freelancerData } = useGetFreelancerQuery();
-    // const [filterJobs, setFilterJobs] = useState(data);
-    // const [useFilters, setUseFilters] = useState<boolean>(false);
-    const { onSubmit, setFilter, setToggleFilter, filter, toggleFilter, setFilterJobs, data, isSuccess } = useSearchWorkFormHook();
-    
+    const { handleSubmit, control, reset } = useForm<IFormInput>();
 	const {
 		categories,
 		skills,
@@ -54,55 +63,6 @@ export const SearchWorkFilter = ({openFilter, closeFilter}: IFilterProps) => {
 		value: "",
 		label: "",
 	};
-
-    const freelancerFilter = {
-		position: freelancerData?.position,
-		category: freelancerData?.category.name,
-		skills: freelancerData?.skills.map(skill => skill.name),
-		employmentType: freelancerData?.employmentType,
-		englishLevel: freelancerData?.englishLevel,
-		hourRate: freelancerData?.hourRate,
-		availableAmountOfHour: freelancerData?.availableAmountOfHours,
-	};
-
-    const filterSkillsCheck = (arr1: string[], arr2: string[]) => {
-		const skillsIncluded = arr2.every(skill => arr1.includes(skill));
-
-		return skillsIncluded;
-	};
-
-	const skillIncludesFunc = (arr1: string[][], arr2: string[]) => {
-		const skillsIncludesArr: boolean[] = [];
-
-		arr1.map(job => {
-			skillsIncludesArr.push(filterSkillsCheck(job, arr2));
-		});
-
-		return skillsIncludesArr;
-	};
-
-    useEffect(() => {
-		if (toggleFilter === "filter") {
-			const jobSkills: JobSkills[][] | undefined = data?.map((job: JobsInterface) => job.skills);
-			const filterJobsSkills: string[][] | undefined = jobSkills?.map((skill: JobSkills[]) => {
-				return skill.map((item: JobSkills) => item.name);
-			});
-			const filterSkills = filter.skills;
-			const skillsFilter = skillIncludesFunc(filterJobsSkills as string[][], filterSkills);
-			const newFilterJobs = data && data.filter(
-				(job: JobsInterface, index: number) =>
-					job.position.toLowerCase().includes(filter.position.toLowerCase()) &&
-					job.category.name.includes(filter.category) &&
-					job.employmentType.includes(filter.employmentType) &&
-					job.englishLevel.includes(filter.englishLevel) &&
-					job.hourRate.includes(filter.hourRate) &&
-					job.availableAmountOfHours.includes(filter.availableAmountOfHour) &&
-					skillsFilter[index],
-			);
-
-			setFilterJobs(newFilterJobs);
-		}
-    }, [toggleFilter, filter]);
     
     return (
         <Form onSubmit={handleSubmit(onSubmit)}>
@@ -126,7 +86,6 @@ export const SearchWorkFilter = ({openFilter, closeFilter}: IFilterProps) => {
                     onClick={() => {
                         setToggleFilter("reset");
                         setFilterJobs(data);
-                        // setUseFilters(false);
                         reset();
                     }}
                 >
@@ -138,9 +97,8 @@ export const SearchWorkFilter = ({openFilter, closeFilter}: IFilterProps) => {
                     buttonSize="sm"
                     fontSize="md"
                     onClick={() => {
-                        // setToggleFilter("filter");
+                        setToggleFilter("filter");
                         setFilter(freelancerFilter);
-                        // setUseFilters(false);
                         reset();
                     }}
                 >
@@ -158,7 +116,6 @@ export const SearchWorkFilter = ({openFilter, closeFilter}: IFilterProps) => {
                         <Input
                             {...field}
                             defaultValue=""
-                            placeholder={t("freelancer.createProfile.positionPlaceholder")}
                             />
                         </>
                 )}
@@ -176,7 +133,6 @@ export const SearchWorkFilter = ({openFilter, closeFilter}: IFilterProps) => {
                             id="category"
                             options={categories}
                             {...field}
-                            placeholder={t(`freelancer.createProfile.selectOption.category`)}
                             isSearchable
                             classNamePrefix="react-select"
                         />
@@ -196,7 +152,6 @@ export const SearchWorkFilter = ({openFilter, closeFilter}: IFilterProps) => {
                             id="skills"
                             options={skills}
                             {...field}
-                            placeholder={t(`freelancer.createProfile.selectOption.skills`)}
                             isSearchable
                             isMulti
                             classNamePrefix="react-select"
@@ -217,7 +172,6 @@ export const SearchWorkFilter = ({openFilter, closeFilter}: IFilterProps) => {
                             id="employmentType"
                             options={employmentType}
                             {...field}
-                            placeholder={t(`freelancer.createProfile.selectOption.employmentType`)}
                             isSearchable
                             classNamePrefix="react-select"
                         />
@@ -237,7 +191,6 @@ export const SearchWorkFilter = ({openFilter, closeFilter}: IFilterProps) => {
                             id="englishLevel"
                             options={englishLevel}
                             {...field}
-                            placeholder={t(`freelancer.createProfile.selectOption.englishLevel`)}
                             isSearchable
                             classNamePrefix="react-select"
                         />
@@ -257,7 +210,6 @@ export const SearchWorkFilter = ({openFilter, closeFilter}: IFilterProps) => {
                             id="hourRate"
                             options={hourRate}
                             {...field}
-                            placeholder={t(`freelancer.createProfile.selectOption.hourRate`)}
                             isSearchable
                             classNamePrefix="react-select"
                         />
@@ -277,7 +229,6 @@ export const SearchWorkFilter = ({openFilter, closeFilter}: IFilterProps) => {
                             id="availableAmountOfHour"
                             options={hoursAmount}
                             {...field}
-                            placeholder={t(`freelancer.createProfile.selectOption.availableAmountOfHour`)}
                             isSearchable
                             classNamePrefix="react-select"
                         />
