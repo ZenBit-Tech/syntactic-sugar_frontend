@@ -6,7 +6,6 @@ import { JOBS_PAGE } from "src/utils/constants/breakpoint";
 import { useSearchWorkFormHook } from "./searchWorkFormHook";
 import {
 	StyledPage,
-	InputHeader,
 	InputWrapper,
 } from "./style";
 
@@ -44,11 +43,6 @@ export function SearchWork() {
 	return (
 		<StyledPage>
 			<Dashboard userRole="freelancer" typePage={JOBS_PAGE}>
-				<InputHeader>
-					<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
-						{t("freelancer.searchWork.jobsList")}
-					</StyledTitle>
-				</InputHeader>
 				<InputWrapper>
 					<Pagination itemsPerPage={5} user={user} data={filterJobs} typePage={JOBS_PAGE} />
 				</InputWrapper>

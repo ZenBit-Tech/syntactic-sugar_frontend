@@ -27,20 +27,6 @@ const StyledPage = styled.div`
 	}
 `;
 
-export const InputHeader = styled.div`
-	position: sticky;
-	top: 0;
-	background: ${({ theme }) => theme.colors.white};
-	padding: 0 0.5rem;
-	height: 30px;
-	margin-bottom: 10px;
-	display: flex;
-	width: 100%;
-	justify-content: flex-start;
-	align-items: center;
-	gap: 2rem;
-`;
-
 export const InputWrapper = styled.div`
 	display: flex;
 	flex-direction: column;

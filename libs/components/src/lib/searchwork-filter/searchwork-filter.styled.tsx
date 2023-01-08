@@ -1,13 +1,13 @@
 import Select from "react-select";
 import styled from "styled-components";
-import { StyledButton } from "../styles/buttons";
+import { StyledButton } from "@freelance/components";
 
 export const Form = styled.form`
 	display: block;
 `;  
 
 export const SelectElement = styled(Select)`
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.7rem;
 
 	.react-select__value-container {
 		width: 80%;
@@ -43,7 +43,7 @@ export const SelectElement = styled(Select)`
 `;
 
 export const Label = styled.label`
-    font-size: 1.1rem;
+    font-size: 1rem;
 `;
 
 export const Input = styled.input`
@@ -75,6 +75,7 @@ export const OpenFilterBtn = styled(StyledButton)`
     background-color: red;
     width: 12%;
     transform: rotate(0deg);
+    outline-style: none;
 `;
 
 export const BtnText = styled.p`
