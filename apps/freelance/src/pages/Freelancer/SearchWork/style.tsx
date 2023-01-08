@@ -1,7 +1,4 @@
-import { ToastContainer } from "react-toastify";
 import styled from "styled-components";
-import Select from "react-select";
-import ReactPaginate from "react-paginate";
 
 const StyledPage = styled.div`
 	margin: auto;
@@ -30,16 +27,15 @@ const StyledPage = styled.div`
 	}
 `;
 
-export const Form = styled.form`
-	display: flex;
-	flex-direction: column;
-	height: 90%;
-	justify-content: space-between;
-	padding-top: 3%;
-	position: relative;
+// export const Form = styled.form`
+// 	display: flex;
+// 	flex-direction: column;
+// 	height: 90%;
+// 	justify-content: space-between;
+// 	padding-top: 3%;
+// 	position: relative;
 
-	input,
-	select {
+	/* select {
 		border: 2px solid ${({ theme }) => theme.colors.grey};
 		border-radius: 100px;
 		height: 40px;
@@ -49,8 +45,8 @@ export const Form = styled.form`
 		::placeholder {
 			color: ${({ theme }) => theme.colors.grey};
 		}
-	}
-	.selectContainer {
+	} */
+	/* .selectContainer {
 		position: relative;
 		width: 100%;
 		display: flex;
@@ -70,8 +66,8 @@ export const Form = styled.form`
 			padding: 5%;
 			width: 100%;
 		}
-	}
-	.selectContainer__left {
+	} */
+	/* .selectContainer__left {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		grid-auto-rows: 80px;
@@ -91,24 +87,24 @@ export const Form = styled.form`
 		button {
 			margin: 20px 10px;
 		}
-	}
-`;
+	} */
+// `;
 
-export const Wrapper = styled.div`
-	display: flex;
-	height: 100%;
-`;
+// export const Wrapper = styled.div`
+// 	display: flex;
+// 	height: 100%;
+// `;
 
-export const InputContainer = styled.div`
-	width: 100%;
-	height: 100%;
-`;
+// export const InputContainer = styled.div`
+// 	width: 100%;
+// 	height: 100%;
+// `;
 
-export const InputContainerCards = styled.div`
-	width: 100%;
+// export const InputContainerCards = styled.div`
+// 	width: 100%;
 
-	height: 100%;
-`;
+// 	height: 100%;
+// `;
 
 export const InputHeader = styled.div`
 	position: sticky;
@@ -156,51 +152,51 @@ export const InputWrapper = styled.div`
 	}
 `;
 
-export const ButtonsContainer = styled.div`
-	display: flex;
-	gap: 3rem;
-	height: 1 0%;
-	justify-content: center;
-	position: absolute;
-	bottom: -8%;
-	width: 100%;
+// export const ButtonsContainer = styled.div`
+// 	display: flex;
+// 	gap: 3rem;
+// 	height: 1 0%;
+// 	justify-content: center;
+// 	position: absolute;
+// 	bottom: -8%;
+// 	width: 100%;
 
-	button {
-		max-width: 200px;
-	}
-`;
+// 	button {
+// 		max-width: 200px;
+// 	}
+// `;
 
-export const SelectElement = styled(Select)`
-	.react-select__value-container {
-		width: 80%;
-		height: inherit;
-	}
+// export const SelectElement = styled(Select)`
+// 	.react-select__value-container {
+// 		width: 80%;
+// 		height: inherit;
+// 	}
 
-	.react-select__control {
-		border: 2px solid ${({ theme }) => theme.colors.grey};
-		border-radius: 100px;
-		height: 30px;
-		padding-left: 1rem;
-		width: 100%;
-		color: ${({ theme }) => theme.colors.grey};
-		outline: none;
-	}
+// 	.react-select__control {
+// 		border: 2px solid ${({ theme }) => theme.colors.grey};
+// 		border-radius: 100px;
+// 		height: 30px;
+// 		padding-left: 1rem;
+// 		width: 100%;
+// 		color: ${({ theme }) => theme.colors.grey};
+// 		outline: none;
+// 	}
 
-	.react-select__indicator-separator {
-		display: none;
-	}
+// 	.react-select__indicator-separator {
+// 		display: none;
+// 	}
 
-	.react-select__input-container {
-		margin: 0;
-		::after {
-			display: none;
-		}
-	}
+// 	.react-select__input-container {
+// 		margin: 0;
+// 		::after {
+// 			display: none;
+// 		}
+// 	}
 
-	.react-select__placeholder {
-		color: ${({ theme }) => theme.colors.grey};
-		margin: 0;
-	}
-`;
+// 	.react-select__placeholder {
+// 		color: ${({ theme }) => theme.colors.grey};
+// 		margin: 0;
+// 	}
+// `;
 
 export { StyledPage };

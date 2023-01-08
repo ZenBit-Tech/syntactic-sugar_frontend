@@ -88,3 +88,8 @@ export * from "./lib/create-proposal/create-proposal";
 //Logout
 
 export * from "./lib/logout/logoutHooks";
+
+//Filter
+
+export * from "./lib/filter-container/filter-container";
+export * from "./lib/searchwork-filter/searchwork-filter";

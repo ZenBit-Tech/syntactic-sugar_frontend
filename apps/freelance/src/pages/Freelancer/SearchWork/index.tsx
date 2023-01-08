@@ -2,20 +2,20 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useForm, Controller } from "react-hook-form";
 import { useOptions, SelectOptions } from "utils/select-options/options";
-import { Dashboard, StyledTitle, StyledButton, Pagination } from "@freelance/components";
+import { Dashboard, StyledTitle, StyledButton, Pagination, SearchWorkFilter, FilterBox } from "@freelance/components";
 import { JobsInterface, useGetJobsQuery } from "redux/jobs/jobs.api";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import { useSearchWorkFormHook } from "./searchWorkFormHook";
 import { JOBS_PAGE } from "src/utils/constants/breakpoint";
 import {
 	StyledPage,
-	Form,
-	InputContainer,
-	Wrapper,
+	// Form,
+	// InputContainer,
+	// Wrapper,
 	InputHeader,
 	InputWrapper,
-	SelectElement,
-	InputContainerCards,
+	// SelectElement,
+	// InputContainerCards,
 } from "./style";
 
 type user = "freelancer" | "employer";
@@ -31,108 +31,117 @@ export interface IFormInput {
 	typePage?: "proposals" | "job";
 }
 
-interface JobSkills {
-	id: string;
-	name: string;
-}
+// interface JobSkills {
+// 	id: string;
+// 	name: string;
+// }
 
 export function SearchWork() {
 	const user: user = "freelancer";
 	const { t } = useTranslation();
-	const { handleSubmit, control, getValues, reset } = useForm<IFormInput>();
+	// const { handleSubmit, control, getValues, reset } = useForm<IFormInput>();
 	const { isLoading, isError, data, isSuccess } = useGetJobsQuery();
-	const { data: freelancerData } = useGetFreelancerQuery();
+	// const { data: freelancerData } = useGetFreelancerQuery();
 
-	const emptyValue = {
-		value: "",
-		label: "",
-	};
-	const {
-		countries,
-		categories,
-		skills,
-		employmentType,
-		hourRate,
-		hoursAmount,
-		workExperience,
-		englishLevel,
-	} = useOptions();
+	// const emptyValue = {
+	// 	value: "",
+	// 	label: "",
+	// };
+	// const {
+	// 	countries,
+	// 	categories,
+	// 	skills,
+	// 	employmentType,
+	// 	hourRate,
+	// 	hoursAmount,
+	// 	workExperience,
+	// 	englishLevel,
+	// } = useOptions();
 
-	const freelancerFilter = {
-		position: freelancerData?.position,
-		category: freelancerData?.category.name,
-		skills: freelancerData?.skills.map(skill => skill.name),
-		employmentType: freelancerData?.employmentType,
-		englishLevel: freelancerData?.englishLevel,
-		hourRate: freelancerData?.hourRate,
-		availableAmountOfHour: freelancerData?.availableAmountOfHours,
-	};
+	// const freelancerFilter = {
+	// 	position: freelancerData?.position,
+	// 	category: freelancerData?.category.name,
+	// 	skills: freelancerData?.skills.map(skill => skill.name),
+	// 	employmentType: freelancerData?.employmentType,
+	// 	englishLevel: freelancerData?.englishLevel,
+	// 	hourRate: freelancerData?.hourRate,
+	// 	availableAmountOfHour: freelancerData?.availableAmountOfHours,
+	// };
 
-	const filtersObj = {
-		category: categories,
-		skills: skills,
-		employmentType: employmentType,
-		englishLevel: englishLevel,
-		hourRate: hourRate,
-		availableAmountOfHour: hoursAmount,
-	};
+	// const filtersObj = {
+	// 	category: categories,
+	// 	skills: skills,
+	// 	employmentType: employmentType,
+	// 	englishLevel: englishLevel,
+	// 	hourRate: hourRate,
+	// 	availableAmountOfHour: hoursAmount,
+	// };
 
 	const [filterJobs, setFilterJobs] = useState(data);
-	const [useFilters, setUseFilters] = useState<boolean>(false);
-	const { onSubmit, setFilter, setToggleFilter, filter, toggleFilter } = useSearchWorkFormHook();
+	// const [useFilters, setUseFilters] = useState<boolean>(false);
+	// const { onSubmit, setFilter, setToggleFilter, filter, toggleFilter } = useSearchWorkFormHook();
+	const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-	const filterSkillsCheck = (arr1: string[], arr2: string[]) => {
-		const skillsIncluded = arr2.every(skill => arr1.includes(skill));
+	const toggleFilterBox = () => {
+		setIsFilterOpen(!isFilterOpen);
+	}
+	
+	const closeFilter = () => {
+		setIsFilterOpen(false);
+	}
 
-		return skillsIncluded;
-	};
+	// const filterSkillsCheck = (arr1: string[], arr2: string[]) => {
+	// 	const skillsIncluded = arr2.every(skill => arr1.includes(skill));
 
-	const skillIncludesFunc = (arr1: string[][], arr2: string[]) => {
-		const skillsIncludesArr: boolean[] = [];
+	// 	return skillsIncluded;
+	// };
 
-		arr1.map(job => {
-			skillsIncludesArr.push(filterSkillsCheck(job, arr2));
-		});
+	// const skillIncludesFunc = (arr1: string[][], arr2: string[]) => {
+	// 	const skillsIncludesArr: boolean[] = [];
 
-		return skillsIncludesArr;
-	};
+	// 	arr1.map(job => {
+	// 		skillsIncludesArr.push(filterSkillsCheck(job, arr2));
+	// 	});
+
+	// 	return skillsIncludesArr;
+	// };
 
 	useEffect(() => {
 		setFilterJobs(data);
 	}, [isSuccess]);
 
-	useEffect(() => {
-		if (toggleFilter === "filter") {
-			const jobSkills: JobSkills[][] | undefined = data?.map((job: JobsInterface) => job.skills);
-			const filterJobsSkills: string[][] | undefined = jobSkills?.map((skill: JobSkills[]) => {
-				return skill.map((item: JobSkills) => item.name);
-			});
-			const filterSkills = filter.skills;
-			const skillsFilter = skillIncludesFunc(filterJobsSkills as string[][], filterSkills);
-			const newFilterJobs = data?.filter(
-				(job: JobsInterface, index) =>
-					job.position.toLowerCase().includes(filter.position.toLowerCase()) &&
-					job.category.name.includes(filter.category) &&
-					job.employmentType.includes(filter.employmentType) &&
-					job.englishLevel.includes(filter.englishLevel) &&
-					job.hourRate.includes(filter.hourRate) &&
-					job.availableAmountOfHours.includes(filter.availableAmountOfHour) &&
-					skillsFilter[index],
-			);
+	// useEffect(() => {
+	// 	if (toggleFilter === "filter") {
+	// 		const jobSkills: JobSkills[][] | undefined = data?.map((job: JobsInterface) => job.skills);
+	// 		const filterJobsSkills: string[][] | undefined = jobSkills?.map((skill: JobSkills[]) => {
+	// 			return skill.map((item: JobSkills) => item.name);
+	// 		});
+	// 		const filterSkills = filter.skills;
+	// 		const skillsFilter = skillIncludesFunc(filterJobsSkills as string[][], filterSkills);
+	// 		const newFilterJobs = data?.filter(
+	// 			(job: JobsInterface, index) =>
+	// 				job.position.toLowerCase().includes(filter.position.toLowerCase()) &&
+	// 				job.category.name.includes(filter.category) &&
+	// 				job.employmentType.includes(filter.employmentType) &&
+	// 				job.englishLevel.includes(filter.englishLevel) &&
+	// 				job.hourRate.includes(filter.hourRate) &&
+	// 				job.availableAmountOfHours.includes(filter.availableAmountOfHour) &&
+	// 				skillsFilter[index],
+	// 		);
 
-			setFilterJobs(newFilterJobs);
-		}
-	}, [toggleFilter, filter]);
+	// 		setFilterJobs(newFilterJobs);
+	// 	}
+	// }, [toggleFilter, filter]);
 
 	return (
 		<StyledPage>
 			<Dashboard userRole="freelancer" typePage={JOBS_PAGE}>
-				<Form onSubmit={handleSubmit(onSubmit)}>
+				{/* <Form onSubmit={handleSubmit(onSubmit)}> */}
 					<InputHeader>
 						<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
 							{t("freelancer.searchWork.jobsList")}
 						</StyledTitle>
-						<StyledButton
+						{/* <StyledButton
 							type="reset"
 							buttonColor="redGradient"
 							buttonSize="sm"
@@ -159,10 +168,10 @@ export function SearchWork() {
 							}}
 						>
 							{t("freelancer.searchWork.buttonProfile")}
-						</StyledButton>
-						<StyledButton
+						</StyledButton> */}
+						{/* <StyledButton
 							type="button"
-							disabled={useFilters ? true : false}
+							disabled={useFilters}
 							buttonColor="redGradient"
 							buttonSize="sm"
 							fontSize="md"
@@ -173,27 +182,34 @@ export function SearchWork() {
 							}}
 						>
 							{t("freelancer.searchWork.buttonFilter")}
-						</StyledButton>
+						</StyledButton> */}
 					</InputHeader>
-					<Wrapper>
-						<InputContainerCards>
+					{/* <Wrapper> */}
+						{/* <InputContainerCards> */}
 							<InputWrapper>
 								<Pagination itemsPerPage={5} user={user} data={filterJobs} typePage={JOBS_PAGE} />
-							</InputWrapper>
-						</InputContainerCards>
-						<InputContainer>
+						</InputWrapper>
+						<FilterBox isActive={isFilterOpen}>
+							<SearchWorkFilter
+								openFilter={toggleFilterBox}
+								closeFilter={closeFilter}
+							/>
+						</FilterBox>
+						
+						{/* </InputContainerCards> */}
+						{/* <InputContainer>
 							<InputHeader>
 								<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
 									{t("freelancer.searchWork.filter")}
 								</StyledTitle>
-							</InputHeader>
-							<InputWrapper>
+							</InputHeader> */}
+							{/* <InputWrapper>
 								<Controller
 									name="position"
 									control={control}
 									render={({ field }) => (
 										<input
-											disabled={useFilters ? false : true}
+											disabled={!useFilters}
 											{...field}
 											defaultValue=""
 											placeholder={t("freelancer.createProfile.positionPlaceholder")}
@@ -216,12 +232,12 @@ export function SearchWork() {
 																</label>
 																<SelectElement
 																	id={key}
-																	isDisabled={useFilters ? false : true}
+																	isDisabled={!useFilters}
 																	options={filtersObj[key as keyof typeof filtersObj]}
 																	{...field}
 																	placeholder=""
 																	isSearchable
-																	isMulti={key === "skills" ? true : false}
+																	isMulti={key === "skills"}
 																	classNamePrefix="react-select"
 																/>
 															</>
@@ -235,7 +251,7 @@ export function SearchWork() {
 								<div className="selectContainer__buttons">
 									<StyledButton
 										type="submit"
-										disabled={useFilters ? false : true}
+										disabled={!useFilters}
 										buttonColor="redGradient"
 										buttonSize="sm"
 										fontSize="md"
@@ -244,7 +260,7 @@ export function SearchWork() {
 									</StyledButton>
 									<StyledButton
 										type="reset"
-										disabled={useFilters ? false : true}
+										disabled={!useFilters}
 										onClick={() => {
 											setFilterJobs(data);
 											setToggleFilter("reset");
@@ -257,10 +273,11 @@ export function SearchWork() {
 										{t("freelancer.searchWork.unFilter")}
 									</StyledButton>
 								</div>
-							</InputWrapper>
-						</InputContainer>
-					</Wrapper>
-				</Form>
+							</InputWrapper> */}
+						{/* </InputContainer> */}
+						{/* <SearchWorkFilter /> */}
+					{/* </Wrapper> */}
+				{/* </Form> */}
 			</Dashboard>
 		</StyledPage>
 	);

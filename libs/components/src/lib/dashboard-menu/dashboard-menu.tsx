@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { FilterButton, StyledButton } from "@freelance/components";
 import { ROLES } from "utils/constants/roles";
-import { EMPLOYER_JOBS, PROPOSALS_PAGE, TALENTS_PAGE } from "utils/constants/breakpoint";
+import { EMPLOYER_JOBS, JOBS_PAGE, PROPOSALS_PAGE, TALENTS_PAGE } from "utils/constants/breakpoint";
 import { EMPLOYER_JOBS_PAGE, TALENTS } from "utils/constants/links";
 import { Container, FilterButtonWrap } from "./dashboard-menu.styled";
 
@@ -30,18 +30,15 @@ export function DashboardMenu({
 					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
 						{t("dashboard.menu.myContracts")}
 					</StyledButton>
-					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
-						{t("dashboard.menu.searchWorks")}
-					</StyledButton>
 					<StyledButton
-						disabled={typePage === PROPOSALS_PAGE}
 						buttonSize="md"
 						fontSize="md"
 						buttonColor="lightRed"
+						disabled={typePage === JOBS_PAGE}
 					>
-						{t("dashboard.menu.proposals")}
+						{t("dashboard.menu.searchWorks")}
 					</StyledButton>
-					{typePage === PROPOSALS_PAGE && (
+					{typePage === JOBS_PAGE && (
 						<FilterButtonWrap>
 							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
 								{t("dashboard.menu.myProposals")}
