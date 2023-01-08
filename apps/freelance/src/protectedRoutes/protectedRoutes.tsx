@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "redux/store";
 
 export interface ProtectedRouteProps {
-    children?: any;
+    children: JSX.Element;
     path: string;
 }
 
