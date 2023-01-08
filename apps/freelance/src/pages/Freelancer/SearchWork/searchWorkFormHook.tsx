@@ -1,8 +1,12 @@
 import { SubmitHandler } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IFormInput } from "./index";
+import { useGetJobsQuery } from "src/redux/jobs";
 
 export const useSearchWorkFormHook = () => {
+	const { isLoading, isError, data, isSuccess } = useGetJobsQuery();
+    const [filterJobs, setFilterJobs] = useState(data);
+
 	const [toggleFilter, setToggleFilter] = useState<string>("reset");
 	const [filter, setFilter] = useState<IFormInput | any>({
 		category: "",
@@ -14,6 +18,7 @@ export const useSearchWorkFormHook = () => {
 		availableAmountOfHour: "",
 	});
 	const onSubmit: SubmitHandler<IFormInput> = values => {
+		console.log(values);
 		const freelancerInfo = {
 			category: values.category.label,
 			position: values.position || "",
@@ -28,5 +33,10 @@ export const useSearchWorkFormHook = () => {
 		setToggleFilter("filter");
 	};
 
-	return { onSubmit, setFilter, setToggleFilter, filter, toggleFilter };
+	useEffect(() => {
+        setFilterJobs(data);
+        console.log(data);
+    }, [isSuccess]);
+
+	return { onSubmit, setFilter, setToggleFilter, filter, toggleFilter,  filterJobs, setFilterJobs, data, isSuccess};
 };

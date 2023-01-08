@@ -34,12 +34,12 @@ interface IFilterProps {
 
 export const SearchWorkFilter = ({openFilter, closeFilter}: IFilterProps) => {
     const { t } = useTranslation();
-    const { isLoading, isError, data, isSuccess } = useGetJobsQuery();
+    // const { isLoading, isError, data, isSuccess } = useGetJobsQuery();
     const { handleSubmit, control, getValues, reset } = useForm<IFormInput>();
     const { data: freelancerData } = useGetFreelancerQuery();
-    const [filterJobs, setFilterJobs] = useState(data);
-    const [useFilters, setUseFilters] = useState<boolean>(false);
-    const { onSubmit, setFilter, setToggleFilter, filter, toggleFilter } = useSearchWorkFormHook();
+    // const [filterJobs, setFilterJobs] = useState(data);
+    // const [useFilters, setUseFilters] = useState<boolean>(false);
+    const { onSubmit, setFilter, setToggleFilter, filter, toggleFilter, setFilterJobs, data, isSuccess } = useSearchWorkFormHook();
     
 	const {
 		categories,
@@ -89,8 +89,8 @@ export const SearchWorkFilter = ({openFilter, closeFilter}: IFilterProps) => {
 			});
 			const filterSkills = filter.skills;
 			const skillsFilter = skillIncludesFunc(filterJobsSkills as string[][], filterSkills);
-			const newFilterJobs = data?.filter(
-				(job: JobsInterface, index) =>
+			const newFilterJobs = data && data.filter(
+				(job: JobsInterface, index: number) =>
 					job.position.toLowerCase().includes(filter.position.toLowerCase()) &&
 					job.category.name.includes(filter.category) &&
 					job.employmentType.includes(filter.employmentType) &&
@@ -104,10 +104,6 @@ export const SearchWorkFilter = ({openFilter, closeFilter}: IFilterProps) => {
 		}
     }, [toggleFilter, filter]);
     
-    useEffect(() => {
-		setFilterJobs(data);
-    }, [isSuccess]);
-
     return (
         <Form onSubmit={handleSubmit(onSubmit)}>
             <OpenFilterBtn
@@ -130,7 +126,7 @@ export const SearchWorkFilter = ({openFilter, closeFilter}: IFilterProps) => {
                     onClick={() => {
                         setToggleFilter("reset");
                         setFilterJobs(data);
-                        setUseFilters(false);
+                        // setUseFilters(false);
                         reset();
                     }}
                 >
@@ -142,9 +138,9 @@ export const SearchWorkFilter = ({openFilter, closeFilter}: IFilterProps) => {
                     buttonSize="sm"
                     fontSize="md"
                     onClick={() => {
-                        setToggleFilter("filter");
+                        // setToggleFilter("filter");
                         setFilter(freelancerFilter);
-                        setUseFilters(false);
+                        // setUseFilters(false);
                         reset();
                     }}
                 >
@@ -170,6 +166,7 @@ export const SearchWorkFilter = ({openFilter, closeFilter}: IFilterProps) => {
             <Controller
                 name="category"
                 control={control}
+                defaultValue={emptyValue}
                 render={({ field }) => (
                     <>
                         <Label htmlFor="category">
@@ -189,6 +186,7 @@ export const SearchWorkFilter = ({openFilter, closeFilter}: IFilterProps) => {
             <Controller
                 name="skills"
                 control={control}
+                defaultValue={[]}
                 render={({ field }) => (
                     <>
                         <Label htmlFor="skills">
@@ -209,6 +207,7 @@ export const SearchWorkFilter = ({openFilter, closeFilter}: IFilterProps) => {
             <Controller
                 name="employmentType"
                 control={control}
+                defaultValue={emptyValue}
                 render={({ field }) => (
                     <>
                         <Label htmlFor="employmentType">
@@ -228,6 +227,7 @@ export const SearchWorkFilter = ({openFilter, closeFilter}: IFilterProps) => {
             <Controller
                 name="englishLevel"
                 control={control}
+                defaultValue={emptyValue}
                 render={({ field }) => (
                     <>
                         <Label htmlFor="englishLevel">
@@ -247,6 +247,7 @@ export const SearchWorkFilter = ({openFilter, closeFilter}: IFilterProps) => {
             <Controller
                 name="hourRate"
                 control={control}
+                defaultValue={emptyValue}
                 render={({ field }) => (
                     <>
                         <Label htmlFor="hourRate">
@@ -266,6 +267,7 @@ export const SearchWorkFilter = ({openFilter, closeFilter}: IFilterProps) => {
             <Controller
                 name="availableAmountOfHour"
                 control={control}
+                defaultValue={emptyValue}
                 render={({ field }) => (
                     <>
                         <Label htmlFor="availableAmountOfHour">
@@ -288,7 +290,6 @@ export const SearchWorkFilter = ({openFilter, closeFilter}: IFilterProps) => {
                     buttonColor="redGradient"
                     buttonSize="sm"
                     fontSize="md"
-                    onClick={closeFilter}
                 >
                     {t("freelancer.searchWork.filter")}
                 </StyledButton>

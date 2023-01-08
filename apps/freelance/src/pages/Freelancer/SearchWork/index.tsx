@@ -40,7 +40,7 @@ export function SearchWork() {
 	const user: user = "freelancer";
 	const { t } = useTranslation();
 	// const { handleSubmit, control, getValues, reset } = useForm<IFormInput>();
-	const { isLoading, isError, data, isSuccess } = useGetJobsQuery();
+	// const { isLoading, isError, data, isSuccess } = useGetJobsQuery();
 	// const { data: freelancerData } = useGetFreelancerQuery();
 
 	// const emptyValue = {
@@ -77,9 +77,10 @@ export function SearchWork() {
 	// 	availableAmountOfHour: hoursAmount,
 	// };
 
-	const [filterJobs, setFilterJobs] = useState(data);
+	// const [filterJobs, setFilterJobs] = useState(data);
 	// const [useFilters, setUseFilters] = useState<boolean>(false);
-	// const { onSubmit, setFilter, setToggleFilter, filter, toggleFilter } = useSearchWorkFormHook();
+	const { filterJobs } = useSearchWorkFormHook();
+	console.log(filterJobs);
 	const [isFilterOpen, setIsFilterOpen] = useState(false);
 
 	const toggleFilterBox = () => {
@@ -106,9 +107,9 @@ export function SearchWork() {
 	// 	return skillsIncludesArr;
 	// };
 
-	useEffect(() => {
-		setFilterJobs(data);
-	}, [isSuccess]);
+	// useEffect(() => {
+	// 	setFilterJobs(data);
+	// }, [isSuccess]);
 
 	// useEffect(() => {
 	// 	if (toggleFilter === "filter") {
