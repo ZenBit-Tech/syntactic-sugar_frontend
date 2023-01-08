@@ -5,11 +5,11 @@ import { useGetFreelancerQuery } from "src/redux/createFreelancer/freelancer-pag
 import { IFormInput } from "./index";
 
 interface IUseSearchWorkFormHook {
-    onSubmit: SubmitHandler<IFormInput>;
-    setFilter: ({}) => void;
-    setToggleFilter:  React.Dispatch<React.SetStateAction<string>>;
-    filterJobs?: JobsInterface[];
-    setFilterJobs: React.Dispatch<React.SetStateAction<JobsInterface[] | undefined>>;
+	onSubmit: SubmitHandler<IFormInput>;
+	setFilter: ({ }) => void;
+	setToggleFilter: React.Dispatch<React.SetStateAction<string>>;
+	filterJobs?: JobsInterface[];
+	setFilterJobs: React.Dispatch<React.SetStateAction<JobsInterface[] | undefined>>;
 	data?: JobsInterface[];
 	freelancerFilter: IFormInput | {};
 }
@@ -21,8 +21,8 @@ interface JobSkills {
 
 export const useSearchWorkFormHook = (): IUseSearchWorkFormHook => {
 	const { data, isSuccess } = useGetJobsQuery();
-    const { data: freelancerData } = useGetFreelancerQuery();
-    const [filterJobs, setFilterJobs] = useState(data);
+	const { data: freelancerData } = useGetFreelancerQuery();
+	const [filterJobs, setFilterJobs] = useState(data);
 	const [toggleFilter, setToggleFilter] = useState<string>("reset");
 	const [filter, setFilter] = useState<IFormInput | any>({
 		category: "",
@@ -92,8 +92,8 @@ export const useSearchWorkFormHook = (): IUseSearchWorkFormHook => {
 
 		return skillsIncludesArr;
 	};
-
-	 const freelancerFilter = {
+	
+	const freelancerFilter = {
 		position: freelancerData?.position,
 		category: freelancerData?.category.name,
 		skills: freelancerData?.skills.map(skill => skill.name),

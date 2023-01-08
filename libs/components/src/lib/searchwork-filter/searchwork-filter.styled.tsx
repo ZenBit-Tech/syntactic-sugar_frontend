@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { StyledButton } from "@freelance/components";
 
 export const Form = styled.form`
-	display: block;
+    display: block;
 `;  
 
 export const SelectElement = styled(Select)`
@@ -86,7 +86,7 @@ export const BtnText = styled.p`
 `;
 
 export const ButtonWrapper = styled.div`
-	display: flex;
-	justify-content: space-around;
-	gap: 2rem;
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
 `;
