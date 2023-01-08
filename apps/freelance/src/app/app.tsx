@@ -71,7 +71,6 @@ export function App() {
 											</PublicRoute>
 										}
 									/>
-									<Route path="/role" element={<PublicRoute path="/freelancer/view-profile" />}/>
 								</>
 							)}
 							{role !== FREELANCER && (
