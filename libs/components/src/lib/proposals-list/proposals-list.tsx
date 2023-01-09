@@ -10,8 +10,6 @@ export function ProposalsList({ id }: IProposalsListProps) {
 	const { t } = useTranslation();
 	const { data: proposalsList } = useGetProposalsByJobIdQuery(id);
 
-	console.log(proposalsList);
-
 	return (
 		<Container modal proposalsList>
 			<StyledTitle tag="h1" fontWeight={700} fontSize="lg">
