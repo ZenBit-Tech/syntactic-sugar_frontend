@@ -13,13 +13,13 @@ export function SearchWork() {
 		filterJobs,
 		setFilterJobs,
 		data,
-		freelancerFilter
+		freelancerFilter,
 	} = useSearchWorkFormHook();
 	const [isFilterOpen, setIsFilterOpen] = useState(false);
 
 	const toggleFilterBox = () => {
 		setIsFilterOpen(!isFilterOpen);
-	}
+	};
 
 	return (
 		<StyledPage>

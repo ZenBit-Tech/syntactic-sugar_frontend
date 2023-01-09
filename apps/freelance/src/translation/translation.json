@@ -80,13 +80,18 @@
 		"closedNotification": "Your job is not visible to freelancer now",
 		"publishedNotification": "Your job is visible to freelancer now",
 		"canNotEdit": "You have got a proposal already. You can’t edit this job any more",
-		"proposalRecived": "Proposal recived"
+		"proposalRecived": "Proposal received"
 	},
 	"editJob": {
 		"saveChanges": "Save changes",
 		"isPendingSaving": "...Saving",
 		"savingSucceed": "Your changes successfully saved",
 		"title": "Edit job"
+	},
+	"proposalsList": "Proposals",
+	"proposalCard": {
+		"startChat": "Start chat",
+		"proposalDetails": "Proposal details"
 	},
 	"invitationPage": {
 		"title": "You have successfully registered!",

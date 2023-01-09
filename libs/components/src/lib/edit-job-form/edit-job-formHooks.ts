@@ -28,7 +28,6 @@ export const useEditJobHook = (jobId: string): IUseEditJobHook => {
 	const editJobTitle: string = t("editJob.title");
 
 	const onSubmit: SubmitHandler<IEditJobForm> = async data => {
-		console.log(data);
 		try {
 			const countries = data.countries.map(country => country.label);
 			const countriesCheck = countries.some(country => country === undefined);
