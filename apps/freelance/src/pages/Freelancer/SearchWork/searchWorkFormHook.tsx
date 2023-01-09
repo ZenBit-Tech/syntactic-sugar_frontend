@@ -2,7 +2,7 @@ import { SubmitHandler } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { JobsInterface, useGetJobsQuery } from "src/redux/jobs";
 import { useGetFreelancerQuery } from "src/redux/createFreelancer/freelancer-pageApi";
-import { IFormInput } from "./index";
+import { SelectOptions } from "src/utils/select-options/options";
 
 interface IUseSearchWorkFormHook {
 	onSubmit: SubmitHandler<IFormInput>;
@@ -17,6 +17,16 @@ interface IUseSearchWorkFormHook {
 interface JobSkills {
 	id: string;
 	name: string;
+}
+
+export interface IFormInput {
+	category: SelectOptions;
+	position: string;
+	skills: SelectOptions[];
+	employmentType: SelectOptions;
+	englishLevel: SelectOptions;
+	hourRate: SelectOptions;
+	availableAmountOfHour: SelectOptions;
 }
 
 export const useSearchWorkFormHook = (): IUseSearchWorkFormHook => {
