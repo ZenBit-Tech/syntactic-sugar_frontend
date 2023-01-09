@@ -19,6 +19,7 @@ import {
 	FreelancerButtonWrapper,
 	ProposalsList,
 	TypePage,
+	GridItem,
 } from "@freelance/components";
 import { InstObject, Proposal } from "redux/jobs";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
@@ -121,7 +122,7 @@ export function JobCard({
 					)}
 					<StyledParagraph fontSize="lg">{title}</StyledParagraph>
 				</GridContainer>
-				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && !isProposal && (
+				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && !isProposal ? (
 					<FreelancerButtonWrapper>
 						<StyledButton
 							buttonColor="redGradient"
@@ -132,6 +133,8 @@ export function JobCard({
 							<strong>{t("jobCard.sendProposal")}</strong>
 						</StyledButton>
 					</FreelancerButtonWrapper>
+				) : (
+					<GridItem></GridItem>
 				)}
 				{userType === ROLES.EMPLOYER && (
 					<GridContainer alignItems="center" justifyItems="center" gap={10}>
@@ -162,7 +165,7 @@ export function JobCard({
 					<DateWrapper fontSize="md">
 						<strong>{prettyDate}</strong>
 					</DateWrapper>
-					{proposals && proposals.length > 0 && (
+					{userType === ROLES.EMPLOYER && proposals && proposals.length > 0 && (
 						<EmployerButtonWrapper>
 							<StyledButton
 								onClick={openProposalsList}

@@ -1,13 +1,9 @@
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
 import { SelectOptions } from "utils/select-options/options";
 import { Dashboard, Pagination, SearchWorkFilter, FilterBox } from "@freelance/components";
 import { JOBS_PAGE } from "src/utils/constants/breakpoint";
 import { useSearchWorkFormHook } from "./searchWorkFormHook";
-import {
-	StyledPage,
-	InputWrapper,
-} from "./style";
+import { StyledPage, InputWrapper } from "./style";
 
 type user = "freelancer" | "employer";
 
@@ -31,13 +27,13 @@ export function SearchWork() {
 		filterJobs,
 		setFilterJobs,
 		data,
-		freelancerFilter
+		freelancerFilter,
 	} = useSearchWorkFormHook();
 	const [isFilterOpen, setIsFilterOpen] = useState(false);
 
 	const toggleFilterBox = () => {
 		setIsFilterOpen(!isFilterOpen);
-	}
+	};
 
 	return (
 		<StyledPage>
