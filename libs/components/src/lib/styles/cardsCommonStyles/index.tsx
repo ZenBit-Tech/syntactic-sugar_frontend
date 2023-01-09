@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { GridContainer, StyledParagraph } from "@freelance/components";
 
 export const StyledJobCard = styled.div`
@@ -112,11 +112,21 @@ export const CardTitleButton = styled.button`
 	outline-style: none;
 `;
 
-export const ImageContainer = styled.div`
+interface IImageContainer {
+	proposalCard?: boolean;
+}
+
+export const ImageContainer = styled.div<IImageContainer>`
 	img {
 		display: block;
 		width: 50px;
 		height: 50px;
 		border-radius: 50%;
+		${({ proposalCard }) =>
+			proposalCard &&
+			css`
+				width: 77px;
+				height: 77px;
+			`}
 	}
 `;

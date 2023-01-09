@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { IEmployerResponse, InstObject, Proposal } from "redux/jobs";
 import { IEduResponse, IWorkHistoryResponse } from "redux/createFreelancer/freelancer-pageApi";
+import { ICommonObject, TypePage } from "@freelance/components";
 import {
 	PaginationContainer,
 	PaginationItemsWrapper,
@@ -40,8 +41,8 @@ export interface CommonObject {
 export interface PaginationProps {
 	itemsPerPage: number;
 	user: string;
-	data?: CommonObject[];
-	typePage?: "proposals" | "jobs" | "talents";
+	data?: ICommonObject[];
+	typePage?: TypePage;
 }
 
 export interface ReactPaginateEvent {

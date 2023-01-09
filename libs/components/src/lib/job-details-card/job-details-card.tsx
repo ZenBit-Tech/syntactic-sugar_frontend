@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import moment from "moment";
-import { StyledTitle, StyledButton } from "@freelance/components";
-import { JOBS_PAGE } from "utils/constants/breakpoint";
+import { StyledTitle, StyledButton, TypePage } from "@freelance/components";
+import { SEARCH_WORK_PAGE } from "utils/constants/breakpoint";
 import { baseUrl } from "utils/constants/redux-query";
 import { useGetJobIdQuery } from "redux/jobs";
 import { DEFAULT_IMAGE } from "utils/constants/links";
@@ -20,7 +20,7 @@ import {
 } from "./job-details-card.styled";
 
 export interface JobDetailsCardProps {
-	typePage?: "proposals" | "jobs";
+	typePage?: TypePage;
 	id: string;
 	openCreateProposal: () => void;
 	onBack: () => void;
@@ -134,17 +134,17 @@ export function JobDetailsCard({
 						</Item>
 					</ItemContainer>
 				</Bottom>
-				{typePage === JOBS_PAGE && (
-					<ButtonWrapper>
-						<StyledButton
-							type="button"
-							buttonColor="redGradient"
-							buttonSize="sm"
-							fontSize="md"
-							onClick={onBack}
-						>
-							<strong>{t("freelancer.createProfile.backBtn")}</strong>
-						</StyledButton>
+				<ButtonWrapper>
+					<StyledButton
+						type="button"
+						buttonColor="redGradient"
+						buttonSize="sm"
+						fontSize="md"
+						onClick={onBack}
+					>
+						<strong>{t("freelancer.createProfile.backBtn")}</strong>
+					</StyledButton>
+					{typePage === SEARCH_WORK_PAGE && (
 						<StyledButton
 							type="button"
 							disabled={isProposal}
@@ -157,8 +157,8 @@ export function JobDetailsCard({
 								{t(isProposal ? "jobDetails.alreadySended" : "jobDetails.createProposalBtn")}
 							</strong>
 						</StyledButton>
-					</ButtonWrapper>
-				)}
+					)}
+				</ButtonWrapper>
 			</ContainerBox>
 		</>
 	);

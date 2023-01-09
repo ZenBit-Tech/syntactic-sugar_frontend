@@ -25,17 +25,17 @@ export interface Published {
 }
 
 export interface IEduResponse {
-	id: string;
-	institute: string;
-	occupation: string;
-	period: string;
+	id?: string;
+	institute?: string;
+	occupation?: string;
+	period?: string;
 }
 
 export interface IWorkHistoryResponse {
-	id: string;
-	company: string;
-	workPosition: string;
-	period: string;
+	id?: string;
+	company?: string;
+	workPosition?: string;
+	period?: string;
 }
 
 export interface IResponse {

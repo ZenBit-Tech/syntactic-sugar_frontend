@@ -12,16 +12,18 @@ import {
 	CreateProposalonJob,
 	EditJobForm,
 	StyledJobCard,
-	CardNotification,
 	DateWrapper,
 	CardTitleButton,
 	JobCardHeader,
 	EmployerButtonWrapper,
 	FreelancerButtonWrapper,
+	ProposalsList,
+	TypePage,
+	GridItem,
 } from "@freelance/components";
 import { InstObject, Proposal } from "redux/jobs";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
-import { JOBS_PAGE } from "utils/constants/breakpoint";
+import { EMPLOYER_JOBS, JOBS_PAGE, SEARCH_WORK_PAGE } from "utils/constants/breakpoint";
 import { ROLES } from "utils/constants/roles";
 import { DEFAULT_IMAGE } from "utils/constants/links";
 import { baseUrl } from "utils/constants/redux-query";
@@ -48,7 +50,7 @@ export interface JobCardProps {
 	skills?: InstObject[];
 	category?: InstObject;
 	isPublished?: boolean;
-	typePage?: "proposals" | "jobs";
+	typePage?: TypePage;
 }
 
 export function JobCard({
@@ -85,6 +87,9 @@ export function JobCard({
 		detailsModalOpen,
 		handleEditJob,
 		closeModalEditJob,
+		openProposalsList,
+		closeProposalsList,
+		isProposalsListOpen,
 		isTogglingJob,
 		isModalEditJob,
 	} = useJobCard({ isPublished });
@@ -108,10 +113,7 @@ export function JobCard({
 					{userType === ROLES.FREELANCER && (
 						<FlexContainer>
 							<ImageContainer>
-								<img
-									src={employerImg ? baseUrl + "/" + employerImg : DEFAULT_IMAGE}
-									alt="User Avatar"
-								/>
+								<img src={employerImg ? baseUrl + employerImg : DEFAULT_IMAGE} alt="User Avatar" />
 							</ImageContainer>
 							<StyledParagraph fontSize="md">
 								<strong>{employerCompany}</strong>, {employerName}, {employerPosition}
@@ -120,7 +122,7 @@ export function JobCard({
 					)}
 					<StyledParagraph fontSize="lg">{title}</StyledParagraph>
 				</GridContainer>
-				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && !isProposal && (
+				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && !isProposal ? (
 					<FreelancerButtonWrapper>
 						<StyledButton
 							buttonColor="redGradient"
@@ -131,6 +133,8 @@ export function JobCard({
 							<strong>{t("jobCard.sendProposal")}</strong>
 						</StyledButton>
 					</FreelancerButtonWrapper>
+				) : (
+					<GridItem></GridItem>
 				)}
 				{userType === ROLES.EMPLOYER && (
 					<GridContainer alignItems="center" justifyItems="center" gap={10}>
@@ -161,8 +165,17 @@ export function JobCard({
 					<DateWrapper fontSize="md">
 						<strong>{prettyDate}</strong>
 					</DateWrapper>
-					{proposals && proposals.length > 0 && (
-						<CardNotification fontSize="md">{t("jobCard.proposalRecived")}</CardNotification>
+					{userType === ROLES.EMPLOYER && proposals && proposals.length > 0 && (
+						<EmployerButtonWrapper>
+							<StyledButton
+								onClick={openProposalsList}
+								buttonColor="redGradient"
+								buttonSize="lg"
+								fontSize="md"
+							>
+								<strong>{t("jobCard.proposalRecived")}</strong>
+							</StyledButton>
+						</EmployerButtonWrapper>
 					)}
 				</GridContainer>
 			</JobCardHeader>
@@ -204,12 +217,21 @@ export function JobCard({
 					isProposal={isProposal}
 				/>
 			</CardModal>
-			<CardModal open={proposalModalOpen} onCancel={closeSendProposal} width={1000}>
-				<SendProposal id={jobId} onCancel={closeSendProposal} />
-			</CardModal>
-			<CardModal open={isModalEditJob} onCancel={closeModalEditJob} width={1000}>
-				<EditJobForm jobId={jobId} />
-			</CardModal>
+			{typePage === SEARCH_WORK_PAGE && (
+				<CardModal open={proposalModalOpen} onCancel={closeSendProposal} width={1000}>
+					<SendProposal id={jobId} onCancel={closeSendProposal} />
+				</CardModal>
+			)}
+			{typePage === EMPLOYER_JOBS && (
+				<>
+					<CardModal open={isModalEditJob} onCancel={closeModalEditJob} width={1000}>
+						<EditJobForm jobId={jobId} />
+					</CardModal>
+					<CardModal open={isProposalsListOpen} onCancel={closeProposalsList} width={1000}>
+						<ProposalsList id={jobId} />
+					</CardModal>
+				</>
+			)}
 		</StyledJobCard>
 	);
 }

@@ -84,7 +84,7 @@ export function FreelancerCard({
 		<StyledFreelancersCard key={id}>
 			<Header>
 				<WrapperContainer>
-					<img src={image ? baseUrl + "/" + image : DEFAULT_IMAGE} alt="User Avatar" />
+					<img src={image ? baseUrl + image : DEFAULT_IMAGE} alt="User Avatar" />
 					<Wrapper>
 						<TitleBox>
 							<CardTitleButton onClick={openFreelancerProfile}>{`${fullName}`}</CardTitleButton>

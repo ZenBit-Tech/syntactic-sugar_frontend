@@ -26,6 +26,11 @@ export * from "./lib/styles/inputComponents";
 
 export * from "./lib/styles/cardsCommonStyles";
 
+//Pagination
+
+export * from "./lib/pagination/interfaces";
+export * from "./lib/pagination/pagination";
+
 // Cards
 
 export * from "./lib/job-card/job-card";
@@ -79,10 +84,6 @@ export * from "./lib/send-proposal/send-proposal";
 
 export * from "./lib/skeletons";
 
-//Pagination
-
-export * from "./lib/pagination/pagination";
-
 // Create and Send Proposal
 
 export * from "./lib/create-proposal/create-proposal";
@@ -90,3 +91,16 @@ export * from "./lib/create-proposal/create-proposal";
 //Logout
 
 export * from "./lib/logout/logoutHooks";
+
+//Proposals List
+
+export * from "./lib/proposals-list/proposals-list";
+
+//Proposal Card
+
+export * from "./lib/proposal-card/proposal-card";
+
+//Filter
+
+export * from "./lib/filter-container/filter-container";
+export * from "./lib/searchwork-filter/searchwork-filter";
