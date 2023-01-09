@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Dashboard, Pagination, SearchWorkFilter, FilterBox, StyledPage } from "@freelance/components";
 import { JOBS_PAGE } from "src/utils/constants/breakpoint";
+import { ROLES } from "src/utils/constants/roles";
 import { useSearchWorkFormHook } from "./searchWorkFormHook";
 import { InputWrapper } from "./style";
-import { ROLES } from "src/utils/constants/roles";
 
 export function SearchWork() {
 	const {
