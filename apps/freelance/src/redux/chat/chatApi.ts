@@ -3,12 +3,6 @@ import { baseQuery } from "redux/base-query";
 import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { IEmployerResponse, JobsInterface } from "redux/jobs";
 
-export enum UserRoles {
-	EMPLOYER = "EMPLOYER",
-	FREELANCER = "FREELANCER",
-	GUEST = "GUEST",
-}
-
 export interface IMessage {
 	id: string;
 	text: string;

@@ -22,6 +22,7 @@ import {
 	TypePage,
 	GridItem,
 	Chat,
+  IInvitation
 } from "@freelance/components";
 import { IEmployerResponse, InstObject, Proposal } from "redux/jobs";
 import { IProposal } from "redux/interfaces/IProposal";
@@ -33,7 +34,6 @@ import { baseUrl } from "utils/constants/redux-query";
 import { useJobCard } from "./job-cardHooks";
 import { useChat } from "./job-cardChatHooks";
 import { IChat } from "redux/chat/chatApi";
-import { IInvitation } from "../pagination/interfaces";
 
 export interface JobCardProps {
 	jobId: string;
