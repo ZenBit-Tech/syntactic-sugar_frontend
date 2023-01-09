@@ -31,6 +31,7 @@ interface IContainer {
 	modalEditJob?: boolean;
 	proposalsList?: boolean;
 	scroll?: boolean;
+	proposalDetails?: boolean;
 }
 
 export const Container = styled.div<IContainer>`
@@ -60,6 +61,12 @@ export const Container = styled.div<IContainer>`
 		`}
   ${({ proposalsList }) =>
 		proposalsList &&
+		css`
+			display: block;
+			height: auto;
+		`}
+  ${({ proposalDetails }) =>
+		proposalDetails &&
 		css`
 			display: block;
 			height: auto;

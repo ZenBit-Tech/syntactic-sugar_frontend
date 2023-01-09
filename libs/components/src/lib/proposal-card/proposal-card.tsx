@@ -11,9 +11,13 @@ import {
 	EmployerButtonWrapper,
 	StyledButton,
 	DateWrapper,
+	CardModal,
+	Container,
+	StyledTitle,
 } from "@freelance/components";
 import { DEFAULT_IMAGE } from "utils/constants/links";
 import { baseUrl } from "utils/constants/redux-query";
+import { useProposalCard } from "./proposal-cardHook";
 
 export interface ProposalCardProps {
 	id: string;
@@ -38,6 +42,14 @@ export function ProposalCard({
 }: ProposalCardProps) {
 	const { t } = useTranslation();
 	const prettyDate = moment(createdDate).format("LL");
+	const {
+		openProfileModal,
+		closeProfileModal,
+		isProfileOpen,
+		openLetterModal,
+		closeLetterModal,
+		isLetterOpen,
+	} = useProposalCard();
 
 	return (
 		<StyledJobCard>
@@ -50,8 +62,8 @@ export function ProposalCard({
 						/>
 					</ImageContainer>
 					<GridContainer>
-						<CardTitleButton>{freelancerName}</CardTitleButton>
-						<StyledParagraph fontSize="md">{hourRate}</StyledParagraph>
+						<CardTitleButton onClick={openProfileModal}>{freelancerName}</CardTitleButton>
+						<StyledParagraph fontSize="md">{hourRate}$</StyledParagraph>
 					</GridContainer>
 				</FlexContainer>
 				<GridContainer gap={10}>
@@ -61,8 +73,13 @@ export function ProposalCard({
 						</StyledButton>
 					</EmployerButtonWrapper>
 					<EmployerButtonWrapper>
-						<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
-							<strong>{t("proposalCard.proposalDetails")}</strong>
+						<StyledButton
+							onClick={openLetterModal}
+							buttonColor="redGradient"
+							buttonSize="lg"
+							fontSize="md"
+						>
+							<strong>{t("proposalCard.coverLetter")}</strong>
 						</StyledButton>
 					</EmployerButtonWrapper>
 				</GridContainer>
@@ -72,6 +89,20 @@ export function ProposalCard({
 					</DateWrapper>
 				</GridContainer>
 			</JobCardHeader>
+
+			{/* Modals */}
+
+			<CardModal open={isProfileOpen} onCancel={closeProfileModal}>
+				<h1>View Freelancer Profile</h1>
+			</CardModal>
+			<CardModal open={isLetterOpen} onCancel={closeLetterModal} width={1000}>
+				<Container modal proposalsList>
+					<StyledTitle tag="h1" fontSize="lg" fontWeight={700}>
+						{t("proposalCard.coverLetter")}
+					</StyledTitle>
+					<StyledParagraph fontSize="md">{coverLetter}</StyledParagraph>
+				</Container>
+			</CardModal>
 		</StyledJobCard>
 	);
 }
