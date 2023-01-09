@@ -1,5 +1,12 @@
+import { IChat } from "redux/chat/chatApi";
+import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { educationProps, workHistoryProps } from "redux/createFreelancer/freelancer-slice";
 import { IEmployerResponse, InstObject, Proposal } from "redux/jobs";
+
+export interface IInvitation {
+	id: string;
+	freelancer: IResponse;
+}
 
 export interface ICommonObject {
 	id: string;
@@ -30,11 +37,13 @@ export interface ICommonObject {
 	user?: { id: number; email: string };
 	coverLetter?: string;
 	filePath?: string;
+	chats?: IChat[];
 	freelancer?: {
 		id?: string;
 		fullName?: string;
 		image?: string;
 	};
+	invitation?: IInvitation[];
 }
 
 export type TypePage =

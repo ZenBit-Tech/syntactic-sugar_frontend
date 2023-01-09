@@ -13,6 +13,7 @@ interface IFormInput {
 }
 
 interface IResponseEmployer {
+  id: string;
 	fullName: string;
 	companyName: string;
 	position: string;
