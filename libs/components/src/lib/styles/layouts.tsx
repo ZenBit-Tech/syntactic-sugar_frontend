@@ -17,6 +17,8 @@ export const styledScroll = css`
 `;
 
 export const StyledPage = styled.div`
+	overflow: hidden;
+	position: relative;
 	margin: auto;
 	display: flex;
 	height: 100vh;
