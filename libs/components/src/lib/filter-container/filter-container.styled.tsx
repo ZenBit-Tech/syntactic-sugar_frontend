@@ -7,12 +7,11 @@ interface IFilterContainer {
 export const FilterContainer = styled.div<IFilterContainer>`
     padding: 1.5rem;
     border-radius: 15px;
-    border:  1px solid ${({ theme }) => theme.colors.lightRed};
     position: absolute;
     top: 17%;
-    right: 6%;
+    right: 5.9%;
     width: 27%;
-    background-color: ${({ theme }) => theme.colors.lightGrey};
+    background-color: rgb(229, 218, 218, 0.85);
     transition: 0.5s;
     transform: translateX(120%);
     

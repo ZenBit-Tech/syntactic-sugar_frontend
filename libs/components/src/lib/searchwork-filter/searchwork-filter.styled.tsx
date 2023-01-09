@@ -73,7 +73,6 @@ export const OpenFilterBtn = styled(StyledButton)`
     top: 20%;
     right: 100%;
     border-radius: 20px 0px 0px 20px;
-    background-color: red;
     width: 12%;
     transform: rotate(0deg);
     outline-style: none;
@@ -90,9 +89,8 @@ export const ButtonWrapper = styled.div`
     display: flex;
     justify-content: space-around;
     gap: 2rem;
-    
+
     button {
-      border-radius: 12px;  
+        border-radius: 12px;
     }
-    
 `;
