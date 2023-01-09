@@ -57,8 +57,9 @@ export const Input = styled.input`
 `;
 
 export const HeaderButton = styled(StyledButton)`
-    height: 1.5rem;
+    height: 1.8rem;
     width: 30%;
+    border-radius: 10px;
 `;
 
 export const HeaderButtonWrapp = styled.div`
@@ -89,4 +90,9 @@ export const ButtonWrapper = styled.div`
     display: flex;
     justify-content: space-around;
     gap: 2rem;
+    
+    button {
+      border-radius: 12px;  
+    }
+    
 `;

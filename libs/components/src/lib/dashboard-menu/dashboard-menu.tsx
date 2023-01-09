@@ -40,7 +40,11 @@ export function DashboardMenu({
 					</StyledButton>
 					{typePage === JOBS_PAGE && (
 						<FilterButtonWrap>
-							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
+							<FilterButton
+								buttonSize="filter"
+								fontSize="md"
+								buttonColor="lightRed"
+							>
 								{t("dashboard.menu.myProposals")}
 							</FilterButton>
 							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
