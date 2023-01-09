@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import moment from "moment";
 import { StyledTitle, StyledButton, TypePage } from "@freelance/components";
-import { SEARCH_WORK_PAGE } from "utils/constants/breakpoint";
+import { JOBS_PAGE } from "utils/constants/breakpoint";
 import { baseUrl } from "utils/constants/redux-query";
 import { useGetJobIdQuery } from "redux/jobs";
 import { DEFAULT_IMAGE } from "utils/constants/links";
@@ -144,7 +144,7 @@ export function JobDetailsCard({
 					>
 						<strong>{t("freelancer.createProfile.backBtn")}</strong>
 					</StyledButton>
-					{typePage === SEARCH_WORK_PAGE && (
+					{typePage === JOBS_PAGE && (
 						<StyledButton
 							type="button"
 							disabled={isProposal}

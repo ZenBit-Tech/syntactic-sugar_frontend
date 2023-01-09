@@ -19,11 +19,11 @@ import {
 	FreelancerButtonWrapper,
 	ProposalsList,
 	TypePage,
-	GridItem,
+	CardNotification,
 } from "@freelance/components";
 import { InstObject, Proposal } from "redux/jobs";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
-import { EMPLOYER_JOBS, JOBS_PAGE, SEARCH_WORK_PAGE } from "utils/constants/breakpoint";
+import { EMPLOYER_JOBS, JOBS_PAGE } from "utils/constants/breakpoint";
 import { ROLES } from "utils/constants/roles";
 import { DEFAULT_IMAGE } from "utils/constants/links";
 import { baseUrl } from "utils/constants/redux-query";
@@ -122,19 +122,25 @@ export function JobCard({
 					)}
 					<StyledParagraph fontSize="lg">{title}</StyledParagraph>
 				</GridContainer>
-				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && !isProposal ? (
-					<FreelancerButtonWrapper>
-						<StyledButton
-							buttonColor="redGradient"
-							buttonSize="md"
-							fontSize="sm"
-							onClick={openSendProposal}
-						>
-							<strong>{t("jobCard.sendProposal")}</strong>
-						</StyledButton>
-					</FreelancerButtonWrapper>
-				) : (
-					<GridItem></GridItem>
+				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && (
+					<GridContainer alignItems="center" justifyItems="center">
+						{!isProposal ? (
+							<FreelancerButtonWrapper>
+								<StyledButton
+									buttonColor="redGradient"
+									buttonSize="lg"
+									fontSize="md"
+									onClick={openSendProposal}
+								>
+									<strong>{t("jobCard.sendProposal")}</strong>
+								</StyledButton>
+							</FreelancerButtonWrapper>
+						) : (
+							<CardNotification fontSize="md">
+								<strong>{t("jobCard.proposalSent")}</strong>
+							</CardNotification>
+						)}
+					</GridContainer>
 				)}
 				{userType === ROLES.EMPLOYER && (
 					<GridContainer alignItems="center" justifyItems="center" gap={10}>
@@ -217,7 +223,7 @@ export function JobCard({
 					isProposal={isProposal}
 				/>
 			</CardModal>
-			{typePage === SEARCH_WORK_PAGE && (
+			{typePage === JOBS_PAGE && (
 				<CardModal open={proposalModalOpen} onCancel={closeSendProposal} width={1000}>
 					<SendProposal id={jobId} onCancel={closeSendProposal} />
 				</CardModal>
