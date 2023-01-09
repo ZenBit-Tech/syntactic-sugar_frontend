@@ -10,6 +10,7 @@ export interface InstObject {
 export interface Proposal {
 	id: string;
 	coverLetter: string;
+	freelancer?: InstObject;
 }
 
 export interface IEmployerResponse {

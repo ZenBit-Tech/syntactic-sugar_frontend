@@ -387,5 +387,11 @@
 	"talents": {
 		"inv": "Invite to interview",
 		"avatar": "User avatar"
+	},
+	"chat": {
+		"send": "Send",
+		"noConversations": "You have no conversations yet",
+		"startChat": "Start chat",
+		"continueChat": "Continue chat"
 	}
 }

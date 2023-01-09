@@ -6,8 +6,9 @@ import { useGetEmployerQuery } from "redux/createEmployer/employerApi";
 import { baseUrl } from "utils/constants/redux-query";
 import { DEFAULT_IMAGE } from "utils/constants/links";
 import { CREATE_PROFILE } from "utils/constants/breakpoint";
+import { useLogout, CardModal, Chat } from "@freelance/components";
 import { Container, UserInfoWrapper, ButtonsWrapper, UserDetails } from "./dashboard-header.styled";
-import { useLogout } from "@freelance/components";
+import { useChat } from "./dashboard-headerChatHooks";
 
 export interface DashboardHeaderProps {
 	userRole: "freelancer" | "employer";
@@ -19,6 +20,7 @@ export function DashboardHeader({ userRole, typePage }: DashboardHeaderProps) {
 	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const { data } = userRole === ROLES.FREELANCER ? useGetFreelancerQuery() : useGetEmployerQuery();
 	const { handleLogout } = useLogout();
+	const { openChat, closeChat, chatModalOpen } = useChat();
 
 	return (
 		<Container>
@@ -26,7 +28,9 @@ export function DashboardHeader({ userRole, typePage }: DashboardHeaderProps) {
 			{typePage !== CREATE_PROFILE && (
 				<UserInfoWrapper>
 					<img
-						src={data?.image && data?.image?.length > 0 ? baseUrl + data?.image : DEFAULT_IMAGE}
+						src={
+							data?.image && data?.image?.length > 0 ? baseUrl + "/" + data?.image : DEFAULT_IMAGE
+						}
 						alt="User Avatar"
 					/>
 					<UserDetails>
@@ -39,7 +43,7 @@ export function DashboardHeader({ userRole, typePage }: DashboardHeaderProps) {
 			)}
 			{userRole === ROLES.FREELANCER && (
 				<ButtonsWrapper>
-					<StyledButton buttonSize="md" buttonColor="lightRed" fontSize="md">
+					<StyledButton buttonSize="md" buttonColor="lightRed" fontSize="md" onClick={openChat}>
 						{t("dashboard.header.chat")}
 						<img src="/assets/images/chat_btn_icon.png" alt="Chat Icon" />
 					</StyledButton>
@@ -51,7 +55,7 @@ export function DashboardHeader({ userRole, typePage }: DashboardHeaderProps) {
 			)}
 			{userRole === ROLES.EMPLOYER && (
 				<ButtonsWrapper>
-					<StyledButton buttonSize="md" buttonColor="lightRed" fontSize="md">
+					<StyledButton buttonSize="md" buttonColor="lightRed" fontSize="md" onClick={openChat}>
 						{t("dashboard.header.chat")}
 						<img src="/assets/images/chat_btn_icon.png" alt="Chat Icon" />
 					</StyledButton>
@@ -61,6 +65,9 @@ export function DashboardHeader({ userRole, typePage }: DashboardHeaderProps) {
 					</StyledButton>
 				</ButtonsWrapper>
 			)}
+			<CardModal open={chatModalOpen} onCancel={closeChat} width={800}>
+				<Chat userType={userRole!} userId={data?.id} />
+			</CardModal>
 		</Container>
 	);
 }

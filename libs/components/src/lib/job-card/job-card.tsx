@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useMemo } from "react";
 import moment from "moment";
 import {
 	GridContainer,
@@ -20,14 +21,19 @@ import {
 	ProposalsList,
 	TypePage,
 	GridItem,
+	Chat,
 } from "@freelance/components";
-import { InstObject, Proposal } from "redux/jobs";
+import { IEmployerResponse, InstObject, Proposal } from "redux/jobs";
+import { IProposal } from "redux/interfaces/IProposal";
 import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import { EMPLOYER_JOBS, JOBS_PAGE, SEARCH_WORK_PAGE } from "utils/constants/breakpoint";
 import { ROLES } from "utils/constants/roles";
 import { DEFAULT_IMAGE } from "utils/constants/links";
 import { baseUrl } from "utils/constants/redux-query";
 import { useJobCard } from "./job-cardHooks";
+import { useChat } from "./job-cardChatHooks";
+import { IChat } from "redux/chat/chatApi";
+import { IInvitation } from "../pagination/interfaces";
 
 export interface JobCardProps {
 	jobId: string;
@@ -51,6 +57,9 @@ export interface JobCardProps {
 	category?: InstObject;
 	isPublished?: boolean;
 	typePage?: TypePage;
+	employerId?: string;
+	jobChats?: IChat[];
+	invitation?: IInvitation[];
 }
 
 export function JobCard({
@@ -73,6 +82,9 @@ export function JobCard({
 	userType,
 	typePage,
 	isPublished,
+	employerId,
+	jobChats,
+	invitation,
 }: JobCardProps) {
 	const { t } = useTranslation();
 	const { data } = useGetFreelancerQuery();
@@ -92,15 +104,26 @@ export function JobCard({
 		isProposalsListOpen,
 		isTogglingJob,
 		isModalEditJob,
+		proposalExist,
 	} = useJobCard({ isPublished });
+	const { openChat, closeChat, chatModalOpen, continueChat } = useChat(
+		jobId,
+		employerId as string,
+		data?.id as string,
+	);
 
-	const isProposal =
-		data?.proposals &&
-		data?.proposals
-			.map(proposal => {
-				return proposals?.find(item => item.id === proposal.id);
-			})
-			.some(item => item !== undefined);
+	const isChat = useMemo(
+		() => jobChats?.some(chat => chat.freelancer.id === data?.id),
+		[jobChats, data?.id],
+	);
+	const isInvitation = useMemo(
+		() => invitation?.some(inv => inv.freelancer.id === data?.id),
+		[invitation, data?.id],
+	);
+	const isProposal = useMemo(
+		() => proposalExist(data?.proposals as IProposal[], proposals as IProposal[]),
+		[data?.proposals, proposals],
+	);
 
 	return (
 		<StyledJobCard>
@@ -113,7 +136,10 @@ export function JobCard({
 					{userType === ROLES.FREELANCER && (
 						<FlexContainer>
 							<ImageContainer>
-								<img src={employerImg ? baseUrl + employerImg : DEFAULT_IMAGE} alt="User Avatar" />
+								<img
+									src={employerImg ? baseUrl + "/" + employerImg : DEFAULT_IMAGE}
+									alt="User Avatar"
+								/>
 							</ImageContainer>
 							<StyledParagraph fontSize="md">
 								<strong>{employerCompany}</strong>, {employerName}, {employerPosition}
@@ -122,19 +148,51 @@ export function JobCard({
 					)}
 					<StyledParagraph fontSize="lg">{title}</StyledParagraph>
 				</GridContainer>
-				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && !isProposal ? (
-					<FreelancerButtonWrapper>
-						<StyledButton
-							buttonColor="redGradient"
-							buttonSize="md"
-							fontSize="sm"
-							onClick={openSendProposal}
-						>
-							<strong>{t("jobCard.sendProposal")}</strong>
-						</StyledButton>
-					</FreelancerButtonWrapper>
+
+				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && isInvitation ? (
+					<>
+						{!isChat && (
+							<FreelancerButtonWrapper>
+								<StyledButton
+									buttonColor="redGradient"
+									buttonSize="md"
+									fontSize="sm"
+									onClick={openChat}
+								>
+									<strong>{t("chat.startChat")}</strong>
+								</StyledButton>
+							</FreelancerButtonWrapper>
+						)}
+						{isChat && (
+							<FreelancerButtonWrapper>
+								<StyledButton
+									buttonColor="redGradient"
+									buttonSize="md"
+									fontSize="sm"
+									onClick={continueChat}
+								>
+									<strong>{t("chat.continueChat")}</strong>
+								</StyledButton>
+							</FreelancerButtonWrapper>
+						)}
+					</>
 				) : (
-					<GridItem></GridItem>
+					<>
+						{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && !isProposal ? (
+							<FreelancerButtonWrapper>
+								<StyledButton
+									buttonColor="redGradient"
+									buttonSize="md"
+									fontSize="sm"
+									onClick={openSendProposal}
+								>
+									<strong>{t("jobCard.sendProposal")}</strong>
+								</StyledButton>
+							</FreelancerButtonWrapper>
+						) : (
+							<GridItem></GridItem>
+						)}
+					</>
 				)}
 				{userType === ROLES.EMPLOYER && (
 					<GridContainer alignItems="center" justifyItems="center" gap={10}>
@@ -232,6 +290,9 @@ export function JobCard({
 					</CardModal>
 				</>
 			)}
+			<CardModal open={chatModalOpen} onCancel={closeChat} width={800}>
+				<Chat userType={userType!} userId={userType === ROLES.FREELANCER ? data?.id : employerId} />
+			</CardModal>
 		</StyledJobCard>
 	);
 }
