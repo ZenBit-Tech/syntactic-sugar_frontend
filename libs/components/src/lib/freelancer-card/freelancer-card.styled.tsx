@@ -12,7 +12,6 @@ export const StyledFreelancersCard = styled(StyledJobCard)`
 
 export const Header = styled(StyledJobCardHeader)`
 	grid-template-columns: repeat(2, 1fr);
-	justify-items: end;
 	align-items: center;
 	border-bottom: none;
 
@@ -48,8 +47,9 @@ export const WrapperContainer = styled.div`
 export const StyledContainer = styled.div`
 	display: flex;
 	width: 70%;
-	align-items: baseline;
-	justify-content: space-around;
+	align-items: center;
+	justify-content: end;
+	gap: 10px;
 `;
 
 export const ParagraphWrapper = styled.div`

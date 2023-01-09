@@ -156,7 +156,7 @@ export function FreelancerCard({
 				></ViewProfile>
 			</CardModal>
 			<CardModal open={invitationModalOpen} onCancel={closeInvitationModal} width={700}>
-				<InvitationCard></InvitationCard>
+				<InvitationCard freelancer_id={id} onCancel={closeInvitationModal}></InvitationCard>
 			</CardModal>
 		</StyledFreelancersCard>
 	);

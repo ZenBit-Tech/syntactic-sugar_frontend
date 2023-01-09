@@ -18,7 +18,16 @@ export const SelectElement = styled(Select)`
 export const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: space-around;
 	align-items: center;
+	gap: 2rem;
+`;
+
+export const Form = styled.form`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
 	gap: 2rem;
 `;
