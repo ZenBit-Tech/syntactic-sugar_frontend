@@ -23,6 +23,7 @@ import {
 	UserChatsList,
 	ChatNoConversation,
 } from "./chat.styled";
+import { useChatHook } from "./chatHooks";
 
 /* eslint-disable-next-line */
 export interface ChatProps {
@@ -37,11 +38,11 @@ export function Chat({ userType, userId }: ChatProps) {
 	const { data: userChats, isSuccess, isLoading, refetch } = useGetChatsByUserQuery();
 	const [currentChat, setCurrentChat] = useState<IChat>();
 	const [messages, setMessages] = useState<IMessage[]>([]);
-	const [message, setMessage] = useState<string>("");
 	const [toggleButton, setToggleButton] = useState<boolean>(false);
 	const userImage =
 		userType === ROLES.FREELANCER ? currentChat?.employer.image : currentChat?.freelancer.image;
 	const chatId = currentChat?.id;
+  const { handleChange, handleSendMessage, message } = useChatHook(socket, userId as string, chatId as string)
 
 	useEffect(() => {
 		if (isSuccess) {
@@ -69,21 +70,6 @@ export function Chat({ userType, userId }: ChatProps) {
 			setMessages([...(messages as []), message]);
 		});
 	}, [messages]);
-
-	const handleChange = (event: React.FormEvent<HTMLTextAreaElement>) => {
-		setMessage((event.target as HTMLInputElement).value);
-	};
-
-	const handleSendMessage = () => {
-		const payload = {
-			text: message,
-			sender: userId,
-			chatId,
-		};
-		socket.emit("message", payload);
-		setToggleButton(!toggleButton);
-		setMessage("");
-	};
 
 	if (isSuccess && userChats?.length > 0) {
 		return (
