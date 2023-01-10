@@ -4,6 +4,12 @@ import { toast } from "react-toastify";
 import { IChat, useCreateChatMutation } from "redux/chat/chatApi";
 import { useGetChatsByUserQuery } from "redux/chat/chatApi";
 
+interface ChatHooksProps {
+  jobId?: string;
+  employerId?: string;
+  freelancerId?: string;
+}
+
 interface IUseChat {
 	openChat: () => void;
 	closeChat: () => void;
@@ -11,7 +17,7 @@ interface IUseChat {
 	chatModalOpen: boolean;
 }
 
-export const useChat = (jobId: string, employerId: string, freelancerId: string): IUseChat => {
+export const useChat = ({ jobId, employerId, freelancerId }: ChatHooksProps): IUseChat => {
 	const { t } = useTranslation();
 	const [chatModalOpen, setChatModalOpen] = useState<boolean>(false);
 	const [createChat, { data: chatData, isLoading, isSuccess, isError }] = useCreateChatMutation();

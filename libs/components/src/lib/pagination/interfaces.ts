@@ -1,7 +1,7 @@
 import { IChat } from "redux/chat/chatApi";
 import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { educationProps, workHistoryProps } from "redux/createFreelancer/freelancer-slice";
-import { IEmployerResponse, InstObject, Proposal } from "redux/jobs";
+import { IEmployerResponse, InstObject, JobsInterface, Proposal } from "redux/jobs";
 
 export interface IInvitation {
 	id: string;
@@ -44,6 +44,7 @@ export interface ICommonObject {
 		image?: string;
 	};
 	invitation?: IInvitation[];
+	job?: JobsInterface;
 }
 
 export type TypePage =

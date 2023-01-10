@@ -107,9 +107,9 @@ export function JobCard({
 		proposalExist,
 	} = useJobCard({ isPublished });
 	const { openChat, closeChat, chatModalOpen, continueChat } = useChat(
-		jobId,
-		employerId as string,
-		data?.id as string,
+		{jobId,
+		employerId,
+		freelancerId: data?.id}
 	);
 
 	const isChat = useMemo(
@@ -275,11 +275,12 @@ export function JobCard({
 					isProposal={isProposal}
 				/>
 			</CardModal>
-			{typePage === SEARCH_WORK_PAGE && (
-				<CardModal open={proposalModalOpen} onCancel={closeSendProposal} width={1000}>
-					<SendProposal id={jobId} onCancel={closeSendProposal} />
-				</CardModal>
-			)}
+			{typePage === SEARCH_WORK_PAGE ||
+				(typePage === JOBS_PAGE && (
+					<CardModal open={proposalModalOpen} onCancel={closeSendProposal} width={1000}>
+						<SendProposal id={jobId} onCancel={closeSendProposal} />
+					</CardModal>
+				))}
 			{typePage === EMPLOYER_JOBS && (
 				<>
 					<CardModal open={isModalEditJob} onCancel={closeModalEditJob} width={1000}>

@@ -35,6 +35,7 @@ export * from "./lib/pagination/pagination";
 // Cards
 
 export * from "./lib/job-card/job-card";
+export * from "./lib/job-card/job-cardChatHooks";
 export * from "./lib/freelancer-cards-list/freelancer-cards-list";
 export * from "./lib/freelancer-card/freelancer-card";
 

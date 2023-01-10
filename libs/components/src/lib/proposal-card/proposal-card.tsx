@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useMemo } from "react";
 import moment from "moment";
 import {
 	StyledJobCard,
@@ -11,8 +12,13 @@ import {
 	EmployerButtonWrapper,
 	StyledButton,
 	DateWrapper,
+	Chat,
+	CardModal,
+	useChat,
 } from "@freelance/components";
 import { DEFAULT_IMAGE } from "utils/constants/links";
+import { IChat } from "redux/chat/chatApi";
+import { ROLES } from "utils/constants/roles";
 import { baseUrl } from "utils/constants/redux-query";
 
 export interface ProposalCardProps {
@@ -24,6 +30,10 @@ export interface ProposalCardProps {
 	freelancerId?: string;
 	freelancerName?: string;
 	freelancerImage?: string;
+	employerId?: string;
+	jobId?: string;
+	jobChats?: IChat[];
+	userType?: string;
 }
 
 export function ProposalCard({
@@ -35,9 +45,23 @@ export function ProposalCard({
 	freelancerId,
 	freelancerName,
 	freelancerImage,
+	employerId,
+	jobId,
+	jobChats,
+	userType,
 }: ProposalCardProps) {
 	const { t } = useTranslation();
 	const prettyDate = moment(createdDate).format("LL");
+	const { openChat, closeChat, chatModalOpen, continueChat } = useChat({
+		jobId,
+		employerId,
+		freelancerId,
+	});
+
+	const isChat = useMemo(
+		() => jobChats?.some(chat => chat.employer?.id === employerId),
+		[jobChats, employerId],
+	);
 
 	return (
 		<StyledJobCard>
@@ -45,7 +69,7 @@ export function ProposalCard({
 				<FlexContainer gap={10}>
 					<ImageContainer proposalCard>
 						<img
-							src={freelancerImage ? baseUrl + freelancerImage : DEFAULT_IMAGE}
+							src={freelancerImage ? baseUrl + "/" + freelancerImage : DEFAULT_IMAGE}
 							alt="User Avatar"
 						/>
 					</ImageContainer>
@@ -56,9 +80,26 @@ export function ProposalCard({
 				</FlexContainer>
 				<GridContainer gap={10}>
 					<EmployerButtonWrapper>
-						<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
-							<strong>{t("proposalCard.startChat")}</strong>
-						</StyledButton>
+						{!isChat && (
+							<StyledButton
+								buttonColor="redGradient"
+								buttonSize="lg"
+								fontSize="md"
+								onClick={openChat}
+							>
+								<strong>{t("chat.startChat")}</strong>
+							</StyledButton>
+						)}
+						{isChat && (
+							<StyledButton
+								buttonColor="redGradient"
+								buttonSize="lg"
+								fontSize="md"
+								onClick={continueChat}
+							>
+								<strong>{t("chat.continueChat")}</strong>
+							</StyledButton>
+						)}
 					</EmployerButtonWrapper>
 					<EmployerButtonWrapper>
 						<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
@@ -72,6 +113,12 @@ export function ProposalCard({
 					</DateWrapper>
 				</GridContainer>
 			</JobCardHeader>
+			<CardModal open={chatModalOpen} onCancel={closeChat} width={800}>
+				<Chat
+					userType={userType!}
+					userId={userType === ROLES.FREELANCER ? freelancerId : employerId}
+				/>
+			</CardModal>
 		</StyledJobCard>
 	);
 }

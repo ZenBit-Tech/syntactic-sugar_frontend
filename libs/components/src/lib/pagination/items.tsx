@@ -85,6 +85,10 @@ export function Items({ data, user, typePage }: CurrentItems) {
 						freelancerId={proposal.freelancer?.id}
 						freelancerName={proposal.freelancer?.fullName}
 						freelancerImage={proposal.freelancer?.image}
+						jobId={proposal.job?.id}
+						employerId={proposal.job?.employer?.id}
+						jobChats={proposal.job?.chats}
+						userType={user}
 					/>
 				))}
 		</Container>

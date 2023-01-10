@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import io, { Socket } from "socket.io-client";
-import { ROLES } from "utils/constants/roles";
-import { baseUrl } from "src/utils/constants/redux-query";
 import {
 	StyledButton,
 	StyledParagraph,
 	ParagraphWrapper,
 	StyledTitle,
 } from "@freelance/components";
-import { IChat, IMessage, useGetChatsByUserQuery } from "redux/chat/chatApi";
+import { IMessage } from "redux/chat/chatApi";
 import ChatMessage from "./chat-message";
 import { ChatUserCard } from "./chat-user-card";
 import {
@@ -31,47 +28,23 @@ export interface ChatProps {
 	userId?: string;
 }
 
-let socket: Socket;
-
 export function Chat({ userType, userId }: ChatProps) {
 	const { t } = useTranslation();
-	const { data: userChats, isSuccess, isLoading, refetch } = useGetChatsByUserQuery();
-	const [currentChat, setCurrentChat] = useState<IChat>();
-	const [messages, setMessages] = useState<IMessage[]>([]);
-	const [toggleButton, setToggleButton] = useState<boolean>(false);
-	const userImage =
-		userType === ROLES.FREELANCER ? currentChat?.employer.image : currentChat?.freelancer.image;
-	const chatId = currentChat?.id;
-  const { handleChange, handleSendMessage, message } = useChatHook(socket, userId as string, chatId as string)
+	const {
+		handleChange,
+		handleSendMessage,
+		message,
+		userChats,
+		userImage,
+		setCurrentChat,
+		currentChat,
+		setMessages,
+		messages,
+		isSuccess,
+		chatId,
+	} = useChatHook({ userId, userType });
 
-	useEffect(() => {
-		if (isSuccess) {
-			setCurrentChat(userChats[0]);
-			setMessages(userChats[0]?.messages || []);
-		}
-	}, [isSuccess]);
-
-	useEffect(() => {
-		socket = io(baseUrl);
-		socket.emit("join", { userId, chatId }, (error: Error) => {
-			if (error) {
-				return alert(error);
-			}
-		});
-		return () => {
-			socket.emit("leave", { userId, chatId });
-			socket.disconnect();
-			socket.off();
-		};
-	}, [baseUrl, currentChat, userId]);
-
-	useEffect(() => {
-		socket.on("message", (message: IMessage) => {
-			setMessages([...(messages as []), message]);
-		});
-	}, [messages]);
-
-	if (isSuccess && userChats?.length > 0) {
+	if (isSuccess && userChats && userChats?.length > 0) {
 		return (
 			<ChatContainer>
 				<UserChatsList>

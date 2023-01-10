@@ -23,9 +23,9 @@ export interface IChat {
 }
 
 export interface ICreateChat {
-	freelancerId: string;
-	employerId: string;
-	jobId: string;
+	freelancerId?: string;
+	employerId?: string;
+	jobId?: string;
 }
 
 export const chatApi = createApi({
