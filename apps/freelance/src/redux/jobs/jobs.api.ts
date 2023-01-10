@@ -26,6 +26,7 @@ export interface IEmployerResponse {
 
 export interface JobsInterface {
 	id: string;
+	title: string;
 	description: string;
 	position: string;
 	countries: InstObject[];

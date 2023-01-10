@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { FilterButton, StyledButton } from "@freelance/components";
 import { ROLES } from "utils/constants/roles";
-import { EMPLOYER_JOBS, JOBS_PAGE, PROPOSALS_PAGE, TALENTS_PAGE } from "utils/constants/breakpoint";
+import { EMPLOYER_JOBS, JOBS_PAGE, TALENTS_PAGE } from "utils/constants/breakpoint";
 import { EMPLOYER_JOBS_PAGE, TALENTS } from "utils/constants/links";
 import { Container, FilterButtonWrap } from "./dashboard-menu.styled";
 

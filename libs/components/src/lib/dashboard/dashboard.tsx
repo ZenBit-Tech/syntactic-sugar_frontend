@@ -10,7 +10,7 @@ export interface DashboardProps {
 	myProposals?: boolean;
 	allJobs?: boolean;
 	handleToggleFilter?: () => void;
-	showMyProposals?: () => void;
+	showMyProposals?: () => void; 
 	showAllJobs?: () => void;
 }
 
@@ -20,10 +20,10 @@ export function Dashboard({
 	typePage,
 	handleToggleFilter,
 	filterState,
-	allJobs,
 	myProposals,
+	allJobs,
 	showMyProposals,
-	showAllJobs,
+	showAllJobs
 }: DashboardProps) {
 	return (
 		<Container>
@@ -32,10 +32,10 @@ export function Dashboard({
 					<DashboardMenu
 						userRole={userRole}
 						typePage={typePage}
-						showMyProposals={showMyProposals}
 						myProposals={myProposals}
-						showAllJobs={showAllJobs}
 						allJobs={allJobs}
+						showMyProposals={showMyProposals}
+						showAllJobs={showAllJobs}						
 					/>
 					<Area>
 						<DashboardHeader userRole={userRole} typePage={typePage} />

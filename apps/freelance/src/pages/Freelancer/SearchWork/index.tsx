@@ -13,29 +13,29 @@ export function SearchWork() {
 		filterJobs,
 		setFilterJobs,
 		data,
-		freelancerFilter,
+		freelancerFilter
 	} = useSearchWorkFormHook();
 	const [isFilterOpen, setIsFilterOpen] = useState(false);
-	const { proposals, myProposals, showMyProposals, allJobs, showAllJobs} = useProposalsFilter();
 
 	const toggleFilterBox = () => {
 		setIsFilterOpen(!isFilterOpen);
-	};
+	}
+
+	const { proposals, myProposals, showMyProposals, allJobs, showAllJobs } = useProposalsFilter();
 
 	return (
 		<StyledPage>
 			<Dashboard
 				userRole="freelancer"
 				typePage={JOBS_PAGE}
-				showMyProposals={showMyProposals}
 				myProposals={myProposals}
-				showAllJobs={showAllJobs}
 				allJobs={allJobs}
+				showMyProposals={showMyProposals}
+				showAllJobs={showAllJobs}
 			>
 				<InputWrapper>
 					{allJobs && <Pagination itemsPerPage={5} user={ROLES.FREELANCER} data={filterJobs} typePage={JOBS_PAGE} />}
 					{myProposals && <Pagination itemsPerPage={5} user={ROLES.FREELANCER} data={proposals} typePage={JOBS_PAGE} />}
-
 				</InputWrapper>
 				<FilterBox isActive={isFilterOpen}>
 					<SearchWorkFilter
