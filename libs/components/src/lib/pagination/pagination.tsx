@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { IEmployerResponse, InstObject, Proposal } from "redux/jobs";
-import { educationProps, workHistoryProps } from "redux/createFreelancer/freelancer-slice";
+import { ICommonObject, TypePage } from "@freelance/components";
 import {
 	PaginationContainer,
 	PaginationItemsWrapper,
@@ -8,40 +7,11 @@ import {
 } from "./pagination.styled";
 import { Items } from "./items";
 
-export interface CommonObject {
-	id: string;
-	title?: string;
-	description?: string;
-	position?: string;
-	countries?: InstObject[];
-	country?: InstObject;
-	employmentType?: string;
-	hourRate?: string;
-	availableAmountOfHours?: string;
-	workExperience?: string;
-	englishLevel?: string;
-	proposals?: Proposal[];
-	category?: InstObject;
-	skills?: InstObject[];
-	createdDate?: string;
-	updatedDate?: string;
-	isPublished?: boolean;
-	isProposal?: boolean;
-	otherRequirenments?: string;
-	employer?: IEmployerResponse;
-	fullName?: string;
-	education?: educationProps[];
-	workHistory?: workHistoryProps[];
-	otherExperience?: string;
-	image?: string;
-	user?: { id: number; email: string };
-}
-
 export interface PaginationProps {
 	itemsPerPage: number;
 	user: string;
-	data?: CommonObject[];
-	typePage?: "proposals" | "jobs" | "talents";
+	data?: ICommonObject[];
+	typePage?: TypePage;
 }
 
 export interface ReactPaginateEvent {

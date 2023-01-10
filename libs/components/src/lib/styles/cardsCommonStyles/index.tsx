@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { GridContainer, StyledParagraph } from "@freelance/components";
 
 export const StyledJobCard = styled.div`
@@ -62,6 +62,8 @@ export const ParagraphWrapper = styled(StyledParagraph)`
 export const CardNotification = styled(ParagraphWrapper)`
 	border: 6px double ${({ theme }) => theme.colors.grey};
 	font-size: 0.8rem;
+	text-align: center;
+	width: 75%;
 `;
 
 export const DateWrapper = styled(StyledParagraph)`
@@ -78,7 +80,7 @@ export const JobButtonContainer = styled.div`
 export const FreelancerButtonWrapper = styled.div`
 	display: flex;
 	align-items: center;
-	justify-content: end;
+	justify-content: center;
 	width: 100%;
 
 	button {
@@ -110,13 +112,28 @@ export const CardTitleButton = styled.button`
 	font-size: 1.3rem;
 	font-weight: 500;
 	outline-style: none;
+
+	:hover {
+		text-decoration: underline;
+		font-weight: 700;
+	}
 `;
 
-export const ImageContainer = styled.div`
+interface IImageContainer {
+	proposalCard?: boolean;
+}
+
+export const ImageContainer = styled.div<IImageContainer>`
 	img {
 		display: block;
 		width: 50px;
 		height: 50px;
 		border-radius: 50%;
+		${({ proposalCard }) =>
+			proposalCard &&
+			css`
+				width: 77px;
+				height: 77px;
+			`}
 	}
 `;

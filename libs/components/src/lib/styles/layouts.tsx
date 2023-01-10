@@ -27,7 +27,10 @@ export const StyledPage = styled.div`
 `;
 
 interface IContainer {
+	modal?: boolean;
 	modalEditJob?: boolean;
+	proposalsList?: boolean;
+	scroll?: boolean;
 }
 
 export const Container = styled.div<IContainer>`
@@ -37,15 +40,29 @@ export const Container = styled.div<IContainer>`
 	height: 90%;
 	background-color: ${({ theme }) => theme.colors.white};
 	border-radius: 30px;
-	${({ modalEditJob }) =>
-		modalEditJob &&
+	${({ modal }) =>
+		modal &&
 		css`
 			width: 100%;
 			height: 85vh;
+		`}
+	${({ modalEditJob }) =>
+		modalEditJob &&
+		css`
 			flex-direction: column;
+		`}
+  ${({ scroll }) =>
+		scroll &&
+		css`
 			overflow-y: scroll;
 			border-radius: unset;
 			${styledScroll}
+		`}
+  ${({ proposalsList }) =>
+		proposalsList &&
+		css`
+			display: block;
+			height: auto;
 		`}
 `;
 

@@ -6,7 +6,7 @@ export interface EmployerJobsListProps {
 }
 
 export function EmployerJobsList({ data }: EmployerJobsListProps) {
-	return <Pagination itemsPerPage={5} user="employer" data={data} typePage="jobs" />;
+	return <Pagination itemsPerPage={5} user="employer" data={data} typePage="employerJobs" />;
 }
 
 export default EmployerJobsList;
