@@ -7,7 +7,11 @@ export interface DashboardProps {
 	userRole: "freelancer" | "employer";
 	typePage?: "createProfile" | "main" | "proposals" | "employerJobs" | "jobs" | "talents";
 	filterState?: boolean;
+	myProposals?: boolean;
+	allJobs?: boolean;
 	handleToggleFilter?: () => void;
+	showMyProposals?: () => void;
+	showAllJobs?: () => void;
 }
 
 export function Dashboard({
@@ -16,12 +20,23 @@ export function Dashboard({
 	typePage,
 	handleToggleFilter,
 	filterState,
+	allJobs,
+	myProposals,
+	showMyProposals,
+	showAllJobs,
 }: DashboardProps) {
 	return (
 		<Container>
 			{userRole === ROLES.FREELANCER && (
 				<>
-					<DashboardMenu userRole={userRole} typePage={typePage} />
+					<DashboardMenu
+						userRole={userRole}
+						typePage={typePage}
+						showMyProposals={showMyProposals}
+						myProposals={myProposals}
+						showAllJobs={showAllJobs}
+						allJobs={allJobs}
+					/>
 					<Area>
 						<DashboardHeader userRole={userRole} typePage={typePage} />
 						<Page>{children}</Page>

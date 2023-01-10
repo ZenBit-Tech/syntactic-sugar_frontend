@@ -93,3 +93,4 @@ export * from "./lib/logout/logoutHooks";
 
 export * from "./lib/filter-container/filter-container";
 export * from "./lib/searchwork-filter/searchwork-filter";
+export * from "./lib/proposals-filter/proposals-filter";

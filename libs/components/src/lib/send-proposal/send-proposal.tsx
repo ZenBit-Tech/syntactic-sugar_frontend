@@ -35,6 +35,7 @@ export function SendProposal({
 	const {
 		register,
 		handleSubmit,
+		reset,
 		formState: { errors },
 	} = useForm<IProposal>({ criteriaMode: "all", mode: "onChange", shouldFocusError: true });
 	const [createProposal, { isError }] = useCreateProposalMutation();
@@ -57,6 +58,7 @@ export function SendProposal({
 		} catch (error) {
 			alert(error);
 		}
+		reset();
 	};
 
 	return (

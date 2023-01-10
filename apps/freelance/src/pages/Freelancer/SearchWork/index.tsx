@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Dashboard, Pagination, SearchWorkFilter, FilterBox, StyledPage } from "@freelance/components";
+import { Dashboard, Pagination, SearchWorkFilter, FilterBox, StyledPage, useProposalsFilter } from "@freelance/components";
 import { JOBS_PAGE } from "src/utils/constants/breakpoint";
 import { ROLES } from "src/utils/constants/roles";
 import { useSearchWorkFormHook } from "./searchWorkFormHook";
@@ -16,6 +16,7 @@ export function SearchWork() {
 		freelancerFilter
 	} = useSearchWorkFormHook();
 	const [isFilterOpen, setIsFilterOpen] = useState(false);
+	const { proposals, myProposals, showMyProposals, allJobs, showAllJobs} = useProposalsFilter();
 
 	const toggleFilterBox = () => {
 		setIsFilterOpen(!isFilterOpen);
@@ -23,9 +24,18 @@ export function SearchWork() {
 
 	return (
 		<StyledPage>
-			<Dashboard userRole="freelancer" typePage={JOBS_PAGE}>
+			<Dashboard
+				userRole="freelancer"
+				typePage={JOBS_PAGE}
+				showMyProposals={showMyProposals}
+				myProposals={myProposals}
+				showAllJobs={showAllJobs}
+				allJobs={allJobs}
+			>
 				<InputWrapper>
-					<Pagination itemsPerPage={5} user={ROLES.FREELANCER} data={filterJobs} typePage={JOBS_PAGE} />
+					{allJobs && <Pagination itemsPerPage={5} user={ROLES.FREELANCER} data={filterJobs} typePage={JOBS_PAGE} />}
+					{myProposals && <Pagination itemsPerPage={5} user={ROLES.FREELANCER} data={proposals} typePage={JOBS_PAGE} />}
+
 				</InputWrapper>
 				<FilterBox isActive={isFilterOpen}>
 					<SearchWorkFilter
@@ -37,6 +47,7 @@ export function SearchWork() {
 						filterJobs={filterJobs}
 						setFilterJobs={setFilterJobs}
 						data={data}
+						disabled={!allJobs}
 					/>
 				</FilterBox>
 			</Dashboard>

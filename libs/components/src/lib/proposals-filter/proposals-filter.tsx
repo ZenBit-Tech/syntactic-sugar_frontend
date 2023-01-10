@@ -1,14 +1,29 @@
-import { Dashboard, Pagination } from "@freelance/components";
-import { useGetJobsWithProposalsQuery } from "src/redux/jobs/jobs.api";
-import { PROPOSALS_PAGE } from "utils/constants/breakpoint";
-import { Wrapper } from "./proposals-filter.styled";
+import { useState } from "react";
+import { JobsInterface, useGetJobsWithProposalsQuery } from "redux/jobs";
 
-export function ProposalsPage() {
-	const { data } = useGetJobsWithProposalsQuery();
+interface IuseProposalsFilter {
+	proposals?: JobsInterface[];
+	myProposals: boolean;
+	showMyProposals: () => void;
+	allJobs: boolean;
+	showAllJobs: () => void;
+}
 
-	return (
-		<Wrapper>
-			<Pagination itemsPerPage={5} user="freelancer" data={data} typePage={PROPOSALS_PAGE} />
-		</Wrapper>
-	);
+export const useProposalsFilter = (): IuseProposalsFilter => {
+	const [myProposals, setMyProposals] = useState(false);
+	const [allJobs, setAllJobs] = useState(true);
+
+	const showMyProposals = () => {
+		setMyProposals(true);
+		setAllJobs(false);
+	}
+
+	const showAllJobs = () => {
+		setAllJobs(true);
+		setMyProposals(false);
+	}
+
+	const { data: proposals } = useGetJobsWithProposalsQuery();
+
+	return { proposals, myProposals, showMyProposals, allJobs, showAllJobs };
 }

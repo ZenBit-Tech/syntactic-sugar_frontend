@@ -10,7 +10,11 @@ export interface DashboardMenuProps {
 	userRole: "freelancer" | "employer";
 	typePage?: "createProfile" | "main" | "proposals" | "employerJobs" | "jobs" | "talents";
 	filterState?: boolean;
+	myProposals?: boolean;
+	allJobs?: boolean;
 	handleToggleFilter?: () => void;
+	showMyProposals?: () => void; 
+	showAllJobs?: () => void;
 }
 
 export function DashboardMenu({
@@ -18,6 +22,10 @@ export function DashboardMenu({
 	typePage,
 	handleToggleFilter,
 	filterState,
+	myProposals,
+	allJobs,
+	showMyProposals,
+	showAllJobs
 }: DashboardMenuProps) {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
@@ -44,6 +52,17 @@ export function DashboardMenu({
 								buttonSize="filter"
 								fontSize="md"
 								buttonColor="lightRed"
+								disabled={allJobs}
+								onClick={showAllJobs}
+							>
+								{t("dashboard.menu.allJobs")}
+							</FilterButton>
+							<FilterButton
+								buttonSize="filter"
+								fontSize="md"
+								buttonColor="lightRed"
+								disabled={myProposals}
+								onClick={showMyProposals}
 							>
 								{t("dashboard.menu.myProposals")}
 							</FilterButton>

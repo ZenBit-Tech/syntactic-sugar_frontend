@@ -107,7 +107,8 @@
 			"all": "All",
 			"contracts": "My contracts",
 			"invitation": "Invitations",
-			"filters": "Use filters"
+			"filters": "Use filters",
+			"allJobs": "All jobs"
 		},
 		"profilePage": {
 			"title": "My Profile"

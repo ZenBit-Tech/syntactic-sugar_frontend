@@ -26,7 +26,6 @@ export interface IEmployerResponse {
 
 export interface JobsInterface {
 	id: string;
-	title: string;
 	description: string;
 	position: string;
 	countries: InstObject[];
@@ -123,7 +122,8 @@ export const {
 	useGetJobsByEmployerQuery,
 	useGetJobsWithProposalsQuery,
 	useCreateJobMutation,
-	useRemoveProposalByIdMutation,
+	useRemoveProposalByIdMutation, 
 	useToggleIsPublishJobMutation,
 	useUpdateJobByIdMutation,
 } = getJobsApi;
+
