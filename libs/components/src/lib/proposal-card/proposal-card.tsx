@@ -16,10 +16,10 @@ import {
 	StyledTitle,
 	ViewFreelancerProfile,
 } from "@freelance/components";
+import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { DEFAULT_IMAGE } from "utils/constants/links";
 import { baseUrl } from "utils/constants/redux-query";
 import { useProposalCard } from "./proposal-cardHook";
-import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
 
 export interface ProposalCardProps {
 	id: string;

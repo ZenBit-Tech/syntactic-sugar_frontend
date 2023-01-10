@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { IEduResponse, IWorkHistoryResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { StyledTitle } from "@freelance/components";
+import { InstObject } from "redux/jobs";
 import {
 	Container,
 	Item,
@@ -8,7 +9,6 @@ import {
 	Title,
 	SkillsWrapper,
 } from "./view-freelancer-profile.styled";
-import { InstObject } from "redux/jobs";
 
 export interface ViewFreelancerProfileProps {
 	fullName?: string;
