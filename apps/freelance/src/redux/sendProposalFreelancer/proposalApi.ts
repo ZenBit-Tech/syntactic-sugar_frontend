@@ -20,7 +20,7 @@ export const proposalFreelancerApi = createApi({
 			providesTags: ["proposal"],
 		}),
 		createProposal: builder.mutation({
-			query: (body: IProposal) => ({
+			query: (body: FormData) => ({
 				url: "/proposal/create",
 				method: "POST",
 				body,

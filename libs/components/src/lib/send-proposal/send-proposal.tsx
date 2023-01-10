@@ -40,12 +40,12 @@ export function SendProposal({
 	const [createProposal, { isError }] = useCreateProposalMutation();
 
 	const onSubmit = async (values: IProposal) => {
-		const data: any = new FormData();
+		const data = new FormData();
 
 		data.append("file", values.file[0]);
 		data.append("coverLetter", values.coverLetter);
 		data.append("id", id);
-		data.append("hourRate", values.hourRate);
+		values.hourRate && data.append("hourRate", values.hourRate);
 
 		try {
 			await createProposal(data);

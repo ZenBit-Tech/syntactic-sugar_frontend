@@ -1,17 +1,27 @@
 import { useTranslation } from "react-i18next";
 import moment from "moment";
-import { CardTitleButton, StyledButton, StyledParagraph } from "@freelance/components";
-import { educationProps, workHistoryProps } from "redux/createFreelancer/freelancer-slice";
+import {
+	CardTitleButton,
+	StyledButton,
+	StyledParagraph,
+	JobCardHeader,
+	ImageContainer,
+	GridContainer,
+	DateWrapper,
+	EmployerButtonWrapper,
+	CardModal,
+	StyledTitle,
+	ViewFreelancerProfile,
+} from "@freelance/components";
+import { IEduResponse, IWorkHistoryResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { InstObject, Proposal } from "redux/jobs";
 import { baseUrl } from "utils/constants/redux-query";
 import { DEFAULT_IMAGE } from "utils/constants/links";
 import {
-	Header,
 	StyledFreelancersCard,
 	FreelancerStyledParagraph,
 	Wrapper,
 	WrapperContainer,
-	StyledContainer,
 	ParagraphWrapper,
 	TitleBox,
 } from "./freelancer-card.styled";
@@ -29,8 +39,8 @@ export interface FreelancerCardProps {
 	availableAmountOfHours?: string;
 	workExperience?: string;
 	englishLevel?: string;
-	education?: educationProps[];
-	workHistory?: workHistoryProps[];
+	education?: IEduResponse[];
+	workHistory?: IWorkHistoryResponse[];
 	otherExperience?: string;
 	isPublished?: boolean;
 	createdDate?: string;
@@ -69,26 +79,34 @@ export function FreelancerCard({
 
 	return (
 		<StyledFreelancersCard>
-			<Header>
+			<JobCardHeader>
 				<WrapperContainer>
-					<img src={image ? baseUrl + image : DEFAULT_IMAGE} alt="User Avatar" />
+					<ImageContainer proposalCard>
+						<img src={image ? baseUrl + image : DEFAULT_IMAGE} alt="User Avatar" />
+					</ImageContainer>
 					<Wrapper>
 						<TitleBox>
 							<CardTitleButton onClick={openFreelancerProfile}>{`${fullName}`}</CardTitleButton>
-							<strong>{hourRate}</strong>
+							<StyledParagraph fontSize="md">{hourRate}</StyledParagraph>
 						</TitleBox>
 						<StyledParagraph fontSize="md" opacity={0.7}>
 							<strong>{position}</strong>
 						</StyledParagraph>
 					</Wrapper>
 				</WrapperContainer>
-				<StyledContainer>
-					<StyledButton buttonSize="md" buttonColor="lightRed" fontSize="md">
-						{t("talents.inv")}
-					</StyledButton>
-					<strong>{prettyDate}</strong>
-				</StyledContainer>
-			</Header>
+				<GridContainer gap={10} alignItems="center">
+					<EmployerButtonWrapper>
+						<StyledButton buttonSize="md" buttonColor="lightRed" fontSize="md">
+							{t("talents.inv")}
+						</StyledButton>
+					</EmployerButtonWrapper>
+				</GridContainer>
+				<GridContainer justifyItems="center" alignItems="center">
+					<DateWrapper fontSize="md">
+						<strong>{prettyDate}</strong>
+					</DateWrapper>
+				</GridContainer>
+			</JobCardHeader>
 			<FreelancerStyledParagraph>
 				<ParagraphWrapper>
 					<StyledParagraph fontSize="md" opacity={0.7}>
@@ -119,6 +137,29 @@ export function FreelancerCard({
 					</StyledParagraph>
 				</ParagraphWrapper>
 			</FreelancerStyledParagraph>
+
+			{/* Modals */}
+
+			<CardModal open={freelancerProfileModalOpen} onCancel={closeFreelancerProfile} width={1000}>
+				<StyledTitle tag="h1" fontSize="lg" fontWeight={700}>
+					{t("proposalCard.freelancerProfile")}
+				</StyledTitle>
+				<ViewFreelancerProfile
+					fullName={fullName}
+					category={category}
+					country={country}
+					position={position}
+					employmentType={employmentType}
+					englishLevel={englishLevel}
+					workExperience={workExperience}
+					hourRate={hourRate}
+					availableAmountOfHours={availableAmountOfHours}
+					skills={skills}
+					workHistory={workHistory}
+					education={education}
+					otherExperience={otherExperience}
+				/>
+			</CardModal>
 		</StyledFreelancersCard>
 	);
 }
