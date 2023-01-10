@@ -33,8 +33,8 @@ export function Items({ data, user, typePage }: CurrentItems) {
 							availableAmountOfHours={freelancer.availableAmountOfHours}
 							workExperience={freelancer.workExperience}
 							englishLevel={freelancer.englishLevel}
-							education={freelancer.education}
-							workHistory={freelancer.workHistory}
+							education={freelancer?.education}
+							workHistory={freelancer?.workHistory}
 							otherExperience={freelancer.otherExperience}
 							createdDate={freelancer.createdDate}
 							image={freelancer.image}

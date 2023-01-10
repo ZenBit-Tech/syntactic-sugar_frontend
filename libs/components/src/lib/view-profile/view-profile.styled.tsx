@@ -39,14 +39,14 @@ export const Item = styled.div`
 	p {
 		width: 70%;
 		word-break: keep-all;
-		word-wrap: initial;
+		word-wrap: break-word;
 		text-align: right;
 	}
 `;
 
 export const Title = styled.div`
 	color: ${({ theme }) => theme.colors.darkGrey};
-	background-color: white;
+	background-color: ${({ theme }) => theme.colors.white};
 
 	&#workHistory {
 		position: sticky;

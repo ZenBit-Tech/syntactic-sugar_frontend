@@ -4,11 +4,12 @@ import { useForm, Controller } from "react-hook-form";
 import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { StyledButton, StyledTitle } from "@freelance/components";
-import { JobsInterface, useGetJobsByEmployerQuery } from "redux/jobs/jobs.api";
+import { StyledButton, StyledSpan, StyledTitle } from "@freelance/components";
+import { useGetJobsByEmployerQuery } from "redux/jobs/jobs.api";
 import { useSendInvitationMutation } from "redux/invitation/invitationApi";
 import { SelectOptions } from "utils/select-options/options";
 import { SelectElement, Wrapper, Form } from "./invitation-card.styles";
+import { ErrorMessage } from "@hookform/error-message";
 
 export interface InvitationCardProps {
 	freelancer_id?: string;
@@ -23,8 +24,13 @@ export function InvitationCard({ freelancer_id, onCancel }: InvitationCardProps)
 	const { t } = useTranslation();
 	const { data } = useGetJobsByEmployerQuery();
 	const [options, setOptions] = useState<SelectOptions[]>();
-	const { handleSubmit, control, reset } = useForm<IInvitation>();
-	const [sendInvitation, { isSuccess, isError }] = useSendInvitationMutation();
+	const {
+		handleSubmit,
+		control,
+		reset,
+		formState: { errors },
+	} = useForm<IInvitation>();
+	const [sendInvitation, { isError }] = useSendInvitationMutation();
 
 	useEffect(() => {
 		const option = data?.map(job => {
@@ -72,7 +78,6 @@ export function InvitationCard({ freelancer_id, onCancel }: InvitationCardProps)
 						/>
 					)}
 				/>
-
 				<StyledButton type="submit" buttonSize="filter" buttonColor="lightRed" fontSize="md">
 					<strong>{t("talents.send")}</strong>
 				</StyledButton>

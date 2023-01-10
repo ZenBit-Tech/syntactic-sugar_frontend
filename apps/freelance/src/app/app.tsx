@@ -29,7 +29,7 @@ import { StyledApp } from "./app.styled";
 
 export function App() {
 	const role = useSelector(getRole);
-	
+
 	return (
 		<StyledApp>
 			<GoogleOAuthProvider clientId={`${process.env["NX_APP_GOOGLE_KEY"]}`}>
@@ -44,16 +44,20 @@ export function App() {
 										element={
 											<PrivateRoute path="/">
 												<Role />
-											</PrivateRoute>} />
+											</PrivateRoute>
+										}
+									/>
 									<Route
 										path="/"
 										element={
 											<PublicRoute path="/role">
 												<Login />
-											</PublicRoute>}/>
+											</PublicRoute>
+										}
+									/>
 								</>
 							)}
-							{role !== EMPLOYER  && (
+							{role !== EMPLOYER && (
 								<>
 									<Route
 										path="/freelancer/searchwork"

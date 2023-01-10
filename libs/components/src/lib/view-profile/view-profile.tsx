@@ -72,7 +72,7 @@ export function ViewProfile({
 					<p>{employment}</p>
 				</Item>
 				<Item>
-					<Title id="skills">
+					<Title id="employment">
 						<strong>{t("freelancer.createProfile.selectOption.skills")}</strong>
 					</Title>
 					<SkillsWrapper>
@@ -106,37 +106,40 @@ export function ViewProfile({
 					</Title>
 					<p>{english}</p>
 				</Item>
-				{/* {otherExp && (
-					<Item id="other">
-						<Title id="skills">
+				{workHistory?.map(item => {
+					if (item.company === "") {
+						return;
+					}
+					return (
+						<Item>
+							<Title id="skills">
+								<strong>{t("freelancer.viewProfile.workHistory")}</strong>
+							</Title>
+							<p key={item.id}>{`${item.company}, ${item.period}, ${item.workPosition}`}</p>
+						</Item>
+					);
+				})}
+				{education?.map(item => {
+					if (item.institute === "") {
+						return;
+					}
+					return (
+						<Item>
+							<Title id="skills">
+								<strong>{t("freelancer.createProfile.educationLabel")}</strong>
+							</Title>
+							<p key={item.id}>{`${item.institute}, ${item.occupation}, ${item.period}`}</p>
+						</Item>
+					);
+				})}
+				{otherExp && (
+					<Item id="englishLevel">
+						<Title id="englishLevel">
 							<strong>{t("freelancer.createProfile.otherExperienceLabel")}</strong>
 						</Title>
 						<p>{otherExp}</p>
 					</Item>
-				)} */}
-
-				{/* {workHistory?.length && (
-					<Item>
-						<Title id="skills">
-							<strong>{t("freelancer.viewProfile.workHistory")}</strong>
-						</Title>
-						<>
-							{workHistory?.map(item => {
-								<p key={item.id}>{`${item.company}, ${item.period}, ${item.workPosition}`}</p>;
-							})}
-						</>
-					</Item>
 				)}
-				{education?.length && (
-					<Item>
-						<Title id="skills">
-							<strong>{t("freelancer.createProfile.educationLabel")}</strong>
-						</Title>
-						{education?.map(item => (
-							<p key={item.id}>{`${item.institute}, ${item.occupation}, ${item.period}`}</p>
-						))}
-					</Item> */}
-				{/* )} */}
 			</ItemContainer>
 			<StyledButton
 				type="button"

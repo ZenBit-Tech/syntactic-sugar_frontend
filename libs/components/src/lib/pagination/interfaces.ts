@@ -1,4 +1,4 @@
-import { educationProps, workHistoryProps } from "redux/createFreelancer/freelancer-slice";
+import { IWorkHistoryResponse, IEduResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { IEmployerResponse, InstObject, Proposal } from "redux/jobs";
 
 export interface ICommonObject {
@@ -23,8 +23,8 @@ export interface ICommonObject {
 	otherRequirenments?: string;
 	employer?: IEmployerResponse;
 	fullName?: string;
-	education?: educationProps[];
-	workHistory?: workHistoryProps[];
+	education?: IEduResponse[];
+	workHistory?: IWorkHistoryResponse[];
 	otherExperience?: string;
 	image?: string;
 	user?: { id: number; email: string };

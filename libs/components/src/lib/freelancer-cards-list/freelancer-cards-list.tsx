@@ -2,7 +2,7 @@ import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { Pagination } from "@freelance/components";
 
 export interface FreelancerCardsListProps {
-	data: IResponse[] | undefined;
+	data?: IResponse[];
 }
 
 export function FreelancerCardsList({ data }: FreelancerCardsListProps) {

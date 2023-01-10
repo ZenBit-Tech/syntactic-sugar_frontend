@@ -18,7 +18,7 @@ import { DEFAULT_IMAGE, EMPLOYER_JOBS_PAGE } from "utils/constants/links";
 import { baseUrl } from "utils/constants/redux-query";
 import { useUploadImageMutation } from "redux/uploadImage/upload-image.api";
 import { setUserData } from "redux/userState/userSlice";
-import { useCreateEmployerMutation } from "redux/createEmployer/employerApi";
+import { useCreateEmployerMutation } from "src/redux/createEmployer/employerApi";
 import { FormBox, InputContainer, StyledFileField } from "./styles";
 
 interface IFormInput {
