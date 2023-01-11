@@ -102,3 +102,7 @@ export * from "./lib/proposal-card/proposal-card";
 
 export * from "./lib/filter-container/filter-container";
 export * from "./lib/searchwork-filter/searchwork-filter";
+
+//Freelancer Profile
+
+export * from "./lib/view-freelancer-profile/view-freelancer-profile";

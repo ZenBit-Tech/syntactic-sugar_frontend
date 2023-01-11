@@ -1,6 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from "redux/base-query";
-import { IProposal, IReceivedProposal } from "redux/interfaces";
+import { IProposal, IReceivedProposal, IProposalDetails } from "redux/interfaces";
 
 export const proposalFreelancerApi = createApi({
 	reducerPath: "createFreelancerProposal",
@@ -13,8 +13,14 @@ export const proposalFreelancerApi = createApi({
 			}),
 			providesTags: ["proposal"],
 		}),
+		getProposalById: builder.query<IProposalDetails, string>({
+			query: (id: string) => ({
+				url: `/proposal/get-proposal-by-id/${id}`,
+			}),
+			providesTags: ["proposal"],
+		}),
 		createProposal: builder.mutation({
-			query: (body: IProposal) => ({
+			query: (body: FormData) => ({
 				url: "/proposal/create",
 				method: "POST",
 				body,
@@ -24,4 +30,5 @@ export const proposalFreelancerApi = createApi({
 	}),
 });
 
-export const { useCreateProposalMutation, useGetProposalsByJobIdQuery } = proposalFreelancerApi;
+export const { useCreateProposalMutation, useGetProposalsByJobIdQuery, useGetProposalByIdQuery } =
+	proposalFreelancerApi;

@@ -11,9 +11,15 @@ import {
 	EmployerButtonWrapper,
 	StyledButton,
 	DateWrapper,
+	CardModal,
+	Container,
+	StyledTitle,
+	ViewFreelancerProfile,
 } from "@freelance/components";
+import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { DEFAULT_IMAGE } from "utils/constants/links";
 import { baseUrl } from "utils/constants/redux-query";
+import { useProposalCard } from "./proposal-cardHook";
 
 export interface ProposalCardProps {
 	id: string;
@@ -21,9 +27,7 @@ export interface ProposalCardProps {
 	hourRate?: string;
 	filePath?: string;
 	createdDate?: string;
-	freelancerId?: string;
-	freelancerName?: string;
-	freelancerImage?: string;
+	freelancer?: IResponse;
 }
 
 export function ProposalCard({
@@ -32,12 +36,18 @@ export function ProposalCard({
 	hourRate,
 	filePath,
 	createdDate,
-	freelancerId,
-	freelancerName,
-	freelancerImage,
+	freelancer,
 }: ProposalCardProps) {
 	const { t } = useTranslation();
 	const prettyDate = moment(createdDate).format("LL");
+	const {
+		openProfileModal,
+		closeProfileModal,
+		isProfileOpen,
+		openLetterModal,
+		closeLetterModal,
+		isLetterOpen,
+	} = useProposalCard();
 
 	return (
 		<StyledJobCard>
@@ -45,13 +55,13 @@ export function ProposalCard({
 				<FlexContainer gap={10}>
 					<ImageContainer proposalCard>
 						<img
-							src={freelancerImage ? baseUrl + freelancerImage : DEFAULT_IMAGE}
+							src={freelancer?.image ? baseUrl + freelancer?.image : DEFAULT_IMAGE}
 							alt="User Avatar"
 						/>
 					</ImageContainer>
 					<GridContainer>
-						<CardTitleButton>{freelancerName}</CardTitleButton>
-						<StyledParagraph fontSize="md">{hourRate}</StyledParagraph>
+						<CardTitleButton onClick={openProfileModal}>{freelancer?.fullName}</CardTitleButton>
+						<StyledParagraph fontSize="md">{hourRate}$</StyledParagraph>
 					</GridContainer>
 				</FlexContainer>
 				<GridContainer gap={10}>
@@ -61,8 +71,13 @@ export function ProposalCard({
 						</StyledButton>
 					</EmployerButtonWrapper>
 					<EmployerButtonWrapper>
-						<StyledButton buttonColor="redGradient" buttonSize="lg" fontSize="md">
-							<strong>{t("proposalCard.proposalDetails")}</strong>
+						<StyledButton
+							onClick={openLetterModal}
+							buttonColor="redGradient"
+							buttonSize="lg"
+							fontSize="md"
+						>
+							<strong>{t("proposalCard.coverLetter")}</strong>
 						</StyledButton>
 					</EmployerButtonWrapper>
 				</GridContainer>
@@ -72,6 +87,37 @@ export function ProposalCard({
 					</DateWrapper>
 				</GridContainer>
 			</JobCardHeader>
+
+			{/* Modals */}
+
+			<CardModal open={isProfileOpen} onCancel={closeProfileModal} width={1000}>
+				<StyledTitle tag="h1" fontSize="lg" fontWeight={700}>
+					{t("proposalCard.freelancerProfile")}
+				</StyledTitle>
+				<ViewFreelancerProfile
+					fullName={freelancer?.fullName}
+					category={freelancer?.category}
+					country={freelancer?.country}
+					position={freelancer?.position}
+					employmentType={freelancer?.employmentType}
+					englishLevel={freelancer?.englishLevel}
+					workExperience={freelancer?.workExperience}
+					hourRate={freelancer?.hourRate}
+					availableAmountOfHours={freelancer?.availableAmountOfHours}
+					skills={freelancer?.skills}
+					workHistory={freelancer?.workHistory}
+					education={freelancer?.education}
+					otherExperience={freelancer?.otherExperience}
+				/>
+			</CardModal>
+			<CardModal open={isLetterOpen} onCancel={closeLetterModal} width={1000}>
+				<Container modal proposalsList>
+					<StyledTitle tag="h1" fontSize="lg" fontWeight={700}>
+						{t("proposalCard.coverLetter")}
+					</StyledTitle>
+					<StyledParagraph fontSize="md">{coverLetter}</StyledParagraph>
+				</Container>
+			</CardModal>
 		</StyledJobCard>
 	);
 }
