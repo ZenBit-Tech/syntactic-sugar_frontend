@@ -9,9 +9,9 @@ import {
 } from "@freelance/components";
 import { JOBS_PAGE } from "src/utils/constants/breakpoint";
 import { ROLES } from "src/utils/constants/roles";
-import { useSearchWorkFormHook } from "./searchWorkFormHook";
 import { useGetFreelancerQuery } from "src/redux/createFreelancer/freelancer-pageApi";
 import { InputWrapper } from "./style";
+import { useSearchWorkFormHook } from "./searchWorkFormHook";
 
 export function SearchWork() {
 	const { data: freelancerProfile } = useGetFreelancerQuery();

@@ -2,7 +2,6 @@ import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { ErrorsHandlerWrapper, StyledButton, StyledSpan } from "@freelance/components";
-// import { useCreateProposalMutation } from "redux/sendProposalFreelancer/proposalApi";
 import { IProposal } from "redux/interfaces/IProposal";
 import { formats } from "./formats";
 import {
