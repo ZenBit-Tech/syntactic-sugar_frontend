@@ -1,6 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from "redux/base-query";
-import { ICreatedJob, INewJob, IUpdateJob } from "redux/interfaces";
+import { ICreatedJob, INewJob, IProposal, IUpdateJob } from "redux/interfaces";
 
 export interface InstObject {
 	id: string;
@@ -113,6 +113,14 @@ export const getJobsApi = createApi({
 			}),
 			invalidatesTags: ["Job"],
 		}),
+		createProposal: build.mutation({
+			query: (body: IProposal) => ({
+				url: "/proposal/create",
+				method: "POST",
+				body,
+			}),
+			invalidatesTags: ["Job"],
+		}),
 	}),
 });
 
@@ -123,8 +131,8 @@ export const {
 	useGetJobsByEmployerQuery,
 	useGetJobsWithProposalsQuery,
 	useCreateJobMutation,
-	useRemoveProposalByIdMutation, 
+	useRemoveProposalByIdMutation,
 	useToggleIsPublishJobMutation,
 	useUpdateJobByIdMutation,
+	useCreateProposalMutation,
 } = getJobsApi;
-

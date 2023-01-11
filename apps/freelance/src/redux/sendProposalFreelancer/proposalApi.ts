@@ -35,4 +35,4 @@ export const proposalFreelancerApi = createApi({
 	}),
 });
 
-export const { useCreateProposalMutation, useGetProposalsByJobIdQuery } = proposalFreelancerApi;
+export const { useGetProposalsByJobIdQuery } = proposalFreelancerApi;

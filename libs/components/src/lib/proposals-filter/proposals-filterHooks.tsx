@@ -2,7 +2,6 @@ import { useState } from "react";
 import { JobsInterface, useGetJobsWithProposalsQuery } from "redux/jobs";
 
 interface IuseProposalsFilter {
-	proposals?: JobsInterface[];
 	myProposals: boolean;
 	showMyProposals: () => void;
 	allJobs: boolean;
@@ -16,14 +15,12 @@ export const useProposalsFilter = (): IuseProposalsFilter => {
 	const showMyProposals = () => {
 		setMyProposals(true);
 		setAllJobs(false);
-	}
+	};
 
 	const showAllJobs = () => {
 		setAllJobs(true);
 		setMyProposals(false);
-	}
+	};
 
-	const { data: proposals } = useGetJobsWithProposalsQuery();
-
-	return { proposals, myProposals, showMyProposals, allJobs, showAllJobs };
-}
+	return { myProposals, showMyProposals, allJobs, showAllJobs };
+};

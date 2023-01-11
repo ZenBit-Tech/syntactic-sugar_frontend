@@ -5,6 +5,8 @@ import { educationProps, workHistoryProps } from "redux/createFreelancer/freelan
 import { InstObject, Proposal } from "redux/jobs";
 import { baseUrl } from "utils/constants/redux-query";
 import { DEFAULT_IMAGE } from "utils/constants/links";
+import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
+import { IResponseEmployer } from "redux/createEmployer/employerApi";
 import {
 	Header,
 	StyledFreelancersCard,
@@ -16,8 +18,6 @@ import {
 	TitleBox,
 } from "./freelancer-card.styled";
 import { useFreelancerCard } from "./freelancer-cardHook";
-import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
-import { IResponseEmployer } from "redux/createEmployer/employerApi";
 
 export interface FreelancerCardProps {
 	id?: string;
@@ -64,7 +64,7 @@ export function FreelancerCard({
 	image,
 	proposals,
 	user,
-	profile
+	profile,
 }: FreelancerCardProps) {
 	const { t } = useTranslation();
 	const prettyDate = moment(createdDate).format("LL");

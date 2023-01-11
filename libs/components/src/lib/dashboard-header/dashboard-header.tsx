@@ -26,7 +26,11 @@ export function DashboardHeader({ userRole, typePage, profile }: DashboardHeader
 			{typePage !== CREATE_PROFILE && (
 				<UserInfoWrapper>
 					<img
-						src={profile?.image && profile?.image?.length > 0 ? baseUrl + profile?.image : DEFAULT_IMAGE}
+						src={
+							profile?.image && profile?.image?.length > 0
+								? baseUrl + profile?.image
+								: DEFAULT_IMAGE
+						}
 						alt="User Avatar"
 					/>
 					<UserDetails>

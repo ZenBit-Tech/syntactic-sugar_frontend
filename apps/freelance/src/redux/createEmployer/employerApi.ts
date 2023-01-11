@@ -1,6 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from "redux/base-query";
-import { Proposal } from "../jobs";
+import { Proposal } from "redux/jobs";
 
 interface IFormInput {
 	fullName: string;

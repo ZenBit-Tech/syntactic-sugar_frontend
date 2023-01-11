@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { ErrorsHandlerWrapper, StyledButton, StyledSpan } from "@freelance/components";
-import { useCreateProposalMutation } from "redux/sendProposalFreelancer/proposalApi";
+// import { useCreateProposalMutation } from "redux/sendProposalFreelancer/proposalApi";
 import { IProposal } from "redux/interfaces/IProposal";
 import { formats } from "./formats";
 import {
@@ -15,6 +15,7 @@ import {
 	ButtonWrapper,
 	ContainerBox,
 } from "./send-proposal.styled";
+import { useCreateProposalMutation } from "redux/jobs";
 
 export interface SendProposalProps {
 	id: string;
@@ -42,6 +43,7 @@ export function SendProposal({
 
 	const onSubmit = async (values: IProposal) => {
 		const data: any = new FormData();
+
 		data.append("file", values.file[0]);
 		data.append("coverLetter", values.coverLetter);
 		data.append("id", id);

@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { ICommonObject, TypePage } from "@freelance/components";
+import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
+import { IResponseEmployer } from "redux/createEmployer/employerApi";
 import {
 	PaginationContainer,
 	PaginationItemsWrapper,
 	StyledReactPagination,
 } from "./pagination.styled";
 import { Items } from "./items";
-import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
-import { IResponseEmployer } from "redux/createEmployer/employerApi";
 
 export interface PaginationProps {
 	itemsPerPage: number;
@@ -36,12 +36,7 @@ export function Pagination({ itemsPerPage, user, data, typePage, profile }: Pagi
 	return (
 		<PaginationContainer>
 			<PaginationItemsWrapper>
-				<Items
-					data={currentItems}
-					user={user}
-					typePage={typePage}
-					profile={profile}
-				/>
+				<Items data={currentItems} user={user} typePage={typePage} profile={profile} />
 			</PaginationItemsWrapper>
 			<StyledReactPagination
 				breakLabel="..."
