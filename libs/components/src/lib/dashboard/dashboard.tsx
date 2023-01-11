@@ -1,4 +1,7 @@
 import { DashboardHeader, DashboardMenu } from "@freelance/components";
+import { IResponseEmployer } from "redux/createEmployer/employerApi";
+import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
+import { IEmployerResponse } from "redux/jobs";
 import { ROLES } from "utils/constants/roles";
 import { Container, Page, Area } from "./dashboard.styled";
 
@@ -6,6 +9,7 @@ export interface DashboardProps {
 	children: React.ReactNode;
 	userRole: "freelancer" | "employer";
 	typePage?: "createProfile" | "main" | "proposals" | "employerJobs" | "jobs" | "talents";
+	profile?: IResponse | IResponseEmployer;
 	filterState?: boolean;
 	myProposals?: boolean;
 	allJobs?: boolean;
@@ -18,6 +22,7 @@ export function Dashboard({
 	children,
 	userRole,
 	typePage,
+	profile,
 	handleToggleFilter,
 	filterState,
 	myProposals,
@@ -38,7 +43,7 @@ export function Dashboard({
 						showAllJobs={showAllJobs}						
 					/>
 					<Area>
-						<DashboardHeader userRole={userRole} typePage={typePage} />
+						<DashboardHeader userRole={userRole} typePage={typePage} profile={profile} />
 						<Page>{children}</Page>
 					</Area>
 				</>
@@ -52,7 +57,7 @@ export function Dashboard({
 						handleToggleFilter={handleToggleFilter}
 					/>
 					<Area>
-						<DashboardHeader userRole={userRole} typePage={typePage} />
+						<DashboardHeader userRole={userRole} typePage={typePage} profile={profile} />
 						<Page>{children}</Page>
 					</Area>
 				</>

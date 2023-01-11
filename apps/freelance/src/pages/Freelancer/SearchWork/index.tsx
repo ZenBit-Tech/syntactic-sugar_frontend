@@ -4,8 +4,10 @@ import { JOBS_PAGE } from "src/utils/constants/breakpoint";
 import { ROLES } from "src/utils/constants/roles";
 import { useSearchWorkFormHook } from "./searchWorkFormHook";
 import { InputWrapper } from "./style";
+import { useGetFreelancerQuery } from "src/redux/createFreelancer/freelancer-pageApi";
 
 export function SearchWork() {
+	const { data: freelancerProfile } = useGetFreelancerQuery();
 	const {
 		onSubmit,
 		setFilter,
@@ -28,14 +30,27 @@ export function SearchWork() {
 			<Dashboard
 				userRole="freelancer"
 				typePage={JOBS_PAGE}
+				profile={freelancerProfile}
 				myProposals={myProposals}
 				allJobs={allJobs}
 				showMyProposals={showMyProposals}
 				showAllJobs={showAllJobs}
 			>
 				<InputWrapper>
-					{allJobs && <Pagination itemsPerPage={5} user={ROLES.FREELANCER} data={filterJobs} typePage={JOBS_PAGE} />}
-					{myProposals && <Pagination itemsPerPage={5} user={ROLES.FREELANCER} data={proposals} typePage={JOBS_PAGE} />}
+					{allJobs &&
+						<Pagination
+							itemsPerPage={5}
+							user={ROLES.FREELANCER}
+							data={filterJobs}
+							typePage={JOBS_PAGE}
+							profile={freelancerProfile} />}
+					{myProposals &&
+						<Pagination
+							itemsPerPage={5}
+							user={ROLES.FREELANCER}
+							data={proposals}
+							typePage={JOBS_PAGE}
+							profile={freelancerProfile} />}
 				</InputWrapper>
 				<FilterBox isActive={isFilterOpen}>
 					<SearchWorkFilter

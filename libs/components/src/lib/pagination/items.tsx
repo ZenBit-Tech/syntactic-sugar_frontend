@@ -5,6 +5,8 @@ import {
 	ICommonObject,
 	TypePage,
 } from "@freelance/components";
+import { IResponseEmployer } from "redux/createEmployer/employerApi";
+import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { EMPLOYER_JOBS, JOBS_PAGE, PROPOSALS_LIST, TALENTS_PAGE } from "utils/constants/breakpoint";
 import { Container } from "./pagination.styled";
 
@@ -12,9 +14,10 @@ export interface CurrentItems {
 	data?: ICommonObject[];
 	user: string;
 	typePage?: TypePage;
+	profile?: IResponse | IResponseEmployer;
 }
 
-export function Items({ data, user, typePage }: CurrentItems) {
+export function Items({ data, user, typePage, profile }: CurrentItems) {
 	return (
 		<Container>
 			{typePage === TALENTS_PAGE &&
@@ -67,6 +70,7 @@ export function Items({ data, user, typePage }: CurrentItems) {
 							userType={user}
 							typePage={typePage}
 							isPublished={job.isPublished}
+							profile={profile}
 						/>
 					);
 				})}

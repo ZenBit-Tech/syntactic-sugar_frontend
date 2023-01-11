@@ -16,6 +16,8 @@ import {
 	TitleBox,
 } from "./freelancer-card.styled";
 import { useFreelancerCard } from "./freelancer-cardHook";
+import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
+import { IResponseEmployer } from "redux/createEmployer/employerApi";
 
 export interface FreelancerCardProps {
 	id?: string;
@@ -38,6 +40,7 @@ export interface FreelancerCardProps {
 	image?: string;
 	proposals?: Proposal[];
 	user?: { id: number; email: string };
+	profile?: IResponse | IResponseEmployer;
 }
 
 export function FreelancerCard({
@@ -61,6 +64,7 @@ export function FreelancerCard({
 	image,
 	proposals,
 	user,
+	profile
 }: FreelancerCardProps) {
 	const { t } = useTranslation();
 	const prettyDate = moment(createdDate).format("LL");

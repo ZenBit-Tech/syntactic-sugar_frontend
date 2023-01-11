@@ -22,12 +22,13 @@ import {
 	CardNotification,
 } from "@freelance/components";
 import { InstObject, Proposal } from "redux/jobs";
-import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
+import { IResponse, useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import { EMPLOYER_JOBS, JOBS_PAGE } from "utils/constants/breakpoint";
 import { ROLES } from "utils/constants/roles";
 import { DEFAULT_IMAGE } from "utils/constants/links";
 import { baseUrl } from "utils/constants/redux-query";
 import { useJobCard } from "./job-cardHooks";
+import { IResponseEmployer } from "redux/createEmployer/employerApi";
 
 export interface JobCardProps {
 	jobId: string;
@@ -51,6 +52,7 @@ export interface JobCardProps {
 	category?: InstObject;
 	isPublished?: boolean;
 	typePage?: TypePage;
+	profile?: IResponse | IResponseEmployer;
 }
 
 export function JobCard({
@@ -73,9 +75,10 @@ export function JobCard({
 	userType,
 	typePage,
 	isPublished,
+	profile
 }: JobCardProps) {
 	const { t } = useTranslation();
-	const { data } = useGetFreelancerQuery();
+	// const { data } = useGetFreelancerQuery();
 	const prettyDate = moment(updatedDate).format("LL");
 	const {
 		handleToggleIsPublishedButton,
@@ -94,13 +97,13 @@ export function JobCard({
 		isModalEditJob,
 	} = useJobCard({ isPublished });
 
-	const isProposal =
-		data?.proposals &&
-		data?.proposals
+	const isProposal = profile?.proposals &&
+		profile?.proposals
 			.map(proposal => {
 				return proposals?.find(item => item.id === proposal.id);
 			})
 			.some(item => item !== undefined);
+	console.log(isProposal)
 
 	return (
 		<StyledJobCard>

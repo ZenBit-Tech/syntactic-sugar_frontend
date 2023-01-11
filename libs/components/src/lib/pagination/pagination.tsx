@@ -6,19 +6,22 @@ import {
 	StyledReactPagination,
 } from "./pagination.styled";
 import { Items } from "./items";
+import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
+import { IResponseEmployer } from "redux/createEmployer/employerApi";
 
 export interface PaginationProps {
 	itemsPerPage: number;
 	user: string;
 	data?: ICommonObject[];
 	typePage?: TypePage;
+	profile?: IResponse | IResponseEmployer;
 }
 
 export interface ReactPaginateEvent {
 	selected: number;
 }
 
-export function Pagination({ itemsPerPage, user, data, typePage }: PaginationProps) {
+export function Pagination({ itemsPerPage, user, data, typePage, profile }: PaginationProps) {
 	const dataLength = data?.length ? data?.length : 0;
 	const [itemOffset, setItemOffset] = useState<number>(0);
 	const endOffset = itemOffset + itemsPerPage;
@@ -33,7 +36,12 @@ export function Pagination({ itemsPerPage, user, data, typePage }: PaginationPro
 	return (
 		<PaginationContainer>
 			<PaginationItemsWrapper>
-				<Items data={currentItems} user={user} typePage={typePage} />
+				<Items
+					data={currentItems}
+					user={user}
+					typePage={typePage}
+					profile={profile}
+				/>
 			</PaginationItemsWrapper>
 			<StyledReactPagination
 				breakLabel="..."
