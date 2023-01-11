@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { ErrorsHandlerWrapper, StyledButton, StyledSpan } from "@freelance/components";
 import { IProposal } from "redux/interfaces/IProposal";
-import { formats } from "./formats";
 import { useCreateProposalMutation } from "redux/jobs";
 import {
 	FileUpload,
@@ -15,6 +14,7 @@ import {
 	ButtonWrapper,
 	ContainerBox,
 } from "./send-proposal.styled";
+import { formats } from "./formats";
 
 export interface SendProposalProps {
 	id: string;
