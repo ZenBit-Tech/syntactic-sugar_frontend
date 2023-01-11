@@ -50,7 +50,7 @@ export const Title = styled.div`
 `;
 
 export const ItemContainer = styled.div`
-	box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.1);
+	box-shadow: 0px 0px 10px 1px ${({ theme }) => theme.colors.shadow};
 	border-radius: 5px;
 	padding: 10px;
 	width: 95%;
@@ -78,14 +78,6 @@ export const Bottom = styled.div`
 
 export const Subtitle = styled.div`
 	color: ${({ theme }) => theme.colors.darkGrey};
-`;
-
-export const Subcontainer = styled.div`
-	border-bottom: 2px solid red;
-	padding: 1rem 0;
-	:last-child {
-		border-bottom: none;
-	}
 `;
 
 export const SkillsWrapper = styled.div`

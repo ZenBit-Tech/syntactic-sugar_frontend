@@ -11,6 +11,7 @@ export const ThemeColors = {
 		lightGrey: "#F5F5F5",
 		white: "#FFFFFF",
 		black: "#000000",
+		shadow: "rgba(0, 0, 0, 0.1)",
 	},
 	signPages: {
 		image: `url('/assets/images/top_elipse.png') no-repeat top left,
