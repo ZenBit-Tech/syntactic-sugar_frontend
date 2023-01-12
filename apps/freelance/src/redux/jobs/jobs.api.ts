@@ -114,6 +114,14 @@ export const getJobsApi = createApi({
 			}),
 			invalidatesTags: ["Job"],
 		}),
+		createProposal: build.mutation({
+			query: (body: FormData) => ({
+				url: "/proposal/create",
+				method: "POST",
+				body,
+			}),
+			invalidatesTags: ["Job"],
+		}),
 	}),
 });
 
@@ -127,4 +135,5 @@ export const {
 	useRemoveProposalByIdMutation,
 	useToggleIsPublishJobMutation,
 	useUpdateJobByIdMutation,
+	useCreateProposalMutation,
 } = getJobsApi;
