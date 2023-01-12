@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { FilterButton, StyledButton } from "@freelance/components";
 import { ROLES } from "utils/constants/roles";
-import { EMPLOYER_JOBS, JOBS_PAGE, TALENTS_PAGE } from "utils/constants/breakpoint";
+import { EMPLOYER_JOBS, TALENTS_PAGE } from "utils/constants/breakpoint";
 import { EMPLOYER_JOBS_PAGE, TALENTS } from "utils/constants/links";
 import { Container, FilterButtonWrap } from "./dashboard-menu.styled";
 
@@ -109,13 +109,7 @@ export function DashboardMenu({
 								{t("dashboard.menu.all")}
 							</FilterButton>
 							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
-								{t("dashboard.menu.contracts")}
-							</FilterButton>
-							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
 								{t("dashboard.menu.invitation")}
-							</FilterButton>
-							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
-								{t("dashboard.menu.filters")}
 							</FilterButton>
 						</FilterButtonWrap>
 					)}

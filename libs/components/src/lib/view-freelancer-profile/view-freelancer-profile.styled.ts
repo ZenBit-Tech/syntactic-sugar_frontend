@@ -25,9 +25,15 @@ export const Item = styled.div`
 	border-bottom: 1px solid ${({ theme }) => theme.colors.grey};
 	padding: 10px 0;
 	gap: 1rem;
+
 	&#workHistory {
 		padding: 0.5rem;
 	}
+
+	&#otherExp {
+		align-items: flex-start;
+	}
+
 	&#other {
 		border-bottom: 1px solid ${({ theme }) => theme.colors.grey};
 	}

@@ -108,28 +108,28 @@ export function ViewFreelancerProfile({
 				{workHistory &&
 					workHistory.map(item => {
 						return (
-							<Item>
+							<Item key={item.id}>
 								<Title id="skills">
 									<strong>{t("freelancer.viewProfile.workHistory")}</strong>
 								</Title>
-								<p key={item.id}>{`${item.company}, ${item.period}, ${item.workPosition}`}</p>
+								<p>{`${item.company}, ${item.period}, ${item.workPosition}`}</p>
 							</Item>
 						);
 					})}
 				{education &&
 					education.map(item => {
 						return (
-							<Item>
+							<Item key={item.id}>
 								<Title id="skills">
 									<strong>{t("freelancer.createProfile.educationLabel")}</strong>
 								</Title>
-								<p key={item.id}>{`${item.institute}, ${item.occupation}, ${item.period}`}</p>
+								<p>{`${item.institute}, ${item.occupation}, ${item.period}`}</p>
 							</Item>
 						);
 					})}
 				{otherExperience && (
-					<Item id="englishLevel">
-						<Title id="englishLevel">
+					<Item id="otherExp">
+						<Title>
 							<strong>{t("freelancer.createProfile.otherExperienceLabel")}</strong>
 						</Title>
 						<p>{otherExperience}</p>

@@ -31,14 +31,14 @@ export const Item = styled.div`
 	padding: 1rem 0;
 
 	&#workHistory {
-		padding: 0.5rem;
+		padding: 0 0 0.5rem 0;
 	}
 
 	p {
 		width: 70%;
 		word-break: keep-all;
 		word-wrap: break-word;
-		text-align: left;
+		text-align: right;
 	}
 
 	:last-child {
@@ -46,15 +46,15 @@ export const Item = styled.div`
 	}
 
 	.skillsContainer {
-		width: 50%;
 		display: flex;
-		flex-direction: column;
 		align-items: flex-end;
+		gap: 10px;
 	}
 `;
 
 export const BottomText = styled(Item)`
 	text-align: left;
+	padding: 0;
 `;
 
 export const Title = styled.div`
@@ -69,7 +69,7 @@ export const Title = styled.div`
 `;
 
 export const ItemContainer = styled.div`
-	box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.1);
+	box-shadow: 0px 0px 10px 1px ${({ theme }) => theme.colors.shadow};
 	border-radius: 5px;
 	padding: 1rem;
 	width: 95%;
