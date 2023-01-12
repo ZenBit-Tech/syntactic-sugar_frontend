@@ -392,5 +392,10 @@
 	"talents": {
 		"inv": "Invite to interview",
 		"avatar": "User avatar"
+	},
+	"notFoundPage": {
+		"errorCode": "404 Page not found",
+		"errorText": "We are sorry, the page you requested could not be found. Please, go back and try again",
+		"btn": "BACK"
 	}
 }

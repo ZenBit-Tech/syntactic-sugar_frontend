@@ -26,10 +26,11 @@ import { getRole } from "src/redux/userState/userSlice";
 import TalentsPage from "@pages/Employer/Talents";
 import { EMPLOYER, FREELANCER, GUEST } from "src/utils/constants/breakpoint";
 import { StyledApp } from "./app.styled";
+import NotFound from "@pages/NotFound";
 
 export function App() {
 	const role = useSelector(getRole);
-	
+
 	return (
 		<StyledApp>
 			<GoogleOAuthProvider clientId={`${process.env["NX_APP_GOOGLE_KEY"]}`}>
@@ -44,16 +45,20 @@ export function App() {
 										element={
 											<PrivateRoute path="/">
 												<Role />
-											</PrivateRoute>} />
+											</PrivateRoute>
+										}
+									/>
 									<Route
 										path="/"
 										element={
 											<PublicRoute path="/role">
 												<Login />
-											</PublicRoute>}/>
+											</PublicRoute>
+										}
+									/>
 								</>
 							)}
-							{role !== EMPLOYER  && (
+							{role !== EMPLOYER && (
 								<>
 									<Route
 										path="/freelancer/searchwork"
@@ -108,6 +113,7 @@ export function App() {
 							/>
 							<Route path="/employer/create-new-job-third-page" element={<JobPostingThirdPage />} />
 							<Route path="/employer/talents" element={<TalentsPage />} />
+							<Route path="*" element={<NotFound />} />
 						</Routes>
 					</BrowserRouter>
 				</Provider>
