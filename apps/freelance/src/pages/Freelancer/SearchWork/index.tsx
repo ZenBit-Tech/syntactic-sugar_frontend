@@ -10,9 +10,9 @@ import {
 import { JOBS_PAGE } from "src/utils/constants/breakpoint";
 import { ROLES } from "src/utils/constants/roles";
 import { useGetFreelancerQuery } from "src/redux/createFreelancer/freelancer-pageApi";
+import { ToastContainer } from "react-toastify";
 import { InputWrapper } from "./style";
 import { useSearchWorkFormHook } from "./searchWorkFormHook";
-import { ToastContainer } from "react-toastify";
 
 export function SearchWork() {
 	const { data: freelancerProfile } = useGetFreelancerQuery();
