@@ -49,7 +49,7 @@ export const Label = styled.label`
 export const Input = styled.input`
 	display: block;
 	margin-bottom: 0.5rem;
-	border: 2px solid #d9d9d9;
+	border: 2px solid ${({ theme }) => theme.colors.grey};
 	border-radius: 100px;
 	height: 40px;
 	width: 100%;
