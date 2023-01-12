@@ -34,6 +34,7 @@ export const createEmployerApi = createApi({
 	reducerPath: "createEmployer",
 	baseQuery: baseQuery,
 	tagTypes: ["employer"],
+	refetchOnMountOrArgChange: true,
 	endpoints: builder => ({
 		createEmployer: builder.mutation({
 			query: (body: IFormInput) => ({
