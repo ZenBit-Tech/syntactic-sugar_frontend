@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { ErrorsHandlerWrapper, StyledButton, StyledSpan } from "@freelance/components";
 import { IProposal } from "redux/interfaces/IProposal";
-import { useCreateProposalMutation } from "redux/jobs";
+import { useCreateProposalMutation } from "redux/sendProposalFreelancer/proposalApi";
 import {
 	FileUpload,
 	Form,
