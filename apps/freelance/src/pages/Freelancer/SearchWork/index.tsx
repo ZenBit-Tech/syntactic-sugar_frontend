@@ -19,7 +19,7 @@ export function SearchWork() {
 		onSubmit,
 		setFilter,
 		setToggleFilter,
-		filterJobs,
+		publishedFilterJobs,
 		setFilterJobs,
 		data,
 		freelancerFilter,
@@ -27,14 +27,14 @@ export function SearchWork() {
 	} = useSearchWorkFormHook();
 	const [isFilterOpen, setIsFilterOpen] = useState(false);
 	const { myProposals, showMyProposals, allJobs, showAllJobs } = useProposalsFilter();
-	console.log(filterJobs);
+	console.log(publishedFilterJobs);
 	const toggleFilterBox = () => {
 		setIsFilterOpen(!isFilterOpen);
 	};
 
 	const proposals =
-		filterJobs &&
-		filterJobs.filter(
+		publishedFilterJobs &&
+		publishedFilterJobs.filter(
 			job =>
 				job.proposals.filter(
 					proposal =>
@@ -59,7 +59,7 @@ export function SearchWork() {
 						<Pagination
 							itemsPerPage={5}
 							user={ROLES.FREELANCER}
-							data={filterJobs}
+							data={publishedFilterJobs}
 							typePage={JOBS_PAGE}
 							profile={freelancerProfile}
 							refetch={refetch}
@@ -82,7 +82,7 @@ export function SearchWork() {
 						setFilter={setFilter}
 						freelancerFilter={freelancerFilter}
 						setToggleFilter={setToggleFilter}
-						filterJobs={filterJobs}
+						filterJobs={publishedFilterJobs}
 						setFilterJobs={setFilterJobs}
 						data={data}
 						disabled={!allJobs}

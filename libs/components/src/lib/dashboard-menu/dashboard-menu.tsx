@@ -124,13 +124,7 @@ export function DashboardMenu({
 								{t("dashboard.menu.all")}
 							</FilterButton>
 							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
-								{t("dashboard.menu.contracts")}
-							</FilterButton>
-							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
 								{t("dashboard.menu.invitation")}
-							</FilterButton>
-							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
-								{t("dashboard.menu.filters")}
 							</FilterButton>
 						</FilterButtonWrap>
 					)}

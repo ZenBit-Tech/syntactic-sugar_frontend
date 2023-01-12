@@ -128,8 +128,8 @@ export function ViewFreelancerProfile({
 						);
 					})}
 				{otherExperience && (
-					<Item id="englishLevel">
-						<Title id="englishLevel">
+					<Item id="otherExp">
+						<Title>
 							<strong>{t("freelancer.createProfile.otherExperienceLabel")}</strong>
 						</Title>
 						<p>{otherExperience}</p>
