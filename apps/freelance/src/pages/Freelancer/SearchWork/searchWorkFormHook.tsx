@@ -12,6 +12,7 @@ interface IUseSearchWorkFormHook {
 	setFilterJobs: React.Dispatch<React.SetStateAction<JobsInterface[] | undefined>>;
 	data?: JobsInterface[];
 	freelancerFilter: IFormInput | {};
+	refetch: () => void;
 }
 
 interface JobSkills {
@@ -30,9 +31,9 @@ export interface IFormInput {
 }
 
 export const useSearchWorkFormHook = (): IUseSearchWorkFormHook => {
-	const { data: jobsArray, isSuccess } = useGetJobsQuery();
+	const { data: jobsArray } = useGetJobsQuery();
 	const data = jobsArray && jobsArray.filter(item => item.isPublished);
-	const { data: freelancerData } = useGetFreelancerQuery();
+	const { data: freelancerData, refetch } = useGetFreelancerQuery();
 	const [filterJobs, setFilterJobs] = useState(data);
 	const [toggleFilter, setToggleFilter] = useState<string>("reset");
 	const [filter, setFilter] = useState<IFormInput | any>({
@@ -46,7 +47,6 @@ export const useSearchWorkFormHook = (): IUseSearchWorkFormHook => {
 	});
 
 	const onSubmit: SubmitHandler<IFormInput> = values => {
-		console.log(values);
 		const freelancerInfo = {
 			category: values.category.label,
 			position: values.position || "",
@@ -63,7 +63,7 @@ export const useSearchWorkFormHook = (): IUseSearchWorkFormHook => {
 
 	useEffect(() => {
 		setFilterJobs(data);
-	}, [isSuccess]);
+	}, [data]);
 
 	useEffect(() => {
 		if (toggleFilter === "filter") {
@@ -124,5 +124,6 @@ export const useSearchWorkFormHook = (): IUseSearchWorkFormHook => {
 		setFilterJobs,
 		data,
 		freelancerFilter,
+		refetch,
 	};
 };

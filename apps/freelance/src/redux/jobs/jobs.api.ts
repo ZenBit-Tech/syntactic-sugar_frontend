@@ -1,6 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from "redux/base-query";
-import { ICreatedJob, INewJob, IUpdateJob } from "redux/interfaces";
+import { ICreatedJob, INewJob, IProposal, IUpdateJob } from "redux/interfaces";
 
 export interface InstObject {
 	id: string;
@@ -50,13 +50,14 @@ export const getJobsApi = createApi({
 	reducerPath: "jobs",
 	baseQuery: baseQuery,
 	refetchOnFocus: true,
-	tagTypes: ["Jobs", "Job"],
+	tagTypes: ["Job"],
+	refetchOnMountOrArgChange: true,
 	endpoints: build => ({
 		getJobs: build.query<JobsInterface[], void>({
 			query: () => ({
 				url: "jobs/get-all-jobs",
 			}),
-			providesTags: ["Jobs"],
+			providesTags: ["Job"],
 		}),
 		getJobId: build.query<JobsInterface, string>({
 			query: (id: string) => ({

@@ -57,7 +57,7 @@ export const Input = styled.input`
 `;
 
 export const HeaderButton = styled(StyledButton)`
-    height: 1.5rem;
+    height: 1.8rem;
     width: 30%;
     border-radius: 10px;
 `;
@@ -73,7 +73,6 @@ export const OpenFilterBtn = styled(StyledButton)`
     top: 20%;
     right: 100%;
     border-radius: 20px 0px 0px 20px;
-    background-color: red;
     width: 12%;
     transform: rotate(0deg);
     outline-style: none;

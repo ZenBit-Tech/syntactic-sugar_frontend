@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { ICommonObject, TypePage } from "@freelance/components";
+import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
+import { IResponseEmployer } from "redux/createEmployer/employerApi";
 import {
 	PaginationContainer,
 	PaginationItemsWrapper,
@@ -12,13 +14,22 @@ export interface PaginationProps {
 	user: string;
 	data?: ICommonObject[];
 	typePage?: TypePage;
+	profile?: IResponse | IResponseEmployer;
+	refetch?: () => void;
 }
 
 export interface ReactPaginateEvent {
 	selected: number;
 }
 
-export function Pagination({ itemsPerPage, user, data, typePage }: PaginationProps) {
+export function Pagination({
+	itemsPerPage,
+	user,
+	data,
+	typePage,
+	profile,
+	refetch,
+}: PaginationProps) {
 	const dataLength = data?.length ? data?.length : 0;
 	const [itemOffset, setItemOffset] = useState<number>(0);
 	const endOffset = itemOffset + itemsPerPage;
@@ -33,7 +44,13 @@ export function Pagination({ itemsPerPage, user, data, typePage }: PaginationPro
 	return (
 		<PaginationContainer>
 			<PaginationItemsWrapper>
-				<Items data={currentItems} user={user} typePage={typePage} />
+				<Items
+					data={currentItems}
+					user={user}
+					typePage={typePage}
+					profile={profile}
+					refetch={refetch}
+				/>
 			</PaginationItemsWrapper>
 			<StyledReactPagination
 				breakLabel="..."

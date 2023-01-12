@@ -37,6 +37,7 @@ interface IFilterProps {
     setFilterJobs: React.Dispatch<React.SetStateAction<JobsInterface[] | undefined>>;
     data?: JobsInterface[];
     freelancerFilter: IFormInput | {};
+    disabled: boolean;
 }
 
 export const SearchWorkFilter = ({
@@ -46,7 +47,8 @@ export const SearchWorkFilter = ({
     setToggleFilter,
     setFilterJobs,
     data,
-    freelancerFilter
+    freelancerFilter,
+    disabled,
 }: IFilterProps) => {
     const { t } = useTranslation();
     const { handleSubmit, control, reset } = useForm<IFormInput>();
@@ -72,6 +74,7 @@ export const SearchWorkFilter = ({
                 buttonSize="sm"
                 fontSize="lg"
                 onClick={openFilter}
+                disabled={disabled}
             >
                 <BtnText>
                     {t("freelancer.searchWork.buttonFilter")}
