@@ -165,7 +165,8 @@
 			"employmentType": "Employment",
 			"hourRate": "Rate hour",
 			"workingHours": "Working hours",
-			"workHistory": "Work history"
+			"workHistory": "Work history",
+			"exp": "Work experience"
 		},
 		"searchWork": {
 			"filter": "Filter",
@@ -390,7 +391,7 @@
 		"alreadySended": "Proposal already sended"
 	},
 	"talents": {
-		"inv": "Invite to interview",
+		"inv": "Invite",
 		"avatar": "User avatar"
 	}
 }

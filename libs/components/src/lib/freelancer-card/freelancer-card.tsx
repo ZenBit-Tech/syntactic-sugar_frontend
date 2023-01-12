@@ -100,7 +100,7 @@ export function FreelancerCard({
 				</WrapperContainer>
 				<GridContainer gap={10} alignItems="center">
 					<EmployerButtonWrapper>
-						<StyledButton buttonSize="md" buttonColor="lightRed" fontSize="md">
+						<StyledButton buttonSize="lg" buttonColor="lightRed" fontSize="md">
 							{t("talents.inv")}
 						</StyledButton>
 					</EmployerButtonWrapper>
@@ -129,7 +129,7 @@ export function FreelancerCard({
 				</ParagraphWrapper>
 				{skills &&
 					skills.map(skill => (
-						<ParagraphWrapper>
+						<ParagraphWrapper key={skill.id}>
 							<StyledParagraph fontSize="md" opacity={0.7}>
 								{skill.name}
 							</StyledParagraph>

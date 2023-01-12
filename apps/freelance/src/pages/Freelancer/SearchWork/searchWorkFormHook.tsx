@@ -8,7 +8,7 @@ interface IUseSearchWorkFormHook {
 	onSubmit: SubmitHandler<IFormInput>;
 	setFilter: ({}) => void;
 	setToggleFilter: React.Dispatch<React.SetStateAction<string>>;
-	filterJobs?: JobsInterface[];
+	publishedFilterJobs?: JobsInterface[];
 	setFilterJobs: React.Dispatch<React.SetStateAction<JobsInterface[] | undefined>>;
 	data?: JobsInterface[];
 	freelancerFilter: IFormInput | {};
@@ -45,6 +45,8 @@ export const useSearchWorkFormHook = (): IUseSearchWorkFormHook => {
 		hourRate: "",
 		availableAmountOfHour: "",
 	});
+
+	const publishedFilterJobs = filterJobs && filterJobs.filter(item => item.isPublished);
 
 	const onSubmit: SubmitHandler<IFormInput> = values => {
 		const freelancerInfo = {
@@ -120,7 +122,7 @@ export const useSearchWorkFormHook = (): IUseSearchWorkFormHook => {
 		onSubmit,
 		setFilter,
 		setToggleFilter,
-		filterJobs,
+		publishedFilterJobs,
 		setFilterJobs,
 		data,
 		freelancerFilter,
