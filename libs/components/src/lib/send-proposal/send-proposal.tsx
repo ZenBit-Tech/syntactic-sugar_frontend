@@ -1,9 +1,11 @@
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { ErrorMessage } from "@hookform/error-message";
 import { ErrorsHandlerWrapper, StyledButton, StyledSpan } from "@freelance/components";
 import { IProposal } from "redux/interfaces/IProposal";
-import { useCreateProposalMutation } from "redux/sendProposalFreelancer/proposalApi";
+import { useCreateProposalMutation } from "redux/jobs";
 import {
 	FileUpload,
 	Form,
@@ -40,7 +42,7 @@ export function SendProposal({
 		reset,
 		formState: { errors },
 	} = useForm<IProposal>({ criteriaMode: "all", mode: "onChange", shouldFocusError: true });
-	const [createProposal, { isError }] = useCreateProposalMutation();
+	const [createProposal, { isError, isLoading, isSuccess }] = useCreateProposalMutation();
 
 	const onSubmit = async (values: IProposal) => {
 		const data = new FormData();
@@ -64,6 +66,10 @@ export function SendProposal({
 		reset();
 		refetch && refetch();
 	};
+
+	useEffect(() => {
+		isSuccess && toast.success(t("sendProposalFreelancer.successNotify"));
+	}, [isSuccess, t]);
 
 	return (
 		<ContainerBox>
@@ -174,9 +180,21 @@ export function SendProposal({
 					>
 						{t("sendProposalFreelancer.back")}
 					</StyledButton>
-					<StyledButton buttonSize="sm" fontSize="md" buttonColor="redGradient" type="submit">
-						{t("sendProposalFreelancer.send")}
-					</StyledButton>
+					{isLoading ? (
+						<StyledButton
+							buttonSize="sm"
+							fontSize="md"
+							buttonColor="redGradient"
+							type="submit"
+							disabled
+						>
+							{t("sendProposalFreelancer.sending")}
+						</StyledButton>
+					) : (
+						<StyledButton buttonSize="sm" fontSize="md" buttonColor="redGradient" type="submit">
+							{t("sendProposalFreelancer.send")}
+						</StyledButton>
+					)}
 				</ButtonWrapper>
 			</Form>
 		</ContainerBox>

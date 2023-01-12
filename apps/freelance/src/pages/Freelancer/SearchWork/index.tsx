@@ -10,6 +10,7 @@ import {
 import { JOBS_PAGE } from "src/utils/constants/breakpoint";
 import { ROLES } from "src/utils/constants/roles";
 import { useGetFreelancerQuery } from "src/redux/createFreelancer/freelancer-pageApi";
+import { ToastContainer } from "react-toastify";
 import { InputWrapper } from "./style";
 import { useSearchWorkFormHook } from "./searchWorkFormHook";
 
@@ -27,7 +28,7 @@ export function SearchWork() {
 	} = useSearchWorkFormHook();
 	const [isFilterOpen, setIsFilterOpen] = useState(false);
 	const { myProposals, showMyProposals, allJobs, showAllJobs } = useProposalsFilter();
-	console.log(publishedFilterJobs);
+
 	const toggleFilterBox = () => {
 		setIsFilterOpen(!isFilterOpen);
 	};
@@ -88,6 +89,7 @@ export function SearchWork() {
 						disabled={!allJobs}
 					/>
 				</FilterBox>
+				<ToastContainer />
 			</Dashboard>
 		</StyledPage>
 	);

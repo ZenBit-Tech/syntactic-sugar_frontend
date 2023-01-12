@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { FilterButton, StyledButton } from "@freelance/components";
 import { ROLES } from "utils/constants/roles";
-import { EMPLOYER_JOBS, JOBS_PAGE, TALENTS_PAGE } from "utils/constants/breakpoint";
+import { EMPLOYER_JOBS, TALENTS_PAGE } from "utils/constants/breakpoint";
 import { EMPLOYER_JOBS_PAGE, TALENTS } from "utils/constants/links";
 import { Container, FilterButtonWrap } from "./dashboard-menu.styled";
 
@@ -35,45 +35,30 @@ export function DashboardMenu({
 			<img id="logo" src="/assets/images/white_logo.png" alt="logo" />
 			{userRole === ROLES.FREELANCER && (
 				<>
-					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
-						{t("dashboard.menu.myContracts")}
+					<StyledButton
+						buttonSize="md"
+						fontSize="md"
+						buttonColor="lightRed"
+						disabled={allJobs}
+						onClick={showAllJobs}
+					>
+						{t("dashboard.menu.allJobs")}
 					</StyledButton>
 					<StyledButton
 						buttonSize="md"
 						fontSize="md"
 						buttonColor="lightRed"
-						disabled={typePage === JOBS_PAGE}
+						disabled={myProposals}
+						onClick={showMyProposals}
 					>
-						{t("dashboard.menu.searchWorks")}
+						{t("dashboard.menu.myProposals")}
 					</StyledButton>
-					{typePage === JOBS_PAGE && (
-						<FilterButtonWrap>
-							<FilterButton
-								buttonSize="filter"
-								fontSize="md"
-								buttonColor="lightRed"
-								disabled={allJobs}
-								onClick={showAllJobs}
-							>
-								{t("dashboard.menu.allJobs")}
-							</FilterButton>
-							<FilterButton
-								buttonSize="filter"
-								fontSize="md"
-								buttonColor="lightRed"
-								disabled={myProposals}
-								onClick={showMyProposals}
-							>
-								{t("dashboard.menu.myProposals")}
-							</FilterButton>
-							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
-								{t("dashboard.menu.myInvitations")}
-							</FilterButton>
-							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
-								{t("dashboard.menu.myOffers")}
-							</FilterButton>
-						</FilterButtonWrap>
-					)}
+					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
+						{t("dashboard.menu.myInvitations")}
+					</StyledButton>
+					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
+						{t("dashboard.menu.myOffers")}
+					</StyledButton>
 				</>
 			)}
 			{userRole === ROLES.EMPLOYER && (
