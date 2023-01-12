@@ -13,6 +13,7 @@ interface IUseSearchWorkFormHook {
 	data?: JobsInterface[];
 	freelancerFilter: IFormInput | {};
 	refetch: () => void;
+	isLoading: boolean;
 }
 
 interface JobSkills {
@@ -31,7 +32,7 @@ export interface IFormInput {
 }
 
 export const useSearchWorkFormHook = (): IUseSearchWorkFormHook => {
-	const { data } = useGetJobsQuery();
+	const { data, isLoading } = useGetJobsQuery();
 	const { data: freelancerData, refetch } = useGetFreelancerQuery();
 	const [filterJobs, setFilterJobs] = useState(data);
 	const [toggleFilter, setToggleFilter] = useState<string>("reset");
@@ -124,5 +125,6 @@ export const useSearchWorkFormHook = (): IUseSearchWorkFormHook => {
 		data,
 		freelancerFilter,
 		refetch,
+		isLoading,
 	};
 };
