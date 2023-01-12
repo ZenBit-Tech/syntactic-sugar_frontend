@@ -2,9 +2,8 @@ import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { ErrorsHandlerWrapper, StyledButton, StyledSpan } from "@freelance/components";
-import { useCreateProposalMutation } from "redux/sendProposalFreelancer/proposalApi";
 import { IProposal } from "redux/interfaces/IProposal";
-import { formats } from "./formats";
+import { useCreateProposalMutation } from "redux/sendProposalFreelancer/proposalApi";
 import {
 	FileUpload,
 	Form,
@@ -15,6 +14,7 @@ import {
 	ButtonWrapper,
 	ContainerBox,
 } from "./send-proposal.styled";
+import { formats } from "./formats";
 
 export interface SendProposalProps {
 	id: string;
@@ -22,6 +22,7 @@ export interface SendProposalProps {
 	goBack?: () => void;
 	saveCoverLetter?: (evt: React.ChangeEvent<HTMLTextAreaElement>) => void;
 	inputText?: string;
+	refetch?: () => void;
 }
 
 export function SendProposal({
@@ -30,11 +31,13 @@ export function SendProposal({
 	goBack,
 	saveCoverLetter,
 	inputText,
+	refetch,
 }: SendProposalProps) {
 	const { t } = useTranslation();
 	const {
 		register,
 		handleSubmit,
+		reset,
 		formState: { errors },
 	} = useForm<IProposal>({ criteriaMode: "all", mode: "onChange", shouldFocusError: true });
 	const [createProposal, { isError }] = useCreateProposalMutation();
@@ -58,6 +61,8 @@ export function SendProposal({
 		} catch (error) {
 			alert(error);
 		}
+		reset();
+		refetch && refetch();
 	};
 
 	return (

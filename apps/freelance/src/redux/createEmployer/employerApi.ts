@@ -1,5 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from "redux/base-query";
+import { Proposal } from "redux/jobs";
 
 interface IFormInput {
 	fullName: string;
@@ -12,7 +13,8 @@ interface IFormInput {
 	image: string;
 }
 
-interface IResponseEmployer {
+export interface IResponseEmployer {
+	id: string;
 	fullName: string;
 	companyName: string;
 	position: string;
@@ -21,6 +23,7 @@ interface IResponseEmployer {
 	website: string;
 	aboutUs: string;
 	image: string;
+	proposals: Proposal[];
 	user: {
 		id: string;
 		email: string;

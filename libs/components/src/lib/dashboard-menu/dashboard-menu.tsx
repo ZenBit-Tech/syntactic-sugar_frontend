@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { FilterButton, StyledButton } from "@freelance/components";
 import { ROLES } from "utils/constants/roles";
-import { EMPLOYER_JOBS, JOBS_PAGE, PROPOSALS_PAGE, TALENTS_PAGE } from "utils/constants/breakpoint";
+import { EMPLOYER_JOBS, JOBS_PAGE, TALENTS_PAGE } from "utils/constants/breakpoint";
 import { EMPLOYER_JOBS_PAGE, TALENTS } from "utils/constants/links";
 import { Container, FilterButtonWrap } from "./dashboard-menu.styled";
 
@@ -10,7 +10,11 @@ export interface DashboardMenuProps {
 	userRole: "freelancer" | "employer";
 	typePage?: "createProfile" | "main" | "proposals" | "employerJobs" | "jobs" | "talents";
 	filterState?: boolean;
+	myProposals?: boolean;
+	allJobs?: boolean;
 	handleToggleFilter?: () => void;
+	showMyProposals?: () => void;
+	showAllJobs?: () => void;
 }
 
 export function DashboardMenu({
@@ -18,6 +22,10 @@ export function DashboardMenu({
 	typePage,
 	handleToggleFilter,
 	filterState,
+	myProposals,
+	allJobs,
+	showMyProposals,
+	showAllJobs,
 }: DashboardMenuProps) {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
@@ -40,7 +48,22 @@ export function DashboardMenu({
 					</StyledButton>
 					{typePage === JOBS_PAGE && (
 						<FilterButtonWrap>
-							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
+							<FilterButton
+								buttonSize="filter"
+								fontSize="md"
+								buttonColor="lightRed"
+								disabled={allJobs}
+								onClick={showAllJobs}
+							>
+								{t("dashboard.menu.allJobs")}
+							</FilterButton>
+							<FilterButton
+								buttonSize="filter"
+								fontSize="md"
+								buttonColor="lightRed"
+								disabled={myProposals}
+								onClick={showMyProposals}
+							>
 								{t("dashboard.menu.myProposals")}
 							</FilterButton>
 							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
