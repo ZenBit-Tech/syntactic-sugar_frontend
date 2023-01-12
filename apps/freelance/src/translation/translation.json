@@ -92,7 +92,8 @@
 	"proposalsList": "Proposals",
 	"proposalCard": {
 		"startChat": "Start chat",
-		"proposalDetails": "Proposal details"
+		"coverLetter": "Cover letter",
+		"freelancerProfile": "Freelancer profile"
 	},
 	"invitationPage": {
 		"title": "You have successfully registered!",

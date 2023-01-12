@@ -1,13 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { stat } from "node:fs";
 
 export interface educationProps {
+	id?: string;
 	institute: string;
 	occupation: string;
 	period: string;
 }
 
 export interface workHistoryProps {
+	id?: string;
 	company: string;
 	workPosition: string;
 	period: string;

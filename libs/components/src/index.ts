@@ -103,3 +103,7 @@ export * from "./lib/proposal-card/proposal-card";
 export * from "./lib/filter-container/filter-container";
 export * from "./lib/searchwork-filter/searchwork-filter";
 export * from "./lib/proposals-filter/proposals-filterHooks";
+
+//Freelancer Profile
+
+export * from "./lib/view-freelancer-profile/view-freelancer-profile";

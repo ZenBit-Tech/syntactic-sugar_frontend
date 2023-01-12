@@ -85,9 +85,7 @@ export function Items({ data, user, typePage, profile, refetch }: CurrentItems) 
 						hourRate={proposal.hourRate}
 						filePath={proposal.filePath}
 						createdDate={proposal.createdDate}
-						freelancerId={proposal.freelancer?.id}
-						freelancerName={proposal.freelancer?.fullName}
-						freelancerImage={proposal.freelancer?.image}
+						freelancer={proposal.freelancer}
 					/>
 				))}
 		</Container>

@@ -3,6 +3,20 @@ import { workHistoryProps, educationProps } from "redux/createFreelancer/freelan
 import { baseQuery } from "redux/base-query";
 import { InstObject, Proposal } from "redux/jobs/jobs.api";
 
+export interface IEduResponse {
+	id: string;
+	institute: string;
+	occupation: string;
+	period: string;
+}
+
+export interface IWorkHistoryResponse {
+	id: string;
+	company: string;
+	workPosition: string;
+	period?: string;
+}
+
 export interface IFormInput {
 	fullName: string;
 	category: string;
@@ -36,8 +50,8 @@ export interface IResponse {
 	availableAmountOfHours: string;
 	workExperience: string;
 	englishLevel: string;
-	education?: educationProps[];
-	workHistory?: workHistoryProps[];
+	education?: IEduResponse[];
+	workHistory?: IWorkHistoryResponse[];
 	otherExperience?: string;
 	isPublished: boolean;
 	createdDate: string;
