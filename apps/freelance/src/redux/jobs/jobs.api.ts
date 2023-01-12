@@ -50,13 +50,14 @@ export const getJobsApi = createApi({
 	reducerPath: "jobs",
 	baseQuery: baseQuery,
 	refetchOnFocus: true,
-	tagTypes: ["Jobs", "Job"],
+	tagTypes: ["Job"],
+	refetchOnMountOrArgChange: true,
 	endpoints: build => ({
 		getJobs: build.query<JobsInterface[], void>({
 			query: () => ({
 				url: "jobs/get-all-jobs",
 			}),
-			providesTags: ["Jobs"],
+			providesTags: ["Job"],
 		}),
 		getJobId: build.query<JobsInterface, string>({
 			query: (id: string) => ({

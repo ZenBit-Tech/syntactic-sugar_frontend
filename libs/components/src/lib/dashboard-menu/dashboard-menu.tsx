@@ -13,7 +13,7 @@ export interface DashboardMenuProps {
 	myProposals?: boolean;
 	allJobs?: boolean;
 	handleToggleFilter?: () => void;
-	showMyProposals?: () => void; 
+	showMyProposals?: () => void;
 	showAllJobs?: () => void;
 }
 
@@ -25,7 +25,7 @@ export function DashboardMenu({
 	myProposals,
 	allJobs,
 	showMyProposals,
-	showAllJobs
+	showAllJobs,
 }: DashboardMenuProps) {
 	const { t } = useTranslation();
 	const navigate = useNavigate();

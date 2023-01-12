@@ -23,10 +23,11 @@ export function SearchWork() {
 		setFilterJobs,
 		data,
 		freelancerFilter,
+		refetch,
 	} = useSearchWorkFormHook();
 	const [isFilterOpen, setIsFilterOpen] = useState(false);
 	const { myProposals, showMyProposals, allJobs, showAllJobs } = useProposalsFilter();
-
+	console.log(filterJobs);
 	const toggleFilterBox = () => {
 		setIsFilterOpen(!isFilterOpen);
 	};
@@ -61,6 +62,7 @@ export function SearchWork() {
 							data={filterJobs}
 							typePage={JOBS_PAGE}
 							profile={freelancerProfile}
+							refetch={refetch}
 						/>
 					)}
 					{myProposals && (

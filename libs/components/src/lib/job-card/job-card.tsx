@@ -53,6 +53,7 @@ export interface JobCardProps {
 	isPublished?: boolean;
 	typePage?: TypePage;
 	profile?: IResponse | IResponseEmployer;
+	refetch?: () => void;
 }
 
 export function JobCard({
@@ -76,6 +77,7 @@ export function JobCard({
 	typePage,
 	isPublished,
 	profile,
+	refetch,
 }: JobCardProps) {
 	const { t } = useTranslation();
 	const prettyDate = moment(updatedDate).format("LL");
@@ -227,7 +229,7 @@ export function JobCard({
 			</CardModal>
 			{typePage === JOBS_PAGE && (
 				<CardModal open={proposalModalOpen} onCancel={closeSendProposal} width={1000}>
-					<SendProposal id={jobId} onCancel={closeSendProposal} />
+					<SendProposal id={jobId} onCancel={closeSendProposal} refetch={refetch} />
 				</CardModal>
 			)}
 			{typePage === EMPLOYER_JOBS && (

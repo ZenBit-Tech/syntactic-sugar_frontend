@@ -15,9 +15,10 @@ export interface CurrentItems {
 	user: string;
 	typePage?: TypePage;
 	profile?: IResponse | IResponseEmployer;
+	refetch?: () => void;
 }
 
-export function Items({ data, user, typePage, profile }: CurrentItems) {
+export function Items({ data, user, typePage, profile, refetch }: CurrentItems) {
 	return (
 		<Container>
 			{typePage === TALENTS_PAGE &&
@@ -71,6 +72,7 @@ export function Items({ data, user, typePage, profile }: CurrentItems) {
 							typePage={typePage}
 							isPublished={job.isPublished}
 							profile={profile}
+							refetch={refetch}
 						/>
 					);
 				})}

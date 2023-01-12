@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
@@ -22,6 +23,7 @@ export interface SendProposalProps {
 	goBack?: () => void;
 	saveCoverLetter?: (evt: React.ChangeEvent<HTMLTextAreaElement>) => void;
 	inputText?: string;
+	refetch?: () => void;
 }
 
 export function SendProposal({
@@ -30,6 +32,7 @@ export function SendProposal({
 	goBack,
 	saveCoverLetter,
 	inputText,
+	refetch,
 }: SendProposalProps) {
 	const { t } = useTranslation();
 	const {
@@ -60,6 +63,7 @@ export function SendProposal({
 			alert(error);
 		}
 		reset();
+		refetch && refetch();
 	};
 
 	return (

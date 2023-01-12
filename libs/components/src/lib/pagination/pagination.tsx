@@ -15,13 +15,21 @@ export interface PaginationProps {
 	data?: ICommonObject[];
 	typePage?: TypePage;
 	profile?: IResponse | IResponseEmployer;
+	refetch?: () => void;
 }
 
 export interface ReactPaginateEvent {
 	selected: number;
 }
 
-export function Pagination({ itemsPerPage, user, data, typePage, profile }: PaginationProps) {
+export function Pagination({
+	itemsPerPage,
+	user,
+	data,
+	typePage,
+	profile,
+	refetch,
+}: PaginationProps) {
 	const dataLength = data?.length ? data?.length : 0;
 	const [itemOffset, setItemOffset] = useState<number>(0);
 	const endOffset = itemOffset + itemsPerPage;
@@ -36,7 +44,13 @@ export function Pagination({ itemsPerPage, user, data, typePage, profile }: Pagi
 	return (
 		<PaginationContainer>
 			<PaginationItemsWrapper>
-				<Items data={currentItems} user={user} typePage={typePage} profile={profile} />
+				<Items
+					data={currentItems}
+					user={user}
+					typePage={typePage}
+					profile={profile}
+					refetch={refetch}
+				/>
 			</PaginationItemsWrapper>
 			<StyledReactPagination
 				breakLabel="..."
