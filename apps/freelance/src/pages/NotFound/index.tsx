@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { ThemeColors, Message } from "@freelance/components";
-import { useNavigate } from "react-router-dom";
 import { StyledPage, Container, ErrorPageBtn } from "./style";
 
 export function NotFound() {
