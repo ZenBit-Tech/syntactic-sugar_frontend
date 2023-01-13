@@ -9,7 +9,6 @@ import { RecoverPasswordReset } from "@pages/RecoverPasswordReset";
 import { CreateProfile1 } from "@pages/Freelancer/CreateProfile1";
 import { CreateEmployerProfile } from "@pages/Employer/CreateProfile";
 import { RecoverPasswordUpdate } from "@pages/RecoverPasswordUpdate";
-import { Invitation } from "@pages/Invitation";
 import { ViewProfile } from "@pages/Freelancer/ViewProfile";
 import { Role } from "@pages/Role";
 import {
@@ -37,7 +36,14 @@ export function App() {
 				<Provider store={store}>
 					<BrowserRouter>
 						<Routes>
-							<Route path="/signup" element={<Signup />} />
+							<Route
+								path="/signup"
+								element={
+									<PublicRoute path="/">
+										<Signup />
+									</PublicRoute>
+								}
+							/>
 							{role === GUEST && (
 								<>
 									<Route
@@ -96,12 +102,29 @@ export function App() {
 											</PublicRoute>
 										}
 									/>
+									<Route
+										path="/employer/talents"
+										element={
+											<PrivateRoute path="/">
+												<TalentsPage />
+											</PrivateRoute>
+										}
+									/>
 								</>
 							)}
-							<Route path="/recover-password" element={<RecoverPasswordRequest />} />
-							<Route path="/check-your-email" element={<RecoverPasswordCheck />} />
-							<Route path="/resetpassword/:token" element={<RecoverPasswordReset />} />
-							<Route path="/password-updated" element={<RecoverPasswordUpdate />} />
+							<Route
+								path="/recover"
+								element={
+									<PublicRoute path="/">
+										<RecoverPasswordRequest />
+									</PublicRoute>
+								}
+							>
+								<Route path="recover-password" element={<RecoverPasswordRequest />} />
+								<Route path="check-your-email" element={<RecoverPasswordCheck />} />
+								<Route path="resetpassword/:token" element={<RecoverPasswordReset />} />
+								<Route path="password-updated" element={<RecoverPasswordUpdate />} />
+							</Route>
 							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />
 							<Route path="/freelancer/create-profile2" element={<CreateProfile2 />} />
 							<Route path="/freelancer/view-profile" element={<ViewProfile />} />
@@ -112,7 +135,6 @@ export function App() {
 								element={<JobPostingSecondPage />}
 							/>
 							<Route path="/employer/create-new-job-third-page" element={<JobPostingThirdPage />} />
-							<Route path="/employer/talents" element={<TalentsPage />} />
 							<Route path="*" element={<NotFound />} />
 						</Routes>
 					</BrowserRouter>
