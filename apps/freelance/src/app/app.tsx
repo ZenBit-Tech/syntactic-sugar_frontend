@@ -24,8 +24,8 @@ import { PrivateRoute, PublicRoute } from "src/protectedRoutes/protectedRoutes";
 import { getRole } from "src/redux/userState/userSlice";
 import TalentsPage from "@pages/Employer/Talents";
 import { EMPLOYER, FREELANCER, GUEST } from "src/utils/constants/breakpoint";
-import { StyledApp } from "./app.styled";
 import NotFound from "@pages/NotFound";
+import { StyledApp } from "./app.styled";
 
 export function App() {
 	const role = useSelector(getRole);

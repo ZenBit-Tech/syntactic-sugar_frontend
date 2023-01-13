@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { ThemeProvider } from "styled-components";
 import { ThemeColors, Message } from "@freelance/components";
-import { StyledPage, Container, ErrorPageBtn } from "./style";
 import { useNavigate } from "react-router-dom";
+import { StyledPage, Container, ErrorPageBtn } from "./style";
 
 export function NotFound() {
 	const { t } = useTranslation();
