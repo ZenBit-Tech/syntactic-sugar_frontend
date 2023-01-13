@@ -1,6 +1,9 @@
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider, useSelector } from "react-redux";
+import store from "redux/store";
+import { getRole } from "src/redux/userState/userSlice";
+import { EMPLOYER, FREELANCER, GUEST } from "src/utils/constants/breakpoint";
 import Login from "@pages/Login";
 import Signup from "@pages/Signup";
 import { RecoverPasswordRequest } from "@pages/RecoverPasswordRequest";
@@ -16,14 +19,11 @@ import {
 	JobPostingSecondPage,
 	JobPostingThirdPage,
 } from "@pages/NewJobPosting";
-import store from "redux/store";
 import { CreateProfile2 } from "@pages/Freelancer/CreateProfile2";
 import { SearchWork } from "@pages/Freelancer/SearchWork";
 import { EmployerJobsPage } from "@pages/Employer/EmployerJobsPage";
 import { PrivateRoute, PublicRoute } from "src/protectedRoutes/protectedRoutes";
-import { getRole } from "src/redux/userState/userSlice";
 import TalentsPage from "@pages/Employer/Talents";
-import { EMPLOYER, FREELANCER, GUEST } from "src/utils/constants/breakpoint";
 import NotFound from "@pages/NotFound";
 import { StyledApp } from "./app.styled";
 
