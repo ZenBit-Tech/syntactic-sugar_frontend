@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useMemo } from "react";
 import moment from "moment";
 import {
 	GridContainer,
@@ -20,8 +21,11 @@ import {
 	ProposalsList,
 	TypePage,
 	CardNotification,
+	Chat,
+	IInvitation,
 } from "@freelance/components";
-import { InstObject, Proposal } from "redux/jobs";
+import { IEmployerResponse, InstObject, Proposal } from "redux/jobs";
+import { IProposal } from "redux/interfaces/IProposal";
 import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { EMPLOYER_JOBS, JOBS_PAGE } from "utils/constants/breakpoint";
 import { ROLES } from "utils/constants/roles";
@@ -29,6 +33,8 @@ import { DEFAULT_IMAGE } from "utils/constants/links";
 import { baseUrl } from "utils/constants/redux-query";
 import { IResponseEmployer } from "redux/createEmployer/employerApi";
 import { useJobCard } from "./job-cardHooks";
+import { useChat } from "./job-cardChatHooks";
+import { IChat } from "redux/chat/chatApi";
 
 export interface JobCardProps {
 	jobId: string;
@@ -54,6 +60,9 @@ export interface JobCardProps {
 	typePage?: TypePage;
 	profile?: IResponse | IResponseEmployer;
 	refetch?: () => void;
+	employerId?: string;
+	jobChats?: IChat[];
+	invitation?: IInvitation[];
 }
 
 export function JobCard({
@@ -78,6 +87,9 @@ export function JobCard({
 	isPublished,
 	profile,
 	refetch,
+	employerId,
+	jobChats,
+	invitation,
 }: JobCardProps) {
 	const { t } = useTranslation();
 	const prettyDate = moment(updatedDate).format("LL");
@@ -96,15 +108,26 @@ export function JobCard({
 		isProposalsListOpen,
 		isTogglingJob,
 		isModalEditJob,
+    proposalExist
 	} = useJobCard({ isPublished });
+	const { openChat, closeChat, chatModalOpen, continueChat } = useChat({
+		jobId,
+		employerId,
+		freelancerId: profile?.id,
+	});
 
-	const isProposal =
-		profile?.proposals &&
-		profile?.proposals
-			.map(proposal => {
-				return proposals?.find(item => item.id === proposal.id);
-			})
-			.some(item => item !== undefined);
+	const isChat = useMemo(
+		() => jobChats?.some(chat => chat.freelancer.id === profile?.id),
+		[jobChats, profile?.id],
+	);
+	const isInvitation = useMemo(
+		() => invitation?.some(inv => inv.freelancer.id === profile?.id),
+		[invitation, profile?.id],
+	);
+	const isProposal = useMemo(
+		() => proposalExist(profile?.proposals as IProposal[], proposals as IProposal[]),
+		[profile?.proposals, proposals],
+	);
 
 	return (
 		<StyledJobCard>
@@ -128,24 +151,72 @@ export function JobCard({
 				</GridContainer>
 				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && (
 					<GridContainer alignItems="center" justifyItems="center">
-						{!isProposal ? (
-							<FreelancerButtonWrapper>
-								<StyledButton
-									buttonColor="redGradient"
-									buttonSize="lg"
-									fontSize="md"
-									onClick={openSendProposal}
-								>
-									<strong>{t("jobCard.sendProposal")}</strong>
-								</StyledButton>
-							</FreelancerButtonWrapper>
+						{!isInvitation ? (
+							<>
+								{!isProposal ? (
+									<FreelancerButtonWrapper>
+										<StyledButton
+											buttonColor="redGradient"
+											buttonSize="lg"
+											fontSize="md"
+											onClick={openSendProposal}
+										>
+											<strong>{t("jobCard.sendProposal")}</strong>
+										</StyledButton>
+									</FreelancerButtonWrapper>
+								) : (
+									<>
+										{!isChat && (
+											<CardNotification fontSize="md">
+												<strong>{t("jobCard.proposalSent")}</strong>
+											</CardNotification>
+										)}
+										{isChat && (
+											<FreelancerButtonWrapper>
+												<StyledButton
+													buttonColor="redGradient"
+													buttonSize="lg"
+													fontSize="md"
+													onClick={continueChat}
+												>
+													<strong>{t("chat.continueChat")}</strong>
+												</StyledButton>
+											</FreelancerButtonWrapper>
+										)}
+									</>
+								)}
+							</>
 						) : (
-							<CardNotification fontSize="md">
-								<strong>{t("jobCard.proposalSent")}</strong>
-							</CardNotification>
+							<>
+								{!isChat && (
+									<FreelancerButtonWrapper>
+										<StyledButton
+											buttonColor="redGradient"
+											buttonSize="lg"
+											fontSize="md"
+											onClick={openChat}
+										>
+											<strong>{t("chat.startChat")}</strong>
+										</StyledButton>
+									</FreelancerButtonWrapper>
+								)}
+								{isChat && (
+									<FreelancerButtonWrapper>
+										<StyledButton
+											buttonColor="redGradient"
+											buttonSize="lg"
+											fontSize="md"
+											onClick={continueChat}
+										>
+											<strong>{t("chat.continueChat")}</strong>
+										</StyledButton>
+									</FreelancerButtonWrapper>
+								)}
+							</>
 						)}
 					</GridContainer>
 				)}
+
 				{userType === ROLES.EMPLOYER && (
 					<GridContainer alignItems="center" justifyItems="center" gap={10}>
 						<EmployerButtonWrapper>
@@ -242,6 +313,9 @@ export function JobCard({
 					</CardModal>
 				</>
 			)}
+			<CardModal open={chatModalOpen} onCancel={closeChat} width={800}>
+				<Chat userType={userType!} userId={profile?.id} />
+			</CardModal>
 		</StyledJobCard>
 	);
 }
