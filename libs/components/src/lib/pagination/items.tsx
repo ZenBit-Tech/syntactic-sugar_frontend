@@ -73,6 +73,9 @@ export function Items({ data, user, typePage, profile, refetch }: CurrentItems) 
 							isPublished={job.isPublished}
 							profile={profile}
 							refetch={refetch}
+							employerId={job.employer?.id}
+							jobChats={job.chats}
+							invitation={job.invitation}
 						/>
 					);
 				})}
@@ -86,6 +89,10 @@ export function Items({ data, user, typePage, profile, refetch }: CurrentItems) 
 						filePath={proposal.filePath}
 						createdDate={proposal.createdDate}
 						freelancer={proposal.freelancer}
+						jobId={proposal.job?.id}
+						employerId={proposal.job?.employer?.id}
+						jobChats={proposal.job?.chats}
+						userType={user}
 					/>
 				))}
 		</Container>

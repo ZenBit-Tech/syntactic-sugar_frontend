@@ -398,5 +398,11 @@
 		"errorCode": "404 Page not found",
 		"errorText": "We are sorry, the page you requested could not be found. Please, go back and try again",
 		"btn": "BACK"
+	},
+	"chat": {
+		"send": "Send",
+		"noConversations": "You have no conversations yet",
+		"startChat": "Start chat",
+		"continueChat": "Continue chat"
 	}
 }

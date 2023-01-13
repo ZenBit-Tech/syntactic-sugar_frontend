@@ -6,8 +6,9 @@ import { IResponseEmployer } from "redux/createEmployer/employerApi";
 import { baseUrl } from "utils/constants/redux-query";
 import { DEFAULT_IMAGE } from "utils/constants/links";
 import { CREATE_PROFILE } from "utils/constants/breakpoint";
+import { useLogout, CardModal, Chat } from "@freelance/components";
 import { Container, UserInfoWrapper, ButtonsWrapper, UserDetails } from "./dashboard-header.styled";
-import { useLogout } from "@freelance/components";
+import { useChat } from "./dashboard-headerChatHooks";
 
 export interface DashboardHeaderProps {
 	userRole: "freelancer" | "employer";
@@ -18,6 +19,7 @@ export interface DashboardHeaderProps {
 export function DashboardHeader({ userRole, typePage, profile }: DashboardHeaderProps) {
 	const { t } = useTranslation();
 	const { handleLogout } = useLogout();
+	const { openChat, closeChat, chatModalOpen } = useChat();
 
 	return (
 		<Container>
@@ -42,7 +44,7 @@ export function DashboardHeader({ userRole, typePage, profile }: DashboardHeader
 			)}
 			{userRole === ROLES.FREELANCER && (
 				<ButtonsWrapper>
-					<StyledButton buttonSize="md" buttonColor="lightRed" fontSize="md">
+					<StyledButton buttonSize="md" buttonColor="lightRed" fontSize="md" onClick={openChat}>
 						{t("dashboard.header.chat")}
 						<img src="/assets/images/chat_btn_icon.png" alt="Chat Icon" />
 					</StyledButton>
@@ -54,7 +56,7 @@ export function DashboardHeader({ userRole, typePage, profile }: DashboardHeader
 			)}
 			{userRole === ROLES.EMPLOYER && (
 				<ButtonsWrapper>
-					<StyledButton buttonSize="md" buttonColor="lightRed" fontSize="md">
+					<StyledButton buttonSize="md" buttonColor="lightRed" fontSize="md" onClick={openChat}>
 						{t("dashboard.header.chat")}
 						<img src="/assets/images/chat_btn_icon.png" alt="Chat Icon" />
 					</StyledButton>
@@ -64,6 +66,9 @@ export function DashboardHeader({ userRole, typePage, profile }: DashboardHeader
 					</StyledButton>
 				</ButtonsWrapper>
 			)}
+			<CardModal open={chatModalOpen} onCancel={closeChat} width={800}>
+				<Chat userType={userRole} userId={profile?.id} />
+			</CardModal>
 		</Container>
 	);
 }

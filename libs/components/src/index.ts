@@ -12,6 +12,7 @@ export * from "./lib/form-container/form-container";
 export * from "./lib/login-form/login-form";
 export * from "./lib/base-title/base-title";
 export * from "./lib/helpers";
+export * from "./lib/chat/chat";
 
 // Styled Components
 
@@ -34,6 +35,7 @@ export * from "./lib/pagination/pagination";
 // Cards
 
 export * from "./lib/job-card/job-card";
+export * from "./lib/job-card/job-cardChatHooks";
 export * from "./lib/freelancer-cards-list/freelancer-cards-list";
 export * from "./lib/freelancer-card/freelancer-card";
 
