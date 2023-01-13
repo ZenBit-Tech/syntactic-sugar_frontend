@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { Proposal, useToggleIsPublishJobMutation } from "redux/jobs";
+import { IProposal } from "redux/interfaces/IProposal";
 
 interface IUseJobCardParams {
 	isPublished?: boolean;
@@ -22,6 +23,7 @@ interface IUseJobCard {
 	proposalModalOpen: boolean;
 	detailsModalOpen: boolean;
 	isProposalsListOpen: boolean;
+	proposalExist: (arr1: IProposal[], arr2: IProposal[]) => boolean;
 }
 
 export const useJobCard = ({ isPublished }: IUseJobCardParams): IUseJobCard => {
@@ -88,6 +90,17 @@ export const useJobCard = ({ isPublished }: IUseJobCardParams): IUseJobCard => {
 		if (isError) toast.error(t("serverErrorMessage"));
 	}, [isSuccess, isError, notification, t]);
 
+	const proposalExist = (arr1: IProposal[], arr2: IProposal[]) => {
+		if (arr1) {
+			return arr1
+				.map(proposal => {
+					return arr2.find(item => item.id === proposal.id);
+				})
+				.some(item => item !== undefined);
+		}
+		return false;
+	};
+
 	return {
 		handleToggleIsPublishedButton,
 		handleEditJob,
@@ -103,5 +116,6 @@ export const useJobCard = ({ isPublished }: IUseJobCardParams): IUseJobCard => {
 		openProposalsList,
 		closeProposalsList,
 		isProposalsListOpen,
+    proposalExist,
 	};
 };
