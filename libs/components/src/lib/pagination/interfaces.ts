@@ -5,11 +5,7 @@ import {
 	IWorkHistoryResponse,
 } from "redux/createFreelancer/freelancer-pageApi";
 import { IEmployerResponse, InstObject, JobsInterface, Proposal } from "redux/jobs";
-
-export interface IInvitation {
-	id: string;
-	freelancer: IResponse;
-}
+import { IInvitation } from "@freelance/components";
 
 export interface ICommonObject {
 	id: string;

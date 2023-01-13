@@ -12,6 +12,7 @@ import {
 	CardModal,
 	StyledTitle,
 	ViewFreelancerProfile,
+	InvitationCard,
 } from "@freelance/components";
 import { IEduResponse, IWorkHistoryResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { InstObject, Proposal } from "redux/jobs";
@@ -69,17 +70,18 @@ export function FreelancerCard({
 	workHistory,
 	otherExperience,
 	createdDate,
-	updatedDate,
-	isPublished,
 	image,
-	proposals,
-	user,
-	profile,
 }: FreelancerCardProps) {
 	const { t } = useTranslation();
 	const prettyDate = moment(createdDate).format("LL");
-	const { openFreelancerProfile, closeFreelancerProfile, freelancerProfileModalOpen } =
-		useFreelancerCard();
+	const {
+		openFreelancerProfile,
+		closeFreelancerProfile,
+		freelancerProfileModalOpen,
+		openInvitationModal,
+		closeInvitationModal,
+		invitationModalOpen,
+	} = useFreelancerCard();
 
 	return (
 		<StyledFreelancersCard>
@@ -100,7 +102,12 @@ export function FreelancerCard({
 				</WrapperContainer>
 				<GridContainer gap={10} alignItems="center">
 					<EmployerButtonWrapper>
-						<StyledButton buttonSize="lg" buttonColor="lightRed" fontSize="md">
+						<StyledButton
+							buttonSize="lg"
+							buttonColor="lightRed"
+							fontSize="md"
+							onClick={openInvitationModal}
+						>
 							{t("talents.inv")}
 						</StyledButton>
 					</EmployerButtonWrapper>
@@ -163,6 +170,9 @@ export function FreelancerCard({
 					education={education}
 					otherExperience={otherExperience}
 				/>
+			</CardModal>
+			<CardModal open={invitationModalOpen} onCancel={closeInvitationModal} width={700}>
+				<InvitationCard freelancer_id={id} onCancel={closeInvitationModal}></InvitationCard>
 			</CardModal>
 		</StyledFreelancersCard>
 	);

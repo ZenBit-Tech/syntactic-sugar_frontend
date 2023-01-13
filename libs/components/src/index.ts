@@ -109,3 +109,6 @@ export * from "./lib/proposals-filter/proposals-filterHooks";
 //Freelancer Profile
 
 export * from "./lib/view-freelancer-profile/view-freelancer-profile";
+
+//Invitation
+export * from "./lib/invitation-card/invitation-card";

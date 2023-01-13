@@ -61,6 +61,11 @@ export interface IResponse {
 	user: { id: number; email: string };
 }
 
+export interface IInvitationBody {
+	job_id?: string;
+	freelancer_id?: string;
+}
+
 export const createFreelancerApi = createApi({
 	reducerPath: "createFreelancer",
 	baseQuery: baseQuery,
@@ -91,6 +96,14 @@ export const createFreelancerApi = createApi({
 			query: () => "/freelancer/get-all-profiles",
 			providesTags: ["freelancers"],
 		}),
+		sendInvitation: builder.mutation({
+			query: (body: IInvitationBody) => ({
+				url: "/invitation/send-invitation",
+				method: "POST",
+				body,
+			}),
+			invalidatesTags: ["freelancers"],
+		}),
 	}),
 });
 
@@ -99,4 +112,5 @@ export const {
 	useAddPublishedMutation,
 	useGetFreelancerQuery,
 	useGetAllFreelancersQuery,
+	useSendInvitationMutation,
 } = createFreelancerApi;
