@@ -13,7 +13,7 @@ let socket: Socket;
 
 export const useChatHook = ({ userId, userType }: ChatHookProps) => {
 	const [message, setMessage] = useState<string>("");
-	const { data: userChats, isSuccess, isLoading, refetch } = useGetChatsByUserQuery();
+	const { data: userChats, isSuccess } = useGetChatsByUserQuery();
 	const [currentChat, setCurrentChat] = useState<IChat>();
 	const [messages, setMessages] = useState<IMessage[]>([]);
 	const userImage =
