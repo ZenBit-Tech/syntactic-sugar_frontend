@@ -120,6 +120,7 @@
 		"profilePage": {
 			"title": "My Profile"
 		},
+		"editProfile": "Edit Profile",
 		"header": {
 			"userName": "John Doe",
 			"userEmail": "johndoe@gmail.com",

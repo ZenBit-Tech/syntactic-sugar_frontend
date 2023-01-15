@@ -11,7 +11,7 @@ export function ProposalsList({ id }: IProposalsListProps) {
 	const { data: proposalsList } = useGetProposalsByJobIdQuery(id);
 
 	return (
-		<Container modal proposalsList>
+		<Container modal>
 			<StyledTitle tag="h1" fontWeight={700} fontSize="lg">
 				{t("proposalsList")}
 			</StyledTitle>
