@@ -4,23 +4,35 @@ import { useUploadImageMutation } from "redux/uploadImage/upload-image.api";
 import { useJobsValidationErrorMessages } from "utils/constants/jobs-validation-error-messages";
 import { baseUrl } from "utils/constants/redux-query";
 
-interface IUseEditUserProfile {
-	imageUrl: string;
+interface IUseStyledFileField {
 	inputKey: string;
 	setDefaultImage: () => void;
 	onSubmitFile: (event: React.ChangeEvent<HTMLInputElement>) => Promise<void>;
 }
 
-export const useEditUserProfile = (defaultImage: string): IUseEditUserProfile => {
-	const { SERVER_ERROR_MESSAGE } = useJobsValidationErrorMessages();
-	const [imageUrl, setImageUrl] = useState<string>(defaultImage);
-	const [inputKey, setInputKey] = useState<string>("");
-	const [uploadImage, { data: imageData, isError, isSuccess }] = useUploadImageMutation();
+interface IUseStyledFilefieldParams {
+	isOpen: boolean;
+	defaultImage: string;
+	setImageUrl: React.Dispatch<React.SetStateAction<string>>;
+}
 
-	const setDefaultImage = () => {
+export const useStyledFileField = ({
+	isOpen,
+	defaultImage,
+	setImageUrl,
+}: IUseStyledFilefieldParams): IUseStyledFileField => {
+	const { SERVER_ERROR_MESSAGE } = useJobsValidationErrorMessages();
+	const [uploadImage, { data: imageData, isError, isSuccess }] = useUploadImageMutation();
+	const [inputKey, setInputKey] = useState<string>("");
+
+	const resetInput = () => {
 		const randomString = Math.random().toString(36);
 
 		setInputKey(randomString);
+	};
+
+	const setDefaultImage = () => {
+		resetInput();
 		setImageUrl(defaultImage);
 	};
 
@@ -44,11 +56,14 @@ export const useEditUserProfile = (defaultImage: string): IUseEditUserProfile =>
 		if (isError) {
 			toast.error(SERVER_ERROR_MESSAGE);
 		}
-	}, [isSuccess, isError, imageData?.file, SERVER_ERROR_MESSAGE]);
+
+		if (isOpen) {
+			resetInput();
+		}
+	}, [isSuccess, isError, imageData?.file, setImageUrl, SERVER_ERROR_MESSAGE, isOpen]);
 
 	return {
 		inputKey,
-		imageUrl,
 		setDefaultImage,
 		onSubmitFile,
 	};

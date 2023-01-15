@@ -1,23 +1,29 @@
 import { useTranslation } from "react-i18next";
 import { GridContainer, FlexContainer } from "@freelance/components";
 import { StyledFileButton, StyledFileImage } from "./styled-file-field.styled";
+import { useStyledFileField } from "./styled-file-fieldHook";
 
 export interface StyledFileFieldProps {
+	isOpen: boolean;
 	imageUrl: string;
-	inputKey: string;
 	width?: number;
-	onSubmit: (event: React.ChangeEvent<HTMLInputElement>) => Promise<void>;
-	setDefaultImage: () => void;
+	defaultImage: string;
+	setImageUrl: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export function StyledFileField({
+	isOpen,
 	imageUrl,
-	inputKey,
 	width,
-	onSubmit,
-	setDefaultImage,
+	defaultImage,
+	setImageUrl,
 }: StyledFileFieldProps) {
 	const { t } = useTranslation();
+	const { inputKey, setDefaultImage, onSubmitFile } = useStyledFileField({
+		isOpen,
+		defaultImage,
+		setImageUrl,
+	});
 
 	return (
 		<GridContainer width={width} gap={10}>
@@ -30,7 +36,7 @@ export function StyledFileField({
 						key={inputKey}
 						type="file"
 						accept=".png, .jpg, .jpeg"
-						onChange={onSubmit}
+						onChange={onSubmitFile}
 					/>
 				</StyledFileButton>
 				<StyledFileButton>

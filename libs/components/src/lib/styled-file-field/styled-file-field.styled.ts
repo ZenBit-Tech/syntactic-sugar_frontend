@@ -19,6 +19,7 @@ export const StyledFileButton = styled.label`
 	font-size: 0.8rem;
 	background-color: ${({ theme }) => theme.colors.darkRed};
 	cursor: pointer;
+	transition: all ease-in-out 0.4s;
 
 	input[type="file"],
 	input[type="button"] {

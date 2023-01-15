@@ -1,13 +1,19 @@
 import { useTranslation } from "react-i18next";
 import { SettingOutlined } from "@ant-design/icons";
-import { StyledButton, StyledParagraph, FlexContainer } from "@freelance/components";
 import { ROLES } from "utils/constants/roles";
 import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { IResponseEmployer } from "redux/createEmployer/employerApi";
-import { baseUrl } from "utils/constants/redux-query";
-import { DEFAULT_IMAGE } from "utils/constants/links";
 import { CREATE_PROFILE } from "utils/constants/breakpoint";
-import { useLogout, CardModal, Chat, EditUserProfile } from "@freelance/components";
+import {
+	StyledButton,
+	StyledParagraph,
+	FlexContainer,
+	useLogout,
+	CardModal,
+	Chat,
+	EditEmployerContainer,
+	EditFreelancerContainer,
+} from "@freelance/components";
 import {
 	Container,
 	UserInfoWrapper,
@@ -16,7 +22,7 @@ import {
 	StyledEditButton,
 } from "./dashboard-header.styled";
 import { useChat } from "./dashboard-headerChatHooks";
-import { useEditProfile } from "./dashboard-headerEditProfileHook";
+import { useDashboardHeader } from "./dashboard-headerHook";
 
 export interface DashboardHeaderProps {
 	userRole: "freelancer" | "employer";
@@ -27,7 +33,16 @@ export interface DashboardHeaderProps {
 export function DashboardHeader({ userRole, typePage, profile }: DashboardHeaderProps) {
 	const { t } = useTranslation();
 	const { handleLogout } = useLogout();
-	const { isEditModalOpen, openEditProfileModal, closeEditProofileModal } = useEditProfile();
+	const {
+		imageUrl,
+		existingImage,
+		name,
+		email,
+		setImageUrl,
+		isEditModalOpen,
+		openEditProfileModal,
+		closeEditProofileModal,
+	} = useDashboardHeader(profile);
 	const { openChat, closeChat, chatModalOpen } = useChat();
 
 	return (
@@ -35,21 +50,14 @@ export function DashboardHeader({ userRole, typePage, profile }: DashboardHeader
 			{typePage === CREATE_PROFILE && <UserInfoWrapper />}
 			{typePage !== CREATE_PROFILE && (
 				<UserInfoWrapper>
-					<img
-						src={
-							profile?.image && profile?.image?.length > 0
-								? baseUrl + profile?.image
-								: DEFAULT_IMAGE
-						}
-						alt="User Avatar"
-					/>
+					<img src={existingImage} alt="User Avatar" />
 					<UserDetails>
 						<StyledParagraph fontSize="lg">
-							<strong>{profile?.fullName}</strong>
+							<strong>{name}</strong>
 						</StyledParagraph>
 						<StyledEditButton onClick={openEditProfileModal}>
 							<FlexContainer alignItems="center" gap={10}>
-								<StyledParagraph fontSize="md">{profile?.user?.email}</StyledParagraph>
+								<StyledParagraph fontSize="md">{email}</StyledParagraph>
 								<SettingOutlined />
 							</FlexContainer>
 						</StyledEditButton>
@@ -83,9 +91,24 @@ export function DashboardHeader({ userRole, typePage, profile }: DashboardHeader
 
 			{/* Modals */}
 
-			<CardModal open={isEditModalOpen} onCancel={closeEditProofileModal} width={1000}>
-				<EditUserProfile />
-			</CardModal>
+			{userRole === ROLES.EMPLOYER && (
+				<CardModal open={isEditModalOpen} onCancel={closeEditProofileModal} width={1000}>
+					<EditEmployerContainer
+						isOpen={isEditModalOpen}
+						existingImage={imageUrl}
+						setImageUrl={setImageUrl}
+					/>
+				</CardModal>
+			)}
+			{userRole === ROLES.FREELANCER && (
+				<CardModal open={isEditModalOpen} onCancel={closeEditProofileModal} width={1000}>
+					<EditFreelancerContainer
+						isOpen={isEditModalOpen}
+						existingImage={imageUrl}
+						setImageUrl={setImageUrl}
+					/>
+				</CardModal>
+			)}
 			<CardModal open={chatModalOpen} onCancel={closeChat} width={800}>
 				<Chat userType={userRole} userId={profile?.id} />
 			</CardModal>

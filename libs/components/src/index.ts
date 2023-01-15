@@ -113,4 +113,5 @@ export * from "./lib/view-freelancer-profile/view-freelancer-profile";
 //Edit User Profile
 
 export * from "./lib/styled-file-field/styled-file-field";
-export * from "./lib/edit-user-profile/edit-user-profile";
+export * from "./lib/edit-employer-container/edit-employer-container";
+export * from "./lib/edit-freelancer-container/edit-freelancer-container";
