@@ -50,16 +50,9 @@ export const useStyledFileField = ({
 	};
 
 	useEffect(() => {
-		if (isSuccess) {
-			setImageUrl(baseUrl + "/" + imageData?.file);
-		}
-		if (isError) {
-			toast.error(SERVER_ERROR_MESSAGE);
-		}
-
-		if (isOpen) {
-			resetInput();
-		}
+		isSuccess && setImageUrl(baseUrl + "/" + imageData?.file);
+		isError && toast.error(SERVER_ERROR_MESSAGE);
+		isOpen && resetInput();
 	}, [isSuccess, isError, imageData?.file, setImageUrl, SERVER_ERROR_MESSAGE, isOpen]);
 
 	return {

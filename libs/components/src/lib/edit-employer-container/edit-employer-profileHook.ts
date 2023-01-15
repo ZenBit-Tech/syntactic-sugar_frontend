@@ -13,12 +13,7 @@ export const useEditEmployerProfile = ({ setImageUrl }: IUseEditEmployerProfileP
 	const { data, isError, isSuccess } = useGetEmployerQuery();
 
 	useEffect(() => {
-		if (isSuccess) {
-			setImageUrl(baseUrl + "/" + data?.image);
-		}
-
-		if (isError) {
-			toast.error(SERVER_ERROR_MESSAGE);
-		}
+		isSuccess && setImageUrl(baseUrl + "/" + data?.image);
+		isError && toast.error(SERVER_ERROR_MESSAGE);
 	}, [SERVER_ERROR_MESSAGE, isSuccess, isError, data?.image, setImageUrl]);
 };
