@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { IResponseEmployer } from "redux/createEmployer/employerApi";
 import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { DEFAULT_IMAGE } from "utils/constants/links";
@@ -18,13 +19,14 @@ interface IUseDashboardHeader {
 export const useDashboardHeader = (
 	profile?: IResponse | IResponseEmployer,
 ): IUseDashboardHeader => {
+	const { t } = useTranslation();
+	const [imageUrl, setImageUrl] = useState<string>("");
+	const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
+
 	const existingImage: string =
 		profile?.image && profile?.image?.length > 0 ? baseUrl + profile?.image : DEFAULT_IMAGE;
-	const name: string = profile ? profile.fullName : "...Loading";
-	const email: string = profile ? profile.user.email : "...Loading";
-
-	const [imageUrl, setImageUrl] = useState<string>(existingImage);
-	const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
+	const name: string = profile ? profile.fullName : t("loading");
+	const email: string = profile ? profile.user.email : t("loading");
 
 	const openEditProfileModal = () => {
 		setIsEditModalOpen(true);
