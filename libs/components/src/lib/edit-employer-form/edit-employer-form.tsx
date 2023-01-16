@@ -11,7 +11,7 @@ export interface IEditEmployerForm {
 	website: string;
 	aboutUs: string;
 }
-/* eslint-disable-next-line */
+
 export interface EditEmployerFormProps {
 	profile?: IEmployerResponse;
 	isLoading: boolean;
