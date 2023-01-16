@@ -4,16 +4,11 @@ import { DEFAULT_IMAGE } from "utils/constants/links";
 import { useEditEmployerProfile } from "./edit-employer-profileHook";
 
 export interface EditEmployerContainerProps {
-	isOpen: boolean;
 	existingImage: string;
 	setImageUrl: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export function EditEmployerContainer({
-	existingImage,
-	setImageUrl,
-	isOpen,
-}: EditEmployerContainerProps) {
+export function EditEmployerContainer({ existingImage, setImageUrl }: EditEmployerContainerProps) {
 	const { t } = useTranslation();
 
 	useEditEmployerProfile({ setImageUrl });
@@ -24,7 +19,6 @@ export function EditEmployerContainer({
 				{t("dashboard.editProfile")}
 			</StyledTitle>
 			<StyledFileField
-				isOpen={isOpen}
 				width={25}
 				imageUrl={existingImage}
 				defaultImage={DEFAULT_IMAGE}

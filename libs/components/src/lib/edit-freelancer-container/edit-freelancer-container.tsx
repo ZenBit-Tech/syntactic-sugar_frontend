@@ -4,13 +4,11 @@ import { DEFAULT_IMAGE } from "utils/constants/links";
 import { useEditFreelancerProfile } from "./edit-freelancer-profileHook";
 
 export interface EditFreelancerContainerProps {
-	isOpen: boolean;
 	existingImage: string;
 	setImageUrl: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export function EditFreelancerContainer({
-	isOpen,
 	existingImage,
 	setImageUrl,
 }: EditFreelancerContainerProps) {
@@ -24,7 +22,6 @@ export function EditFreelancerContainer({
 				{t("dashboard.editProfile")}
 			</StyledTitle>
 			<StyledFileField
-				isOpen={isOpen}
 				width={25}
 				imageUrl={existingImage}
 				defaultImage={DEFAULT_IMAGE}
