@@ -63,7 +63,7 @@ export const ChatArea = styled.div`
 	border-radius: 0px 25px 25px 0px;
 `;
 
-export const ChatHeader = styled.div`
+export const ChatHeaderArea = styled.div`
 	border: 1px solid ${({ theme }) => theme.colors.grey};
 	border-radius: 0px 25px 0px 0px;
 	padding: 3%;
@@ -71,6 +71,64 @@ export const ChatHeader = styled.div`
 	height: 10%;
 	justify-content: space-between;
 	align-items: center;
+`;
+
+export const ChatHeaderContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`
+export const ChatHeaderJobInfo = styled.div`
+	display: flex;
+	flex-direction: column;
+	width: 60%;
+`;
+
+export const ChatHeaderOfferArea = styled.div`
+
+	display: flex;
+  height: 35px;
+	justify-content: flex-end;
+  align-items: center;
+  button {
+    width: 40%;
+    height: 90%;
+  }
+`;
+export const ChatHeaderButtonArea = styled.div`
+	display: flex;
+	height: 35px;
+	justify-content: flex-end;
+	align-items: center;
+	width: 40%;
+	button {
+		height: 90%;
+		width: 50%;
+	}
+	strong {
+		border: 2px solid ${({ theme }) => theme.colors.grey};
+    color: ${({ theme }) => theme.colors.darkGrey};
+		border-radius: 100px;
+		padding: 0.3rem;
+	}
+`;
+
+export const ChatHeaderInput = styled.input`
+	border: 2px solid ${({ theme }) => theme.colors.grey};
+	border-radius: 100px;
+	height: 30px;
+	padding: 0.5rem 1rem;
+  margin-right: 0.1rem;
+	width: 50%;
+
+	::placeholder {
+		color: ${({ theme }) => theme.colors.grey};
+	}
+
+	:hover,
+	:focus {
+		outline: none;
+	}
 `;
 
 export const ChatMessagesArea = styled.div`

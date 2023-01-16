@@ -68,7 +68,7 @@ export function ProposalCard({
 	});
 	const isChat = useMemo(
 		() => jobChats?.some(chat => chat.employer?.id === employerId),
-		[jobChats, employerId],
+		[jobChats?.length, employerId],
 	);
 
 	return (
@@ -158,10 +158,7 @@ export function ProposalCard({
 				</Container>
 			</CardModal>
 			<CardModal open={chatModalOpen} onCancel={closeChat} width={800}>
-				<Chat
-					userType={userType!}
-					userId={employerId}
-				/>
+				<Chat userType={userType!} userId={employerId} />
 			</CardModal>
 		</StyledJobCard>
 	);

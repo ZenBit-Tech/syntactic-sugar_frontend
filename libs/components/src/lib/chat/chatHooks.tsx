@@ -26,7 +26,7 @@ export const useChatHook = ({ userId, userType }: ChatHookProps) => {
 			setCurrentChat(userChats[0]);
 			setMessages(userChats[0]?.messages || []);
 		}
-	}, [isSuccess]);
+	}, [isSuccess, userChats]);
 
 	useEffect(() => {
 		socket = io(baseUrl);
@@ -74,5 +74,6 @@ export const useChatHook = ({ userId, userType }: ChatHookProps) => {
 		messages,
 		isSuccess,
 		chatId,
+		refetch,
 	};
 };
