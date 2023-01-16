@@ -99,3 +99,5 @@ export const JobPostingTextArea = styled(TextArea)`
 	border-radius: 30px;
 	resize: none;
 `;
+
+export const EditProfileTextArea = styled(TextArea)``;

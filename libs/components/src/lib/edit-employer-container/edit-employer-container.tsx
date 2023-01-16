@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Container, StyledTitle, StyledFileField } from "@freelance/components";
+import { Container, StyledTitle, StyledFileField, EditEmployerForm } from "@freelance/components";
 import { DEFAULT_IMAGE } from "utils/constants/links";
 import { useEditEmployerProfile } from "./edit-employer-profileHook";
 
@@ -16,7 +16,7 @@ export function EditEmployerContainer({
 }: EditEmployerContainerProps) {
 	const { t } = useTranslation();
 
-	useEditEmployerProfile({ setImageUrl });
+	const { data, isLoading } = useEditEmployerProfile({ setImageUrl });
 
 	return (
 		<Container modal>
@@ -30,6 +30,7 @@ export function EditEmployerContainer({
 				defaultImage={DEFAULT_IMAGE}
 				setImageUrl={setImageUrl}
 			/>
+			<EditEmployerForm profile={data} isLoading={isLoading} />
 		</Container>
 	);
 }
