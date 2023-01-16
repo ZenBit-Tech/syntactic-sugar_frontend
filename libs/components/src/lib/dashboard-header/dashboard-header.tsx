@@ -93,20 +93,12 @@ export function DashboardHeader({ userRole, typePage, profile }: DashboardHeader
 
 			{userRole === ROLES.EMPLOYER && (
 				<CardModal open={isEditModalOpen} onCancel={closeEditProofileModal} width={1000}>
-					<EditEmployerContainer
-						isOpen={isEditModalOpen}
-						existingImage={imageUrl}
-						setImageUrl={setImageUrl}
-					/>
+					<EditEmployerContainer existingImage={imageUrl} setImageUrl={setImageUrl} />
 				</CardModal>
 			)}
 			{userRole === ROLES.FREELANCER && (
 				<CardModal open={isEditModalOpen} onCancel={closeEditProofileModal} width={1000}>
-					<EditFreelancerContainer
-						isOpen={isEditModalOpen}
-						existingImage={imageUrl}
-						setImageUrl={setImageUrl}
-					/>
+					<EditFreelancerContainer existingImage={imageUrl} setImageUrl={setImageUrl} />
 				</CardModal>
 			)}
 			<CardModal open={chatModalOpen} onCancel={closeChat} width={800}>

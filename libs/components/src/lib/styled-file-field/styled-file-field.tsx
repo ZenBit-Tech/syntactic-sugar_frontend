@@ -4,7 +4,6 @@ import { StyledFileButton, StyledFileImage } from "./styled-file-field.styled";
 import { useStyledFileField } from "./styled-file-fieldHook";
 
 export interface StyledFileFieldProps {
-	isOpen: boolean;
 	imageUrl: string;
 	width?: number;
 	defaultImage: string;
@@ -12,15 +11,13 @@ export interface StyledFileFieldProps {
 }
 
 export function StyledFileField({
-	isOpen,
 	imageUrl,
 	width,
 	defaultImage,
 	setImageUrl,
 }: StyledFileFieldProps) {
 	const { t } = useTranslation();
-	const { inputKey, setDefaultImage, onSubmitFile } = useStyledFileField({
-		isOpen,
+	const { setDefaultImage, onSubmitFile } = useStyledFileField({
 		defaultImage,
 		setImageUrl,
 	});
@@ -31,13 +28,7 @@ export function StyledFileField({
 			<FlexContainer justifyContent="center" gap={10}>
 				<StyledFileButton>
 					{t("image.chooseImage")}
-					<input
-						id="fileInput"
-						key={inputKey}
-						type="file"
-						accept=".png, .jpg, .jpeg"
-						onChange={onSubmitFile}
-					/>
+					<input id="fileInput" type="file" accept=".png, .jpg, .jpeg" onChange={onSubmitFile} />
 				</StyledFileButton>
 				<StyledFileButton>
 					{t("image.resetImage")}
