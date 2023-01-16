@@ -148,72 +148,77 @@ export function JobCard({
 					)}
 					<StyledParagraph fontSize="lg">{title}</StyledParagraph>
 				</GridContainer>
-				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && (
+				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && !isInvitation && !isProposal && (
 					<GridContainer alignItems="center" justifyItems="center">
-						{!isInvitation ? (
-							!isProposal ? (
-								<FreelancerButtonWrapper>
-									<StyledButton
-										buttonColor="redGradient"
-										buttonSize="lg"
-										fontSize="md"
-										onClick={openSendProposal}
-									>
-										<strong>{t("jobCard.sendProposal")}</strong>
-									</StyledButton>
-								</FreelancerButtonWrapper>
-							) : (
-								<>
-									{!isChat && (
-										<CardNotification fontSize="md">
-											<strong>{t("jobCard.proposalSent")}</strong>
-										</CardNotification>
-									)}
-									{isChat && (
-										<FreelancerButtonWrapper>
-											<StyledButton
-												buttonColor="redGradient"
-												buttonSize="lg"
-												fontSize="md"
-												onClick={continueChat}
-											>
-												<strong>{t("chat.continueChat")}</strong>
-											</StyledButton>
-										</FreelancerButtonWrapper>
-									)}
-								</>
-							)
-						) : (
-							<>
-								{!isChat && (
-									<FreelancerButtonWrapper>
-										<StyledButton
-											buttonColor="redGradient"
-											buttonSize="lg"
-											fontSize="md"
-											onClick={openChat}
-										>
-											<strong>{t("chat.startChat")}</strong>
-										</StyledButton>
-									</FreelancerButtonWrapper>
-								)}
-								{isChat && (
-									<FreelancerButtonWrapper>
-										<StyledButton
-											buttonColor="redGradient"
-											buttonSize="lg"
-											fontSize="md"
-											onClick={continueChat}
-										>
-											<strong>{t("chat.continueChat")}</strong>
-										</StyledButton>
-									</FreelancerButtonWrapper>
-								)}
-							</>
-						)}
+						<FreelancerButtonWrapper>
+							<StyledButton
+								buttonColor="redGradient"
+								buttonSize="lg"
+								fontSize="md"
+								onClick={openSendProposal}
+							>
+								<strong>{t("jobCard.sendProposal")}</strong>
+							</StyledButton>
+						</FreelancerButtonWrapper>
 					</GridContainer>
 				)}
-
+				{userType === ROLES.FREELANCER &&
+					typePage === JOBS_PAGE &&
+					!isInvitation &&
+					isProposal &&
+					!isChat && (
+						<GridContainer alignItems="center" justifyItems="center">
+							<CardNotification fontSize="md">
+								<strong>{t("jobCard.proposalSent")}</strong>
+							</CardNotification>
+						</GridContainer>
+					)}
+				{userType === ROLES.FREELANCER &&
+					typePage === JOBS_PAGE &&
+					!isInvitation &&
+					isProposal &&
+					isChat && (
+						<GridContainer alignItems="center" justifyItems="center">
+							<FreelancerButtonWrapper>
+								<StyledButton
+									buttonColor="redGradient"
+									buttonSize="lg"
+									fontSize="md"
+									onClick={continueChat}
+								>
+									<strong>{t("chat.continueChat")}</strong>
+								</StyledButton>
+							</FreelancerButtonWrapper>
+						</GridContainer>
+					)}
+				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && isInvitation && !isChat && (
+					<GridContainer alignItems="center" justifyItems="center">
+						<FreelancerButtonWrapper>
+							<StyledButton
+								buttonColor="redGradient"
+								buttonSize="lg"
+								fontSize="md"
+								onClick={openChat}
+							>
+								<strong>{t("chat.startChat")}</strong>
+							</StyledButton>
+						</FreelancerButtonWrapper>
+					</GridContainer>
+				)}
+				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && isInvitation && isChat && (
+					<GridContainer alignItems="center" justifyItems="center">
+						<FreelancerButtonWrapper>
+							<StyledButton
+								buttonColor="redGradient"
+								buttonSize="lg"
+								fontSize="md"
+								onClick={continueChat}
+							>
+								<strong>{t("chat.continueChat")}</strong>
+							</StyledButton>
+						</FreelancerButtonWrapper>
+					</GridContainer>
+				)}
 				{userType === ROLES.EMPLOYER && (
 					<GridContainer alignItems="center" justifyItems="center" gap={10}>
 						<EmployerButtonWrapper>

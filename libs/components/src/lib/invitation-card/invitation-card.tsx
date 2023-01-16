@@ -24,7 +24,7 @@ export function InvitationCard({ freelancer_id, onCancel }: InvitationCardProps)
 	const { t } = useTranslation();
 	const { data } = useGetJobsByEmployerQuery();
 	const { data: oneFreelancer } = useGetFreelancerByIdQuery(freelancer_id);
-	const { handleSubmit, control } = useForm<IInvitationForm>();
+	const { handleSubmit, control, reset } = useForm<IInvitationForm>();
 	const [sendInvitation, { isLoading, isSuccess }] = useSendInvitationMutation();
 
 	const employerJobsArr = data?.map(job => {
@@ -66,7 +66,7 @@ export function InvitationCard({ freelancer_id, onCancel }: InvitationCardProps)
 		} catch (error) {
 			toast.error(t("talents.errorNotify"));
 		}
-
+		reset();
 		onCancel();
 	};
 
