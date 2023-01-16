@@ -31,7 +31,7 @@ import {
 import { useFreelancerCard } from "./freelancer-cardHook";
 
 export interface FreelancerCardProps {
-	id?: string;
+	id: string;
 	fullName?: string;
 	category?: InstObject;
 	position?: string;

@@ -408,6 +408,7 @@
 		"send": "Send",
 		"select": "Select the job",
 		"sending": "Sending an invitation...",
-		"successNotify": "Invitation was successfully sent"
+		"successNotify": "Invitation was successfully sent",
+		"errorNotify": "Error"
 	}
 }

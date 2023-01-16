@@ -1,40 +1,61 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useForm, Controller } from "react-hook-form";
 import { toast } from "react-toastify";
 import { StyledButton, StyledTitle } from "@freelance/components";
 import { useGetJobsByEmployerQuery } from "redux/jobs/jobs.api";
 import { SelectOptions } from "utils/select-options/options";
-import { IResponse, useSendInvitationMutation } from "redux/createFreelancer/freelancer-pageApi";
+import {
+	useGetFreelancerByIdQuery,
+	useSendInvitationMutation,
+} from "redux/createFreelancer/freelancer-pageApi";
 import { SelectElement, Wrapper, Form } from "./invitation-card.styles";
 
 export interface InvitationCardProps {
-	freelancer_id?: string;
+	freelancer_id: string;
 	onCancel: () => void;
 }
 
-export interface IInvitation {
-	id: string;
-	freelancer: IResponse;
+export interface IInvitationForm {
 	job_id?: SelectOptions;
 }
 
 export function InvitationCard({ freelancer_id, onCancel }: InvitationCardProps) {
 	const { t } = useTranslation();
 	const { data } = useGetJobsByEmployerQuery();
-	const [options, setOptions] = useState<SelectOptions[]>();
-	const { handleSubmit, control, reset } = useForm<IInvitation>();
+	const { data: oneFreelancer } = useGetFreelancerByIdQuery(freelancer_id);
+	const { handleSubmit, control, reset } = useForm<IInvitationForm>();
 	const [sendInvitation, { isLoading, isSuccess }] = useSendInvitationMutation();
 
-	useEffect(() => {
-		const option = data?.map(job => {
-			return { value: job.id, label: job.title };
-		});
+	const employerJobsArr = data?.map(job => {
+		return { value: job.id, label: job.title };
+	});
 
-		setOptions(option);
-	}, [data]);
+	const employerJobsIdArr = employerJobsArr?.map(item => item.value);
 
-	const onSubmit = async (values: IInvitation) => {
+	const freelancerInvitationsIdArr =
+		oneFreelancer &&
+		oneFreelancer.invitation
+			.map(inv => inv.job)
+			.map(i => i.id)
+			.filter(item => item);
+
+	const diff = function (arr1: string[], arr2: string[]) {
+		return arr1
+			?.filter((i: string) => !arr2.includes(i))
+			.concat(arr2.filter((i: string) => !arr1.includes(i)));
+	};
+
+	const freeJobs =
+		employerJobsIdArr && freelancerInvitationsIdArr
+			? diff(employerJobsIdArr, freelancerInvitationsIdArr)
+			: [];
+
+	const options = employerJobsArr?.filter(
+		item => freeJobs?.filter((inv: string) => inv === item.value).length > 0,
+	);
+
+	const onSubmit = async (values: IInvitationForm) => {
 		const invitation = {
 			job_id: values.job_id?.value,
 			freelancer_id,
@@ -43,7 +64,7 @@ export function InvitationCard({ freelancer_id, onCancel }: InvitationCardProps)
 		try {
 			await sendInvitation(invitation);
 		} catch (error) {
-			toast.error("Error");
+			toast.error(t("talents.errorNotify"));
 		}
 
 		reset();
