@@ -3,6 +3,8 @@ import { useMemo } from "react";
 import { IChat } from "redux/chat/chatApi";
 import { StyledButton } from "@freelance/components";
 import { ROLES } from "utils/constants/roles";
+import { useCreateOfferMutation } from "redux/offer/offerApi";
+import { useOffer } from "./offerHooks";
 import {
 	ChatHeaderButtonArea,
 	ChatHeaderContainer,
@@ -10,8 +12,6 @@ import {
 	ChatHeaderJobInfo,
 	ChatHeaderOfferArea,
 } from "./chat.styled";
-import { useCreateOfferMutation } from "redux/offer/offerApi";
-import { useOffer } from "./offerHooks";
 
 export interface ChatHeaderProps {
 	chat?: IChat;

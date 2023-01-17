@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { IChat, useCreateChatMutation } from "redux/chat/chatApi";
 import { useGetChatsByUserQuery } from "redux/chat/chatApi";
 import { useGetProposalsByJobIdQuery } from "redux/sendProposalFreelancer/proposalApi";
+import { useGetJobsQuery } from "src/redux/jobs";
 
 interface ChatHooksProps {
 	jobId?: string;
@@ -22,11 +23,12 @@ export const useChat = ({ jobId, employerId, freelancerId }: ChatHooksProps): IU
 	const { t } = useTranslation();
 	const [chatModalOpen, setChatModalOpen] = useState<boolean>(false);
 	const [createChat, { data: chatData, isLoading, isSuccess, isError }] = useCreateChatMutation();
-	const { refetch } = useGetChatsByUserQuery();
-	const { refetch: refetchProposals } = useGetProposalsByJobIdQuery(jobId as string);
+	const { refetch: refetchChats } = useGetChatsByUserQuery();
+	const { refetch: refetchProposals } = useGetProposalsByJobIdQuery(jobId!);
+  const { refetch: refetchJobs } = useGetJobsQuery();
 
 	const continueChat = (): void => {
-		refetch();
+		refetchChats();
 		setChatModalOpen(true);
 	};
 
@@ -34,6 +36,7 @@ export const useChat = ({ jobId, employerId, freelancerId }: ChatHooksProps): IU
 		try {
 			await createChat({ freelancerId, employerId, jobId });
 			await refetchProposals();
+      await refetchJobs();
 			setChatModalOpen(true);
 		} catch (error) {
 			toast.error(t("serverErrorMessage"));

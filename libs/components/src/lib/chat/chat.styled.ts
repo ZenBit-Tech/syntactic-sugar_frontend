@@ -74,10 +74,10 @@ export const ChatHeaderArea = styled.div`
 `;
 
 export const ChatHeaderContainer = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-`
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+`;
 export const ChatHeaderJobInfo = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -85,15 +85,14 @@ export const ChatHeaderJobInfo = styled.div`
 `;
 
 export const ChatHeaderOfferArea = styled.div`
-
 	display: flex;
-  height: 35px;
+	height: 35px;
 	justify-content: flex-end;
-  align-items: center;
-  button {
-    width: 40%;
-    height: 90%;
-  }
+	align-items: center;
+	button {
+		width: 40%;
+		height: 90%;
+	}
 `;
 export const ChatHeaderButtonArea = styled.div`
 	display: flex;
@@ -107,7 +106,7 @@ export const ChatHeaderButtonArea = styled.div`
 	}
 	strong {
 		border: 2px solid ${({ theme }) => theme.colors.grey};
-    color: ${({ theme }) => theme.colors.darkGrey};
+		color: ${({ theme }) => theme.colors.darkGrey};
 		border-radius: 100px;
 		padding: 0.3rem;
 	}
@@ -118,7 +117,7 @@ export const ChatHeaderInput = styled.input`
 	border-radius: 100px;
 	height: 30px;
 	padding: 0.5rem 1rem;
-  margin-right: 0.1rem;
+	margin-right: 0.1rem;
 	width: 50%;
 
 	::placeholder {
