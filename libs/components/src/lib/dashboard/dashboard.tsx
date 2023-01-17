@@ -1,7 +1,6 @@
 import { DashboardHeader, DashboardMenu } from "@freelance/components";
 import { IResponseEmployer } from "redux/createEmployer/employerApi";
 import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
-import { IEmployerResponse } from "redux/jobs";
 import { ROLES } from "utils/constants/roles";
 import { Container, Page, Area } from "./dashboard.styled";
 
@@ -14,7 +13,7 @@ export interface DashboardProps {
 	myProposals?: boolean;
 	allJobs?: boolean;
 	handleToggleFilter?: () => void;
-	showMyProposals?: () => void; 
+	showMyProposals?: () => void;
 	showAllJobs?: () => void;
 }
 
@@ -28,7 +27,7 @@ export function Dashboard({
 	myProposals,
 	allJobs,
 	showMyProposals,
-	showAllJobs
+	showAllJobs,
 }: DashboardProps) {
 	return (
 		<Container>
@@ -40,7 +39,7 @@ export function Dashboard({
 						myProposals={myProposals}
 						allJobs={allJobs}
 						showMyProposals={showMyProposals}
-						showAllJobs={showAllJobs}						
+						showAllJobs={showAllJobs}
 					/>
 					<Area>
 						<DashboardHeader userRole={userRole} typePage={typePage} profile={profile} />
