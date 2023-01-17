@@ -1,5 +1,6 @@
 {
 	"serverErrorMessage": "Something went wrong",
+	"loading": "...Loading",
 	"signupGoogle": {
 		"buttonText": "Sign up with Google",
 		"error": "This email already registered. Sign in, please."
@@ -120,6 +121,7 @@
 		"profilePage": {
 			"title": "My Profile"
 		},
+		"editProfile": "Edit Profile",
 		"header": {
 			"userName": "John Doe",
 			"userEmail": "johndoe@gmail.com",

@@ -44,13 +44,14 @@ export const Container = styled.div<IContainer>`
 	${({ modal }) =>
 		modal &&
 		css`
+			display: block;
 			width: 100%;
-			height: 85vh;
+			height: auto;
 		`}
 	${({ modalEditJob }) =>
 		modalEditJob &&
 		css`
-			flex-direction: column;
+			height: 85vh;
 		`}
   ${({ scroll }) =>
 		scroll &&
@@ -58,18 +59,6 @@ export const Container = styled.div<IContainer>`
 			overflow-y: scroll;
 			border-radius: unset;
 			${styledScroll}
-		`}
-  ${({ proposalsList }) =>
-		proposalsList &&
-		css`
-			display: block;
-			height: auto;
-		`}
-  ${({ proposalDetails }) =>
-		proposalDetails &&
-		css`
-			display: block;
-			height: auto;
 		`}
 `;
 
