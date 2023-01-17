@@ -1,16 +1,18 @@
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useTranslation } from "react-i18next";
 import {
 	EditForm,
 	ErrorsHandlerWrapper,
 	Input,
 	StyledSpan,
-	JobPostingTextArea,
+	EditProfileTextArea,
 	GridContainer,
 	ButtonContainer,
 	StyledButton,
 } from "@freelance/components";
 import { IEmployerResponse } from "redux/jobs";
+import { useEditEmployerSchema } from "utils/validations/editEmployerSchema";
 import { useEditEmployerForm } from "./edit-employer-formHook";
 
 export interface IEditEmployerForm {
@@ -28,6 +30,8 @@ export interface EditEmployerFormProps {
 	profile?: IEmployerResponse;
 	isLoading: boolean;
 	isImageChanged: boolean;
+	isFormChange: boolean;
+	setIsFormChange: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function EditEmployerForm({
@@ -35,25 +39,30 @@ export function EditEmployerForm({
 	isLoading,
 	imageUrl,
 	isImageChanged,
+	isFormChange,
+	setIsFormChange,
 }: EditEmployerFormProps) {
 	const { t } = useTranslation();
-	const { onSubmit } = useEditEmployerForm({ imageUrl });
+	const schema = useEditEmployerSchema();
 	const {
 		handleSubmit,
 		register,
+		reset,
 		formState: { errors, isDirty },
-	} = useForm<IEditEmployerForm>();
+	} = useForm<IEditEmployerForm>({ resolver: yupResolver(schema) });
+	const { onSubmit } = useEditEmployerForm({ imageUrl, reset, isFormChange, setIsFormChange });
 
 	return (
 		<EditForm onSubmit={handleSubmit(onSubmit)}>
 			<GridContainer gap={10}>
-				<ErrorsHandlerWrapper positionRight={4} width={12}>
+				<ErrorsHandlerWrapper positionRight={-21} width={18}>
 					<Input
 						id="fullName"
 						defaultValue={profile?.fullName}
 						{...register("fullName")}
 						type="text"
 						autoComplete="off"
+						width={100}
 					/>
 					{errors?.fullName && (
 						<StyledSpan fontSize="sm" type="validation">
@@ -61,13 +70,14 @@ export function EditEmployerForm({
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>
-				<ErrorsHandlerWrapper positionRight={4} width={12}>
+				<ErrorsHandlerWrapper positionRight={-21} width={18}>
 					<Input
 						id="position"
 						defaultValue={profile?.position}
 						{...register("position")}
 						type="text"
 						autoComplete="off"
+						width={100}
 					/>
 					{errors?.position && (
 						<StyledSpan fontSize="sm" type="validation">
@@ -75,13 +85,14 @@ export function EditEmployerForm({
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>
-				<ErrorsHandlerWrapper positionRight={4} width={12}>
+				<ErrorsHandlerWrapper positionRight={-21} width={18}>
 					<Input
 						id="companyName"
 						defaultValue={profile?.companyName}
 						{...register("companyName")}
 						type="text"
 						autoComplete="off"
+						width={100}
 					/>
 					{errors?.companyName && (
 						<StyledSpan fontSize="sm" type="validation">
@@ -89,13 +100,14 @@ export function EditEmployerForm({
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>
-				<ErrorsHandlerWrapper positionRight={4} width={12}>
+				<ErrorsHandlerWrapper positionRight={-21} width={18}>
 					<Input
 						id="phone"
 						defaultValue={profile?.phone}
 						{...register("phone")}
 						type="text"
 						autoComplete="off"
+						width={100}
 					/>
 					{errors?.phone && (
 						<StyledSpan fontSize="sm" type="validation">
@@ -103,13 +115,14 @@ export function EditEmployerForm({
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>
-				<ErrorsHandlerWrapper positionRight={4} width={12}>
+				<ErrorsHandlerWrapper positionRight={-21} width={18}>
 					<Input
 						id="linkedIn"
 						defaultValue={profile?.linkedIn}
 						{...register("linkedIn")}
 						type="text"
 						autoComplete="off"
+						width={100}
 					/>
 					{errors?.linkedIn && (
 						<StyledSpan fontSize="sm" type="validation">
@@ -117,13 +130,14 @@ export function EditEmployerForm({
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>
-				<ErrorsHandlerWrapper positionRight={4} width={12}>
+				<ErrorsHandlerWrapper positionRight={-21} width={18}>
 					<Input
 						id="website"
 						defaultValue={profile?.website}
 						{...register("website")}
 						type="text"
 						autoComplete="off"
+						width={100}
 					/>
 					{errors?.linkedIn && (
 						<StyledSpan fontSize="sm" type="validation">
@@ -131,8 +145,8 @@ export function EditEmployerForm({
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>
-				<ErrorsHandlerWrapper positionRight={4} width={12}>
-					<JobPostingTextArea
+				<ErrorsHandlerWrapper positionRight={-21} width={18}>
+					<EditProfileTextArea
 						defaultValue={profile?.aboutUs}
 						{...register("aboutUs")}
 						rows={5}

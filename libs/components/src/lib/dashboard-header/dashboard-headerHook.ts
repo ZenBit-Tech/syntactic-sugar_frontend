@@ -11,6 +11,10 @@ interface IUseDashboardHeader {
 	name: string;
 	email: string;
 	isEditModalOpen: boolean;
+	isImageChanged: boolean;
+	isFormChange: boolean;
+	setIsFormChange: React.Dispatch<React.SetStateAction<boolean>>;
+	setIsImageChanged: React.Dispatch<React.SetStateAction<boolean>>;
 	setImageUrl: React.Dispatch<React.SetStateAction<string>>;
 	openEditProfileModal: () => void;
 	closeEditProofileModal: () => void;
@@ -22,6 +26,8 @@ export const useDashboardHeader = (
 	const { t } = useTranslation();
 	const [imageUrl, setImageUrl] = useState<string>("");
 	const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
+	const [isImageChanged, setIsImageChanged] = useState<boolean>(false);
+	const [isFormChange, setIsFormChange] = useState<boolean>(false);
 
 	const existingImage: string =
 		profile?.image && profile?.image?.length > 0 ? baseUrl + profile?.image : DEFAULT_IMAGE;
@@ -34,6 +40,8 @@ export const useDashboardHeader = (
 
 	const closeEditProofileModal = () => {
 		setIsEditModalOpen(false);
+		setIsFormChange(false);
+		setIsImageChanged(false);
 		setImageUrl(existingImage);
 	};
 
@@ -43,7 +51,11 @@ export const useDashboardHeader = (
 		name,
 		email,
 		setImageUrl,
+		setIsImageChanged,
 		isEditModalOpen,
+		isImageChanged,
+		isFormChange,
+		setIsFormChange,
 		openEditProfileModal,
 		closeEditProofileModal,
 	};

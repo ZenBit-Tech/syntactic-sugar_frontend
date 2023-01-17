@@ -220,8 +220,8 @@
 			"descriptionLabel": "Job Description",
 			"jobDescription": "We use this description on the website to get the candidates attention.",
 			"validation": {
-				"messageJobTitleMaxChar": "not mo than 50 characters for this field",
-				"messageDescriptionMaxChar": "not more then 600 characters for this field",
+				"messageJobTitleMaxChar": "not mo than 50 characters",
+				"messageDescriptionMaxChar": "not more then 600 characters",
 				"messageJobTitleRequired": "Job title is required",
 				"messageDescriptionRequired": "Job description is required"
 			}

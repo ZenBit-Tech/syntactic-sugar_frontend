@@ -39,7 +39,11 @@ export function DashboardHeader({ userRole, typePage, profile }: DashboardHeader
 		name,
 		email,
 		setImageUrl,
+		setIsImageChanged,
 		isEditModalOpen,
+		isImageChanged,
+		isFormChange,
+		setIsFormChange,
 		openEditProfileModal,
 		closeEditProofileModal,
 	} = useDashboardHeader(profile);
@@ -96,13 +100,21 @@ export function DashboardHeader({ userRole, typePage, profile }: DashboardHeader
 					<EditEmployerContainer
 						existingImage={imageUrl}
 						setImageUrl={setImageUrl}
-						isOpen={isEditModalOpen}
+						setIsImageChanged={setIsImageChanged}
+						isImageChanged={isImageChanged}
+						isFormChange={isFormChange}
+						setIsFormChange={setIsFormChange}
 					/>
 				</CardModal>
 			)}
 			{userRole === ROLES.FREELANCER && (
 				<CardModal open={isEditModalOpen} onCancel={closeEditProofileModal} width={1000}>
-					<EditFreelancerContainer existingImage={imageUrl} setImageUrl={setImageUrl} />
+					<EditFreelancerContainer
+						existingImage={imageUrl}
+						setImageUrl={setImageUrl}
+						setIsImageChanged={setIsImageChanged}
+						isImageChanged={isImageChanged}
+					/>
 				</CardModal>
 			)}
 			<CardModal open={chatModalOpen} onCancel={closeChat} width={800}>

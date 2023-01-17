@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
 	Container,
@@ -11,23 +10,24 @@ import { DEFAULT_IMAGE } from "utils/constants/links";
 import { useEditEmployerProfile } from "./edit-employer-profileHook";
 
 export interface EditEmployerContainerProps {
-	isOpen: boolean;
 	existingImage: string;
+	isImageChanged: boolean;
+	setIsImageChanged: React.Dispatch<React.SetStateAction<boolean>>;
 	setImageUrl: React.Dispatch<React.SetStateAction<string>>;
+	isFormChange: boolean;
+	setIsFormChange: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function EditEmployerContainer({
 	existingImage,
+	setIsImageChanged,
+	isImageChanged,
 	setImageUrl,
-	isOpen,
+	isFormChange,
+	setIsFormChange,
 }: EditEmployerContainerProps) {
 	const { t } = useTranslation();
-	const [isImageChanged, setIsImageChanged] = useState<boolean>(false);
-	const { data, isLoading } = useEditEmployerProfile({ setImageUrl, setIsImageChanged, isOpen });
-
-	useEffect(() => {
-		setIsImageChanged(false);
-	}, []);
+	const { data, isLoading } = useEditEmployerProfile({ setImageUrl });
 
 	return (
 		<Container modal>
@@ -47,6 +47,8 @@ export function EditEmployerContainer({
 					isLoading={isLoading}
 					imageUrl={existingImage}
 					isImageChanged={isImageChanged}
+					isFormChange={isFormChange}
+					setIsFormChange={setIsFormChange}
 				/>
 			</FlexContainer>
 		</Container>

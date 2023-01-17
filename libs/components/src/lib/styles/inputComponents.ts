@@ -28,8 +28,17 @@ const styles = css`
 	}
 `;
 
-export const Input = styled.input`
+interface IInput {
+	width?: number;
+}
+
+export const Input = styled.input<IInput>`
 	${styles}
+	${({ width }) =>
+		width &&
+		css`
+			width: ${width}%;
+		`}
 `;
 
 export const Select = styled.select`
