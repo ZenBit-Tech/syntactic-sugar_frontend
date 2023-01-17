@@ -19,7 +19,7 @@ export interface DashboardHeaderProps {
 export function DashboardHeader({ userRole, typePage, profile }: DashboardHeaderProps) {
 	const { t } = useTranslation();
 	const { handleLogout } = useLogout();
-  const { openChat, closeChat, chatModalOpen } = useChat();
+	const { openChat, closeChat, chatModalOpen } = useChat();
 
 	return (
 		<Container>
@@ -67,7 +67,7 @@ export function DashboardHeader({ userRole, typePage, profile }: DashboardHeader
 				</ButtonsWrapper>
 			)}
 			<CardModal open={chatModalOpen} onCancel={closeChat} width={800}>
-				<Chat userType={userRole!} userId={profile?.id} />
+				<Chat userType={userRole} userId={profile?.id} />
 			</CardModal>
 		</Container>
 	);
