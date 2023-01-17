@@ -11,17 +11,20 @@ interface IUseStyledFileField {
 
 interface IUseStyledFilefieldParams {
 	defaultImage: string;
+	setIsImageChanged: React.Dispatch<React.SetStateAction<boolean>>;
 	setImageUrl: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const useStyledFileField = ({
 	defaultImage,
+	setIsImageChanged,
 	setImageUrl,
 }: IUseStyledFilefieldParams): IUseStyledFileField => {
 	const { SERVER_ERROR_MESSAGE } = useJobsValidationErrorMessages();
 	const [uploadImage, { data: imageData, isError, isSuccess }] = useUploadImageMutation();
 
 	const setDefaultImage = () => {
+		setIsImageChanged(true);
 		setImageUrl(defaultImage);
 	};
 
@@ -34,6 +37,7 @@ export const useStyledFileField = ({
 			formData.append("file", event.currentTarget.files[0]);
 			event.currentTarget.value = "";
 			await uploadImage(formData);
+			setIsImageChanged(true);
 		} catch (error) {
 			alert(error);
 		}

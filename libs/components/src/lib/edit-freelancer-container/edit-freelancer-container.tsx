@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Container, StyledTitle, StyledFileField } from "@freelance/components";
 import { DEFAULT_IMAGE } from "utils/constants/links";
@@ -13,6 +14,7 @@ export function EditFreelancerContainer({
 	setImageUrl,
 }: EditFreelancerContainerProps) {
 	const { t } = useTranslation();
+	const [isImageChanged, setIsImageChanged] = useState<boolean>(false);
 
 	useEditFreelancerProfile({ setImageUrl });
 
@@ -25,6 +27,7 @@ export function EditFreelancerContainer({
 				width={25}
 				imageUrl={existingImage}
 				defaultImage={DEFAULT_IMAGE}
+				setIsImageChanged={setIsImageChanged}
 				setImageUrl={setImageUrl}
 			/>
 		</Container>

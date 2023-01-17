@@ -101,3 +101,7 @@ export const JobPostingTextArea = styled(TextArea)`
 `;
 
 export const EditProfileTextArea = styled(TextArea)``;
+
+export const EditForm = styled(Form)`
+	flex-grow: 1;
+`;

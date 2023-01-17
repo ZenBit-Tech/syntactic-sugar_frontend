@@ -93,7 +93,11 @@ export function DashboardHeader({ userRole, typePage, profile }: DashboardHeader
 
 			{userRole === ROLES.EMPLOYER && (
 				<CardModal open={isEditModalOpen} onCancel={closeEditProofileModal} width={1000}>
-					<EditEmployerContainer existingImage={imageUrl} setImageUrl={setImageUrl} />
+					<EditEmployerContainer
+						existingImage={imageUrl}
+						setImageUrl={setImageUrl}
+						isOpen={isEditModalOpen}
+					/>
 				</CardModal>
 			)}
 			{userRole === ROLES.FREELANCER && (

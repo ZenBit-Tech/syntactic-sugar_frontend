@@ -7,6 +7,7 @@ export interface StyledFileFieldProps {
 	imageUrl: string;
 	width?: number;
 	defaultImage: string;
+	setIsImageChanged: React.Dispatch<React.SetStateAction<boolean>>;
 	setImageUrl: React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -14,11 +15,13 @@ export function StyledFileField({
 	imageUrl,
 	width,
 	defaultImage,
+	setIsImageChanged,
 	setImageUrl,
 }: StyledFileFieldProps) {
 	const { t } = useTranslation();
 	const { setDefaultImage, onSubmitFile } = useStyledFileField({
 		defaultImage,
+		setIsImageChanged,
 		setImageUrl,
 	});
 
