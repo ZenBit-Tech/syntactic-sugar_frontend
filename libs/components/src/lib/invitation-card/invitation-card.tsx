@@ -24,7 +24,12 @@ export function InvitationCard({ freelancer_id, onCancel }: InvitationCardProps)
 	const { t } = useTranslation();
 	const { data } = useGetJobsByEmployerQuery();
 	const { data: oneFreelancer } = useGetFreelancerByIdQuery(freelancer_id);
-	const { handleSubmit, control, reset } = useForm<IInvitationForm>();
+	const {
+		handleSubmit,
+		control,
+		reset,
+		formState: { isDirty },
+	} = useForm<IInvitationForm>();
 	const [sendInvitation, { isLoading, isSuccess }] = useSendInvitationMutation();
 
 	const employerJobsArr = data?.map(job => {
@@ -108,7 +113,6 @@ export function InvitationCard({ freelancer_id, onCancel }: InvitationCardProps)
 							hideSelectedOptions={true}
 							noOptionsMessage={() => "no options to show"}
 							menuPosition="fixed"
-							isClearable
 							classNamePrefix="react-select"
 							placeholder={t("talents.select")}
 						/>
@@ -125,7 +129,13 @@ export function InvitationCard({ freelancer_id, onCancel }: InvitationCardProps)
 						<strong>{t("talents.sending")}</strong>
 					</StyledButton>
 				) : (
-					<StyledButton type="submit" buttonSize="filter" buttonColor="lightRed" fontSize="md">
+					<StyledButton
+						type="submit"
+						buttonSize="filter"
+						buttonColor="lightRed"
+						fontSize="md"
+						disabled={!isDirty}
+					>
 						<strong>{t("talents.send")}</strong>
 					</StyledButton>
 				)}
