@@ -3,13 +3,9 @@ import { useTranslation } from "react-i18next";
 import { useForm, Controller } from "react-hook-form";
 import { toast } from "react-toastify";
 import { StyledButton, StyledTitle } from "@freelance/components";
-import { useGetJobsByEmployerQuery } from "redux/jobs/jobs.api";
 import { SelectOptions } from "utils/select-options/options";
-import {
-	useGetFreelancerByIdQuery,
-	useSendInvitationMutation,
-} from "redux/createFreelancer/freelancer-pageApi";
 import { SelectElement, Wrapper, Form } from "./invitation-card.styles";
+import { useInvitationCardHook } from "./invitation-cardHook";
 
 export interface InvitationCardProps {
 	freelancer_id: string;
@@ -22,51 +18,14 @@ export interface IInvitationForm {
 
 export function InvitationCard({ freelancer_id, onCancel }: InvitationCardProps) {
 	const { t } = useTranslation();
-	const { data } = useGetJobsByEmployerQuery();
-	const { data: oneFreelancer } = useGetFreelancerByIdQuery(freelancer_id);
 	const {
 		handleSubmit,
 		control,
 		reset,
 		formState: { isDirty },
 	} = useForm<IInvitationForm>();
-	const [sendInvitation, { isLoading, isSuccess }] = useSendInvitationMutation();
-
-	const employerJobsArr = data?.map(job => {
-		return { value: job.id, label: job.title };
-	});
-
-	const employerJobsIdArr = employerJobsArr?.map(item => item.value);
-
-	const freelancerInvitationsIdArr =
-		oneFreelancer &&
-		oneFreelancer.invitation
-			.map(inv => inv.job)
-			.map(i => i.id)
-			.filter(item => item);
-
-	const diff = function (arr1: string[], arr2: string[]) {
-		return arr1
-			?.filter((i: string) => !arr2.includes(i))
-			.concat(arr2.filter((i: string) => !arr1.includes(i)));
-	};
-
-	const freeJobs =
-		employerJobsIdArr && freelancerInvitationsIdArr
-			? diff(employerJobsIdArr, freelancerInvitationsIdArr)
-			: [];
-
-	const options = employerJobsArr?.filter(
-		item => freeJobs?.filter((inv: string) => inv === item.value).length > 0,
-	);
-
-	const freelancerProposal =
-		options &&
-		options.filter(
-			option =>
-				oneFreelancer &&
-				oneFreelancer.proposals.filter(proposal => proposal?.job?.id === option.value).length > 0,
-		);
+	const { sendInvitation, freelancerProposal, isLoading, isSuccess, options } =
+		useInvitationCardHook({ freelancer_id });
 
 	const onSubmit = async (values: IInvitationForm) => {
 		const invitation = {
