@@ -71,7 +71,7 @@ export function FormContainer({
 			</StyledParagraph>
 			<StyledParagraph fontSize="md">
 				{forgotPassText}
-				<Link to="/recover-password">
+				<Link to="/recover/recover-password">
 					<strong>{forgotPassLink}</strong>
 				</Link>
 			</StyledParagraph>
