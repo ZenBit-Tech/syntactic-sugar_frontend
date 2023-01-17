@@ -1,6 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from "redux/base-query";
-import { ICreatedJob, INewJob, IProposal, IUpdateJob } from "redux/interfaces";
+import { ICreatedJob, INewJob, IUpdateJob } from "redux/interfaces";
 import { IChat } from "redux/chat/chatApi";
 
 export interface InstObject {
@@ -13,6 +13,7 @@ export interface Proposal {
 	coverLetter: string;
 	freelancer?: InstObject;
 	employer?: InstObject;
+	job?: { id: string };
 }
 
 export interface IEmployerResponse {

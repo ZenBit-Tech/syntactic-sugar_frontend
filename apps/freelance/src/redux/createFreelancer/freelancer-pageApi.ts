@@ -48,6 +48,7 @@ export interface IInvitation {
 }
 
 export interface IResponse {
+	freelancer: any;
 	id: string;
 	fullName: string;
 	category: InstObject;

@@ -16,6 +16,7 @@ import {
 	SelectElement,
 	ButtonWrapper,
 } from "./searchwork-filter.styled";
+import { JOBS_PAGE } from "utils/constants/breakpoint";
 
 export interface IFormInput {
 	category: SelectOptions;
@@ -25,7 +26,7 @@ export interface IFormInput {
 	englishLevel: SelectOptions;
 	hourRate: SelectOptions;
 	availableAmountOfHour: SelectOptions;
-	typePage?: "proposals" | "job";
+	typePage?: "proposals" | "jobs";
 }
 
 interface IFilterProps {
@@ -38,6 +39,7 @@ interface IFilterProps {
 	data?: JobsInterface[];
 	freelancerFilter: IFormInput | Record<string, never>;
 	disabled: boolean;
+	typePage?: "proposals" | "jobs";
 }
 
 export const SearchWorkFilter = ({
@@ -49,6 +51,7 @@ export const SearchWorkFilter = ({
 	data,
 	freelancerFilter,
 	disabled,
+	typePage,
 }: IFilterProps) => {
 	const { t } = useTranslation();
 	const { handleSubmit, control, reset } = useForm<IFormInput>();
@@ -71,34 +74,37 @@ export const SearchWorkFilter = ({
 			>
 				<BtnText>{t("freelancer.searchWork.buttonFilter")}</BtnText>
 			</OpenFilterBtn>
-			<HeaderButtonWrapp>
-				<HeaderButton
-					type="reset"
-					buttonColor="redGradient"
-					buttonSize="sm"
-					fontSize="md"
-					onClick={() => {
-						setToggleFilter("reset");
-						setFilterJobs(data);
-						reset();
-					}}
-				>
-					{t("freelancer.searchWork.buttonAll")}
-				</HeaderButton>
-				<HeaderButton
-					type="reset"
-					buttonColor="redGradient"
-					buttonSize="sm"
-					fontSize="md"
-					onClick={() => {
-						setToggleFilter("filter");
-						setFilter(freelancerFilter);
-						reset();
-					}}
-				>
-					{t("freelancer.searchWork.buttonProfile")}
-				</HeaderButton>
-			</HeaderButtonWrapp>
+			{typePage === JOBS_PAGE && (
+				<HeaderButtonWrapp>
+					<HeaderButton
+						type="reset"
+						buttonColor="redGradient"
+						buttonSize="sm"
+						fontSize="md"
+						onClick={() => {
+							setToggleFilter("reset");
+							setFilterJobs(data);
+							reset();
+						}}
+					>
+						{t("freelancer.searchWork.buttonAll")}
+					</HeaderButton>
+					<HeaderButton
+						type="reset"
+						buttonColor="redGradient"
+						buttonSize="sm"
+						fontSize="md"
+						onClick={() => {
+							setToggleFilter("filter");
+							setFilter(freelancerFilter);
+							reset();
+						}}
+					>
+						{t("freelancer.searchWork.buttonProfile")}
+					</HeaderButton>
+				</HeaderButtonWrapp>
+			)}
+
 			<Controller
 				name="position"
 				control={control}

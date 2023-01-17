@@ -55,6 +55,16 @@ export function InvitationCard({ freelancer_id, onCancel }: InvitationCardProps)
 		item => freeJobs?.filter((inv: string) => inv === item.value).length > 0,
 	);
 
+	const freeOptions =
+		options &&
+		options.filter(
+			option =>
+				oneFreelancer &&
+				oneFreelancer.proposals.filter(proposal => proposal?.job?.id === option.value).length > 0,
+		);
+
+	console.log(freeOptions);
+
 	const onSubmit = async (values: IInvitationForm) => {
 		const invitation = {
 			job_id: values.job_id?.value,
@@ -85,7 +95,7 @@ export function InvitationCard({ freelancer_id, onCancel }: InvitationCardProps)
 					control={control}
 					render={({ field }) => (
 						<SelectElement
-							options={options}
+							options={freeOptions}
 							{...field}
 							value={
 								!field.value
