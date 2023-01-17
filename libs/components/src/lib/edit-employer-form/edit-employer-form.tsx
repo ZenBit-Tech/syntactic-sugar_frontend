@@ -69,6 +69,7 @@ export function EditEmployerForm({
 						{...register("fullName")}
 						type="text"
 						autoComplete="off"
+						placeholder={t("employer.create.fullNameLabel")}
 						width={100}
 					/>
 					{errors?.fullName && (
@@ -84,6 +85,7 @@ export function EditEmployerForm({
 						{...register("position")}
 						type="text"
 						autoComplete="off"
+						placeholder={t("employer.create.positionLabel")}
 						width={100}
 					/>
 					{errors?.position && (
@@ -99,6 +101,7 @@ export function EditEmployerForm({
 						{...register("companyName")}
 						type="text"
 						autoComplete="off"
+						placeholder={t("employer.create.companyNameLabel")}
 						width={100}
 					/>
 					{errors?.companyName && (
@@ -114,6 +117,7 @@ export function EditEmployerForm({
 						{...register("phone")}
 						type="text"
 						autoComplete="off"
+						placeholder={t("employer.create.phoneLabel")}
 						width={100}
 					/>
 					{errors?.phone && (
@@ -129,6 +133,7 @@ export function EditEmployerForm({
 						{...register("linkedIn")}
 						type="text"
 						autoComplete="off"
+						placeholder={t("employer.create.linkedinLabel")}
 						width={100}
 					/>
 					{errors?.linkedIn && (
@@ -144,6 +149,7 @@ export function EditEmployerForm({
 						{...register("website")}
 						type="text"
 						autoComplete="off"
+						placeholder={t("employer.create.websiteLabel")}
 						width={100}
 					/>
 					{errors?.linkedIn && (
@@ -156,6 +162,7 @@ export function EditEmployerForm({
 					<EditProfileTextArea
 						defaultValue={profile?.aboutUs}
 						{...register("aboutUs")}
+						placeholder={t("employer.create.aboutusLabel")}
 						rows={5}
 						maxLength={600}
 					/>

@@ -123,6 +123,8 @@
 		},
 		"editProfile": "Edit Profile",
 		"successEdit": "Your profile has updated successfuly",
+		"correctPhone": "should be +380111111111",
+		"minTwelveChar": "at least 12 characters",
 		"header": {
 			"userName": "John Doe",
 			"userEmail": "johndoe@gmail.com",
