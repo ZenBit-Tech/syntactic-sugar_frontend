@@ -409,6 +409,7 @@
 		"select": "Select the job",
 		"sending": "Sending an invitation...",
 		"successNotify": "Invitation was successfully sent",
-		"errorNotify": "Error"
+		"errorNotify": "Error",
+		"proposalNotify": "You have a proposal from this freelancer"
 	}
 }

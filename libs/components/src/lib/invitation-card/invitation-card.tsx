@@ -69,23 +69,16 @@ export function InvitationCard({ freelancer_id, onCancel }: InvitationCardProps)
 			freelancer_id,
 		};
 
-		console.log(freelancerProposal);
-		console.log(invitation.job_id);
-
 		try {
-			if (
-				freelancerProposal &&
-				freelancerProposal.filter(item => item.value !== invitation.job_id).length > 0
-			) {
-				await sendInvitation(invitation);
-			}
-			toast.error(t("talents.errorNotify"));
+			freelancerProposal &&
+			freelancerProposal.filter(item => item.value !== invitation.job_id).length > 0
+				? (await sendInvitation(invitation)) && onCancel()
+				: toast.error(t("talents.proposalNotify"));
 		} catch (error) {
 			toast.error(t("talents.errorNotify"));
 		}
 
 		reset();
-		onCancel();
 	};
 
 	useEffect(() => {

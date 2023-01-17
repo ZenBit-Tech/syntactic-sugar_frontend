@@ -49,6 +49,7 @@ export interface JobsInterface {
 	otherRequirenments: string;
 	employer: IEmployerResponse;
 	chats?: IChat[];
+	value?: string;
 }
 
 export const getJobsApi = createApi({
