@@ -1,5 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { GridContainer, FlexContainer } from "@freelance/components";
+import { baseUrl } from "utils/constants/redux-query";
+import { DEFAULT_IMAGE } from "utils/constants/links";
 import { StyledFileButton, StyledFileImage } from "./styled-file-field.styled";
 import { useStyledFileField } from "./styled-file-fieldHook";
 
@@ -27,7 +29,10 @@ export function StyledFileField({
 
 	return (
 		<GridContainer width={width} gap={10}>
-			<StyledFileImage src={imageUrl} alt="User Avatar" />
+			<StyledFileImage
+				src={imageUrl === DEFAULT_IMAGE ? DEFAULT_IMAGE : baseUrl + imageUrl}
+				alt="User Avatar"
+			/>
 			<FlexContainer justifyContent="center" gap={10}>
 				<StyledFileButton>
 					{t("image.chooseImage")}

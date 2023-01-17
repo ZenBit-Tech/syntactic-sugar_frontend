@@ -28,19 +28,19 @@ export interface IEditEmployerForm {
 export interface EditEmployerFormProps {
 	imageUrl: string;
 	profile?: IEmployerResponse;
-	isLoading: boolean;
 	isImageChanged: boolean;
 	isFormChange: boolean;
 	setIsFormChange: React.Dispatch<React.SetStateAction<boolean>>;
+	setIsImageChanged: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export function EditEmployerForm({
 	profile,
-	isLoading,
 	imageUrl,
 	isImageChanged,
 	isFormChange,
 	setIsFormChange,
+	setIsImageChanged,
 }: EditEmployerFormProps) {
 	const { t } = useTranslation();
 	const schema = useEditEmployerSchema();
@@ -50,7 +50,14 @@ export function EditEmployerForm({
 		reset,
 		formState: { errors, isDirty },
 	} = useForm<IEditEmployerForm>({ resolver: yupResolver(schema) });
-	const { onSubmit } = useEditEmployerForm({ imageUrl, reset, isFormChange, setIsFormChange });
+	const { onSubmit, isLoading } = useEditEmployerForm({
+		imageUrl,
+		reset,
+		isFormChange,
+		setIsFormChange,
+		isDirty,
+		setIsImageChanged,
+	});
 
 	return (
 		<EditForm onSubmit={handleSubmit(onSubmit)}>
@@ -164,9 +171,9 @@ export function EditEmployerForm({
 						buttonSize="sm"
 						fontSize="lg"
 						buttonColor={"redGradient"}
-						disabled={!isImageChanged && !isDirty}
+						disabled={(!isImageChanged && !isDirty) || isLoading}
 					>
-						{t("editJob.saveChanges")}
+						{isLoading ? t("loading") : t("editJob.saveChanges")}
 					</StyledButton>
 				</ButtonContainer>
 			</GridContainer>

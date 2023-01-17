@@ -14,6 +14,7 @@ import {
 	EditEmployerContainer,
 	EditFreelancerContainer,
 } from "@freelance/components";
+import { baseUrl } from "utils/constants/redux-query";
 import {
 	Container,
 	UserInfoWrapper,
@@ -23,6 +24,7 @@ import {
 } from "./dashboard-header.styled";
 import { useChat } from "./dashboard-headerChatHooks";
 import { useDashboardHeader } from "./dashboard-headerHook";
+import { DEFAULT_IMAGE } from "utils/constants/links";
 
 export interface DashboardHeaderProps {
 	userRole: "freelancer" | "employer";
@@ -54,7 +56,10 @@ export function DashboardHeader({ userRole, typePage, profile }: DashboardHeader
 			{typePage === CREATE_PROFILE && <UserInfoWrapper />}
 			{typePage !== CREATE_PROFILE && (
 				<UserInfoWrapper>
-					<img src={existingImage} alt="User Avatar" />
+					<img
+						src={existingImage === DEFAULT_IMAGE ? DEFAULT_IMAGE : baseUrl + existingImage}
+						alt="User Avatar"
+					/>
 					<UserDetails>
 						<StyledParagraph fontSize="lg">
 							<strong>{name}</strong>

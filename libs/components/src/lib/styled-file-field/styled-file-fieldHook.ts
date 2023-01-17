@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { useUploadImageMutation } from "redux/uploadImage/upload-image.api";
 import { useJobsValidationErrorMessages } from "utils/constants/jobs-validation-error-messages";
-import { baseUrl } from "utils/constants/redux-query";
 
 interface IUseStyledFileField {
 	setDefaultImage: () => void;
@@ -39,14 +38,14 @@ export const useStyledFileField = ({
 			await uploadImage(formData);
 			setIsImageChanged(true);
 		} catch (error) {
-			alert(error);
+			toast.error(SERVER_ERROR_MESSAGE);
 		}
 	};
 
 	useEffect(() => {
-		isSuccess && setImageUrl(baseUrl + "/" + imageData?.file);
+		isSuccess && setImageUrl(imageData ? imageData.file : "");
 		isError && toast.error(SERVER_ERROR_MESSAGE);
-	}, [isSuccess, isError, imageData?.file, setImageUrl, SERVER_ERROR_MESSAGE]);
+	}, [isSuccess, isError, imageData?.file, setImageUrl, SERVER_ERROR_MESSAGE, imageData]);
 
 	return {
 		setDefaultImage,

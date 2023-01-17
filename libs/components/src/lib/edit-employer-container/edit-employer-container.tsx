@@ -27,7 +27,7 @@ export function EditEmployerContainer({
 	setIsFormChange,
 }: EditEmployerContainerProps) {
 	const { t } = useTranslation();
-	const { data, isLoading } = useEditEmployerProfile({ setImageUrl });
+	const { data } = useEditEmployerProfile({ setImageUrl });
 
 	return (
 		<Container modal>
@@ -44,11 +44,11 @@ export function EditEmployerContainer({
 				/>
 				<EditEmployerForm
 					profile={data}
-					isLoading={isLoading}
 					imageUrl={existingImage}
 					isImageChanged={isImageChanged}
 					isFormChange={isFormChange}
 					setIsFormChange={setIsFormChange}
+					setIsImageChanged={setIsImageChanged}
 				/>
 			</FlexContainer>
 		</Container>

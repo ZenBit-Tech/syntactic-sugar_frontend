@@ -3,13 +3,7 @@ import { IEditEmployerForm } from "@freelance/components";
 import { useJobsValidationErrorMessages } from "utils/constants/jobs-validation-error-messages";
 
 export const useEditEmployerSchema = (): SchemaOf<IEditEmployerForm> => {
-	const {
-		FIELD_REQUIRED,
-		MESSAGE_JOB_TITLE_MAX_CHAR,
-		MESSAGE_DESCRIPTION_MAX_CHAR,
-		MAX_COUNTRIES,
-		MAX_SKILLS,
-	} = useJobsValidationErrorMessages();
+	const { FIELD_REQUIRED, MESSAGE_JOB_TITLE_MAX_CHAR } = useJobsValidationErrorMessages();
 
 	return object({
 		fullName: string().max(50, MESSAGE_JOB_TITLE_MAX_CHAR).required(FIELD_REQUIRED),
