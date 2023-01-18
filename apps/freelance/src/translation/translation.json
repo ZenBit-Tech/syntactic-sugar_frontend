@@ -35,7 +35,8 @@
 		"haveAcc": "Already have an account?",
 		"signInNow": " Sign In Now",
 		"confirmMessage": "We sended you email with confirmation link. Please confirm your email by following it.",
-		"confirmation": "Your email has been confirmed"
+		"confirmation": "Your email has been confirmed",
+		"passwordError": "Incorrect password or email"
 	},
 	"recoverPassForm": {
 		"forgotPass": "Forgot your password?",

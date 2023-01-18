@@ -67,7 +67,7 @@ export function LoginForm() {
 			dispatch(setUserData({ token: userData?.token, role: userData?.role }));
 		}
 		if (isError) {
-			toast.error(t("recoverPassForm.errorMessageServerError"));
+			toast.error(t("signForm.passwordError"));
 		}
 	}, [isSuccess, isError]);
 
