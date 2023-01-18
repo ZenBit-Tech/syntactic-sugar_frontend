@@ -19,6 +19,7 @@ export function SignupForm() {
 	const [registration, { data: userData, isSuccess, isError }] = useSignUpByEmailMutation();
 	const { openPrivacyPolicyModal, closePrivacyPolicyModal, privacyPolicyModal } = useModal();
 
+	type Props = InferType<typeof signUpSchema>;
 	const {
 		register,
 		handleSubmit,
@@ -27,8 +28,6 @@ export function SignupForm() {
 	} = useForm<Props>({
 		resolver: yupResolver(signUpSchema),
 	});
-
-	type Props = InferType<typeof signUpSchema>;
 
 	const formSubmitHandler = async (data: Props) => {
 		try {

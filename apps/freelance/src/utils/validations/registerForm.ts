@@ -7,8 +7,8 @@ export const useSignUpSchema = () => {
 	const email: string = t("signForm.invalidMail");
 	const emailRequired: string = t("signForm.reqEmail");
 	const passwordRequired: string = t("signForm.pasReq");
-	const min: string = t("signForm.min");
-	const max: string = t("signForm.max");
+	const min: string = t("signForm.min", { min: "8" });
+	const max: string = t("signForm.max", { max: "24" });
 	const password: string = t("signForm.pas");
 	const pasMatch: string = t("signForm.pasMatch");
 	const agreement: string = t("signForm.agreement");
