@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Checkbox } from "antd";
 
 export const Form = styled.form`
 	display: flex;
