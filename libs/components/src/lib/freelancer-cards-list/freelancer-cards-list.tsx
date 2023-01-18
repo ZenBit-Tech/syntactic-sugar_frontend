@@ -3,7 +3,7 @@ import { Pagination } from "@freelance/components";
 import { TALENTS_PAGE } from "utils/constants/breakpoint";
 
 export interface FreelancerCardsListProps {
-	data: IResponse[] | undefined;
+	data?: IResponse[];
 }
 
 export function FreelancerCardsList({ data }: FreelancerCardsListProps) {
