@@ -9,7 +9,7 @@ interface IUseSearchWorkFormHook {
 	setFilter: (freelancerFilter: IFormInput | Record<string, never>) => void;
 	setToggleFilter: React.Dispatch<React.SetStateAction<string>>;
 	publishedFilterJobs?: JobsInterface[];
-	setFilterJobs: React.Dispatch<React.SetStateAction<JobsInterface[] | undefined>>;
+	setFilterJobs?: React.Dispatch<React.SetStateAction<JobsInterface[] | undefined>>;
 	data?: JobsInterface[];
 	freelancerFilter: IFormInput | {};
 	refetch: () => void;
