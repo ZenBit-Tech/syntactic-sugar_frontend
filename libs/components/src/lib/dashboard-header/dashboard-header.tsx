@@ -15,6 +15,7 @@ import {
 	EditFreelancerContainer,
 } from "@freelance/components";
 import { baseUrl } from "utils/constants/redux-query";
+import { DEFAULT_IMAGE } from "utils/constants/links";
 import {
 	Container,
 	UserInfoWrapper,
@@ -24,7 +25,6 @@ import {
 } from "./dashboard-header.styled";
 import { useChat } from "./dashboard-headerChatHooks";
 import { useDashboardHeader } from "./dashboard-headerHook";
-import { DEFAULT_IMAGE } from "utils/constants/links";
 
 export interface DashboardHeaderProps {
 	userRole: "freelancer" | "employer";
