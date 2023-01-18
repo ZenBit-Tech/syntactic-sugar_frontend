@@ -1,5 +1,5 @@
-import { Title, Paragraph, Button } from "./terms-privacy-policy.styled";
 import { useTranslation } from "react-i18next";
+import { Title, Paragraph, Button } from "./terms-privacy-policy.styled";
 
 export interface ITermsPrivacyPolicyProps {
 	onCancel: () => void;
