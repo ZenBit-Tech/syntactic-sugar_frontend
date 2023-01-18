@@ -34,7 +34,18 @@
 		"haveAcc": "Already have an account?",
 		"signInNow": " Sign In Now",
 		"confirmMessage": "We sended you email with confirmation link. Please confirm your email by following it.",
-		"confirmation": "Your email has been confirmed"
+		"confirmation": "Your email has been confirmed",
+		"invalidMail": "Invalid e-mail format",
+		"reqEmail": "E-mail is required",
+		"pasReq": "Password is required",
+		"min": "Minimum 8 characters",
+		"max": "Maximum 24 characters",
+		"pas": "password",
+		"pasMatch": "Passwords must match",
+		"privatePolicy": "By clicking sign up I agree with ",
+		"policyLink": "the Terms of Use and Privacy Policy",
+		"agreement": "Accept Privacy Policy Terms",
+		"agree": "I agree with"
 	},
 	"recoverPassForm": {
 		"forgotPass": "Forgot your password?",
@@ -399,5 +410,10 @@
 		"noConversations": "You have no conversations yet",
 		"startChat": "Start chat",
 		"continueChat": "Continue chat"
+	},
+	"privacyPolicy": {
+		"title": "The Terms of Use and Privacy Policy Conditions",
+		"btn": "Continue",
+		"desc": "This Privacy Policy describes Our policies on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You. We use Your Personal data to provide and improve the Service. The Company will retain Your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use Your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies. The Company will also retain Usage Data for internal analysis purposes. Usage Data is generally retained for a shorter period of time, except when this data is used to strengthen the security or to improve the functionality of Our Service, or We are legally obligated to retain this data for longer time periods."
 	}
 }

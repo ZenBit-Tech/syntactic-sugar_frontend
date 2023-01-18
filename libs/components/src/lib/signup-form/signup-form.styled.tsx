@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Checkbox } from "antd";
 
 export const Form = styled.form`
 	display: flex;
@@ -21,6 +22,12 @@ export const Form = styled.form`
 		::placeholder {
 			color: ${({ theme }) => theme.colors.grey};
 		}
+	}
+
+	input[type="checkbox"] {
+		width: 15px;
+		height: 15px;
+		border-color: ${({ theme }) => theme.colors.darkGrey};
 	}
 
 	input[type="email"] {
@@ -53,5 +60,15 @@ export const InputWrapper = styled.div`
 		padding: 0.5rem;
 		color: ${({ theme }) => theme.colors.white};
 		position: absolute;
+	}
+`;
+
+export const CheckboxWrapper = styled.div`
+	display: flex;
+	width: auto;
+	gap: 0.2rem;
+
+	label {
+		color: ${({ theme }) => theme.colors.darkGrey};
 	}
 `;

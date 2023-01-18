@@ -1,26 +1,25 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { InferType } from "yup";
 import { useDispatch } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
-import { StyledButton, StyledSpan } from "@freelance/components";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { signUpSchema } from "utils/validations/registerForm";
+import { CardModal, StyledButton, StyledSpan, TermsPrivacyPolicy } from "@freelance/components";
+import { useSignUpSchema } from "utils/validations/registerForm";
 import { useSignUpByEmailMutation } from "redux/signup-googleApi";
 import { setUserData } from "redux/userState/userSlice";
-import { UserRoles } from "redux/role.api";
-import { ROLE_SELECTION } from "utils/constants/breakpoint";
-import { Form, InputWrapper } from "./signup-form.styled";
+import { Form, InputWrapper, CheckboxWrapper } from "./signup-form.styled";
+import { useModal } from "./hooks";
 
 export function SignupForm() {
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
-	type Props = InferType<typeof signUpSchema>;
+	const signUpSchema = useSignUpSchema();
 	const [registration, { data: userData, isSuccess, isError }] = useSignUpByEmailMutation();
+	const { openPrivacyPolicyModal, closePrivacyPolicyModal, privacyPolicyModal } = useModal();
 
+	type Props = InferType<typeof signUpSchema>;
 	const {
 		register,
 		handleSubmit,
@@ -90,9 +89,26 @@ export function SignupForm() {
 					</StyledSpan>
 				)}
 			</InputWrapper>
-			<StyledButton buttonSize="lg" buttonColor="redGradient">
+			<InputWrapper>
+				<CheckboxWrapper>
+					<input {...register("agreement")} type="checkbox" name="agreement" />
+					<label htmlFor="agreement">{t("signForm.agree")}</label>
+					<a onClick={openPrivacyPolicyModal}>
+						<strong>{t("signForm.policyLink")}</strong>
+					</a>
+				</CheckboxWrapper>
+				{errors?.agreement && (
+					<StyledSpan fontSize="sm" type="validation">
+						{errors?.agreement?.message}
+					</StyledSpan>
+				)}
+			</InputWrapper>
+			<StyledButton buttonSize="lg" buttonColor="redGradient" type="submit">
 				{t("signForm.buttonSignUp")}
 			</StyledButton>
+			<CardModal open={privacyPolicyModal} onCancel={closePrivacyPolicyModal} width={500}>
+				<TermsPrivacyPolicy onCancel={closePrivacyPolicyModal} />
+			</CardModal>
 			<ToastContainer autoClose={false} />
 		</Form>
 	);

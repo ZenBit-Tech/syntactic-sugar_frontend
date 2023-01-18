@@ -109,3 +109,7 @@ export * from "./lib/proposals-filter/proposals-filterHooks";
 //Freelancer Profile
 
 export * from "./lib/view-freelancer-profile/view-freelancer-profile";
+
+//SignUp
+
+export * from "./lib/terms-privacy-policy/terms-privacy-policy";
