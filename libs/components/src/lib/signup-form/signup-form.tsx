@@ -92,10 +92,12 @@ export function SignupForm() {
 			<InputWrapper>
 				<CheckboxWrapper>
 					<input {...register("agreement")} type="checkbox" name="agreement" />
-					<label htmlFor="agreement">{t("signForm.agree")}</label>
-					<a onClick={openPrivacyPolicyModal}>
-						<strong>{t("signForm.policyLink")}</strong>
-					</a>
+					<label htmlFor="agreement">
+						{t("signForm.agree")}
+						<a onClick={openPrivacyPolicyModal}>
+							<strong>{t("signForm.policyLink")}</strong>
+						</a>
+					</label>
 				</CheckboxWrapper>
 				{errors?.agreement && (
 					<StyledSpan fontSize="sm" type="validation">

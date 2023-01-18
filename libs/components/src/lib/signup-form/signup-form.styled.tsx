@@ -65,7 +65,7 @@ export const InputWrapper = styled.div`
 export const CheckboxWrapper = styled.div`
 	display: flex;
 	width: auto;
-	gap: 0.2rem;
+	gap: 0.5rem;
 
 	label {
 		color: ${({ theme }) => theme.colors.darkGrey};
