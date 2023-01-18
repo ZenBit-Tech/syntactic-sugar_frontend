@@ -22,7 +22,7 @@ export function LoginForm() {
 	const navigate = useNavigate();
 	const [searchParams] = useSearchParams();
 	const id = searchParams.get("id");
-	const [login, { data: userData, isSuccess, isError }] = useLoginMutation();
+	const [login, { data: userData, isSuccess: isLoginSuccess, isError, error }] = useLoginMutation();
 	const [confirmEmail, { isSuccess: isSuccessConfirm, isError: isErrorConfirm }] =
 		useConfirmEmailMutation();
 
@@ -63,13 +63,18 @@ export function LoginForm() {
 	}, [isErrorConfirm, isSuccessConfirm]);
 
 	useEffect(() => {
-		if (isSuccess) {
+		if (isLoginSuccess) {
 			dispatch(setUserData({ token: userData?.token, role: userData?.role }));
 		}
-		if (isError) {
+		if (isError && !error) {
 			toast.error(t("signForm.passwordError"));
 		}
-	}, [isSuccess, isError]);
+		if (error) {
+			if ("status" in error) {
+				toast.error(t("signForm.serverError"));
+			}
+		}
+	}, [isLoginSuccess, isError, error]);
 
 	useEffect(() => {
 		if (userData?.role === UserRoles.GUEST) {

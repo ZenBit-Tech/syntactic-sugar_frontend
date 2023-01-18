@@ -36,7 +36,8 @@
 		"signInNow": " Sign In Now",
 		"confirmMessage": "We sended you email with confirmation link. Please confirm your email by following it.",
 		"confirmation": "Your email has been confirmed",
-		"passwordError": "Incorrect password or email"
+		"passwordError": "Incorrect password or email",
+		"serverError": "Server error, please, try again"
 	},
 	"recoverPassForm": {
 		"forgotPass": "Forgot your password?",
