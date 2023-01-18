@@ -12,13 +12,6 @@ import { setUserData } from "redux/userState/userSlice";
 import { Form, InputWrapper, CheckboxWrapper } from "./signup-form.styled";
 import { useModal } from "./hooks";
 
-export interface IForm {
-	email: string;
-	password: string;
-	passwordConfirmation: string;
-	agreement: boolean;
-}
-
 export function SignupForm() {
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
@@ -31,11 +24,13 @@ export function SignupForm() {
 		handleSubmit,
 		reset,
 		formState: { errors },
-	} = useForm<IForm>({
+	} = useForm<Props>({
 		resolver: yupResolver(signUpSchema),
 	});
 
-	const formSubmitHandler = async (data: IForm) => {
+	type Props = InferType<typeof signUpSchema>;
+
+	const formSubmitHandler = async (data: Props) => {
 		try {
 			await registration(data);
 			reset();
