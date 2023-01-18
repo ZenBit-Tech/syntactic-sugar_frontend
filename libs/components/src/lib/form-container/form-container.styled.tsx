@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Checkbox } from "antd";
 interface MessageContainerProps {
 	isRightSide: boolean;
 }
