@@ -168,8 +168,8 @@ export const Form = styled.form`
 	padding-right: 20px;
 	${inputIcons};
 
-	/* #fullName {
-		background: url("/assets/images/user_icon.png") no-repeat 20px center;
+	#fullName {
+		background: url("/assets/images/user_icon.png") no-repeat 20px 46%;
 	}
 
 	#country {
@@ -185,7 +185,7 @@ export const Form = styled.form`
 	}
 
 	#position {
-		background: url("/assets/images/position_icon.png") no-repeat 20px center;
+		background: url("/assets/images/position_icon.png") no-repeat 20px 46%;
 	}
 
 	#amountHours {
@@ -209,7 +209,7 @@ export const Form = styled.form`
 	}
 
 	#companyName {
-		background: url("/assets/images/company_icon.png") no-repeat 20px center;
+		background: url("/assets/images/company_icon.png") no-repeat 20px 47%;
 	}
 
 	#linkedIn {
@@ -240,5 +240,5 @@ export const Form = styled.form`
 	#website {
 		padding-left: 50px;
 		background-size: 15px 15px;
-	} */
+	}
 `;
