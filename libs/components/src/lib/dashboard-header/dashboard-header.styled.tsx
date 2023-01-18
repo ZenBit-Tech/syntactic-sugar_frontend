@@ -32,8 +32,29 @@ export const UserInfoWrapper = styled.div`
 	}
 `;
 
+export const StyledEditButton = styled.button`
+	outline-style: none;
+	color: ${({ theme }) => theme.colors.white};
+
+	p {
+		transition: all ease-in-out 0.4s;
+	}
+
+	:hover p {
+		font-weight: 700;
+	}
+
+	span {
+		font-size: 1.5rem;
+		transition: all ease-in-out 0.4s;
+	}
+
+	:hover span {
+		transform: scale(1.2);
+	}
+`;
+
 export const UserDetails = styled.div`
-	text-align: right;
 	line-height: 1.8rem;
 `;
 

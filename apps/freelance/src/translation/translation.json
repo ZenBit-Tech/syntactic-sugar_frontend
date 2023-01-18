@@ -1,5 +1,6 @@
 {
 	"serverErrorMessage": "Something went wrong",
+	"loading": "...Loading",
 	"signupGoogle": {
 		"buttonText": "Sign up with Google",
 		"error": "This email already registered. Sign in, please."
@@ -131,6 +132,7 @@
 		"profilePage": {
 			"title": "My Profile"
 		},
+		"editProfile": "Edit Profile",
 		"header": {
 			"userName": "John Doe",
 			"userEmail": "johndoe@gmail.com",
@@ -404,6 +406,11 @@
 	"talents": {
 		"inv": "Invite",
 		"avatar": "User avatar"
+	},
+	"notFoundPage": {
+		"errorCode": "404 Page not found",
+		"errorText": "We are sorry, the page you requested could not be found. Please, go back and try again",
+		"btn": "BACK"
 	},
 	"chat": {
 		"send": "Send",
