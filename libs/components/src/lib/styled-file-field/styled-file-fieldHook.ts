@@ -37,7 +37,7 @@ export const useStyledFileField = ({
 			event.currentTarget.value = "";
 			await uploadImage(formData);
 			setIsImageChanged(true);
-		} catch (error) {
+		} catch {
 			toast.error(SERVER_ERROR_MESSAGE);
 		}
 	};

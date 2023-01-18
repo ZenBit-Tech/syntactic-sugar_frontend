@@ -32,11 +32,15 @@ export const useEditEmployerForm = ({
 	const [updateEmployer, { isLoading, isSuccess, isError }] = useUpdateEmployerMutation();
 
 	const onSubmit: SubmitHandler<IEditEmployerForm> = async data => {
-		const newEmployer = { ...data, image: imageUrl === DEFAULT_IMAGE ? "" : imageUrl };
+		try {
+			const newEmployer = { ...data, image: imageUrl === DEFAULT_IMAGE ? "" : imageUrl };
 
-		await updateEmployer(newEmployer);
-		setIsFormChange(false);
-		setIsImageChanged(false);
+			await updateEmployer(newEmployer);
+			setIsFormChange(false);
+			setIsImageChanged(false);
+		} catch {
+			toast.error(t("serverErrorMessage"));
+		}
 	};
 
 	useEffect(() => {
