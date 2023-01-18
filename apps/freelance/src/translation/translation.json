@@ -82,7 +82,7 @@
 		"publishedNotification": "Your job is visible to freelancer now",
 		"canNotEdit": "You have got a proposal already. You can’t edit this job any more",
 		"proposalRecived": "Proposal received",
-		"proposalSent": "Proposal sent"
+		"proposalSent": "Proposal was sent"
 	},
 	"editJob": {
 		"saveChanges": "Save changes",
@@ -392,19 +392,26 @@
 		"date": "Posting date",
 		"alreadySended": "Proposal already sended"
 	},
-	"talents": {
-		"inv": "Invite",
-		"avatar": "User avatar"
-	},
 	"notFoundPage": {
 		"errorCode": "404 Page not found",
 		"errorText": "We are sorry, the page you requested could not be found. Please, go back and try again",
-		"btn": "BACK"
+		"btn": "Back"
 	},
 	"chat": {
 		"send": "Send",
 		"noConversations": "You have no conversations yet",
 		"startChat": "Start chat",
 		"continueChat": "Continue chat"
+	},
+	"talents": {
+		"inv": "Invite to interview",
+		"avatar": "User avatar",
+		"invitation": "Send invitation",
+		"send": "Send",
+		"select": "Select the job",
+		"sending": "Sending an invitation...",
+		"successNotify": "Invitation was successfully sent",
+		"errorNotify": "Error",
+		"proposalNotify": "You have a proposal from this freelancer"
 	}
 }

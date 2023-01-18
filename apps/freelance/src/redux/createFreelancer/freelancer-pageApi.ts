@@ -1,7 +1,8 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { workHistoryProps, educationProps } from "redux/createFreelancer/freelancer-slice";
 import { baseQuery } from "redux/base-query";
-import { InstObject, Proposal } from "redux/jobs/jobs.api";
+import { InstObject, JobsInterface, Proposal } from "redux/jobs/jobs.api";
+import { SelectOptions } from "src/utils/select-options/options";
 
 export interface IEduResponse {
 	id: string;
@@ -38,6 +39,14 @@ export interface Published {
 	isPublished: boolean;
 }
 
+export interface IInvitation {
+	id: string;
+	freelancer: IResponse;
+	job_id?: SelectOptions;
+	jobs?: JobsInterface[];
+	job: { id: string };
+}
+
 export interface IResponse {
 	id: string;
 	fullName: string;
@@ -59,6 +68,12 @@ export interface IResponse {
 	image?: string;
 	proposals: Proposal[];
 	user: { id: number; email: string };
+	invitation: IInvitation[];
+}
+
+export interface IInvitationBody {
+	job_id?: string;
+	freelancer_id?: string;
 }
 
 export const createFreelancerApi = createApi({
@@ -91,6 +106,18 @@ export const createFreelancerApi = createApi({
 			query: () => "/freelancer/get-all-profiles",
 			providesTags: ["freelancers"],
 		}),
+		sendInvitation: builder.mutation({
+			query: (body: IInvitationBody) => ({
+				url: "/invitation/send-invitation",
+				method: "POST",
+				body,
+			}),
+			invalidatesTags: ["freelancers"],
+		}),
+		getFreelancerById: builder.query<IResponse, string>({
+			query: (id: string) => `/freelancer/get-freelancer-by-id/${id}`,
+			providesTags: ["freelancers"],
+		}),
 	}),
 });
 
@@ -99,4 +126,6 @@ export const {
 	useAddPublishedMutation,
 	useGetFreelancerQuery,
 	useGetAllFreelancersQuery,
+	useSendInvitationMutation,
+	useGetFreelancerByIdQuery,
 } = createFreelancerApi;

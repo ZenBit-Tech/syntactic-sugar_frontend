@@ -22,11 +22,10 @@ import {
 	TypePage,
 	CardNotification,
 	Chat,
-	IInvitation,
 } from "@freelance/components";
 import { InstObject, Proposal } from "redux/jobs";
 import { IProposal } from "redux/interfaces/IProposal";
-import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
+import { IInvitation, IResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { EMPLOYER_JOBS, JOBS_PAGE } from "utils/constants/breakpoint";
 import { ROLES } from "utils/constants/roles";
 import { DEFAULT_IMAGE } from "utils/constants/links";
