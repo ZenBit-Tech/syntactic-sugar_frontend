@@ -1,5 +1,85 @@
 import styled, { css } from "styled-components";
 
+interface Icss {
+	selectIcons?: boolean;
+}
+
+export const inputIcons = css<Icss>`
+	#fullName ${({ selectIcons }) => selectIcons && ".react-select__control"} {
+		background: url("/assets/images/user_icon.png") no-repeat 20px center;
+	}
+
+	#country ${({ selectIcons }) => selectIcons && ".react-select__control"} {
+		background: url("/assets/images/country_icon.png") no-repeat 20px center;
+	}
+
+	#category ${({ selectIcons }) => selectIcons && ".react-select__control"} {
+		background: url("/assets/images/category_icon.png") no-repeat 20px center;
+	}
+
+	#hourRate {
+		background: url("/assets/images/hour_rate_icon.png") no-repeat 20px center;
+	}
+
+	#position {
+		background: url("/assets/images/position_icon.png") no-repeat 20px center;
+	}
+
+	#amountHours {
+		background: url("/assets/images/amount_hours_icon.png") no-repeat 20px center;
+	}
+
+	#skills {
+		background: url("/assets/images/skills_icon.png") no-repeat 20px center;
+	}
+
+	#workExperience {
+		background: url("/assets/images/work_experience_icon.png") no-repeat 20px center;
+	}
+
+	#employmentType {
+		background: url("/assets/images/employment_type_icon.png") no-repeat 20px center;
+	}
+
+	#englishLevel {
+		background: url("/assets/images/english_level_icon.png") no-repeat 20px center;
+	}
+
+	#companyName {
+		background: url("/assets/images/company_icon.png") no-repeat 20px center;
+	}
+
+	#linkedIn {
+		background: url("/assets/images/linkedin_icon.png") no-repeat 20px center;
+	}
+
+	#website {
+		background: url("/assets/images/website_icon.png") no-repeat 20px center;
+	}
+
+	#phone {
+		background: url("/assets/images/phone_icon.png") no-repeat 20px center;
+	}
+
+	#fullName,
+	#country,
+	#category,
+	#companyName,
+	#hourRate,
+	#linkedIn,
+	#position,
+	#amountHours,
+	#skills,
+	#workExperience,
+	#employmentType,
+	#englishLevel,
+	#phone,
+	#website {
+		padding-left: 50px;
+		background-size: 15px 15px;
+	}
+`;
+
 const styles = css`
 	border: 2px solid ${({ theme }) => theme.colors.grey};
 	border-radius: 100px;
@@ -86,8 +166,9 @@ export const ErrorsHandlerWrapper = styled.div<IErrorsHandlerWrapper>`
 export const Form = styled.form`
 	padding-left: 20px;
 	padding-right: 20px;
+	${inputIcons};
 
-	#fullName {
+	/* #fullName {
 		background: url("/assets/images/user_icon.png") no-repeat 20px center;
 	}
 
@@ -159,5 +240,5 @@ export const Form = styled.form`
 	#website {
 		padding-left: 50px;
 		background-size: 15px 15px;
-	}
+	} */
 `;

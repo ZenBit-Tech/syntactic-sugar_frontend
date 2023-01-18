@@ -116,3 +116,4 @@ export * from "./lib/styled-file-field/styled-file-field";
 export * from "./lib/edit-employer-container/edit-employer-container";
 export * from "./lib/edit-freelancer-container/edit-freelancer-container";
 export * from "./lib/edit-employer-form/edit-employer-form";
+export * from "./lib/edit-freelancer-form/edit-freelancer-form";
