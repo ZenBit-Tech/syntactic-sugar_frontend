@@ -78,6 +78,7 @@ export function SearchWork() {
 				</InputWrapper>
 				<FilterBox isActive={isFilterOpen}>
 					<SearchWorkFilter
+						typePage={JOBS_PAGE}
 						openFilter={toggleFilterBox}
 						onSubmit={onSubmit}
 						setFilter={setFilter}

@@ -93,7 +93,7 @@
 		"publishedNotification": "Your job is visible to freelancer now",
 		"canNotEdit": "You have got a proposal already. You can’t edit this job any more",
 		"proposalRecived": "Proposal received",
-		"proposalSent": "Proposal sent"
+		"proposalSent": "Proposal was sent"
 	},
 	"editJob": {
 		"saveChanges": "Save changes",
@@ -133,6 +133,9 @@
 			"title": "My Profile"
 		},
 		"editProfile": "Edit Profile",
+		"successEdit": "Your profile has updated successfuly",
+		"correctPhone": "should be +380111111111",
+		"minTwelveChar": "at least 12 characters",
 		"header": {
 			"userName": "John Doe",
 			"userEmail": "johndoe@gmail.com",
@@ -231,8 +234,8 @@
 			"descriptionLabel": "Job Description",
 			"jobDescription": "We use this description on the website to get the candidates attention.",
 			"validation": {
-				"messageJobTitleMaxChar": "not mo than 50 characters for this field",
-				"messageDescriptionMaxChar": "not more then 600 characters for this field",
+				"messageJobTitleMaxChar": "not more than {{INPUT_CHAR_NUMBER}} characters",
+				"messageDescriptionMaxChar": "not more then {{TEXTAREA_CHAR_NUMBER}} characters",
 				"messageJobTitleRequired": "Job title is required",
 				"messageDescriptionRequired": "Job description is required"
 			}
@@ -403,14 +406,10 @@
 		"date": "Posting date",
 		"alreadySended": "Proposal already sended"
 	},
-	"talents": {
-		"inv": "Invite",
-		"avatar": "User avatar"
-	},
 	"notFoundPage": {
 		"errorCode": "404 Page not found",
 		"errorText": "We are sorry, the page you requested could not be found. Please, go back and try again",
-		"btn": "BACK"
+		"btn": "Back"
 	},
 	"chat": {
 		"send": "Send",
@@ -422,5 +421,16 @@
 		"title": "The Terms of Use and Privacy Policy Conditions",
 		"btn": "Continue",
 		"desc": "This Privacy Policy describes Our policies on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You. We use Your Personal data to provide and improve the Service. The Company will retain Your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use Your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies. The Company will also retain Usage Data for internal analysis purposes. Usage Data is generally retained for a shorter period of time, except when this data is used to strengthen the security or to improve the functionality of Our Service, or We are legally obligated to retain this data for longer time periods."
+	},
+	"talents": {
+		"inv": "Invite to interview",
+		"avatar": "User avatar",
+		"invitation": "Send invitation",
+		"send": "Send",
+		"select": "Select the job",
+		"sending": "Sending an invitation...",
+		"successNotify": "Invitation was successfully sent",
+		"errorNotify": "Error",
+		"proposalNotify": "You have a proposal from this freelancer"
 	}
 }
