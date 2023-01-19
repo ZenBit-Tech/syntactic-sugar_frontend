@@ -12,9 +12,13 @@ export interface DashboardMenuProps {
 	filterState?: boolean;
 	myProposals?: boolean;
 	allJobs?: boolean;
+	invitations?: boolean;
+	allTalents?: boolean;
 	handleToggleFilter?: () => void;
 	showMyProposals?: () => void;
 	showAllJobs?: () => void;
+	showInvitations?: () => void;
+	showAllTallents?: () => void;
 }
 
 export function DashboardMenu({
@@ -24,8 +28,12 @@ export function DashboardMenu({
 	filterState,
 	myProposals,
 	allJobs,
+	invitations,
+	allTalents,
 	showMyProposals,
 	showAllJobs,
+	showInvitations,
+	showAllTallents,
 }: DashboardMenuProps) {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
@@ -105,10 +113,22 @@ export function DashboardMenu({
 					)}
 					{typePage === TALENTS_PAGE && (
 						<FilterButtonWrap>
-							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
+							<FilterButton
+								buttonSize="filter"
+								fontSize="md"
+								buttonColor="lightRed"
+								disabled={allTalents}
+								onClick={showAllTallents}
+							>
 								{t("dashboard.menu.all")}
 							</FilterButton>
-							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
+							<FilterButton
+								buttonSize="filter"
+								fontSize="md"
+								buttonColor="lightRed"
+								disabled={invitations}
+								onClick={showInvitations}
+							>
 								{t("dashboard.menu.invitation")}
 							</FilterButton>
 						</FilterButtonWrap>

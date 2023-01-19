@@ -6,6 +6,7 @@ import {
 	FilterBox,
 	StyledPage,
 	useProposalsFilter,
+	useInvitationFilterHooks,
 } from "@freelance/components";
 import { JOBS_PAGE } from "src/utils/constants/breakpoint";
 import { ROLES } from "src/utils/constants/roles";
@@ -26,12 +27,8 @@ export function SearchWork() {
 		freelancerFilter,
 		refetch,
 	} = useSearchWorkFormHook();
-	const [isFilterOpen, setIsFilterOpen] = useState(false);
-	const { myProposals, showMyProposals, allJobs, showAllJobs } = useProposalsFilter();
-
-	const toggleFilterBox = () => {
-		setIsFilterOpen(!isFilterOpen);
-	};
+	const { myProposals, allJobs, isFilterOpen, showMyProposals, showAllJobs, toggleFilterBox } =
+		useProposalsFilter();
 
 	const proposals =
 		publishedFilterJobs &&

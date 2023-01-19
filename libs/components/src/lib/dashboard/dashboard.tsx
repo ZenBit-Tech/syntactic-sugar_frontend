@@ -11,10 +11,14 @@ export interface DashboardProps {
 	profile?: IResponse | IResponseEmployer;
 	filterState?: boolean;
 	myProposals?: boolean;
+	invitations?: boolean;
+	allTalents?: boolean;
 	allJobs?: boolean;
 	handleToggleFilter?: () => void;
 	showMyProposals?: () => void;
 	showAllJobs?: () => void;
+	showInvitations?: () => void;
+	showAllTallents?: () => void;
 }
 
 export function Dashboard({
@@ -26,8 +30,12 @@ export function Dashboard({
 	filterState,
 	myProposals,
 	allJobs,
+	invitations,
+	allTalents,
 	showMyProposals,
 	showAllJobs,
+	showInvitations,
+	showAllTallents,
 }: DashboardProps) {
 	return (
 		<Container>
@@ -53,7 +61,11 @@ export function Dashboard({
 						userRole={userRole}
 						typePage={typePage}
 						filterState={filterState}
+						invitations={invitations}
+						allTalents={allTalents}
 						handleToggleFilter={handleToggleFilter}
+						showInvitations={showInvitations}
+						showAllTallents={showAllTallents}
 					/>
 					<Area>
 						<DashboardHeader userRole={userRole} typePage={typePage} profile={profile} />
