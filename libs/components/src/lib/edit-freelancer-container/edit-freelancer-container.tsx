@@ -5,11 +5,15 @@ import { useEditFreelancerProfile } from "./edit-freelancer-profileHook";
 
 export interface EditFreelancerContainerProps {
 	existingImage: string;
+	isImageChanged: boolean;
+	setIsImageChanged: React.Dispatch<React.SetStateAction<boolean>>;
 	setImageUrl: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export function EditFreelancerContainer({
 	existingImage,
+	setIsImageChanged,
+	isImageChanged,
 	setImageUrl,
 }: EditFreelancerContainerProps) {
 	const { t } = useTranslation();
@@ -25,6 +29,7 @@ export function EditFreelancerContainer({
 				width={25}
 				imageUrl={existingImage}
 				defaultImage={DEFAULT_IMAGE}
+				setIsImageChanged={setIsImageChanged}
 				setImageUrl={setImageUrl}
 			/>
 		</Container>

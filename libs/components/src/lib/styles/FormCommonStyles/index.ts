@@ -94,8 +94,14 @@ export const SelectElement = styled(Select)`
 `;
 
 export const JobPostingTextArea = styled(TextArea)`
-	height: auto;
 	padding-top: 13px;
 	border-radius: 30px;
-	resize: none;
+`;
+
+export const EditProfileTextArea = styled(JobPostingTextArea)`
+	width: 100%;
+`;
+
+export const EditForm = styled(Form)`
+	width: 65%;
 `;

@@ -131,6 +131,9 @@
 			"title": "My Profile"
 		},
 		"editProfile": "Edit Profile",
+		"successEdit": "Your profile has updated successfuly",
+		"correctPhone": "should be +380111111111",
+		"minTwelveChar": "at least 12 characters",
 		"header": {
 			"userName": "John Doe",
 			"userEmail": "johndoe@gmail.com",
@@ -229,8 +232,8 @@
 			"descriptionLabel": "Job Description",
 			"jobDescription": "We use this description on the website to get the candidates attention.",
 			"validation": {
-				"messageJobTitleMaxChar": "not mo than 50 characters for this field",
-				"messageDescriptionMaxChar": "not more then 600 characters for this field",
+				"messageJobTitleMaxChar": "not more than {{INPUT_CHAR_NUMBER}} characters",
+				"messageDescriptionMaxChar": "not more then {{TEXTAREA_CHAR_NUMBER}} characters",
 				"messageJobTitleRequired": "Job title is required",
 				"messageDescriptionRequired": "Job description is required"
 			}

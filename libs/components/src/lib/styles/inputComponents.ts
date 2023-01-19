@@ -28,8 +28,17 @@ const styles = css`
 	}
 `;
 
-export const Input = styled.input`
+interface IInput {
+	width?: number;
+}
+
+export const Input = styled.input<IInput>`
 	${styles}
+	${({ width }) =>
+		width &&
+		css`
+			width: ${width}%;
+		`}
 `;
 
 export const Select = styled.select`
@@ -38,6 +47,8 @@ export const Select = styled.select`
 
 export const TextArea = styled.textarea`
 	${styles}
+	height: auto;
+	resize: none;
 `;
 
 interface IErrorsHandlerWrapper {
@@ -75,4 +86,78 @@ export const ErrorsHandlerWrapper = styled.div<IErrorsHandlerWrapper>`
 export const Form = styled.form`
 	padding-left: 20px;
 	padding-right: 20px;
+
+	#fullName {
+		background: url("/assets/images/user_icon.png") no-repeat 20px 46%;
+	}
+
+	#country {
+		background: url("/assets/images/country_icon.png") no-repeat 20px center;
+	}
+
+	#category {
+		background: url("/assets/images/category_icon.png") no-repeat 20px center;
+	}
+
+	#hourRate {
+		background: url("/assets/images/hour_rate_icon.png") no-repeat 20px center;
+	}
+
+	#position {
+		background: url("/assets/images/position_icon.png") no-repeat 20px 46%;
+	}
+
+	#amountHours {
+		background: url("/assets/images/amount_hours_icon.png") no-repeat 20px center;
+	}
+
+	#skills {
+		background: url("/assets/images/skills_icon.png") no-repeat 20px center;
+	}
+
+	#workExperience {
+		background: url("/assets/images/work_experience_icon.png") no-repeat 20px center;
+	}
+
+	#employmentType {
+		background: url("/assets/images/employment_type_icon.png") no-repeat 20px center;
+	}
+
+	#englishLevel {
+		background: url("/assets/images/english_level_icon.png") no-repeat 20px center;
+	}
+
+	#companyName {
+		background: url("/assets/images/company_icon.png") no-repeat 20px 47%;
+	}
+
+	#linkedIn {
+		background: url("/assets/images/linkedin_icon.png") no-repeat 20px center;
+	}
+
+	#website {
+		background: url("/assets/images/website_icon.png") no-repeat 20px center;
+	}
+
+	#phone {
+		background: url("/assets/images/phone_icon.png") no-repeat 20px center;
+	}
+
+	#fullName,
+	#country,
+	#category,
+	#companyName,
+	#hourRate,
+	#linkedIn,
+	#position,
+	#amountHours,
+	#skills,
+	#workExperience,
+	#employmentType,
+	#englishLevel,
+	#phone,
+	#website {
+		padding-left: 50px;
+		background-size: 15px 15px;
+	}
 `;
