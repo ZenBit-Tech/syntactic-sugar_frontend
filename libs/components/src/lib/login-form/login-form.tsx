@@ -22,7 +22,7 @@ export function LoginForm() {
 	const navigate = useNavigate();
 	const [searchParams] = useSearchParams();
 	const id = searchParams.get("id");
-	const [login, { data: userData, isSuccess: isLoginSuccess }] = useLoginMutation();
+	const [login, { data: userData, isSuccess }] = useLoginMutation();
 	const [confirmEmail, { isSuccess: isSuccessConfirm, isError: isErrorConfirm }] =
 		useConfirmEmailMutation();
 	const signInSchema = useSignInSchema();
@@ -69,10 +69,10 @@ export function LoginForm() {
 	}, [isErrorConfirm, isSuccessConfirm]);
 
 	useEffect(() => {
-		if (isLoginSuccess) {
+		if (isSuccess) {
 			dispatch(setUserData({ token: userData?.token, role: userData?.role }));
 		}
-	}, [isLoginSuccess]);
+	}, [isSuccess]);
 
 	useEffect(() => {
 		if (userData?.role === UserRoles.GUEST) {
