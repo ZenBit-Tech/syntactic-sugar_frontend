@@ -75,5 +75,6 @@ export const useChatHook = ({ userId, userType }: ChatHookProps) => {
 		messages,
 		isSuccess,
 		chatId,
+		refetch,
 	};
 };

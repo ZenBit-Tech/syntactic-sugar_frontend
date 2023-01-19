@@ -404,7 +404,11 @@
 		"send": "Send",
 		"noConversations": "You have no conversations yet",
 		"startChat": "Start chat",
-		"continueChat": "Continue chat"
+		"continueChat": "Continue chat",
+    "offer": "Offer",
+    "sendOffer": "Send offer",
+    "offerSent": "Offer sent",
+    "offerRecieved": "Offer recieved"
 	},
 	"talents": {
 		"inv": "Invite to interview",
