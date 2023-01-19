@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-interface IuseProposalsFilter {
+interface IUseProposalsFilter {
 	myProposals: boolean;
 	allJobs: boolean;
 	isFilterOpen: boolean;
@@ -9,7 +9,7 @@ interface IuseProposalsFilter {
 	toggleFilterBox: () => void;
 }
 
-export const useProposalsFilter = (): IuseProposalsFilter => {
+export const useProposalsFilter = (): IUseProposalsFilter => {
 	const [myProposals, setMyProposals] = useState<boolean>(false);
 	const [allJobs, setAllJobs] = useState<boolean>(true);
 	const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
