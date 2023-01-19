@@ -7,12 +7,12 @@ import { useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { StyledButton, StyledSpan } from "@freelance/components";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { signInSchema } from "utils/validations/loginForm";
+import { useSignInSchema } from "utils/validations/loginForm";
 import { useLoginMutation } from "redux/login.api";
 import { useConfirmEmailMutation } from "redux/signup-googleApi";
 import { UserRoles } from "redux/role.api";
 import { setUserData } from "redux/userState/userSlice";
-import { ROLE_SELECTION, SEARCH_WORK } from "utils/constants/breakpoint";
+import { ROLE_SELECTION, SEARCH_WORK, FETCH_ERROR, STATUS_CODE } from "utils/constants/breakpoint";
 import { EMPLOYER_JOBS_PAGE } from "utils/constants/links";
 import { Form, InputWrapper } from "./login-form.styled";
 
@@ -22,9 +22,10 @@ export function LoginForm() {
 	const navigate = useNavigate();
 	const [searchParams] = useSearchParams();
 	const id = searchParams.get("id");
-	const [login, { data: userData, isSuccess: isLoginSuccess, isError, error }] = useLoginMutation();
+	const [login, { data: userData, isSuccess: isLoginSuccess }] = useLoginMutation();
 	const [confirmEmail, { isSuccess: isSuccessConfirm, isError: isErrorConfirm }] =
 		useConfirmEmailMutation();
+	const signInSchema = useSignInSchema();
 
 	const {
 		register,
@@ -38,9 +39,14 @@ export function LoginForm() {
 
 	const formSubmitHandler = async (data: Props) => {
 		try {
-			await login(data);
-		} catch (error) {
-			toast.error(t("recoverPassForm.errorMessageServerError"));
+			await login(data).unwrap();
+		} catch ({ status }) {
+			if (status === FETCH_ERROR) {
+				toast.error(t("signForm.serverError"));
+			}
+			if (status === STATUS_CODE) {
+				toast.error(t("signForm.passwordError"));
+			}
 		}
 	};
 
@@ -66,15 +72,7 @@ export function LoginForm() {
 		if (isLoginSuccess) {
 			dispatch(setUserData({ token: userData?.token, role: userData?.role }));
 		}
-		if (isError && !error) {
-			toast.error(t("signForm.passwordError"));
-		}
-		if (error) {
-			if ("status" in error) {
-				toast.error(t("signForm.serverError"));
-			}
-		}
-	}, [isLoginSuccess, isError, error]);
+	}, [isLoginSuccess]);
 
 	useEffect(() => {
 		if (userData?.role === UserRoles.GUEST) {

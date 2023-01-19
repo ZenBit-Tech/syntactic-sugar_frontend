@@ -3,6 +3,8 @@
 export const LOG_IN = "login";
 export const SIGN_UP = "signup";
 export const ROLE_SELECTION = "role";
+export const FETCH_ERROR = "FETCH_ERROR";
+export const STATUS_CODE = 500;
 
 // Reset password
 
