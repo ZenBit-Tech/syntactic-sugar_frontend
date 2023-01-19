@@ -148,7 +148,6 @@ export function JobCard({
 					)}
 					<StyledParagraph fontSize="lg">{title}</StyledParagraph>
 				</GridContainer>
-
 				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && !isInvitation && !isProposal && (
 					<GridContainer alignItems="center" justifyItems="center">
 						<FreelancerButtonWrapper>
@@ -220,7 +219,6 @@ export function JobCard({
 						</FreelancerButtonWrapper>
 					</GridContainer>
 				)}
-
 				{userType === ROLES.EMPLOYER && (
 					<GridContainer alignItems="center" justifyItems="center" gap={10}>
 						<EmployerButtonWrapper>
