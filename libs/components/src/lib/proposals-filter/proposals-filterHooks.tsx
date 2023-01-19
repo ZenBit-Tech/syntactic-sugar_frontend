@@ -10,9 +10,9 @@ interface IuseProposalsFilter {
 }
 
 export const useProposalsFilter = (): IuseProposalsFilter => {
-	const [myProposals, setMyProposals] = useState(false);
-	const [allJobs, setAllJobs] = useState(true);
-	const [isFilterOpen, setIsFilterOpen] = useState(false);
+	const [myProposals, setMyProposals] = useState<boolean>(false);
+	const [allJobs, setAllJobs] = useState<boolean>(true);
+	const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
 
 	const showMyProposals = () => {
 		setMyProposals(true);

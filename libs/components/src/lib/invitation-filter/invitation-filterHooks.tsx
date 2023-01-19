@@ -10,9 +10,9 @@ interface IUseInvitationFilter {
 }
 
 export const useInvitationFilterHooks = (): IUseInvitationFilter => {
-	const [invitations, setInvitations] = useState(false);
-	const [allTalents, setAllTallents] = useState(true);
-	const [isFilterOpen, setIsFilterOpen] = useState(false);
+	const [invitations, setInvitations] = useState<boolean>(false);
+	const [allTalents, setAllTallents] = useState<boolean>(true);
+	const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
 
 	const showInvitations = () => {
 		setInvitations(true);
