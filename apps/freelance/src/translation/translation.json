@@ -41,7 +41,7 @@
 		"buttonSignUp": "SIGN UP",
 		"haveAcc": "Already have an account?",
 		"signInNow": " Sign In Now",
-		"confirmMessage": "We sended you email with confirmation link. Please confirm your email by following it.",
+		"confirmMessage": "We sent you email with confirmation link. Please confirm your email by following it.",
 		"confirmation": "Your email has been confirmed",
 		"passwordError": "Incorrect password or email",
 		"serverError": "Server error, please, try again"
