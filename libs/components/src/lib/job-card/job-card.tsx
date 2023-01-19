@@ -22,11 +22,10 @@ import {
 	TypePage,
 	CardNotification,
 	Chat,
-	IInvitation,
 } from "@freelance/components";
-import { IEmployerResponse, InstObject, Proposal } from "redux/jobs";
+import { InstObject, Proposal } from "redux/jobs";
 import { IProposal } from "redux/interfaces/IProposal";
-import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
+import { IInvitation, IResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { EMPLOYER_JOBS, JOBS_PAGE } from "utils/constants/breakpoint";
 import { ROLES } from "utils/constants/roles";
 import { DEFAULT_IMAGE } from "utils/constants/links";
@@ -53,7 +52,7 @@ export interface JobCardProps {
 	levelEnglish?: string;
 	createdDate?: string;
 	updatedDate?: string;
-	userType?: string;
+	userType: string;
 	skills?: InstObject[];
 	category?: InstObject;
 	isPublished?: boolean;
@@ -126,7 +125,7 @@ export function JobCard({
 	);
 	const isProposal = useMemo(
 		() => proposalExist(profile?.proposals as IProposal[], proposals as IProposal[]),
-		[profile?.proposals, proposals],
+		[profile?.proposals, proposalExist, proposals],
 	);
 
 	return (
@@ -149,7 +148,7 @@ export function JobCard({
 					)}
 					<StyledParagraph fontSize="lg">{title}</StyledParagraph>
 				</GridContainer>
-
+        
 				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && !isInvitation && !isProposal && (
 					<GridContainer alignItems="center" justifyItems="center">
 						<FreelancerButtonWrapper>
@@ -221,7 +220,7 @@ export function JobCard({
 						</FreelancerButtonWrapper>
 					</GridContainer>
 				)}
-
+        
 				{userType === ROLES.EMPLOYER && (
 					<GridContainer alignItems="center" justifyItems="center" gap={10}>
 						<EmployerButtonWrapper>
@@ -319,7 +318,7 @@ export function JobCard({
 				</>
 			)}
 			<CardModal open={chatModalOpen} onCancel={closeChat} width={800}>
-				<Chat userType={userType!} userId={profile?.id} />
+				<Chat userType={userType} userId={profile?.id} />
 			</CardModal>
 		</StyledJobCard>
 	);

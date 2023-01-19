@@ -6,7 +6,7 @@ import { SelectOptions } from "src/utils/select-options/options";
 
 interface IUseSearchWorkFormHook {
 	onSubmit: SubmitHandler<IFormInput>;
-	setFilter: ({}) => void;
+	setFilter: (freelancerFilter: IFormInput | Record<string, never>) => void;
 	setToggleFilter: React.Dispatch<React.SetStateAction<string>>;
 	publishedFilterJobs?: JobsInterface[];
 	setFilterJobs: React.Dispatch<React.SetStateAction<JobsInterface[] | undefined>>;

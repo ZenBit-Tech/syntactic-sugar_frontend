@@ -59,7 +59,7 @@ export * from "./lib/job-posting-container/interfaces";
 export * from "./lib/job-posting-first-form/interfaces";
 export * from "./lib/job-posting-second-form/interfaces";
 export * from "./lib/job-posting-third-form/interfaces";
-export * from "./lib/styles/newJobPostingCommonStyles";
+export * from "./lib/styles/FormCommonStyles";
 
 // Employer Jobs Page
 
@@ -109,3 +109,13 @@ export * from "./lib/proposals-filter/proposals-filterHooks";
 //Freelancer Profile
 
 export * from "./lib/view-freelancer-profile/view-freelancer-profile";
+
+//Invitation
+export * from "./lib/invitation-card/invitation-card";
+
+//Edit User Profile
+
+export * from "./lib/styled-file-field/styled-file-field";
+export * from "./lib/edit-employer-container/edit-employer-container";
+export * from "./lib/edit-freelancer-container/edit-freelancer-container";
+export * from "./lib/edit-employer-form/edit-employer-form";

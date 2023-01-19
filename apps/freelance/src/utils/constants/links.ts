@@ -25,3 +25,7 @@ export const SEND_PROPOSAL_ID = "/freelancer/send-proposal";
 // Talents
 
 export const TALENTS = "/employer/talents";
+
+//Not Found
+
+export const GOBACK = -1;

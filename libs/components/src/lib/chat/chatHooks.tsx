@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import io, { Socket } from "socket.io-client";
 import { IChat, IMessage, useGetChatsByUserQuery } from "redux/chat/chatApi";
 import { ROLES } from "utils/constants/roles";
-import { baseUrl } from "src/utils/constants/redux-query";
+import { baseUrl } from "utils/constants/redux-query";
 
 interface ChatHookProps {
 	userId?: string;
@@ -13,10 +13,9 @@ let socket: Socket;
 
 export const useChatHook = ({ userId, userType }: ChatHookProps) => {
 	const [message, setMessage] = useState<string>("");
-	const { data: userChats, isSuccess, isLoading, refetch } = useGetChatsByUserQuery();
+	const { data: userChats, isSuccess } = useGetChatsByUserQuery();
 	const [currentChat, setCurrentChat] = useState<IChat>();
 	const [messages, setMessages] = useState<IMessage[]>([]);
-	const [toggleButton, setToggleButton] = useState<boolean>(false);
 	const userImage =
 		userType === ROLES.FREELANCER ? currentChat?.employer.image : currentChat?.freelancer.image;
 	const chatId = currentChat?.id;
@@ -35,12 +34,13 @@ export const useChatHook = ({ userId, userType }: ChatHookProps) => {
 				return alert(error);
 			}
 		});
+
 		return () => {
 			socket.emit("leave", { userId, chatId });
 			socket.disconnect();
 			socket.off();
 		};
-	}, [baseUrl, currentChat, userId]);
+	}, [chatId, currentChat, userId]);
 
 	useEffect(() => {
 		socket.on("message", (message: IMessage) => {
@@ -58,6 +58,7 @@ export const useChatHook = ({ userId, userType }: ChatHookProps) => {
 			sender: userId,
 			chatId,
 		};
+
 		socket.emit("message", payload);
 		setMessage("");
 	};

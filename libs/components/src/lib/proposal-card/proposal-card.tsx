@@ -150,7 +150,7 @@ export function ProposalCard({
 				/>
 			</CardModal>
 			<CardModal open={isLetterOpen} onCancel={closeLetterModal} width={1000}>
-				<Container modal proposalsList>
+				<Container modal>
 					<StyledTitle tag="h1" fontSize="lg" fontWeight={700}>
 						{t("proposalCard.coverLetter")}
 					</StyledTitle>
