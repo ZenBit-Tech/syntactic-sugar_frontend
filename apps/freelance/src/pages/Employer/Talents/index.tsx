@@ -15,7 +15,7 @@ export function TalentsPage() {
 	const { data: employerProfile } = useGetEmployerQuery();
 	const { onSubmit, setToggleFilter, talents, setFilterTalents, filterTalents } =
 		useSearchTalentsFormHook();
-	const [isFilterOpen, setIsFilterOpen] = useState(false);
+	const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
 
 	const toggleFilterBox = () => {
 		setIsFilterOpen(!isFilterOpen);
