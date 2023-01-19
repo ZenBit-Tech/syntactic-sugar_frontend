@@ -50,3 +50,8 @@ export const CREATE_PROFILE = "createProfile";
 export const FREELANCER = "FREELANCER";
 export const GUEST = "GUEST";
 export const EMPLOYER = "EMPLOYER";
+
+//Filter
+
+export const FILTER = "filter";
+export const RESET = "reset";
