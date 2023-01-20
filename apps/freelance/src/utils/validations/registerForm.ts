@@ -1,10 +1,22 @@
-import { object, ref, string } from "yup";
+import { boolean, object, ref, string } from "yup";
+import { useTranslation } from "react-i18next";
 
-export const signUpSchema = object({
-	email: string().email("Invalid E-mail format").required("E-mail is required"),
-	password: string()
-		.required("Password is required")
-		.min(8, "Minimum 8 characters")
-		.max(24, "Maximum 24 characters"),
-	passwordConfirmation: string().oneOf([ref("password"), null], "Passwords must match"),
-});
+export const useSignUpSchema = () => {
+	const { t } = useTranslation();
+
+	const email: string = t("signForm.invalidMail");
+	const emailRequired: string = t("signForm.reqEmail");
+	const passwordRequired: string = t("signForm.pasReq");
+	const min: string = t("signForm.min", { min: "8" });
+	const max: string = t("signForm.max", { max: "24" });
+	const password: string = t("signForm.pas");
+	const pasMatch: string = t("signForm.pasMatch");
+	const agreement: string = t("signForm.agreement");
+
+	return object({
+		email: string().email(email).required(emailRequired),
+		password: string().required(passwordRequired).min(8, min).max(24, max),
+		passwordConfirmation: string().oneOf([ref(password), null], pasMatch),
+		agreement: boolean().required(agreement).oneOf([true], agreement),
+	});
+};
