@@ -59,7 +59,7 @@ export function ChatUserCard({
 					{userType === ROLES.FREELANCER ? chat.employer.companyName : chat.freelancer.fullName}
 				</ChatUserCardWork>
 				<ChatUserCardLastMessage>
-					{userType === ROLES.FREELANCER ? chat.job.position : chat.freelancer.position}
+					{userType === ROLES.FREELANCER ? chat.job.position : chat.job.position}
 				</ChatUserCardLastMessage>
 			</ChatUserCardContent>
 			<ChatUserCardInfo>

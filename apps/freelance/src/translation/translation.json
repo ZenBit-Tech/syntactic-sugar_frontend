@@ -16,6 +16,13 @@
 		"firstPageInstructions": "Enter your email to reset your password!",
 		"checkYourEmail": "If your email exist we will send you a link! Please, check your mail box!"
 	},
+	"loginForm": {
+		"format": "Invalid e-mail format",
+		"req": "E-mail is required",
+		"reqPass": "Password is required",
+		"min": "Minimum {{min}} characters",
+		"max": "Maximum {{max}} characters"
+	},
 	"signForm": {
 		"welcome": "WELCOME TO",
 		"signInSubtitle": "Log in to get the better opportunities for your project or career.",
@@ -34,8 +41,6 @@
 		"buttonSignUp": "SIGN UP",
 		"haveAcc": "Already have an account?",
 		"signInNow": " Sign In Now",
-		"confirmMessage": "We sended you email with confirmation link. Please confirm your email by following it.",
-		"confirmation": "Your email has been confirmed",
 		"invalidMail": "Invalid e-mail format",
 		"reqEmail": "E-mail is required",
 		"pasReq": "Password is required",
@@ -46,7 +51,11 @@
 		"privatePolicy": "By clicking sign up I agree with ",
 		"policyLink": "the Terms of Use and Privacy Policy",
 		"agreement": "Accept Privacy Policy Terms",
-		"agree": "I agree with "
+		"agree": "I agree with ",
+		"confirmMessage": "We sent you email with confirmation link. Please confirm your email by following it.",
+		"confirmation": "Your email has been confirmed",
+		"passwordError": "Incorrect password or email",
+		"serverError": "Server error, please, try again"
 	},
 	"recoverPassForm": {
 		"forgotPass": "Forgot your password?",
@@ -415,7 +424,11 @@
 		"send": "Send",
 		"noConversations": "You have no conversations yet",
 		"startChat": "Start chat",
-		"continueChat": "Continue chat"
+		"continueChat": "Continue chat",
+		"offer": "Offer",
+		"sendOffer": "Send offer",
+		"offerSent": "Offer sent",
+		"offerRecieved": "Offer recieved"
 	},
 	"privacyPolicy": {
 		"title": "The Terms of Use and Privacy Policy Conditions",
