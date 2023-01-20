@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
 	Dashboard,
 	Pagination,
@@ -6,17 +5,14 @@ import {
 	FilterBox,
 	StyledPage,
 	useProposalsFilter,
-	useInvitationFilterHooks,
 } from "@freelance/components";
 import { JOBS_PAGE } from "src/utils/constants/breakpoint";
 import { ROLES } from "src/utils/constants/roles";
-import { useGetFreelancerQuery } from "src/redux/createFreelancer/freelancer-pageApi";
 import { ToastContainer } from "react-toastify";
 import { InputWrapper } from "./style";
 import { useSearchWorkFormHook } from "./searchWorkFormHook";
 
 export function SearchWork() {
-	const { data: freelancerProfile } = useGetFreelancerQuery();
 	const {
 		onSubmit,
 		setFilter,
@@ -26,20 +22,19 @@ export function SearchWork() {
 		data,
 		freelancerFilter,
 		refetch,
+		proposals,
+		freelancerProfile,
 	} = useSearchWorkFormHook();
-	const { myProposals, allJobs, isFilterOpen, showMyProposals, showAllJobs, toggleFilterBox } =
-		useProposalsFilter();
-
-	const proposals =
-		publishedFilterJobs &&
-		publishedFilterJobs.filter(
-			job =>
-				job.proposals.filter(
-					proposal =>
-						freelancerProfile &&
-						freelancerProfile.proposals.filter(item => item.id === proposal.id).length > 0,
-				).length > 0,
-		);
+	const {
+		myProposals,
+		allJobs,
+		isFilterOpen,
+		myInvitations,
+		showMyProposals,
+		showAllJobs,
+		showMyInvitations,
+		toggleFilterBox,
+	} = useProposalsFilter();
 
 	return (
 		<StyledPage>
@@ -49,8 +44,10 @@ export function SearchWork() {
 				profile={freelancerProfile}
 				myProposals={myProposals}
 				allJobs={allJobs}
+				myInvitations={myInvitations}
 				showMyProposals={showMyProposals}
 				showAllJobs={showAllJobs}
+				showMyInvitations={showMyInvitations}
 			>
 				<InputWrapper>
 					{allJobs && (
@@ -64,6 +61,15 @@ export function SearchWork() {
 						/>
 					)}
 					{myProposals && (
+						<Pagination
+							itemsPerPage={5}
+							user={ROLES.FREELANCER}
+							data={proposals}
+							typePage={JOBS_PAGE}
+							profile={freelancerProfile}
+						/>
+					)}
+					{myInvitations && (
 						<Pagination
 							itemsPerPage={5}
 							user={ROLES.FREELANCER}

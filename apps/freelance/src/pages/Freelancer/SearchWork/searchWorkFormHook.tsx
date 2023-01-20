@@ -1,7 +1,7 @@
 import { SubmitHandler } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { JobsInterface, useGetJobsQuery } from "src/redux/jobs";
-import { useGetFreelancerQuery } from "src/redux/createFreelancer/freelancer-pageApi";
+import { IResponse, useGetFreelancerQuery } from "src/redux/createFreelancer/freelancer-pageApi";
 import { SelectOptions } from "src/utils/select-options/options";
 
 interface IUseSearchWorkFormHook {
@@ -14,6 +14,8 @@ interface IUseSearchWorkFormHook {
 	freelancerFilter: IFormInput | {};
 	refetch: () => void;
 	isLoading: boolean;
+	proposals?: JobsInterface[];
+	freelancerProfile?: IResponse;
 }
 
 interface JobSkills {
@@ -34,6 +36,7 @@ export interface IFormInput {
 export const useSearchWorkFormHook = (): IUseSearchWorkFormHook => {
 	const { data, isLoading } = useGetJobsQuery();
 	const { data: freelancerData, refetch } = useGetFreelancerQuery();
+	const { data: freelancerProfile } = useGetFreelancerQuery();
 	const [filterJobs, setFilterJobs] = useState(data);
 	const [toggleFilter, setToggleFilter] = useState<string>("reset");
 	const [filter, setFilter] = useState<IFormInput | any>({
@@ -118,6 +121,17 @@ export const useSearchWorkFormHook = (): IUseSearchWorkFormHook => {
 		availableAmountOfHour: freelancerData?.availableAmountOfHours,
 	};
 
+	const proposals =
+		publishedFilterJobs &&
+		publishedFilterJobs.filter(
+			job =>
+				job.proposals.filter(
+					proposal =>
+						freelancerProfile &&
+						freelancerProfile.proposals.filter(item => item.id === proposal.id).length > 0,
+				).length > 0,
+		);
+
 	return {
 		onSubmit,
 		setFilter,
@@ -128,5 +142,7 @@ export const useSearchWorkFormHook = (): IUseSearchWorkFormHook => {
 		freelancerFilter,
 		refetch,
 		isLoading,
+		proposals,
+		freelancerProfile,
 	};
 };

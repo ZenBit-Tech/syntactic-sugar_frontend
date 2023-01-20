@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import { useMemo } from "react";
 import moment from "moment";
 import {
 	GridContainer,
@@ -24,15 +23,14 @@ import {
 	Chat,
 } from "@freelance/components";
 import { InstObject, Proposal } from "redux/jobs";
-import { IProposal } from "redux/interfaces/IProposal";
-import { IInvitation, IResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { EMPLOYER_JOBS, JOBS_PAGE } from "utils/constants/breakpoint";
 import { ROLES } from "utils/constants/roles";
 import { DEFAULT_IMAGE } from "utils/constants/links";
 import { baseUrl } from "utils/constants/redux-query";
-import { IResponseEmployer } from "redux/createEmployer/employerApi";
 import { useJobCard } from "./job-cardHooks";
 import { useChat } from "./job-cardChatHooks";
+import { IInvitation, IResponse } from "redux/createFreelancer/freelancer-pageApi";
+import { IResponseEmployer } from "redux/createEmployer/employerApi";
 import { IChat } from "redux/chat/chatApi";
 
 export interface JobCardProps {
@@ -46,7 +44,6 @@ export interface JobCardProps {
 	title?: string;
 	countries?: InstObject[];
 	employmentType?: string;
-	proposals?: Proposal[];
 	availableAmountOfHours?: string;
 	workExperience?: string;
 	levelEnglish?: string;
@@ -57,11 +54,12 @@ export interface JobCardProps {
 	category?: InstObject;
 	isPublished?: boolean;
 	typePage?: TypePage;
-	profile?: IResponse | IResponseEmployer;
 	refetch?: () => void;
 	employerId?: string;
-	jobChats?: IChat[];
+	proposals?: Proposal[];
+	profile?: IResponse | IResponseEmployer;
 	invitation?: IInvitation[];
+	jobChats?: IChat[];
 }
 
 export function JobCard({
@@ -75,7 +73,6 @@ export function JobCard({
 	title,
 	countries,
 	employmentType,
-	proposals,
 	availableAmountOfHours,
 	workExperience,
 	skills,
@@ -84,11 +81,12 @@ export function JobCard({
 	userType,
 	typePage,
 	isPublished,
-	profile,
 	refetch,
 	employerId,
-	jobChats,
+	proposals,
 	invitation,
+	jobChats,
+	profile,
 }: JobCardProps) {
 	const { t } = useTranslation();
 	const prettyDate = moment(updatedDate).format("LL");
@@ -107,26 +105,15 @@ export function JobCard({
 		isProposalsListOpen,
 		isTogglingJob,
 		isModalEditJob,
-		proposalExist,
-	} = useJobCard({ isPublished });
+		isChat,
+		isInvitation,
+		isProposal,
+	} = useJobCard({ isPublished, invitation, jobChats, profile, proposals });
 	const { openChat, closeChat, chatModalOpen, continueChat } = useChat({
 		jobId,
 		employerId,
 		freelancerId: profile?.id,
 	});
-
-	const isChat = useMemo(
-		() => jobChats?.some(chat => chat.freelancer.id === profile?.id),
-		[jobChats, profile?.id],
-	);
-	const isInvitation = useMemo(
-		() => invitation?.some(inv => inv.freelancer.id === profile?.id),
-		[invitation, profile?.id],
-	);
-	const isProposal = useMemo(
-		() => proposalExist(profile?.proposals as IProposal[], proposals as IProposal[]),
-		[profile?.proposals, proposalExist, proposals],
-	);
 
 	return (
 		<StyledJobCard>

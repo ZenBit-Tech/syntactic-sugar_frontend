@@ -14,11 +14,13 @@ export interface DashboardProps {
 	invitations?: boolean;
 	allTalents?: boolean;
 	allJobs?: boolean;
+	myInvitations?: boolean;
 	handleToggleFilter?: () => void;
 	showMyProposals?: () => void;
 	showAllJobs?: () => void;
 	showInvitations?: () => void;
 	showAllTallents?: () => void;
+	showMyInvitations?: () => void;
 }
 
 export function Dashboard({
@@ -32,10 +34,12 @@ export function Dashboard({
 	allJobs,
 	invitations,
 	allTalents,
+	myInvitations,
 	showMyProposals,
 	showAllJobs,
 	showInvitations,
 	showAllTallents,
+	showMyInvitations,
 }: DashboardProps) {
 	return (
 		<Container>
@@ -46,8 +50,10 @@ export function Dashboard({
 						typePage={typePage}
 						myProposals={myProposals}
 						allJobs={allJobs}
+						myInvitations={myInvitations}
 						showMyProposals={showMyProposals}
 						showAllJobs={showAllJobs}
+						showMyInvitations={showMyInvitations}
 					/>
 					<Area>
 						<DashboardHeader userRole={userRole} typePage={typePage} profile={profile} />
