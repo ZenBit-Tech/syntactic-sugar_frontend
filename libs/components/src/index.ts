@@ -105,12 +105,18 @@ export * from "./lib/proposal-card/proposal-card";
 export * from "./lib/filter-container/filter-container";
 export * from "./lib/searchwork-filter/searchwork-filter";
 export * from "./lib/proposals-filter/proposals-filterHooks";
+export * from "./lib/talents-filter/talents-filter";
 
 //Freelancer Profile
 
 export * from "./lib/view-freelancer-profile/view-freelancer-profile";
 
+//SignUp
+
+export * from "./lib/terms-privacy-policy/terms-privacy-policy";
+
 //Invitation
+
 export * from "./lib/invitation-card/invitation-card";
 
 //Edit User Profile

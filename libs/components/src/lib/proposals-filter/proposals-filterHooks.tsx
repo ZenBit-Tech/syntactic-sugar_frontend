@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { JobsInterface, useGetJobsWithProposalsQuery } from "redux/jobs";
 
 interface IuseProposalsFilter {
 	myProposals: boolean;

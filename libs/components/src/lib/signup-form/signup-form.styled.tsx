@@ -23,6 +23,12 @@ export const Form = styled.form`
 		}
 	}
 
+	input[type="checkbox"] {
+		width: 15px;
+		height: 15px;
+		border-color: ${({ theme }) => theme.colors.darkGrey};
+	}
+
 	input[type="email"] {
 		background: url("/assets/images/user_icon.png") no-repeat 20px center;
 		background-size: 15px;
@@ -53,5 +59,15 @@ export const InputWrapper = styled.div`
 		padding: 0.5rem;
 		color: ${({ theme }) => theme.colors.white};
 		position: absolute;
+	}
+`;
+
+export const CheckboxWrapper = styled.div`
+	display: flex;
+	width: auto;
+	gap: 0.5rem;
+
+	label {
+		color: ${({ theme }) => theme.colors.darkGrey};
 	}
 `;
