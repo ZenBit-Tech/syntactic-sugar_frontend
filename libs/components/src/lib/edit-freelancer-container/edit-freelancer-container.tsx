@@ -30,11 +30,11 @@ export function EditFreelancerContainer({
 	const { data } = useEditFreelancerProfile({ setImageUrl });
 
 	return (
-		<Container modal>
+		<Container modal modalScroll>
 			<StyledTitle tag="h1" fontWeight={700} fontSize="lg">
 				{t("dashboard.editProfile")}
 			</StyledTitle>
-			<FlexContainer alignItems="start">
+			<FlexContainer alignItems="start" width={99}>
 				<StyledFileField
 					width={25}
 					imageUrl={existingImage}

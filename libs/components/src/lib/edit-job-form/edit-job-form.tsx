@@ -80,7 +80,7 @@ export function EditJobForm({ jobId }: IEditJobProps) {
 	} = useForm<IEditJobForm>({ resolver: yupResolver(schema) });
 
 	return (
-		<Container modal modalEditJob scroll>
+		<Container modal modalScroll>
 			{!isLoading && (
 				<>
 					<StyledTitle tag="h1" fontWeight={700} fontSize="lg">

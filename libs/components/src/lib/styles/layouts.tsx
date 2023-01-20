@@ -28,7 +28,7 @@ export const StyledPage = styled.div`
 
 interface IContainer {
 	modal?: boolean;
-	modalEditJob?: boolean;
+	modalScroll?: boolean;
 	proposalsList?: boolean;
 	scroll?: boolean;
 	proposalDetails?: boolean;
@@ -48,10 +48,13 @@ export const Container = styled.div<IContainer>`
 			width: 100%;
 			height: auto;
 		`}
-	${({ modalEditJob }) =>
-		modalEditJob &&
+	${({ modalScroll }) =>
+		modalScroll &&
 		css`
 			height: 85vh;
+			overflow-y: scroll;
+			border-radius: unset;
+			${styledScroll}
 		`}
   ${({ scroll }) =>
 		scroll &&
@@ -69,6 +72,7 @@ interface IGridContainer {
 	alignItems?: "end" | "center" | "start";
 	justifyItems?: "end" | "center" | "start";
 	gap?: number;
+	topLine?: boolean;
 }
 
 export const GridContainer = styled.div<IGridContainer>`
@@ -104,19 +108,33 @@ export const GridContainer = styled.div<IGridContainer>`
 		css`
 			gap: ${gap}px;
 		`}
+    ${({ topLine }) =>
+		topLine &&
+		css`
+			border-top: solid 1px ${({ theme }) => theme.colors.grey};
+			padding-top: 10px;
+		`}
 `;
 
 interface IGridItem {
-	gridColumn?: number;
+	topLine?: boolean;
 }
 
-export const GridItem = styled.div<IGridItem>``;
+export const GridItem = styled.div<IGridItem>`
+	${({ topLine }) =>
+		topLine &&
+		css`
+			border-top: solid 1px ${({ theme }) => theme.colors.grey};
+			padding-top: 10px;
+		`}
+`;
 
 interface IFlexContainer {
 	alignItems?: "start" | "end" | "center" | "baseline";
 	justifyContent?: "space-between" | "space-arround" | "center";
 	gap?: number;
 	culomn?: boolean;
+	width?: number;
 }
 
 export const FlexContainer = styled.div<IFlexContainer>`
@@ -142,5 +160,10 @@ export const FlexContainer = styled.div<IFlexContainer>`
 		culomn &&
 		css`
 			flex-direction: column;
+		`}
+  ${({ width }) =>
+		width &&
+		css`
+			width: ${width}%;
 		`}
 `;
