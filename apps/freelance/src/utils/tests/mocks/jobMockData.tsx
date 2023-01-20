@@ -52,4 +52,5 @@ export const mockJobData: JobsInterface = {
 		aboutUs: "Description of a company",
 		image: "url/image",
 	},
+	invitation: [],
 };

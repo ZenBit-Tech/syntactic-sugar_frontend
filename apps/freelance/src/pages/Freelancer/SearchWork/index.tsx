@@ -24,6 +24,7 @@ export function SearchWork() {
 		refetch,
 		proposals,
 		freelancerProfile,
+		invitations,
 	} = useSearchWorkFormHook();
 	const {
 		myProposals,
@@ -73,7 +74,7 @@ export function SearchWork() {
 						<Pagination
 							itemsPerPage={5}
 							user={ROLES.FREELANCER}
-							data={proposals}
+							data={invitations}
 							typePage={JOBS_PAGE}
 							profile={freelancerProfile}
 						/>

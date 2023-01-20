@@ -1,11 +1,5 @@
-import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-	StyledButton,
-	StyledParagraph,
-	ParagraphWrapper,
-	StyledTitle,
-} from "@freelance/components";
+import { StyledButton, StyledTitle } from "@freelance/components";
 import { IMessage } from "redux/chat/chatApi";
 import ChatMessage from "./chat-message";
 import { ChatUserCard } from "./chat-user-card";
@@ -23,7 +17,6 @@ import {
 import { useChatHook } from "./chatHooks";
 import ChatHeader from "./chat-header";
 
-/* eslint-disable-next-line */
 export interface ChatProps {
 	userType: string;
 	userId?: string;
@@ -42,7 +35,6 @@ export function Chat({ userType, userId }: ChatProps) {
 		setMessages,
 		messages,
 		isSuccess,
-		chatId,
 		refetch,
 	} = useChatHook({ userId, userType });
 
@@ -96,6 +88,7 @@ export function Chat({ userType, userId }: ChatProps) {
 			</ChatContainer>
 		);
 	}
+
 	return (
 		<ChatNoConversation>
 			<StyledTitle tag="h3" fontWeight={400} fontSize="md">
