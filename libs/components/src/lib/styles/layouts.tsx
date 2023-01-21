@@ -133,7 +133,7 @@ interface IFlexContainer {
 	alignItems?: "start" | "end" | "center" | "baseline";
 	justifyContent?: "space-between" | "space-arround" | "center";
 	gap?: number;
-	culomn?: boolean;
+	column?: boolean;
 	width?: number;
 }
 
@@ -156,8 +156,8 @@ export const FlexContainer = styled.div<IFlexContainer>`
 		css`
 			justify-content: ${justifyContent};
 		`}
-  ${({ culomn }) =>
-		culomn &&
+  ${({ column }) =>
+		column &&
 		css`
 			flex-direction: column;
 		`}

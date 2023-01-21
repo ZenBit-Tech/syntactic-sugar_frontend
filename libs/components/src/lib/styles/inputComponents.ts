@@ -10,7 +10,7 @@ export const inputIcons = css<Icss>`
 	}
 
 	#country ${({ selectIcons }) => selectIcons && ".react-select__control"} {
-		background: url("/assets/images/country_icon.png") no-repeat 20px center;
+		background: url("/assets/images/country_icon.png") no-repeat 20px 46%;
 	}
 
 	#category ${({ selectIcons }) => selectIcons && ".react-select__control"} {
@@ -18,7 +18,7 @@ export const inputIcons = css<Icss>`
 	}
 
 	#hourRate ${({ selectIcons }) => selectIcons && ".react-select__control"} {
-		background: url("/assets/images/hour_rate_icon.png") no-repeat 20px center;
+		background: url("/assets/images/hour_rate_icon.png") no-repeat 20px 46%;
 	}
 
 	#position ${({ selectIcons }) => selectIcons && ".react-select__control"} {
@@ -26,7 +26,7 @@ export const inputIcons = css<Icss>`
 	}
 
 	#amountHours ${({ selectIcons }) => selectIcons && ".react-select__control"} {
-		background: url("/assets/images/amount_hours_icon.png") no-repeat 20px center;
+		background: url("/assets/images/amount_hours_icon.png") no-repeat 20px 46%;
 	}
 
 	#skills ${({ selectIcons }) => selectIcons && ".react-select__control"} {
@@ -34,11 +34,11 @@ export const inputIcons = css<Icss>`
 	}
 
 	#workExperience ${({ selectIcons }) => selectIcons && ".react-select__control"} {
-		background: url("/assets/images/work_experience_icon.png") no-repeat 20px center;
+		background: url("/assets/images/work_experience_icon.png") no-repeat 20px 46%;
 	}
 
 	#employmentType ${({ selectIcons }) => selectIcons && ".react-select__control"} {
-		background: url("/assets/images/employment_type_icon.png") no-repeat 20px center;
+		background: url("/assets/images/employment_type_icon.png") no-repeat 20px 46%;
 	}
 
 	#englishLevel ${({ selectIcons }) => selectIcons && ".react-select__control"} {
@@ -62,7 +62,7 @@ export const inputIcons = css<Icss>`
 	}
 
 	#institute ${({ selectIcons }) => selectIcons && ".react-select__control"} {
-		background: url("/assets/images/institute_icon.png") no-repeat 20px center;
+		background: url("/assets/images/institute_icon.png") no-repeat 20px 46%;
 	}
 
 	#occupation ${({ selectIcons }) => selectIcons && ".react-select__control"} {
@@ -70,15 +70,15 @@ export const inputIcons = css<Icss>`
 	}
 
 	#period ${({ selectIcons }) => selectIcons && ".react-select__control"} {
-		background: url("/assets/images/period_icon.png") no-repeat 20px center;
+		background: url("/assets/images/period_icon.png") no-repeat 20px 46%;
 	}
 
 	#company ${({ selectIcons }) => selectIcons && ".react-select__control"} {
-		background: url("/assets/images/company_icon.png") no-repeat 20px center;
+		background: url("/assets/images/company_icon.png") no-repeat 20px 46%;
 	}
 
 	#workPosition ${({ selectIcons }) => selectIcons && ".react-select__control"} {
-		background: url("/assets/images/work_position_icon.png") no-repeat 20px center;
+		background: url("/assets/images/work_position_icon.png") no-repeat 20px 46%;
 	}
 
 	#fullName
@@ -139,11 +139,6 @@ const styles = css`
 	}
 
 	:valid {
-		color: ${({ theme }) => theme.colors.black};
-	}
-
-	:focus::placeholder,
-	:hover::placeholder {
 		color: ${({ theme }) => theme.colors.black};
 	}
 
