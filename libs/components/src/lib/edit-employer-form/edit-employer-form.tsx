@@ -164,7 +164,7 @@ export function EditEmployerForm({
 						{...register("aboutUs")}
 						placeholder={t("employer.create.aboutusLabel")}
 						rows={5}
-						maxLength={1000}
+						maxLength={600}
 					/>
 					{errors?.aboutUs && (
 						<StyledSpan fontSize="sm" type="validation">

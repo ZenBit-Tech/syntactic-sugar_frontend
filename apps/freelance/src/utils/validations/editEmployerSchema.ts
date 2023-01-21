@@ -37,6 +37,6 @@ export const useEditEmployerSchema = (): SchemaOf<IEditEmployerForm> => {
 		aboutUs: string()
 			.required(FIELD_REQUIRED)
 			.min(100, MESSAGE_DESCRIPTION_MIN_CHAR)
-			.max(1000, MESSAGE_DESCRIPTION_MAX_CHAR),
+			.max(600, MESSAGE_DESCRIPTION_MAX_CHAR),
 	});
 };

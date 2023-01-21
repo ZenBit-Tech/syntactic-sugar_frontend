@@ -20,7 +20,7 @@ export const useJobsValidationErrorMessages = (): IUseJobValidationErrorMessages
 	const { t } = useTranslation();
 
 	const INPUT_CHAR_NUMBER: number = 50;
-	const TEXTAREA_CHAR_NUMBER: number = 1000;
+	const TEXTAREA_CHAR_NUMBER: number = 600;
 	const FIELD_REQUIRED: string = t("newJobPosting.validation.messageFieldRequired");
 	const MESSAGE_JOB_TITLE_MAX_CHAR: string = t(
 		"newJobPosting.firstForm.validation.messageJobTitleMaxChar",
