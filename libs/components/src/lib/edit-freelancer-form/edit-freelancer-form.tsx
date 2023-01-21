@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Controller, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
 import {
 	EditForm,
@@ -22,7 +23,6 @@ import { useJobsValidationErrorMessages } from "utils/constants/jobs-validation-
 import { useEditFreelancerSchema } from "utils/validations/editFreelancerSchema";
 import { educationProps, workHistoryProps } from "redux/createFreelancer/freelancer-slice";
 import { useEditFreelancerForm } from "./edit-freelancer-formHook";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 export interface IEditFreelancerForm {
 	fullName: string;

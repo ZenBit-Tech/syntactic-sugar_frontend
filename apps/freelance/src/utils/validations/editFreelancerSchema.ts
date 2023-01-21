@@ -1,6 +1,6 @@
 import { array, object, SchemaOf, string } from "yup";
 import { IEditFreelancerForm } from "@freelance/components";
-import { useJobsValidationErrorMessages } from "../constants/jobs-validation-error-messages";
+import { useJobsValidationErrorMessages } from "utils/constants/jobs-validation-error-messages";
 
 export const useEditFreelancerSchema = (): SchemaOf<IEditFreelancerForm> => {
 	const { FIELD_REQUIRED, MESSAGE_JOB_TITLE_MAX_CHAR, MESSAGE_DESCRIPTION_MAX_CHAR, MAX_SKILLS } =
