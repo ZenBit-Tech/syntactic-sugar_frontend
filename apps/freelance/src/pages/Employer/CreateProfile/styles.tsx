@@ -1,35 +1,8 @@
 import styled from "styled-components";
-import { Form } from "@pages/Freelancer/CreateProfile1/style";
-import { TextAreaContainer } from "@pages/Freelancer/CreateProfile2/style";
+import { FlexContainer } from "@freelance/components";
 
-export const FormBox = styled(Form)`
-	height: 90%;
-	input {
-		padding-left: 3rem;
-	}
-
-	textarea {
-		height: 60%;
-		color: ${({ theme }) => theme.colors.black};
-		border: 2px solid ${({ theme }) => theme.colors.grey};
-		resize: none;
-		border-radius: 30px;
-		width: 80%;
-		padding: 1rem;
-		outline: none;
-		grid-column: 1 / -1;
-
-		::placeholder {
-			color: ${({ theme }) => theme.colors.grey};
-		}
-	}
-
-	span {
-		color: ${({ theme }) => theme.colors.black};
-		background-color: ${({ theme }) => theme.colors.darkRed};
-		border-radius: 3px;
-		display: block;
-	}
+export const Container = styled(FlexContainer)`
+	margin-top: 10px;
 `;
 
 export const InputContainer = styled.div`
@@ -46,19 +19,21 @@ export const StyledFileField = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	width: 80%;
+	width: 150px;
+
 	div {
 		display: flex;
 		justify-content: space-between;
-		width: 40%;
+		flex-direction: column;
+		width: 100%;
 	}
 	img {
 		border: 2px solid ${({ theme }) => theme.colors.grey};
 		background: ${({ theme }) => theme.colors.grey};
 		object-fit: cover;
 		border-radius: 10%;
-		height: 120px;
-		width: 120px;
+		height: 100%;
+		width: 100%;
 	}
 	label {
 		display: inline-flex;
@@ -66,13 +41,17 @@ export const StyledFileField = styled.div`
 		align-items: center;
 		color: ${({ theme }) => theme.colors.white};
 		border-radius: 100px;
-		font-size: 10px;
-		background-color: ${({ theme }) => theme.colors.darkRed};
+		font-size: 0.8rem;
+		background-color: ${({ theme }) => theme.colors.lightRed};
 		cursor: pointer;
 		width: 100%;
-		height: 20px;
-		cursor: pointer;
-		margin: 5px;
+		height: 30px;
+		margin-top: 10px;
+
+		&:not([disabled]):hover {
+			filter: brightness(1.1);
+			cursor: pointer;
+		}
 	}
 	input[type="file"],
 	input[type="button"] {

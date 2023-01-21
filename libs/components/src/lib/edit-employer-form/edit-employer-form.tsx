@@ -152,9 +152,9 @@ export function EditEmployerForm({
 						placeholder={t("employer.create.websiteLabel")}
 						width={100}
 					/>
-					{errors?.linkedIn && (
+					{errors?.website && (
 						<StyledSpan fontSize="sm" type="validation">
-							<strong>{errors?.linkedIn?.message}</strong>
+							<strong>{errors?.website?.message}</strong>
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>
@@ -164,7 +164,7 @@ export function EditEmployerForm({
 						{...register("aboutUs")}
 						placeholder={t("employer.create.aboutusLabel")}
 						rows={5}
-						maxLength={600}
+						maxLength={1000}
 					/>
 					{errors?.aboutUs && (
 						<StyledSpan fontSize="sm" type="validation">

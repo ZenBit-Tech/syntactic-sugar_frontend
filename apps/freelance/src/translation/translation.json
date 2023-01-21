@@ -403,6 +403,10 @@
 			"websiteLabel": "Website",
 			"aboutusLabel": "About us",
 			"btn1": " Create profile"
+		},
+		"validation": {
+			"website": "Add correct website URL",
+			"linkedin": "Add correct linkedin URL"
 		}
 	},
 	"jobDetails": {
