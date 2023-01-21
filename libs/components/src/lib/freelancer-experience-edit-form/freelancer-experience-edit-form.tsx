@@ -10,14 +10,12 @@ import {
 	IEditFreelancerForm,
 	ButtonContainer,
 } from "@freelance/components";
-import { IWorkHistoryResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useFreelancerExperienceEditForm } from "./freelancer-experience-edit-formHook";
 
 export interface FreelancerExperienceEditFormProps {
 	register: UseFormRegister<IEditFreelancerForm>;
 	control: Control<IEditFreelancerForm>;
-	workHistoryList?: IWorkHistoryResponse[];
 	errors: Partial<FieldErrorsImpl<IEditFreelancerForm>>;
 }
 
@@ -25,7 +23,6 @@ export function FreelancerExperienceEditForm({
 	register,
 	errors,
 	control,
-	workHistoryList,
 }: FreelancerExperienceEditFormProps) {
 	const { t } = useTranslation();
 	const { workHistoryFields, append, remove } = useFreelancerExperienceEditForm({ control });
@@ -47,7 +44,7 @@ export function FreelancerExperienceEditForm({
 								placeholder={t("freelancer.createProfile.companyPlaceholder")}
 								width={100}
 							/>
-							{errors?.workHistory && (
+							{errors?.workHistory?.[index]?.company && (
 								<StyledSpan fontSize="sm" type="validation">
 									<strong>{errors?.workHistory?.[index]?.company?.message}</strong>
 								</StyledSpan>
@@ -62,7 +59,7 @@ export function FreelancerExperienceEditForm({
 								placeholder={t("freelancer.createProfile.positionPlaceholder")}
 								width={100}
 							/>
-							{errors?.workHistory && (
+							{errors?.workHistory?.[index]?.workPosition && (
 								<StyledSpan fontSize="sm" type="validation">
 									<strong>{errors?.workHistory?.[index]?.workPosition?.message}</strong>
 								</StyledSpan>
@@ -77,7 +74,7 @@ export function FreelancerExperienceEditForm({
 								placeholder={t("freelancer.createProfile.periodPlaceholder")}
 								width={100}
 							/>
-							{errors?.workHistory && (
+							{errors?.workHistory?.[index]?.period && (
 								<StyledSpan fontSize="sm" type="validation">
 									<strong>{errors?.workHistory?.[index]?.period?.message}</strong>
 								</StyledSpan>

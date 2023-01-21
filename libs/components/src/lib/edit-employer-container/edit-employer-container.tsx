@@ -27,7 +27,7 @@ export function EditEmployerContainer({
 	setIsFormChange,
 }: EditEmployerContainerProps) {
 	const { t } = useTranslation();
-	const { data } = useEditEmployerProfile({ setImageUrl });
+	const { data, isFetching } = useEditEmployerProfile({ setImageUrl });
 
 	return (
 		<Container modal>
@@ -44,6 +44,7 @@ export function EditEmployerContainer({
 				/>
 				<EditEmployerForm
 					profile={data}
+					isFetching={isFetching}
 					imageUrl={existingImage}
 					isImageChanged={isImageChanged}
 					isFormChange={isFormChange}

@@ -19,8 +19,10 @@ import {
 } from "@freelance/components";
 import { SelectOptions, useOptions } from "utils/select-options/options";
 import { useJobsValidationErrorMessages } from "utils/constants/jobs-validation-error-messages";
+import { useEditFreelancerSchema } from "utils/validations/editFreelancerSchema";
 import { educationProps, workHistoryProps } from "redux/createFreelancer/freelancer-slice";
 import { useEditFreelancerForm } from "./edit-freelancer-formHook";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export interface IEditFreelancerForm {
 	fullName: string;
@@ -36,7 +38,6 @@ export interface IEditFreelancerForm {
 	education: educationProps[];
 	workHistory: workHistoryProps[];
 	otherExperience: string;
-	image: string;
 }
 
 export interface EditFreelancerFormProps {
@@ -70,6 +71,7 @@ export function EditFreelancerForm({
 		workExperience,
 		englishLevel,
 	} = useOptions();
+	const schema = useEditFreelancerSchema();
 	const {
 		handleSubmit,
 		control,
@@ -81,6 +83,7 @@ export function EditFreelancerForm({
 			education: profile?.education || [{ institute: "", occupation: "", period: "" }],
 			workHistory: profile?.workHistory || [{ company: "", workPosition: "", period: "" }],
 		},
+		resolver: yupResolver(schema),
 	});
 	const { onSubmit, isLoading } = useEditFreelancerForm({
 		imageUrl,
@@ -334,18 +337,8 @@ export function EditFreelancerForm({
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>
-				<FreelancerEducationEditForm
-					register={register}
-					errors={errors}
-					control={control}
-					educationList={profile?.education}
-				/>
-				<FreelancerExperienceEditForm
-					register={register}
-					errors={errors}
-					control={control}
-					workHistoryList={profile?.workHistory}
-				/>
+				<FreelancerEducationEditForm register={register} errors={errors} control={control} />
+				<FreelancerExperienceEditForm register={register} errors={errors} control={control} />
 				<ErrorsHandlerWrapper positionRight={-21} width={18}>
 					<EditProfileTextArea
 						defaultValue={profile?.otherExperience}

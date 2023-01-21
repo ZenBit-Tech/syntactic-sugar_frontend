@@ -11,13 +11,11 @@ import {
 	ButtonContainer,
 	StyledButton,
 } from "@freelance/components";
-import { IEduResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { useFreelancerEducationEditForm } from "./freelancer-education-edit-formHook";
 
 export interface FreelancerEducationEditFormProps {
 	register: UseFormRegister<IEditFreelancerForm>;
 	control: Control<IEditFreelancerForm>;
-	educationList?: IEduResponse[];
 	errors: Partial<FieldErrorsImpl<IEditFreelancerForm>>;
 }
 
@@ -25,7 +23,6 @@ export function FreelancerEducationEditForm({
 	register,
 	errors,
 	control,
-	educationList,
 }: FreelancerEducationEditFormProps) {
 	const { t } = useTranslation();
 	const { educationFields, remove, append } = useFreelancerEducationEditForm({ control });
@@ -47,7 +44,7 @@ export function FreelancerEducationEditForm({
 								placeholder={t("freelancer.createProfile.institutePlaceholder")}
 								width={100}
 							/>
-							{errors?.education && (
+							{errors?.education?.[index]?.institute && (
 								<StyledSpan fontSize="sm" type="validation">
 									<strong>{errors?.education?.[index]?.institute?.message}</strong>
 								</StyledSpan>
@@ -62,7 +59,7 @@ export function FreelancerEducationEditForm({
 								placeholder={t("freelancer.createProfile.occupationPlaceholder")}
 								width={100}
 							/>
-							{errors?.education && (
+							{errors?.education?.[index]?.occupation && (
 								<StyledSpan fontSize="sm" type="validation">
 									<strong>{errors?.education?.[index]?.occupation?.message}</strong>
 								</StyledSpan>
@@ -77,7 +74,7 @@ export function FreelancerEducationEditForm({
 								placeholder={t("freelancer.createProfile.periodPlaceholder")}
 								width={100}
 							/>
-							{errors?.education && (
+							{errors?.education?.[index]?.period && (
 								<StyledSpan fontSize="sm" type="validation">
 									<strong>{errors?.education?.[index]?.period?.message}</strong>
 								</StyledSpan>
