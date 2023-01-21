@@ -122,12 +122,10 @@ export function EditFreelancerForm({
 						name="category"
 						control={control}
 						defaultValue={setRemoteObject(profile?.category, categories)}
-						rules={{ required: true }}
 						render={({ field }) => (
 							<SelectElement
 								options={categories}
 								{...field}
-								required
 								id="category"
 								isClearable
 								placeholder={t("freelancer.createProfile.selectOption.category")}
@@ -138,7 +136,9 @@ export function EditFreelancerForm({
 					/>
 					{errors?.category && (
 						<StyledSpan fontSize="sm" type="validation">
-							<strong>{errors?.category?.message}</strong>
+							<strong>
+								{errors?.category?.label ? errors?.category?.label.message : FIELD_REQUIRED}
+							</strong>
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>
