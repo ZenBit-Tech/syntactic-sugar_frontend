@@ -50,8 +50,8 @@ export interface IResponse {
 	availableAmountOfHours: string;
 	workExperience: string;
 	englishLevel: string;
-	education?: IEduResponse[];
-	workHistory?: IWorkHistoryResponse[];
+	education: IEduResponse[];
+	workHistory: IWorkHistoryResponse[];
 	otherExperience?: string;
 	isPublished: boolean;
 	createdDate: string;
@@ -71,6 +71,14 @@ export const createFreelancerApi = createApi({
 			query: (body: IFormInput) => ({
 				url: "freelancer/create",
 				method: "POST",
+				body,
+			}),
+			invalidatesTags: ["freelancer"],
+		}),
+		updateFreelancerProfile: builder.mutation<void, IFormInput>({
+			query: body => ({
+				url: "freelancer/update-freelancer",
+				method: "PUT",
 				body,
 			}),
 			invalidatesTags: ["freelancer"],
@@ -96,6 +104,7 @@ export const createFreelancerApi = createApi({
 
 export const {
 	useCreateFreelancerMutation,
+	useUpdateFreelancerProfileMutation,
 	useAddPublishedMutation,
 	useGetFreelancerQuery,
 	useGetAllFreelancersQuery,

@@ -27,7 +27,7 @@ export function EditFreelancerContainer({
 	setIsFormChange,
 }: EditFreelancerContainerProps) {
 	const { t } = useTranslation();
-	const { data } = useEditFreelancerProfile({ setImageUrl });
+	const { data, isFetching } = useEditFreelancerProfile({ setImageUrl });
 
 	return (
 		<Container modal modalScroll>
@@ -44,6 +44,7 @@ export function EditFreelancerContainer({
 				/>
 				<EditFreelancerForm
 					profile={data}
+					isFetching={isFetching}
 					imageUrl={existingImage}
 					isImageChanged={isImageChanged}
 					isFormChange={isFormChange}

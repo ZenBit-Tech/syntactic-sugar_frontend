@@ -9,14 +9,14 @@ interface IUseEditFreelancerProfileParams {
 
 interface IUseEditFreelancerProfile {
 	data?: IResponse;
-	isLoading: boolean;
+	isFetching: boolean;
 }
 
 export const useEditFreelancerProfile = ({
 	setImageUrl,
 }: IUseEditFreelancerProfileParams): IUseEditFreelancerProfile => {
 	const { SERVER_ERROR_MESSAGE } = useJobsValidationErrorMessages();
-	const { data, isLoading, isError, isSuccess } = useGetFreelancerQuery();
+	const { data, isError, isSuccess, isFetching } = useGetFreelancerQuery();
 
 	useEffect(() => {
 		isSuccess && setImageUrl(data.image ? data.image : "");
@@ -25,6 +25,6 @@ export const useEditFreelancerProfile = ({
 
 	return {
 		data,
-		isLoading,
+		isFetching,
 	};
 };

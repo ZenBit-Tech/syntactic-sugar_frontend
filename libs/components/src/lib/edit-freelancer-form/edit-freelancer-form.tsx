@@ -4,9 +4,12 @@ import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
 import {
 	EditForm,
 	ErrorsHandlerWrapper,
+	EditProfileTextArea,
 	Input,
 	StyledSpan,
 	SelectElement,
+	ButtonContainer,
+	StyledButton,
 	GridContainer,
 	setRemoteArray,
 	selectDefaultObject,
@@ -17,6 +20,7 @@ import {
 import { SelectOptions, useOptions } from "utils/select-options/options";
 import { useJobsValidationErrorMessages } from "utils/constants/jobs-validation-error-messages";
 import { educationProps, workHistoryProps } from "redux/createFreelancer/freelancer-slice";
+import { useEditFreelancerForm } from "./edit-freelancer-formHook";
 
 export interface IEditFreelancerForm {
 	fullName: string;
@@ -31,12 +35,14 @@ export interface IEditFreelancerForm {
 	englishLevel: SelectOptions;
 	education: educationProps[];
 	workHistory: workHistoryProps[];
+	otherExperience: string;
 	image: string;
 }
 
 export interface EditFreelancerFormProps {
 	imageUrl: string;
 	profile?: IResponse;
+	isFetching: boolean;
 	isImageChanged: boolean;
 	isFormChange: boolean;
 	setIsFormChange: React.Dispatch<React.SetStateAction<boolean>>;
@@ -46,6 +52,7 @@ export interface EditFreelancerFormProps {
 export function EditFreelancerForm({
 	profile,
 	imageUrl,
+	isFetching,
 	isImageChanged,
 	isFormChange,
 	setIsFormChange,
@@ -75,9 +82,21 @@ export function EditFreelancerForm({
 			workHistory: profile?.workHistory || [{ company: "", workPosition: "", period: "" }],
 		},
 	});
+	const { onSubmit, isLoading } = useEditFreelancerForm({
+		imageUrl,
+		reset,
+		isFetching,
+		isFormChange,
+		setIsFormChange,
+		isDirty,
+		setIsImageChanged,
+		profile,
+		education: profile?.education,
+		workHistory: profile?.workHistory,
+	});
 
 	return (
-		<EditForm>
+		<EditForm onSubmit={handleSubmit(onSubmit)}>
 			<GridContainer gap={10}>
 				<ErrorsHandlerWrapper positionRight={-21} width={18}>
 					<Input
@@ -327,6 +346,31 @@ export function EditFreelancerForm({
 					control={control}
 					workHistoryList={profile?.workHistory}
 				/>
+				<ErrorsHandlerWrapper positionRight={-21} width={18}>
+					<EditProfileTextArea
+						defaultValue={profile?.otherExperience}
+						{...register("otherExperience")}
+						placeholder={t("freelancer.createProfile.otherExperienceLabel")}
+						rows={5}
+						maxLength={600}
+					/>
+					{errors?.otherExperience && (
+						<StyledSpan fontSize="sm" type="validation">
+							<strong>{errors?.otherExperience?.message}</strong>
+						</StyledSpan>
+					)}
+				</ErrorsHandlerWrapper>
+				<ButtonContainer align="center">
+					<StyledButton
+						type="submit"
+						buttonSize="sm"
+						fontSize="lg"
+						buttonColor={"redGradient"}
+						disabled={(!isImageChanged && !isDirty) || isLoading}
+					>
+						{isLoading ? t("loading") : t("editJob.saveChanges")}
+					</StyledButton>
+				</ButtonContainer>
 			</GridContainer>
 		</EditForm>
 	);
