@@ -32,6 +32,7 @@ import { useChat } from "./job-cardChatHooks";
 import { IInvitation, IResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { IResponseEmployer } from "redux/createEmployer/employerApi";
 import { IChat } from "redux/chat/chatApi";
+import { IOffer } from "redux/offer/offerApi";
 
 export interface JobCardProps {
 	jobId: string;
@@ -60,6 +61,7 @@ export interface JobCardProps {
 	profile?: IResponse | IResponseEmployer;
 	invitation?: IInvitation[];
 	jobChats?: IChat[];
+	offer?: IOffer[];
 }
 
 export function JobCard({
@@ -87,6 +89,7 @@ export function JobCard({
 	invitation,
 	jobChats,
 	profile,
+	offer,
 }: JobCardProps) {
 	const { t } = useTranslation();
 	const prettyDate = moment(updatedDate).format("LL");
@@ -108,7 +111,9 @@ export function JobCard({
 		isChat,
 		isInvitation,
 		isProposal,
-	} = useJobCard({ isPublished, invitation, jobChats, profile, proposals });
+		isOffer,
+		offerTax,
+	} = useJobCard({ isPublished, invitation, jobChats, profile, proposals, offer });
 	const { openChat, closeChat, chatModalOpen, continueChat } = useChat({
 		jobId,
 		employerId,
@@ -164,7 +169,8 @@ export function JobCard({
 					typePage === JOBS_PAGE &&
 					!isInvitation &&
 					isProposal &&
-					isChat && (
+					isChat &&
+					!isOffer && (
 						<GridContainer alignItems="center" justifyItems="center">
 							<FreelancerButtonWrapper>
 								<StyledButton
@@ -206,6 +212,19 @@ export function JobCard({
 						</FreelancerButtonWrapper>
 					</GridContainer>
 				)}
+				{userType === ROLES.FREELANCER &&
+					typePage === JOBS_PAGE &&
+					!isInvitation &&
+					isChat &&
+					isOffer && (
+						<GridContainer alignItems="center" justifyItems="center">
+							<CardNotification fontSize="md">
+								<strong>
+									{t("jobCard.offerReceived")} ${offerTax}
+								</strong>
+							</CardNotification>
+						</GridContainer>
+					)}
 				{userType === ROLES.EMPLOYER && (
 					<GridContainer alignItems="center" justifyItems="center" gap={10}>
 						<EmployerButtonWrapper>

@@ -35,8 +35,8 @@ export const useChat = ({ jobId, employerId, freelancerId }: ChatHooksProps): IU
 	const openChat = async (): Promise<void> => {
 		try {
 			await createChat({ freelancerId, employerId, jobId });
-			await refetchProposals();
-			await refetchJobs();
+			refetchProposals();
+			refetchJobs();
 			setChatModalOpen(true);
 		} catch (error) {
 			toast.error(t("serverErrorMessage"));

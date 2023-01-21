@@ -51,7 +51,7 @@ export interface JobsInterface {
 	otherRequirenments: string;
 	employer: IEmployerResponse;
 	chats?: IChat[];
-	offers?: IOffer[];
+	offers: IOffer[];
 	value?: string;
 	invitation: IInvitation[];
 }

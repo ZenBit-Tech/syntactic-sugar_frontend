@@ -76,6 +76,7 @@ export function Items({ data, user, typePage, profile, refetch }: CurrentItems) 
 							employerId={job.employer?.id}
 							jobChats={job.chats}
 							invitation={job.invitation}
+							offer={job.offers}
 						/>
 					);
 				})}

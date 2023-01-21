@@ -23,7 +23,6 @@ import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { DEFAULT_IMAGE } from "utils/constants/links";
 import { baseUrl } from "utils/constants/redux-query";
 import { IChat } from "redux/chat/chatApi";
-import { ROLES } from "utils/constants/roles";
 import { useProposalCard } from "./proposal-cardHook";
 
 export interface ProposalCardProps {
@@ -40,10 +39,8 @@ export interface ProposalCardProps {
 }
 
 export function ProposalCard({
-	id,
 	coverLetter,
 	hourRate,
-	filePath,
 	createdDate,
 	freelancer,
 	employerId,
@@ -68,7 +65,7 @@ export function ProposalCard({
 	});
 	const isChat = useMemo(
 		() => jobChats?.some(chat => chat.employer?.id === employerId),
-		[jobChats?.length, employerId],
+		[jobChats, employerId],
 	);
 
 	return (

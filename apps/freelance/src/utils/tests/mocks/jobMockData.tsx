@@ -53,4 +53,5 @@ export const mockJobData: JobsInterface = {
 		image: "url/image",
 	},
 	invitation: [],
+	offers: [],
 };

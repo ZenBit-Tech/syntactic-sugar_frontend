@@ -18,6 +18,7 @@ interface IUseSearchWorkFormHook {
 	proposals?: JobsInterface[];
 	freelancerProfile?: IResponse;
 	invitations?: JobsInterface[];
+	offers?: JobsInterface[];
 }
 
 export interface IFormInput {
@@ -140,7 +141,17 @@ export const useSearchWorkFormHook = (): IUseSearchWorkFormHook => {
 						freelancerProfile.invitation.filter(item => item.id === inv.id).length > 0,
 				).length > 0,
 		);
-	console.log(invitations);
+
+	const offers =
+		publishedFilterJobs &&
+		publishedFilterJobs.filter(
+			job =>
+				job.offers.filter(
+					offer =>
+						freelancerProfile &&
+						freelancerProfile.offers.filter(item => item.id === offer.id).length > 0,
+				).length > 0,
+		);
 
 	return {
 		onSubmit,
@@ -155,5 +166,6 @@ export const useSearchWorkFormHook = (): IUseSearchWorkFormHook => {
 		proposals,
 		freelancerProfile,
 		invitations,
+		offers,
 	};
 };

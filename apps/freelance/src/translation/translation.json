@@ -82,7 +82,8 @@
 		"publishedNotification": "Your job is visible to freelancer now",
 		"canNotEdit": "You have got a proposal already. You can’t edit this job any more",
 		"proposalRecived": "Proposal received",
-		"proposalSent": "Proposal was sent"
+		"proposalSent": "Proposal was sent",
+		"offerReceived": "Offer received"
 	},
 	"editJob": {
 		"saveChanges": "Save changes",
@@ -405,10 +406,10 @@
 		"noConversations": "You have no conversations yet",
 		"startChat": "Start chat",
 		"continueChat": "Continue chat",
-    "offer": "Offer",
-    "sendOffer": "Send offer",
-    "offerSent": "Offer sent",
-    "offerRecieved": "Offer recieved"
+		"offer": "Offer",
+		"sendOffer": "Send offer",
+		"offerSent": "Offer sent",
+		"offerRecieved": "Offer recieved"
 	},
 	"talents": {
 		"inv": "Invite to interview",

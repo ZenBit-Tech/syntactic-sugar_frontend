@@ -4,7 +4,7 @@ import {
 	SearchWorkFilter,
 	FilterBox,
 	StyledPage,
-	useProposalsFilter,
+	useSidebarFilter,
 } from "@freelance/components";
 import { JOBS_PAGE } from "src/utils/constants/breakpoint";
 import { ROLES } from "src/utils/constants/roles";
@@ -25,17 +25,20 @@ export function SearchWork() {
 		proposals,
 		freelancerProfile,
 		invitations,
+		offers,
 	} = useSearchWorkFormHook();
 	const {
 		myProposals,
 		allJobs,
 		isFilterOpen,
 		myInvitations,
+		myOffers,
 		showMyProposals,
 		showAllJobs,
 		showMyInvitations,
+		showMyOffers,
 		toggleFilterBox,
-	} = useProposalsFilter();
+	} = useSidebarFilter();
 
 	return (
 		<StyledPage>
@@ -46,9 +49,11 @@ export function SearchWork() {
 				myProposals={myProposals}
 				allJobs={allJobs}
 				myInvitations={myInvitations}
+				myOffers={myOffers}
 				showMyProposals={showMyProposals}
 				showAllJobs={showAllJobs}
 				showMyInvitations={showMyInvitations}
+				showMyOffers={showMyOffers}
 			>
 				<InputWrapper>
 					{allJobs && (
@@ -75,6 +80,15 @@ export function SearchWork() {
 							itemsPerPage={5}
 							user={ROLES.FREELANCER}
 							data={invitations}
+							typePage={JOBS_PAGE}
+							profile={freelancerProfile}
+						/>
+					)}
+					{myOffers && (
+						<Pagination
+							itemsPerPage={5}
+							user={ROLES.FREELANCER}
+							data={offers}
 							typePage={JOBS_PAGE}
 							profile={freelancerProfile}
 						/>

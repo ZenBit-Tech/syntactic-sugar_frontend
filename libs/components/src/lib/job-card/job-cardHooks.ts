@@ -6,6 +6,7 @@ import { IProposal } from "redux/interfaces/IProposal";
 import { IInvitation, IResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { IChat } from "redux/chat/chatApi";
 import { IResponseEmployer } from "redux/createEmployer/employerApi";
+import { IOffer } from "redux/offer/offerApi";
 
 interface IUseJobCardParams {
 	isPublished?: boolean;
@@ -13,6 +14,7 @@ interface IUseJobCardParams {
 	jobChats?: IChat[];
 	profile?: IResponse | IResponseEmployer;
 	proposals?: Proposal[];
+	offer?: IOffer[];
 }
 
 interface IUseJobCard {
@@ -37,6 +39,8 @@ interface IUseJobCard {
 	isChat?: boolean;
 	isInvitation?: boolean;
 	isProposal?: boolean;
+	isOffer?: boolean;
+	offerTax?: string[];
 }
 
 export const useJobCard = ({
@@ -45,6 +49,7 @@ export const useJobCard = ({
 	jobChats,
 	profile,
 	proposals,
+	offer,
 }: IUseJobCardParams): IUseJobCard => {
 	const { t } = useTranslation();
 	const [proposalModalOpen, setProposalModalOpen] = useState<boolean>(false);
@@ -133,6 +138,12 @@ export const useJobCard = ({
 		() => proposalExist(profile?.proposals as IProposal[], proposals as IProposal[]),
 		[profile?.proposals, proposals],
 	);
+	const isOffer = useMemo(
+		() => offer?.some(o => o.freelancer.id === profile?.id),
+		[offer, profile?.id],
+	);
+
+	const offerTax = offer?.map(item => item.hourRate);
 
 	return {
 		handleToggleIsPublishedButton,
@@ -153,5 +164,7 @@ export const useJobCard = ({
 		isChat,
 		isInvitation,
 		isProposal,
+		isOffer,
+		offerTax,
 	};
 };
