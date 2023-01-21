@@ -111,7 +111,12 @@ export * from "./lib/talents-filter/talents-filter";
 
 export * from "./lib/view-freelancer-profile/view-freelancer-profile";
 
+//SignUp
+
+export * from "./lib/terms-privacy-policy/terms-privacy-policy";
+
 //Invitation
+
 export * from "./lib/invitation-card/invitation-card";
 export * from "./lib/invitation-filter/invitation-filterHooks";
 
