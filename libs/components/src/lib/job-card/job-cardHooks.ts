@@ -98,6 +98,7 @@ export const useJobCard = ({ isPublished }: IUseJobCardParams): IUseJobCard => {
 				})
 				.some(item => item !== undefined);
 		}
+
 		return false;
 	};
 
@@ -116,6 +117,6 @@ export const useJobCard = ({ isPublished }: IUseJobCardParams): IUseJobCard => {
 		openProposalsList,
 		closeProposalsList,
 		isProposalsListOpen,
-    proposalExist,
+		proposalExist,
 	};
 };

@@ -16,6 +16,8 @@ export interface PaginationProps {
 	typePage?: TypePage;
 	profile?: IResponse | IResponseEmployer;
 	refetch?: () => void;
+	closeProposalsList?: () => void;
+	openProposalsList?: () => void;
 }
 
 export interface ReactPaginateEvent {
@@ -29,6 +31,8 @@ export function Pagination({
 	typePage,
 	profile,
 	refetch,
+	closeProposalsList,
+	openProposalsList,
 }: PaginationProps) {
 	const dataLength = data?.length ? data?.length : 0;
 	const [itemOffset, setItemOffset] = useState<number>(0);
@@ -50,6 +54,8 @@ export function Pagination({
 					typePage={typePage}
 					profile={profile}
 					refetch={refetch}
+					closeProposalsList={closeProposalsList}
+					openProposalsList={openProposalsList}
 				/>
 			</PaginationItemsWrapper>
 			<StyledReactPagination

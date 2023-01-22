@@ -4,9 +4,11 @@ import { useTranslation } from "react-i18next";
 
 interface IProposalsListProps {
 	id: string;
+	closeProposalsList?: () => void;
+	openProposalsList?: () => void;
 }
 
-export function ProposalsList({ id }: IProposalsListProps) {
+export function ProposalsList({ id, closeProposalsList, openProposalsList }: IProposalsListProps) {
 	const { t } = useTranslation();
 	const { data: proposalsList } = useGetProposalsByJobIdQuery(id);
 
@@ -15,7 +17,14 @@ export function ProposalsList({ id }: IProposalsListProps) {
 			<StyledTitle tag="h1" fontWeight={700} fontSize="lg">
 				{t("proposalsList")}
 			</StyledTitle>
-			<Pagination itemsPerPage={5} user="employer" data={proposalsList} typePage="proposalsList" />
+			<Pagination
+				itemsPerPage={5}
+				user="employer"
+				data={proposalsList}
+				typePage="proposalsList"
+				closeProposalsList={closeProposalsList}
+				openProposalsList={openProposalsList}
+			/>
 		</Container>
 	);
 }

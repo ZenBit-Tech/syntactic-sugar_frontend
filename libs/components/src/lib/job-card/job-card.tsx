@@ -312,7 +312,11 @@ export function JobCard({
 						<EditJobForm jobId={jobId} />
 					</CardModal>
 					<CardModal open={isProposalsListOpen} onCancel={closeProposalsList} width={1000}>
-						<ProposalsList id={jobId} />
+						<ProposalsList
+							id={jobId}
+							closeProposalsList={closeProposalsList}
+							openProposalsList={openProposalsList}
+						/>
 					</CardModal>
 				</>
 			)}
