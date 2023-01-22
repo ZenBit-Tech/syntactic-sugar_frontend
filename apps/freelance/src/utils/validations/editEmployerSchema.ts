@@ -9,7 +9,6 @@ export const useEditEmployerSchema = (): SchemaOf<IEditEmployerForm> => {
 		CORRECT_PHONE,
 		MIN_TWELVE_CHAR,
 		MESSAGE_DESCRIPTION_MAX_CHAR,
-		MESSAGE_DESCRIPTION_MIN_CHAR,
 		WEBSITE_ERROR_MESSAGE,
 		LINKED_IN_ERROR_MESSAGE,
 	} = useJobsValidationErrorMessages();
@@ -34,9 +33,6 @@ export const useEditEmployerSchema = (): SchemaOf<IEditEmployerForm> => {
 			.max(50, MESSAGE_JOB_TITLE_MAX_CHAR)
 			.required(FIELD_REQUIRED)
 			.matches(/(^http[s]?:\/{2})|(^www)|(^\/{1,2})/gim, WEBSITE_ERROR_MESSAGE),
-		aboutUs: string()
-			.required(FIELD_REQUIRED)
-			.min(100, MESSAGE_DESCRIPTION_MIN_CHAR)
-			.max(600, MESSAGE_DESCRIPTION_MAX_CHAR),
+		aboutUs: string().required(FIELD_REQUIRED).max(600, MESSAGE_DESCRIPTION_MAX_CHAR),
 	});
 };
