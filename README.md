@@ -2,7 +2,7 @@
 
 This template was made with Nx - smart, fast and extensible build system with first class monorepo support and powerful integrations. Please, go throw docs - https://nx.dev/
 
-## To run application locally:
+## To run application locally
 
 1. Make sure you have an LTS version of Node.js installed on your computer. Download and install if it is necessary.
 2. Clone this repo.
