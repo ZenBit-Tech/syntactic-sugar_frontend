@@ -10,6 +10,13 @@ This template was made with Nx - smart, fast and extensible build system with fi
 4. Start development mode by running the command npm start.
 5. Navigate to the address in your browser http://localhost:4200. This page will automatically reload after saving changes to project files.
 
+##  Deployment
+
+```bash
+$ git pull
+$ npm run build
+```
+
 Frontend repo - https://github.com/ZenBit-Tech/syntactic-sugar_frontend
 
 Backend repo - https://github.com/ZenBit-Tech/syntactic-sugar_be
@@ -18,10 +25,10 @@ Backend repo - https://github.com/ZenBit-Tech/syntactic-sugar_be
 ## Clone the repo from command line:
 
 ```sh
-git clone https://github.com/ZenBit-Tech/syntactic-sugar_frontend
-cd syntactic-sugar_frontend
-npm i
-npm start
+$ git clone https://github.com/ZenBit-Tech/syntactic-sugar_frontend
+$ cd syntactic-sugar_frontend
+$ npm i
+$ npm start
 ```
 ## Extra explanation for use
 
