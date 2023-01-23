@@ -39,7 +39,6 @@ export const useEditFreelancerForm = ({
 	setIsImageChanged,
 	education,
 	workHistory,
-	profile,
 }: IUseEditFreelancerFormParams): IUseEditFreelancerForm => {
 	const { t } = useTranslation();
 	const [updateFreelancerProfile, { isLoading, isSuccess, isError }] =
