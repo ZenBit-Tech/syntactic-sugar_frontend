@@ -48,7 +48,16 @@ export const createEmployerApi = createApi({
 			query: () => `/employer/profile`,
 			providesTags: ["employer"],
 		}),
+		updateEmployer: builder.mutation<void, IFormInput>({
+			query: body => ({
+				url: `/employer/update-employer`,
+				method: "PUT",
+				body,
+			}),
+			invalidatesTags: ["employer"],
+		}),
 	}),
 });
 
-export const { useCreateEmployerMutation, useGetEmployerQuery } = createEmployerApi;
+export const { useCreateEmployerMutation, useGetEmployerQuery, useUpdateEmployerMutation } =
+	createEmployerApi;

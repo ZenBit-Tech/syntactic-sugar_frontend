@@ -105,13 +105,26 @@ export * from "./lib/proposal-card/proposal-card";
 export * from "./lib/filter-container/filter-container";
 export * from "./lib/searchwork-filter/searchwork-filter";
 export * from "./lib/proposals-filter/proposals-filterHooks";
+export * from "./lib/talents-filter/talents-filter";
 
 //Freelancer Profile
 
 export * from "./lib/view-freelancer-profile/view-freelancer-profile";
+
+//SignUp
+
+export * from "./lib/terms-privacy-policy/terms-privacy-policy";
+
+//Invitation
+
+export * from "./lib/invitation-card/invitation-card";
 
 //Edit User Profile
 
 export * from "./lib/styled-file-field/styled-file-field";
 export * from "./lib/edit-employer-container/edit-employer-container";
 export * from "./lib/edit-freelancer-container/edit-freelancer-container";
+export * from "./lib/edit-employer-form/edit-employer-form";
+export * from "./lib/edit-freelancer-form/edit-freelancer-form";
+export * from "./lib/freelancer-education-edit-form/freelancer-education-edit-form";
+export * from "./lib/freelancer-experience-edit-form/freelancer-experience-edit-form";

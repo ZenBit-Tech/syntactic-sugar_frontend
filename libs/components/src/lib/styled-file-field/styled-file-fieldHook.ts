@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { useUploadImageMutation } from "redux/uploadImage/upload-image.api";
 import { useJobsValidationErrorMessages } from "utils/constants/jobs-validation-error-messages";
-import { baseUrl } from "utils/constants/redux-query";
 
 interface IUseStyledFileField {
 	setDefaultImage: () => void;
@@ -11,17 +10,20 @@ interface IUseStyledFileField {
 
 interface IUseStyledFilefieldParams {
 	defaultImage: string;
+	setIsImageChanged: React.Dispatch<React.SetStateAction<boolean>>;
 	setImageUrl: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const useStyledFileField = ({
 	defaultImage,
+	setIsImageChanged,
 	setImageUrl,
 }: IUseStyledFilefieldParams): IUseStyledFileField => {
 	const { SERVER_ERROR_MESSAGE } = useJobsValidationErrorMessages();
 	const [uploadImage, { data: imageData, isError, isSuccess }] = useUploadImageMutation();
 
 	const setDefaultImage = () => {
+		setIsImageChanged(true);
 		setImageUrl(defaultImage);
 	};
 
@@ -34,15 +36,16 @@ export const useStyledFileField = ({
 			formData.append("file", event.currentTarget.files[0]);
 			event.currentTarget.value = "";
 			await uploadImage(formData);
-		} catch (error) {
-			alert(error);
+			setIsImageChanged(true);
+		} catch {
+			toast.error(SERVER_ERROR_MESSAGE);
 		}
 	};
 
 	useEffect(() => {
-		isSuccess && setImageUrl(baseUrl + "/" + imageData?.file);
+		isSuccess && setImageUrl(imageData ? imageData.file : "");
 		isError && toast.error(SERVER_ERROR_MESSAGE);
-	}, [isSuccess, isError, imageData?.file, setImageUrl, SERVER_ERROR_MESSAGE]);
+	}, [isSuccess, isError, imageData?.file, setImageUrl, SERVER_ERROR_MESSAGE, imageData]);
 
 	return {
 		setDefaultImage,

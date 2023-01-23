@@ -13,7 +13,7 @@ import {
 	ChatArea,
 	ChatButtonArea,
 	ChatContainer,
-	ChatHeader,
+	ChatHeaderArea,
 	ChatInput,
 	ChatMessagesArea,
 	ChatTextArea,
@@ -21,6 +21,7 @@ import {
 	ChatNoConversation,
 } from "./chat.styled";
 import { useChatHook } from "./chatHooks";
+import ChatHeader from "./chat-header";
 
 /* eslint-disable-next-line */
 export interface ChatProps {
@@ -42,6 +43,7 @@ export function Chat({ userType, userId }: ChatProps) {
 		messages,
 		isSuccess,
 		chatId,
+		refetch,
 	} = useChatHook({ userId, userType });
 
 	if (isSuccess && userChats && userChats?.length > 0) {
@@ -62,17 +64,9 @@ export function Chat({ userType, userId }: ChatProps) {
 					})}
 				</UserChatsList>
 				<ChatArea>
-					<ChatHeader>
-						<ParagraphWrapper fontSize="md" opacity={0.8}>
-							<strong>{currentChat?.employer?.companyName}</strong>
-						</ParagraphWrapper>
-						<ParagraphWrapper fontSize="md" opacity={0.8}>
-							<strong>{currentChat?.job?.position}</strong>
-						</ParagraphWrapper>
-						<ParagraphWrapper fontSize="md" opacity={0.8}>
-							<strong>{currentChat?.job?.hourRate}</strong>
-						</ParagraphWrapper>
-					</ChatHeader>
+					<ChatHeaderArea>
+						<ChatHeader chat={currentChat} userType={userType} refetch={refetch} />
+					</ChatHeaderArea>
 					<ChatMessagesArea>
 						{messages &&
 							messages?.map((message: IMessage) => {

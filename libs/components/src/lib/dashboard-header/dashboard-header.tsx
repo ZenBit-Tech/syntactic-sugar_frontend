@@ -14,6 +14,8 @@ import {
 	EditEmployerContainer,
 	EditFreelancerContainer,
 } from "@freelance/components";
+import { baseUrl } from "utils/constants/redux-query";
+import { DEFAULT_IMAGE } from "utils/constants/links";
 import {
 	Container,
 	UserInfoWrapper,
@@ -39,7 +41,11 @@ export function DashboardHeader({ userRole, typePage, profile }: DashboardHeader
 		name,
 		email,
 		setImageUrl,
+		setIsImageChanged,
 		isEditModalOpen,
+		isImageChanged,
+		isFormChange,
+		setIsFormChange,
 		openEditProfileModal,
 		closeEditProofileModal,
 	} = useDashboardHeader(profile);
@@ -50,7 +56,10 @@ export function DashboardHeader({ userRole, typePage, profile }: DashboardHeader
 			{typePage === CREATE_PROFILE && <UserInfoWrapper />}
 			{typePage !== CREATE_PROFILE && (
 				<UserInfoWrapper>
-					<img src={existingImage} alt="User Avatar" />
+					<img
+						src={existingImage === DEFAULT_IMAGE ? DEFAULT_IMAGE : baseUrl + existingImage}
+						alt="User Avatar"
+					/>
 					<UserDetails>
 						<StyledParagraph fontSize="lg">
 							<strong>{name}</strong>
@@ -93,12 +102,26 @@ export function DashboardHeader({ userRole, typePage, profile }: DashboardHeader
 
 			{userRole === ROLES.EMPLOYER && (
 				<CardModal open={isEditModalOpen} onCancel={closeEditProofileModal} width={1000}>
-					<EditEmployerContainer existingImage={imageUrl} setImageUrl={setImageUrl} />
+					<EditEmployerContainer
+						existingImage={imageUrl}
+						setImageUrl={setImageUrl}
+						setIsImageChanged={setIsImageChanged}
+						isImageChanged={isImageChanged}
+						isFormChange={isFormChange}
+						setIsFormChange={setIsFormChange}
+					/>
 				</CardModal>
 			)}
 			{userRole === ROLES.FREELANCER && (
 				<CardModal open={isEditModalOpen} onCancel={closeEditProofileModal} width={1000}>
-					<EditFreelancerContainer existingImage={imageUrl} setImageUrl={setImageUrl} />
+					<EditFreelancerContainer
+						existingImage={imageUrl}
+						setImageUrl={setImageUrl}
+						setIsImageChanged={setIsImageChanged}
+						isImageChanged={isImageChanged}
+						isFormChange={isFormChange}
+						setIsFormChange={setIsFormChange}
+					/>
 				</CardModal>
 			)}
 			<CardModal open={chatModalOpen} onCancel={closeChat} width={800}>
