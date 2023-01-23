@@ -16,6 +16,10 @@ This template was made with Nx - smart, fast and extensible build system with fi
 $ git pull
 $ npm run build
 ```
+1. Open S3 storage with your service S3 link (example: http://client-zb5-yoursitename.s3-website.eu-east-4.amazonaws.com/).
+2. Open bucket and download build files with Upload button.
+
+## Repositories links
 
 Frontend repo - https://github.com/ZenBit-Tech/syntactic-sugar_frontend
 
