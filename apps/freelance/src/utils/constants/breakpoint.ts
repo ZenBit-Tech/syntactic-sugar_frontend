@@ -3,6 +3,8 @@
 export const LOG_IN = "login";
 export const SIGN_UP = "signup";
 export const ROLE_SELECTION = "role";
+export const FETCH_ERROR = "FETCH_ERROR";
+export const STATUS_CODE = 500;
 
 // Reset password
 
@@ -50,3 +52,8 @@ export const CREATE_PROFILE = "createProfile";
 export const FREELANCER = "FREELANCER";
 export const GUEST = "GUEST";
 export const EMPLOYER = "EMPLOYER";
+
+//Filter
+
+export const FILTER = "filter";
+export const RESET = "reset";

@@ -1,15 +1,11 @@
 import { IChat } from "redux/chat/chatApi";
 import {
 	IEduResponse,
+	IInvitation,
 	IResponse,
 	IWorkHistoryResponse,
 } from "redux/createFreelancer/freelancer-pageApi";
 import { IEmployerResponse, InstObject, JobsInterface, Proposal } from "redux/jobs";
-
-export interface IInvitation {
-	id: string;
-	freelancer: IResponse;
-}
 
 export interface ICommonObject {
 	id: string;

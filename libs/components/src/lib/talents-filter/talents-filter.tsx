@@ -1,10 +1,11 @@
 import { Controller } from "react-hook-form";
-import { JobsInterface } from "redux/jobs";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { SubmitHandler } from "react-hook-form/dist/types";
 import { StyledButton } from "@freelance/components";
 import { useOptions, SelectOptions } from "utils/select-options/options";
+import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
+import { RESET } from "utils/constants/breakpoint";
 import {
 	BtnText,
 	Form,
@@ -15,10 +16,9 @@ import {
 	OpenFilterBtn,
 	SelectElement,
 	ButtonWrapper,
-} from "./searchwork-filter.styled";
-import { JOBS_PAGE } from "utils/constants/breakpoint";
+} from "./talents-filter.styled";
 
-export interface IFormInput {
+interface IFormInput {
 	category: SelectOptions;
 	position: string;
 	skills: SelectOptions[];
@@ -26,32 +26,24 @@ export interface IFormInput {
 	englishLevel: SelectOptions;
 	hourRate: SelectOptions;
 	availableAmountOfHour: SelectOptions;
-	typePage?: "proposals" | "jobs";
 }
 
 interface IFilterProps {
 	openFilter: () => void;
 	onSubmit: SubmitHandler<IFormInput>;
-	setFilter: (freelancerFilter: IFormInput | Record<string, never>) => void;
 	setToggleFilter: React.Dispatch<React.SetStateAction<string>>;
-	filterJobs?: JobsInterface[];
-	setFilterJobs: React.Dispatch<React.SetStateAction<JobsInterface[] | undefined>>;
-	data?: JobsInterface[];
-	freelancerFilter: IFormInput | Record<string, never>;
+	setFilterTalents: React.Dispatch<React.SetStateAction<IResponse[] | undefined>>;
+	talents?: IResponse[];
 	disabled: boolean;
-	typePage?: "proposals" | "jobs";
 }
 
-export const SearchWorkFilter = ({
+export const TalentsFilter = ({
 	openFilter,
 	onSubmit,
-	setFilter,
 	setToggleFilter,
-	setFilterJobs,
-	data,
-	freelancerFilter,
+	setFilterTalents,
+	talents,
 	disabled,
-	typePage,
 }: IFilterProps) => {
 	const { t } = useTranslation();
 	const { handleSubmit, control, reset } = useForm<IFormInput>();
@@ -74,37 +66,21 @@ export const SearchWorkFilter = ({
 			>
 				<BtnText>{t("freelancer.searchWork.buttonFilter")}</BtnText>
 			</OpenFilterBtn>
-			{typePage === JOBS_PAGE && (
-				<HeaderButtonWrapp>
-					<HeaderButton
-						type="reset"
-						buttonColor="redGradient"
-						buttonSize="sm"
-						fontSize="md"
-						onClick={() => {
-							setToggleFilter("reset");
-							setFilterJobs(data);
-							reset();
-						}}
-					>
-						{t("freelancer.searchWork.buttonAll")}
-					</HeaderButton>
-					<HeaderButton
-						type="reset"
-						buttonColor="redGradient"
-						buttonSize="sm"
-						fontSize="md"
-						onClick={() => {
-							setToggleFilter("filter");
-							setFilter(freelancerFilter);
-							reset();
-						}}
-					>
-						{t("freelancer.searchWork.buttonProfile")}
-					</HeaderButton>
-				</HeaderButtonWrapp>
-			)}
-
+			<HeaderButtonWrapp>
+				<HeaderButton
+					type="reset"
+					buttonColor="redGradient"
+					buttonSize="sm"
+					fontSize="md"
+					onClick={() => {
+						setToggleFilter("reset");
+						setFilterTalents(talents);
+						reset();
+					}}
+				>
+					{t("freelancer.searchWork.buttonAll")}
+				</HeaderButton>
+			</HeaderButtonWrapp>
 			<Controller
 				name="position"
 				control={control}
@@ -231,8 +207,8 @@ export const SearchWorkFilter = ({
 				<StyledButton
 					type="reset"
 					onClick={() => {
-						setFilterJobs(data);
-						setToggleFilter("reset");
+						setFilterTalents(talents);
+						setToggleFilter(RESET);
 						reset();
 					}}
 					buttonColor="redGradient"

@@ -13,6 +13,7 @@ import { getJobsApi } from "./jobs/jobs.api";
 import { createEmployerApi } from "./createEmployer/employerApi";
 import { uploadImage } from "./uploadImage/upload-image.api";
 import { chatApi } from "./chat/chatApi";
+import { offerApi } from "./offer/offerApi";
 
 const store = configureStore({
 	reducer: {
@@ -30,6 +31,7 @@ const store = configureStore({
 		[createEmployerApi.reducerPath]: createEmployerApi.reducer,
 		[uploadImage.reducerPath]: uploadImage.reducer,
 		[chatApi.reducerPath]: chatApi.reducer,
+		[offerApi.reducerPath]: offerApi.reducer,
 	},
 	middleware: getDefaultMiddleware =>
 		getDefaultMiddleware({
@@ -47,6 +49,7 @@ const store = configureStore({
 			createEmployerApi.middleware,
 			uploadImage.middleware,
 			chatApi.middleware,
+			offerApi.middleware,
 		),
 });
 

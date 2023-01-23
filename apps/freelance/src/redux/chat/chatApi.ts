@@ -2,6 +2,7 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from "redux/base-query";
 import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { IEmployerResponse, JobsInterface } from "redux/jobs";
+import { IOffer } from "redux/offer/offerApi";
 
 export interface IMessage {
 	id: string;
