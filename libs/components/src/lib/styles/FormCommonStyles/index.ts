@@ -54,7 +54,7 @@ export const JobPostingInput = styled(Input)`
 export const SelectElement = styled(Select)`
 	.react-select__value-container {
 		width: 80%;
-		height: inherit;
+		padding: 0;
 	}
 
 	.react-select__control {

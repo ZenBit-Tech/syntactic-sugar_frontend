@@ -10,6 +10,7 @@ interface IUseEditEmployerFormParams {
 	imageUrl: string;
 	reset: UseFormReset<IEditEmployerForm>;
 	isDirty: boolean;
+	isFetching: boolean;
 	isFormChange: boolean;
 	setIsFormChange: React.Dispatch<React.SetStateAction<boolean>>;
 	setIsImageChanged: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,6 +25,7 @@ export const useEditEmployerForm = ({
 	imageUrl,
 	reset,
 	isDirty,
+	isFetching,
 	isFormChange,
 	setIsFormChange,
 	setIsImageChanged,
@@ -45,8 +47,11 @@ export const useEditEmployerForm = ({
 
 	useEffect(() => {
 		isDirty && setIsFormChange(true);
-		!isFormChange && reset();
-	}, [isDirty, isFormChange, reset, setIsFormChange]);
+	}, [isDirty, setIsFormChange]);
+
+	useEffect(() => {
+		!isFormChange && !isFetching && reset();
+	}, [isFormChange, reset, isFetching]);
 
 	useEffect(() => {
 		isSuccess && toast.success(t("dashboard.successEdit"));

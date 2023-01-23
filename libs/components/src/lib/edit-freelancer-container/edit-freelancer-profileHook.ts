@@ -1,21 +1,30 @@
 import { useEffect } from "react";
 import { toast } from "react-toastify";
-import { useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
+import { IResponse, useGetFreelancerQuery } from "redux/createFreelancer/freelancer-pageApi";
 import { useJobsValidationErrorMessages } from "utils/constants/jobs-validation-error-messages";
-import { baseUrl } from "utils/constants/redux-query";
 
 interface IUseEditFreelancerProfileParams {
 	setImageUrl: React.Dispatch<React.SetStateAction<string>>;
 }
 
+interface IUseEditFreelancerProfile {
+	data?: IResponse;
+	isFetching: boolean;
+}
+
 export const useEditFreelancerProfile = ({
 	setImageUrl,
-}: IUseEditFreelancerProfileParams): void => {
+}: IUseEditFreelancerProfileParams): IUseEditFreelancerProfile => {
 	const { SERVER_ERROR_MESSAGE } = useJobsValidationErrorMessages();
-	const { data, isError, isSuccess } = useGetFreelancerQuery();
+	const { data, isError, isSuccess, isFetching } = useGetFreelancerQuery();
 
 	useEffect(() => {
-		isSuccess && setImageUrl(baseUrl + "/" + data?.image);
+		isSuccess && setImageUrl(data.image ? data.image : "");
 		isError && toast.error(SERVER_ERROR_MESSAGE);
 	}, [SERVER_ERROR_MESSAGE, isSuccess, isError, data?.image, setImageUrl]);
+
+	return {
+		data,
+		isFetching,
+	};
 };
