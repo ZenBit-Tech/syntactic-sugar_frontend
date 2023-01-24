@@ -29,15 +29,25 @@ export interface IFormInput {
 	typePage?: "proposals" | "jobs";
 }
 
+export interface IFreelancerInfo {
+	category: string;
+	position: string;
+	skills: string[];
+	employmentType: string;
+	englishLevel: string;
+	hourRate: string;
+	availableAmountOfHour: string;
+}
+
 interface IFilterProps {
 	openFilter: () => void;
 	onSubmit: SubmitHandler<IFormInput>;
-	setFilter: (freelancerFilter: IFormInput | Record<string, never>) => void;
+	setFilter: (freelancerFilter: IFreelancerInfo) => void;
 	setToggleFilter: React.Dispatch<React.SetStateAction<string>>;
 	filterJobs?: JobsInterface[];
 	setFilterJobs: React.Dispatch<React.SetStateAction<JobsInterface[] | undefined>>;
 	data?: JobsInterface[];
-	freelancerFilter: IFormInput | Record<string, never>;
+	freelancerFilter: IFreelancerInfo;
 	disabled: boolean;
 	typePage?: "proposals" | "jobs";
 }

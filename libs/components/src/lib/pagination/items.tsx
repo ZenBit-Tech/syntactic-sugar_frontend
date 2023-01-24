@@ -86,6 +86,7 @@ export function Items({
 							employerId={job.employer?.id}
 							jobChats={job.chats}
 							invitation={job.invitation}
+							offer={job.offers}
 						/>
 					);
 				})}

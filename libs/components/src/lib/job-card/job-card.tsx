@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import { useMemo } from "react";
 import moment from "moment";
 import {
 	GridContainer,
@@ -22,18 +21,20 @@ import {
 	TypePage,
 	CardNotification,
 	Chat,
+	OfferButtonWrapper,
+	OfferCardNotification,
 } from "@freelance/components";
 import { InstObject, Proposal } from "redux/jobs";
-import { IProposal } from "redux/interfaces/IProposal";
-import { IInvitation, IResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { EMPLOYER_JOBS, JOBS_PAGE } from "utils/constants/breakpoint";
 import { ROLES } from "utils/constants/roles";
 import { DEFAULT_IMAGE } from "utils/constants/links";
 import { baseUrl } from "utils/constants/redux-query";
-import { IResponseEmployer } from "redux/createEmployer/employerApi";
 import { useJobCard } from "./job-cardHooks";
 import { useChat } from "./job-cardChatHooks";
+import { IInvitation, IResponse } from "redux/createFreelancer/freelancer-pageApi";
+import { IResponseEmployer } from "redux/createEmployer/employerApi";
 import { IChat } from "redux/chat/chatApi";
+import { IOffer } from "redux/offer/offerApi";
 
 export interface JobCardProps {
 	jobId: string;
@@ -46,7 +47,6 @@ export interface JobCardProps {
 	title?: string;
 	countries?: InstObject[];
 	employmentType?: string;
-	proposals?: Proposal[];
 	availableAmountOfHours?: string;
 	workExperience?: string;
 	levelEnglish?: string;
@@ -57,11 +57,13 @@ export interface JobCardProps {
 	category?: InstObject;
 	isPublished?: boolean;
 	typePage?: TypePage;
-	profile?: IResponse | IResponseEmployer;
 	refetch?: () => void;
 	employerId?: string;
-	jobChats?: IChat[];
+	proposals?: Proposal[];
+	profile?: IResponse | IResponseEmployer;
 	invitation?: IInvitation[];
+	jobChats?: IChat[];
+	offer?: IOffer[];
 }
 
 export function JobCard({
@@ -75,7 +77,6 @@ export function JobCard({
 	title,
 	countries,
 	employmentType,
-	proposals,
 	availableAmountOfHours,
 	workExperience,
 	skills,
@@ -84,11 +85,13 @@ export function JobCard({
 	userType,
 	typePage,
 	isPublished,
-	profile,
 	refetch,
 	employerId,
-	jobChats,
+	proposals,
 	invitation,
+	jobChats,
+	profile,
+	offer,
 }: JobCardProps) {
 	const { t } = useTranslation();
 	const prettyDate = moment(updatedDate).format("LL");
@@ -107,26 +110,17 @@ export function JobCard({
 		isProposalsListOpen,
 		isTogglingJob,
 		isModalEditJob,
-		proposalExist,
-	} = useJobCard({ isPublished });
+		isChat,
+		isInvitation,
+		isProposal,
+		isOffer,
+		offerTax,
+	} = useJobCard({ isPublished, invitation, jobChats, profile, proposals, offer });
 	const { openChat, closeChat, chatModalOpen, continueChat } = useChat({
 		jobId,
 		employerId,
 		freelancerId: profile?.id,
 	});
-
-	const isChat = useMemo(
-		() => jobChats?.some(chat => chat.freelancer.id === profile?.id),
-		[jobChats, profile?.id],
-	);
-	const isInvitation = useMemo(
-		() => invitation?.some(inv => inv.freelancer.id === profile?.id),
-		[invitation, profile?.id],
-	);
-	const isProposal = useMemo(
-		() => proposalExist(profile?.proposals as IProposal[], proposals as IProposal[]),
-		[profile?.proposals, proposalExist, proposals],
-	);
 
 	return (
 		<StyledJobCard>
@@ -177,7 +171,8 @@ export function JobCard({
 					typePage === JOBS_PAGE &&
 					!isInvitation &&
 					isProposal &&
-					isChat && (
+					isChat &&
+					!isOffer && (
 						<GridContainer alignItems="center" justifyItems="center">
 							<FreelancerButtonWrapper>
 								<StyledButton
@@ -219,6 +214,27 @@ export function JobCard({
 						</FreelancerButtonWrapper>
 					</GridContainer>
 				)}
+				{userType === ROLES.FREELANCER &&
+					typePage === JOBS_PAGE &&
+					!isInvitation &&
+					isChat &&
+					isOffer && (
+						<GridContainer alignItems="center" justifyItems="center">
+							<OfferCardNotification fontSize="md">
+								<strong>
+									{t("jobCard.offerReceived")} ${offerTax}
+								</strong>
+							</OfferCardNotification>
+							<OfferButtonWrapper>
+								<StyledButton buttonColor="redGradient" buttonSize="sm" fontSize="md">
+									<strong>{t("jobCard.accept")}</strong>
+								</StyledButton>
+								<StyledButton buttonColor="redGradient" buttonSize="sm" fontSize="md">
+									<strong>{t("jobCard.decline")}</strong>
+								</StyledButton>
+							</OfferButtonWrapper>
+						</GridContainer>
+					)}
 				{userType === ROLES.EMPLOYER && (
 					<GridContainer alignItems="center" justifyItems="center" gap={10}>
 						<EmployerButtonWrapper>

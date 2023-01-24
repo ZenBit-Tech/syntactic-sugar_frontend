@@ -14,11 +14,15 @@ export interface DashboardMenuProps {
 	allJobs?: boolean;
 	invitations?: boolean;
 	allTalents?: boolean;
+	myInvitations?: boolean;
+	myOffers?: boolean;
 	handleToggleFilter?: () => void;
 	showMyProposals?: () => void;
 	showAllJobs?: () => void;
 	showInvitations?: () => void;
 	showAllTallents?: () => void;
+	showMyInvitations?: () => void;
+	showMyOffers?: () => void;
 }
 
 export function DashboardMenu({
@@ -30,10 +34,14 @@ export function DashboardMenu({
 	allJobs,
 	invitations,
 	allTalents,
+	myInvitations,
+	myOffers,
 	showMyProposals,
 	showAllJobs,
 	showInvitations,
 	showAllTallents,
+	showMyInvitations,
+	showMyOffers,
 }: DashboardMenuProps) {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
@@ -61,10 +69,22 @@ export function DashboardMenu({
 					>
 						{t("dashboard.menu.myProposals")}
 					</StyledButton>
-					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
+					<StyledButton
+						buttonSize="md"
+						fontSize="md"
+						buttonColor="lightRed"
+						disabled={myInvitations}
+						onClick={showMyInvitations}
+					>
 						{t("dashboard.menu.myInvitations")}
 					</StyledButton>
-					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
+					<StyledButton
+						buttonSize="md"
+						fontSize="md"
+						buttonColor="lightRed"
+						disabled={myOffers}
+						onClick={showMyOffers}
+					>
 						{t("dashboard.menu.myOffers")}
 					</StyledButton>
 				</>

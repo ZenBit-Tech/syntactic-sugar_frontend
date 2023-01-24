@@ -1,11 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { Proposal, useToggleIsPublishJobMutation } from "redux/jobs";
 import { IProposal } from "redux/interfaces/IProposal";
+import { IInvitation, IResponse } from "redux/createFreelancer/freelancer-pageApi";
+import { IChat } from "redux/chat/chatApi";
+import { IResponseEmployer } from "redux/createEmployer/employerApi";
+import { IOffer } from "redux/offer/offerApi";
 
 interface IUseJobCardParams {
 	isPublished?: boolean;
+	invitation?: IInvitation[];
+	jobChats?: IChat[];
+	profile?: IResponse | IResponseEmployer;
+	proposals?: Proposal[];
+	offer?: IOffer[];
 }
 
 interface IUseJobCard {
@@ -24,9 +33,24 @@ interface IUseJobCard {
 	detailsModalOpen: boolean;
 	isProposalsListOpen: boolean;
 	proposalExist: (arr1: IProposal[], arr2: IProposal[]) => boolean;
+	invitation?: IInvitation[];
+	proposals?: Proposal[] | IProposal[];
+	profile?: IResponse | IResponseEmployer;
+	isChat?: boolean;
+	isInvitation?: boolean;
+	isProposal?: boolean;
+	isOffer?: boolean;
+	offerTax?: string[];
 }
 
-export const useJobCard = ({ isPublished }: IUseJobCardParams): IUseJobCard => {
+export const useJobCard = ({
+	isPublished,
+	invitation,
+	jobChats,
+	profile,
+	proposals,
+	offer,
+}: IUseJobCardParams): IUseJobCard => {
 	const { t } = useTranslation();
 	const [proposalModalOpen, setProposalModalOpen] = useState<boolean>(false);
 	const [detailsModalOpen, setDetailsModalOpen] = useState<boolean>(false);
@@ -102,6 +126,25 @@ export const useJobCard = ({ isPublished }: IUseJobCardParams): IUseJobCard => {
 		return false;
 	};
 
+	const isChat = useMemo(
+		() => jobChats?.some(chat => chat.freelancer.id === profile?.id),
+		[jobChats, profile?.id],
+	);
+	const isInvitation = useMemo(
+		() => invitation?.some(inv => inv.freelancer.id === profile?.id),
+		[invitation, profile?.id],
+	);
+	const isProposal = useMemo(
+		() => proposalExist(profile?.proposals as IProposal[], proposals as IProposal[]),
+		[profile?.proposals, proposals],
+	);
+	const isOffer = useMemo(
+		() => offer?.some(o => o.freelancer.id === profile?.id),
+		[offer, profile?.id],
+	);
+
+	const offerTax = offer?.map(item => item.hourRate);
+
 	return {
 		handleToggleIsPublishedButton,
 		handleEditJob,
@@ -118,5 +161,10 @@ export const useJobCard = ({ isPublished }: IUseJobCardParams): IUseJobCard => {
 		closeProposalsList,
 		isProposalsListOpen,
 		proposalExist,
+		isChat,
+		isInvitation,
+		isProposal,
+		isOffer,
+		offerTax,
 	};
 };

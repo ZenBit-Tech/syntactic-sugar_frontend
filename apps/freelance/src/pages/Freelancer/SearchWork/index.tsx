@@ -1,22 +1,18 @@
-import { useState } from "react";
 import {
 	Dashboard,
 	Pagination,
 	SearchWorkFilter,
 	FilterBox,
 	StyledPage,
-	useProposalsFilter,
-	useInvitationFilterHooks,
+	useSidebarFilter,
 } from "@freelance/components";
 import { JOBS_PAGE } from "src/utils/constants/breakpoint";
 import { ROLES } from "src/utils/constants/roles";
-import { useGetFreelancerQuery } from "src/redux/createFreelancer/freelancer-pageApi";
 import { ToastContainer } from "react-toastify";
 import { InputWrapper } from "./style";
 import { useSearchWorkFormHook } from "./searchWorkFormHook";
 
 export function SearchWork() {
-	const { data: freelancerProfile } = useGetFreelancerQuery();
 	const {
 		onSubmit,
 		setFilter,
@@ -26,20 +22,23 @@ export function SearchWork() {
 		data,
 		freelancerFilter,
 		refetch,
+		proposals,
+		freelancerProfile,
+		invitations,
+		offers,
 	} = useSearchWorkFormHook();
-	const { myProposals, allJobs, isFilterOpen, showMyProposals, showAllJobs, toggleFilterBox } =
-		useProposalsFilter();
-
-	const proposals =
-		publishedFilterJobs &&
-		publishedFilterJobs.filter(
-			job =>
-				job.proposals.filter(
-					proposal =>
-						freelancerProfile &&
-						freelancerProfile.proposals.filter(item => item.id === proposal.id).length > 0,
-				).length > 0,
-		);
+	const {
+		myProposals,
+		allJobs,
+		isFilterOpen,
+		myInvitations,
+		myOffers,
+		showMyProposals,
+		showAllJobs,
+		showMyInvitations,
+		showMyOffers,
+		toggleFilterBox,
+	} = useSidebarFilter();
 
 	return (
 		<StyledPage>
@@ -49,8 +48,12 @@ export function SearchWork() {
 				profile={freelancerProfile}
 				myProposals={myProposals}
 				allJobs={allJobs}
+				myInvitations={myInvitations}
+				myOffers={myOffers}
 				showMyProposals={showMyProposals}
 				showAllJobs={showAllJobs}
+				showMyInvitations={showMyInvitations}
+				showMyOffers={showMyOffers}
 			>
 				<InputWrapper>
 					{allJobs && (
@@ -68,6 +71,24 @@ export function SearchWork() {
 							itemsPerPage={5}
 							user={ROLES.FREELANCER}
 							data={proposals}
+							typePage={JOBS_PAGE}
+							profile={freelancerProfile}
+						/>
+					)}
+					{myInvitations && (
+						<Pagination
+							itemsPerPage={5}
+							user={ROLES.FREELANCER}
+							data={invitations}
+							typePage={JOBS_PAGE}
+							profile={freelancerProfile}
+						/>
+					)}
+					{myOffers && (
+						<Pagination
+							itemsPerPage={5}
+							user={ROLES.FREELANCER}
+							data={offers}
 							typePage={JOBS_PAGE}
 							profile={freelancerProfile}
 						/>
