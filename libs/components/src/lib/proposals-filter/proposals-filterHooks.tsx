@@ -1,19 +1,25 @@
 import { useState } from "react";
 
-interface IuseProposalsFilter {
+interface IUseProposalsFilter {
 	myProposals: boolean;
-	showMyProposals: () => void;
 	allJobs: boolean;
+	isFilterOpen: boolean;
+	showMyProposals: () => void;
 	showAllJobs: () => void;
+	toggleFilterBox: () => void;
 }
 
-export const useProposalsFilter = (): IuseProposalsFilter => {
-	const [myProposals, setMyProposals] = useState(false);
-	const [allJobs, setAllJobs] = useState(true);
+export const useProposalsFilter = (): IUseProposalsFilter => {
+	const [myProposals, setMyProposals] = useState<boolean>(false);
+	const [allJobs, setAllJobs] = useState<boolean>(true);
+	const [isFilterOpen, setIsFilterOpen] = useState<boolean>(false);
 
 	const showMyProposals = () => {
 		setMyProposals(true);
 		setAllJobs(false);
+		if (isFilterOpen) {
+			toggleFilterBox();
+		}
 	};
 
 	const showAllJobs = () => {
@@ -21,5 +27,9 @@ export const useProposalsFilter = (): IuseProposalsFilter => {
 		setMyProposals(false);
 	};
 
-	return { myProposals, showMyProposals, allJobs, showAllJobs };
+	const toggleFilterBox = () => {
+		setIsFilterOpen(!isFilterOpen);
+	};
+
+	return { myProposals, allJobs, isFilterOpen, showAllJobs, showMyProposals, toggleFilterBox };
 };
