@@ -1,6 +1,8 @@
 {
 	"serverErrorMessage": "Something went wrong",
 	"loading": "...Loading",
+	"addButton": "Add",
+	"removeButton": "Remove",
 	"signupGoogle": {
 		"buttonText": "Sign up with Google",
 		"error": "This email already registered. Sign in, please."

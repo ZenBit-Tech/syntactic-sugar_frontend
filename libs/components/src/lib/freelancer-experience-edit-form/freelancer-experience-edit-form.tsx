@@ -12,6 +12,7 @@ import {
 } from "@freelance/components";
 import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useFreelancerExperienceEditForm } from "./freelancer-experience-edit-formHook";
+import { Popover } from "antd";
 
 export interface FreelancerExperienceEditFormProps {
 	register: UseFormRegister<IEditFreelancerForm>;
@@ -81,31 +82,35 @@ export function FreelancerExperienceEditForm({
 							)}
 						</ErrorsHandlerWrapper>
 						<ButtonContainer align="right">
-							<StyledButton
-								type="button"
-								iconButton
-								buttonSize="sm"
-								fontSize="lg"
-								buttonColor={"redGradient"}
-								onClick={() => remove(index)}
-							>
-								<DeleteOutlined />
-							</StyledButton>
+							<Popover placement="right" content={t("removeButton")}>
+								<StyledButton
+									type="button"
+									iconButton
+									buttonSize="sm"
+									fontSize="lg"
+									buttonColor={"redGradient"}
+									onClick={() => remove(index)}
+								>
+									<DeleteOutlined />
+								</StyledButton>
+							</Popover>
 						</ButtonContainer>
 					</GridContainer>
 				))}
 			</GridContainer>
 			<ButtonContainer align="right">
-				<StyledButton
-					type="button"
-					iconButton
-					buttonSize="sm"
-					fontSize="lg"
-					buttonColor={"redGradient"}
-					onClick={() => append({ company: "", workPosition: "", period: "" })}
-				>
-					<PlusOutlined />
-				</StyledButton>
+				<Popover placement="right" content={t("addButton")}>
+					<StyledButton
+						type="button"
+						iconButton
+						buttonSize="sm"
+						fontSize="lg"
+						buttonColor={"redGradient"}
+						onClick={() => append({ company: "", workPosition: "", period: "" })}
+					>
+						<PlusOutlined />
+					</StyledButton>
+				</Popover>
 			</ButtonContainer>
 		</GridContainer>
 	);
