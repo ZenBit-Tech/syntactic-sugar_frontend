@@ -21,7 +21,7 @@ export const useEditJobFormSchema = (): SchemaOf<IEditJobForm> => {
 			value: string().required(FIELD_REQUIRED),
 			label: string().required(FIELD_REQUIRED),
 		}),
-		position: string().required(FIELD_REQUIRED),
+		position: string().max(50, MESSAGE_JOB_TITLE_MAX_CHAR).required(FIELD_REQUIRED),
 		employmentType: object({
 			value: string().required(FIELD_REQUIRED),
 			label: string().required(FIELD_REQUIRED),
