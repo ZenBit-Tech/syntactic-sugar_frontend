@@ -21,6 +21,8 @@ import {
 	TypePage,
 	CardNotification,
 	Chat,
+	OfferButtonWrapper,
+	OfferCardNotification,
 } from "@freelance/components";
 import { InstObject, Proposal } from "redux/jobs";
 import { EMPLOYER_JOBS, JOBS_PAGE } from "utils/constants/breakpoint";
@@ -218,11 +220,19 @@ export function JobCard({
 					isChat &&
 					isOffer && (
 						<GridContainer alignItems="center" justifyItems="center">
-							<CardNotification fontSize="md">
+							<OfferCardNotification fontSize="md">
 								<strong>
 									{t("jobCard.offerReceived")} ${offerTax}
 								</strong>
-							</CardNotification>
+							</OfferCardNotification>
+							<OfferButtonWrapper>
+								<StyledButton buttonColor="redGradient" buttonSize="sm" fontSize="md">
+									<strong>{t("jobCard.accept")}</strong>
+								</StyledButton>
+								<StyledButton buttonColor="redGradient" buttonSize="sm" fontSize="md">
+									<strong>{t("jobCard.decline")}</strong>
+								</StyledButton>
+							</OfferButtonWrapper>
 						</GridContainer>
 					)}
 				{userType === ROLES.EMPLOYER && (

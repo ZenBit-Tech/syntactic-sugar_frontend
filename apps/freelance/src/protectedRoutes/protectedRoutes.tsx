@@ -3,16 +3,16 @@ import { useSelector } from "react-redux";
 import { RootState } from "redux/store";
 
 export interface ProtectedRouteProps {
-    children: JSX.Element;
-    path: string;
+	children: JSX.Element;
+	path: string;
 }
 
 export const PrivateRoute = ({ children, path }: ProtectedRouteProps) => {
-    const token = useSelector((state: RootState) => state.user.token);
-    return token ? children : <Navigate to={path} replace />;
+	const token = useSelector((state: RootState) => state.user.token);
+	return token ? children : <Navigate to={path} replace />;
 };
 
 export const PublicRoute = ({ children, path }: ProtectedRouteProps) => {
-    const token = useSelector((state: RootState) => state.user.token);
-    return !token ? children : <Navigate to={path} replace />;
+	const token = useSelector((state: RootState) => state.user.token);
+	return !token ? children : <Navigate to={path} replace />;
 };

@@ -137,3 +137,19 @@ export const ImageContainer = styled.div<IImageContainer>`
 			`}
 	}
 `;
+
+export const OfferButtonWrapper = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 100%;
+	gap: 10px;
+
+	button {
+		border-radius: 12px;
+	}
+`;
+
+export const OfferCardNotification = styled(CardNotification)`
+	width: 90%;
+`;

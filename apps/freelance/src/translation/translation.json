@@ -83,7 +83,9 @@
 		"canNotEdit": "You have got a proposal already. You can’t edit this job any more",
 		"proposalRecived": "Proposal received",
 		"proposalSent": "Proposal was sent",
-		"offerReceived": "Offer received"
+		"offerReceived": "Offer received",
+		"accept": "Accept",
+		"decline": "Decline"
 	},
 	"editJob": {
 		"saveChanges": "Save changes",
