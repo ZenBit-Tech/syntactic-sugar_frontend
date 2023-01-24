@@ -10,14 +10,14 @@ interface IUseEditEmployerProfileParams {
 
 interface IUseEditEmployerProfile {
 	data?: IEmployerResponse;
-	isLoading: boolean;
+	isFetching: boolean;
 }
 
 export const useEditEmployerProfile = ({
 	setImageUrl,
 }: IUseEditEmployerProfileParams): IUseEditEmployerProfile => {
 	const { SERVER_ERROR_MESSAGE } = useJobsValidationErrorMessages();
-	const { data, isLoading, isError, isSuccess } = useGetEmployerQuery();
+	const { data, isFetching, isError, isSuccess } = useGetEmployerQuery();
 
 	useEffect(() => {
 		isSuccess && setImageUrl(data.image ? data.image : "");
@@ -26,6 +26,6 @@ export const useEditEmployerProfile = ({
 
 	return {
 		data,
-		isLoading,
+		isFetching,
 	};
 };

@@ -23,7 +23,6 @@ import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { DEFAULT_IMAGE } from "utils/constants/links";
 import { baseUrl } from "utils/constants/redux-query";
 import { IChat } from "redux/chat/chatApi";
-import { ROLES } from "utils/constants/roles";
 import { useProposalCard } from "./proposal-cardHook";
 
 export interface ProposalCardProps {
@@ -36,7 +35,9 @@ export interface ProposalCardProps {
 	employerId?: string;
 	jobId?: string;
 	jobChats?: IChat[];
-	userType?: string;
+	userType: string;
+	closeProposalsList?: () => void;
+	openProposalsList?: () => void;
 }
 
 export function ProposalCard({
@@ -50,6 +51,8 @@ export function ProposalCard({
 	jobId,
 	jobChats,
 	userType,
+	closeProposalsList,
+	openProposalsList,
 }: ProposalCardProps) {
 	const { t } = useTranslation();
 	const prettyDate = moment(createdDate).format("LL");
@@ -60,7 +63,7 @@ export function ProposalCard({
 		openLetterModal,
 		closeLetterModal,
 		isLetterOpen,
-	} = useProposalCard();
+	} = useProposalCard({ closeProposalsList, openProposalsList });
 	const { openChat, closeChat, chatModalOpen, continueChat } = useChat({
 		jobId,
 		employerId,
@@ -73,59 +76,61 @@ export function ProposalCard({
 
 	return (
 		<StyledJobCard>
-			<JobCardHeader alignItems="center">
-				<FlexContainer gap={10}>
-					<ImageContainer proposalCard>
-						<img
-							src={freelancer?.image ? baseUrl + freelancer?.image : DEFAULT_IMAGE}
-							alt="User Avatar"
-						/>
-					</ImageContainer>
-					<GridContainer>
-						<CardTitleButton onClick={openProfileModal}>{freelancer?.fullName}</CardTitleButton>
-						<StyledParagraph fontSize="md">{hourRate}$</StyledParagraph>
+			<GridContainer gap={10}>
+				<JobCardHeader alignItems="center">
+					<FlexContainer gap={10}>
+						<ImageContainer proposalCard>
+							<img
+								src={freelancer?.image ? baseUrl + freelancer?.image : DEFAULT_IMAGE}
+								alt="User Avatar"
+							/>
+						</ImageContainer>
+						<GridContainer>
+							<CardTitleButton onClick={openProfileModal}>{freelancer?.fullName}</CardTitleButton>
+							<StyledParagraph fontSize="md">{hourRate}$</StyledParagraph>
+						</GridContainer>
+					</FlexContainer>
+					<GridContainer gap={10}>
+						<EmployerButtonWrapper>
+							{!isChat && (
+								<StyledButton
+									buttonColor="redGradient"
+									buttonSize="lg"
+									fontSize="md"
+									onClick={openChat}
+								>
+									<strong>{t("chat.startChat")}</strong>
+								</StyledButton>
+							)}
+							{isChat && (
+								<StyledButton
+									buttonColor="redGradient"
+									buttonSize="lg"
+									fontSize="md"
+									onClick={continueChat}
+								>
+									<strong>{t("chat.continueChat")}</strong>
+								</StyledButton>
+							)}
+						</EmployerButtonWrapper>
+						<EmployerButtonWrapper>
+							<StyledButton
+								onClick={openLetterModal}
+								buttonColor="redGradient"
+								buttonSize="lg"
+								fontSize="md"
+							>
+								<strong>{t("proposalCard.coverLetter")}</strong>
+							</StyledButton>
+						</EmployerButtonWrapper>
 					</GridContainer>
-				</FlexContainer>
-				<GridContainer gap={10}>
-					<EmployerButtonWrapper>
-						{!isChat && (
-							<StyledButton
-								buttonColor="redGradient"
-								buttonSize="lg"
-								fontSize="md"
-								onClick={openChat}
-							>
-								<strong>{t("chat.startChat")}</strong>
-							</StyledButton>
-						)}
-						{isChat && (
-							<StyledButton
-								buttonColor="redGradient"
-								buttonSize="lg"
-								fontSize="md"
-								onClick={continueChat}
-							>
-								<strong>{t("chat.continueChat")}</strong>
-							</StyledButton>
-						)}
-					</EmployerButtonWrapper>
-					<EmployerButtonWrapper>
-						<StyledButton
-							onClick={openLetterModal}
-							buttonColor="redGradient"
-							buttonSize="lg"
-							fontSize="md"
-						>
-							<strong>{t("proposalCard.coverLetter")}</strong>
-						</StyledButton>
-					</EmployerButtonWrapper>
-				</GridContainer>
-				<GridContainer justifyItems="center">
-					<DateWrapper fontSize="md">
-						<strong>{prettyDate}</strong>
-					</DateWrapper>
-				</GridContainer>
-			</JobCardHeader>
+					<GridContainer justifyItems="center">
+						<DateWrapper fontSize="md">
+							<strong>{prettyDate}</strong>
+						</DateWrapper>
+					</GridContainer>
+				</JobCardHeader>
+			</GridContainer>
 
 			{/* Modals */}
 
@@ -158,7 +163,7 @@ export function ProposalCard({
 				</Container>
 			</CardModal>
 			<CardModal open={chatModalOpen} onCancel={closeChat} width={800}>
-				<Chat userType={userType!} userId={employerId} />
+				<Chat userType={userType} userId={employerId} />
 			</CardModal>
 		</StyledJobCard>
 	);

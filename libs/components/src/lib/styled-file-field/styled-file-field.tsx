@@ -30,7 +30,7 @@ export function StyledFileField({
 	return (
 		<GridContainer width={width} gap={10}>
 			<StyledFileImage
-				src={imageUrl === DEFAULT_IMAGE ? DEFAULT_IMAGE : baseUrl + imageUrl}
+				src={imageUrl === DEFAULT_IMAGE || imageUrl === "" ? DEFAULT_IMAGE : baseUrl + imageUrl}
 				alt="User Avatar"
 			/>
 			<FlexContainer justifyContent="center" gap={10}>

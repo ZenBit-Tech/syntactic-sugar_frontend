@@ -4,6 +4,7 @@ interface iStyledButtonProps {
 	buttonSize: "lg" | "md" | "sm" | "modal" | "card" | "filter";
 	buttonColor: "redGradient" | "blue" | "lightRed" | "darkRed";
 	fontSize?: "lg" | "md" | "sm";
+	iconButton?: boolean;
 }
 
 export const StyledButton = styled.button<iStyledButtonProps>`
@@ -87,6 +88,13 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 		filter: brightness(1.1);
 		cursor: pointer;
 	}
+
+	${({ iconButton }) =>
+		iconButton &&
+		css`
+			border-radius: 12px;
+			width: 10%;
+		`}
 
 	${({ fontSize }) => {
 		switch (fontSize) {

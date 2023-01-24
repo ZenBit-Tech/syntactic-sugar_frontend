@@ -96,6 +96,7 @@ export function Chat({ userType, userId }: ChatProps) {
 			</ChatContainer>
 		);
 	}
+
 	return (
 		<ChatNoConversation>
 			<StyledTitle tag="h3" fontWeight={400} fontSize="md">
