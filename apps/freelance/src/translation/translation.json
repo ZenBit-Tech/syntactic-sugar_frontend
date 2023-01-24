@@ -55,7 +55,8 @@
 		"confirmMessage": "We sent you email with confirmation link. Please confirm your email by following it.",
 		"confirmation": "Your email has been confirmed",
 		"passwordError": "Incorrect password or email",
-		"serverError": "Server error, please, try again"
+		"serverError": "Server error, please, try again",
+		"needActivated": "You need to confirm your email, check your mailbox"
 	},
 	"recoverPassForm": {
 		"forgotPass": "Forgot your password?",
