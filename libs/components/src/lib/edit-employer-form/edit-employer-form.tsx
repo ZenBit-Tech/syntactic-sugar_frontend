@@ -28,6 +28,7 @@ export interface IEditEmployerForm {
 export interface EditEmployerFormProps {
 	imageUrl: string;
 	profile?: IEmployerResponse;
+	isFetching: boolean;
 	isImageChanged: boolean;
 	isFormChange: boolean;
 	setIsFormChange: React.Dispatch<React.SetStateAction<boolean>>;
@@ -37,6 +38,7 @@ export interface EditEmployerFormProps {
 export function EditEmployerForm({
 	profile,
 	imageUrl,
+	isFetching,
 	isImageChanged,
 	isFormChange,
 	setIsFormChange,
@@ -53,6 +55,7 @@ export function EditEmployerForm({
 	const { onSubmit, isLoading } = useEditEmployerForm({
 		imageUrl,
 		reset,
+		isFetching,
 		isFormChange,
 		setIsFormChange,
 		isDirty,
@@ -152,9 +155,9 @@ export function EditEmployerForm({
 						placeholder={t("employer.create.websiteLabel")}
 						width={100}
 					/>
-					{errors?.linkedIn && (
+					{errors?.website && (
 						<StyledSpan fontSize="sm" type="validation">
-							<strong>{errors?.linkedIn?.message}</strong>
+							<strong>{errors?.website?.message}</strong>
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>

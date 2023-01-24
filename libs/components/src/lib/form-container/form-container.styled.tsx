@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 interface MessageContainerProps {
 	isRightSide: boolean;
 }

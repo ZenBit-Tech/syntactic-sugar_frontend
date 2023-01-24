@@ -119,6 +119,8 @@ export function DashboardHeader({ userRole, typePage, profile }: DashboardHeader
 						setImageUrl={setImageUrl}
 						setIsImageChanged={setIsImageChanged}
 						isImageChanged={isImageChanged}
+						isFormChange={isFormChange}
+						setIsFormChange={setIsFormChange}
 					/>
 				</CardModal>
 			)}

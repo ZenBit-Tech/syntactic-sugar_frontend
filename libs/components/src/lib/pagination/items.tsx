@@ -16,9 +16,19 @@ export interface CurrentItems {
 	typePage?: TypePage;
 	profile?: IResponse | IResponseEmployer;
 	refetch?: () => void;
+	closeProposalsList?: () => void;
+	openProposalsList?: () => void;
 }
 
-export function Items({ data, user, typePage, profile, refetch }: CurrentItems) {
+export function Items({
+	data,
+	user,
+	typePage,
+	profile,
+	refetch,
+	closeProposalsList,
+	openProposalsList,
+}: CurrentItems) {
 	return (
 		<Container>
 			{typePage === TALENTS_PAGE &&
@@ -94,6 +104,8 @@ export function Items({ data, user, typePage, profile, refetch }: CurrentItems) 
 						employerId={proposal.job?.employer?.id}
 						jobChats={proposal.job?.chats}
 						userType={user}
+						closeProposalsList={closeProposalsList}
+						openProposalsList={openProposalsList}
 					/>
 				))}
 		</Container>

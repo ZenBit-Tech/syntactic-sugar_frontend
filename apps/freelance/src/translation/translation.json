@@ -16,6 +16,13 @@
 		"firstPageInstructions": "Enter your email to reset your password!",
 		"checkYourEmail": "If your email exist we will send you a link! Please, check your mail box!"
 	},
+	"loginForm": {
+		"format": "Invalid e-mail format",
+		"req": "E-mail is required",
+		"reqPass": "Password is required",
+		"min": "Minimum {{min}} characters",
+		"max": "Maximum {{max}} characters"
+	},
 	"signForm": {
 		"welcome": "WELCOME TO",
 		"signInSubtitle": "Log in to get the better opportunities for your project or career.",
@@ -34,8 +41,21 @@
 		"buttonSignUp": "SIGN UP",
 		"haveAcc": "Already have an account?",
 		"signInNow": " Sign In Now",
-		"confirmMessage": "We sended you email with confirmation link. Please confirm your email by following it.",
-		"confirmation": "Your email has been confirmed"
+		"invalidMail": "Invalid e-mail format",
+		"reqEmail": "E-mail is required",
+		"pasReq": "Password is required",
+		"min": "Minimum {{min}} characters",
+		"max": "Maximum {{max}} characters",
+		"pas": "password",
+		"pasMatch": "Passwords must match",
+		"privatePolicy": "By clicking sign up I agree with ",
+		"policyLink": "the Terms of Use and Privacy Policy",
+		"agreement": "Accept Privacy Policy Terms",
+		"agree": "I agree with ",
+		"confirmMessage": "We sent you email with confirmation link. Please confirm your email by following it.",
+		"confirmation": "Your email has been confirmed",
+		"passwordError": "Incorrect password or email",
+		"serverError": "Server error, please, try again"
 	},
 	"recoverPassForm": {
 		"forgotPass": "Forgot your password?",
@@ -126,8 +146,8 @@
 		},
 		"editProfile": "Edit Profile",
 		"successEdit": "Your profile has updated successfuly",
-		"correctPhone": "should be +380111111111",
-		"minTwelveChar": "at least 12 characters",
+		"correctPhone": "Should be +380111111111",
+		"minTwelveChar": "At least {{PHONE_TWELVE_CHAR_NUMBER}} characters",
 		"header": {
 			"userName": "John Doe",
 			"userEmail": "johndoe@gmail.com",
@@ -226,8 +246,8 @@
 			"descriptionLabel": "Job Description",
 			"jobDescription": "We use this description on the website to get the candidates attention.",
 			"validation": {
-				"messageJobTitleMaxChar": "not more than {{INPUT_CHAR_NUMBER}} characters",
-				"messageDescriptionMaxChar": "not more then {{TEXTAREA_CHAR_NUMBER}} characters",
+				"messageJobTitleMaxChar": "Not more than {{INPUT_CHAR_NUMBER}} characters",
+				"messageDescriptionMaxChar": "Not more then {{TEXTAREA_CHAR_NUMBER}} characters",
 				"messageJobTitleRequired": "Job title is required",
 				"messageDescriptionRequired": "Job description is required"
 			}
@@ -386,6 +406,10 @@
 			"websiteLabel": "Website",
 			"aboutusLabel": "About us",
 			"btn1": " Create profile"
+		},
+		"validation": {
+			"website": "Add correct website URL",
+			"linkedin": "Add correct linkedin URL"
 		}
 	},
 	"jobDetails": {
@@ -412,6 +436,11 @@
 		"sendOffer": "Send offer",
 		"offerSent": "Offer sent",
 		"offerRecieved": "Offer recieved"
+	},
+	"privacyPolicy": {
+		"title": "The Terms of Use and Privacy Policy Conditions",
+		"btn": "Continue",
+		"desc": "This Privacy Policy describes Our policies on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You. We use Your Personal data to provide and improve the Service. The Company will retain Your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use Your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies. The Company will also retain Usage Data for internal analysis purposes. Usage Data is generally retained for a shorter period of time, except when this data is used to strengthen the security or to improve the functionality of Our Service, or We are legally obligated to retain this data for longer time periods."
 	},
 	"talents": {
 		"inv": "Invite to interview",

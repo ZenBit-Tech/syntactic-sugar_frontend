@@ -9,24 +9,36 @@ interface IUseProposalCard {
 	isLetterOpen: boolean;
 }
 
-export const useProposalCard = (): IUseProposalCard => {
+interface IUseProposalCardParams {
+	closeProposalsList?: () => void;
+	openProposalsList?: () => void;
+}
+
+export const useProposalCard = ({
+	closeProposalsList,
+	openProposalsList,
+}: IUseProposalCardParams): IUseProposalCard => {
 	const [isProfileOpen, setIsProfileOpen] = useState<boolean>(false);
 	const [isLetterOpen, setisLetterOpen] = useState<boolean>(false);
 
 	const openProfileModal = () => {
 		setIsProfileOpen(true);
+		closeProposalsList && closeProposalsList();
 	};
 
 	const closeProfileModal = () => {
 		setIsProfileOpen(false);
+		openProposalsList && openProposalsList();
 	};
 
 	const openLetterModal = () => {
 		setisLetterOpen(true);
+		closeProposalsList && closeProposalsList();
 	};
 
 	const closeLetterModal = () => {
 		setisLetterOpen(false);
+		openProposalsList && openProposalsList();
 	};
 
 	return {

@@ -1,4 +1,3 @@
-import { Container } from "./form-container.styled";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import {
@@ -19,6 +18,7 @@ import {
 	SIGN_UP,
 } from "utils/constants/breakpoint";
 import { useGoogleAuthentication } from "./form-containerHooks";
+import { Container } from "./form-container.styled";
 
 export interface FormContainerProps {
 	title: React.ReactNode;
