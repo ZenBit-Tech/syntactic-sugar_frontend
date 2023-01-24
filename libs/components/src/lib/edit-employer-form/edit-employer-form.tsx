@@ -155,9 +155,9 @@ export function EditEmployerForm({
 						placeholder={t("employer.create.websiteLabel")}
 						width={100}
 					/>
-					{errors?.linkedIn && (
+					{errors?.website && (
 						<StyledSpan fontSize="sm" type="validation">
-							<strong>{errors?.linkedIn?.message}</strong>
+							<strong>{errors?.website?.message}</strong>
 						</StyledSpan>
 					)}
 				</ErrorsHandlerWrapper>
