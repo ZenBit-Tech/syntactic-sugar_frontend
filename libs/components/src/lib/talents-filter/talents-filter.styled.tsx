@@ -56,18 +56,6 @@ export const Input = styled.input`
 	padding-left: 1.5rem;
 `;
 
-export const HeaderButton = styled(StyledButton)`
-	height: 1.8rem;
-	width: 30%;
-	border-radius: 10px;
-`;
-
-export const HeaderButtonWrapp = styled.div`
-	display: flex;
-	margin-bottom: 0.5rem;
-	justify-content: space-around;
-`;
-
 export const OpenFilterBtn = styled(StyledButton)`
 	position: absolute;
 	top: 20%;

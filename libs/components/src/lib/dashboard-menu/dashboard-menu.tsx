@@ -12,9 +12,17 @@ export interface DashboardMenuProps {
 	filterState?: boolean;
 	myProposals?: boolean;
 	allJobs?: boolean;
+	invitations?: boolean;
+	allTalents?: boolean;
+	myInvitations?: boolean;
+	myOffers?: boolean;
 	handleToggleFilter?: () => void;
 	showMyProposals?: () => void;
 	showAllJobs?: () => void;
+	showInvitations?: () => void;
+	showAllTallents?: () => void;
+	showMyInvitations?: () => void;
+	showMyOffers?: () => void;
 }
 
 export function DashboardMenu({
@@ -24,8 +32,16 @@ export function DashboardMenu({
 	filterState,
 	myProposals,
 	allJobs,
+	invitations,
+	allTalents,
+	myInvitations,
+	myOffers,
 	showMyProposals,
 	showAllJobs,
+	showInvitations,
+	showAllTallents,
+	showMyInvitations,
+	showMyOffers,
 }: DashboardMenuProps) {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
@@ -53,10 +69,22 @@ export function DashboardMenu({
 					>
 						{t("dashboard.menu.myProposals")}
 					</StyledButton>
-					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
+					<StyledButton
+						buttonSize="md"
+						fontSize="md"
+						buttonColor="lightRed"
+						disabled={myInvitations}
+						onClick={showMyInvitations}
+					>
 						{t("dashboard.menu.myInvitations")}
 					</StyledButton>
-					<StyledButton buttonSize="md" fontSize="md" buttonColor="lightRed">
+					<StyledButton
+						buttonSize="md"
+						fontSize="md"
+						buttonColor="lightRed"
+						disabled={myOffers}
+						onClick={showMyOffers}
+					>
 						{t("dashboard.menu.myOffers")}
 					</StyledButton>
 				</>
@@ -105,10 +133,22 @@ export function DashboardMenu({
 					)}
 					{typePage === TALENTS_PAGE && (
 						<FilterButtonWrap>
-							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
+							<FilterButton
+								buttonSize="filter"
+								fontSize="md"
+								buttonColor="lightRed"
+								disabled={allTalents}
+								onClick={showAllTallents}
+							>
 								{t("dashboard.menu.all")}
 							</FilterButton>
-							<FilterButton buttonSize="filter" fontSize="md" buttonColor="lightRed">
+							<FilterButton
+								buttonSize="filter"
+								fontSize="md"
+								buttonColor="lightRed"
+								disabled={invitations}
+								onClick={showInvitations}
+							>
 								{t("dashboard.menu.invitation")}
 							</FilterButton>
 						</FilterButtonWrap>

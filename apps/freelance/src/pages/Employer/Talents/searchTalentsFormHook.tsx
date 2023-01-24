@@ -13,6 +13,7 @@ interface IUseSearchTalentsFormHook {
 	setFilterTalents: React.Dispatch<React.SetStateAction<IResponse[] | undefined>>;
 	talents?: IResponse[];
 	filterTalents?: IResponse[];
+	invitationFilter: IResponse[];
 }
 
 export interface IFormInput {
@@ -100,11 +101,15 @@ export const useSearchTalentsFormHook = (): IUseSearchTalentsFormHook => {
 		return skillsIncludesArr;
 	};
 
+	const invitationFilter =
+		(talents && talents.filter(talent => talent.invitation.length > 0)) || [];
+
 	return {
 		onSubmit,
 		setToggleFilter,
 		setFilterTalents,
 		talents,
 		filterTalents,
+		invitationFilter,
 	};
 };

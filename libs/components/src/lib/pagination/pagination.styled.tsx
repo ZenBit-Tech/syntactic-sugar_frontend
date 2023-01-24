@@ -35,6 +35,7 @@ export const StyledReactPagination = styled(ReactPaginate)`
 	margin-left: auto;
 	margin-right: auto;
 	justify-content: space-between;
+	align-self: self-end;
 	a {
 		font-size: 14px;
 		color: ${({ theme }) => theme.colors.black};

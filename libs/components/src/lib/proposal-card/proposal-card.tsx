@@ -41,10 +41,8 @@ export interface ProposalCardProps {
 }
 
 export function ProposalCard({
-	id,
 	coverLetter,
 	hourRate,
-	filePath,
 	createdDate,
 	freelancer,
 	employerId,
@@ -73,7 +71,7 @@ export function ProposalCard({
 	});
 	const isChat = useMemo(
 		() => jobChats?.some(chat => chat.employer?.id === employerId),
-		[jobChats?.length, employerId],
+		[jobChats, employerId],
 	);
 
 	return (

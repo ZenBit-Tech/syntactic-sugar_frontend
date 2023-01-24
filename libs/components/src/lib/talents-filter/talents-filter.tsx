@@ -9,8 +9,6 @@ import { RESET } from "utils/constants/breakpoint";
 import {
 	BtnText,
 	Form,
-	HeaderButton,
-	HeaderButtonWrapp,
 	Input,
 	Label,
 	OpenFilterBtn,
@@ -66,21 +64,6 @@ export const TalentsFilter = ({
 			>
 				<BtnText>{t("freelancer.searchWork.buttonFilter")}</BtnText>
 			</OpenFilterBtn>
-			<HeaderButtonWrapp>
-				<HeaderButton
-					type="reset"
-					buttonColor="redGradient"
-					buttonSize="sm"
-					fontSize="md"
-					onClick={() => {
-						setToggleFilter("reset");
-						setFilterTalents(talents);
-						reset();
-					}}
-				>
-					{t("freelancer.searchWork.buttonAll")}
-				</HeaderButton>
-			</HeaderButtonWrapp>
 			<Controller
 				name="position"
 				control={control}

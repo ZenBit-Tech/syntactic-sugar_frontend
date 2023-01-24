@@ -3,6 +3,7 @@ import { baseQuery } from "redux/base-query";
 import { ICreatedJob, INewJob, IUpdateJob } from "redux/interfaces";
 import { IChat } from "redux/chat/chatApi";
 import { IOffer } from "redux/offer/offerApi";
+import { IInvitation } from "redux/createFreelancer/freelancer-pageApi";
 
 export interface InstObject {
 	id: string;
@@ -50,8 +51,9 @@ export interface JobsInterface {
 	otherRequirenments: string;
 	employer: IEmployerResponse;
 	chats?: IChat[];
-	offers?: IOffer[];
+	offers: IOffer[];
 	value?: string;
+	invitation: IInvitation[];
 }
 
 export const getJobsApi = createApi({

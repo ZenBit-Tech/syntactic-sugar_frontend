@@ -6,6 +6,7 @@ import {
 	IWorkHistoryResponse,
 } from "redux/createFreelancer/freelancer-pageApi";
 import { IEmployerResponse, InstObject, JobsInterface, Proposal } from "redux/jobs";
+import { IOffer } from "redux/offer/offerApi";
 
 export interface ICommonObject {
 	id: string;
@@ -40,6 +41,7 @@ export interface ICommonObject {
 	freelancer?: IResponse;
 	invitation?: IInvitation[];
 	job?: JobsInterface;
+	offers?: IOffer[];
 }
 
 export type TypePage =
