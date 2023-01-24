@@ -10,6 +10,7 @@ interface ChatHooksProps {
 	jobId?: string;
 	employerId?: string;
 	freelancerId?: string;
+  refetchProposal?: () => void;
 }
 
 interface IUseChat {
@@ -19,12 +20,11 @@ interface IUseChat {
 	chatModalOpen: boolean;
 }
 
-export const useChat = ({ jobId, employerId, freelancerId }: ChatHooksProps): IUseChat => {
+export const useChat = ({ jobId, employerId, freelancerId, refetchProposal }: ChatHooksProps): IUseChat => {
 	const { t } = useTranslation();
 	const [chatModalOpen, setChatModalOpen] = useState<boolean>(false);
 	const [createChat] = useCreateChatMutation();
 	const { refetch: refetchChats } = useGetChatsByUserQuery();
-	const { refetch: refetchProposals } = useGetProposalsByJobIdQuery(jobId!);
 	const { refetch: refetchJobs } = useGetJobsQuery();
 
 	const continueChat = (): void => {
@@ -35,7 +35,7 @@ export const useChat = ({ jobId, employerId, freelancerId }: ChatHooksProps): IU
 	const openChat = async (): Promise<void> => {
 		try {
 			await createChat({ freelancerId, employerId, jobId });
-			refetchProposals();
+			refetchProposal && refetchProposal();
 			refetchJobs();
 			setChatModalOpen(true);
 		} catch (error) {

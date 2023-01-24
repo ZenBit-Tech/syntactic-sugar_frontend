@@ -6,7 +6,7 @@ import { IProposal } from "redux/interfaces/IProposal";
 import { IInvitation, IResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { IChat } from "redux/chat/chatApi";
 import { IResponseEmployer } from "redux/createEmployer/employerApi";
-import { IOffer } from "redux/offer/offerApi";
+import { IOffer, useUpdateOfferMutation, IUpdateOffer } from "redux/offer/offerApi";
 
 interface IUseJobCardParams {
 	isPublished?: boolean;
@@ -15,11 +15,13 @@ interface IUseJobCardParams {
 	profile?: IResponse | IResponseEmployer;
 	proposals?: Proposal[];
 	offer?: IOffer[];
+  refetchJobs?: () => void;
 }
 
 interface IUseJobCard {
 	handleToggleIsPublishedButton: (id?: string) => Promise<void>;
 	handleEditJob: (proposal?: Proposal[]) => void;
+	handleOfferAccept: (id: string, isAccepted: boolean) => Promise<void>;
 	closeModalEditJob: () => void;
 	openSendProposal: () => void;
 	closeSendProposal: () => void;
@@ -40,7 +42,9 @@ interface IUseJobCard {
 	isInvitation?: boolean;
 	isProposal?: boolean;
 	isOffer?: boolean;
+  isOfferAcceptance?: boolean;
 	offerTax?: string[];
+  offerAccept?: boolean;
 }
 
 export const useJobCard = ({
@@ -50,6 +54,7 @@ export const useJobCard = ({
 	profile,
 	proposals,
 	offer,
+  refetchJobs,
 }: IUseJobCardParams): IUseJobCard => {
 	const { t } = useTranslation();
 	const [proposalModalOpen, setProposalModalOpen] = useState<boolean>(false);
@@ -57,6 +62,7 @@ export const useJobCard = ({
 	const [isProposalsListOpen, setProposalsListOpen] = useState<boolean>(false);
 	const [toggleIsPublishJob, { isLoading: isTogglingJob, isSuccess, isError }] =
 		useToggleIsPublishJobMutation();
+	const [updateOffer] = useUpdateOfferMutation();
 	const [isModalEditJob, setIsModalEditJob] = useState<boolean>(false);
 
 	const notification = !isPublished
@@ -142,12 +148,36 @@ export const useJobCard = ({
 		() => offer?.some(o => o.freelancer.id === profile?.id),
 		[offer, profile?.id],
 	);
+	const isOfferAcceptance = useMemo(
+		() => offer?.some(o => o.freelancer.id === profile?.id && o.acceptance),
+		[offer, profile?.id],
+	);
 
 	const offerTax = offer?.map(item => item.hourRate);
+  const offerAccept = offer?.map(o => o.isAccepted)[0];
+
+
+	const handleOfferAccept = async (id: string, isAccepted: boolean) => {
+		try {
+			const currentOfferId = offer?.filter(o => o.freelancer?.id === profile?.id)[0].id;
+			const currentChatId = jobChats?.filter(chat => chat.freelancer?.id === profile?.id)[0].id;
+			const payload: IUpdateOffer = {
+				id: currentOfferId,
+				isAccepted,
+				freelancerId: profile?.id,
+				chatId: currentChatId,
+			};
+			await updateOffer(payload);
+      refetchJobs && refetchJobs();
+		} catch (error) {
+			toast.error(`${error}`);
+		}
+	};
 
 	return {
 		handleToggleIsPublishedButton,
 		handleEditJob,
+		handleOfferAccept,
 		closeModalEditJob,
 		isTogglingJob,
 		isModalEditJob,
@@ -165,6 +195,8 @@ export const useJobCard = ({
 		isInvitation,
 		isProposal,
 		isOffer,
+    isOfferAcceptance,
 		offerTax,
+    offerAccept,
 	};
 };

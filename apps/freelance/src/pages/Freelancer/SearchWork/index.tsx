@@ -22,6 +22,7 @@ export function SearchWork() {
 		data,
 		freelancerFilter,
 		refetch,
+    refetchJobs,
 		proposals,
 		freelancerProfile,
 		invitations,
@@ -64,6 +65,7 @@ export function SearchWork() {
 							typePage={JOBS_PAGE}
 							profile={freelancerProfile}
 							refetch={refetch}
+              refetchJobs={refetchJobs}
 						/>
 					)}
 					{myProposals && (
