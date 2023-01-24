@@ -52,14 +52,16 @@ export function Pagination({
 					refetch={refetch}
 				/>
 			</PaginationItemsWrapper>
-			<StyledReactPagination
-				breakLabel="..."
-				nextLabel="next >"
-				onPageChange={handlePageClick}
-				pageRangeDisplayed={5}
-				pageCount={pageCount}
-				previousLabel="< previous"
-			/>
+			{dataLength > 5 && (
+				<StyledReactPagination
+					breakLabel="..."
+					nextLabel="next >"
+					onPageChange={handlePageClick}
+					pageRangeDisplayed={5}
+					pageCount={pageCount}
+					previousLabel="< previous"
+				/>
+			)}
 		</PaginationContainer>
 	);
 }
