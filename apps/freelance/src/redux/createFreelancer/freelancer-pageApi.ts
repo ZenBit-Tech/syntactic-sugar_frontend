@@ -3,7 +3,7 @@ import { workHistoryProps, educationProps } from "redux/createFreelancer/freelan
 import { baseQuery } from "redux/base-query";
 import { InstObject, JobsInterface, Proposal } from "redux/jobs/jobs.api";
 import { SelectOptions } from "src/utils/select-options/options";
-import { IOffer } from "../offer/offerApi";
+import { IOffer } from "redux/offer/offerApi";
 
 export interface IEduResponse {
 	id: string;
