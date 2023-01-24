@@ -10,6 +10,8 @@ interface ChatHooksProps {
 	jobId?: string;
 	employerId?: string;
 	freelancerId?: string;
+	closeProposalsList?: () => void;
+	openProposalsList?: () => void;
 }
 
 interface IUseChat {
@@ -19,7 +21,13 @@ interface IUseChat {
 	chatModalOpen: boolean;
 }
 
-export const useChat = ({ jobId, employerId, freelancerId }: ChatHooksProps): IUseChat => {
+export const useChat = ({
+	jobId,
+	employerId,
+	freelancerId,
+	closeProposalsList,
+	openProposalsList,
+}: ChatHooksProps): IUseChat => {
 	const { t } = useTranslation();
 	const [chatModalOpen, setChatModalOpen] = useState<boolean>(false);
 	const [createChat] = useCreateChatMutation();
@@ -30,6 +38,7 @@ export const useChat = ({ jobId, employerId, freelancerId }: ChatHooksProps): IU
 	const continueChat = (): void => {
 		refetchChats();
 		setChatModalOpen(true);
+		closeProposalsList && closeProposalsList();
 	};
 
 	const openChat = async (): Promise<void> => {
@@ -38,12 +47,14 @@ export const useChat = ({ jobId, employerId, freelancerId }: ChatHooksProps): IU
 			refetchProposals();
 			refetchJobs();
 			setChatModalOpen(true);
+			closeProposalsList && closeProposalsList();
 		} catch (error) {
 			toast.error(t("serverErrorMessage"));
 		}
 	};
 	const closeChat = (): void => {
 		setChatModalOpen(false);
+		openProposalsList && openProposalsList();
 	};
 
 	return {

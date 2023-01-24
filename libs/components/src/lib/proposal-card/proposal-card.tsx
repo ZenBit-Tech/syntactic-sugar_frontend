@@ -66,6 +66,8 @@ export function ProposalCard({
 		jobId,
 		employerId,
 		freelancerId: freelancer?.id,
+		closeProposalsList,
+		openProposalsList,
 	});
 	const isChat = useMemo(
 		() => jobChats?.some(chat => chat.employer?.id === employerId),
