@@ -2,7 +2,6 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { baseQuery } from "redux/base-query";
 import { IResponse } from "redux/createFreelancer/freelancer-pageApi";
 import { JobsInterface } from "redux/jobs";
-import { string } from "yup/lib/locale";
 
 export interface IOffer {
 	id: string;
