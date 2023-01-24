@@ -3,8 +3,8 @@ import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
 import { useCreateChatMutation } from "redux/chat/chatApi";
 import { useGetChatsByUserQuery } from "redux/chat/chatApi";
+import { useGetJobsQuery } from "redux/jobs";
 import { useGetProposalsByJobIdQuery } from "redux/sendProposalFreelancer/proposalApi";
-import { useGetJobsQuery } from "src/redux/jobs";
 
 interface ChatHooksProps {
 	jobId?: string;
