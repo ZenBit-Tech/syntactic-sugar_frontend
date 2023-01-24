@@ -1,12 +1,12 @@
+import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ThemeProvider } from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { useEffect, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useTranslation } from "react-i18next";
 import { addFreelancerInfo } from "redux/createFreelancer/freelancer-slice";
+import { useUploadImageMutation } from "redux/uploadImage/upload-image.api";
 import { useAppDispatch } from "redux/hooks";
-
 import { SelectOptions, useOptions } from "utils/select-options/options";
 import {
 	ThemeColors,
@@ -14,16 +14,20 @@ import {
 	Dashboard,
 	StyledTitle,
 	StyledButton,
+	EditForm,
+	ErrorsHandlerWrapper,
+	Input,
+	GridContainer,
+	StyledSpan,
+	SelectElement,
 } from "@freelance/components";
-import { imageSchema } from "utils/validations/imageUpload";
-import { useUploadImageMutation } from "redux/uploadImage/upload-image.api";
+import { useJobsValidationErrorMessages } from "utils/constants/jobs-validation-error-messages";
+import { useEditFreelancerSchema } from "utils/validations/editFreelancerSchema";
 import { baseUrl } from "utils/constants/redux-query";
 import { DEFAULT_IMAGE } from "utils/constants/links";
-import { CREATE_PROFILE_2 } from "src/utils/constants/breakpoint";
-import { StyledPage, Form, StyledFileField, SelectElement } from "./style";
-
-/* eslint-disable-next-line */
-export interface ProfilePageProps {}
+import { CREATE_PROFILE_2 } from "utils/constants/breakpoint";
+import { Container, StyledFileField } from "@pages/Employer/CreateProfile/styles";
+import { StyledPage } from "./style";
 
 interface IFormInput {
 	fullName: string;
@@ -43,16 +47,32 @@ export function CreateProfile1() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
-
+	const schema = useEditFreelancerSchema();
+	const { FIELD_REQUIRED } = useJobsValidationErrorMessages();
 	const [imageUrl, setImageUrl] = useState<string>(DEFAULT_IMAGE);
-	const [uploadImage, { data: imageData, isLoading, isError, isSuccess }] =
-		useUploadImageMutation();
+	const [uploadImage, { data: imageData, isSuccess }] = useUploadImageMutation();
 	const {
 		register,
 		handleSubmit,
 		control,
 		formState: { errors },
-	} = useForm<IFormInput>();
+	} = useForm<IFormInput>({ resolver: yupResolver(schema) });
+	const {
+		countries,
+		categories,
+		skills,
+		employmentType,
+		hourRate,
+		hoursAmount,
+		workExperience,
+		englishLevel,
+	} = useOptions();
+
+	useEffect(() => {
+		if (isSuccess) {
+			setImageUrl(baseUrl + "/" + imageData?.file);
+		}
+	}, [imageData, isSuccess]);
 
 	const onSubmitFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
 		try {
@@ -67,24 +87,8 @@ export function CreateProfile1() {
 		}
 	};
 
-	useEffect(() => {
-		if (isSuccess) {
-			setImageUrl(baseUrl + "/" + imageData?.file);
-		}
-	}, [imageData]);
-
-	const {
-		countries,
-		categories,
-		skills,
-		employmentType,
-		hourRate,
-		hoursAmount,
-		workExperience,
-		englishLevel,
-	} = useOptions();
-
 	const onSubmit: SubmitHandler<IFormInput> = async values => {
+		console.log(values);
 		const freelancerInfo = {
 			fullName: values.fullName,
 			category: values.category.label,
@@ -114,7 +118,7 @@ export function CreateProfile1() {
 					<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
 						{t("dashboard.profilePage.title")}
 					</StyledTitle>
-					<Form onSubmit={handleSubmit(onSubmit)}>
+					<Container alignItems="start">
 						<StyledFileField>
 							<img src={imageUrl} alt="User Avatar" />
 							<div>
@@ -139,191 +143,243 @@ export function CreateProfile1() {
 								</label>
 							</div>
 						</StyledFileField>
-						<Controller
-							name="fullName"
-							control={control}
-							rules={{ required: true }}
-							render={({ field }) => (
-								<input
-									type="text"
-									required
-									id="fullName"
-									{...field}
-									placeholder={t("freelancer.createProfile.fullNamePlaceholder")}
-								/>
-							)}
-						/>
-						<div className="selectContainer">
-							<Controller
-								name="category"
-								control={control}
-								rules={{ required: true }}
-								render={({ field }) => (
-									<SelectElement
-										options={categories}
-										{...field}
-										required
-										id="category"
-										isClearable
-										placeholder={t("freelancer.createProfile.selectOption.category")}
-										isSearchable
-										classNamePrefix="react-select"
+						<EditForm onSubmit={handleSubmit(onSubmit)}>
+							<GridContainer gap={8}>
+								<ErrorsHandlerWrapper positionRight={-21} width={18}>
+									<Input
+										id="fullName"
+										{...register("fullName")}
+										type="text"
+										placeholder={t("employer.create.fullNameLabel")}
+										width={100}
 									/>
-								)}
-							/>
-						</div>
-						<Controller
-							name="position"
-							control={control}
-							rules={{ required: true }}
-							render={({ field }) => (
-								<input
-									{...field}
-									type="text"
-									id="position"
-									placeholder={t("freelancer.createProfile.positionPlaceholder")}
-									required
-								/>
-							)}
-						/>
-						<div className="selectContainer">
-							<Controller
-								name="skills"
-								control={control}
-								rules={{ required: true }}
-								render={({ field }) => (
-									<SelectElement
-										options={skills}
-										{...field}
-										required
-										id="skills"
-										placeholder={t("freelancer.createProfile.selectOption.skills")}
-										isSearchable
-										isClearable
-										isMulti
-										classNamePrefix="react-select"
+									{errors?.fullName && (
+										<StyledSpan fontSize="sm" type="validation">
+											<strong>{errors?.fullName?.message}</strong>
+										</StyledSpan>
+									)}
+								</ErrorsHandlerWrapper>
+								<ErrorsHandlerWrapper selectIcons positionRight={-21} width={18}>
+									<Controller
+										name="category"
+										control={control}
+										render={({ field }) => (
+											<SelectElement
+												options={categories}
+												{...field}
+												id="category"
+												isClearable
+												placeholder={t("freelancer.createProfile.selectOption.category")}
+												isSearchable
+												classNamePrefix="react-select"
+											/>
+										)}
 									/>
-								)}
-							/>
-						</div>
-						<div className="selectContainer">
-							<Controller
-								name="employmentType"
-								control={control}
-								rules={{ required: true }}
-								render={({ field }) => (
-									<SelectElement
-										options={employmentType}
-										{...field}
-										required
-										id="employmentType"
-										isSearchable
-										isClearable
-										placeholder={t("freelancer.createProfile.selectOption.employmentType")}
-										classNamePrefix="react-select"
+									{errors?.category && (
+										<StyledSpan fontSize="sm" type="validation">
+											<strong>
+												{errors?.category?.label ? errors?.category?.label.message : FIELD_REQUIRED}
+											</strong>
+										</StyledSpan>
+									)}
+								</ErrorsHandlerWrapper>
+								<ErrorsHandlerWrapper positionRight={-21} width={18}>
+									<Input
+										id="position"
+										{...register("position")}
+										type="text"
+										autoComplete="off"
+										placeholder={t("freelancer.createProfile.positionPlaceholder")}
+										width={100}
 									/>
-								)}
-							/>
-						</div>
-						<div className="selectContainer">
-							<Controller
-								name="country"
-								control={control}
-								rules={{ required: true }}
-								render={({ field }) => (
-									<SelectElement
-										options={countries}
-										{...field}
-										required
-										id="country"
-										placeholder={t("freelancer.createProfile.selectOption.country")}
-										isSearchable
-										isClearable
-										classNamePrefix="react-select"
+									{errors?.position && (
+										<StyledSpan fontSize="sm" type="validation">
+											<strong>{errors?.position?.message}</strong>
+										</StyledSpan>
+									)}
+								</ErrorsHandlerWrapper>
+								<ErrorsHandlerWrapper selectIcons positionRight={-21} width={18}>
+									<Controller
+										name="skills"
+										control={control}
+										render={({ field }) => (
+											<SelectElement
+												options={skills}
+												{...field}
+												id="skills"
+												placeholder={t("freelancer.createProfile.selectOption.skills")}
+												isSearchable
+												isMulti
+												classNamePrefix="react-select"
+											/>
+										)}
 									/>
-								)}
-							/>
-						</div>
-						<div className="selectContainer">
-							<Controller
-								name="hourRate"
-								control={control}
-								rules={{ required: true }}
-								render={({ field }) => (
-									<SelectElement
-										options={hourRate}
-										{...field}
-										required
-										id="hourRate"
-										isSearchable
-										isClearable
-										placeholder={t("freelancer.createProfile.selectOption.hourRate")}
-										classNamePrefix="react-select"
+									{errors?.skills && (
+										<StyledSpan fontSize="sm" type="validation">
+											<strong>{errors?.skills?.message}</strong>
+										</StyledSpan>
+									)}
+								</ErrorsHandlerWrapper>
+								<ErrorsHandlerWrapper selectIcons positionRight={-21} width={18}>
+									<Controller
+										name="employmentType"
+										control={control}
+										render={({ field }) => (
+											<SelectElement
+												options={employmentType}
+												{...field}
+												id="employmentType"
+												placeholder={t("freelancer.createProfile.selectOption.employmentType")}
+												isSearchable
+												isClearable
+												classNamePrefix="react-select"
+											/>
+										)}
 									/>
-								)}
-							/>
-						</div>
-						<div className="selectContainer">
-							<Controller
-								name="availableAmountOfHours"
-								control={control}
-								rules={{ required: true }}
-								render={({ field }) => (
-									<SelectElement
-										options={hoursAmount}
-										{...field}
-										required
-										id="amountHours"
-										isSearchable
-										isClearable
-										placeholder={t("freelancer.createProfile.selectOption.availableAmountOfHour")}
-										classNamePrefix="react-select"
+									{errors?.employmentType && (
+										<StyledSpan fontSize="sm" type="validation">
+											<strong>
+												{errors?.employmentType?.label
+													? errors?.employmentType?.label.message
+													: FIELD_REQUIRED}
+											</strong>
+										</StyledSpan>
+									)}
+								</ErrorsHandlerWrapper>
+								<ErrorsHandlerWrapper selectIcons positionRight={-21} width={18}>
+									<Controller
+										name="country"
+										control={control}
+										render={({ field }) => (
+											<SelectElement
+												options={countries}
+												{...field}
+												id="country"
+												placeholder={t("freelancer.createProfile.selectOption.country")}
+												isSearchable
+												isClearable
+												classNamePrefix="react-select"
+											/>
+										)}
 									/>
-								)}
-							/>
-						</div>
-						<div className="selectContainer">
-							<Controller
-								name="workExperience"
-								control={control}
-								rules={{ required: true }}
-								render={({ field }) => (
-									<SelectElement
-										options={workExperience}
-										{...field}
-										required
-										id="workExperience"
-										placeholder={t("freelancer.createProfile.selectOption.workExperience")}
-										isSearchable
-										isClearable
-										classNamePrefix="react-select"
+									{errors?.country && (
+										<StyledSpan fontSize="sm" type="validation">
+											<strong>
+												{errors?.country?.label ? errors?.country?.label.message : FIELD_REQUIRED}
+											</strong>
+										</StyledSpan>
+									)}
+								</ErrorsHandlerWrapper>
+								<ErrorsHandlerWrapper selectIcons positionRight={-21} width={18}>
+									<Controller
+										name="hourRate"
+										control={control}
+										render={({ field }) => (
+											<SelectElement
+												options={hourRate}
+												{...field}
+												id="hourRate"
+												placeholder={t("freelancer.createProfile.selectOption.hourRate")}
+												isSearchable
+												isClearable
+												classNamePrefix="react-select"
+											/>
+										)}
 									/>
-								)}
-							/>
-						</div>
-						<div className="selectContainer">
-							<Controller
-								name="englishLevel"
-								control={control}
-								rules={{ required: true }}
-								render={({ field }) => (
-									<SelectElement
-										options={englishLevel}
-										{...field}
-										id="englishLevel"
-										required
-										placeholder={t("freelancer.createProfile.selectOption.englishLevel")}
-										isSearchable
-										isClearable
-										classNamePrefix="react-select"
+									{errors?.hourRate && (
+										<StyledSpan fontSize="sm" type="validation">
+											<strong>
+												{errors?.hourRate?.label ? errors?.hourRate?.label.message : FIELD_REQUIRED}
+											</strong>
+										</StyledSpan>
+									)}
+								</ErrorsHandlerWrapper>
+								<ErrorsHandlerWrapper selectIcons positionRight={-21} width={18}>
+									<Controller
+										name="availableAmountOfHours"
+										control={control}
+										render={({ field }) => (
+											<SelectElement
+												options={hoursAmount}
+												{...field}
+												id="amountHours"
+												placeholder={t(
+													"freelancer.createProfile.selectOption.availableAmountOfHour",
+												)}
+												isSearchable
+												isClearable
+												classNamePrefix="react-select"
+											/>
+										)}
 									/>
-								)}
-							/>
-						</div>
-						<StyledButton type="submit" buttonColor="redGradient" buttonSize="sm" fontSize="md">
-							<strong>{t("recoverPassForm.buttonContinue")}</strong>
-						</StyledButton>
-					</Form>
+									{errors?.availableAmountOfHours && (
+										<StyledSpan fontSize="sm" type="validation">
+											<strong>
+												{errors?.availableAmountOfHours?.label
+													? errors?.availableAmountOfHours?.label.message
+													: FIELD_REQUIRED}
+											</strong>
+										</StyledSpan>
+									)}
+								</ErrorsHandlerWrapper>
+								<ErrorsHandlerWrapper selectIcons positionRight={-21} width={18}>
+									<Controller
+										name="workExperience"
+										control={control}
+										render={({ field }) => (
+											<SelectElement
+												options={workExperience}
+												{...field}
+												id="workExperience"
+												placeholder={t("freelancer.createProfile.selectOption.workExperience")}
+												isSearchable
+												isClearable
+												classNamePrefix="react-select"
+											/>
+										)}
+									/>
+									{errors?.workExperience && (
+										<StyledSpan fontSize="sm" type="validation">
+											<strong>
+												{errors?.workExperience?.label
+													? errors?.workExperience?.label.message
+													: FIELD_REQUIRED}
+											</strong>
+										</StyledSpan>
+									)}
+								</ErrorsHandlerWrapper>
+								<ErrorsHandlerWrapper selectIcons positionRight={-21} width={18}>
+									<Controller
+										name="englishLevel"
+										control={control}
+										render={({ field }) => (
+											<SelectElement
+												options={englishLevel}
+												{...field}
+												id="englishLevel"
+												placeholder={t("freelancer.createProfile.selectOption.englishLevel")}
+												isSearchable
+												isClearable
+												classNamePrefix="react-select"
+											/>
+										)}
+									/>
+									{errors?.englishLevel && (
+										<StyledSpan fontSize="sm" type="validation">
+											<strong>
+												{errors?.englishLevel?.label
+													? errors?.englishLevel?.label.message
+													: FIELD_REQUIRED}
+											</strong>
+										</StyledSpan>
+									)}
+								</ErrorsHandlerWrapper>
+								<StyledButton type="submit" buttonColor="redGradient" buttonSize="sm" fontSize="md">
+									<strong>{t("recoverPassForm.buttonContinue")}</strong>
+								</StyledButton>
+							</GridContainer>
+						</EditForm>
+					</Container>
 				</Dashboard>
 			</StyledPage>
 		</ThemeProvider>
