@@ -12,7 +12,13 @@ import { useLoginMutation } from "redux/login.api";
 import { useConfirmEmailMutation } from "redux/signup-googleApi";
 import { UserRoles } from "redux/role.api";
 import { setUserData } from "redux/userState/userSlice";
-import { ROLE_SELECTION, SEARCH_WORK, FETCH_ERROR, STATUS_CODE } from "utils/constants/breakpoint";
+import {
+	ROLE_SELECTION,
+	SEARCH_WORK,
+	FETCH_ERROR,
+	STATUS_CODE,
+	STATUS_FORBIDDEN,
+} from "utils/constants/breakpoint";
 import { EMPLOYER_JOBS_PAGE } from "utils/constants/links";
 import { Form, InputWrapper } from "./login-form.styled";
 
@@ -47,6 +53,9 @@ export function LoginForm() {
 			if (status === STATUS_CODE) {
 				toast.error(t("signForm.passwordError"));
 			}
+			if (status === STATUS_FORBIDDEN) {
+				toast.error(t("signForm.needActivated"));
+			}
 		}
 	};
 
@@ -58,13 +67,10 @@ export function LoginForm() {
 
 	useEffect(() => {
 		if (isSuccessConfirm) {
-			toast(t("signForm.confirmation"), { position: toast.POSITION.TOP_LEFT, toastId: "1" });
+			toast.success(t("signForm.confirmation"));
 		}
 		if (isErrorConfirm) {
-			toast.error(t("recoverPassForm.errorMessageServerError"), {
-				position: toast.POSITION.TOP_LEFT,
-				toastId: "1",
-			});
+			toast.error(t("recoverPassForm.errorMessageServerError"));
 		}
 	}, [isErrorConfirm, isSuccessConfirm]);
 
@@ -117,7 +123,7 @@ export function LoginForm() {
 			<StyledButton buttonSize="lg" buttonColor="redGradient">
 				{t("signForm.buttonSignIn")}
 			</StyledButton>
-			<ToastContainer autoClose={false} />
+			<ToastContainer />
 		</Form>
 	);
 }

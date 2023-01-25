@@ -16,6 +16,8 @@ export interface CurrentItems {
 	typePage?: TypePage;
 	profile?: IResponse | IResponseEmployer;
 	refetch?: () => void;
+  refetchJobs?: () => void;
+  refetchProposal?: () => void;
 	closeProposalsList?: () => void;
 	openProposalsList?: () => void;
 }
@@ -26,6 +28,8 @@ export function Items({
 	typePage,
 	profile,
 	refetch,
+  refetchJobs,
+  refetchProposal,
 	closeProposalsList,
 	openProposalsList,
 }: CurrentItems) {
@@ -83,6 +87,7 @@ export function Items({
 							isPublished={job.isPublished}
 							profile={profile}
 							refetch={refetch}
+              refetchJobs={refetchJobs}
 							employerId={job.employer?.id}
 							jobChats={job.chats}
 							invitation={job.invitation}
@@ -106,6 +111,7 @@ export function Items({
 						userType={user}
 						closeProposalsList={closeProposalsList}
 						openProposalsList={openProposalsList}
+            refetchProposal={refetchProposal}
 					/>
 				))}
 		</Container>
