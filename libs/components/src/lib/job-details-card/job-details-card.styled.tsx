@@ -35,7 +35,7 @@ export const Item = styled.div`
 	}
 
 	p {
-		width: 70%;
+		width: 100%;
 		word-break: keep-all;
 		word-wrap: break-word;
 		text-align: right;

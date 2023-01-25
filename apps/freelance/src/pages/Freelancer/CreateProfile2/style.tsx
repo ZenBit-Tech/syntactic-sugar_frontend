@@ -32,6 +32,7 @@ export const Form = styled.form`
 	display: flex;
 	flex-direction: column;
 	height: 90%;
+	padding: 10px;
 	justify-content: space-around;
 	position: relative;
 	input,
@@ -107,7 +108,7 @@ export const InputHeader = styled.div`
 
 export const InputWrapper = styled.div`
 	display: flex;
-	align-items: center;
+	align-items: start;
 	flex-direction: column;
 	gap: 2rem;
 	width: 100%;
@@ -127,10 +128,10 @@ export const InputWrapper = styled.div`
 export const TextAreaContainer = styled.div`
 	display: flex;
 	gap: 1rem;
-	align-items: center;
+	align-items: start;
 	flex-direction: column;
-	height: 25%;
-	padding-top: 1rem;
+	height: 40%;
+	width: 90%;
 
 	label {
 		width: 100%;
@@ -141,7 +142,7 @@ export const TextAreaContainer = styled.div`
 		color: ${({ theme }) => theme.colors.black};
 		resize: none;
 		border-radius: 30px;
-		width: 80%;
+		width: 100%;
 		padding: 1rem;
 		outline: none;
 	}
@@ -152,7 +153,7 @@ export const ButtonsContainer = styled.div`
 	gap: 3rem;
 	justify-content: center;
 	position: absolute;
-	bottom: -8%;
+	bottom: -4%;
 	width: 100%;
 
 	button {

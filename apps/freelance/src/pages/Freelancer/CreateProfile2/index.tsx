@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Popover } from "antd";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -40,7 +41,7 @@ export function CreateProfile2() {
 	useEffect(() => {
 		setEducationList([education]);
 		setWorkHistoryList([workHistory]);
-	}, []);
+	}, [education, setEducationList, setWorkHistoryList, workHistory]);
 
 	const { handleChangeList } = useChangeListHandler(
 		setEducationList,
@@ -87,15 +88,17 @@ export function CreateProfile2() {
 						<InputContainer>
 							<InputHeader>
 								<label>{t("freelancer.createProfile.educationLabel")}</label>
-								<StyledButton
-									type="button"
-									buttonColor="redGradient"
-									buttonSize="sm"
-									fontSize="md"
-									onClick={handleAddEducation}
-								>
-									<strong>{t("freelancer.createProfile.addBtn")}</strong>
-								</StyledButton>
+								<Popover placement="right" content={t("freelancer.createProfile.edu")}>
+									<StyledButton
+										type="button"
+										buttonColor="redGradient"
+										buttonSize="sm"
+										fontSize="md"
+										onClick={handleAddEducation}
+									>
+										<strong>{t("freelancer.createProfile.addBtn")}</strong>
+									</StyledButton>
+								</Popover>
 							</InputHeader>
 							{educationList.map((item, index) => (
 								<InputWrapper key={index}>
@@ -149,15 +152,17 @@ export function CreateProfile2() {
 						<InputContainer>
 							<InputHeader>
 								<label>{t("freelancer.createProfile.workHistoryLabel")}</label>
-								<StyledButton
-									type="button"
-									buttonColor="redGradient"
-									buttonSize="sm"
-									fontSize="md"
-									onClick={handleAddWorkHistory}
-								>
-									{t("freelancer.createProfile.addBtn")}
-								</StyledButton>
+								<Popover placement="right" content={t("freelancer.createProfile.add")}>
+									<StyledButton
+										type="button"
+										buttonColor="redGradient"
+										buttonSize="sm"
+										fontSize="md"
+										onClick={handleAddWorkHistory}
+									>
+										{t("freelancer.createProfile.addBtn")}
+									</StyledButton>
+								</Popover>
 							</InputHeader>
 							{workHistoryList.map((item, index) => (
 								<InputWrapper key={index}>

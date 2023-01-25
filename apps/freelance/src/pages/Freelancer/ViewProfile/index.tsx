@@ -2,13 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { ThemeProvider } from "styled-components";
-import {
-	ThemeColors,
-	ThemeBackground,
-	Dashboard,
-	StyledTitle,
-	StyledButton,
-} from "@freelance/components";
+import { ThemeColors, ThemeBackground, Dashboard, StyledButton } from "@freelance/components";
 import { RootState } from "src/redux/store";
 import { Freelancer } from "src/redux/createFreelancer/freelancer-slice";
 import { CREATE_PROFILE_2 } from "utils/constants/breakpoint";
@@ -51,9 +45,6 @@ export function ViewProfile() {
 		<ThemeProvider theme={ThemeColors && ThemeBackground}>
 			<StyledPage>
 				<Dashboard userRole="freelancer" typePage="createProfile">
-					<StyledTitle tag="h2" fontSize="md" fontWeight={700}>
-						{t("dashboard.profilePage.title")}
-					</StyledTitle>
 					<Container>
 						<ItemContainer>
 							<LeftSide>
@@ -114,6 +105,12 @@ export function ViewProfile() {
 									</Title>
 									<p>{skills.join(", ")}</p>
 								</Item>
+								<Item>
+									<Title id="rateHour">
+										<strong>{t("freelancer.createProfile.otherExperienceLabel")}</strong>
+									</Title>
+									<p>{otherExperience}</p>
+								</Item>
 							</RightSide>
 						</ItemContainer>
 						<Bottom>
@@ -165,14 +162,6 @@ export function ViewProfile() {
 											<p>{item.period}</p>
 										))}
 									</Item>
-								</Subcontainer>
-							</ItemContainer>
-							<ItemContainer id="workHistory">
-								<Title id="workHistory">
-									<strong>{t("freelancer.createProfile.otherExperienceLabel")}</strong>
-								</Title>
-								<Subcontainer>
-									<p>{otherExperience}</p>
 								</Subcontainer>
 							</ItemContainer>
 						</Bottom>

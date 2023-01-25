@@ -159,17 +159,19 @@ export const ChatTextArea = styled.div`
 	display: flex;
 	border: 1px solid ${({ theme }) => theme.colors.grey};
 	border-radius: 0px 0px 25px 0px;
-	height: 10%;
+	height: 15%;
 	width: 100%;
-	padding-left: 10%;
+	padding-left: 10px;
 	align-items: center;
 `;
 
 export const ChatInput = styled.textarea`
 	border: 2px solid ${({ theme }) => theme.colors.grey};
 	border-radius: 100px;
-	height: 40px;
-	padding: 0.5rem 1rem;
+	height: 43px;
+	padding: 9px;
+	overflow-y: hidden;
+	resize: none;
 	width: 100%;
 
 	::placeholder {
@@ -184,10 +186,8 @@ export const ChatInput = styled.textarea`
 
 export const ChatButtonArea = styled.div`
 	display: flex;
+	justify-content: center;
 	width: 30%;
-	margin-left: 2%;
-	button {
-	}
 `;
 
 export const ChatMessageContainer = styled.div<MessageContainerProps>`
