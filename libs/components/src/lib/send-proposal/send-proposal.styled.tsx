@@ -56,9 +56,9 @@ export const Title = styled(BaseTitle)`
 `;
 
 export const Label = styled.label`
+	display: block;
+	margin-bottom: 0.4rem;
 	font-size: 1rem;
-	padding-left: 1.5rem;
-	margin-bottom: 0.5rem;
 `;
 
 export const InputRate = styled(Input)`
