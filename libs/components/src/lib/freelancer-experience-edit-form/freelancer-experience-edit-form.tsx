@@ -1,5 +1,7 @@
 import { Control, FieldErrorsImpl, UseFormRegister } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { Popover } from "antd";
+import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import {
 	GridContainer,
 	StyledTitle,
@@ -10,9 +12,7 @@ import {
 	IEditFreelancerForm,
 	ButtonContainer,
 } from "@freelance/components";
-import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useFreelancerExperienceEditForm } from "./freelancer-experience-edit-formHook";
-import { Popover } from "antd";
 
 export interface FreelancerExperienceEditFormProps {
 	register: UseFormRegister<IEditFreelancerForm>;
