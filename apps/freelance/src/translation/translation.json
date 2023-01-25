@@ -175,6 +175,8 @@
 			"modal": "Do you want to publish profile",
 			"modalBtnNo": "No",
 			"modalBtnYes": "Yes",
+			"add": "Add work history",
+			"edu": "Add education",
 			"selectOption": {
 				"country": "Country",
 				"category": "Category",
