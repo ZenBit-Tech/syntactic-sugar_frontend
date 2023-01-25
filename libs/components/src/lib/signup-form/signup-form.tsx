@@ -94,9 +94,9 @@ export function SignupForm() {
 					<input {...register("agreement")} type="checkbox" name="agreement" />
 					<label htmlFor="agreement">
 						{t("signForm.agree")}
-						<a onClick={openPrivacyPolicyModal}>
+						<button onClick={openPrivacyPolicyModal}>
 							<strong>{t("signForm.policyLink")}</strong>
-						</a>
+						</button>
 					</label>
 				</CheckboxWrapper>
 				{errors?.agreement && (
