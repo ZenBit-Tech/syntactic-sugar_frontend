@@ -35,8 +35,9 @@ export function InvitationCard({ freelancer_id, onCancel }: InvitationCardProps)
 
 		try {
 			if (
-				freelancerProposal &&
-				freelancerProposal.filter(item => item.value !== invitation.job_id).length > 0
+				(freelancerProposal &&
+					freelancerProposal.filter(item => item.value !== invitation.job_id).length > 0) ||
+				[]
 			) {
 				await sendInvitation(invitation);
 				onCancel();
