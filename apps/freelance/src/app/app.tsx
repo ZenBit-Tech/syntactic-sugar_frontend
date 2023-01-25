@@ -30,10 +30,6 @@ import { StyledApp } from "./app.styled";
 
 export function App() {
 	const role = useSelector(getRole);
-	const { data } = useGetCurrentUserQuery();
-	const profile = data?.employer ? data?.employer : data?.freelancer;
-
-	console.log(profile);
 
 	return (
 		<StyledApp>
@@ -69,7 +65,7 @@ export function App() {
 									/>
 								</>
 							)}
-							{role !== EMPLOYER && profile && (
+							{role !== EMPLOYER && (
 								<>
 									<Route
 										path="/freelancer/searchwork"

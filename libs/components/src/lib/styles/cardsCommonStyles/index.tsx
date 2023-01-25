@@ -147,6 +147,7 @@ export const OfferButtonWrapper = styled.div`
 
 	button {
 		border-radius: 12px;
+		width: 40%;
 	}
 `;
 
