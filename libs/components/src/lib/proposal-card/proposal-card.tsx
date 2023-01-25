@@ -38,6 +38,7 @@ export interface ProposalCardProps {
 	userType: string;
 	closeProposalsList?: () => void;
 	openProposalsList?: () => void;
+  refetchProposal?: () => void;
 }
 
 export function ProposalCard({
@@ -51,6 +52,7 @@ export function ProposalCard({
 	userType,
 	closeProposalsList,
 	openProposalsList,
+  refetchProposal,
 }: ProposalCardProps) {
 	const { t } = useTranslation();
 	const prettyDate = moment(createdDate).format("LL");
@@ -66,6 +68,7 @@ export function ProposalCard({
 		jobId,
 		employerId,
 		freelancerId: freelancer?.id,
+		refetchProposal,
 		closeProposalsList,
 		openProposalsList,
 	});

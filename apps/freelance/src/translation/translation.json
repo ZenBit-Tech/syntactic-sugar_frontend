@@ -106,7 +106,9 @@
 		"proposalSent": "Proposal was sent",
 		"offerReceived": "Offer received",
 		"accept": "Accept",
-		"decline": "Decline"
+		"decline": "Decline",
+		"offerAccepted": "Offer accepted",
+		"offerDeclined": "Offer declined"
 	},
 	"editJob": {
 		"saveChanges": "Save changes",
