@@ -1,6 +1,10 @@
 {
 	"serverErrorMessage": "Something went wrong",
 	"loading": "...Loading",
+	"addEducation": "Add education",
+	"removeEducation": "Remove education",
+	"addExperience": "Add experience",
+	"removeExperience": "Remove experience",
 	"signupGoogle": {
 		"buttonText": "Sign up with Google",
 		"error": "This email already registered. Sign in, please."

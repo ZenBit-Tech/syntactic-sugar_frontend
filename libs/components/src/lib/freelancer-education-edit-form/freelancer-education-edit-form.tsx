@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { Popover } from "antd";
 import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Control, FieldErrorsImpl, UseFormRegister } from "react-hook-form";
 import {
@@ -81,31 +82,35 @@ export function FreelancerEducationEditForm({
 							)}
 						</ErrorsHandlerWrapper>
 						<ButtonContainer align="right">
-							<StyledButton
-								type="button"
-								iconButton
-								buttonSize="sm"
-								fontSize="lg"
-								buttonColor={"redGradient"}
-								onClick={() => remove(index)}
-							>
-								<DeleteOutlined />
-							</StyledButton>
+							<Popover placement="right" content={t("removeEducation")}>
+								<StyledButton
+									type="button"
+									iconButton
+									buttonSize="sm"
+									fontSize="lg"
+									buttonColor={"redGradient"}
+									onClick={() => remove(index)}
+								>
+									<DeleteOutlined />
+								</StyledButton>
+							</Popover>
 						</ButtonContainer>
 					</GridContainer>
 				))}
 			</GridContainer>
 			<ButtonContainer align="right">
-				<StyledButton
-					type="button"
-					iconButton
-					buttonSize="sm"
-					fontSize="lg"
-					buttonColor={"redGradient"}
-					onClick={() => append({ institute: "", occupation: "", period: "" })}
-				>
-					<PlusOutlined />
-				</StyledButton>
+				<Popover placement="right" content={t("addEducation")}>
+					<StyledButton
+						type="button"
+						iconButton
+						buttonSize="sm"
+						fontSize="lg"
+						buttonColor={"redGradient"}
+						onClick={() => append({ institute: "", occupation: "", period: "" })}
+					>
+						<PlusOutlined />
+					</StyledButton>
+				</Popover>
 			</ButtonContainer>
 		</GridContainer>
 	);

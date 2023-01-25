@@ -1,5 +1,7 @@
 import { Control, FieldErrorsImpl, UseFormRegister } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { Popover } from "antd";
+import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import {
 	GridContainer,
 	StyledTitle,
@@ -10,7 +12,6 @@ import {
 	IEditFreelancerForm,
 	ButtonContainer,
 } from "@freelance/components";
-import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useFreelancerExperienceEditForm } from "./freelancer-experience-edit-formHook";
 
 export interface FreelancerExperienceEditFormProps {
@@ -81,31 +82,35 @@ export function FreelancerExperienceEditForm({
 							)}
 						</ErrorsHandlerWrapper>
 						<ButtonContainer align="right">
-							<StyledButton
-								type="button"
-								iconButton
-								buttonSize="sm"
-								fontSize="lg"
-								buttonColor={"redGradient"}
-								onClick={() => remove(index)}
-							>
-								<DeleteOutlined />
-							</StyledButton>
+							<Popover placement="right" content={t("removeExperience")}>
+								<StyledButton
+									type="button"
+									iconButton
+									buttonSize="sm"
+									fontSize="lg"
+									buttonColor={"redGradient"}
+									onClick={() => remove(index)}
+								>
+									<DeleteOutlined />
+								</StyledButton>
+							</Popover>
 						</ButtonContainer>
 					</GridContainer>
 				))}
 			</GridContainer>
 			<ButtonContainer align="right">
-				<StyledButton
-					type="button"
-					iconButton
-					buttonSize="sm"
-					fontSize="lg"
-					buttonColor={"redGradient"}
-					onClick={() => append({ company: "", workPosition: "", period: "" })}
-				>
-					<PlusOutlined />
-				</StyledButton>
+				<Popover placement="right" content={t("addExperience")}>
+					<StyledButton
+						type="button"
+						iconButton
+						buttonSize="sm"
+						fontSize="lg"
+						buttonColor={"redGradient"}
+						onClick={() => append({ company: "", workPosition: "", period: "" })}
+					>
+						<PlusOutlined />
+					</StyledButton>
+				</Popover>
 			</ButtonContainer>
 		</GridContainer>
 	);
