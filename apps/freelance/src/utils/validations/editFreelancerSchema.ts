@@ -20,7 +20,7 @@ export const useEditFreelancerSchema = (): SchemaOf<IEditFreelancerForm> => {
 			}),
 		)
 			.max(3, MAX_SKILLS)
-			.min(1, FIELD_REQUIRED),
+			.required(FIELD_REQUIRED),
 		employmentType: object({
 			value: string().required(FIELD_REQUIRED),
 			label: string().required(FIELD_REQUIRED),

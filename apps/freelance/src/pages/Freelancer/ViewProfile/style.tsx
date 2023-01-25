@@ -12,7 +12,7 @@ export const Container = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
-	padding-top: 1rem;
+	padding-top: 0;
 	align-items: center;
 
 	button {
@@ -23,12 +23,13 @@ export const Container = styled.div`
 export const Item = styled.div`
 	display: flex;
 	justify-content: space-between;
+	width: -webkit-fill-available;
 	border-bottom: 1px solid ${({ theme }) => theme.colors.grey};
 	padding: 1rem 0;
 	gap: 1rem;
 
 	&#workHistory {
-		padding: 0.5rem;
+		padding: 0.7rem;
 	}
 
 	p {
@@ -66,7 +67,7 @@ export const ItemContainer = styled.div`
 		width: 50%;
 		gap: 0;
 		padding: 0 1rem;
-		height: 220px;
+		height: fit-content;
 		display: flex;
 		flex-direction: column;
 		overflow-y: auto;
@@ -93,7 +94,6 @@ export const Subtitle = styled.div`
 
 export const Subcontainer = styled.div`
 	border-bottom: 2px solid red;
-	padding: 1rem 0;
 
 	:last-child {
 		border-bottom: none;

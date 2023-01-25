@@ -40,7 +40,7 @@ export function CreateProfile2() {
 	useEffect(() => {
 		setEducationList([education]);
 		setWorkHistoryList([workHistory]);
-	}, []);
+	}, [education, setEducationList, setWorkHistoryList, workHistory]);
 
 	const { handleChangeList } = useChangeListHandler(
 		setEducationList,
