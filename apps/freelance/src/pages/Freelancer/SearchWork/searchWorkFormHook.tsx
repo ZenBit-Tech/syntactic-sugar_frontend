@@ -16,7 +16,7 @@ interface IUseSearchWorkFormHook {
 	refetch: () => void;
 	isLoading: boolean;
 	proposals?: JobsInterface[];
-	freelancerProfile?: IResponse;
+	freelancerData?: IResponse;
 	invitations?: JobsInterface[];
 	offers?: JobsInterface[];
 }
@@ -44,7 +44,6 @@ export interface IFreelancerInfo {
 export const useSearchWorkFormHook = (): IUseSearchWorkFormHook => {
 	const { data, isLoading } = useGetJobsQuery();
 	const { data: freelancerData, refetch } = useGetFreelancerQuery();
-	const { data: freelancerProfile } = useGetFreelancerQuery();
 	const [filterJobs, setFilterJobs] = useState<JobsInterface[] | undefined>(data);
 	const [toggleFilter, setToggleFilter] = useState<string>("reset");
 	const [filter, setFilter] = useState<IFreelancerInfo>();
@@ -126,8 +125,8 @@ export const useSearchWorkFormHook = (): IUseSearchWorkFormHook => {
 			job =>
 				job.proposals.filter(
 					proposal =>
-						freelancerProfile &&
-						freelancerProfile.proposals.filter(item => item.id === proposal.id).length > 0,
+						freelancerData &&
+						freelancerData.proposals.filter(item => item.id === proposal.id).length > 0,
 				).length > 0,
 		);
 
@@ -137,8 +136,8 @@ export const useSearchWorkFormHook = (): IUseSearchWorkFormHook => {
 			job =>
 				job.invitation.filter(
 					inv =>
-						freelancerProfile &&
-						freelancerProfile.invitation.filter(item => item.id === inv.id).length > 0,
+						freelancerData &&
+						freelancerData.invitation.filter(item => item.id === inv.id).length > 0,
 				).length > 0,
 		);
 
@@ -148,8 +147,7 @@ export const useSearchWorkFormHook = (): IUseSearchWorkFormHook => {
 			job =>
 				job.offers.filter(
 					offer =>
-						freelancerProfile &&
-						freelancerProfile.offers.filter(item => item.id === offer.id).length > 0,
+						freelancerData && freelancerData.offers.filter(item => item.id === offer.id).length > 0,
 				).length > 0,
 		);
 
@@ -164,7 +162,7 @@ export const useSearchWorkFormHook = (): IUseSearchWorkFormHook => {
 		refetch,
 		isLoading,
 		proposals,
-		freelancerProfile,
+		freelancerData,
 		invitations,
 		offers,
 	};

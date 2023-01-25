@@ -143,7 +143,7 @@ export const OfferButtonWrapper = styled.div`
 	align-items: center;
 	justify-content: space-evenly;
 	width: 100%;
-	gap: 10px;
+	gap: 10;
 
 	button {
 		border-radius: 12px;

@@ -25,10 +25,15 @@ import { EmployerJobsPage } from "@pages/Employer/EmployerJobsPage";
 import { PrivateRoute, PublicRoute } from "src/protectedRoutes/protectedRoutes";
 import TalentsPage from "@pages/Employer/Talents";
 import NotFound from "@pages/NotFound";
+import { useGetCurrentUserQuery } from "src/redux/userApi";
 import { StyledApp } from "./app.styled";
 
 export function App() {
 	const role = useSelector(getRole);
+	const { data } = useGetCurrentUserQuery();
+	const profile = data?.emploeyr || data?.freelancer;
+
+	console.log(profile);
 
 	return (
 		<StyledApp>
@@ -64,7 +69,7 @@ export function App() {
 									/>
 								</>
 							)}
-							{role !== EMPLOYER && (
+							{role !== EMPLOYER && profile && (
 								<>
 									<Route
 										path="/freelancer/searchwork"
@@ -125,9 +130,11 @@ export function App() {
 								<Route path="resetpassword/:token" element={<RecoverPasswordReset />} />
 								<Route path="password-updated" element={<RecoverPasswordUpdate />} />
 							</Route>
+
 							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />
 							<Route path="/freelancer/create-profile2" element={<CreateProfile2 />} />
 							<Route path="/freelancer/view-profile" element={<ViewProfile />} />
+
 							<Route path="/employer/create-profile" element={<CreateEmployerProfile />} />
 							<Route path="/employer/create-new-job-first-page" element={<JobPostingFirstPage />} />
 							<Route

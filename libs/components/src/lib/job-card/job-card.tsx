@@ -200,41 +200,41 @@ export function JobCard({
 						</FreelancerButtonWrapper>
 					</GridContainer>
 				)}
-				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && isInvitation && isChat && (
-					<GridContainer alignItems="center" justifyItems="center">
-						<FreelancerButtonWrapper>
-							<StyledButton
-								buttonColor="redGradient"
-								buttonSize="lg"
-								fontSize="md"
-								onClick={continueChat}
-							>
-								<strong>{t("chat.continueChat")}</strong>
-							</StyledButton>
-						</FreelancerButtonWrapper>
-					</GridContainer>
-				)}
 				{userType === ROLES.FREELANCER &&
 					typePage === JOBS_PAGE &&
-					!isInvitation &&
+					isInvitation &&
 					isChat &&
-					isOffer && (
+					!isOffer && (
 						<GridContainer alignItems="center" justifyItems="center">
-							<OfferCardNotification fontSize="md">
-								<strong>
-									{t("jobCard.offerReceived")} ${offerTax}
-								</strong>
-							</OfferCardNotification>
-							<OfferButtonWrapper>
-								<StyledButton buttonColor="redGradient" buttonSize="sm" fontSize="md">
-									<strong>{t("jobCard.accept")}</strong>
+							<FreelancerButtonWrapper>
+								<StyledButton
+									buttonColor="redGradient"
+									buttonSize="lg"
+									fontSize="md"
+									onClick={continueChat}
+								>
+									<strong>{t("chat.continueChat")}</strong>
 								</StyledButton>
-								<StyledButton buttonColor="redGradient" buttonSize="sm" fontSize="md">
-									<strong>{t("jobCard.decline")}</strong>
-								</StyledButton>
-							</OfferButtonWrapper>
+							</FreelancerButtonWrapper>
 						</GridContainer>
 					)}
+				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && isOffer && (
+					<GridContainer alignItems="center" justifyItems="center">
+						<OfferCardNotification fontSize="md">
+							<strong>
+								{t("jobCard.offerReceived")} ${offerTax}
+							</strong>
+						</OfferCardNotification>
+						<OfferButtonWrapper>
+							<StyledButton buttonColor="redGradient" buttonSize="sm" fontSize="md">
+								<strong>{t("jobCard.accept")}</strong>
+							</StyledButton>
+							<StyledButton buttonColor="redGradient" buttonSize="sm" fontSize="md">
+								<strong>{t("jobCard.decline")}</strong>
+							</StyledButton>
+						</OfferButtonWrapper>
+					</GridContainer>
+				)}
 				{userType === ROLES.EMPLOYER && (
 					<GridContainer alignItems="center" justifyItems="center" gap={10}>
 						<EmployerButtonWrapper>
