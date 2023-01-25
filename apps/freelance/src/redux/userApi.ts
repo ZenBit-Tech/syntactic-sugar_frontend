@@ -6,7 +6,7 @@ import { IEmployerResponse } from "./jobs";
 export interface IResponseUser {
 	id: string;
 	freelancer: IResponse;
-	emploeyr: IEmployerResponse;
+	employer: IEmployerResponse;
 }
 
 export const userApi = createApi({

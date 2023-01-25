@@ -31,7 +31,7 @@ import { StyledApp } from "./app.styled";
 export function App() {
 	const role = useSelector(getRole);
 	const { data } = useGetCurrentUserQuery();
-	const profile = data?.emploeyr || data?.freelancer;
+	const profile = data?.employer ? data?.employer : data?.freelancer;
 
 	console.log(profile);
 
