@@ -82,7 +82,7 @@ export function FreelancerEducationEditForm({
 							)}
 						</ErrorsHandlerWrapper>
 						<ButtonContainer align="right">
-							<Popover placement="right" content={t("removeButton")}>
+							<Popover placement="right" content={t("removeEducation")}>
 								<StyledButton
 									type="button"
 									iconButton
@@ -99,7 +99,7 @@ export function FreelancerEducationEditForm({
 				))}
 			</GridContainer>
 			<ButtonContainer align="right">
-				<Popover placement="right" content={t("addButton")}>
+				<Popover placement="right" content={t("addEducation")}>
 					<StyledButton
 						type="button"
 						iconButton
