@@ -58,6 +58,7 @@ export interface JobCardProps {
 	isPublished?: boolean;
 	typePage?: TypePage;
 	refetch?: () => void;
+	refetchJobs?: () => void;
 	employerId?: string;
 	proposals?: Proposal[];
 	profile?: IResponse | IResponseEmployer;
@@ -86,6 +87,7 @@ export function JobCard({
 	typePage,
 	isPublished,
 	refetch,
+	refetchJobs,
 	employerId,
 	proposals,
 	invitation,
@@ -97,6 +99,7 @@ export function JobCard({
 	const prettyDate = moment(updatedDate).format("LL");
 	const {
 		handleToggleIsPublishedButton,
+		handleOfferAccept,
 		openSendProposal,
 		closeCreateProposal,
 		openCreateProposal,
@@ -114,8 +117,10 @@ export function JobCard({
 		isInvitation,
 		isProposal,
 		isOffer,
+		isOfferAcceptance,
 		offerTax,
-	} = useJobCard({ isPublished, invitation, jobChats, profile, proposals, offer });
+		offerAccept,
+	} = useJobCard({ isPublished, invitation, jobChats, profile, proposals, offer, refetchJobs });
 	const { openChat, closeChat, chatModalOpen, continueChat } = useChat({
 		jobId,
 		employerId,
@@ -235,6 +240,47 @@ export function JobCard({
 						</OfferButtonWrapper>
 					</GridContainer>
 				)}
+				{isOffer && !isOfferAcceptance && (
+					<GridContainer alignItems="center" justifyItems="center">
+						<OfferCardNotification fontSize="md">
+							<strong>
+								{t("jobCard.offerReceived")} ${offerTax}
+							</strong>
+						</OfferCardNotification>
+						<OfferButtonWrapper>
+							<StyledButton
+								buttonColor="redGradient"
+								buttonSize="sm"
+								fontSize="md"
+								onClick={() => handleOfferAccept(jobId, true)}
+							>
+								<strong>{t("jobCard.accept")}</strong>
+							</StyledButton>
+							<StyledButton
+								buttonColor="redGradient"
+								buttonSize="sm"
+								fontSize="md"
+								onClick={() => handleOfferAccept(jobId, false)}
+							>
+								<strong>{t("jobCard.decline")}</strong>
+							</StyledButton>
+						</OfferButtonWrapper>
+					</GridContainer>
+				)}
+				{userType === ROLES.FREELANCER &&
+					typePage === JOBS_PAGE &&
+					!isInvitation &&
+					isChat &&
+					isOffer &&
+					isOfferAcceptance && (
+						<GridContainer alignItems="center" justifyItems="center">
+							<CardNotification fontSize="md">
+								<strong>
+									{offerAccept ? t("jobCard.offerAccepted") : t("jobCard.offerDeclined")}
+								</strong>
+							</CardNotification>
+						</GridContainer>
+					)}
 				{userType === ROLES.EMPLOYER && (
 					<GridContainer alignItems="center" justifyItems="center" gap={10}>
 						<EmployerButtonWrapper>

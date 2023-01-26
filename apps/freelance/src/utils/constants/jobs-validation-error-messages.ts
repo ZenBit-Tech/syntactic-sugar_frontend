@@ -15,14 +15,16 @@ interface IUseJobValidationErrorMessages {
 	MESSAGE_DESCRIPTION_MIN_CHAR: string;
 	WEBSITE_ERROR_MESSAGE: string;
 	LINKED_IN_ERROR_MESSAGE: string;
+	MAX_SKILLS_NUMBER: number;
 }
 
 export const useJobsValidationErrorMessages = (): IUseJobValidationErrorMessages => {
 	const { t } = useTranslation();
 
-	const INPUT_CHAR_NUMBER: number = 50;
-	const TEXTAREA_CHAR_NUMBER: number = 600;
-	const PHONE_TWELVE_CHAR_NUMBER: number = 12;
+	const INPUT_CHAR_NUMBER = 50;
+	const TEXTAREA_CHAR_NUMBER = 600;
+	const PHONE_TWELVE_CHAR_NUMBER = 12;
+	const MAX_SKILLS_NUMBER = 3;
 	const FIELD_REQUIRED: string = t("newJobPosting.validation.messageFieldRequired");
 	const MESSAGE_JOB_TITLE_MAX_CHAR: string = t(
 		"newJobPosting.firstForm.validation.messageJobTitleMaxChar",
@@ -53,6 +55,7 @@ export const useJobsValidationErrorMessages = (): IUseJobValidationErrorMessages
 		MIN_TWELVE_CHAR,
 		INPUT_CHAR_NUMBER,
 		TEXTAREA_CHAR_NUMBER,
+		MAX_SKILLS_NUMBER,
 		PHONE_TWELVE_CHAR_NUMBER,
 		MESSAGE_DESCRIPTION_MIN_CHAR,
 		WEBSITE_ERROR_MESSAGE,

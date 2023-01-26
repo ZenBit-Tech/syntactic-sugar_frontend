@@ -3,18 +3,15 @@ import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { InferType } from "yup";
-import { useDispatch } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import { CardModal, StyledButton, StyledSpan, TermsPrivacyPolicy } from "@freelance/components";
 import { useSignUpSchema } from "utils/validations/registerForm";
 import { useSignUpByEmailMutation } from "redux/signup-googleApi";
-import { setUserData } from "redux/userState/userSlice";
 import { Form, InputWrapper, CheckboxWrapper } from "./signup-form.styled";
 import { useModal } from "./hooks";
 
 export function SignupForm() {
 	const { t } = useTranslation();
-	const dispatch = useDispatch();
 	const signUpSchema = useSignUpSchema();
 	const [registration, { data: userData, isSuccess, isError }] = useSignUpByEmailMutation();
 	const { openPrivacyPolicyModal, closePrivacyPolicyModal, privacyPolicyModal } = useModal();
@@ -40,8 +37,7 @@ export function SignupForm() {
 
 	useEffect(() => {
 		if (isSuccess) {
-			dispatch(setUserData({ token: userData?.token, role: userData?.role }));
-			toast(t("signForm.confirmMessage"), { position: toast.POSITION.TOP_LEFT, toastId: "1" });
+			toast.success(t("signForm.confirmMessage"));
 		}
 		if (isError) {
 			toast.error(t("recoverPassForm.errorMessageServerError"));
@@ -94,9 +90,9 @@ export function SignupForm() {
 					<input {...register("agreement")} type="checkbox" name="agreement" />
 					<label htmlFor="agreement">
 						{t("signForm.agree")}
-						<a onClick={openPrivacyPolicyModal}>
+						<button onClick={openPrivacyPolicyModal}>
 							<strong>{t("signForm.policyLink")}</strong>
-						</a>
+						</button>
 					</label>
 				</CheckboxWrapper>
 				{errors?.agreement && (
@@ -111,7 +107,7 @@ export function SignupForm() {
 			<CardModal open={privacyPolicyModal} onCancel={closePrivacyPolicyModal} width={500}>
 				<TermsPrivacyPolicy onCancel={closePrivacyPolicyModal} />
 			</CardModal>
-			<ToastContainer autoClose={false} />
+			<ToastContainer />
 		</Form>
 	);
 }

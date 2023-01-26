@@ -70,4 +70,7 @@ export const CheckboxWrapper = styled.div`
 	label {
 		color: ${({ theme }) => theme.colors.darkGrey};
 	}
+	button {
+		color: ${({ theme }) => theme.colors.darkRed};
+	}
 `;

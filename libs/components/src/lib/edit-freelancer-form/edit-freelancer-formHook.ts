@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { SubmitHandler, UseFormReset } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import { selectDefaultObject, setRemoteArray, setRemoteObject } from "@freelance/components";
 import {
 	IEduResponse,
 	IResponse,
@@ -9,6 +10,7 @@ import {
 	useUpdateFreelancerProfileMutation,
 } from "redux/createFreelancer/freelancer-pageApi";
 import { DEFAULT_IMAGE } from "utils/constants/links";
+import { useOptions } from "utils/select-options/options";
 import { IEditFreelancerForm } from "./edit-freelancer-form";
 
 interface IUseEditFreelancerFormParams {
@@ -37,12 +39,23 @@ export const useEditFreelancerForm = ({
 	isFormChange,
 	setIsFormChange,
 	setIsImageChanged,
+	profile,
 	education,
 	workHistory,
 }: IUseEditFreelancerFormParams): IUseEditFreelancerForm => {
 	const { t } = useTranslation();
 	const [updateFreelancerProfile, { isLoading, isSuccess, isError }] =
 		useUpdateFreelancerProfileMutation();
+	const {
+		countries,
+		categories,
+		skills,
+		employmentType,
+		hourRate,
+		hoursAmount,
+		workExperience,
+		englishLevel,
+	} = useOptions();
 
 	const onSubmit: SubmitHandler<IEditFreelancerForm> = async data => {
 		try {
@@ -85,15 +98,26 @@ export const useEditFreelancerForm = ({
 
 	useEffect(() => {
 		isDirty && setIsFormChange(true);
-	}, [isDirty, isFetching, isFormChange, reset, setIsFormChange]);
+	}, [isDirty, setIsFormChange]);
 
 	useEffect(() => {
 		!isFormChange && !isFetching && reset();
 	}, [isFormChange, reset, isFetching]);
 
 	useEffect(() => {
-		reset({ education, workHistory });
-	}, [education, reset, workHistory]);
+		reset({
+			category: setRemoteObject(profile?.category, categories),
+			skills: setRemoteArray(profile?.skills, skills),
+			employmentType: selectDefaultObject(profile?.employmentType, employmentType),
+			country: setRemoteObject(profile?.country, countries),
+			hourRate: selectDefaultObject(profile?.hourRate, hourRate),
+			availableAmountOfHours: selectDefaultObject(profile?.availableAmountOfHours, hoursAmount),
+			workExperience: selectDefaultObject(profile?.workExperience, workExperience),
+			englishLevel: selectDefaultObject(profile?.englishLevel, englishLevel),
+			education,
+			workHistory,
+		});
+	}, [education, reset, workHistory, profile]);
 
 	useEffect(() => {
 		isSuccess && toast.success(t("dashboard.successEdit"));

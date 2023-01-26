@@ -73,6 +73,7 @@ interface IGridContainer {
 	justifyItems?: "end" | "center" | "start";
 	gap?: number;
 	topLine?: boolean;
+	background?: "lightGrey";
 }
 
 export const GridContainer = styled.div<IGridContainer>`
@@ -108,11 +109,16 @@ export const GridContainer = styled.div<IGridContainer>`
 		css`
 			gap: ${gap}px;
 		`}
-    ${({ topLine }) =>
+  ${({ topLine }) =>
 		topLine &&
 		css`
 			border-top: solid 1px ${({ theme }) => theme.colors.grey};
 			padding-top: 10px;
+		`}
+  ${({ background }) =>
+		background &&
+		css`
+			background-color: ${({ theme }) => theme.colors.lightGrey};
 		`}
 `;
 

@@ -10,7 +10,7 @@ interface IProposalsListProps {
 
 export function ProposalsList({ id, closeProposalsList, openProposalsList }: IProposalsListProps) {
 	const { t } = useTranslation();
-	const { data: proposalsList } = useGetProposalsByJobIdQuery(id);
+	const { data: proposalsList, refetch: refetchProposal } = useGetProposalsByJobIdQuery(id);
 
 	return (
 		<Container modal>
@@ -21,6 +21,7 @@ export function ProposalsList({ id, closeProposalsList, openProposalsList }: IPr
 				itemsPerPage={5}
 				user="employer"
 				data={proposalsList}
+        refetchProposal={refetchProposal}
 				typePage="proposalsList"
 				closeProposalsList={closeProposalsList}
 				openProposalsList={openProposalsList}

@@ -152,9 +152,6 @@ export function FreelancerCard({
 			{/* Modals */}
 
 			<CardModal open={freelancerProfileModalOpen} onCancel={closeFreelancerProfile} width={1000}>
-				<StyledTitle tag="h1" fontSize="lg" fontWeight={700}>
-					{t("proposalCard.freelancerProfile")}
-				</StyledTitle>
 				<ViewFreelancerProfile
 					fullName={fullName}
 					category={category}

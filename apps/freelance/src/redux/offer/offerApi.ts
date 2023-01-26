@@ -6,15 +6,24 @@ import { JobsInterface } from "redux/jobs";
 export interface IOffer {
 	id: string;
 	hourRate: string;
+  isAccepted: boolean;
 	freelancer: IResponse;
 	job: JobsInterface;
 	createdAt: string;
+  acceptance: boolean;
 }
 
 export interface ICreateOffer {
 	hourRate?: string;
 	freelancerId?: string;
 	jobId?: string;
+}
+
+export interface IUpdateOffer {
+	id?: string;
+	isAccepted: boolean;
+	freelancerId?: string;
+	chatId?: string;
 }
 
 export const offerApi = createApi({
@@ -31,7 +40,15 @@ export const offerApi = createApi({
 			}),
 			invalidatesTags: ["offer"],
 		}),
+		updateOffer: build.mutation<void, IUpdateOffer>({
+			query: (body: IUpdateOffer) => ({
+				url: "offer/update-offer",
+				method: "POST",
+				body,
+			}),
+			invalidatesTags: ["offer"],
+		}),
 	}),
 });
 
-export const { useCreateOfferMutation } = offerApi;
+export const { useCreateOfferMutation, useUpdateOfferMutation } = offerApi;

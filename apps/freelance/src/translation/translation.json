@@ -1,6 +1,10 @@
 {
 	"serverErrorMessage": "Something went wrong",
 	"loading": "...Loading",
+	"addEducation": "Add education",
+	"removeEducation": "Remove education",
+	"addExperience": "Add experience",
+	"removeExperience": "Remove experience",
 	"signupGoogle": {
 		"buttonText": "Sign up with Google",
 		"error": "This email already registered. Sign in, please."
@@ -55,7 +59,8 @@
 		"confirmMessage": "We sent you email with confirmation link. Please confirm your email by following it.",
 		"confirmation": "Your email has been confirmed",
 		"passwordError": "Incorrect password or email",
-		"serverError": "Server error, please, try again"
+		"serverError": "Server error, please, try again",
+		"needActivated": "You need to confirm your email, check your mailbox"
 	},
 	"recoverPassForm": {
 		"forgotPass": "Forgot your password?",
@@ -105,7 +110,9 @@
 		"proposalSent": "Proposal was sent",
 		"offerReceived": "Offer received",
 		"accept": "Accept",
-		"decline": "Decline"
+		"decline": "Decline",
+		"offerAccepted": "Offer accepted",
+		"offerDeclined": "Offer declined"
 	},
 	"editJob": {
 		"saveChanges": "Save changes",
@@ -178,6 +185,8 @@
 			"modal": "Do you want to publish profile",
 			"modalBtnNo": "No",
 			"modalBtnYes": "Yes",
+			"add": "Add work history",
+			"edu": "Add education",
 			"selectOption": {
 				"country": "Country",
 				"category": "Category",
