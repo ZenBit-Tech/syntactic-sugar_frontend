@@ -90,6 +90,7 @@ export const SelectElement = styled(Select)`
 
 	.react-select__menu-list {
 		${styledScroll};
+		height: 90px;
 	}
 `;
 

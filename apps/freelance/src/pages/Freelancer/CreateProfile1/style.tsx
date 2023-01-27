@@ -6,6 +6,9 @@ export const SelectMulti = styled(SelectElement)`
 		min-height: 50px;
 		height: auto;
 	}
+
+	.react-select__control--menu-is-open {
+	}
 `;
 
 export const GridBox = styled(GridContainer)`

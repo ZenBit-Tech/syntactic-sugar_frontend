@@ -9,10 +9,12 @@ export interface ProtectedRouteProps {
 
 export const PrivateRoute = ({ children, path }: ProtectedRouteProps) => {
 	const token = useSelector((state: RootState) => state.user.token);
+
 	return token ? children : <Navigate to={path} replace />;
 };
 
 export const PublicRoute = ({ children, path }: ProtectedRouteProps) => {
 	const token = useSelector((state: RootState) => state.user.token);
+
 	return !token ? children : <Navigate to={path} replace />;
 };

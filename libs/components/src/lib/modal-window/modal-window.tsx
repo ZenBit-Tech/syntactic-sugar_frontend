@@ -24,10 +24,10 @@ export function ModalWindow() {
 
 	const handlePublishedButton = async () => {
 		try {
-			await createFreelancer(freelancerState);
+			await createFreelancer(freelancerState).unwrap();
 			await addPublished({ isPublished: true });
 			navigate(SEARCH_WORK);
-		} catch (error) {
+		} catch ({ error }) {
 			alert(error);
 		}
 	};
