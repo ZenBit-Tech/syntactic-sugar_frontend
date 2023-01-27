@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -12,8 +12,6 @@ import { SEARCH_WORK } from "utils/constants/breakpoint";
 import { setUserData } from "redux/userState/userSlice";
 import { StyledButton } from "@freelance/components";
 
-/* eslint-disable-next-line */
-
 export function ModalWindow() {
 	const { t } = useTranslation();
 	const navigate = useNavigate();
@@ -24,10 +22,10 @@ export function ModalWindow() {
 
 	const handlePublishedButton = async () => {
 		try {
-			await createFreelancer(freelancerState).unwrap();
+			await createFreelancer(freelancerState);
 			await addPublished({ isPublished: true });
 			navigate(SEARCH_WORK);
-		} catch ({ error }) {
+		} catch (error ) {
 			alert(error);
 		}
 	};

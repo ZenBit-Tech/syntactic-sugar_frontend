@@ -6,8 +6,11 @@ export const SelectMulti = styled(SelectElement)`
 		min-height: 50px;
 		height: auto;
 	}
+`;
 
-	.react-select__control--menu-is-open {
+export const SelectListDown = styled(SelectElement)`
+	.react-select__menu-list {
+		height: 100px;
 	}
 `;
 
