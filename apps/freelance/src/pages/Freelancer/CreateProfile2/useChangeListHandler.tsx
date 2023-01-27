@@ -1,7 +1,4 @@
-import { useEffect } from "react";
 import { educationProps, workHistoryProps } from "src/redux/createFreelancer/freelancer-slice";
-import { useEducationHandler, education } from "./useEducationHandler";
-import { useWorkHistoryHandler, workHistory } from "./useWorkHistoryHandler";
 
 export enum listOption {
 	EDUCATION = "EDUCATION",
