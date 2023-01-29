@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 interface iStyledButtonProps {
-	buttonSize: "lg" | "md" | "sm" | "modal" | "card" | "filter";
+	buttonSize: "lg" | "md" | "sm" | "modal" | "card" | "filter" | "chat";
 	buttonColor: "redGradient" | "blue" | "lightRed" | "darkRed";
 	fontSize?: "lg" | "md" | "sm";
 	iconButton?: boolean;
@@ -55,6 +55,10 @@ export const StyledButton = styled.button<iStyledButtonProps>`
 			case "filter":
 				return css`
 					width: 45%;
+				`;
+			case "chat":
+				return css`
+					width: 100%;
 				`;
 		}
 	}}

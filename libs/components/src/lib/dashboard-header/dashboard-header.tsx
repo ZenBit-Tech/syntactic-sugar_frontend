@@ -25,6 +25,7 @@ import {
 } from "./dashboard-header.styled";
 import { useChat } from "./dashboard-headerChatHooks";
 import { useDashboardHeader } from "./dashboard-headerHook";
+import { Badge } from "antd";
 
 export interface DashboardHeaderProps {
 	userRole: "freelancer" | "employer";
@@ -45,6 +46,7 @@ export function DashboardHeader({ userRole, typePage, profile }: DashboardHeader
 		isEditModalOpen,
 		isImageChanged,
 		isFormChange,
+		chatNotifications,
 		setIsFormChange,
 		openEditProfileModal,
 		closeEditProofileModal,
@@ -75,11 +77,18 @@ export function DashboardHeader({ userRole, typePage, profile }: DashboardHeader
 			)}
 			{userRole === ROLES.FREELANCER && (
 				<ButtonsWrapper>
-					<StyledButton buttonSize="md" buttonColor="lightRed" fontSize="md" onClick={openChat}>
-						{t("dashboard.header.chat")}
-						<img src="/assets/images/chat_btn_icon.png" alt="Chat Icon" />
-					</StyledButton>
-					<StyledButton buttonSize="md" buttonColor="darkRed" fontSize="md" onClick={handleLogout}>
+					<Badge count={chatNotifications}>
+						<StyledButton buttonSize="chat" buttonColor="lightRed" fontSize="md" onClick={openChat}>
+							{t("dashboard.header.chat")}
+							<img src="/assets/images/chat_btn_icon.png" alt="Chat Icon" />
+						</StyledButton>
+					</Badge>
+					<StyledButton
+						buttonSize="filter"
+						buttonColor="darkRed"
+						fontSize="md"
+						onClick={handleLogout}
+					>
 						{t("dashboard.header.logout")}
 						<img src="/assets/images/logout_btn_icon.png" alt="Logout Icon" />
 					</StyledButton>
@@ -87,11 +96,18 @@ export function DashboardHeader({ userRole, typePage, profile }: DashboardHeader
 			)}
 			{userRole === ROLES.EMPLOYER && (
 				<ButtonsWrapper>
-					<StyledButton buttonSize="md" buttonColor="lightRed" fontSize="md" onClick={openChat}>
-						{t("dashboard.header.chat")}
-						<img src="/assets/images/chat_btn_icon.png" alt="Chat Icon" />
-					</StyledButton>
-					<StyledButton buttonSize="md" buttonColor="darkRed" fontSize="md" onClick={handleLogout}>
+					<Badge count={chatNotifications}>
+						<StyledButton buttonSize="chat" buttonColor="lightRed" fontSize="md" onClick={openChat}>
+							{t("dashboard.header.chat")}
+							<img src="/assets/images/chat_btn_icon.png" alt="Chat Icon" />
+						</StyledButton>
+					</Badge>
+					<StyledButton
+						buttonSize="filter"
+						buttonColor="darkRed"
+						fontSize="md"
+						onClick={handleLogout}
+					>
 						{t("dashboard.header.logout")}
 						<img src="/assets/images/logout_btn_icon.png" alt="Logout Icon" />
 					</StyledButton>

@@ -14,6 +14,7 @@ import { createEmployerApi } from "./createEmployer/employerApi";
 import { uploadImage } from "./uploadImage/upload-image.api";
 import { chatApi } from "./chat/chatApi";
 import { offerApi } from "./offer/offerApi";
+import { notificationApi } from "./notification/notificationApi";
 import { userApi } from "./userApi";
 
 const store = configureStore({
@@ -33,6 +34,7 @@ const store = configureStore({
 		[uploadImage.reducerPath]: uploadImage.reducer,
 		[chatApi.reducerPath]: chatApi.reducer,
 		[offerApi.reducerPath]: offerApi.reducer,
+		[notificationApi.reducerPath]: notificationApi.reducer,
 		[userApi.reducerPath]: userApi.reducer,
 	},
 	middleware: getDefaultMiddleware =>
@@ -52,6 +54,7 @@ const store = configureStore({
 			uploadImage.middleware,
 			chatApi.middleware,
 			offerApi.middleware,
+			notificationApi.middleware,
 			userApi.middleware,
 		),
 });

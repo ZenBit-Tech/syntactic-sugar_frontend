@@ -46,7 +46,8 @@ export const useChatHook = ({ userId, userType }: ChatHookProps) => {
 		socket.on("message", (message: IMessage) => {
 			setMessages([...(messages as []), message]);
 		});
-	}, [messages]);
+		socket.emit("notification", { id: userId, role: userType });
+	}, [messages, userId, userType]);
 
 	const handleChange = (event: React.FormEvent<HTMLTextAreaElement>) => {
 		setMessage((event.target as HTMLInputElement).value);

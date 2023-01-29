@@ -75,4 +75,9 @@ export const ButtonsWrapper = styled.div`
 			width: 20%;
 		}
 	}
+
+	.ant-badge {
+		line-height: inherit;
+		width: 45%;
+	}
 `;
