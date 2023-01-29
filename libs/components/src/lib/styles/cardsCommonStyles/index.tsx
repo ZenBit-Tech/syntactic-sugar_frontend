@@ -142,14 +142,15 @@ export const OfferButtonWrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
-	width: 100%;
-	gap: 10px;
+	width: 75%;
+	gap: 10;
 
 	button {
 		border-radius: 12px;
+		width: 40%;
 	}
 `;
 
 export const OfferCardNotification = styled(CardNotification)`
-	width: 90%;
+	width: 75%;
 `;

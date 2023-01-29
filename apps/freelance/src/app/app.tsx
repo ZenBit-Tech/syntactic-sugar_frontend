@@ -2,7 +2,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider, useSelector } from "react-redux";
 import store from "redux/store";
-import { getRole } from "src/redux/userState/userSlice";
+import { getProfile, getRole } from "src/redux/userState/userSlice";
 import { EMPLOYER, FREELANCER, GUEST } from "src/utils/constants/breakpoint";
 import Login from "@pages/Login";
 import Signup from "@pages/Signup";
@@ -29,6 +29,7 @@ import { StyledApp } from "./app.styled";
 
 export function App() {
 	const role = useSelector(getRole);
+	const isProfile = useSelector(getProfile);
 
 	return (
 		<StyledApp>
@@ -36,105 +37,97 @@ export function App() {
 				<Provider store={store}>
 					<BrowserRouter>
 						<Routes>
-							<Route
-								path="/signup"
-								element={
-									<PublicRoute path="/">
-										<Signup />
-									</PublicRoute>
-								}
-							/>
 							{role === GUEST && (
 								<>
-									<Route
-										path="/role"
-										element={
-											<PrivateRoute path="/">
-												<Role />
-											</PrivateRoute>
-										}
-									/>
-									<Route
-										path="/"
-										element={
-											<PublicRoute path="/role">
-												<Login />
-											</PublicRoute>
-										}
-									/>
+									<Route element={<PrivateRoute />}>
+										<Route element={<Role />} path="role" />
+										<Route element={<SearchWork />} path="freelancer/searchwork" />
+										<Route element={<EmployerJobsPage />} path="employer/my-jobs-page" />
+										<Route element={<TalentsPage />} path="employer/talents" />
+										<Route element={<CreateProfile1 />} path="/freelancer/create-profile1" />
+										<Route element={<CreateProfile2 />} path="/freelancer/create-profile2" />
+										<Route element={<ViewProfile />} path="/freelancer/view-profile" />
+										<Route element={<CreateEmployerProfile />} path="/employer/create-profile" />
+									</Route>
+									<Route element={<PublicRoute path="role" />}>
+										<Route element={<Login />} path="/" />
+										<Route element={<Signup />} path="/signup" />
+									</Route>
+									<Route element={<Login />} path="/" />
 								</>
 							)}
-							{role !== EMPLOYER && (
+							{role === FREELANCER && (
 								<>
-									<Route
-										path="/freelancer/searchwork"
-										element={
-											<PrivateRoute path="/">
-												<SearchWork />
-											</PrivateRoute>
-										}
-									/>
-									<Route
-										path="/"
-										element={
-											<PublicRoute path="/freelancer/searchwork">
-												<Login />
-											</PublicRoute>
-										}
-									/>
+									<Route element={<PrivateRoute />}>
+										{isProfile && <Route element={<SearchWork />} path="freelancer/searchwork" />}
+										<Route element={<CreateProfile1 />} path="/freelancer/create-profile1" />
+										<Route element={<CreateProfile2 />} path="/freelancer/create-profile2" />
+										<Route element={<ViewProfile />} path="/freelancer/view-profile" />
+									</Route>
+									<Route element={<PublicRoute path="freelancer/searchwork" />}>
+										<Route element={<Login />} path="/" />
+										<Route element={<Signup />} path="/signup" />
+									</Route>
+									<Route element={<PublicRoute path="/freelancer/create-profile1" />}>
+										<Route element={<Role />} path="role" />
+									</Route>
+									{!isProfile && (
+										<Route element={<PublicRoute path="/freelancer/create-profile1" />}>
+											<Route element={<SearchWork />} path="freelancer/searchwork" />
+										</Route>
+									)}
+									<Route element={<Login />} path="/" />
 								</>
 							)}
-							{role !== FREELANCER && (
+							{role === EMPLOYER && (
 								<>
-									<Route
-										path="/employer/my-jobs-page"
-										element={
-											<PrivateRoute path="/">
-												<EmployerJobsPage />
-											</PrivateRoute>
-										}
-									/>
-									<Route
-										path="/"
-										element={
-											<PublicRoute path="employer/my-jobs-page">
-												<Login />
-											</PublicRoute>
-										}
-									/>
-									<Route
-										path="/employer/talents"
-										element={
-											<PrivateRoute path="/">
-												<TalentsPage />
-											</PrivateRoute>
-										}
-									/>
+									<Route element={<PrivateRoute />}>
+										{isProfile && (
+											<>
+												<Route element={<EmployerJobsPage />} path="employer/my-jobs-page" />
+												<Route element={<TalentsPage />} path="employer/talents" />
+											</>
+										)}
+
+										<Route element={<CreateEmployerProfile />} path="/employer/create-profile" />
+										<Route
+											element={<JobPostingFirstPage />}
+											path="/employer/create-new-job-first-page"
+										/>
+										<Route
+											element={<JobPostingSecondPage />}
+											path="/employer/create-new-job-second-page"
+										/>
+										<Route
+											element={<JobPostingThirdPage />}
+											path="/employer/create-new-job-third-page"
+										/>
+									</Route>
+									<Route element={<PublicRoute path="employer/my-jobs-page" />}>
+										<Route element={<Login />} path="/" />
+										<Route element={<Signup />} path="/signup" />
+									</Route>
+									<Route element={<PublicRoute path="/employer/create-profile" />}>
+										<Route element={<Role />} path="role" />
+									</Route>
+									{!isProfile && (
+										<Route element={<PublicRoute path="/employer/create-profile" />}>
+											<Route element={<EmployerJobsPage />} path="employer/my-jobs-page" />
+											<Route element={<TalentsPage />} path="employer/talents" />
+										</Route>
+									)}
+									<Route element={<Login />} path="/" />
 								</>
 							)}
-							<Route
-								path="/recover"
-								element={
-									<PublicRoute path="/">
-										<RecoverPasswordRequest />
-									</PublicRoute>
-								}
-							>
+
+							<Route element={<PublicRoute path="recover" />}>
 								<Route path="recover-password" element={<RecoverPasswordRequest />} />
 								<Route path="check-your-email" element={<RecoverPasswordCheck />} />
 								<Route path="resetpassword/:token" element={<RecoverPasswordReset />} />
 								<Route path="password-updated" element={<RecoverPasswordUpdate />} />
 							</Route>
-							<Route path="/freelancer/create-profile1" element={<CreateProfile1 />} />
-							<Route path="/freelancer/create-profile2" element={<CreateProfile2 />} />
-							<Route path="/freelancer/view-profile" element={<ViewProfile />} />
-							<Route path="/employer/create-profile" element={<CreateEmployerProfile />} />
-							<Route path="/employer/create-new-job-first-page" element={<JobPostingFirstPage />} />
-							<Route
-								path="/employer/create-new-job-second-page"
-								element={<JobPostingSecondPage />}
-							/>
-							<Route path="/employer/create-new-job-third-page" element={<JobPostingThirdPage />} />
+
+							<Route element={<Signup />} path="/signup" />
 							<Route path="*" element={<NotFound />} />
 						</Routes>
 					</BrowserRouter>

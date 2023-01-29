@@ -16,8 +16,8 @@ export interface PaginationProps {
 	typePage?: TypePage;
 	profile?: IResponse | IResponseEmployer;
 	refetch?: () => void;
-  refetchJobs?: () => void;
-  refetchProposal?: () => void;
+	refetchJobs?: () => void;
+	refetchProposal?: () => void;
 	closeProposalsList?: () => void;
 	openProposalsList?: () => void;
 }
@@ -33,8 +33,8 @@ export function Pagination({
 	typePage,
 	profile,
 	refetch,
-  refetchJobs,
-  refetchProposal,
+	refetchJobs,
+	refetchProposal,
 	closeProposalsList,
 	openProposalsList,
 }: PaginationProps) {
@@ -58,8 +58,8 @@ export function Pagination({
 					typePage={typePage}
 					profile={profile}
 					refetch={refetch}
-          refetchJobs={refetchJobs}
-          refetchProposal={refetchProposal}
+					refetchJobs={refetchJobs}
+					refetchProposal={refetchProposal}
 					closeProposalsList={closeProposalsList}
 					openProposalsList={openProposalsList}
 				/>

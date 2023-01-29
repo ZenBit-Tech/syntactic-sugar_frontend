@@ -22,9 +22,9 @@ export function SearchWork() {
 		data,
 		freelancerFilter,
 		refetch,
-    refetchJobs,
+		refetchJobs,
 		proposals,
-		freelancerProfile,
+		freelancerData,
 		invitations,
 		offers,
 	} = useSearchWorkFormHook();
@@ -46,7 +46,7 @@ export function SearchWork() {
 			<Dashboard
 				userRole="freelancer"
 				typePage={JOBS_PAGE}
-				profile={freelancerProfile}
+				profile={freelancerData}
 				myProposals={myProposals}
 				allJobs={allJobs}
 				myInvitations={myInvitations}
@@ -63,9 +63,9 @@ export function SearchWork() {
 							user={ROLES.FREELANCER}
 							data={publishedFilterJobs}
 							typePage={JOBS_PAGE}
-							profile={freelancerProfile}
+							profile={freelancerData}
 							refetch={refetch}
-              refetchJobs={refetchJobs}
+							refetchJobs={refetchJobs}
 						/>
 					)}
 					{myProposals && (
@@ -74,7 +74,7 @@ export function SearchWork() {
 							user={ROLES.FREELANCER}
 							data={proposals}
 							typePage={JOBS_PAGE}
-							profile={freelancerProfile}
+							profile={freelancerData}
 						/>
 					)}
 					{myInvitations && (
@@ -83,7 +83,7 @@ export function SearchWork() {
 							user={ROLES.FREELANCER}
 							data={invitations}
 							typePage={JOBS_PAGE}
-							profile={freelancerProfile}
+							profile={freelancerData}
 						/>
 					)}
 					{myOffers && (
@@ -92,7 +92,7 @@ export function SearchWork() {
 							user={ROLES.FREELANCER}
 							data={offers}
 							typePage={JOBS_PAGE}
-							profile={freelancerProfile}
+							profile={freelancerData}
 						/>
 					)}
 				</InputWrapper>
