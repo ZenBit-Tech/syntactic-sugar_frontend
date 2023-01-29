@@ -223,24 +223,7 @@ export function JobCard({
 							</FreelancerButtonWrapper>
 						</GridContainer>
 					)}
-				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && isOffer && (
-					<GridContainer alignItems="center" justifyItems="center">
-						<OfferCardNotification fontSize="md">
-							<strong>
-								{t("jobCard.offerReceived")} ${offerTax}
-							</strong>
-						</OfferCardNotification>
-						<OfferButtonWrapper>
-							<StyledButton buttonColor="redGradient" buttonSize="sm" fontSize="md">
-								<strong>{t("jobCard.accept")}</strong>
-							</StyledButton>
-							<StyledButton buttonColor="redGradient" buttonSize="sm" fontSize="md">
-								<strong>{t("jobCard.decline")}</strong>
-							</StyledButton>
-						</OfferButtonWrapper>
-					</GridContainer>
-				)}
-				{isOffer && !isOfferAcceptance && (
+				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && isOffer && !isOfferAcceptance && (
 					<GridContainer alignItems="center" justifyItems="center">
 						<OfferCardNotification fontSize="md">
 							<strong>

@@ -14,7 +14,7 @@ interface IUseSearchWorkFormHook {
 	data?: JobsInterface[];
 	freelancerFilter: IFreelancerInfo;
 	refetch: () => void;
-  refetchJobs?: () => void;
+	refetchJobs?: () => void;
 	isLoading: boolean;
 	proposals?: JobsInterface[];
 	freelancerData?: IResponse;
@@ -161,7 +161,7 @@ export const useSearchWorkFormHook = (): IUseSearchWorkFormHook => {
 		data,
 		freelancerFilter,
 		refetch,
-    refetchJobs,
+		refetchJobs,
 		isLoading,
 		proposals,
 		freelancerData,

@@ -142,7 +142,7 @@ export const OfferButtonWrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
-	width: 100%;
+	width: 75%;
 	gap: 10;
 
 	button {
@@ -152,5 +152,5 @@ export const OfferButtonWrapper = styled.div`
 `;
 
 export const OfferCardNotification = styled(CardNotification)`
-	width: 90%;
+	width: 75%;
 `;

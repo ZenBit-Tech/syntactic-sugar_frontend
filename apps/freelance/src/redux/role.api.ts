@@ -15,6 +15,7 @@ export const roleApi = createApi({
 	reducerPath: "auth/role",
 	baseQuery: baseQuery,
 	refetchOnFocus: true,
+	tagTypes: ["Role"],
 	endpoints: build => ({
 		addRole: build.mutation({
 			query: (body: IRole) => ({
@@ -22,6 +23,7 @@ export const roleApi = createApi({
 				method: "POST",
 				body,
 			}),
+			invalidatesTags: ["Role"],
 		}),
 	}),
 });
