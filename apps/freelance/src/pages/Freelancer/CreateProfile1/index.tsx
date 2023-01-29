@@ -24,7 +24,7 @@ import { baseUrl } from "utils/constants/redux-query";
 import { DEFAULT_IMAGE } from "utils/constants/links";
 import { CREATE_PROFILE_2 } from "utils/constants/breakpoint";
 import { Container, StyledFileField } from "@pages/Employer/CreateProfile/styles";
-import { StyledPage, Form, GridBox, SelectMulti } from "./style";
+import { StyledPage, Form, GridBox, SelectMulti, SelectListDown } from "./style";
 
 interface IFormInput {
 	fullName: string;
@@ -374,7 +374,7 @@ export function CreateProfile1() {
 										control={control}
 										rules={{ required: FIELD_REQUIRED }}
 										render={({ field }) => (
-											<SelectElement
+											<SelectListDown
 												options={workExperience}
 												{...field}
 												id="workExperience"
@@ -401,7 +401,7 @@ export function CreateProfile1() {
 										control={control}
 										rules={{ required: FIELD_REQUIRED }}
 										render={({ field }) => (
-											<SelectElement
+											<SelectListDown
 												options={englishLevel}
 												{...field}
 												id="englishLevel"

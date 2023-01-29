@@ -8,6 +8,12 @@ export const SelectMulti = styled(SelectElement)`
 	}
 `;
 
+export const SelectListDown = styled(SelectElement)`
+	.react-select__menu-list {
+		height: 100px;
+	}
+`;
+
 export const GridBox = styled(GridContainer)`
 	grid-row-gap: 45px;
 	grid-column-gap: 110px;
