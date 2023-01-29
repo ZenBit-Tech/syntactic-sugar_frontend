@@ -7,6 +7,7 @@ import { Token } from "redux/interfaces/Token";
 const initialState: IUserState = {
 	token: null,
 	role: "GUEST",
+	isProfile: false,
 };
 
 export const userSlice = createSlice({
@@ -21,9 +22,13 @@ export const userSlice = createSlice({
 			state.token = null;
 			state.role = "GUEST";
 		},
+		setProfile(state, action: PayloadAction<{ isProfile: boolean | undefined }>) {
+			state.isProfile = action.payload.isProfile;
+		},
 	},
 });
 
-export const { setUserData, unsetUserData } = userSlice.actions;
+export const { setUserData, unsetUserData, setProfile } = userSlice.actions;
 export const getToken = (state: RootState) => state.user.token;
 export const getRole = (state: RootState) => state.user.role;
+export const getProfile = (state: RootState) => state.user.isProfile;

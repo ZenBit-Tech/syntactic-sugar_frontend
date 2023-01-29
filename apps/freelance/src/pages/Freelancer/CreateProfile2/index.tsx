@@ -22,6 +22,7 @@ import {
 	InputWrapper,
 	StyledToastContainer,
 } from "./style";
+import { setProfile } from "src/redux/userState/userSlice";
 
 export function CreateProfile2() {
 	const { t } = useTranslation();
@@ -67,6 +68,7 @@ export function CreateProfile2() {
 				toastId: "1",
 			});
 			dispatch(addFreelancerInfo(payload));
+			dispatch(setProfile({ isProfile: true }));
 		}
 		if (type === "view") {
 			dispatch(addFreelancerInfo(payload));

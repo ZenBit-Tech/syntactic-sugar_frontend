@@ -11,7 +11,7 @@ import { useSignInSchema } from "utils/validations/loginForm";
 import { useLoginMutation } from "redux/login.api";
 import { useConfirmEmailMutation } from "redux/signup-googleApi";
 import { UserRoles } from "redux/role.api";
-import { setUserData } from "redux/userState/userSlice";
+import { setProfile, setUserData } from "redux/userState/userSlice";
 import {
 	ROLE_SELECTION,
 	SEARCH_WORK,
@@ -76,7 +76,17 @@ export function LoginForm() {
 
 	useEffect(() => {
 		if (isSuccess) {
-			dispatch(setUserData({ token: userData?.token, role: userData?.role }));
+			dispatch(
+				setUserData({
+					token: userData?.token,
+					role: userData?.role,
+				}),
+			);
+			dispatch(
+				setProfile({
+					isProfile: userData?.isProfile,
+				}),
+			);
 		}
 	}, [isSuccess]);
 

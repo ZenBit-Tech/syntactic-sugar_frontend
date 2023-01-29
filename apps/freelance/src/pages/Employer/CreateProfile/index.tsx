@@ -25,7 +25,7 @@ import { DEFAULT_IMAGE, EMPLOYER_JOBS_PAGE } from "utils/constants/links";
 import { baseUrl } from "utils/constants/redux-query";
 import { useEditEmployerSchema } from "utils/validations/editEmployerSchema";
 import { useUploadImageMutation } from "redux/uploadImage/upload-image.api";
-import { setUserData } from "redux/userState/userSlice";
+import { setProfile, setUserData } from "redux/userState/userSlice";
 import { useCreateEmployerMutation } from "redux/createEmployer/employerApi";
 import { StyledFileField, Container } from "./styles";
 
@@ -100,6 +100,7 @@ export function CreateEmployerProfile() {
 
 		try {
 			await createProfile(employerInfo);
+			dispatch(setProfile({ isProfile: true }));
 			navigate(EMPLOYER_JOBS_PAGE);
 		} catch (error) {
 			alert(error);

@@ -205,52 +205,51 @@ export function JobCard({
 						</FreelancerButtonWrapper>
 					</GridContainer>
 				)}
-				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && isInvitation && isChat && (
-					<GridContainer alignItems="center" justifyItems="center">
-						<FreelancerButtonWrapper>
-							<StyledButton
-								buttonColor="redGradient"
-								buttonSize="lg"
-								fontSize="md"
-								onClick={continueChat}
-							>
-								<strong>{t("chat.continueChat")}</strong>
-							</StyledButton>
-						</FreelancerButtonWrapper>
-					</GridContainer>
-				)}
 				{userType === ROLES.FREELANCER &&
 					typePage === JOBS_PAGE &&
-					!isInvitation &&
+					isInvitation &&
 					isChat &&
-					isOffer &&
-					!isOfferAcceptance && (
+					!isOffer && (
 						<GridContainer alignItems="center" justifyItems="center">
-							<OfferCardNotification fontSize="md">
-								<strong>
-									{t("jobCard.offerReceived")} ${offerTax}
-								</strong>
-							</OfferCardNotification>
-							<OfferButtonWrapper>
+							<FreelancerButtonWrapper>
 								<StyledButton
 									buttonColor="redGradient"
-									buttonSize="sm"
+									buttonSize="lg"
 									fontSize="md"
-									onClick={() => handleOfferAccept(jobId, true)}
+									onClick={continueChat}
 								>
-									<strong>{t("jobCard.accept")}</strong>
+									<strong>{t("chat.continueChat")}</strong>
 								</StyledButton>
-								<StyledButton
-									buttonColor="redGradient"
-									buttonSize="sm"
-									fontSize="md"
-									onClick={() => handleOfferAccept(jobId, false)}
-								>
-									<strong>{t("jobCard.decline")}</strong>
-								</StyledButton>
-							</OfferButtonWrapper>
+							</FreelancerButtonWrapper>
 						</GridContainer>
 					)}
+				{userType === ROLES.FREELANCER && typePage === JOBS_PAGE && isOffer && !isOfferAcceptance && (
+					<GridContainer alignItems="center" justifyItems="center">
+						<OfferCardNotification fontSize="md">
+							<strong>
+								{t("jobCard.offerReceived")} ${offerTax}
+							</strong>
+						</OfferCardNotification>
+						<OfferButtonWrapper>
+							<StyledButton
+								buttonColor="redGradient"
+								buttonSize="sm"
+								fontSize="md"
+								onClick={() => handleOfferAccept(jobId, true)}
+							>
+								<strong>{t("jobCard.accept")}</strong>
+							</StyledButton>
+							<StyledButton
+								buttonColor="redGradient"
+								buttonSize="sm"
+								fontSize="md"
+								onClick={() => handleOfferAccept(jobId, false)}
+							>
+								<strong>{t("jobCard.decline")}</strong>
+							</StyledButton>
+						</OfferButtonWrapper>
+					</GridContainer>
+				)}
 				{userType === ROLES.FREELANCER &&
 					typePage === JOBS_PAGE &&
 					!isInvitation &&

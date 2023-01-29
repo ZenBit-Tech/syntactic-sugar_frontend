@@ -7,16 +7,18 @@ import { setUserData } from "redux/userState/userSlice";
 import { StyledButton } from "@freelance/components";
 import { useAddRoleMutation, UserRoles } from "redux/role.api";
 import { Form, RadioGroup } from "./role-selection-form.styled";
-import { CREATE_PROFILE_1, ROLE_SELECTION, EMPLOYER_PROFILE } from "utils/constants/breakpoint";
+import { CREATE_PROFILE_1, EMPLOYER_PROFILE, EMPLOYER } from "utils/constants/breakpoint";
 
-type RoleOptions = "employer" | "freelancer";
+type RoleOptions = "EMPLOYER" | "FREELANCER" | "GUEST";
 
 export function RoleSelectionForm() {
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const [addRole, { data: userData, isSuccess, isError }] = useAddRoleMutation();
-	const [radioOption, setRadioOption] = useState<RoleOptions | null>(null);
+	const [radioOption, setRadioOption] = useState<RoleOptions>("GUEST");
+
+	console.log(radioOption);
 
 	const roleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setRadioOption(e.target.value as RoleOptions);
@@ -32,9 +34,6 @@ export function RoleSelectionForm() {
 	}, [isSuccess, isError]);
 
 	useEffect(() => {
-		if (userData?.role === UserRoles.GUEST) {
-			navigate(ROLE_SELECTION);
-		}
 		if (userData?.role === UserRoles.FREELANCER) {
 			navigate(CREATE_PROFILE_1);
 		}
@@ -46,16 +45,16 @@ export function RoleSelectionForm() {
 	const handleContinueButton = (event: React.FormEvent<HTMLButtonElement>) => {
 		event.preventDefault();
 		addRole(
-			radioOption === "employer" ? { role: UserRoles.EMPLOYER } : { role: UserRoles.FREELANCER },
+			radioOption === EMPLOYER ? { role: UserRoles.EMPLOYER } : { role: UserRoles.FREELANCER },
 		);
 	};
 
 	return (
 		<Form>
 			<RadioGroup>
-				<input type="radio" name="role" value="employer" id="jobOwner" onChange={roleHandler} />
+				<input type="radio" name="role" value="EMPLOYER" id="jobOwner" onChange={roleHandler} />
 				<label htmlFor="jobOwner">{t("roleSelection.roleJobOwner")}</label>
-				<input type="radio" name="role" value="freelancer" id="freelancer" onChange={roleHandler} />
+				<input type="radio" name="role" value="FREELANCER" id="freelancer" onChange={roleHandler} />
 				<label htmlFor="freelancer">{t("roleSelection.roleFreelancer")}</label>
 			</RadioGroup>
 			{radioOption ? (
