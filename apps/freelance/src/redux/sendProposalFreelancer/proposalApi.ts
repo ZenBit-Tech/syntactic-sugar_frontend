@@ -9,6 +9,7 @@ export const proposalFreelancerApi = createApi({
 		baseUrl: baseUrl,
 		prepareHeaders: (headers, { getState }) => {
 			const token = (getState() as RootState).user.token;
+
 			if (token) {
 				headers.set("authorization", `Bearer ${token}`);
 			}

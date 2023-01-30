@@ -1,0 +1,3 @@
+## Offer schema
+
+## Extra explanation

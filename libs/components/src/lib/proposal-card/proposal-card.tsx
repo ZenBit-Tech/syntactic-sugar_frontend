@@ -42,9 +42,11 @@ export interface ProposalCardProps {
 }
 
 export function ProposalCard({
+	id,
 	coverLetter,
 	hourRate,
 	createdDate,
+	filePath,
 	freelancer,
 	employerId,
 	jobId,
@@ -64,6 +66,7 @@ export function ProposalCard({
 		closeLetterModal,
 		isLetterOpen,
 	} = useProposalCard({ closeProposalsList, openProposalsList });
+	const { data } = useGetCvByIdQuery(id);
 	const { openChat, closeChat, chatModalOpen, continueChat } = useChat({
 		jobId,
 		employerId,
